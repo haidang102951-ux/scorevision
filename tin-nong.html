@@ -3,37 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tin Nóng & Bí Mật Số Liệu | Score Vision</title>
+    <title>Tin Nóng | Score Vision</title>
     <style>
-        * {margin:0; padding:0; box-sizing:border-box; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;}
-        body {background:#05050a; color:#f8fafc; line-height:1.6; padding:16px; max-width:768px; margin:0 auto;}
-        
-        /* === MENU === */
-        .menu {display:flex; flex-wrap:wrap; gap:8px; margin-bottom:32px;}
-        .menu-btn {background:#0f172a; color:#cbd5e1; padding:10px 14px; border-radius:10px; text-align:center; text-decoration:none; font-size:14px; font-weight:600; display:inline-flex; align-items:center; gap:5px; border:1px solid #1e293b; transition:all 0.2s;}
-        .menu-btn:hover {transform:translateY(-2px); border-color:#334155;}
-        .menu-btn.active {background:linear-gradient(135deg,#22c55e 0%,#16a34a 100%); color:white; border-color:#22c55e;}
-        
-        /* === TIÊU ĐỀ === */
-        .page-title {font-size:24px; font-weight:800; margin:20px 0 30px; text-align:center; color:#fef08a;}
-        
-        /* === NỘI DUNG TIN NÓNG === */
-        .news-card {background:linear-gradient(145deg,#1e293b,#0f172a); border-radius:20px; padding:24px; margin-bottom:20px; border:2px solid #334155;}
-        .news-card:hover {border-color:#fef08a;}
-        .news-label {font-size:13px; font-weight:700; padding:4px 12px; border-radius:6px; display:inline-block; margin-bottom:14px;}
-        .news-label.warn {background:rgba(248,113,113,0.15); color:#fca5a5;}
-        .news-label.alert {background:rgba(251,191,36,0.15); color:#fde047;}
-        .news-label.new {background:rgba(34,197,94,0.15); color:#86efac;}
-        .news-title {font-size:18px; font-weight:700; margin-bottom:12px; color:#fef08a; line-height:1.4;}
-        .news-content {font-size:15px; color:#e2e8f0; line-height:1.7;}
-        
-        /* === NÚT QUAY LẠI === */
-        .back-btn {display:inline-block; margin-top:20px; background:#22c55e; color:white; padding:10px 20px; border-radius:10px; text-decoration:none; font-weight:600;}
+        *{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;}
+        body{background:#05050a;color:#f8fafc;line-height:1.8;padding:16px;max-width:768px;margin:0 auto;}
+        .menu{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px;}
+        .menu-btn{background:#0f172a;color:#cbd5e1;padding:10px 14px;border-radius:10px;text-align:center;text-decoration:none;font-size:14px;font-weight:600;display:inline-flex;align-items:center;gap:5px;border:1px solid #1e293b;transition:all .2s;}
+        .menu-btn:hover{transform:translateY(-2px);border-color:#334155;}
+        .menu-btn.active{background:linear-gradient(135deg,#ef4444 0%,#dc2626 100%);color:white;border-color:#ef4444;box-shadow:0 4px 12px rgba(239,68,68,.25);}
+        .page-title{font-size:24px;font-weight:800;margin:20px 0 30px;text-align:center;color:#fca5a5;}
+        .card{background:linear-gradient(145deg,#1e293b,#0f172a);border-radius:20px;padding:20px;margin-bottom:16px;border:2px solid #334155;}
+        .card:hover{border-color:#ef4444;}
+        .card-title{font-size:17px;font-weight:700;color:#fef08a;margin-bottom:8px;}
+        .card-date{font-size:13px;color:#fca5a5;margin-bottom:12px;}
+        .card-content{color:#e2e8f0;line-height:1.7;}
+        .empty{text-align:center;color:#64748b;padding:50px 20px;}
     </style>
 </head>
 <body>
-
-<!-- 🏠 MENU -->
 <nav class="menu">
     <a href="index.html" class="menu-btn">🏠 Trang chủ</a>
     <a href="lich-dau.html" class="menu-btn">📅 Lịch đấu</a>
@@ -41,71 +28,49 @@
     <a href="bang-xep-hang.html" class="menu-btn">📊 Bảng xếp hạng</a>
     <a href="thong-ke.html" class="menu-btn">📈 Thống kê</a>
     <a href="tin-nong.html" class="menu-btn active">📰 Tin Nóng</a>
-    <a href="lien-he.html" class="menu-btn">ℹ️ Giới thiệu</a>
 </nav>
 
-<!-- 📰 TIÊU ĐỀ TRANG -->
-<h1 class="page-title">📰 Tin Nóng & Bí Mật Số Liệu</h1>
+<h1 class="page-title">📰 Tin Nóng & Phân Tích</h1>
+<div id="tin-list"><div class="empty">Đang tải dữ liệu...</div></div>
 
-<!-- 🔥 BÀI 1 -->
-<div class="news-card">
-    <span class="news-label warn">⚠️ ĐỪNG BỎ LỠ!</span>
-    <h2 class="news-title">Real vs Barca: Con số nghiêng về một phía — 90% người không biết!</h2>
-    <div class="news-content">
-        <p>Phong độ, đối đầu, lực lượng... Tất cả đã được phân tích. Nhưng chỉ có <strong>một chỉ số quan trọng nhất</strong> đang nghiêng về một phía mà hầu hết mọi người đều bỏ lỡ.</p>
-        <br>
-        <p>📊 <strong>Phân tích chi tiết:</strong></p>
-        <ul style="margin-left:20px; margin-top:8px;">
-            <li>Real Madrid bất bại trên sân nhà trong 12 trận gần nhất</li>
-            <li>Barcelona chỉ thắng 2/7 trận khi làm khách trước đối thủ top 4</li>
-            <li>Lịch sử đối đầu 5 trận gần nhất: 3 hòa, 2 chủ nhà thắng</li>
-            <li>Chỉ số quan trọng nhất: <strong>tỷ lệ giữ bóng & chuyển đổi cơ hội</strong> chênh lệch đến 18%</li>
-        </ul>
-        <br>
-        <p>💡 <strong>Kết luận:</strong> Dữ liệu cho thấy ưu thế nghiêng về chủ nhà Real Madrid, nhưng tỷ số sẽ rất chặt chẽ và khó đoán trước.</p>
-    </div>
-</div>
+<script>
+const GID_TIN_NONG = "1328630352";
+const URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQwrXKqXdfjGK7EQCkNwjuv-FbFJxHhQyCg1NxBl2kkMnGuPCYL1vnG6QFBujGwNCVlx5v1keQuviBV/pub?output=csv&gid="+GID_TIN_NONG;
 
-<!-- ⚡ BÀI 2 -->
-<div class="news-card">
-    <span class="news-label alert">🔴 CẢNH BÁO!</span>
-    <h2 class="news-title">5 trận "bẫy kèo" hôm nay — Trông dễ ăn nhưng cực nguy hiểm!</h2>
-    <div class="news-content">
-        <p>Dữ liệu cho thấy những trận này có dấu hiệu bất thường. <strong>Không nên xem nhẹ!</strong> Xem danh sách trước khi quyết định — có thể cứu ví bạn nhiều tiền...</p>
-        <br>
-        <p>📋 <strong>Danh sách trận cần cẩn trọng:</strong></p>
-        <ul style="margin-left:20px; margin-top:8px;">
-            <li>Man Utd vs Southampton — Trông dễ nhưng tỷ lệ thắng bị đánh giá sai</li>
-            <li>Inter vs Verona — Lịch sử đối đầu lừa dối</li>
-            <li>PSG vs Strasbourg — Thiếu nhiều trụ cột nhưng không ai nói</li>
-            <li>Bayern vs Wolfsburg — Chênh lệch điểm không phản ánh thực lực</li>
-            <li>Atletico vs Sociedad — Phong độ sân khách bị xem nhẹ</li>
-        </ul>
-        <br>
-        <p>⚠️ <strong>Lời khuyên:</strong> Tránh những trận này hoặc xem xét kỹ trước khi đưa ra quyết định cuối cùng.</p>
-    </div>
-</div>
+function parseCSV(text){
+    const rows=[], lines=text.split("\n");
+    for(let l of lines){
+        if(!l.trim())continue;
+        let p=[],c="",q=0;
+        for(let ch of l){
+            if(ch=='"')q=!q;
+            else if(ch==','&&!q){p.push(c.trim());c="";}
+            else c+=ch;
+        }
+        p.push(c.trim());rows.push(p);
+    }
+    return rows;
+}
 
-<!-- 🔍 BÀI 3 -->
-<div class="news-card">
-    <span class="news-label new">💡 PHÁT HIỆN MỚI!</span>
-    <h2 class="news-title">Xu hướng Tài/Xỉu hôm nay: 7 trận có kết quả bất ngờ theo mô hình!</h2>
-    <div class="news-content">
-        <p>Dựa trên phân tích <strong>hơn 10.000 trận</strong>, mô hình dự đoán 7 trận hôm nay có xác suất Tài/Xỉu lệch chuẩn so với đánh giá thông thường.</p>
-        <br>
-        <p>📊 <strong>Chi tiết mô hình:</strong></p>
-        <ul style="margin-left:20px; margin-top:8px;">
-            <li>5 trận dự đoán <strong>Xỉu</strong> dù mọi người đều nghĩ Tài</li>
-            <li>2 trận dự đoán <strong>Tài</strong> cao dù nhà cái đánh giá thấp</li>
-            <li>Độ chính xác mô hình: <strong>87%</strong> trên 10.000 trận đã phân tích</li>
-        </ul>
-        <br>
-        <p>💡 <strong>Lợi thế:</strong> Biết trước những trận lệch chuẩn sẽ giúp bạn có quyết định khác với đám đông và giành lợi thế lâu dài!</p>
-    </div>
-</div>
-
-<!-- QUAY LẠI -->
-<a href="index.html" class="back-btn">← Quay lại Trang chủ</a>
-
+fetch(URL).then(r=>r.text()).then(csv=>{
+    const rows=parseCSV(csv), data=[];
+    for(let i=1;i<rows.length;i++){
+        const [loai,thutu,tieu_de,ngay,noi_dung_tom_tat]=rows[i];
+        if(loai!=="tin_nong")continue;
+        data.push({st:Number(thutu)||999,tieu_de,ngay,noi_dung_tom_tat});
+    }
+    data.sort((a,b)=>a.st-b.st);
+    const box=document.getElementById("tin-list");
+    if(!data.length){box.innerHTML=`<div class="empty">Chưa có tin tức<br>Điền vào Sheet "Tin Nóng" → tự hiện!</div>`;return;}
+    box.innerHTML="";
+    data.forEach(x=>{
+        box.innerHTML+=`<div class="card">
+            <h3 class="card-title">${x.tieu_de}</h3>
+            <div class="card-date">📅 ${x.ngay}</div>
+            <div class="card-content">${x.noi_dung_tom_tat}</div>
+        </div>`;
+    });
+}).catch(()=>{document.getElementById("tin-list").innerHTML=`<div class="empty" style="color:#f87171;">⚠️ Kiểm tra Sheet!</div>`;});
+</script>
 </body>
 </html>
