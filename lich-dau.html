@@ -3,51 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lịch thi đấu - Score Vision</title>
+    <title>Lịch Đấu | Score Vision</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: Arial, sans-serif; background: #f0f2f5; color: #333; }
-        .menu { background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); padding: 14px 20px; position: sticky; top:0; }
-        .menu .container { max-width: 1100px; margin:0 auto; display:flex; flex-wrap:wrap; gap:6px; }
-        .menu a { color:white; text-decoration:none; padding:10px 16px; border-radius:6px; font-weight:bold; }
-        .menu a:hover, .menu a.active { background:#4CAF50; }
-        .container { max-width:1100px; margin:0 auto; padding:25px 20px; }
-        h1 { color:#0f2027; border-left:4px solid #4CAF50; padding-left:12px; margin-bottom:25px; }
-        .match-card { background:white; border-radius:10px; padding:15px; margin-bottom:12px; box-shadow:0 2px 6px rgba(0,0,0,0.08); }
-        .league { color:#2c5364; font-weight:bold; margin-bottom:8px; }
-        .time { color:#666; font-size:14px; }
+        *{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;}
+        body{background:#05050a;color:#f8fafc;line-height:1.6;padding:16px;max-width:768px;margin:0 auto;}
+        .menu{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px;}
+        .menu-btn{background:#0f172a;color:#cbd5e1;padding:10px 14px;border-radius:10px;text-align:center;text-decoration:none;font-size:14px;font-weight:600;display:inline-flex;align-items:center;gap:5px;border:1px solid #1e293b;transition:all .2s;}
+        .menu-btn:hover{transform:translateY(-2px);border-color:#334155;}
+        .menu-btn.active{background:linear-gradient(135deg,#22c55e 0%,#16a34a 100%);color:white;border-color:#22c55e;box-shadow:0 4px 12px rgba(34,197,94,.25);}
+        .page-title{font-size:24px;font-weight:800;margin:20px 0 30px;text-align:center;color:#fef08a;}
+        .date-group{margin-bottom:30px;}
+        .date-title{font-size:16px;font-weight:700;color:#86efac;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #1e293b;}
+        .match-item{background:linear-gradient(145deg,#1e293b,#0f172a);border-radius:12px;padding:14px;margin-bottom:10px;border:1px solid #334155;}
+        .match-item:hover{border-color:#22c55e;}
+        .match-name{font-weight:700;font-size:15px;margin-bottom:4px;}
+        .match-info{font-size:13px;color:#94a3b8;}
+        .empty{text-align:center;color:#64748b;padding:50px 20px;}
+        .back-btn{display:inline-block;margin-top:20px;background:#22c55e;color:white;padding:10px 20px;border-radius:10px;text-decoration:none;font-weight:600;}
     </style>
 </head>
 <body>
-<div class="menu">
-    <div class="container">
-        <a href="index.html">🏠 Trang chủ</a>
-        <a href="lich-dau.html" class="active">📅 Lịch đấu</a>
-        <a href="du-doan.html">🔮 Dự đoán</a>
-        <a href="bang-xep-hang.html">📊 Bảng xếp hạng</a>
-        <a href="thong-ke.html">📈 Thống kê</a>
-        <a href="lien-he.html">ℹ️ Giới thiệu</a>
-    </div>
-</div>
-<div class="container">
-    <h1>📅 Lịch thi đấu sắp tới</h1>
+<nav class="menu">
+    <a href="index.html" class="menu-btn">🏠 Trang chủ</a>
+    <a href="lich-dau.html" class="menu-btn active">📅 Lịch đấu</a>
+    <a href="du-doan.html" class="menu-btn">🔮 Dự đoán</a>
+    <a href="bang-xep-hang.html" class="menu-btn">📊 Bảng xếp hạng</a>
+    <a href="thong-ke.html" class="menu-btn">📈 Thống kê</a>
+    <a href="tin-nong.html" class="menu-btn">📰 Tin Nóng</a>
+    <a href="gioi-thieu.html" class="menu-btn">ℹ️ Giới thiệu</a>
+</nav>
 
-    <div class="match-card">
-        <div class="league">🏆 Ngoại Hạng Anh — Vòng 3</div>
-        <div class="time">25/08/2026 — 02:00</div>
-        <div style="font-size:17px; font-weight:bold; margin-top:6px;">Liverpool 🆚 Chelsea</div>
-    </div>
-    <div class="match-card">
-        <div class="league">🏆 Giải VĐQG Đức — Vòng 2</div>
-        <div class="time">25/08/2026 — 01:30</div>
-        <div style="font-size:17px; font-weight:bold; margin-top:6px;">Bayern Munich 🆚 Leverkusen</div>
-    </div>
-    <div class="match-card">
-        <div class="league">🏆 Giải VĐQG Ý — Vòng 2</div>
-        <div class="time">26/08/2026 — 02:45</div>
-        <div style="font-size:17px; font-weight:bold; margin-top:6px;">AC Milan 🆚 Inter Milan</div>
-    </div>
+<h1 class="page-title">📅 Lịch Thi Đấu Sắp Tới</h1>
+<div id="lich-dau-list"><div class="empty">Đang tải từ Google Sheets...</div></div>
+<a href="index.html" class="back-btn">← Quay lại Trang chủ</a>
 
-</div>
+<script>
+const URL_SHEETS = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQwrXKqXdfjGK7EQCkNwjuv-FbFJxHhQyCg1NxBl2kkMnGuPCYL1vnG6QFBujGwNCVlx5v1keQuviBV/pub?gid=0&single=true&output=csv";
+fetch(URL_SHEETS).then(r=>r.text()).then(csv=>{
+    const rows=[], lines=csv.split("\n");
+    for(let l of lines){
+        if(!l.trim())continue;
+        let p=[],c="",q=0;
+        for(let ch of l){
+            if(ch=='"')q=!q;
+            else if(ch==','&&!q){p.push(c.trim());c="";}
+            else c+=ch;
+        }
+        p.push(c.trim());rows.push(p);
+    }
+    const data=[];
+    for(let i=1;i<rows.length;i++){
+        const [loai,thutu,ten,ngaygio]=rows[i];
+        if(loai!=="du_doan")continue;
+        data.push({st:Number(thutu)||999,ten,ngaygio});
+    }
+    data.sort((a,b)=>a.st-b.st);
+    const box=document.getElementById("lich-dau-list");
+    if(!data.length){box.innerHTML=`<div class="empty">Chưa có dữ liệu<br><small>Điền vào Sheets → tự hiện!</small></div>`;return;}
+    const nhom={};
+    data.forEach(x=>{
+        const ngay=x.ngaygio.split("•")[0].trim();
+        if(!nhom[ngay])nhom[ngay]=[];
+        nhom[ngay].push(x);
+    });
+    box.innerHTML="";
+    for(let n in nhom){
+        box.innerHTML+=`<div class="date-group"><h2 class="date-title">📅 ${n}</h2>`;
+        nhom[n].forEach(x=>{
+            const gio=x.ngaygio.split("•")[1]?x.ngaygio.split("•")[1].trim():"";
+            box.innerHTML+=`<div class="match-item"><div class="match-name">${x.ten}</div><div class="match-info">⏰ ${gio}</div></div>`;
+        });
+        box.innerHTML+=`</div>`;
+    }
+}).catch(()=>{document.getElementById("lich-dau-list").innerHTML=`<div class="empty" style="color:#f87171;">⚠️ Kiểm tra Sheets đã Xuất bản & Chia sẻ công khai chưa!</div>`;});
+</script>
 </body>
 </html>
