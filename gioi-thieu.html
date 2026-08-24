@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giới thiệu | Score Vision</title>
+    <style>
+        * {margin:0; padding:0; box-sizing:border-box; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;}
+        body {background:#05050a; color:#f8fafc; line-height:1.8; padding:16px; max-width:768px; margin:0 auto;}
+        
+        /* === MENU === */
+        .menu {display:flex; flex-wrap:wrap; gap:8px; margin-bottom:32px;}
+        .menu-btn {background:#0f172a; color:#cbd5e1; padding:10px 14px; border-radius:10px; text-align:center; text-decoration:none; font-size:14px; font-weight:600; display:inline-flex; align-items:center; gap:5px; border:1px solid #1e293b; transition:all 0.2s;}
+        .menu-btn:hover {transform:translateY(-2px); border-color:#334155;}
+        .menu-btn.active {background:linear-gradient(135deg,#22c55e 0%,#16a34a 100%); color:white; border-color:#22c55e;}
+        
+        /* === TIÊU ĐỀ === */
+        .page-title {font-size:26px; font-weight:800; margin:20px 0 30px; text-align:center; color:#fef08a;}
+        .subtitle {text-align:center; color:#94a3b8; margin-bottom:40px; font-size:15px;}
+        
+        /* === KHỐI NỘI DUNG === */
+        .content-box {background:linear-gradient(145deg,#1e293b,#0f172a); border-radius:20px; padding:28px; margin-bottom:20px; border:2px solid #334155;}
+        .content-box:hover {border-color:#fef08a;}
+        .content-box h2 {font-size:18px; color:#86efac; margin-bottom:14px;}
+        .content-box p {color:#e2e8f0; margin-bottom:12px; font-size:15px;}
+        .content-box ul {margin-left:20px; color:#e2e8f0; margin-bottom:12px;}
+        .content-box li {margin-bottom:8px;}
+        
+        /* === THỐNG KÊ === */
+        .stats-row {display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin:30px 0;}
+        .stat-card {background:rgba(34,197,94,0.08); border-radius:14px; padding:20px; text-align:center; border:1px solid #22c55e;}
+        .stat-num {font-size:28px; font-weight:900; color:#fef08a; margin-bottom:6px;}
+        .stat-label {font-size:14px; color:#94a3b8;}
+        
+        /* === TELEGRAM === */
+        .telegram-box {background:linear-gradient(135deg,#2AABEE,#229ED9); border-radius:14px; padding:22px; text-align:center; margin-top:16px;}
+        .telegram-box h3 {color:white; font-size:17px; margin-bottom:8px;}
+        .telegram-box a {color:white; font-weight:600; font-size:16px; text-decoration:none; display:inline-block; padding:8px 16px; background:rgba(255,255,255,0.2); border-radius:8px; margin-top:6px;}
+        .telegram-box a:hover {background:rgba(255,255,255,0.3);}
+        
+        /* === NÚT QUAY LẠI === */
+        .back-btn {display:inline-block; margin-top:10px; background:#22c55e; color:white; padding:10px 20px; border-radius:10px; text-decoration:none; font-weight:600;}
+    </style>
+</head>
+<body>
+
+<!-- 🏠 MENU -->
+<nav class="menu">
+    <a href="index.html" class="menu-btn">🏠 Trang chủ</a>
+    <a href="lich-dau.html" class="menu-btn">📅 Lịch đấu</a>
+    <a href="du-doan.html" class="menu-btn">🔮 Dự đoán</a>
+    <a href="bang-xep-hang.html" class="menu-btn">📊 Bảng xếp hạng</a>
+    <a href="thong-ke.html" class="menu-btn">📈 Thống kê</a>
+    <a href="tin-nong.html" class="menu-btn">📰 Tin Nóng</a>
+    <a href="gioi-thieu.html" class="menu-btn active">ℹ️ Giới thiệu</a>
+</nav>
+
+<!-- ℹ️ TIÊU ĐỀ TRANG -->
+<h1 class="page-title">ℹ️ Về Score Vision</h1>
+<p class="subtitle">Nhìn thấu trận đấu trước khi bắt đầu</p>
+
+<!-- 📌 GIỚI THIỆU -->
+<div class="content-box">
+    <h2>🎯 Chúng tôi là ai?</h2>
+    <p><strong>Score Vision</strong> là hệ thống phân tích và dự đoán bóng đá dựa trên dữ liệu thực tế, không dựa vào cảm giác hay linh cảm.</p>
+    <p>Chúng tôi thu thập và phân tích hàng trăm chỉ số cho mỗi trận đấu: phong độ, lịch sử đối đầu, lực lượng, chiến thuật, hiệu suất tấn công/phòng thủ, tỷ lệ giữ bóng, chuyển đổi cơ hội và nhiều chỉ số khác...</p>
+</div>
+
+<!-- 💡 SỨ MỆNH -->
+<div class="content-box">
+    <h2>💡 Tại sao chúng tôi khác biệt?</h2>
+    <ul>
+        <li>✅ Phân tích dựa trên <strong>dữ liệu thực tế</strong>, không phỏng đoán</li>
+        <li>✅ Đánh giá <strong>hơn 100 chỉ số</strong> cho mỗi trận</li>
+        <li>✅ Mô hình đã phân tích <strong>hàng nghìn trận</strong> với độ chính xác cao</li>
+        <li>✅ Cập nhật liên tục <strong>mỗi giờ</strong> từ nhiều nguồn uy tín</li>
+        <li>✅ Không đưa ra dự đoán hấp tấp — phân tích kỹ để <strong>BẠN tự quyết định</strong></li>
+    </ul>
+</div>
+
+<!-- 📊 THỐNG KÊ -->
+<div class="stats-row">
+    <div class="stat-card"><div class="stat-num">87%</div><div class="stat-label">Độ chính xác</div></div>
+    <div class="stat-card"><div class="stat-num">500+</div><div class="stat-label">Trận đã phân tích</div></div>
+    <div class="stat-card"><div class="stat-num">15+</div><div class="stat-label">Giải đấu hàng đầu</div></div>
+</div>
+
+<!-- 📢 KÊNH TELEGRAM → LINK ĐÃ DÁN SẴN -->
+<div class="content-box">
+    <h2>📢 Theo dõi Kênh Telegram</h2>
+    <p>Nhận dự đoán, phân tích và thông báo mới nhất ngay trên Telegram. Cập nhật nhanh chóng, hoàn toàn miễn phí!</p>
+    
+    <div class="telegram-box">
+        <h3>🔔 KÊNH SCORE VISION</h3>
+        <p>Nhận dự đoán & phân tích mỗi ngày</p>
+        <a href="https://t.me/+LBCsBd-LjPI3ZDRl" target="_blank">👉 Nhấn vào tham gia kênh</a>
+    </div>
+</div>
+
+<!-- QUAY LẠI -->
+<a href="index.html" class="back-btn">← Quay lại Trang chủ</a>
+
+</body>
+</html>
