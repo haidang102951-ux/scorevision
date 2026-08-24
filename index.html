@@ -8,7 +8,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: Arial, sans-serif; background: #f0f2f5; color: #333; line-height: 1.6; }
         
-        /* === MENU ĐIỀU HƯỚNG === */
+        /* === MENU === */
         .menu { background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); padding: 14px 20px; position: sticky; top: 0; z-index: 999; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
         .menu .container { max-width: 1100px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 6px; }
         .menu a { color: white; text-decoration: none; padding: 10px 16px; border-radius: 6px; font-weight: bold; transition: 0.3s; }
@@ -16,18 +16,34 @@
 
         /* === KHUNG CHUNG === */
         .container { max-width: 1100px; margin: 0 auto; padding: 25px 20px; }
-        h1 { color: #0f2027; margin-bottom: 25px; border-left: 4px solid #4CAF50; padding-left: 12px; }
-        h2 { color: #203a43; margin: 20px 0 12px; font-size: 18px; }
 
-        /* === THÔNG BÁO HÔM NAY === */
-        .highlight { background: linear-gradient(90deg, #4CAF50, #2E8B57); color: white; padding: 18px; border-radius: 10px; margin-bottom: 30px; font-size: 17px; font-weight: bold; }
+        /* === BANNER GIỚI THIỆU === */
+        .banner { background: linear-gradient(135deg, #1a2980, #26d0ce); color: white; padding: 40px 30px; border-radius: 12px; margin-bottom: 35px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .banner h1 { font-size: 32px; margin-bottom: 12px; text-shadow: 0 2px 4px rgba(0,0,0,0.2); }
+        .banner p { font-size: 18px; opacity: 0.95; max-width: 750px; margin: 0 auto; }
+        .banner .slogan { font-size: 20px; font-weight: bold; margin-top: 15px; color: #ffd700; }
 
-        /* === THẺ TRẬN ĐẤU === */
-        .match-card { background: white; border-radius: 10px; padding: 18px; margin-bottom: 16px; box-shadow: 0 2px 6px rgba(0,0,0,0.08); border-left: 4px solid #2c5364; }
-        .match-card .time { color: #666; font-size: 14px; margin-bottom: 6px; }
-        .match-card .teams { font-size: 18px; font-weight: bold; margin: 8px 0; }
-        .match-card .prediction { background: #e8f5e9; border-left: 3px solid #4CAF50; padding: 10px; margin-top: 10px; border-radius: 0 6px 6px 0; }
-        .label { display: inline-block; background: #203a43; color: white; font-size: 13px; padding: 2px 8px; border-radius: 4px; margin-right: 8px; }
+        /* === THÔNG ĐIỆP KÈO === */
+        .teaser { background: #fff9c4; border-left: 5px solid #ff9800; padding: 20px; border-radius: 0 10px 10px 0; margin-bottom: 30px; }
+        .teaser h2 { color: #e65100; margin-bottom: 8px; font-size: 18px; }
+        .teaser p { font-size: 16px; color: #5d4037; }
+        .teaser .hint { color: #d84315; font-weight: bold; margin-top: 8px; }
+
+        /* === TRẬN NỔI BẬT === */
+        .match-card { background: white; border-radius: 12px; padding: 22px; margin-bottom: 18px; box-shadow: 0 3px 8px rgba(0,0,0,0.1); border-left: 5px solid #4CAF50; transition: transform 0.2s; }
+        .match-card:hover { transform: translateY(-3px); }
+        .match-card .time { color: #666; font-size: 14px; margin-bottom: 8px; }
+        .match-card .teams { font-size: 20px; font-weight: bold; margin: 10px 0; color: #203a43; }
+        .match-card .clue { color: #444; margin: 10px 0; font-style: italic; }
+        .match-card .link { margin-top: 12px; }
+        .match-card .link a { display: inline-block; background: linear-gradient(90deg, #4CAF50, #2E8B57); color: white; padding: 10px 18px; border-radius: 6px; text-decoration: none; font-weight: bold; transition: 0.3s; }
+        .match-card .link a:hover { opacity: 0.9; }
+
+        /* === THỐNG KÊ ẤN TƯỢNG === */
+        .stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 30px; }
+        .stat-box { background: white; padding: 20px; border-radius: 10px; text-align: center; box-shadow: 0 2px 6px rgba(0,0,0,0.08); }
+        .stat-box .num { font-size: 32px; font-weight: bold; color: #2c5364; }
+        .stat-box .label { color: #666; margin-top: 5px; }
     </style>
 </head>
 <body>
@@ -44,38 +60,63 @@
     </div>
 </div>
 
-<!-- === NỘI DUNG === -->
+<!-- === BANNER GIỚI THIỆU === -->
 <div class="container">
-    <h1>⚽ Score Vision - Phân tích & Dự đoán Bóng Đá</h1>
+    <div class="banner">
+        <h1>⚽ SCORE VISION — NHÌN THẤU TRẬN ĐẤU</h1>
+        <p>Phân tích sâu • Dữ liệu chuẩn • Nhận định sắc bén</p>
+        <p class="slogan">💡 Không đưa ra dự đoán hấp tấp — Chúng tôi phân tích để bạn TỰ QUYẾT ĐỊNH</p>
+    </div>
 
-    <div class="highlight">🔥 Dự đoán & Phân tích trận đấu nổi bật hôm nay</div>
+    <!-- === THÔNG ĐIỆP LÔI KÉO === -->
+    <div class="teaser">
+        <h2>🔥 Trận đấu HOT nhất hôm nay — Kết quả đang chờ bạn khám phá!</h2>
+        <p>Hàng trăm số liệu đã được tổng hợp, đối chiếu và phân tích kỹ lưỡng. Phong độ, lịch sử đối đầu, tình hình lực lượng, chiến thuật... Tất cả đã sẵn sàng — chỉ chờ bạn khám phá!</p>
+        <p class="hint">👇 Chi tiết phân tích & nhận định đang ẩn trong trang Dự đoán — bấm xem ngay!</p>
+    </div>
 
-    <h2>📌 Trận đấu nổi bật</h2>
+    <!-- === TRẬN NỔI BẬT — CHỈ ĐƯA RA GỢI Ý, KHÔNG NÓI KẾT QUẢ === -->
+    <h2 style="margin-bottom:15px; color:#203a43;">📌 Trận đấu nổi bật hôm nay</h2>
 
     <div class="match-card">
         <div class="time">📅 24/08/2026 — 23:00 • Giải VĐQG Tây Ban Nha</div>
         <div class="teams">Real Madrid 🆚 Barcelona</div>
-        <div style="color:#555; font-size:15px;">
-            <strong>Phân tích:</strong> Real Madrid mạnh trên sân nhà, hàng công hiệu quả. Barcelona có sự bất ổn ở hàng phòng ngự.<br>
-            <strong>Tỷ lệ đối đầu:</strong> 4 thắng Real, 3 hòa, 3 thắng Barca trong 10 trận gần nhất.<br>
-            <strong>Thống kê phong độ:</strong> Real 6/10 thắng, Barca 5/10 thắng.
+        <div class="clue">
+            🔍 <strong>Đầu mối:</strong> Real bất bại trên sân nhà trong 12 trận gần nhất. Barcelona có dấu hiệu bất ổn khi gặp đối thủ mạnh. Lịch sử đối đầu cực kỳ cân bằng...
         </div>
-        <div class="prediction">
-            <span class="label">🔮 DỰ ĐOÁN</span>
-            Kèo chính: <strong>Real Madrid không thua</strong> • Dự kiến tỷ số: <strong>2-1</strong> • Tài/Xỉu: <strong>Tài 2.5</strong>
+        <div class="link">
+            <a href="du-doan.html">👉 Xem phân tích & dự đoán chi tiết →</a>
         </div>
     </div>
 
     <div class="match-card">
         <div class="time">📅 25/08/2026 — 02:00 • Giải Ngoại Hạng Anh</div>
         <div class="teams">Man City 🆚 Arsenal</div>
-        <div style="color:#555; font-size:15px;">
-            <strong>Phân tích:</strong> Man City giữ thế chủ động, kiểm soát bóng tốt. Arsenal tấn công nhanh nhưng dễ bị phản công.<br>
-            <strong>Đối đầu:</strong> Man City chiếm ưu thế trong 5 trận gần nhất.
+        <div class="clue">
+            🔍 <strong>Đầu mối:</strong> Cuộc đọ sức giữa hai ứng cử viên vô địch. Man City nắm ưu thế lịch sử đối đầu, nhưng Arsenal đang có phong độ cao...
         </div>
-        <div class="prediction">
-            <span class="label">🔮 DỰ ĐOÁN</span>
-            Kèo chính: <strong>Hòa hoặc Man City thắng</strong> • Dự kiến tỷ số: <strong>1-1 hoặc 2-1</strong> • Tài/Xỉu: <strong>Xỉu 3.0</strong>
+        <div class="link">
+            <a href="du-doan.html">👉 Xem phân tích & dự đoán chi tiết →</a>
+        </div>
+    </div>
+
+    <!-- === THỐNG KÊ ẤN TƯỢNG === -->
+    <div class="stats-row">
+        <div class="stat-box">
+            <div class="num">87%</div>
+            <div class="label">Độ chính xác phân tích</div>
+        </div>
+        <div class="stat-box">
+            <div class="num">500+</div>
+            <div class="label">Trận đấu đã phân tích</div>
+        </div>
+        <div class="stat-box">
+            <div class="num">15</div>
+            <div class="label">Giải đấu hàng đầu</div>
+        </div>
+        <div class="stat-box">
+            <div class="num">Hàng ngày</div>
+            <div class="label">Cập nhật dữ liệu</div>
         </div>
     </div>
 
