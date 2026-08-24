@@ -3,45 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bảng xếp hạng - Score Vision</title>
+    <title>Bảng Xếp Hạng | Score Vision</title>
     <style>
-        * { margin:0; padding:0; box-sizing:border-box; }
-        body { font-family:Arial, sans-serif; background:#f0f2f5; color:#333; }
-        .menu { background:linear-gradient(135deg, #0f2027, #203a43, #2c5364); padding:14px 20px; position:sticky; top:0; }
-        .menu .container { max-width:1100px; margin:0 auto; display:flex; flex-wrap:wrap; gap:6px; }
-        .menu a { color:white; text-decoration:none; padding:10px 16px; border-radius:6px; font-weight:bold; }
-        .menu a:hover, .menu a.active { background:#4CAF50; }
-        .container { max-width:1100px; margin:0 auto; padding:25px 20px; }
-        h1 { color:#0f2027; border-left:4px solid #4CAF50; padding-left:12px; margin-bottom:25px; }
-        table { width:100%; border-collapse:collapse; background:white; border-radius:10px; overflow:hidden; box-shadow:0 2px 6px rgba(0,0,0,0.08); }
-        th { background:#203a43; color:white; padding:10px; text-align:left; }
-        td { padding:10px; border-bottom:1px solid #eee; }
-        tr:nth-child(1) { background:#e8f5e9; font-weight:bold; }
+        *{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;}
+        body{background:#05050a;color:#f8fafc;line-height:1.6;padding:16px;max-width:768px;margin:0 auto;}
+        .menu{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px;}
+        .menu-btn{background:#0f172a;color:#cbd5e1;padding:10px 14px;border-radius:10px;text-align:center;text-decoration:none;font-size:14px;font-weight:600;display:inline-flex;align-items:center;gap:5px;border:1px solid #1e293b;transition:all .2s;}
+        .menu-btn:hover{transform:translateY(-2px);border-color:#334155;}
+        .menu-btn.active{background:linear-gradient(135deg,#22c55e 0%,#16a34a 100%);color:white;border-color:#22c55e;box-shadow:0 4px 12px rgba(34,197,94,.25);}
+        .page-title{font-size:24px;font-weight:800;margin:20px 0 30px;text-align:center;color:#fef08a;}
+        .league{margin-bottom:30px;}
+        .league-name{font-size:16px;font-weight:700;color:#86efac;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #1e293b;}
+        table{width:100%;border-collapse:collapse;background:linear-gradient(145deg,#1e293b,#0f172a);border-radius:12px;overflow:hidden;border:1px solid #334155;}
+        th{background:#0f172a;padding:10px 6px;text-align:left;font-size:13px;color:#94a3b8;}
+        td{padding:10px 6px;border-top:1px solid #1e293b;font-size:14px;}
+        tr:hover{background:rgba(34,197,94,.08);}
+        .stt{text-align:center;font-weight:700;color:#fef08a;width:36px;}
+        .pts{font-weight:700;color:#86efac;}
+        .empty{text-align:center;color:#64748b;padding:50px 20px;}
+        .back-btn{display:inline-block;margin-top:20px;background:#22c55e;color:white;padding:10px 20px;border-radius:10px;text-decoration:none;font-weight:600;}
+        @media(max-width:480px){th:nth-child(4),td:nth-child(4),th:nth-child(5),td:nth-child(5),th:nth-child(6),td:nth-child(6){display:none;}}
     </style>
 </head>
 <body>
-<div class="menu">
-    <div class="container">
-        <a href="index.html">🏠 Trang chủ</a>
-        <a href="lich-dau.html">📅 Lịch đấu</a>
-        <a href="du-doan.html">🔮 Dự đoán</a>
-        <a href="bang-xep-hang.html" class="active">📊 Bảng xếp hạng</a>
-        <a href="thong-ke.html">📈 Thống kê</a>
-        <a href="lien-he.html">ℹ️ Giới thiệu</a>
-    </div>
-</div>
-<div class="container">
-    <h1>📊 Bảng xếp hạng — Ngoại Hạng Anh</h1>
-    <table>
-        <thead><tr><th>#</th><th>Đội bóng</th><th>Trận</th><th>Thắng</th><th>Hòa</th><th>Thua</th><th>Điểm</th></tr></thead>
-        <tbody>
-            <tr><td>1</td><td>Liverpool</td><td>2</td><td>2</td><td>0</td><td>0</td><td>6</td></tr>
-            <tr><td>2</td><td>Arsenal</td><td>2</td><td>1</td><td>1</td><td>0</td><td>4</td></tr>
-            <tr><td>3</td><td>Man City</td><td>2</td><td>1</td><td>1</td><td>0</td><td>4</td></tr>
-            <tr><td>4</td><td>Chelsea</td><td>2</td><td>1</td><td>0</td><td>1</td><td>3</td></tr>
-            <tr><td>5</td><td>Aston Villa</td><td>2</td><td>1</td><td>0</td><td>1</td><td>3</td></tr>
-        </tbody>
-    </table>
-</div>
+<nav class="menu">
+    <a href="index.html" class="menu-btn">🏠 Trang chủ</a>
+    <a href="lich-dau.html" class="menu-btn">📅 Lịch đấu</a>
+    <a href="du-doan.html" class="menu-btn">🔮 Dự đoán</a>
+    <a href="bang-xep-hang.html" class="menu-btn active">📊 Bảng xếp hạng</a>
+    <a href="thong-ke.html" class="menu-btn">📈 Thống kê</a>
+    <a href="tin-nong.html" class="menu-btn">📰 Tin Nóng</a>
+    <a href="gioi-thieu.html" class="menu-btn">ℹ️ Giới thiệu</a>
+</nav>
+
+<h1 class="page-title">📊 Bảng Xếp Hạng</h1>
+<div id="bxh-list"><div class="empty">Đang tải từ Google Sheets...</div></div>
+<a href="index.html" class="back-btn">← Quay lại Trang chủ</a>
+
+<script>
+const URL_SHEETS = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQwrXKqXdfjGK7EQCkNwjuv-FbFJxHhQyCg1NxBl2kkMnGuPCYL1vnG6QFBujGwNCVlx5v1keQuviBV/pub?gid=0&single=true&output=csv";
+fetch(URL_SHEETS).then(r=>r.text()).then(csv=>{
+    const rows=[], lines=csv.split("\n");
+    for(let l of lines){
+        if(!l.trim())continue;
+        let p=[],c="",q=0;
+        for(let ch of l){
+            if(ch=='"')q=!q;
+            else if(ch==','&&!q){p.push(c.trim());c="";}
+            else c+=ch;
+        }
+        p.push(c.trim());rows.push(p);
+    }
+    const data=[];
+    for(let i=1;i<rows.length;i++){
+        const [loai,thutu,giai,doi,tran,diem,thang,hoa,thua]=rows[i];
+        if(loai!=="bang_xep_hang")continue;
+        data.push({st:Number(thutu)||999,giai,doi,tran,diem,thang,hoa,thua});
+    }
+    data.sort((a,b)=>a.st-b.st);
+    const box=document.getElementById("bxh-list");
+    if(!data.length){box.innerHTML=`<div class="empty">Chưa có dữ liệu BXH<br><small>Điền vào Sheets → tự hiện!</small></div>`;return;}
+    const nhom={};
+    data.forEach(x=>{if(!nhom[x.giai])nhom[x.giai]=[];nhom[x.giai].push(x);});
+    box.innerHTML="";
+    for(let g in nhom){
+        box.innerHTML+=`<div class="league"><h2 class="league-name">🏆 ${g}</h2><table><thead><tr><th class="stt">#</th><th>Đội</th><th>Tr</th><th>Thắng</th><th>Hòa</th><th>Thua</th><th class="pts">Điểm</th></tr></thead><tbody>`;
+        nhom[g].forEach(x=>{
+            box.innerHTML+=`<tr><td class="stt">${x.st}</td><td>${x.doi}</td><td>${x.tran}</td><td>${x.thang}</td><td>${x.hoa}</td><td>${x.thua}</td><td class="pts">${x.diem}</td></tr>`;
+        });
+        box.innerHTML+=`</tbody></table></div>`;
+    }
+}).catch(()=>{document.getElementById("bxh-list").innerHTML=`<div class="empty" style="color:#f87171;">⚠️ Kiểm tra Sheets!</div>`;});
+</script>
 </body>
 </html>
