@@ -8,45 +8,62 @@
         * {margin:0; padding:0; box-sizing:border-box; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;}
         body {background:#05050a; color:#f8fafc; line-height:1.6; padding:16px; max-width:768px; margin:0 auto;}
         
-        /* === MENU === */
-        .menu {display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:24px;}
-        .menu-btn {background:#0f172a; color:#cbd5e1; padding:14px 10px; border-radius:12px; text-align:center; text-decoration:none; font-size:16px; font-weight:600; display:flex; align-items:center; justify-content:center; gap:6px; border:1px solid #1e293b; transition:all 0.25s ease;}
+        /* === MENU ĐẦY ĐỦ 7 MỤC === */
+        .menu {display:flex; flex-wrap:wrap; gap:8px; margin-bottom:28px;}
+        .menu-btn {background:#0f172a; color:#cbd5e1; padding:10px 14px; border-radius:10px; text-align:center; text-decoration:none; font-size:14px; font-weight:600; display:inline-flex; align-items:center; gap:5px; border:1px solid #1e293b; transition:all 0.2s;}
         .menu-btn:hover {transform:translateY(-2px); border-color:#334155;}
         .menu-btn.active {background:linear-gradient(135deg,#22c55e 0%,#16a34a 100%); color:white; border-color:#22c55e; box-shadow:0 4px 12px rgba(34,197,94,0.25);}
         
-        /* === HOOK BANNER — MẠNH NHẤT === */
-        .hero {background:linear-gradient(135deg,#0f172a 0%,#1e293b 100%); padding:32px 20px; border-radius:20px; text-align:center; margin-bottom:32px; border:1px solid #334155; position:relative; overflow:hidden;}
-        .hero-badge {display:inline-block; background:rgba(34,197,94,0.15); color:#86efac; padding:6px 16px; border-radius:50px; font-size:13px; font-weight:600; margin-bottom:16px; border:1px solid rgba(34,197,94,0.3);}
-        .hero h1 {font-size:28px; margin-bottom:12px; line-height:1.3;}
-        .hero h1 span {color:#fef08a; text-shadow:0 0 20px rgba(254,240,138,0.3);}
-        .hero p {font-size:15px; color:#94a3b8; margin-bottom:20px; max-width:500px; margin-left:auto; margin-right:auto;}
-        .hero-hooks {display:flex; flex-wrap:wrap; justify-content:center; gap:8px; margin-bottom:24px;}
-        .hero-hook {background:rgba(255,255,255,0.05); padding:8px 12px; border-radius:8px; font-size:13px; color:#e2e8f0; border:1px solid rgba(255,255,255,0.08);}
-        .hero-hook strong {color:#fef08a;}
-        .btn-main {display:inline-flex; align-items:center; gap:8px; background:linear-gradient(135deg,#22c55e 0%,#15803d 100%); color:white; padding:14px 28px; border-radius:12px; font-weight:bold; text-decoration:none; font-size:16px; box-shadow:0 6px 20px rgba(34,197,94,0.35); transition:all 0.2s;}
-        .btn-main:hover {transform:translateY(-3px); box-shadow:0 8px 24px rgba(34,197,94,0.45);}
+        /* === BANNER CHÍNH HOOK MẠNH === */
+        .hero {background:linear-gradient(135deg,#0f172a 0%,#1e293b 100%); padding:32px 20px; border-radius:20px; text-align:center; margin-bottom:36px; border:2px solid #22c55e;}
+        .hero h1 {font-size:26px; margin-bottom:14px; line-height:1.3;}
+        .hero h1 span {color:#fef08a;}
+        .hero p {font-size:15px; color:#94a3b8; margin-bottom:20px; max-width:550px; margin-left:auto; margin-right:auto;}
+        .btn-main {display:inline-flex; align-items:center; gap:8px; background:linear-gradient(90deg,#f97316,#ef4444); color:white; padding:14px 28px; border-radius:12px; font-weight:bold; text-decoration:none; font-size:16px; box-shadow:0 6px 20px rgba(249,115,22,0.3); transition:all 0.2s; border:none; cursor:pointer;}
+        .btn-main:hover {transform:translateY(-3px);}
+        .hero-note {margin-top:12px; font-size:13px; color:#86efac;}
         
         /* === TIÊU ĐỀ MỤC === */
-        .section-wrap {margin-bottom:36px;}
-        .section-head {display:flex; align-items:center; justify-content:space-between; margin-bottom:16px;}
-        .section-title {font-size:20px; font-weight:800; display:flex; align-items:center; gap:8px;}
-        .section-hook {font-size:13px; color:#f87171; font-weight:600; background:rgba(248,113,113,0.1); padding:4px 12px; border-radius:50px;}
-        .see-all {color:#22c55e; text-decoration:none; font-weight:600; font-size:14px; transition:transform 0.2s;}
-        .see-all:hover {transform:translateX(4px); display:inline-block;}
+        .section-title {font-size:20px; font-weight:800; margin:36px 0 18px; display:flex; align-items:center; gap:8px; color:#fef08a;}
         
-        /* === THẺ TRẬN ĐẤU — NỔI BẬT NHẤT === */
-        .match-card {background:linear-gradient(145deg,#1e293b,#0f172a); border-radius:20px; padding:22px; margin-bottom:16px; border:2px solid #334155; position:relative; transition:all 0.3s ease;}
-        .match-card:hover {border-color:#fef08a; transform:translateY(-4px); box-shadow:0 12px 30px rgba(254,240,138,0.08);}
-        .match-card::before {content:"⭐ TRẬN TÂM ĐIỂM"; position:absolute; top:14px; right:16px; background:linear-gradient(90deg,#fef08a,#f59e0b); color:#000; font-size:11px; font-weight:800; padding:4px 12px; border-radius:50px;}
-        .match-teams {font-size:22px; font-weight:900; margin:24px 0 10px; text-align:center; padding:10px 0; background:linear-gradient(90deg,#fff,#fef08a,#fff); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;}
+        /* === TIN NÓNG — 3 THẺ HỆT NHƯ ẢNH === */
+        .news-grid {display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:36px;}
+        @media(max-width:650px) {.news-grid {grid-template-columns:1fr;}}
+        .news-card {background:linear-gradient(145deg,#1e293b,#0f172a); border-radius:16px; padding:18px; border:1px solid #334155; transition:all 0.3s;}
+        .news-card:hover {border-color:#fef08a; transform:translateY(-4px);}
+        .news-icon {font-size:32px; text-align:center; margin:10px 0;}
+        .news-label {font-size:12px; font-weight:700; padding:2px 8px; border-radius:4px; display:inline-block; margin-bottom:10px;}
+        .news-label.warn {background:rgba(248,113,113,0.15); color:#fca5a5;}
+        .news-label.alert {background:rgba(251,191,36,0.15); color:#fde047;}
+        .news-label.new {background:rgba(34,197,94,0.15); color:#86efac;}
+        .news-title {font-size:15px; font-weight:700; margin-bottom:10px; color:#fef08a; line-height:1.4;}
+        .news-desc {font-size:13px; color:#cbd5e1; line-height:1.5; margin-bottom:14px;}
+        .news-link {display:inline-block; background:#22c55e; color:white; padding:6px 14px; border-radius:8px; font-size:13px; font-weight:600; text-decoration:none;}
+        
+        /* === THẺ TRẬN ĐẤU — BẤM XEM CHI TIẾT === */
+        .match-card {background:linear-gradient(145deg,#1e293b,#0f172a); border-radius:20px; padding:22px; margin-bottom:16px; border:2px solid #334155; cursor:pointer; transition:all 0.3s;}
+        .match-card:hover {border-color:#fef08a; transform:translateY(-3px);}
+        .match-teams {font-size:22px; font-weight:900; margin-bottom:8px; text-align:center; padding:10px; background:linear-gradient(90deg,#fff,#fef08a,#fff); -webkit-background-clip:text; -webkit-text-fill-color:transparent;}
         .vs-badge {background:#f97316; color:white; font-size:14px; font-weight:bold; padding:2px 8px; border-radius:6px; -webkit-text-fill-color:white;}
-        .match-time {color:#94a3b8; font-size:14px; margin-bottom:16px; display:flex; align-items:center; gap:6px; justify-content:center;}
-        .match-time::before {content:"📅";}
-        .line {margin-bottom:10px; font-size:15px; line-height:1.6;}
-        .line strong {font-weight:700; color:#e2e8f0;}
+        .match-time {color:#94a3b8; font-size:14px; margin-bottom:12px; text-align:center;}
+        .match-preview {color:#94a3b8; font-size:14px; margin-bottom:8px;}
+        .click-hint {color:#22c55e; font-size:13px; font-weight:600; text-align:center;}
+        
+        /* === NỘI DUNG CHI TIẾT — ẨN BAN ĐẦU === */
+        .match-detail {display:none; margin-top:14px; padding-top:14px; border-top:1px dashed #334155;}
+        .match-detail.show {display:block; animation:fadeIn 0.3s;}
+        @keyframes fadeIn {from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:translateY(0);}}
+        .detail-line {margin-bottom:10px; font-size:15px; line-height:1.6;}
+        .detail-line strong {color:#e2e8f0;}
         .prediction-box {background:rgba(34,197,94,0.08); border-left:4px solid #22c55e; padding:14px; border-radius:0 12px 12px 0; margin-top:10px; line-height:1.7;}
         .check-icon {color:#22c55e; font-weight:900; margin-right:6px; font-size:18px;}
         .prediction-box strong {color:#86efac;}
+        
+        /* === THỐNG KÊ === */
+        .stats-row {display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin:40px 0;}
+        .stat-card {background:linear-gradient(145deg,#1e293b,#0f172a); border-radius:14px; padding:20px; text-align:center; border:1px solid #334155;}
+        .stat-num {font-size:28px; font-weight:900; color:#fef08a; margin-bottom:6px;}
+        .stat-label {font-size:14px; color:#94a3b8;}
         
         /* === TRỐNG === */
         .empty {text-align:center; color:#64748b; padding:50px 20px;}
@@ -54,50 +71,75 @@
 </head>
 <body>
 
-<!-- 🏠 MENU -->
+<!-- 🏠 MENU ĐẦY ĐỦ 7 MỤC -->
 <nav class="menu">
     <a href="index.html" class="menu-btn active">🏠 Trang chủ</a>
     <a href="lich-dau.html" class="menu-btn">📅 Lịch đấu</a>
     <a href="du-doan.html" class="menu-btn">🔮 Dự đoán</a>
     <a href="bxh.html" class="menu-btn">📊 Bảng xếp hạng</a>
     <a href="thong-ke.html" class="menu-btn">📈 Thống kê</a>
+    <a href="tin-nong.html" class="menu-btn">📰 Tin Nóng</a>
     <a href="gioi-thieu.html" class="menu-btn">ℹ️ Giới thiệu</a>
 </nav>
 
-<!-- 🔥 HOOK BANNER — MỞ ĐẦU CUỐN HÚT NGAY -->
+<!-- 🔥 BANNER CHÍNH HOOK MẠNH -->
 <section class="hero">
-    <span class="hero-badge">⚽ CẬP NHẬT MỖI NGÀY — DỮ LIỆU THỰC TẾ</span>
-    <h1>Phân Tích & Dự Đoán <span>Bóng Đá Chính Xác</span></h1>
-    <p>Không dựa vào cảm xúc. Dựa trên thống kê, phong độ, lịch sử đối đầu & dữ liệu thực tế — cập nhật liên tục mỗi ngày ⚡</p>
-    <div class="hero-hooks">
-        <span class="hero-hook">🔥 <strong>Trận HOT</strong> phân tích kỹ</span>
-        <span class="hero-hook">📊 <strong>Dữ liệu</strong> từ nhiều nguồn</span>
-        <span class="hero-hook">💡 <strong>Tỷ số</strong> & Tài/Xỉu gợi ý</span>
-    </div>
-    <a href="#du-doan" class="btn-main">🔮 Xem Dự Đoán Hôm Nay</a>
+    <h1>⚽ SCORE VISION — <span>NHÌN THẤU TRẬN ĐẤU TRƯỚC KHI BẮT ĐẦU</span></h1>
+    <p>Không dựa vào cảm giác! Phân tích hàng trăm chỉ số: phong độ, đối đầu, lực lượng, chiến thuật — giúp bạn thấy những điều người khác không thấy!</p>
+    <button class="btn-main" onclick="document.getElementById('du-doan').scrollIntoView({behavior:'smooth'})">🔥 XEM DỰ ĐOÁN HÔM NAY — KHÔNG BỎ LỠ! →</button>
+    <div class="hero-note">🔄 Cập nhật tự động từ Google Sheets • Dữ liệu thực tế • Phân tích chuyên sâu</div>
 </section>
 
-<!-- 🔮 DANH SÁCH DỰ ĐOÁN — HIỂN THỊ ĐẦY ĐỦ NGAY TRANG -->
-<div class="section-wrap" id="du-doan">
-    <div class="section-head">
-        <h2 class="section-title"><span>🔮</span> Dự Đoán Hôm Nay</h2>
-        <span class="section-hook">⭐ Phân tích chuyên sâu</span>
+<!-- 📰 TIN NÓNG & BÍ MẬT SỐ LIỆU → HỆT NHƯ ẢNH BẠN GỬI -->
+<h2 class="section-title">📰 Tin Nóng & Bí Mật Số Liệu</h2>
+<div class="news-grid">
+    <div class="news-card">
+        <div class="news-icon">🔥</div>
+        <span class="news-label warn">⚠️ ĐỪNG BỎ LỠ!</span>
+        <h3 class="news-title">Real vs Barca: Con số nghiêng về một phía — 90% người không biết!</h3>
+        <p class="news-desc">Phong độ, đối đầu, lực lượng... Tất cả đã được phân tích. Nhưng chỉ có 1 chỉ số quan trọng nhất quyết định kết quả. Bạn có biết không?</p>
+        <a href="tin-nong.html" class="news-link">→ Khám phá bí mật này</a>
     </div>
-    <div id="list-du-doan">
-        <div class="empty">Đang tải dữ liệu từ Google Sheets...</div>
+    <div class="news-card">
+        <div class="news-icon">⚡</div>
+        <span class="news-label alert">🔴 CẢNH BÁO!</span>
+        <h3 class="news-title">5 trận "bẫy kèo" hôm nay — Trông dễ ăn nhưng cực nguy hiểm!</h3>
+        <p class="news-desc">Dữ liệu cho thấy những trận này có dấu hiệu bất thường. Không nên xem nhẹ! Xem danh sách trước khi quyết định — có thể cứu ví bạn nhiều...</p>
+        <a href="tin-nong.html" class="news-link">→ Xem danh sách cảnh báo</a>
+    </div>
+    <div class="news-card">
+        <div class="news-icon">🔍</div>
+        <span class="news-label new">💡 PHÁT HIỆN MỚI!</span>
+        <h3 class="news-title">Xu hướng Tài/Xỉu hôm nay: 7 trận có kết quả bất ngờ theo mô hình!</h3>
+        <p class="news-desc">Dựa trên phân tích 10.000 trận, mô hình dự đoán 7 trận có xác suất Tài/Xỉu lệch chuẩn. Biết trước sẽ giúp bạn có lợi thế lớn!</p>
+        <a href="tin-nong.html" class="news-link">→ Xem xu hướng đặc biệt</a>
     </div>
 </div>
 
+<!-- 🔮 TRẬN ĐẤU NỔI BẬT → ĐỌC TỪ GOOGLE SHEETS + BẤM XEM CHI TIẾT -->
+<h2 class="section-title">⚽ Trận Đấu Nổi Bật Hôm Nay</h2>
+<div id="du-doan">
+    <div class="empty">Đang tải dữ liệu từ Google Sheets...</div>
+</div>
+
+<!-- 📊 THỐNG KÊ NỔI BẬT -->
+<div class="stats-row">
+    <div class="stat-card"><div class="stat-num">87%</div><div class="stat-label">Độ chính xác phân tích</div></div>
+    <div class="stat-card"><div class="stat-num">500+</div><div class="stat-label">Trận đã phân tích</div></div>
+    <div class="stat-card"><div class="stat-num">15</div><div class="stat-label">Giải đấu theo dõi</div></div>
+</div>
+
 <!-- ======================================================
-     KẾT NỐI GOOGLE SHEETS — LINK ĐÃ DÁN SẴN!
+     KẾT NỐI GOOGLE SHEETS → LINK ĐÃ DÁN SẴN!
      ====================================================== -->
 <script>
-// ✅ LINK ĐÃ DÁN SẴN — KHÔNG CẦN SỬA!
+// ✅ LINK GOOGLE SHEETS CỦA BẠN — KHÔNG CẦN SỬA!
 const GOOGLE_SHEETS_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQwrXKqXdfjGK7EQCkNwjuv-FbFJxHhQyCg1NxBl2kkMnGuPCYL1vnG6QFBujGwNCVlx5v1keQuviBV/pub?gid=0&single=true&output=csv";
 
 fetch(GOOGLE_SHEETS_URL)
   .then(res => res.text())
   .then(csv => {
+    // Tách CSV
     const rows = [];
     const lines = csv.split("\n");
     for (let line of lines) {
@@ -113,11 +155,13 @@ fetch(GOOGLE_SHEETS_URL)
       rows.push(parts);
     }
 
+    // Lấy danh sách dự đoán
     const danhSach = [];
     for (let i = 1; i < rows.length; i++) {
       const [loai_muc, thu_tu, ten_noi_dung, ngay_gio, phan_tich, phong_do, du_doan, ty_so] = rows[i];
       if (loai_muc !== "du_doan") continue;
       danhSach.push({
+        id: i,
         thuTu: Number(thu_tu) || 999,
         ten: ten_noi_dung || "",
         ngayGio: ngay_gio || "",
@@ -129,25 +173,32 @@ fetch(GOOGLE_SHEETS_URL)
     }
     danhSach.sort((a, b) => a.thuTu - b.thuTu);
 
-    const container = document.getElementById("list-du-doan");
+    const container = document.getElementById("du-doan");
     container.innerHTML = "";
+
     if (danhSach.length === 0) {
-      container.innerHTML = `<div class="empty">⏳ Chưa có dự đoán hôm nay<br><small style="color:#475569; font-size:13px;">Điền dữ liệu vào Google Sheets → đóng → là hiển thị tự động!</small></div>`;
+      container.innerHTML = `<div class="empty">⏳ Chưa có dự đoán hôm nay<br><small style="color:#475569;">Điền dữ liệu vào Google Sheets → đóng → tự hiển thị!</small></div>`;
       return;
     }
 
+    // Tạo thẻ trận — BẤM XEM CHI TIẾT
     danhSach.forEach(tran => {
       const tenHienThi = tran.ten.replace(/ vs /g, ' <span class="vs-badge">VS</span> ');
+      const previewText = tran.phanTich.substring(0, 60) + "...";
 
-      let html = `<div class="match-card">`;
+      let html = `<div class="match-card" id="card-${tran.id}" onclick="toggleDetail(${tran.id})">`;
       html += `<div class="match-teams">${tenHienThi}</div>`;
-      html += `<div class="match-time">${tran.ngayGio}</div>`;
+      html += `<div class="match-time">📅 ${tran.ngayGio}</div>`;
+      html += `<div class="match-preview">${previewText}</div>`;
+      html += `<div class="click-hint">👆 Nhấp vào để xem đầy đủ phân tích & dự đoán</div>`;
 
+      // === NỘI DUNG CHI TIẾT — ẨN BAN ĐẦU ===
+      html += `<div class="match-detail" id="detail-${tran.id}">`;
       if (tran.phanTich) {
-        html += `<div class="line"><strong>📝 Phân tích:</strong> ${tran.phanTich}</div>`;
+        html += `<div class="detail-line"><strong>📝 Phân tích:</strong> ${tran.phanTich}</div>`;
       }
       if (tran.phongDo) {
-        html += `<div class="line"><strong>📊 Phong độ 5 trận gần:</strong> ${tran.phongDo}</div>`;
+        html += `<div class="detail-line"><strong>📊 Phong độ 5 trận gần:</strong> ${tran.phongDo}</div>`;
       }
       if (tran.duDoan || tran.tySo) {
         html += `<div class="prediction-box">`;
@@ -155,13 +206,25 @@ fetch(GOOGLE_SHEETS_URL)
         if (tran.tySo) html += `<br><strong>📈 TỶ SỐ / TÀI XỈU:</strong> ${tran.tySo}`;
         html += `</div>`;
       }
-      html += `</div>`;
+      html += `</div></div>`;
       container.innerHTML += html;
     });
   })
   .catch(err => {
-    document.getElementById("list-du-doan").innerHTML = `<div class="empty" style="color:#f87171;">⚠️ Lỗi kết nối Google Sheets<br><small style="color:#7f1d1d;">Kiểm tra đã Xuất bản CSV và chia sẻ công khai chưa!</small></div>`;
+    document.getElementById("du-doan").innerHTML = `<div class="empty" style="color:#f87171;">⚠️ Kiểm tra Google Sheets đã Xuất bản CSV & Chia sẻ công khai chưa!</div>`;
   });
+
+// === HÀM MỞ/ĐÓNG CHI TIẾT KHI CLICK ===
+function toggleDetail(id) {
+  const detail = document.getElementById(`detail-${id}`);
+  const card = document.getElementById(`card-${id}`);
+  detail.classList.toggle("show");
+  if (detail.classList.contains("show")) {
+    card.style.borderColor = "#22c55e";
+  } else {
+    card.style.borderColor = "#334155";
+  }
+}
 </script>
 
 </body>
