@@ -16,10 +16,9 @@
         .date-title{font-size:16px;font-weight:700;color:#86efac;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #1e293b;}
         .match-item{background:linear-gradient(145deg,#1e293b,#0f172a);border-radius:12px;padding:14px;margin-bottom:10px;border:1px solid #334155;}
         .match-item:hover{border-color:#22c55e;}
-        .match-name{font-weight:700;font-size:15px;margin-bottom:4px;}
+        .match-name{font-weight:700;font-size:15px;margin-bottom:4px;color:#fef08a;}
         .match-info{font-size:13px;color:#94a3b8;}
         .empty{text-align:center;color:#64748b;padding:50px 20px;}
-        .back-btn{display:inline-block;margin-top:20px;background:#22c55e;color:white;padding:10px 20px;border-radius:10px;text-decoration:none;font-weight:600;}
     </style>
 </head>
 <body>
@@ -30,17 +29,17 @@
     <a href="bang-xep-hang.html" class="menu-btn">📊 Bảng xếp hạng</a>
     <a href="thong-ke.html" class="menu-btn">📈 Thống kê</a>
     <a href="tin-nong.html" class="menu-btn">📰 Tin Nóng</a>
-    <a href="gioi-thieu.html" class="menu-btn">ℹ️ Giới thiệu</a>
 </nav>
 
 <h1 class="page-title">📅 Lịch Thi Đấu Sắp Tới</h1>
-<div id="lich-dau-list"><div class="empty">Đang tải từ Google Sheets...</div></div>
-<a href="index.html" class="back-btn">← Quay lại Trang chủ</a>
+<div id="lich-list"><div class="empty">Đang tải dữ liệu...</div></div>
 
 <script>
-const URL_SHEETS = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQwrXKqXdfjGK7EQCkNwjuv-FbFJxHhQyCg1NxBl2kkMnGuPCYL1vnG6QFBujGwNCVlx5v1keQuviBV/pub?gid=0&single=true&output=csv";
-fetch(URL_SHEETS).then(r=>r.text()).then(csv=>{
-    const rows=[], lines=csv.split("\n");
+const GID_LICH_DAU = "2128823111";
+const URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQwrXKqXdfjGK7EQCkNwjuv-FbFJxHhQyCg1NxBl2kkMnGuPCYL1vnG6QFBujGwNCVlx5v1keQuviBV/pub?output=csv&gid="+GID_LICH_DAU;
+
+function parseCSV(text){
+    const rows=[], lines=text.split("\n");
     for(let l of lines){
         if(!l.trim())continue;
         let p=[],c="",q=0;
@@ -51,15 +50,19 @@ fetch(URL_SHEETS).then(r=>r.text()).then(csv=>{
         }
         p.push(c.trim());rows.push(p);
     }
-    const data=[];
+    return rows;
+}
+
+fetch(URL).then(r=>r.text()).then(csv=>{
+    const rows=parseCSV(csv), data=[];
     for(let i=1;i<rows.length;i++){
         const [loai,thutu,ten,ngaygio]=rows[i];
-        if(loai!=="du_doan")continue;
+        if(loai!=="lich_dau")continue;
         data.push({st:Number(thutu)||999,ten,ngaygio});
     }
     data.sort((a,b)=>a.st-b.st);
-    const box=document.getElementById("lich-dau-list");
-    if(!data.length){box.innerHTML=`<div class="empty">Chưa có dữ liệu<br><small>Điền vào Sheets → tự hiện!</small></div>`;return;}
+    const box=document.getElementById("lich-list");
+    if(!data.length){box.innerHTML=`<div class="empty">Chưa có lịch đấu<br>Điền vào Sheet "Lịch Đấu" → tự hiện!</div>`;return;}
     const nhom={};
     data.forEach(x=>{
         const ngay=x.ngaygio.split("•")[0].trim();
@@ -75,7 +78,7 @@ fetch(URL_SHEETS).then(r=>r.text()).then(csv=>{
         });
         box.innerHTML+=`</div>`;
     }
-}).catch(()=>{document.getElementById("lich-dau-list").innerHTML=`<div class="empty" style="color:#f87171;">⚠️ Kiểm tra Sheets đã Xuất bản & Chia sẻ công khai chưa!</div>`;});
+}).catch(()=>{document.getElementById("lich-list").innerHTML=`<div class="empty" style="color:#f87171;">⚠️ Kiểm tra Sheet!</div>`;});
 </script>
 </body>
 </html>
