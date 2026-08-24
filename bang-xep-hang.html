@@ -10,19 +10,15 @@
         .menu{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px;}
         .menu-btn{background:#0f172a;color:#cbd5e1;padding:10px 14px;border-radius:10px;text-align:center;text-decoration:none;font-size:14px;font-weight:600;display:inline-flex;align-items:center;gap:5px;border:1px solid #1e293b;transition:all .2s;}
         .menu-btn:hover{transform:translateY(-2px);border-color:#334155;}
-        .menu-btn.active{background:linear-gradient(135deg,#22c55e 0%,#16a34a 100%);color:white;border-color:#22c55e;box-shadow:0 4px 12px rgba(34,197,94,.25);}
+        .menu-btn.active{background:linear-gradient(135deg,#f59e0b 0%,#d97706 100%);color:white;border-color:#f59e0b;box-shadow:0 4px 12px rgba(245,158,11,.25);}
         .page-title{font-size:24px;font-weight:800;margin:20px 0 30px;text-align:center;color:#fef08a;}
-        .league{margin-bottom:30px;}
-        .league-name{font-size:16px;font-weight:700;color:#86efac;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #1e293b;}
-        table{width:100%;border-collapse:collapse;background:linear-gradient(145deg,#1e293b,#0f172a);border-radius:12px;overflow:hidden;border:1px solid #334155;}
-        th{background:#0f172a;padding:10px 6px;text-align:left;font-size:13px;color:#94a3b8;}
-        td{padding:10px 6px;border-top:1px solid #1e293b;font-size:14px;}
-        tr:hover{background:rgba(34,197,94,.08);}
-        .stt{text-align:center;font-weight:700;color:#fef08a;width:36px;}
-        .pts{font-weight:700;color:#86efac;}
+        .group-title{font-size:16px;font-weight:700;color:#fef08a;margin:20px 0 10px;}
+        table{width:100%;border-collapse:collapse;background:#0f172a;border-radius:12px;overflow:hidden;margin-bottom:16px;}
+        th{background:#1e293b;padding:10px 6px;text-align:center;font-size:13px;color:#fef08a;}
+        td{padding:10px 6px;text-align:center;font-size:14px;border-bottom:1px solid #1e293b;}
+        .hang{font-weight:700;color:#fef08a;}
+        .team{text-align:left;padding-left:12px;}
         .empty{text-align:center;color:#64748b;padding:50px 20px;}
-        .back-btn{display:inline-block;margin-top:20px;background:#22c55e;color:white;padding:10px 20px;border-radius:10px;text-decoration:none;font-weight:600;}
-        @media(max-width:480px){th:nth-child(4),td:nth-child(4),th:nth-child(5),td:nth-child(5),th:nth-child(6),td:nth-child(6){display:none;}}
     </style>
 </head>
 <body>
@@ -33,17 +29,17 @@
     <a href="bang-xep-hang.html" class="menu-btn active">📊 Bảng xếp hạng</a>
     <a href="thong-ke.html" class="menu-btn">📈 Thống kê</a>
     <a href="tin-nong.html" class="menu-btn">📰 Tin Nóng</a>
-    <a href="gioi-thieu.html" class="menu-btn">ℹ️ Giới thiệu</a>
 </nav>
 
 <h1 class="page-title">📊 Bảng Xếp Hạng</h1>
-<div id="bxh-list"><div class="empty">Đang tải từ Google Sheets...</div></div>
-<a href="index.html" class="back-btn">← Quay lại Trang chủ</a>
+<div id="bxh-list"><div class="empty">Đang tải dữ liệu...</div></div>
 
 <script>
-const URL_SHEETS = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQwrXKqXdfjGK7EQCkNwjuv-FbFJxHhQyCg1NxBl2kkMnGuPCYL1vnG6QFBujGwNCVlx5v1keQuviBV/pub?gid=0&single=true&output=csv";
-fetch(URL_SHEETS).then(r=>r.text()).then(csv=>{
-    const rows=[], lines=csv.split("\n");
+const GID_BANG_XEP_HANG = "2032200987";
+const URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQwrXKqXdfjGK7EQCkNwjuv-FbFJxHhQyCg1NxBl2kkMnGuPCYL1vnG6QFBujGwNCVlx5v1keQuviBV/pub?output=csv&gid="+GID_BANG_XEP_HANG;
+
+function parseCSV(text){
+    const rows=[], lines=text.split("\n");
     for(let l of lines){
         if(!l.trim())continue;
         let p=[],c="",q=0;
@@ -54,26 +50,33 @@ fetch(URL_SHEETS).then(r=>r.text()).then(csv=>{
         }
         p.push(c.trim());rows.push(p);
     }
-    const data=[];
+    return rows;
+}
+
+fetch(URL).then(r=>r.text()).then(csv=>{
+    const rows=parseCSV(csv), data=[];
     for(let i=1;i<rows.length;i++){
-        const [loai,thutu,giai,doi,tran,diem,thang,hoa,thua]=rows[i];
+        const [loai,thutu,giaidau,doi_bong,so_tran,diem,thang,hoa,thua]=rows[i];
         if(loai!=="bang_xep_hang")continue;
-        data.push({st:Number(thutu)||999,giai,doi,tran,diem,thang,hoa,thua});
+        data.push({st:Number(thutu)||999,giaidau,doi_bong,so_tran,diem,thang,hoa,thua});
     }
     data.sort((a,b)=>a.st-b.st);
     const box=document.getElementById("bxh-list");
-    if(!data.length){box.innerHTML=`<div class="empty">Chưa có dữ liệu BXH<br><small>Điền vào Sheets → tự hiện!</small></div>`;return;}
+    if(!data.length){box.innerHTML=`<div class="empty">Chưa có dữ liệu<br>Điền vào Sheet "Bảng Xếp Hạng" → tự hiện!</div>`;return;}
     const nhom={};
-    data.forEach(x=>{if(!nhom[x.giai])nhom[x.giai]=[];nhom[x.giai].push(x);});
+    data.forEach(x=>{
+        if(!nhom[x.giaidau])nhom[x.giaidau]=[];
+        nhom[x.giaidau].push(x);
+    });
     box.innerHTML="";
-    for(let g in nhom){
-        box.innerHTML+=`<div class="league"><h2 class="league-name">🏆 ${g}</h2><table><thead><tr><th class="stt">#</th><th>Đội</th><th>Tr</th><th>Thắng</th><th>Hòa</th><th>Thua</th><th class="pts">Điểm</th></tr></thead><tbody>`;
-        nhom[g].forEach(x=>{
-            box.innerHTML+=`<tr><td class="stt">${x.st}</td><td>${x.doi}</td><td>${x.tran}</td><td>${x.thang}</td><td>${x.hoa}</td><td>${x.thua}</td><td class="pts">${x.diem}</td></tr>`;
+    for(let ten_giai in nhom){
+        box.innerHTML+=`<h2 class="group-title">🏆 ${ten_giai}</h2><table><tr><th>#</th><th>Đội</th><th>Trận</th><th>Điểm</th><th>T</th><th>H</th><th>B</th></tr>`;
+        nhom[ten_giai].forEach(x=>{
+            box.innerHTML+=`<tr><td class="hang">${x.st}</td><td class="team">${x.doi_bong}</td><td>${x.so_tran}</td><td><b>${x.diem}</b></td><td>${x.thang}</td><td>${x.hoa}</td><td>${x.thua}</td></tr>`;
         });
-        box.innerHTML+=`</tbody></table></div>`;
+        box.innerHTML+=`</table>`;
     }
-}).catch(()=>{document.getElementById("bxh-list").innerHTML=`<div class="empty" style="color:#f87171;">⚠️ Kiểm tra Sheets!</div>`;});
+}).catch(()=>{document.getElementById("bxh-list").innerHTML=`<div class="empty" style="color:#f87171;">⚠️ Kiểm tra Sheet!</div>`;});
 </script>
 </body>
 </html>
