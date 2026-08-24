@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Score Vision - Phân tích & Dự đoán Bóng Đá</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background: #f0f2f5; color: #333; line-height: 1.6; }
+        
+        /* === MENU ĐIỀU HƯỚNG === */
+        .menu { background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); padding: 14px 20px; position: sticky; top: 0; z-index: 999; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+        .menu .container { max-width: 1100px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 6px; }
+        .menu a { color: white; text-decoration: none; padding: 10px 16px; border-radius: 6px; font-weight: bold; transition: 0.3s; }
+        .menu a:hover, .menu a.active { background: #4CAF50; color: white; }
+
+        /* === KHUNG CHUNG === */
+        .container { max-width: 1100px; margin: 0 auto; padding: 25px 20px; }
+        h1 { color: #0f2027; margin-bottom: 25px; border-left: 4px solid #4CAF50; padding-left: 12px; }
+        h2 { color: #203a43; margin: 20px 0 12px; font-size: 18px; }
+
+        /* === THÔNG BÁO HÔM NAY === */
+        .highlight { background: linear-gradient(90deg, #4CAF50, #2E8B57); color: white; padding: 18px; border-radius: 10px; margin-bottom: 30px; font-size: 17px; font-weight: bold; }
+
+        /* === THẺ TRẬN ĐẤU === */
+        .match-card { background: white; border-radius: 10px; padding: 18px; margin-bottom: 16px; box-shadow: 0 2px 6px rgba(0,0,0,0.08); border-left: 4px solid #2c5364; }
+        .match-card .time { color: #666; font-size: 14px; margin-bottom: 6px; }
+        .match-card .teams { font-size: 18px; font-weight: bold; margin: 8px 0; }
+        .match-card .prediction { background: #e8f5e9; border-left: 3px solid #4CAF50; padding: 10px; margin-top: 10px; border-radius: 0 6px 6px 0; }
+        .label { display: inline-block; background: #203a43; color: white; font-size: 13px; padding: 2px 8px; border-radius: 4px; margin-right: 8px; }
+    </style>
+</head>
+<body>
+
+<!-- === MENU === -->
+<div class="menu">
+    <div class="container">
+        <a href="index.html" class="active">🏠 Trang chủ</a>
+        <a href="lich-dau.html">📅 Lịch đấu</a>
+        <a href="du-doan.html">🔮 Dự đoán</a>
+        <a href="bang-xep-hang.html">📊 Bảng xếp hạng</a>
+        <a href="thong-ke.html">📈 Thống kê</a>
+        <a href="lien-he.html">ℹ️ Giới thiệu</a>
+    </div>
+</div>
+
+<!-- === NỘI DUNG === -->
+<div class="container">
+    <h1>⚽ Score Vision - Phân tích & Dự đoán Bóng Đá</h1>
+
+    <div class="highlight">🔥 Dự đoán & Phân tích trận đấu nổi bật hôm nay</div>
+
+    <h2>📌 Trận đấu nổi bật</h2>
+
+    <div class="match-card">
+        <div class="time">📅 24/08/2026 — 23:00 • Giải VĐQG Tây Ban Nha</div>
+        <div class="teams">Real Madrid 🆚 Barcelona</div>
+        <div style="color:#555; font-size:15px;">
+            <strong>Phân tích:</strong> Real Madrid mạnh trên sân nhà, hàng công hiệu quả. Barcelona có sự bất ổn ở hàng phòng ngự.<br>
+            <strong>Tỷ lệ đối đầu:</strong> 4 thắng Real, 3 hòa, 3 thắng Barca trong 10 trận gần nhất.<br>
+            <strong>Thống kê phong độ:</strong> Real 6/10 thắng, Barca 5/10 thắng.
+        </div>
+        <div class="prediction">
+            <span class="label">🔮 DỰ ĐOÁN</span>
+            Kèo chính: <strong>Real Madrid không thua</strong> • Dự kiến tỷ số: <strong>2-1</strong> • Tài/Xỉu: <strong>Tài 2.5</strong>
+        </div>
+    </div>
+
+    <div class="match-card">
+        <div class="time">📅 25/08/2026 — 02:00 • Giải Ngoại Hạng Anh</div>
+        <div class="teams">Man City 🆚 Arsenal</div>
+        <div style="color:#555; font-size:15px;">
+            <strong>Phân tích:</strong> Man City giữ thế chủ động, kiểm soát bóng tốt. Arsenal tấn công nhanh nhưng dễ bị phản công.<br>
+            <strong>Đối đầu:</strong> Man City chiếm ưu thế trong 5 trận gần nhất.
+        </div>
+        <div class="prediction">
+            <span class="label">🔮 DỰ ĐOÁN</span>
+            Kèo chính: <strong>Hòa hoặc Man City thắng</strong> • Dự kiến tỷ số: <strong>1-1 hoặc 2-1</strong> • Tài/Xỉu: <strong>Xỉu 3.0</strong>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
