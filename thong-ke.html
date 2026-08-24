@@ -6,18 +6,18 @@
     <title>Thống Kê | Score Vision</title>
     <style>
         *{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;}
-        body{background:#05050a;color:#f8fafc;line-height:1.8;padding:16px;max-width:768px;margin:0 auto;}
+        body{background:#05050a;color:#f8fafc;line-height:1.6;padding:16px;max-width:768px;margin:0 auto;}
         .menu{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px;}
         .menu-btn{background:#0f172a;color:#cbd5e1;padding:10px 14px;border-radius:10px;text-align:center;text-decoration:none;font-size:14px;font-weight:600;display:inline-flex;align-items:center;gap:5px;border:1px solid #1e293b;transition:all .2s;}
         .menu-btn:hover{transform:translateY(-2px);border-color:#334155;}
-        .menu-btn.active{background:linear-gradient(135deg,#22c55e 0%,#16a34a 100%);color:white;border-color:#22c55e;box-shadow:0 4px 12px rgba(34,197,94,.25);}
-        .page-title{font-size:24px;font-weight:800;margin:20px 0 30px;text-align:center;color:#fef08a;}
-        .stat-card{background:linear-gradient(145deg,#1e293b,#0f172a);border-radius:16px;padding:20px;margin-bottom:12px;border:2px solid #334155;}
-        .stat-card:hover{border-color:#22c55e;}
-        .stat-name{font-size:15px;color:#86efac;margin-bottom:8px;}
-        .stat-value{font-size:28px;font-weight:800;color:#fef08a;}
+        .menu-btn.active{background:linear-gradient(135deg,#3b82f6 0%,#2563eb 100%);color:white;border-color:#3b82f6;box-shadow:0 4px 12px rgba(59,130,246,.25);}
+        .page-title{font-size:24px;font-weight:800;margin:20px 0 30px;text-align:center;color:#93c5fd;}
+        .grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;}
+        .card{background:linear-gradient(145deg,#1e293b,#0f172a);border-radius:14px;padding:20px;border:2px solid #334155;text-align:center;}
+        .card:hover{border-color:#3b82f6;}
+        .card-val{font-size:32px;font-weight:800;color:#fef08a;margin-bottom:8px;}
+        .card-name{font-size:14px;color:#93c5fd;}
         .empty{text-align:center;color:#64748b;padding:50px 20px;}
-        .back-btn{display:inline-block;margin-top:20px;background:#22c55e;color:white;padding:10px 20px;border-radius:10px;text-decoration:none;font-weight:600;}
     </style>
 </head>
 <body>
@@ -28,17 +28,17 @@
     <a href="bang-xep-hang.html" class="menu-btn">📊 Bảng xếp hạng</a>
     <a href="thong-ke.html" class="menu-btn active">📈 Thống kê</a>
     <a href="tin-nong.html" class="menu-btn">📰 Tin Nóng</a>
-    <a href="gioi-thieu.html" class="menu-btn">ℹ️ Giới thiệu</a>
 </nav>
 
-<h1 class="page-title">📈 Thống Kê Tổng Hợp</h1>
-<div id="tk-list"><div class="empty">Đang tải từ Google Sheets...</div></div>
-<a href="index.html" class="back-btn">← Quay lại Trang chủ</a>
+<h1 class="page-title">📈 Thống Kê Dữ Liệu</h1>
+<div id="tk-list" class="grid-2"><div class="empty">Đang tải dữ liệu...</div></div>
 
 <script>
-const URL_SHEETS = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQwrXKqXdfjGK7EQCkNwjuv-FbFJxHhQyCg1NxBl2kkMnGuPCYL1vnG6QFBujGwNCVlx5v1keQuviBV/pub?gid=0&single=true&output=csv";
-fetch(URL_SHEETS).then(r=>r.text()).then(csv=>{
-    const rows=[], lines=csv.split("\n");
+const GID_THONG_KE = "1399594488";
+const URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQwrXKqXdfjGK7EQCkNwjuv-FbFJxHhQyCg1NxBl2kkMnGuPCYL1vnG6QFBujGwNCVlx5v1keQuviBV/pub?output=csv&gid="+GID_THONG_KE;
+
+function parseCSV(text){
+    const rows=[], lines=text.split("\n");
     for(let l of lines){
         if(!l.trim())continue;
         let p=[],c="",q=0;
@@ -49,17 +49,24 @@ fetch(URL_SHEETS).then(r=>r.text()).then(csv=>{
         }
         p.push(c.trim());rows.push(p);
     }
-    const box=document.getElementById("tk-list");
-    box.innerHTML="";
-    let found=false;
+    return rows;
+}
+
+fetch(URL).then(r=>r.text()).then(csv=>{
+    const rows=parseCSV(csv), data=[];
     for(let i=1;i<rows.length;i++){
-        const [loai,thutu,ten,giaTri]=rows[i];
+        const [loai,thutu,chi_so,gia_tri]=rows[i];
         if(loai!=="thong_ke")continue;
-        found=true;
-        box.innerHTML+=`<div class="stat-card"><div class="stat-name">${ten}</div><div class="stat-value">${giaTri||"—"}</div></div>`;
+        data.push({st:Number(thutu)||999,chi_so,gia_tri});
     }
-    if(!found){box.innerHTML=`<div class="empty">Chưa có dữ liệu thống kê<br><small>Điền vào Sheets → tự hiện!</small></div>`;return;}
-}).catch(()=>{document.getElementById("tk-list").innerHTML=`<div class="empty" style="color:#f87171;">⚠️ Kiểm tra Sheets!</div>`;});
+    data.sort((a,b)=>a.st-b.st);
+    const box=document.getElementById("tk-list");
+    if(!data.length){box.innerHTML=`<div class="empty">Chưa có số liệu<br>Điền vào Sheet "Thống Kê" → tự hiện!</div>`;return;}
+    box.innerHTML="";
+    data.forEach(x=>{
+        box.innerHTML+=`<div class="card"><div class="card-val">${x.gia_tri}</div><div class="card-name">${x.chi_so}</div></div>`;
+    });
+}).catch(()=>{document.getElementById("tk-list").innerHTML=`<div class="empty" style="color:#f87171;">⚠️ Kiểm tra Sheet!</div>`;});
 </script>
 </body>
 </html>
