@@ -3,39 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tin Nóng | Score Vision</title>
+    <title>Tin Nóng & Cập Nhật | Score Vision</title>
     <style>
         *{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;}
-        body{background:#05050a;color:#f8fafc;line-height:1.8;padding:16px;max-width:768px;margin:0 auto;}
-        .menu{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px;}
-        .menu-btn{background:#0f172a;color:#cbd5e1;padding:10px 14px;border-radius:10px;text-align:center;text-decoration:none;font-size:14px;font-weight:600;display:inline-flex;align-items:center;gap:5px;border:1px solid #1e293b;transition:all .2s;}
-        .menu-btn:hover{transform:translateY(-2px);border-color:#334155;}
-        .menu-btn.active{background:linear-gradient(135deg,#ef4444 0%,#dc2626 100%);color:white;border-color:#ef4444;box-shadow:0 4px 12px rgba(239,68,68,.25);}
-        .page-title{font-size:24px;font-weight:800;margin:20px 0 30px;text-align:center;color:#fca5a5;}
-        .card{background:linear-gradient(145deg,#1e293b,#0f172a);border-radius:20px;padding:20px;margin-bottom:16px;border:2px solid #334155;}
-        .card:hover{border-color:#ef4444;}
-        .card-title{font-size:17px;font-weight:700;color:#fef08a;margin-bottom:8px;}
-        .card-date{font-size:13px;color:#fca5a5;margin-bottom:12px;}
-        .card-content{color:#e2e8f0;line-height:1.7;}
-        .empty{text-align:center;color:#64748b;padding:50px 20px;}
+        body{background:#020617;color:#f8fafc;line-height:1.7;padding:16px;max-width:780px;margin:0 auto;}
+
+        /* === MENU === */
+        .menu{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px;position:sticky;top:0;background:#020617f0;padding:10px 0;z-index:99;backdrop-filter:blur(8px);}
+        .menu-btn{background:linear-gradient(135deg,#1e293b,#0f172a);color:#e2e8f0;padding:10px 12px;border-radius:12px;text-align:center;text-decoration:none;font-size:13px;font-weight:700;display:inline-flex;align-items:center;gap:4px;border:1px solid #334155;transition:all .25s;}
+        .menu-btn:hover{transform:translateY(-3px);border-color:#fef08a;box-shadow:0 6px 16px rgba(254,240,138,.15);}
+        .menu-btn.active{background:linear-gradient(135deg,#f97316,#ef4444);color:white;border-color:#f97316;box-shadow:0 4px 14px rgba(249,115,22,.35);}
+
+        /* === TIN NÓNG === */
+        .tin-item{background:linear-gradient(145deg,#1e293b,#0f172a);border-radius:18px;padding:20px;margin-bottom:16px;border:2px solid #1e293b;cursor:pointer;transition:all .3s;}
+        .tin-item:hover{border-color:#f97316;transform:translateY(-2px);box-shadow:0 8px 20px rgba(249,115,22,.15);}
+        .tin-hot{border-color:#ef4444;box-shadow:0 0 15px rgba(239,68,68,.15);}
+        .tin-tieu-de{font-size:17px;font-weight:800;color:#fef08a;margin-bottom:6px;line-height:1.4;}
+        .tin-ngay{display:inline-block;background:rgba(239,68,68,.15);color:#fca5a5;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;margin-bottom:12px;}
+        .tin-tom-tat{font-size:14px;color:#e2e8f0;line-height:1.6;margin-bottom:8px;}
+        .tin-hint{font-size:13px;color:#94a3b8;font-style:italic;}
+
+        /* === NỘI DUNG CHI TIẾT — ẨN / HIỆN === */
+        .tin-full{display:none;margin-top:14px;padding-top:14px;border-top:1px dashed #334155;}
+        .tin-full.show{display:block;}
+        .tin-noi-dung{font-size:15px;color:#f1f5f9;line-height:1.8;white-space:pre-wrap;}
+        .tin-noi-dung p{margin-bottom:10px;}
+
+        .empty{text-align:center;color:#64748b;padding:60px 20px;}
+        .loading{text-align:center;color:#fef08a;padding:40px;animation:nhapnhay 1.5s infinite;}
+        @keyframes nhapnhay{0%,100%{opacity:1;}50%{opacity:.4;}}
     </style>
 </head>
 <body>
+
 <nav class="menu">
     <a href="index.html" class="menu-btn">🏠 Trang chủ</a>
     <a href="lich-dau.html" class="menu-btn">📅 Lịch đấu</a>
-    <a href="du-doan.html" class="menu-btn">🔮 Dự đoán</a>
+    <a href="du-doan.html" class="menu-btn">🔮 Phân Tích</a>
     <a href="bang-xep-hang.html" class="menu-btn">📊 Bảng xếp hạng</a>
     <a href="thong-ke.html" class="menu-btn">📈 Thống kê</a>
     <a href="tin-nong.html" class="menu-btn active">📰 Tin Nóng</a>
 </nav>
 
-<h1 class="page-title">📰 Tin Nóng & Phân Tích</h1>
-<div id="tin-list"><div class="empty">Đang tải dữ liệu...</div></div>
+<h2 style="font-size:22px;color:#fef08a;margin-bottom:20px;">📰 Tin Nóng & Cập Nhật Mới</h2>
+<div id="list-tin"><div class="loading">Đang tải tin tức...</div></div>
 
 <script>
-const GID_TIN_NONG = "1328630352";
-const URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQwrXKqXdfjGK7EQCkNwjuv-FbFJxHhQyCg1NxBl2kkMnGuPCYL1vnG6QFBujGwNCVlx5v1keQuviBV/pub?output=csv&gid="+GID_TIN_NONG;
+const GID = "1328630352";
+const BASE_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQwrXKqXdfjGK7EQCkNwjuv-FbFJxHhQyCg1NxBl2kkMnGuPCYL1vnG6QFBujGwNCVlx5v1keQuviBV/pub?output=csv&gid=";
 
 function parseCSV(text){
     const rows=[], lines=text.split("\n");
@@ -52,25 +67,80 @@ function parseCSV(text){
     return rows;
 }
 
-fetch(URL).then(r=>r.text()).then(csv=>{
-    const rows=parseCSV(csv), data=[];
+fetch(BASE_URL+GID).then(r=>r.text()).then(csv=>{
+    const rows=parseCSV(csv);
+    if(rows.length<2){
+        document.getElementById("list-tin").innerHTML=`<div class="empty">Chưa có dữ liệu — Kiểm tra lại Sheet!</div>`;
+        return;
+    }
+
+    // === TÌM ĐÚNG CỘT THEO TÊN, KHÔNG CẦN QUAN TÂM THỨ TỰ ===
+    const header=rows[0].map(h=>h.trim().toLowerCase());
+    const idx_loai = header.indexOf("loai_muc");
+    const idx_thutu = header.indexOf("thu_tu");
+    const idx_tieu_de = header.indexOf("tieu_de");
+    const idx_ngay = header.indexOf("ngay_cap_nhat");
+    const idx_tomtat = header.indexOf("tom_tat");
+    const idx_noidung = header.indexOf("noi_dung_day_du");
+
+    console.log("✅ Tìm thấy cột:", {idx_loai,idx_thutu,idx_tieu_de,idx_ngay,idx_tomtat,idx_noidung});
+
+    if([idx_loai,idx_thutu,idx_tieu_de,idx_ngay,idx_tomtat,idx_noidung].includes(-1)){
+        document.getElementById("list-tin").innerHTML=`<div class="empty">❌ Thiếu tên cột! Hàng 1 phải có đúng: loai_muc, thu_tu, tieu_de, ngay_cap_nhat, tom_tat, noi_dung_day_du</div>`;
+        return;
+    }
+
+    // === ĐỌC DỮ LIỆU ===
+    const data=[];
     for(let i=1;i<rows.length;i++){
-        const [loai,thutu,tieu_de,ngay,noi_dung_tom_tat]=rows[i];
-        if(loai!=="tin_nong")continue;
-        data.push({st:Number(thutu)||999,tieu_de,ngay,noi_dung_tom_tat});
+        const r=rows[i];
+        if(r[idx_loai]!=="tin_nong")continue;
+        data.push({
+            st:Number(r[idx_thutu])||999,
+            tieu_de:r[idx_tieu_de],
+            ngay:r[idx_ngay],
+            tom_tat:r[idx_tomtat],
+            noi_dung:r[idx_noidung]
+        });
     }
     data.sort((a,b)=>a.st-b.st);
-    const box=document.getElementById("tin-list");
-    if(!data.length){box.innerHTML=`<div class="empty">Chưa có tin tức<br>Điền vào Sheet "Tin Nóng" → tự hiện!</div>`;return;}
+
+    const box=document.getElementById("list-tin");
+    if(!data.length){
+        box.innerHTML=`<div class="empty">Chưa có tin tức nào → điền vào Sheet Tin Nóng!</div>`;
+        return;
+    }
+
     box.innerHTML="";
-    data.forEach(x=>{
-        box.innerHTML+=`<div class="card">
-            <h3 class="card-title">${x.tieu_de}</h3>
-            <div class="card-date">📅 ${x.ngay}</div>
-            <div class="card-content">${x.noi_dung_tom_tat}</div>
+    data.forEach((x,idx)=>{
+        const id_tin = "tin-"+idx;
+        box.innerHTML+=`
+        <div class="tin-item ${idx===0?'tin-hot':''}" id="${id_tin}">
+            <h3 class="tin-tieu-de">${idx===0?'🔥 ':''}${x.tieu_de}</h3>
+            <span class="tin-ngay">📅 ${x.ngay}</span>
+            <p class="tin-tom-tat">${x.tom_tat}</p>
+            <p class="tin-hint">👉 Bấm vào xem chi tiết ↓</p>
+            <div class="tin-full" id="${id_tin}-full">
+                <div class="tin-noi-dung">${(x.noi_dung||"Chưa có nội dung chi tiết").replace(/<br\s*\/?>/gi,'\n')}</div>
+            </div>
         </div>`;
     });
-}).catch(()=>{document.getElementById("tin-list").innerHTML=`<div class="empty" style="color:#f87171;">⚠️ Kiểm tra Sheet!</div>`;});
+
+    // Bấm xem chi tiết
+    data.forEach((_,idx)=>{
+        const id_tin = "tin-"+idx;
+        const item = document.getElementById(id_tin);
+        const full = document.getElementById(id_tin+"-full");
+        item.addEventListener("click",()=>{
+            full.classList.toggle("show");
+            const hint = item.querySelector(".tin-hint");
+            if(full.classList.contains("show")) hint.textContent = "↑ Thu gọn lại ↑";
+            else hint.textContent = "👉 Bấm vào xem chi tiết ↓";
+        });
+    });
+}).catch(err=>{
+    document.getElementById("list-tin").innerHTML=`<div class="empty">Lỗi tải dữ liệu: ${err.message}</div>`;
+});
 </script>
 </body>
 </html>
