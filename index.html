@@ -14,7 +14,7 @@
         .menu-btn:hover{transform:translateY(-3px);border-color:#fef08a;box-shadow:0 6px 16px rgba(254,240,138,.15);}
         .menu-btn.active{background:linear-gradient(135deg,#f97316,#ef4444);color:white;border-color:#f97316;box-shadow:0 4px 14px rgba(249,115,22,.35);}
 
-        /* === BANNER CHÍNH — HOOK TÒ MÒ === */
+        /* === BANNER CHÍNH === */
         .banner{background:linear-gradient(135deg,#7f1d1d,#431407,#14532d);border-radius:24px;padding:28px 20px;margin-bottom:28px;border:2px solid #fef08a;box-shadow:0 0 40px rgba(254,240,138,.25), inset 0 0 30px rgba(254,240,138,.08);position:relative;overflow:hidden;}
         .banner::before{content:"";position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at 30% 30%, rgba(254,240,138,.12), transparent 60%);animation:quay 15s linear infinite;}
         @keyframes quay{100%{transform:rotate(360deg);}}
@@ -60,6 +60,19 @@
         .tin-card h3{font-size:15px;font-weight:700;color:#fef08a;margin-bottom:4px;}
         .tin-card p{font-size:13px;color:#94a3b8;}
 
+        /* === MỤC GIỚI THIỆU & MIỄN TRỪ TRÁCH NHIỆM === */
+        .intro-section{background:linear-gradient(135deg,#14532d,#0f172a);border-radius:24px;padding:24px;margin:40px 0 20px;border:2px solid #86efac;box-shadow:0 0 30px rgba(134,239,172,.15);text-align:center;}
+        .intro-title{font-size:18px;font-weight:800;color:#86efac;margin-bottom:12px;}
+        .intro-desc{font-size:14px;color:#e2e8f0;margin-bottom:18px;line-height:1.6;}
+        .btn-tel{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(90deg,#25d366,#128c7e);color:white;padding:12px 24px;border-radius:14px;text-decoration:none;font-weight:900;font-size:15px;box-shadow:0 0 15px rgba(37,211,102,.3);transition:all .25s;}
+        .btn-tel:hover{transform:scale(1.05);box-shadow:0 0 25px rgba(37,211,102,.5);}
+
+        /* === MIỄN TRỪ TRÁCH NHIỆM === */
+        .disclaimer{background:rgba(15,23,42,.8);border-radius:16px;padding:18px;margin-top:30px;border:1px solid #475569;}
+        .disclaimer h4{font-size:14px;font-weight:700;color:#f87171;margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+        .disclaimer p{font-size:13px;color:#cbd5e1;line-height:1.7;margin-bottom:6px;}
+        .disclaimer p:last-child{margin-bottom:0;}
+
         .empty{text-align:center;color:#64748b;padding:40px 20px;}
         .loading{text-align:center;color:#fef08a;padding:30px;animation:nhapnhay 1.5s infinite;}
     </style>
@@ -75,7 +88,7 @@
     <a href="tin-nong.html" class="menu-btn">📰 Tin Nóng</a>
 </nav>
 
-<!-- BANNER ĐÃ SỬA — KHÔNG NÓI CHẮC THẮNG, CHỈ NÓI DỮ LIỆU & PHÂN TÍCH -->
+<!-- BANNER CHÍNH -->
 <div class="banner">
     <h1>⚽ <span>PHÂN TÍCH DỮ LIỆU TRƯỚC TRẬN BẮT ĐẦU!</span></h1>
     <p>Dựa trên phong độ gần đây • Lịch sử đối đầu • Tình hình lực lượng • Chiến thuật dự kiến</p>
@@ -97,12 +110,29 @@
 </div>
 <div id="tran-list"><div class="loading">Đang tải dữ liệu...</div></div>
 
-<!-- TIN NÓNG BÍ MẬT -->
+<!-- TIN NÓNG -->
 <div class="section-head">
     <h2 class="section-title">🔥 Tin Nóng & Nhận Định <span>❓</span></h2>
     <a href="tin-nong.html" class="xem-tat-ca">Xem tất cả →</a>
 </div>
 <div id="tin-list"></div>
+
+<!-- MỤC GIỚI THIỆU & KẾT NỐI NHÓM TELEGRAM -->
+<div class="intro-section">
+    <h3 class="intro-title">🤝 KẾT NỐI CÙNG CHÚNG TÔI</h3>
+    <p class="intro-desc">Theo dõi phân tích mới nhất, cập nhật liên tục và trao đổi cùng cộng đồng yêu bóng đá</p>
+    <a href="https://t.me/+LBCsBd-LjPI3ZDRl" target="_blank" class="btn-tel">
+        ✈️ NHẬN THÔNG TIN NHÓM TELEGRAM
+    </a>
+</div>
+
+<!-- === MIỄN TRỪ TRÁCH NHIỆM — ĐÃ THÊM Ở CUỐI TRANG === -->
+<div class="disclaimer">
+    <h4>⚠️ MIỄN TRỪ TRÁCH NHIỆM & TUYÊN BỐ</h4>
+    <p>Toàn bộ nội dung trên trang web chỉ phục vụ mục đích phân tích, tham khảo và trao đổi thông tin về bóng đá. Nội dung đưa ra mang tính tham khảo, không phải là dự đoán chắc chắn về kết quả trận đấu.</p>
+    <p>❌ Chúng tôi <strong>không khuyến khích, không gợi ý và không liên quan</strong> đến cá độ, đặt cược hay các hình thức tương tự dưới mọi hình thức. Mọi quyết định của người xem đều do người đó tự chịu trách nhiệm.</p>
+    <p>Thông tin được tổng hợp từ nhiều nguồn công khai, chúng tôi không đảm bảo tính chính xác tuyệt đối và không chịu trách nhiệm cho bất kỳ quyết định hoặc tổn thất nào phát sinh khi tham khảo nội dung này.</p>
+</div>
 
 <script>
 // === ĐỌC ĐÚNG SHEET RIÊNG ===
