@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bảng xếp hạng - Score Vision</title>
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:Arial, sans-serif; background:#f0f2f5; color:#333; }
+        .menu { background:linear-gradient(135deg, #0f2027, #203a43, #2c5364); padding:14px 20px; position:sticky; top:0; }
+        .menu .container { max-width:1100px; margin:0 auto; display:flex; flex-wrap:wrap; gap:6px; }
+        .menu a { color:white; text-decoration:none; padding:10px 16px; border-radius:6px; font-weight:bold; }
+        .menu a:hover, .menu a.active { background:#4CAF50; }
+        .container { max-width:1100px; margin:0 auto; padding:25px 20px; }
+        h1 { color:#0f2027; border-left:4px solid #4CAF50; padding-left:12px; margin-bottom:25px; }
+        table { width:100%; border-collapse:collapse; background:white; border-radius:10px; overflow:hidden; box-shadow:0 2px 6px rgba(0,0,0,0.08); }
+        th { background:#203a43; color:white; padding:10px; text-align:left; }
+        td { padding:10px; border-bottom:1px solid #eee; }
+        tr:nth-child(1) { background:#e8f5e9; font-weight:bold; }
+    </style>
+</head>
+<body>
+<div class="menu">
+    <div class="container">
+        <a href="index.html">🏠 Trang chủ</a>
+        <a href="lich-dau.html">📅 Lịch đấu</a>
+        <a href="du-doan.html">🔮 Dự đoán</a>
+        <a href="bang-xep-hang.html" class="active">📊 Bảng xếp hạng</a>
+        <a href="thong-ke.html">📈 Thống kê</a>
+        <a href="lien-he.html">ℹ️ Giới thiệu</a>
+    </div>
+</div>
+<div class="container">
+    <h1>📊 Bảng xếp hạng — Ngoại Hạng Anh</h1>
+    <table>
+        <thead><tr><th>#</th><th>Đội bóng</th><th>Trận</th><th>Thắng</th><th>Hòa</th><th>Thua</th><th>Điểm</th></tr></thead>
+        <tbody>
+            <tr><td>1</td><td>Liverpool</td><td>2</td><td>2</td><td>0</td><td>0</td><td>6</td></tr>
+            <tr><td>2</td><td>Arsenal</td><td>2</td><td>1</td><td>1</td><td>0</td><td>4</td></tr>
+            <tr><td>3</td><td>Man City</td><td>2</td><td>1</td><td>1</td><td>0</td><td>4</td></tr>
+            <tr><td>4</td><td>Chelsea</td><td>2</td><td>1</td><td>0</td><td>1</td><td>3</td></tr>
+            <tr><td>5</td><td>Aston Villa</td><td>2</td><td>1</td><td>0</td><td>1</td><td>3</td></tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
