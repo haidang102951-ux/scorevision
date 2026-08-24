@@ -6,29 +6,30 @@
     <title>Lịch Thi Đấu | Score Vision</title>
     <style>
         *{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;}
-        body{background:#020617;color:#f8fafc;line-height:1.7;padding:16px;max-width:780px;margin:0 auto;}
+        body{background:#020617;color:#f8fafc;line-height:1.7;padding:16px;max-width:850px;margin:0 auto;}
 
+        /* === MENU === */
         .menu{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px;position:sticky;top:0;background:#020617f0;padding:10px 0;z-index:99;backdrop-filter:blur(8px);}
-        .menu-btn{background:linear-gradient(135deg,#1e293b,#0f172a);color:#e2e8f0;padding:10px 12px;border-radius:12px;text-align:center;text-decoration:none;font-size:13px;font-weight:700;display:inline-flex;align-items:center;gap:4px;border:1px solid #334155;transition:all .25s;}
-        .menu-btn:hover{transform:translateY(-3px);border-color:#fef08a;box-shadow:0 6px 16px rgba(254,240,138,.15);}
+        .menu-btn{background:linear-gradient(135deg,#1e293b,#0f172a);color:#e2e8f0;padding:10px 14px;border-radius:12px;text-align:center;text-decoration:none;font-size:13px;font-weight:700;display:inline-flex;align-items:center;gap:4px;border:1px solid #334155;transition:all .25s;}
+        .menu-btn:hover{transform:translateY(-2px);border-color:#fef08a;box-shadow:0 4px 12px rgba(254,240,138,.15);}
         .menu-btn.active{background:linear-gradient(135deg,#f97316,#ef4444);color:white;border-color:#f97316;box-shadow:0 4px 14px rgba(249,115,22,.35);}
 
-        .lich-item{background:linear-gradient(145deg,#1e293b,#0f172a);border-radius:16px;padding:18px;margin-bottom:14px;border:2px solid #1e293b;transition:all .3s;}
-        .lich-item:hover{border-color:#fef08a;transform:translateY(-2px);box-shadow:0 6px 16px rgba(254,240,138,.12);}
-        .lich-sap-dien-ra{border-left:4px solid #f97316;}
-        .lich-dang-dien-ra{border-left:4px solid #22c55e;box-shadow:0 0 12px rgba(34,197,94,.2);}
-        .lich-da-ket-thuc{border-left:4px solid #64748b;opacity:.75;}
+        h2{text-align:center;font-size:22px;color:#fef08a;margin-bottom:24px;}
 
-        .lich-giai{font-size:13px;color:#94a3b8;margin-bottom:10px;}
-        .lich-doi{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
-        .lich-doi-ten{font-size:17px;font-weight:800;color:#fef08a;}
-        .lich-vs{font-size:14px;color:#f97316;font-weight:900;padding:4px 12px;background:rgba(249,115,22,.12);border-radius:12px;}
-        .lich-thoi-gian{display:flex;align-items:center;justify-content:space-between;padding-top:10px;border-top:1px solid #334155;}
-        .lich-ngay{font-size:14px;color:#e2e8f0;font-weight:600;}
-        .lich-trang-thai{font-size:12px;font-weight:700;padding:4px 12px;border-radius:12px;}
-        .tt-sap{background:rgba(249,115,22,.15);color:#fdba74;}
-        .tt-dang{background:rgba(34,197,94,.15);color:#86efac;}
-        .tt-xong{background:rgba(100,116,139,.15);color:#94a3b8;}
+        /* === THẺ LỊCH ĐẤU === */
+        .lich-item{background:linear-gradient(145deg,#1e293b,#0f172a);border-radius:16px;padding:20px;margin-bottom:16px;border:2px solid #1e293b;border-left:4px solid #f97316;transition:all .3s;}
+        .lich-item:hover{border-color:#fef08a;transform:translateY(-2px);box-shadow:0 6px 16px rgba(254,240,138,.12);}
+
+        .lich-giai{font-size:14px;color:#94a3b8;margin-bottom:14px;display:flex;align-items:center;gap:6px;}
+        .lich-doi{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;padding:0 8px;}
+        .lich-doi-nha{font-size:18px;font-weight:800;color:#fef08a;}
+        .lich-vs{font-size:14px;color:#f97316;font-weight:900;padding:4px 10px;background:rgba(249,115,22,.12);border-radius:12px;}
+        .lich-doi-khach{font-size:18px;font-weight:800;color:#fef08a;}
+        .lich-san{font-size:13px;color:#9ca3af;margin-bottom:14px;padding-left:8px;}
+        .lich-duong-ke{border-bottom:1px dashed #334155;margin:10px 0;}
+        .lich-thoi-gian{display:flex;align-items:center;justify-content:space-between;padding:0 8px;}
+        .lich-ngay{font-size:14px;color:#e2e8f0;font-weight:600;display:flex;align-items:center;gap:6px;}
+        .lich-trang-thai{font-size:13px;font-weight:700;padding:4px 12px;border-radius:12px;background:rgba(249,115,22,.15);color:#fdba74;}
 
         .empty{text-align:center;color:#64748b;padding:60px 20px;}
         .loading{text-align:center;color:#fef08a;padding:40px;animation:nhapnhay 1.5s infinite;}
@@ -46,7 +47,7 @@
     <a href="tin-nong.html" class="menu-btn">📰 Tin Nóng</a>
 </nav>
 
-<h2 style="font-size:22px;color:#fef08a;margin-bottom:20px;">📅 Lịch Thi Đấu Sắp Tới</h2>
+<h2>📅 Lịch Thi Đấu Sắp Tới</h2>
 <div id="list-lich"><div class="loading">Đang tải lịch đấu...</div></div>
 
 <script>
@@ -70,8 +71,10 @@ function parseCSV(text){
 
 fetch(BASE_URL+GID).then(r=>r.text()).then(csv=>{
     const rows=parseCSV(csv);
+    console.log("✅ Đọc được:", rows);
+
     if(rows.length<2){
-        document.getElementById("list-lich").innerHTML=`<div class="empty">Chưa có dữ liệu — Kiểm tra lại Sheet!</div>`;
+        document.getElementById("list-lich").innerHTML=`<div class="empty">Chưa có dữ liệu → Kiểm tra Sheet!</div>`;
         return;
     }
 
@@ -83,9 +86,10 @@ fetch(BASE_URL+GID).then(r=>r.text()).then(csv=>{
     const idx_ngaygio = header.indexOf("ngay_gio");
     const idx_giai = header.indexOf("giai_dau");
     const idx_trangthai = header.indexOf("trang_thai");
+    const idx_sandau = header.indexOf("san_dau");
 
     if([idx_loai,idx_thutu,idx_nha,idx_khach,idx_ngaygio,idx_giai,idx_trangthai].includes(-1)){
-        document.getElementById("list-lich").innerHTML=`<div class="empty">❌ Thiếu tên cột! Hàng 1: loai_muc, thu_tu, doi_nha, doi_khach, ngay_gio, giai_dau, trang_thai</div>`;
+        document.getElementById("list-lich").innerHTML=`<div class="empty">❌ Thiếu tên cột! Hàng 1: loai_muc, thu_tu, doi_nha, doi_khach, ngay_gio, giai_dau, trang_thai, san_dau</div>`;
         return;
     }
 
@@ -93,41 +97,44 @@ fetch(BASE_URL+GID).then(r=>r.text()).then(csv=>{
     for(let i=1;i<rows.length;i++){
         const r=rows[i];
         if(r[idx_loai]!=="lich_dau")continue;
+        const nha = (r[idx_nha]||"").trim();
+        const khach = (r[idx_khach]||"").trim();
+        if(!nha || !khach) continue;
+
         data.push({
             st:Number(r[idx_thutu])||999,
-            nha:r[idx_nha],
-            khach:r[idx_khach],
-            ngaygio:r[idx_ngaygio],
-            giai:r[idx_giai],
-            trangthai:r[idx_trangthai]
+            nha:nha,
+            khach:khach,
+            ngaygio:(r[idx_ngaygio]||"").trim(),
+            giai:(r[idx_giai]||"").trim(),
+            trangthai:(r[idx_trangthai]||"").trim(),
+            sandau:idx_sandau>=0 ? (r[idx_sandau]||"").trim() : ""
         });
     }
     data.sort((a,b)=>a.st-b.st);
+    console.log("✅ Dữ liệu sạch:", data);
 
     const box=document.getElementById("list-lich");
     if(!data.length){
-        box.innerHTML=`<div class="empty">Chưa có lịch đấu nào → điền vào Sheet!</div>`;
+        box.innerHTML=`<div class="empty">Chưa có lịch đấu hợp lệ → Kiểm tra dữ liệu trên Sheet!</div>`;
         return;
     }
 
     box.innerHTML="";
     data.forEach(x=>{
-        let class_item="lich-sap-dien-ra", class_tt="tt-sap";
-        const tt = (x.trangthai||"").toLowerCase();
-        if(tt.includes("đang")){ class_item="lich-dang-dien-ra"; class_tt="tt-dang"; }
-        else if(tt.includes("đã kết thúc")||tt.includes("đã xong")){ class_item="lich-da-ket-thuc"; class_tt="tt-xong"; }
-
         box.innerHTML+=`
-        <div class="lich-item ${class_item}">
-            <div class="lich-giai">🏆 ${x.giai||"Chưa cập nhật"}</div>
+        <div class="lich-item">
+            <div class="lich-giai">🏆 ${x.giai}</div>
             <div class="lich-doi">
-                <span class="lich-doi-ten">${x.nha||"Đội Nhà"}</span>
+                <span class="lich-doi-nha">${x.nha}</span>
                 <span class="lich-vs">VS</span>
-                <span class="lich-doi-ten">${x.khach||"Đội Khách"}</span>
+                <span class="lich-doi-khach">${x.khach}</span>
             </div>
+            ${x.sandau ? `<div class="lich-san">🏟️ Sân: ${x.sandau}</div>` : ""}
+            <div class="lich-duong-ke"></div>
             <div class="lich-thoi-gian">
-                <span class="lich-ngay">⏰ ${x.ngaygio||"Chưa cập nhật"}</span>
-                <span class="lich-trang-thai ${class_tt}">${x.trangthai||"Sắp diễn ra"}</span>
+                <span class="lich-ngay">📅 ${x.ngaygio}</span>
+                <span class="lich-trang-thai">${x.trangthai}</span>
             </div>
         </div>`;
     });
