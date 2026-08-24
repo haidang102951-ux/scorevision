@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lịch thi đấu - Score Vision</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background: #f0f2f5; color: #333; }
+        .menu { background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); padding: 14px 20px; position: sticky; top:0; }
+        .menu .container { max-width: 1100px; margin:0 auto; display:flex; flex-wrap:wrap; gap:6px; }
+        .menu a { color:white; text-decoration:none; padding:10px 16px; border-radius:6px; font-weight:bold; }
+        .menu a:hover, .menu a.active { background:#4CAF50; }
+        .container { max-width:1100px; margin:0 auto; padding:25px 20px; }
+        h1 { color:#0f2027; border-left:4px solid #4CAF50; padding-left:12px; margin-bottom:25px; }
+        .match-card { background:white; border-radius:10px; padding:15px; margin-bottom:12px; box-shadow:0 2px 6px rgba(0,0,0,0.08); }
+        .league { color:#2c5364; font-weight:bold; margin-bottom:8px; }
+        .time { color:#666; font-size:14px; }
+    </style>
+</head>
+<body>
+<div class="menu">
+    <div class="container">
+        <a href="index.html">🏠 Trang chủ</a>
+        <a href="lich-dau.html" class="active">📅 Lịch đấu</a>
+        <a href="du-doan.html">🔮 Dự đoán</a>
+        <a href="bang-xep-hang.html">📊 Bảng xếp hạng</a>
+        <a href="thong-ke.html">📈 Thống kê</a>
+        <a href="lien-he.html">ℹ️ Giới thiệu</a>
+    </div>
+</div>
+<div class="container">
+    <h1>📅 Lịch thi đấu sắp tới</h1>
+
+    <div class="match-card">
+        <div class="league">🏆 Ngoại Hạng Anh — Vòng 3</div>
+        <div class="time">25/08/2026 — 02:00</div>
+        <div style="font-size:17px; font-weight:bold; margin-top:6px;">Liverpool 🆚 Chelsea</div>
+    </div>
+    <div class="match-card">
+        <div class="league">🏆 Giải VĐQG Đức — Vòng 2</div>
+        <div class="time">25/08/2026 — 01:30</div>
+        <div style="font-size:17px; font-weight:bold; margin-top:6px;">Bayern Munich 🆚 Leverkusen</div>
+    </div>
+    <div class="match-card">
+        <div class="league">🏆 Giải VĐQG Ý — Vòng 2</div>
+        <div class="time">26/08/2026 — 02:45</div>
+        <div style="font-size:17px; font-weight:bold; margin-top:6px;">AC Milan 🆚 Inter Milan</div>
+    </div>
+
+</div>
+</body>
+</html>
