@@ -3,53 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dự đoán & Phân tích - Score Vision</title>
+    <title>Dự Đoán Chi Tiết | Score Vision</title>
     <style>
-        * { margin:0; padding:0; box-sizing:border-box; }
-        body { font-family:Arial, sans-serif; background:#f0f2f5; color:#333; }
-        .menu { background:linear-gradient(135deg, #0f2027, #203a43, #2c5364); padding:14px 20px; position:sticky; top:0; }
-        .menu .container { max-width:1100px; margin:0 auto; display:flex; flex-wrap:wrap; gap:6px; }
-        .menu a { color:white; text-decoration:none; padding:10px 16px; border-radius:6px; font-weight:bold; }
-        .menu a:hover, .menu a.active { background:#4CAF50; }
-        .container { max-width:1100px; margin:0 auto; padding:25px 20px; }
-        h1 { color:#0f2027; border-left:4px solid #4CAF50; padding-left:12px; margin-bottom:25px; }
-        .card { background:white; border-radius:10px; padding:18px; margin-bottom:16px; box-shadow:0 2px 6px rgba(0,0,0,0.08); }
-        .pred { background:#e8f5e9; border-left:3px solid #4CAF50; padding:12px; margin-top:10px; border-radius:0 6px 6px 0; }
+        *{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;}
+        body{background:#05050a;color:#f8fafc;line-height:1.8;padding:16px;max-width:768px;margin:0 auto;}
+        .menu{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px;}
+        .menu-btn{background:#0f172a;color:#cbd5e1;padding:10px 14px;border-radius:10px;text-align:center;text-decoration:none;font-size:14px;font-weight:600;display:inline-flex;align-items:center;gap:5px;border:1px solid #1e293b;transition:all .2s;}
+        .menu-btn:hover{transform:translateY(-2px);border-color:#334155;}
+        .menu-btn.active{background:linear-gradient(135deg,#22c55e 0%,#16a34a 100%);color:white;border-color:#22c55e;box-shadow:0 4px 12px rgba(34,197,94,.25);}
+        .page-title{font-size:24px;font-weight:800;margin:20px 0 30px;text-align:center;color:#fef08a;}
+        .card{background:linear-gradient(145deg,#1e293b,#0f172a);border-radius:20px;padding:20px;margin-bottom:16px;border:2px solid #334155;}
+        .card:hover{border-color:#fef08a;}
+        .card-teams{font-size:18px;font-weight:800;text-align:center;margin-bottom:10px;color:#fef08a;}
+        .card-time{text-align:center;color:#94a3b8;margin-bottom:12px;}
+        .section{margin-bottom:10px;padding-left:10px;border-left:3px solid #22c55e;}
+        .section h3{font-size:14px;color:#86efac;margin-bottom:4px;}
+        .section p{color:#e2e8f0;font-size:14px;}
+        .kq{background:rgba(34,197,94,.1);border-radius:10px;padding:12px;margin-top:12px;border:1px solid #22c55e;}
+        .kq h3{color:#86efac;font-size:15px;margin-bottom:6px;}
+        .kq p{font-weight:700;color:#fef08a;}
+        .empty{text-align:center;color:#64748b;padding:50px 20px;}
+        .back-btn{display:inline-block;margin-top:10px;background:#22c55e;color:white;padding:10px 20px;border-radius:10px;text-decoration:none;font-weight:600;}
     </style>
 </head>
 <body>
-<div class="menu">
-    <div class="container">
-        <a href="index.html">🏠 Trang chủ</a>
-        <a href="lich-dau.html">📅 Lịch đấu</a>
-        <a href="du-doan.html" class="active">🔮 Dự đoán</a>
-        <a href="bang-xep-hang.html">📊 Bảng xếp hạng</a>
-        <a href="thong-ke.html">📈 Thống kê</a>
-        <a href="lien-he.html">ℹ️ Giới thiệu</a>
-    </div>
-</div>
-<div class="container">
-    <h1>🔮 Dự đoán & Phân tích chi tiết</h1>
+<nav class="menu">
+    <a href="index.html" class="menu-btn">🏠 Trang chủ</a>
+    <a href="lich-dau.html" class="menu-btn">📅 Lịch đấu</a>
+    <a href="du-doan.html" class="menu-btn active">🔮 Dự đoán</a>
+    <a href="bang-xep-hang.html" class="menu-btn">📊 Bảng xếp hạng</a>
+    <a href="thong-ke.html" class="menu-btn">📈 Thống kê</a>
+    <a href="tin-nong.html" class="menu-btn">📰 Tin Nóng</a>
+    <a href="gioi-thieu.html" class="menu-btn">ℹ️ Giới thiệu</a>
+</nav>
 
-    <div class="card">
-        <h3>Juventus 🆚 Napoli — Serie A</h3>
-        <p style="color:#666; font-size:14px; margin:6px 0;">26/08/2026 • 02:45</p>
-        <p><strong>Phân tích:</strong> Juventus mạnh sân nhà, hàng thủ chắc. Napoli tấn công tốt nhưng gặp khó khi đối đầu đội mạnh.</p>
-        <p><strong>Phong độ 5 trận gần:</strong> Juventus: 3-1-1 • Napoli: 2-2-1</p>
-        <div class="pred">
-            <strong>✅ Dự đoán:</strong> Juventus thắng hoặc hòa • Tỷ số gợi ý: 1-0 / 1-1 • Xỉu 2.25
-        </div>
-    </div>
+<h1 class="page-title">🔮 Dự Đoán Chi Tiết</h1>
+<div id="list"><div class="empty">Đang tải từ Google Sheets...</div></div>
+<a href="index.html" class="back-btn">← Quay lại Trang chủ</a>
 
-    <div class="card">
-        <h3>PSG 🆚 Marseille — Ligue 1</h3>
-        <p style="color:#666; font-size:14px; margin:6px 0;">27/08/2026 • 03:00</p>
-        <p><strong>Phân tích:</strong> PSG áp đảo hoàn toàn về lực lượng và phong độ. Marseille yếu khi làm khách.</p>
-        <div class="pred">
-            <strong>✅ Dự đoán:</strong> PSG thắng • Tỷ số gợi ý: 2-0 / 3-1 • Tài 2.75
-        </div>
-    </div>
-
-</div>
+<script>
+const URL_SHEETS = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQwrXKqXdfjGK7EQCkNwjuv-FbFJxHhQyCg1NxBl2kkMnGuPCYL1vnG6QFBujGwNCVlx5v1keQuviBV/pub?gid=0&single=true&output=csv";
+fetch(URL_SHEETS).then(r=>r.text()).then(csv=>{
+    const rows=[], lines=csv.split("\n");
+    for(let l of lines){
+        if(!l.trim())continue;
+        let p=[],c="",q=0;
+        for(let ch of l){
+            if(ch=='"')q=!q;
+            else if(ch==','&&!q){p.push(c.trim());c="";}
+            else c+=ch;
+        }
+        p.push(c.trim());rows.push(p);
+    }
+    const data=[];
+    for(let i=1;i<rows.length;i++){
+        const [loai,thutu,ten,ngaygio,phantich,phongdo,dudoan,tyso]=rows[i];
+        if(loai!=="du_doan")continue;
+        data.push({st:Number(thutu)||999,ten,ngaygio,phantich,phongdo,dudoan,tyso});
+    }
+    data.sort((a,b)=>a.st-b.st);
+    const box=document.getElementById("list");
+    if(!data.length){box.innerHTML=`<div class="empty">Chưa có dữ liệu<br><small>Điền vào Sheets → tự hiện!</small></div>`;return;}
+    box.innerHTML="";
+    data.forEach(x=>{
+        let html=`<div class="card"><div class="card-teams">${x.ten}</div><div class="card-time">📅 ${x.ngaygio}</div>`;
+        if(x.phantich)html+=`<div class="section"><h3>📝 Phân tích</h3><p>${x.phantich}</p></div>`;
+        if(x.phongdo)html+=`<div class="section"><h3>📊 Phong độ</h3><p>${x.phongdo}</p></div>`;
+        if(x.dudoan||x.tyso){
+            html+=`<div class="kq">`;
+            if(x.dudoan)html+=`<h3>✅ DỰ ĐOÁN</h3><p>${x.dudoan}</p>`;
+            if(x.tyso)html+=`<h3>📈 TỶ SỐ / TÀI XỈU</h3><p>${x.tyso}</p>`;
+            html+=`</div>`;
+        }
+        html+=`</div>`;
+        box.innerHTML+=html;
+    });
+}).catch(()=>{document.getElementById("list").innerHTML=`<div class="empty" style="color:#f87171;">⚠️ Kiểm tra Sheets!</div>`;});
+</script>
 </body>
 </html>
