@@ -3,40 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lịch Đấu | Score Vision</title>
+    <title>Lịch Thi Đấu | Score Vision</title>
     <style>
         *{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;}
-        body{background:#05050a;color:#f8fafc;line-height:1.6;padding:16px;max-width:768px;margin:0 auto;}
-        .menu{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px;}
-        .menu-btn{background:#0f172a;color:#cbd5e1;padding:10px 14px;border-radius:10px;text-align:center;text-decoration:none;font-size:14px;font-weight:600;display:inline-flex;align-items:center;gap:5px;border:1px solid #1e293b;transition:all .2s;}
-        .menu-btn:hover{transform:translateY(-2px);border-color:#334155;}
-        .menu-btn.active{background:linear-gradient(135deg,#22c55e 0%,#16a34a 100%);color:white;border-color:#22c55e;box-shadow:0 4px 12px rgba(34,197,94,.25);}
-        .page-title{font-size:24px;font-weight:800;margin:20px 0 30px;text-align:center;color:#fef08a;}
-        .date-group{margin-bottom:30px;}
-        .date-title{font-size:16px;font-weight:700;color:#86efac;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #1e293b;}
-        .match-item{background:linear-gradient(145deg,#1e293b,#0f172a);border-radius:12px;padding:14px;margin-bottom:10px;border:1px solid #334155;}
-        .match-item:hover{border-color:#22c55e;}
-        .match-name{font-weight:700;font-size:15px;margin-bottom:4px;color:#fef08a;}
-        .match-info{font-size:13px;color:#94a3b8;}
-        .empty{text-align:center;color:#64748b;padding:50px 20px;}
+        body{background:#020617;color:#f8fafc;line-height:1.7;padding:16px;max-width:780px;margin:0 auto;}
+
+        .menu{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px;position:sticky;top:0;background:#020617f0;padding:10px 0;z-index:99;backdrop-filter:blur(8px);}
+        .menu-btn{background:linear-gradient(135deg,#1e293b,#0f172a);color:#e2e8f0;padding:10px 12px;border-radius:12px;text-align:center;text-decoration:none;font-size:13px;font-weight:700;display:inline-flex;align-items:center;gap:4px;border:1px solid #334155;transition:all .25s;}
+        .menu-btn:hover{transform:translateY(-3px);border-color:#fef08a;box-shadow:0 6px 16px rgba(254,240,138,.15);}
+        .menu-btn.active{background:linear-gradient(135deg,#f97316,#ef4444);color:white;border-color:#f97316;box-shadow:0 4px 14px rgba(249,115,22,.35);}
+
+        .lich-item{background:linear-gradient(145deg,#1e293b,#0f172a);border-radius:16px;padding:18px;margin-bottom:14px;border:2px solid #1e293b;transition:all .3s;}
+        .lich-item:hover{border-color:#fef08a;transform:translateY(-2px);box-shadow:0 6px 16px rgba(254,240,138,.12);}
+        .lich-sap-dien-ra{border-left:4px solid #f97316;}
+        .lich-dang-dien-ra{border-left:4px solid #22c55e;box-shadow:0 0 12px rgba(34,197,94,.2);}
+        .lich-da-ket-thuc{border-left:4px solid #64748b;opacity:.75;}
+
+        .lich-giai{font-size:13px;color:#94a3b8;margin-bottom:10px;}
+        .lich-doi{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
+        .lich-doi-ten{font-size:17px;font-weight:800;color:#fef08a;}
+        .lich-vs{font-size:14px;color:#f97316;font-weight:900;padding:4px 12px;background:rgba(249,115,22,.12);border-radius:12px;}
+        .lich-thoi-gian{display:flex;align-items:center;justify-content:space-between;padding-top:10px;border-top:1px solid #334155;}
+        .lich-ngay{font-size:14px;color:#e2e8f0;font-weight:600;}
+        .lich-trang-thai{font-size:12px;font-weight:700;padding:4px 12px;border-radius:12px;}
+        .tt-sap{background:rgba(249,115,22,.15);color:#fdba74;}
+        .tt-dang{background:rgba(34,197,94,.15);color:#86efac;}
+        .tt-xong{background:rgba(100,116,139,.15);color:#94a3b8;}
+
+        .empty{text-align:center;color:#64748b;padding:60px 20px;}
+        .loading{text-align:center;color:#fef08a;padding:40px;animation:nhapnhay 1.5s infinite;}
+        @keyframes nhapnhay{0%,100%{opacity:1;}50%{opacity:.4;}}
     </style>
 </head>
 <body>
+
 <nav class="menu">
     <a href="index.html" class="menu-btn">🏠 Trang chủ</a>
     <a href="lich-dau.html" class="menu-btn active">📅 Lịch đấu</a>
-    <a href="du-doan.html" class="menu-btn">🔮 Dự đoán</a>
+    <a href="du-doan.html" class="menu-btn">🔮 Phân Tích</a>
     <a href="bang-xep-hang.html" class="menu-btn">📊 Bảng xếp hạng</a>
     <a href="thong-ke.html" class="menu-btn">📈 Thống kê</a>
     <a href="tin-nong.html" class="menu-btn">📰 Tin Nóng</a>
 </nav>
 
-<h1 class="page-title">📅 Lịch Thi Đấu Sắp Tới</h1>
-<div id="lich-list"><div class="empty">Đang tải dữ liệu...</div></div>
+<h2 style="font-size:22px;color:#fef08a;margin-bottom:20px;">📅 Lịch Thi Đấu Sắp Tới</h2>
+<div id="list-lich"><div class="loading">Đang tải lịch đấu...</div></div>
 
 <script>
-const GID_LICH_DAU = "2128823111";
-const URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQwrXKqXdfjGK7EQCkNwjuv-FbFJxHhQyCg1NxBl2kkMnGuPCYL1vnG6QFBujGwNCVlx5v1keQuviBV/pub?output=csv&gid="+GID_LICH_DAU;
+const GID = "2128823111";
+const BASE_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQwrXKqXdfjGK7EQCkNwjuv-FbFJxHhQyCg1NxBl2kkMnGuPCYL1vnG6QFBujGwNCVlx5v1keQuviBV/pub?output=csv&gid=";
 
 function parseCSV(text){
     const rows=[], lines=text.split("\n");
@@ -53,32 +68,72 @@ function parseCSV(text){
     return rows;
 }
 
-fetch(URL).then(r=>r.text()).then(csv=>{
-    const rows=parseCSV(csv), data=[];
+fetch(BASE_URL+GID).then(r=>r.text()).then(csv=>{
+    const rows=parseCSV(csv);
+    if(rows.length<2){
+        document.getElementById("list-lich").innerHTML=`<div class="empty">Chưa có dữ liệu — Kiểm tra lại Sheet!</div>`;
+        return;
+    }
+
+    const header=rows[0].map(h=>h.trim().toLowerCase());
+    const idx_loai = header.indexOf("loai_muc");
+    const idx_thutu = header.indexOf("thu_tu");
+    const idx_nha = header.indexOf("doi_nha");
+    const idx_khach = header.indexOf("doi_khach");
+    const idx_ngaygio = header.indexOf("ngay_gio");
+    const idx_giai = header.indexOf("giai_dau");
+    const idx_trangthai = header.indexOf("trang_thai");
+
+    if([idx_loai,idx_thutu,idx_nha,idx_khach,idx_ngaygio,idx_giai,idx_trangthai].includes(-1)){
+        document.getElementById("list-lich").innerHTML=`<div class="empty">❌ Thiếu tên cột! Hàng 1: loai_muc, thu_tu, doi_nha, doi_khach, ngay_gio, giai_dau, trang_thai</div>`;
+        return;
+    }
+
+    const data=[];
     for(let i=1;i<rows.length;i++){
-        const [loai,thutu,ten,ngaygio]=rows[i];
-        if(loai!=="lich_dau")continue;
-        data.push({st:Number(thutu)||999,ten,ngaygio});
+        const r=rows[i];
+        if(r[idx_loai]!=="lich_dau")continue;
+        data.push({
+            st:Number(r[idx_thutu])||999,
+            nha:r[idx_nha],
+            khach:r[idx_khach],
+            ngaygio:r[idx_ngaygio],
+            giai:r[idx_giai],
+            trangthai:r[idx_trangthai]
+        });
     }
     data.sort((a,b)=>a.st-b.st);
-    const box=document.getElementById("lich-list");
-    if(!data.length){box.innerHTML=`<div class="empty">Chưa có lịch đấu<br>Điền vào Sheet "Lịch Đấu" → tự hiện!</div>`;return;}
-    const nhom={};
-    data.forEach(x=>{
-        const ngay=x.ngaygio.split("•")[0].trim();
-        if(!nhom[ngay])nhom[ngay]=[];
-        nhom[ngay].push(x);
-    });
-    box.innerHTML="";
-    for(let n in nhom){
-        box.innerHTML+=`<div class="date-group"><h2 class="date-title">📅 ${n}</h2>`;
-        nhom[n].forEach(x=>{
-            const gio=x.ngaygio.split("•")[1]?x.ngaygio.split("•")[1].trim():"";
-            box.innerHTML+=`<div class="match-item"><div class="match-name">${x.ten}</div><div class="match-info">⏰ ${gio}</div></div>`;
-        });
-        box.innerHTML+=`</div>`;
+
+    const box=document.getElementById("list-lich");
+    if(!data.length){
+        box.innerHTML=`<div class="empty">Chưa có lịch đấu nào → điền vào Sheet!</div>`;
+        return;
     }
-}).catch(()=>{document.getElementById("lich-list").innerHTML=`<div class="empty" style="color:#f87171;">⚠️ Kiểm tra Sheet!</div>`;});
+
+    box.innerHTML="";
+    data.forEach(x=>{
+        let class_item="lich-sap-dien-ra", class_tt="tt-sap";
+        const tt = (x.trangthai||"").toLowerCase();
+        if(tt.includes("đang")){ class_item="lich-dang-dien-ra"; class_tt="tt-dang"; }
+        else if(tt.includes("đã kết thúc")||tt.includes("đã xong")){ class_item="lich-da-ket-thuc"; class_tt="tt-xong"; }
+
+        box.innerHTML+=`
+        <div class="lich-item ${class_item}">
+            <div class="lich-giai">🏆 ${x.giai||"Chưa cập nhật"}</div>
+            <div class="lich-doi">
+                <span class="lich-doi-ten">${x.nha||"Đội Nhà"}</span>
+                <span class="lich-vs">VS</span>
+                <span class="lich-doi-ten">${x.khach||"Đội Khách"}</span>
+            </div>
+            <div class="lich-thoi-gian">
+                <span class="lich-ngay">⏰ ${x.ngaygio||"Chưa cập nhật"}</span>
+                <span class="lich-trang-thai ${class_tt}">${x.trangthai||"Sắp diễn ra"}</span>
+            </div>
+        </div>`;
+    });
+}).catch(err=>{
+    document.getElementById("list-lich").innerHTML=`<div class="empty">Lỗi: ${err.message}</div>`;
+});
 </script>
 </body>
 </html>
