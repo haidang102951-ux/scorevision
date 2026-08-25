@@ -6,108 +6,201 @@
     <title>Score Vision ⚽ Phân Tích & Nhận Định Bóng Đá Chuyên Nghiệp</title>
     <style>
         *{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;}
+        
+        /* === BẢNG MÀU === */
         :root{
-            --bg:#f8fafc;
-            --surface:#ffffff;
-            --text:#1e293b;
-            --text-muted:#64748b;
-            --primary:#2563eb;
-            --accent:#f59e0b;
-            --border:#e2e8f0;
-            --shadow:0 2px 12px rgba(148,163,184,.12);
-            --shadow-hover:0 8px 24px rgba(37,99,235,.12);
+            --bg-main:#05050f;
+            --bg-surface:#0f1020;
+            --bg-card:linear-gradient(145deg,#1a1c35,#121326);
+            --bg-card-hover:linear-gradient(145deg,#232647,#181a33);
+            --text-primary:#f8fafc;
+            --text-secondary:#cbd5e1;
+            --text-muted:#94a3b8;
+            --accent-gold:#fef08a;
+            --accent-yellow:#facc15;
+            --accent-blue:#3b82f6;
+            --accent-red:#ef4444;
+            --border-glow:rgba(254,240,138,.2);
+            --shadow-soft:0 4px 20px rgba(0,0,0,.4);
+            --shadow-glow:0 0 25px rgba(254,240,138,.15);
         }
-        body{background:var(--bg);color:var(--text);line-height:1.6;}
-        .container{max-width:1000px;margin:0 auto;padding:16px;}
+        
+        body{
+            background:radial-gradient(circle at top, #1a1c35 0%, #05050f 60%);
+            color:var(--text-primary);
+            line-height:1.7;
+            min-height:100vh;
+        }
+        .container{max-width:1100px;margin:0 auto;padding:20px 16px;}
 
-        /* === LOGO + TÊN THƯƠNG HIỆU === */
-        .dau-trang{display:flex;align-items:center;justify-content:center;gap:14px;padding:20px 16px 10px 16px;margin-bottom:8px;}
-        .logo{width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,#2563eb,#1d4ed8);display:flex;align-items:center;justify-content:center;font-size:28px;box-shadow:0 4px 14px rgba(37,99,235,.25);}
-        .ten-thuong-hieu{font-size:26px;font-weight:900;color:#1e293b;letter-spacing:-0.5px;}
-        .ten-thuong-hieu span{color:#2563eb;}
-        .slogan-dau{text-align:center;color:#64748b;font-size:14px;margin-bottom:20px;}
+        /* === LOGO === */
+        .dau-trang{
+            display:flex;align-items:center;justify-content:center;gap:16px;
+            padding:24px 16px;margin-bottom:12px;
+        }
+        .logo{
+            width:64px;height:64px;border-radius:18px;
+            background:linear-gradient(135deg,#fef08a,#f59e0b);
+            display:flex;align-items:center;justify-content:center;
+            font-size:32px;box-shadow:0 6px 20px rgba(254,240,138,.35);
+            animation:logoPulse 3s infinite;
+        }
+        @keyframes logoPulse{
+            0%,100%{box-shadow:0 6px 20px rgba(254,240,138,.35);}
+            50%{box-shadow:0 6px 30px rgba(254,240,138,.55);}
+        }
+        .ten-thuong-hieu{
+            font-size:30px;font-weight:900;letter-spacing:-0.5px;
+            background:linear-gradient(90deg,#fef08a,#facc15);
+            -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+        }
+        .slogan-dau{
+            text-align:center;color:var(--text-muted);font-size:15px;margin-bottom:28px;
+            letter-spacing:1px;
+        }
 
         /* === MENU === */
-        .menu{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px;padding:12px 16px;background:var(--surface);border-radius:14px;box-shadow:var(--shadow);position:sticky;top:8px;z-index:99;}
-        .menu-btn{background:linear-gradient(135deg,#eff6ff,#f0f9ff);color:#1e40af;padding:10px 14px;border-radius:10px;text-align:center;text-decoration:none;font-size:14px;font-weight:600;border:1px solid #bfdbfe;transition:all .25s;}
-        .menu-btn:hover{transform:translateY(-2px);border-color:#2563eb;box-shadow:0 4px 12px rgba(37,99,235,.12);}
-        .menu-btn.active{background:linear-gradient(135deg,#2563eb,#1d4ed8);color:white;border-color:#2563eb;box-shadow:0 4px 14px rgba(37,99,235,.25);}
+        .menu{
+            display:flex;flex-wrap:wrap;gap:10px;margin-bottom:36px;
+            padding:14px 18px;background:rgba(15,16,32,.7);
+            border-radius:16px;border:1px solid rgba(254,240,138,.12);
+            position:sticky;top:10px;z-index:99;backdrop-filter:blur(12px);
+        }
+        .menu-btn{
+            background:linear-gradient(135deg,#1e293b,#1a1c35);
+            color:var(--text-secondary);padding:11px 16px;border-radius:12px;
+            text-align:center;text-decoration:none;font-size:14px;font-weight:600;
+            border:1px solid rgba(59,130,246,.2);transition:all .3s;
+        }
+        .menu-btn:hover{
+            transform:translateY(-3px);border-color:var(--accent-gold);
+            box-shadow:0 6px 18px rgba(254,240,138,.15);color:var(--accent-gold);
+        }
+        .menu-btn.active{
+            background:linear-gradient(135deg,#fef08a,#f59e0b);
+            color:#78350f;border-color:var(--accent-yellow);
+            box-shadow:0 4px 20px rgba(254,240,138,.3);font-weight:800;
+        }
 
-        /* === BANNER CHÍNH === */
-        .banner{background:linear-gradient(rgba(15,23,42,.75),rgba(15,23,42,.85)), url('https://images.unsplash.com/photo-1574629810360-7ef513a43c33?w=1200&h=400&fit=crop&q=80');background-size:cover;background-position:center;border-radius:20px;padding:36px 24px;margin-bottom:32px;box-shadow:0 10px 30px rgba(37,99,235,.18);position:relative;overflow:hidden;}
-        .banner h1{font-size:24px;color:white;margin-bottom:10px;line-height:1.3;}
-        .banner h1 span{color:#fef08a;}
-        .banner p{color:#e0f2fe;font-size:15px;margin-bottom:16px;max-width:650px;}
-        .banner-nut{display:inline-block;background:linear-gradient(90deg,#fef08a,#facc15);color:#78350f;padding:12px 28px;border-radius:12px;text-decoration:none;font-weight:800;font-size:15px;box-shadow:0 4px 14px rgba(250,204,21,.3);transition:all .3s;}
-        .banner-nut:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(250,204,21,.35);}
-
-        /* === SỐ LIỆU TÓM TẮT === */
-        .stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:36px;}
-        .stat-card{background:var(--surface);border-radius:14px;padding:18px 12px;text-align:center;box-shadow:var(--shadow);border:1px solid var(--border);}
-        .stat-val{font-size:28px;font-weight:800;color:#2563eb;}
-        .stat-name{font-size:13px;color:var(--text-muted);margin-top:4px;}
+        /* === BANNER === */
+        .banner{
+            background:linear-gradient(rgba(5,5,15,.85),rgba(15,16,32,.9)), 
+                        url('https://images.unsplash.com/photo-1574629810360-7ef513a43c33?w=1200&h=420&fit=crop&q=80');
+            background-size:cover;background-position:center;
+            border-radius:24px;padding:42px 32px;margin-bottom:40px;
+            border:1px solid rgba(254,240,138,.18);
+            box-shadow:0 10px 40px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.05);
+            position:relative;overflow:hidden;
+        }
+        .banner::before{
+            content:"";position:absolute;top:0;left:0;right:0;bottom:0;
+            background:radial-gradient(circle at top right, rgba(254,240,138,.1), transparent 60%);
+            pointer-events:none;
+        }
+        .banner h1{
+            font-size:28px;color:white;margin-bottom:14px;line-height:1.3;position:relative;z-index:1;
+        }
+        .banner h1 span{color:var(--accent-gold);text-shadow:0 0 20px rgba(254,240,138,.4);}
+        .banner p{
+            color:#e0f2fe;font-size:16px;margin-bottom:24px;max-width:680px;line-height:1.7;position:relative;z-index:1;
+        }
+        .banner-nut{
+            display:inline-block;
+            background:linear-gradient(90deg,#fef08a,#facc15);
+            color:#78350f;padding:14px 32px;border-radius:14px;
+            text-decoration:none;font-weight:800;font-size:16px;
+            box-shadow:0 6px 20px rgba(250,204,21,.35);
+            transition:all .3s;position:relative;z-index:1;
+        }
+        .banner-nut:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(250,204,21,.45);}
 
         /* === TIÊU ĐỀ MỤC === */
-        .section-head{display:flex;align-items:center;justify-content:space-between;margin:36px 0 16px;}
-        .section-title{font-size:18px;font-weight:800;color:#1e293b;display:flex;align-items:center;gap:8px;}
-        .xem-tat-ca{color:#2563eb;font-size:14px;text-decoration:none;font-weight:600;}
-        .xem-tat-ca:hover{text-decoration:underline;}
+        .section-head{
+            display:flex;align-items:center;justify-content:space-between;
+            margin:44px 0 20px;padding-bottom:10px;
+            border-bottom:1px solid rgba(254,240,138,.1);
+        }
+        .section-title{
+            font-size:20px;font-weight:800;color:var(--accent-gold);
+            display:flex;align-items:center;gap:10px;
+        }
+        .xem-tat-ca{
+            color:var(--accent-blue);font-size:15px;text-decoration:none;
+            font-weight:600;transition:all .2s;
+        }
+        .xem-tat-ca:hover{color:var(--accent-gold);text-decoration:underline;}
 
-        /* === LƯỚI BÀI TRẬN ĐẤU === */
-        .grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px;}
-        .card{background:var(--surface);border-radius:16px;overflow:hidden;box-shadow:var(--shadow);border:2px solid transparent;text-decoration:none;color:inherit;display:block;transition:all .3s;}
-        .card:hover{border-color:#bfdbfe;transform:translateY(-4px);box-shadow:var(--shadow-hover);}
-        .card-img{width:100%;height:160px;object-fit:cover;background:#e2e8f0;}
-        .card-body{padding:16px;}
-        .card-label{display:inline-block;padding:4px 12px;border-radius:20px;font-size:12px;font-weight:600;margin-bottom:10px;}
-        .label-hot{background:#fef3c7;color:#92400e;}
-        .label-vn{background:#dbeafe;color:#1e40af;border:1px solid #bfdbfe;}
-        .label-normal{background:#f1f5f9;color:#475569;}
-        .card h3{font-size:15px;font-weight:700;color:#1e293b;margin-bottom:8px;line-height:1.4;}
-        .card p{font-size:14px;color:#64748b;line-height:1.5;}
-        .card .hint{margin-top:10px;font-size:13px;color:#2563eb;font-weight:600;}
-
-        /* === TIN TỨC === */
-        .tin-item{display:flex;gap:14px;background:var(--surface);border-radius:14px;padding:14px;margin-bottom:12px;box-shadow:var(--shadow);border:1px solid var(--border);text-decoration:none;color:inherit;transition:all .25s;}
-        .tin-item:hover{transform:translateX(4px);border-color:#bfdbfe;}
-        .tin-img{width:110px;height:80px;border-radius:10px;object-fit:cover;flex-shrink:0;}
-        .tin-body{flex:1;}
-        .tin-body h3{font-size:15px;font-weight:700;color:#1e293b;margin-bottom:4px;}
-        .tin-body p{font-size:14px;color:#64748b;line-height:1.5;}
+        /* === LƯỚI BÀI VIẾT === */
+        .grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px;}
+        .card{
+            background:var(--bg-card);border-radius:18px;overflow:hidden;
+            border:2px solid transparent;box-shadow:var(--shadow-soft);
+            text-decoration:none;color:inherit;display:block;transition:all .35s;
+        }
+        .card:hover{
+            border-color:rgba(254,240,138,.35);transform:translateY(-6px);
+            box-shadow:0 12px 32px rgba(254,240,138,.12);
+        }
+        .card-img{width:100%;height:170px;object-fit:cover;border-bottom:1px solid rgba(254,240,138,.1);}
+        .card-body{padding:18px;}
+        .card-label{
+            display:inline-block;padding:5px 14px;border-radius:20px;
+            font-size:12px;font-weight:700;margin-bottom:12px;
+        }
+        .label-hot{background:linear-gradient(90deg,#fef08a,#facc15);color:#78350f;}
+        .label-pb{background:rgba(59,130,246,.2);color:#93c5fd;border:1px solid rgba(59,130,246,.3);}
+        .label-tin{background:rgba(34,197,94,.15);color:#86efac;border:1px solid rgba(34,197,94,.3);}
+        .label-lich{background:rgba(239,68,68,.15);color:#fca5a5;border:1px solid rgba(239,68,68,.3);}
+        .card h3{font-size:16px;font-weight:700;color:var(--text-primary);margin-bottom:10px;line-height:1.4;}
+        .card p{font-size:14px;color:var(--text-muted);line-height:1.6;}
+        .card .hint{margin-top:12px;font-size:14px;color:var(--accent-gold);font-weight:600;}
 
         /* === KẾT NỐI & MIỄN TRỪ === */
-        .box-thongtin{background:linear-gradient(135deg,#f0fdf4,#eff6ff);border-radius:18px;padding:24px;margin-top:40px;border:1px solid #bbf7d0;}
-        .box-thongtin h3{font-size:17px;font-weight:800;color:#166534;margin-bottom:10px;}
-        .box-thongtin p{font-size:14px;color:#374151;line-height:1.7;margin-bottom:14px;}
-        .nut-tel{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(90deg,#22c55e,#10b981);color:white;padding:12px 24px;border-radius:12px;text-decoration:none;font-weight:700;font-size:15px;box-shadow:0 4px 12px rgba(34,197,94,.2);transition:all .25s;}
-        .nut-tel:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(34,197,94,.3);}
-
-        .disclaimer{background:#f8fafc;border-radius:14px;padding:20px;margin-top:24px;border:1px solid #e2e8f0;}
-        .disclaimer h4{font-size:14px;font-weight:700;color:#d97706;margin-bottom:10px;display:flex;align-items:center;gap:8px;}
-        .disclaimer p{font-size:13px;color:#475569;line-height:1.7;margin-bottom:6px;}
+        .box-thongtin{
+            background:linear-gradient(135deg,rgba(34,197,94,.1),rgba(59,130,246,.08));
+            border-radius:20px;padding:28px;margin-top:48px;
+            border:1px solid rgba(34,197,94,.2);
+        }
+        .box-thongtin h3{font-size:18px;font-weight:800;color:#86efac;margin-bottom:12px;}
+        .box-thongtin p{font-size:15px;color:#cbd5e1;line-height:1.7;margin-bottom:16px;}
+        .nut-tel{
+            display:inline-flex;align-items:center;gap:12px;
+            background:linear-gradient(90deg,#22c55e,#16a34a);
+            color:white;padding:14px 28px;border-radius:14px;
+            text-decoration:none;font-weight:700;font-size:16px;
+            box-shadow:0 6px 20px rgba(34,197,94,.25);transition:all .3s;
+        }
+        .nut-tel:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(34,197,94,.35);}
+        .disclaimer{
+            background:rgba(245,158,11,.08);border-radius:16px;padding:22px;margin-top:28px;
+            border-left:4px solid #f59e0b;
+        }
+        .disclaimer h4{font-size:15px;font-weight:700;color:#fcd34d;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+        .disclaimer p{font-size:14px;color:#d4d4d8;line-height:1.7;margin-bottom:6px;}
         .disclaimer p:last-child{margin-bottom:0;}
 
-        .empty{text-align:center;color:#94a3b8;padding:40px 20px;}
-        .loading{text-align:center;color:#2563eb;padding:30px;}
+        .empty{text-align:center;color:var(--text-muted);padding:50px 20px;}
+        .loading{text-align:center;color:var(--accent-gold);padding:40px;animation:nhapnhay 1.5s infinite;}
+        @keyframes nhapnhay{0%,100%{opacity:1;}50%{opacity:.4;}}
 
         @media(max-width:640px){
-            .tin-item{flex-direction:column;}
-            .tin-img{width:100%;height:140px;}
-            .dau-trang{flex-direction:column;gap:8px;}
+            .dau-trang{flex-direction:column;gap:10px;}
+            .banner{padding:28px 20px;}
+            .banner h1{font-size:22px;}
         }
     </style>
 </head>
 <body>
 <div class="container">
 
-<!-- LOGO + TÊN THƯƠNG HIỆU Ở ĐẦU TRANG -->
+<!-- LOGO + TÊN THƯƠNG HIỆU -->
 <div class="dau-trang">
     <div class="logo">⚽</div>
     <div>
-        <div class="ten-thuong-hieu">Score<span>Vision</span></div>
+        <div class="ten-thuong-hieu">Score Vision</div>
     </div>
 </div>
-<p class="slogan-dau">Phân tích & Nhận định bóng đá chuyên nghiệp</p>
+<p class="slogan-dau">PHÂN TÍCH & NHẬN ĐỊNH BÓNG ĐÁ CHUYÊN NGHIỆP</p>
 
 <!-- MENU -->
 <nav class="menu">
@@ -119,141 +212,70 @@
     <a href="tin-nong.html" class="menu-btn">📰 Tin Nóng</a>
 </nav>
 
-<!-- BANNER CHÍNH -->
+<!-- BANNER -->
 <div class="banner">
     <h1>⚽ PHÂN TÍCH & NHẬN ĐỊNH <span>BÓNG ĐÁ CHUYÊN NGHIỆP</span></h1>
-    <p>Dựa trên số liệu thống kê, phong độ, lịch sử đối đầu và thông tin lực lượng. Phân tích tham khảo — nhận định cuối cùng ở chi tiết bài viết.</p>
+    <p>Dựa trên số liệu thống kê chi tiết, phong độ từng đội, lịch sử đối đầu và thông tin lực lượng mới nhất. Chỉ cần cập nhật trên Sheet → Trang chủ tự động cập nhật!</p>
     <a href="du-doan.html" class="banner-nut">👉 Xem Phân Tích Chi Tiết</a>
 </div>
 
-<!-- SỐ LIỆU TÓM TẮT -->
-<div class="stats-row">
-    <div class="stat-card"><div class="stat-val" id="s1">--</div><div class="stat-name">Trận đã phân tích</div></div>
-    <div class="stat-card"><div class="stat-val" id="s2">--</div><div class="stat-name">Giải đấu theo dõi</div></div>
-    <div class="stat-card"><div class="stat-val" id="s3">--</div><div class="stat-name">Nguồn dữ liệu</div></div>
-</div>
-
-<!-- TRẬN NỔI BẬT -->
+<!-- BÀI VIẾT MỚI NHẤT TỪ PHÂN TÍCH -->
 <div class="section-head">
-    <h2 class="section-title">⚽ Trận Đấu Nổi Bật</h2>
+    <h2 class="section-title">🔥 Phân Tích Mới Nhất</h2>
     <a href="du-doan.html" class="xem-tat-ca">Xem tất cả →</a>
 </div>
-<div id="tran-list"><div class="loading">Đang tải dữ liệu...</div></div>
+<div id="phan-tich-list"><div class="loading">Đang tải bài phân tích mới nhất...</div></div>
 
-<!-- TIN NÓNG -->
+<!-- TIN TỨC MỚI NHẤT -->
 <div class="section-head">
-    <h2 class="section-title">📰 Tin Tức Mới Nhất</h2>
+    <h2 class="section-title">📰 Tin Nóng Mới Nhất</h2>
     <a href="tin-nong.html" class="xem-tat-ca">Xem tất cả →</a>
 </div>
-<div id="tin-list"></div>
+<div id="tin-list"><div class="loading">Đang tải tin tức...</div></div>
+
+<!-- TRẬN SẮP DIỄN RA -->
+<div class="section-head">
+    <h2 class="section-title">📅 Trận Sắp Đấu</h2>
+    <a href="lich-dau.html" class="xem-tat-ca">Xem tất cả →</a>
+</div>
+<div id="lich-list"><div class="loading">Đang tải lịch thi đấu...</div></div>
 
 <!-- KẾT NỐI & MIỄN TRỪ TRÁCH NHIỆM -->
 <div class="box-thongtin">
     <h3>🤝 CẬP NHẬT THÔNG TIN LIÊN TỤC</h3>
-    <p>Tham gia nhóm Telegram để trao đổi, cập nhật phân tích và thông tin bóng đá mới nhất cùng cộng đồng.</p>
+    <p>Chỉ cần viết bài trên Google Sheet → Trang chủ tự động kéo bài MỚI NHẤT ra hiển thị. Không bao giờ sửa file trang chủ nữa!</p>
     <a href="https://t.me/+LBCsBd-LjPI3ZDRl" target="_blank" class="nut-tel">✈️ THAM GIA NHÓM TELEGRAM</a>
 </div>
 
 <div class="disclaimer">
     <h4>⚠️ THÔNG BÁO & MIỄN TRỪ TRÁCH NHIỆM</h4>
     <p>Nội dung trên trang web chỉ phục vụ mục đích phân tích, tham khảo và trao đổi thông tin về bóng đá. Nhận định đưa ra mang tính tham khảo, không phải là kết quả chắc chắn.</p>
-    <p>❌ Chúng tôi <strong>không khuyến khích, không gợi ý và không liên quan</strong> đến cá độ, đặt cược hay các hình thức tương tự dưới mọi hình thức. Mọi quyết định của người xem đều do người đó tự chịu trách nhiệm.</p>
-    <p>Thông tin được tổng hợp từ nhiều nguồn công khai. Chúng tôi không đảm bảo tính chính xác tuyệt đối và không chịu trách nhiệm cho bất kỳ tổn thất nào phát sinh khi tham khảo nội dung này.</p>
+    <p>❌ Chúng tôi <strong>khuyến khích giải trí, không khuyến khích cá độ</strong> dưới mọi hình thức. Mọi quyết định của người xem đều do người đó tự chịu trách nhiệm.</p>
 </div>
 
 </div>
-
 <script>
-// === ĐỊNH NGHĨA GID SHEET ===
-const GID_DU_DOAN = "0";
-const GID_TIN_NONG = "1328630352";
-const GID_THONG_KE = "1399594488";
+// === ĐỊNH NGHĨA GID TẤT CẢ SHEET ===
+const GID_PHAN_TICH = "0";           // Sheet Phân Tích/Dự Đoán
+const GID_TIN_NONG = "1328630352";   // Sheet Tin Nóng
+const GID_LICH_DAU = "2128823111";   // Sheet Lịch Thi Đấu
 const BASE_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQwrXKqXdfjGK7EQCkNwjuv-FbFJxHhQyCg1NxBl2kkMnGuPCYL1vnG6QFBujGwNCVlx5v1keQuviBV/pub?output=csv&gid=";
 
-// === BỘ ẢNH THEO GIẢI — MỚI NHẤT, KHỚP NỘI DUNG, KHÔNG BAO GIỜ NHẦM ===
-// Lưu ý: Khi viết tên trận trên Sheet, VIẾT ĐỦ TÊN 2 ĐỘI + TÊN GIẢI → code tự chọn ảnh ĐÚNG NHẤT
+// === BỘ ẢNH THEO GIẢI ===
 const ANH_GIAI = {
-    // VIỆT NAM — ẢNH SÂN CỎ & BÓNG ĐÁ VIỆT NAM
-    "Việt Nam": [
-        "https://images.unsplash.com/photo-1574629810360-7ef513a43c33?w=600&h=400&fit=crop&q=80",
-        "https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=600&h=400&fit=crop&q=80",
-        "https://images.unsplash.com/photo-1542773224-1edf4b3d8253?w=600&h=400&fit=crop&q=80"
-    ],
-    "V-League": [
-        "https://images.unsplash.com/photo-1574629810360-7ef513a43c33?w=600&h=400&fit=crop&q=80",
-        "https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=600&h=400&fit=crop&q=80"
-    ],
-    // NGOẠI HẠNG ANH
-    "Ngoại Hạng Anh": [
-        "https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=600&h=400&fit=crop&q=80",
-        "https://images.unsplash.com/photo-1489944440615-453fc2b6a9a9?w=600&h=400&fit=crop&q=80",
-        "https://images.unsplash.com/photo-1542773224-1edf4b3d8253?w=600&h=400&fit=crop&q=80"
-    ],
-    "Premier League": [
-        "https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=600&h=400&fit=crop&q=80",
-        "https://images.unsplash.com/photo-1489944440615-453fc2b6a9a9?w=600&h=400&fit=crop&q=80"
-    ],
-    // SERIE A Ý
-    "Serie A": [
-        "https://images.unsplash.com/photo-1431324155610-438a26170b95?w=600&h=400&fit=crop&q=80",
-        "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=600&h=400&fit=crop&q=80",
-        "https://images.unsplash.com/photo-1560272564-c83b66b1ad12?w=600&h=400&fit=crop&q=80"
-    ],
-    // LA LIGA TÂY BAN NHA
-    "La Liga": [
-        "https://images.unsplash.com/photo-1589738219281-826c5f1f48f6?w=600&h=400&fit=crop&q=80",
-        "https://images.unsplash.com/photo-1551958219-acbc608c6377?w=600&h=400&fit=crop&q=80",
-        "https://images.unsplash.com/photo-1574629810360-7ef513a43c33?w=600&h=400&fit=crop&q=80"
-    ],
-    // BUNDESLIGA ĐỨC
-    "Bundesliga": [
-        "https://images.unsplash.com/photo-1574629810360-7ef513a43c33?w=600&h=400&fit=crop&q=80",
-        "https://images.unsplash.com/photo-1540713480873-42a102680b63?w=600&h=400&fit=crop&q=80",
-        "https://images.unsplash.com/photo-1431324155610-438a26170b95?w=600&h=400&fit=crop&q=80"
-    ],
-    // LIGUE 1 PHÁP
-    "Ligue 1": [
-        "https://images.unsplash.com/photo-1489944440615-453fc2b6a9a9?w=600&h=400&fit=crop&q=80",
-        "https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=600&h=400&fit=crop&q=80"
-    ],
-    // CÚP C1 CHÂU ÂU
-    "Champions League": [
-        "https://images.unsplash.com/photo-1540713480873-42a102680b63?w=600&h=400&fit=crop&q=80",
-        "https://images.unsplash.com/photo-1574629810360-7ef513a43c33?w=600&h=400&fit=crop&q=80"
-    ],
-    // ẢNH CHUNG — KHÔNG NHẦM GIẢI
-    "default": [
-        "https://images.unsplash.com/photo-1574629810360-7ef513a43c33?w=600&h=400&fit=crop&q=80",
-        "https://images.unsplash.com/photo-1540713480873-42a102680b63?w=600&h=400&fit=crop&q=80",
-        "https://images.unsplash.com/photo-1431324155610-438a26170b95?w=600&h=400&fit=crop&q=80"
-    ]
+    "Việt Nam": ["https://images.unsplash.com/photo-1574629810360-7ef513a43c33?w=600&h=400&fit=crop&q=80"],
+    "Ngoại Hạng Anh": ["https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=600&h=400&fit=crop&q=80"],
+    "Serie A": ["https://images.unsplash.com/photo-1431324155610-438a26170b95?w=600&h=400&fit=crop&q=80"],
+    "La Liga": ["https://images.unsplash.com/photo-1589738219281-826c5f1f48f6?w=600&h=400&fit=crop&q=80"],
+    "default": ["https://images.unsplash.com/photo-1574629810360-7ef513a43c33?w=600&h=400&fit=crop&q=80"]
 };
 
-// === CHỌN ẢNH ĐÚNG NHẤT KHỚP NỘI DUNG ===
-// QUY TẮC: VIẾT TÊN TRẬN DẠNG → "Đội A vs Đội B (Tên Giải)" → TỰ ĐỘNG ĐÚNG ẢNH
 function soNgauNhien(max){ return Math.floor(Math.random()*max); }
-function layAnhTheoGiai(tenTran){
-    // Ưu tiên tìm TÊN ĐỘI + TÊN GIẢI → chọn ảnh KHỚP NHẤT
-    const tuKhoaUuTien = [
-        {k:["Việt Nam","Thái Lan","U23","ĐT Việt Nam"], g:"Việt Nam"},
-        {k:["Ngoại Hạng Anh","Premier League","Man Utd","Man City","Arsenal","Liverpool","Chelsea"], g:"Ngoại Hạng Anh"},
-        {k:["Serie A","Ý","AC Milan","Inter","Juventus","Napoli"], g:"Serie A"},
-        {k:["La Liga","Tây Ban Nha","Real Madrid","Barcelona","Atletico"], g:"La Liga"},
-        {k:["Bundesliga","Đức","Bayern","Dortmund"], g:"Bundesliga"},
-        {k:["Ligue 1","Pháp","PSG","Marseille"], g:"Ligue 1"},
-        {k:["Champions League","Cúp C1"], g:"Champions League"}
-    ];
-    for(let x of tuKhoaUuTien){
-        for(let tu of x.k){
-            if(tenTran.includes(tu)){
-                const ds = ANH_GIAI[x.g];
-                return ds[soNgauNhien(ds.length)];
-            }
-        }
+function layAnhTheoGiai(ten){
+    for(let g of ["Việt Nam","Ngoại Hạng Anh","Serie A","La Liga"]){
+        if(ten.includes(g)) return ANH_GIAI[g][0];
     }
-    // Không nhận ra → dùng ảnh chung trung lập, KHÔNG nhầm giải
-    const dsMacDinh = ANH_GIAI["default"];
-    return dsMacDinh[soNgauNhien(dsMacDinh.length)];
+    return ANH_GIAI["default"][0];
 }
 
 function parseCSV(text){
@@ -271,70 +293,82 @@ function parseCSV(text){
     return rows;
 }
 
-// === TẢI TRẬN ĐẤU PHÂN TÍCH ===
-fetch(BASE_URL+GID_DU_DOAN).then(r=>r.text()).then(csv=>{
+// === 1. TẢI BÀI PHÂN TÍCH MỚI NHẤT ===
+fetch(BASE_URL+GID_PHAN_TICH).then(r=>r.text()).then(csv=>{
     const rows=parseCSV(csv), data=[];
     for(let i=1;i<rows.length;i++){
-        const [loai,thutu,ten,ngaygio,phantich,phongdo]=rows[i];
+        const [loai,thutu,ten,ngay,phantich,phongdo]=rows[i];
         if(loai!=="phan_tich")continue;
-        data.push({st:Number(thutu)||999,ten,ngaygio,tomtat:(phantich||phongdo||"").substring(0,55),anh:layAnhTheoGiai(ten)});
-        if(data.length>=4)break;
+        data.push({st:Number(thutu)||999,ten,ngay,tomtat:(phantich||phongdo||"").substring(0,60),anh:layAnhTheoGiai(ten)});
     }
-    data.sort((a,b)=>a.st-b.st);
-    const box=document.getElementById("tran-list");
-    if(!data.length){box.innerHTML=`<div class="empty">Chưa có dữ liệu — điền vào Sheet Phân Tích!</div>`;return;}
+    data.sort((a,b)=>a.st-b.st); // SỐ NHỎ NHẤT = MỚI NHẤT LÊN ĐẦU
+    const box=document.getElementById("phan-tich-list");
+    if(!data.length){box.innerHTML=`<div class="empty">Chưa có bài phân tích → điền vào Sheet!</div>`;return;}
     box.innerHTML=`<div class="grid-2">`;
-    data.forEach((x,i)=>{
-        const labelClass = x.ten.includes("Việt Nam") ? "label-vn" : (i===0?"label-hot":"label-normal");
+    data.slice(0,2).forEach((x,i)=>{
         box.innerHTML+=`<a href="du-doan.html" class="card">
             <img src="${x.anh}" alt="${x.ten}" class="card-img" loading="lazy">
             <div class="card-body">
-                <span class="card-label ${labelClass}">${i===0?'🔥 NỔI BẬT':x.ngaygio}</span>
+                <span class="card-label ${i===0?'label-hot':'label-pb'}">${i===0?'🔥 NỔI BẬT':x.ngay}</span>
                 <h3>${x.ten}</h3>
-                <p>${x.tomtat||"Phân tích chi tiết đang chờ bạn xem…"}…</p>
-                <div class="hint">👉 Nhấn xem phân tích đầy đủ →</div>
+                <p>${x.tomtat}…</p>
+                <div class="hint">👉 Nhấn xem chi tiết →</div>
             </div>
         </a>`;
     });
     box.innerHTML+=`</div>`;
 });
 
-// === TẢI TIN NÓNG ===
+// === 2. TẢI TIN NÓNG MỚI NHẤT ===
 fetch(BASE_URL+GID_TIN_NONG).then(r=>r.text()).then(csv=>{
     const rows=parseCSV(csv), data=[];
     for(let i=1;i<rows.length;i++){
-        const [loai,thutu,tieu_de,ngay,noi_dung_tom_tat]=rows[i];
+        const [loai,thutu,tieu_de,ngay,tomtat]=rows[i];
         if(loai!=="tin_nong")continue;
-        data.push({st:Number(thutu)||999,tieu_de,ngay,tomtat:noi_dung_tom_tat||"",anh:layAnhTheoGiai(tieu_de)});
-        if(data.length>=3)break;
+        data.push({st:Number(thutu)||999,tieu_de,ngay,tomtat:tomtat||"",anh:layAnhTheoGiai(tieu_de)});
     }
-    data.sort((a,b)=>a.st-b.st);
+    data.sort((a,b)=>a.st-b.st); // SỐ NHỎ NHẤT = MỚI NHẤT LÊN ĐẦU
     const box=document.getElementById("tin-list");
-    if(!data.length){box.innerHTML=`<div class="empty">Chưa có tin tức — điền vào Sheet Tin Nóng!</div>`;return;}
-    data.forEach(x=>{
-        box.innerHTML+=`<a href="tin-nong.html" class="tin-item">
-            <img src="${x.anh}" alt="${x.tieu_de}" class="tin-img" loading="lazy">
-            <div class="tin-body">
-                <h3>📰 ${x.tieu_de}</h3>
-                <p>${(x.tomtat).substring(0,70)}… Nhấn xem chi tiết</p>
+    if(!data.length){box.innerHTML=`<div class="empty">Chưa có tin tức → điền vào Sheet!</div>`;return;}
+    box.innerHTML=`<div class="grid-2">`;
+    data.slice(0,2).forEach((x,i)=>{
+        box.innerHTML+=`<a href="tin-nong.html" class="card">
+            <img src="${x.anh}" alt="${x.tieu_de}" class="card-img" loading="lazy">
+            <div class="card-body">
+                <span class="card-label label-tin">📰 ${x.ngay}</span>
+                <h3>${x.tieu_de}</h3>
+                <p>${(x.tomtat).substring(0,60)}…</p>
+                <div class="hint">👉 Nhấn xem chi tiết →</div>
             </div>
         </a>`;
     });
+    box.innerHTML+=`</div>`;
 });
 
-// === TẢI SỐ LIỆU THỐNG KÊ ===
-fetch(BASE_URL+GID_THONG_KE).then(r=>r.text()).then(csv=>{
+// === 3. TẢI TRẬN SẮP ĐẤU ===
+fetch(BASE_URL+GID_LICH_DAU).then(r=>r.text()).then(csv=>{
     const rows=parseCSV(csv), data=[];
     for(let i=1;i<rows.length;i++){
-        const [loai,thutu,chi_so,gia_tri]=rows[i];
-        if(loai!=="thong_ke")continue;
-        data.push({st:Number(thutu)||999,chi_so,gia_tri});
-        if(data.length>=3)break;
+        const [loai,thutu,ten,ngaygio,san]=rows[i];
+        if(loai!=="lich_dau")continue;
+        data.push({st:Number(thutu)||999,ten,ngaygio,san,anh:layAnhTheoGiai(ten)});
     }
-    data.sort((a,b)=>a.st-b.st);
-    if(data[0])document.getElementById("s1").textContent=data[0].gia_tri;
-    if(data[1])document.getElementById("s2").textContent=data[1].gia_tri;
-    if(data[2])document.getElementById("s3").textContent=data[2].gia_tri;
+    data.sort((a,b)=>a.st-b.st); // SỐ NHỎ NHẤT = SẮP DIỄN RA NHẤT
+    const box=document.getElementById("lich-list");
+    if(!data.length){box.innerHTML=`<div class="empty">Chưa có lịch thi đấu → điền vào Sheet!</div>`;return;}
+    box.innerHTML=`<div class="grid-2">`;
+    data.slice(0,2).forEach(x=>{
+        box.innerHTML+=`<a href="lich-dau.html" class="card">
+            <img src="${x.anh}" alt="${x.ten}" class="card-img" loading="lazy">
+            <div class="card-body">
+                <span class="card-label label-lich">📅 ${x.ngaygio}</span>
+                <h3>${x.ten}</h3>
+                <p>🏟️ ${x.san||"Sân chưa cập nhật"}</p>
+                <div class="hint">👉 Xem chi tiết lịch đấu →</div>
+            </div>
+        </a>`;
+    });
+    box.innerHTML+=`</div>`;
 });
 </script>
 </body>
