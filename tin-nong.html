@@ -19,8 +19,14 @@
         .tin-item:hover{border-color:#f97316;transform:translateY(-2px);box-shadow:0 8px 20px rgba(249,115,22,.15);}
         .tin-hot{border-color:#ef4444;box-shadow:0 0 15px rgba(239,68,68,.15);}
         
-        /* === ẢNH BÌA MỚI THÊM === */
-        .tin-anh-bia{width:100%;height:180px;object-fit:cover;border-bottom:1px solid rgba(254,240,138,.15);background:#1a1c35;}
+        /* === ✅ ĐÃ SỬA: ẢNH HIỂN THỊ ĐẦY ĐỦ, KHÔNG BỊ CẮT === */
+        .tin-anh-bia{
+            width:100%;
+            height:180px;
+            object-fit:contain; /* ✅ QUAN TRỌNG: HIỂN THỊ ĐẦY ĐỦ ẢNH */
+            background:#1a1c35; /* Nền tối cho ảnh không khớp tỉ lệ */
+            border-bottom:1px solid rgba(254,240,138,.15);
+        }
         
         .tin-noi-dung{padding:18px;}
         .tin-tieu-de{font-size:17px;font-weight:800;color:#fef08a;margin-bottom:6px;line-height:1.4;}
@@ -50,14 +56,11 @@
 </nav>
 <h2 style="font-size:22px;color:#fef08a;margin-bottom:20px;">📰 Tin Nóng & Cập Nhật Mới</h2>
 <div id="list-tin"><div class="loading">Đang tải tin tức...</div></div>
-
 <script>
 const GID = "1328630352";
 const BASE_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQwrXKqXdfjGK7EQCkNwjuv-FbFJxHhQyCg1NxBl2kkMnGuPCYL1vnG6QFBujGwNCVlx5v1keQuviBV/pub?output=csv&gid=";
-
 // === Ảnh mặc định nếu không có link ảnh bìa ===
 const ANH_MAC_DINH = "https://images.unsplash.com/photo-1574629810360-7ef513a43c33?w=800&h=400&fit=crop&q=80";
-
 // === ĐỌC CSV ĐÚNG NỘI DUNG CÓ XUỐNG DÒNG ===
 function parseCSV(text){
     const rows = [];
@@ -88,13 +91,11 @@ function parseCSV(text){
     if(cell || row.length > 0){ row.push(cell.trim()); rows.push(row); }
     return rows;
 }
-
 // === CHUYỂN XUỐNG DÒNG THÀNH HTML ===
 function xuLyNoiDung(text){
     if(!text || text.trim() === "") return "Chưa có nội dung chi tiết";
     return text.replace(/\r\n/g, "<br>").replace(/\r/g, "<br>").replace(/\n/g, "<br>");
 }
-
 fetch(BASE_URL+GID)
 .then(r=>{if(!r.ok)throw new Error("Lỗi kết nối Sheet");return r.text();})
 .then(csv=>{
@@ -112,7 +113,7 @@ fetch(BASE_URL+GID)
     const idx_ngay = header.indexOf("ngay_cap_nhat");
     const idx_tomtat = header.indexOf("tom_tat");
     const idx_noidung = header.indexOf("noi_dung_day_du");
-    const idx_anhbia = header.indexOf("anh_bia"); // === THÊM CỘT ẢNH BÌA ===
+    const idx_anhbia = header.indexOf("anh_bia");
     
     if([idx_loai,idx_thutu,idx_tieu_de,idx_ngay,idx_tomtat,idx_noidung].includes(-1)){
         document.getElementById("list-tin").innerHTML=`<div class="empty">❌ Kiểm tra Hàng 1 Sheet: Phải có đúng cột: loai_muc, thu_tu, tieu_de, ngay_cap_nhat, tom_tat, noi_dung_day_du, anh_bia</div>`;
