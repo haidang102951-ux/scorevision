@@ -3,39 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thống Kê | Score Vision</title>
+    <title>Thống Kê Chuyên Gia | Score Vision</title>
     <style>
         *{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;}
-        body{background:#05050a;color:#f8fafc;line-height:1.6;padding:16px;max-width:768px;margin:0 auto;}
-        .menu{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px;}
-        .menu-btn{background:#0f172a;color:#cbd5e1;padding:10px 14px;border-radius:10px;text-align:center;text-decoration:none;font-size:14px;font-weight:600;display:inline-flex;align-items:center;gap:5px;border:1px solid #1e293b;transition:all .2s;}
-        .menu-btn:hover{transform:translateY(-2px);border-color:#334155;}
-        .menu-btn.active{background:linear-gradient(135deg,#3b82f6 0%,#2563eb 100%);color:white;border-color:#3b82f6;box-shadow:0 4px 12px rgba(59,130,246,.25);}
-        .page-title{font-size:24px;font-weight:800;margin:20px 0 30px;text-align:center;color:#93c5fd;}
-        .grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;}
-        .card{background:linear-gradient(145deg,#1e293b,#0f172a);border-radius:14px;padding:20px;border:2px solid #334155;text-align:center;}
-        .card:hover{border-color:#3b82f6;}
-        .card-val{font-size:32px;font-weight:800;color:#fef08a;margin-bottom:8px;}
-        .card-name{font-size:14px;color:#93c5fd;}
-        .empty{text-align:center;color:#64748b;padding:50px 20px;}
+        body{background:#020617;color:#f8fafc;line-height:1.7;padding:16px;max-width:820px;margin:0 auto;}
+
+        /* === MENU === */
+        .menu{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px;position:sticky;top:0;background:#020617f0;padding:10px 0;z-index:99;backdrop-filter:blur(8px);}
+        .menu-btn{background:linear-gradient(135deg,#1e293b,#0f172a);color:#e2e8f0;padding:10px 12px;border-radius:12px;text-align:center;text-decoration:none;font-size:13px;font-weight:700;display:inline-flex;align-items:center;gap:4px;border:1px solid #334155;transition:all .25s;}
+        .menu-btn:hover{transform:translateY(-2px);border-color:#fef08a;box-shadow:0 4px 12px rgba(254,240,138,.15);}
+        .menu-btn.active{background:linear-gradient(135deg,#8b5cf6,#6366f1);color:white;border-color:#8b5cf6;box-shadow:0 4px 14px rgba(139,92,246,.35);}
+
+        h2{text-align:center;font-size:22px;color:#fef08a;margin-bottom:24px;}
+        .mota{text-align:center;color:#94a3b8;font-size:14px;margin-bottom:24px;}
+
+        /* === THẺ THỐNG KÊ CHUYÊN GIA === */
+        .tk-card{background:linear-gradient(145deg,#1e293b,#0f172a);border-radius:18px;padding:20px;margin-bottom:16px;border:2px solid #1e293b;border-left:4px solid #8b5cf6;transition:all .3s;}
+        .tk-card:hover{border-color:#fef08a;transform:translateY(-2px);box-shadow:0 8px 20px rgba(139,92,246,.18);}
+
+        .tk-chiso{font-size:16px;color:#f1f5f9;font-weight:700;margin-bottom:10px;}
+        .tk-doi{font-size:14px;color:#a5b4fc;margin-bottom:14px;display:flex;align-items:center;gap:6px;}
+        .tk-so-lieu{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px;}
+        .tk-con-so{font-size:30px;font-weight:900;color:#fef08a;line-height:1;}
+        .tk-nhan-dinh{font-size:13px;color:#cbd5e1;line-height:1.6;padding-top:12px;border-top:1px dashed #334155;}
+
+        .empty{text-align:center;color:#64748b;padding:60px 20px;}
+        .loading{text-align:center;color:#fef08a;padding:40px;animation:nhapnhay 1.5s infinite;}
+        @keyframes nhapnhay{0%,100%{opacity:1;}50%{opacity:.4;}}
     </style>
 </head>
 <body>
+
 <nav class="menu">
     <a href="index.html" class="menu-btn">🏠 Trang chủ</a>
     <a href="lich-dau.html" class="menu-btn">📅 Lịch đấu</a>
-    <a href="du-doan.html" class="menu-btn">🔮 Dự đoán</a>
+    <a href="du-doan.html" class="menu-btn">🔮 Phân Tích</a>
     <a href="bang-xep-hang.html" class="menu-btn">📊 Bảng xếp hạng</a>
-    <a href="thong-ke.html" class="menu-btn active">📈 Thống kê</a>
+    <a href="thong-ke.html" class="menu-btn active">📈 Thống Kê</a>
     <a href="tin-nong.html" class="menu-btn">📰 Tin Nóng</a>
 </nav>
 
-<h1 class="page-title">📈 Thống Kê Dữ Liệu</h1>
-<div id="tk-list" class="grid-2"><div class="empty">Đang tải dữ liệu...</div></div>
+<h2>📈 Thống Kê & Phân Tích Chuyên Gia</h2>
+<p class="mota">Dữ liệu dựa trên chuỗi trận gần nhất • Nhận định tham khảo chuyên môn</p>
+<div id="list-tk"><div class="loading">Đang tải dữ liệu chuyên gia...</div></div>
 
 <script>
-const GID_THONG_KE = "1399594488";
-const URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQwrXKqXdfjGK7EQCkNwjuv-FbFJxHhQyCg1NxBl2kkMnGuPCYL1vnG6QFBujGwNCVlx5v1keQuviBV/pub?output=csv&gid="+GID_THONG_KE;
+const GID = "1399594488";
+const BASE_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQwrXKqXdfjGK7EQCkNwjuv-FbFJxHhQyCg1NxBl2kkMnGuPCYL1vnG6QFBujGwNCVlx5v1keQuviBV/pub?output=csv&gid=";
 
 function parseCSV(text){
     const rows=[], lines=text.split("\n");
@@ -52,21 +66,67 @@ function parseCSV(text){
     return rows;
 }
 
-fetch(URL).then(r=>r.text()).then(csv=>{
-    const rows=parseCSV(csv), data=[];
+fetch(BASE_URL+GID).then(r=>r.text()).then(csv=>{
+    const rows=parseCSV(csv);
+    console.log("✅ Đọc được:", rows);
+
+    if(rows.length<2){
+        document.getElementById("list-tk").innerHTML=`<div class="empty">Chưa có dữ liệu → Kiểm tra Sheet Thống Kê!</div>`;
+        return;
+    }
+
+    const header=rows[0].map(h=>h.trim().toLowerCase());
+    const idx_loai = header.indexOf("loai_muc");
+    const idx_thutu = header.indexOf("thu_tu");
+    const idx_danhmuc = header.indexOf("danh_muc");
+    const idx_doi = header.indexOf("doi");
+    const idx_chiso = header.indexOf("chi_so");
+    const idx_ghichu = header.indexOf("ghi_chu");
+
+    if([idx_loai,idx_thutu,idx_danhmuc,idx_doi,idx_chiso,idx_ghichu].includes(-1)){
+        document.getElementById("list-tk").innerHTML=`<div class="empty">❌ Kiểm tra lại tên cột Hàng 1: loai_muc, thu_tu, danh_muc, doi, chi_so, ghi_chu</div>`;
+        return;
+    }
+
+    const data=[];
     for(let i=1;i<rows.length;i++){
-        const [loai,thutu,chi_so,gia_tri]=rows[i];
-        if(loai!=="thong_ke")continue;
-        data.push({st:Number(thutu)||999,chi_so,gia_tri});
+        const r=rows[i];
+        if(r[idx_loai]!=="thong_ke")continue;
+        const chiso = (r[idx_chiso]||"").trim();
+        if(!chiso) continue;
+
+        data.push({
+            st:Number(r[idx_thutu])||999,
+            danhmuc:(r[idx_danhmuc]||"").trim(),
+            doi:(r[idx_doi]||"").trim(),
+            chiso:chiso,
+            ghichu:(r[idx_ghichu]||"").trim()
+        });
     }
     data.sort((a,b)=>a.st-b.st);
-    const box=document.getElementById("tk-list");
-    if(!data.length){box.innerHTML=`<div class="empty">Chưa có số liệu<br>Điền vào Sheet "Thống Kê" → tự hiện!</div>`;return;}
+    console.log("✅ Dữ liệu sạch:", data);
+
+    const box=document.getElementById("list-tk");
+    if(!data.length){
+        box.innerHTML=`<div class="empty">Chưa có số liệu thống kê hợp lệ → Kiểm tra dữ liệu trên Sheet!</div>`;
+        return;
+    }
+
     box.innerHTML="";
     data.forEach(x=>{
-        box.innerHTML+=`<div class="card"><div class="card-val">${x.gia_tri}</div><div class="card-name">${x.chi_so}</div></div>`;
+        box.innerHTML+=`
+        <div class="tk-card">
+            <div class="tk-chiso">📊 ${x.danhmuc}</div>
+            <div class="tk-doi">🏟️ ${x.doi}</div>
+            <div class="tk-so-lieu">
+                <span class="tk-con-so">${x.chiso}</span>
+            </div>
+            <div class="tk-nhan-dinh">💡 ${x.ghichu}</div>
+        </div>`;
     });
-}).catch(()=>{document.getElementById("tk-list").innerHTML=`<div class="empty" style="color:#f87171;">⚠️ Kiểm tra Sheet!</div>`;});
+}).catch(err=>{
+    document.getElementById("list-tk").innerHTML=`<div class="empty">Lỗi tải dữ liệu: ${err.message}</div>`;
+});
 </script>
 </body>
 </html>
