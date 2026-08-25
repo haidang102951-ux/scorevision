@@ -67,31 +67,9 @@ function parseCSV(text){
     return rows;
 }
 
-// === NHẬN DIỆN GIẢI TỪ TÊN TRẬN — KHÔNG CẦN CỘT RIÊNG ===
-function layTenGiai(tentran){
-    if(!tentran) return "Khác";
-    
-    // VIỆT NAM & AFF CUP — Ưu tiên nhất
-    if(tentran.includes("Việt Nam") || tentran.includes("AFF Cup") || tentran.includes("AFF Cup 2026")) return "Việt Nam";
-    
-    // Các giải lớn
-    if(tentran.includes("Ngoại Hạng Anh") || tentran.includes("Premier League")) return "Ngoại Hạng Anh";
-    if(tentran.includes("Serie A")) return "Serie A";
-    if(tentran.includes("La Liga")) return "La Liga";
-    if(tentran.includes("Bundesliga")) return "Bundesliga";
-    if(tentran.includes("Ligue 1")) return "Ligue 1";
-    if(tentran.includes("Champions League") || tentran.includes("Cúp C1")) return "Champions League";
-    
-    // Lấy tên trong ngoặc () ở cuối tên trận
-    const match = tentran.match(/\(([^)]+)\)$/);
-    if(match && match[1]) return match[1].trim();
-    
-    return "Khác";
-}
-
 function hienDanhSach(giai){
     const container = document.getElementById("pt-container");
-    if(!tatCaDuLieu[giai] || tatCaDuLieu[giai].length === 0){
+    if(!tatCaDuLieu[giai] || tatCaDuLieu[giai].length===0){
         container.innerHTML = `<div class="empty">Chưa có phân tích cho giải này</div>`;
         return;
     }
@@ -101,16 +79,12 @@ function hienDanhSach(giai){
         container.innerHTML += `
         <div class="tran-card" data-giai="${giai}" data-index="${idx}">
             <div class="tran-ten">⚽ ${x.ten_tran}</div>
-            <div class="tran-thongtin">🏆 ${x.giai} • 📅 ${x.ngay_gio}${x.ty_so?' • ⚖️ '+x.ty_so:''}</div>
+            <div class="tran-thongtin">🏆 ${x.giai} • 📅 ${x.ngay_gio}</div>
             <div class="tran-xem">👉 Bấm xem phân tích chi tiết →</div>
         </div>`;
     });
     document.querySelectorAll(".tran-card").forEach(card=>{
-        card.addEventListener("click", ()=>{
-            const g = card.dataset.giai;
-            const i = parseInt(card.dataset.index);
-            hienChiTiet(g,i);
-        });
+        card.addEventListener("click", ()=>hienChiTiet(giai,parseInt(card.dataset.index)));
     });
     document.querySelectorAll(".nut-giai").forEach(nut=>{
         nut.classList.toggle("dang-chon", nut.dataset.giai === giai);
@@ -122,7 +96,7 @@ function hienChiTiet(giai,index){
     document.getElementById("pt-container").innerHTML = `
     <div class="bai-chitiet">
         <div class="bai-tieude">⚽ ${x.ten_tran}</div>
-        <div class="bai-giai">🏆 ${x.giai} • 📅 ${x.ngay_gio}${x.ty_so?' • ⚖️ Tỷ số: '+x.ty_so:''}</div>
+        <div class="bai-giai">🏆 ${x.giai} • 📅 ${x.ngay_gio}</div>
         
         <div class="bai-noidung">
             <strong>📝 Phân tích chi tiết:</strong><br><br>
@@ -141,59 +115,49 @@ function hienChiTiet(giai,index){
     </div>`;
 }
 
-// === ĐỌC ĐÚNG CỘT THEO SHEET CỦA BẠN ===
 fetch(BASE_URL+GID)
-.then(r=>{if(!r.ok)throw new Error("Không kết nối Sheet");return r.text();})
+.then(r=>{if(!r.ok)throw new Error("Lỗi kết nối Sheet");return r.text();})
 .then(csv=>{
     const rows=parseCSV(csv);
     if(rows.length<2){document.getElementById("pt-container").innerHTML=`<div class="empty">Chưa có dữ liệu trên Sheet</div>`;return;}
     
-    // Đọc đúng vị trí cột theo Hàng 1 của BẠN
     const header=rows[0].map(h=>h.trim().toLowerCase());
     const idx_loai = header.indexOf("loai_muc");
     const idx_thutu = header.indexOf("thu_tu");
+    const idx_giai = header.indexOf("giai_dau");
     const idx_ten = header.indexOf("ten_noi_dung");
     const idx_ngay = header.indexOf("ngay_gio");
     const idx_pt = header.indexOf("phan_tich");
     const idx_phong = header.indexOf("phong_do");
     const idx_du = header.indexOf("du_doan");
-    const idx_tyso = header.indexOf("ty_so");
 
-    // Kiểm tra cột bắt buộc
-    if([idx_loai,idx_ten,idx_ngay,idx_pt].includes(-1)){
-        document.getElementById("pt-container").innerHTML=`<div class="empty">❌ Kiểm tra Hàng 1 Sheet: Phải có: loai_muc, ten_noi_dung, ngay_gio, phan_tich</div>`;
+    if([idx_loai,idx_giai,idx_ten,idx_ngay,idx_pt,idx_phong,idx_du].includes(-1)){
+        document.getElementById("pt-container").innerHTML=`<div class="empty">❌ Kiểm tra Hàng 1 Sheet: Phải có đúng tên cột: loai_muc, thu_tu, giai_dau, ten_noi_dung, ngay_gio, phan_tich, phong_do, du_doan</div>`;
         return;
     }
 
-    // Đọc từng dòng dữ liệu
     for(let i=1;i<rows.length;i++){
         const r=rows[i];
         const loai = (r[idx_loai]||"").trim();
-        if(loai!=="phan_tich") continue; // Chỉ lấy dòng phân tích
+        if(loai!=="phan_tich") continue;
         
+        const ten_giai = (r[idx_giai]||"").trim();
         const ten_tran = (r[idx_ten]||"").trim();
-        if(!ten_tran) continue;
+        if(!ten_giai || !ten_tran) continue;
 
-        const ten_giai = layTenGiai(ten_tran); // Tự nhận diện giải từ tên trận
-        const dong = {
+        if(!tatCaDuLieu[ten_giai]) tatCaDuLieu[ten_giai]=[];
+        tatCaDuLieu[ten_giai].push({
             st: Number(r[idx_thutu])||999,
             giai: ten_giai,
             ten_tran: ten_tran,
             ngay_gio: (r[idx_ngay]||"").trim(),
             phan_tich: (r[idx_pt]||"").trim(),
-            phong_do: idx_phong>=0 ? (r[idx_phong]||"").trim() : "",
-            du_doan: idx_du>=0 ? (r[idx_du]||"").trim() : "",
-            ty_so: idx_tyso>=0 ? (r[idx_tyso]||"").trim() : ""
-        };
-
-        if(!tatCaDuLieu[ten_giai]) tatCaDuLieu[ten_giai]=[];
-        tatCaDuLieu[ten_giai].push(dong);
+            phong_do: (r[idx_phong]||"").trim(),
+            du_doan: (r[idx_du]||"").trim()
+        });
     }
 
-    // Sắp xếp theo thứ tự
     Object.keys(tatCaDuLieu).forEach(g=>tatCaDuLieu[g].sort((a,b)=>a.st-b.st));
-
-    // Tạo nút giải tự động
     const dsGiai = Object.keys(tatCaDuLieu).sort();
     const nutContainer = document.getElementById("nutGiai");
     if(dsGiai.length===0){
@@ -201,13 +165,9 @@ fetch(BASE_URL+GID)
         return;
     }
     nutContainer.innerHTML = dsGiai.map(g=>`<button class="nut-giai" data-giai="${g}">${g}</button>`).join("");
-
-    // Bấm nút → lọc
     document.querySelectorAll(".nut-giai").forEach(nut=>{
         nut.addEventListener("click", ()=>hienDanhSach(nut.dataset.giai));
     });
-
-    // Mặc định hiện giải đầu tiên
     hienDanhSach(dsGiai[0]);
 })
 .catch(err=>{document.getElementById("pt-container").innerHTML=`<div class="empty">❌ Lỗi: Kiểm tra Chia sẻ Sheet → Bất kỳ ai có link + Xuất bản trên web</div>`;});
