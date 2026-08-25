@@ -128,13 +128,13 @@
         
         .grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:20px;}
         
-        /* === THẺ CÓ ẢNH (Dùng cho Tin Nóng) === */
-        .card{
+        /* === THẺ TIN NÓNG: CÓ ẢNH BÌA === */
+        .card-tin{
             background:var(--bg-card);border-radius:18px;overflow:hidden;
             border:2px solid transparent;box-shadow:var(--shadow-soft);
             text-decoration:none;color:inherit;display:block;transition:all .35s;
         }
-        .card:hover{
+        .card-tin:hover{
             border-color:rgba(254,240,138,.35);transform:translateY(-4px);
             box-shadow:0 12px 32px rgba(254,240,138,.12);
         }
@@ -144,13 +144,13 @@
         }
         .card-body{padding:18px;}
         
-        /* === THẺ KHÔNG ẢNH (Dùng cho Phân Tích & Lịch Đấu) === */
-        .card-noimg{
+        /* === THẺ PHÂN TÍCH & LỊCH ĐẤU: KHÔNG CÓ ẢNH === */
+        .card-khong-anh{
             background:var(--bg-card);border-radius:14px;padding:18px;
             border:2px solid transparent;box-shadow:var(--shadow-soft);
             text-decoration:none;color:inherit;display:block;transition:all .35s;
         }
-        .card-noimg:hover{
+        .card-khong-anh:hover{
             border-color:rgba(254,240,138,.35);transform:translateY(-3px);
             box-shadow:0 8px 24px rgba(254,240,138,.1);
         }
@@ -164,11 +164,11 @@
         .label-tin{background:rgba(34,197,94,.15);color:#86efac;border:1px solid rgba(34,197,94,.3);}
         .label-lich{background:rgba(239,68,68,.15);color:#fca5a5;border:1px solid rgba(239,68,68,.3);}
         
-        .card h3, .card-noimg h3{
+        .card-tin h3, .card-khong-anh h3{
             font-size:16px;font-weight:700;color:var(--text-primary);
             margin-bottom:8px;line-height:1.4;
         }
-        .card p, .card-noimg p{
+        .card-tin p, .card-khong-anh p{
             font-size:14px;color:var(--text-muted);line-height:1.6;
         }
         .hint{margin-top:10px;font-size:13px;color:var(--accent-gold);font-weight:600;}
@@ -237,18 +237,21 @@
     <a href="du-doan.html" class="banner-nut">👉 Xem Phân Tích Chi Tiết</a>
 </div>
 
+<!-- 🔥 PHÂN TÍCH & DỰ ĐOÁN — KHÔNG CÓ ẢNH → ĐỌC THEO CỘT TÊN MỚI: ten_noi_dung -->
 <div class="section-head">
     <h2 class="section-title">🔥 Phân Tích & Dự Đoán Mới Nhất</h2>
     <a href="du-doan.html" class="xem-tat-ca">Xem tất cả →</a>
 </div>
 <div id="phan-tich-list"><div class="loading">Đang tải bài phân tích mới nhất...</div></div>
 
+<!-- 📰 TIN NÓNG — CÓ ẢNH BÌA (Bạn điền dữ liệu vào Sheet TinNong sau) -->
 <div class="section-head">
     <h2 class="section-title">📰 Tin Nóng Mới Nhất</h2>
     <a href="tin-nong.html" class="xem-tat-ca">Xem tất cả →</a>
 </div>
 <div id="tin-list"><div class="loading">Đang tải tin tức...</div></div>
 
+<!-- 📅 LỊCH THI ĐẤU — KHÔNG CÓ ẢNH → ĐÃ CÓ DỮ LIỆU SẼ HIỂN THỊ NGAY -->
 <div class="section-head">
     <h2 class="section-title">📅 Trận Sắp Đấu</h2>
     <a href="lich-dau.html" class="xem-tat-ca">Xem tất cả →</a>
@@ -274,7 +277,6 @@ const GID_PHAN_TICH = "0";
 const GID_TIN_NONG = "1328630352";
 const GID_LICH_DAU = "2128823111";
 const BASE_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQwrXKqXdfjGK7EQCkNwjuv-FbFJxHhQyCg1NxBl2kkMnGuPCYL1vnG6QFBujGwNCVlx5v1keQuviBV/pub?output=csv&gid=";
-
 const ANH_MAC_DINH = "https://images.unsplash.com/photo-1574629810360-7ef513a43c33?w=800&h=400&fit=crop&q=80";
 
 // === ĐỌC CSV ĐÚNG ĐỊNH DẠNG ===
@@ -303,24 +305,24 @@ function layAnh(link){
     return link && link.trim().startsWith("http") ? link.trim() : ANH_MAC_DINH;
 }
 
-// === 1. PHÂN TÍCH & DỰ ĐOÁN — KHÔNG HIỂN THỊ ẢNH ===
+// === 1. PHÂN TÍCH — ĐỌC THEO CỘT TÊN MỚI: ten_noi_dung ===
 fetch(BASE_URL + GID_PHAN_TICH)
 .then(r => { if(!r.ok) throw new Error("Lỗi kết nối Sheet"); return r.text(); })
 .then(csv => {
     const rows = parseCSV(csv);
     if(rows.length < 2){
-        document.getElementById("phan-tich-list").innerHTML = `<div class="empty">Chưa có dữ liệu trên Sheet!</div>`;
+        document.getElementById("phan-tich-list").innerHTML = `<div class="empty">Chưa có dữ liệu trên Sheet Phân Tích! → Điền vào hàng 2 trở đi</div>`;
         return;
     }
     const header = rows[0].map(h => h.trim().toLowerCase());
     const idx_loai = header.indexOf("loai_muc");
     const idx_thutu = header.indexOf("thu_tu");
-    const idx_tieu_de = header.indexOf("tieu_de");
-    const idx_ngay = header.indexOf("ngay_cap_nhat");
-    const idx_tom_tat = header.indexOf("tom_tat");
+    const idx_tieu_de = header.indexOf("ten_noi_dung");  // ✅ ĐÚNG TÊN CỘT CỦA BẠN
+    const idx_ngay_gio = header.indexOf("ngay_gio");
+    const idx_tom_tat = header.indexOf("phan_tich");
     
-    if([idx_loai, idx_thutu, idx_tieu_de, idx_ngay, idx_tom_tat].includes(-1)){
-        document.getElementById("phan-tich-list").innerHTML = `<div class="empty">❌ Kiểm tra hàng 1 Sheet: Phải có cột: loai_muc, thu_tu, tieu_de, ngay_cap_nhat, tom_tat</div>`;
+    if([idx_loai, idx_thutu, idx_tieu_de, idx_ngay_gio].includes(-1)){
+        document.getElementById("phan-tich-list").innerHTML = `<div class="empty">❌ Kiểm tra hàng 1 Sheet Phân Tích: loai_muc, thu_tu, ten_noi_dung, ngay_gio, phan_tich</div>`;
         return;
     }
     
@@ -331,18 +333,17 @@ fetch(BASE_URL + GID_PHAN_TICH)
         data.push({
             st: Number(r[idx_thutu]) || 999,
             tieu_de: r[idx_tieu_de] || "",
-            ngay: r[idx_ngay] || "",
+            ngay: r[idx_ngay_gio] || "",
             tom_tat: (r[idx_tom_tat] || "").substring(0, 90)
         });
     }
     data.sort((a, b) => a.st - b.st);
     
-    // === KHÔNG ẢNH ===
     const box = document.getElementById("phan-tich-list");
-    if(!data.length){ box.innerHTML = `<div class="empty">Chưa có dữ liệu → điền vào Sheet!</div>`; return; }
+    if(!data.length){ box.innerHTML = `<div class="empty">Chưa có dữ liệu → Điền loai_muc = phan_tich vào hàng 2 trở đi</div>`; return; }
     box.innerHTML = `<div class="grid-2">`;
     data.slice(0, 2).forEach((x, i) => {
-        box.innerHTML += `<a href="du-doan.html" class="card-noimg">
+        box.innerHTML += `<a href="du-doan.html" class="card-khong-anh">
             <span class="card-label ${i===0?'label-hot':'label-pb'}">${i===0?'🔥 NỔI BẬT':x.ngay}</span>
             <h3>${x.tieu_de}</h3>
             <p>${x.tom_tat}…</p>
@@ -355,13 +356,13 @@ fetch(BASE_URL + GID_PHAN_TICH)
     document.getElementById("phan-tich-list").innerHTML = `<div class="empty">❌ Lỗi: ${err.message}</div>`;
 });
 
-// === 2. TIN NÓNG — CÓ ẢNH ===
+// === 2. TIN NÓNG — CÓ ẢNH BÌA (Bạn tạo Sheet sau) ===
 fetch(BASE_URL + GID_TIN_NONG)
 .then(r => { if(!r.ok) throw new Error("Lỗi kết nối Sheet"); return r.text(); })
 .then(csv => {
     const rows = parseCSV(csv);
     if(rows.length < 2){
-        document.getElementById("tin-list").innerHTML = `<div class="empty">Chưa có dữ liệu trên Sheet!</div>`;
+        document.getElementById("tin-list").innerHTML = `<div class="empty">Chưa có dữ liệu Sheet TinNong → Tạo & điền sau</div>`;
         return;
     }
     const header = rows[0].map(h => h.trim().toLowerCase());
@@ -373,7 +374,7 @@ fetch(BASE_URL + GID_TIN_NONG)
     const idx_anh_bia = header.indexOf("anh_bia");
     
     if([idx_loai, idx_thutu, idx_tieu_de, idx_ngay, idx_tom_tat].includes(-1)){
-        document.getElementById("tin-list").innerHTML = `<div class="empty">❌ Kiểm tra hàng 1 Sheet: Phải có cột: loai_muc, thu_tu, tieu_de, ngay_cap_nhat, tom_tat, anh_bia</div>`;
+        document.getElementById("tin-list").innerHTML = `<div class="empty">❌ Hàng 1 Sheet TinNong: loai_muc, thu_tu, tieu_de, ngay_cap_nhat, tom_tat, anh_bia</div>`;
         return;
     }
     
@@ -391,12 +392,11 @@ fetch(BASE_URL + GID_TIN_NONG)
     }
     data.sort((a, b) => a.st - b.st);
     
-    // === CÓ ẢNH ===
     const box = document.getElementById("tin-list");
-    if(!data.length){ box.innerHTML = `<div class="empty">Chưa có dữ liệu → điền vào Sheet!</div>`; return; }
+    if(!data.length){ box.innerHTML = `<div class="empty">Chưa có tin tức → Điền vào Sheet TinNong!</div>`; return; }
     box.innerHTML = `<div class="grid-2">`;
     data.slice(0, 2).forEach((x, i) => {
-        box.innerHTML += `<a href="tin-nong.html" class="card">
+        box.innerHTML += `<a href="tin-nong.html" class="card-tin">
             <img src="${x.anh_bia}" alt="${x.tieu_de}" class="card-img" loading="lazy">
             <div class="card-body">
                 <span class="card-label ${i===0?'label-hot':'label-tin'}">${i===0?'🔥 NỔI BẬT':x.ngay}</span>
@@ -409,27 +409,29 @@ fetch(BASE_URL + GID_TIN_NONG)
     box.innerHTML += `</div>`;
 })
 .catch(err => {
-    document.getElementById("tin-list").innerHTML = `<div class="empty">❌ Lỗi: ${err.message}</div>`;
+    document.getElementById("tin-list").innerHTML = `<div class="empty">❌ Chưa có Sheet TinNong → Tạo sau</div>`;
 });
 
-// === 3. LỊCH ĐẤU — KHÔNG HIỂN THỊ ẢNH ===
+// === 3. LỊCH ĐẤU — ĐÃ CÓ DỮ LIỆU SẼ HIỂN THỊ NGAY ===
 fetch(BASE_URL + GID_LICH_DAU)
 .then(r => { if(!r.ok) throw new Error("Lỗi kết nối Sheet"); return r.text(); })
 .then(csv => {
     const rows = parseCSV(csv);
     if(rows.length < 2){
-        document.getElementById("lich-list").innerHTML = `<div class="empty">Chưa có dữ liệu trên Sheet!</div>`;
+        document.getElementById("lich-list").innerHTML = `<div class="empty">Chưa có dữ liệu trên Sheet Lịch Đấu!</div>`;
         return;
     }
     const header = rows[0].map(h => h.trim().toLowerCase());
     const idx_loai = header.indexOf("loai_muc");
     const idx_thutu = header.indexOf("thu_tu");
-    const idx_tieu_de = header.indexOf("tieu_de");
+    const idx_nha = header.indexOf("doi_nha");
+    const idx_khach = header.indexOf("doi_khach");
     const idx_ngay_gio = header.indexOf("ngay_gio");
-    const idx_san = header.indexOf("san");
+    const idx_giai = header.indexOf("giai_dau");
+    const idx_trangthai = header.indexOf("trang_thai");
     
-    if([idx_loai, idx_thutu, idx_tieu_de, idx_ngay_gio, idx_san].includes(-1)){
-        document.getElementById("lich-list").innerHTML = `<div class="empty">❌ Kiểm tra hàng 1 Sheet: Phải có cột: loai_muc, thu_tu, tieu_de, ngay_gio, san</div>`;
+    if([idx_loai, idx_thutu, idx_nha, idx_khach, idx_ngay_gio].includes(-1)){
+        document.getElementById("lich-list").innerHTML = `<div class="empty">❌ Thiếu cột! Hàng 1: loai_muc, thu_tu, doi_nha, doi_khach, ngay_gio, giai_dau, trang_thai</div>`;
         return;
     }
     
@@ -437,21 +439,23 @@ fetch(BASE_URL + GID_LICH_DAU)
     for(let i = 1; i < rows.length; i++){
         const r = rows[i];
         if((r[idx_loai] || "").trim() !== "lich_dau") continue;
+        const nha = r[idx_nha] || "";
+        const khach = r[idx_khach] || "";
+        if(!nha || !khach) continue;
         data.push({
             st: Number(r[idx_thutu]) || 999,
-            tieu_de: r[idx_tieu_de] || "",
+            tieu_de: nha + " vs " + khach,
             ngay: r[idx_ngay_gio] || "",
-            tom_tat: "🏟️ " + (r[idx_san] || "Sân chưa cập nhật")
+            tom_tat: (r[idx_giai] || "") + " • " + (r[idx_trangthai] || "")
         });
     }
     data.sort((a, b) => a.st - b.st);
     
-    // === KHÔNG ẢNH ===
     const box = document.getElementById("lich-list");
-    if(!data.length){ box.innerHTML = `<div class="empty">Chưa có dữ liệu → điền vào Sheet!</div>`; return; }
+    if(!data.length){ box.innerHTML = `<div class="empty">Chưa có dữ liệu hợp lệ → Kiểm tra loai_muc = lich_dau</div>`; return; }
     box.innerHTML = `<div class="grid-2">`;
     data.slice(0, 2).forEach(x => {
-        box.innerHTML += `<a href="lich-dau.html" class="card-noimg">
+        box.innerHTML += `<a href="lich-dau.html" class="card-khong-anh">
             <span class="card-label label-lich">📅 ${x.ngay}</span>
             <h3>${x.tieu_de}</h3>
             <p>${x.tom_tat}</p>
