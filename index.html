@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Score Vision ⚽ Phân Tích & Dự Đoán Bóng Đá Chuyên Nghiệp</title>
+    <title>Score Vision ⚽ Phân Tích & Dự Đoán Bóng Đá Hàng Ngày</title>
     <style>
         *{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;}
         
@@ -32,7 +32,6 @@
             min-height:100vh;
         }
         .container{max-width:1100px;margin:0 auto;padding:20px 16px;}
-
         /* === LOGO === */
         .dau-trang{
             display:flex;align-items:center;justify-content:center;gap:16px;
@@ -58,8 +57,7 @@
             text-align:center;color:var(--text-muted);font-size:15px;margin-bottom:28px;
             letter-spacing:1px;
         }
-
-        /* === MENU — ĐÃ SỬA CHỮA CHỮ ĐÚNG === */
+        /* === MENU === */
         .menu{
             display:flex;flex-wrap:wrap;gap:10px;margin-bottom:36px;
             padding:14px 18px;background:rgba(15,16,32,.7);
@@ -82,8 +80,7 @@
             color:#78350f;border-color:var(--accent-yellow);
             box-shadow:0 4px 20px rgba(254,240,138,.3);font-weight:800;
         }
-
-        /* === BANNER === */
+        /* === BANNER ĐÃ SỬA CHỮA === */
         .banner{
             background:linear-gradient(rgba(5,5,15,.85),rgba(15,16,32,.9)), 
                         url('https://images.unsplash.com/photo-1574629810360-7ef513a43c33?w=1200&h=420&fit=crop&q=80');
@@ -103,7 +100,7 @@
         }
         .banner h1 span{color:var(--accent-gold);text-shadow:0 0 20px rgba(254,240,138,.4);}
         .banner p{
-            color:#e0f2fe;font-size:16px;margin-bottom:24px;max-width:680px;line-height:1.7;position:relative;z-index:1;
+            color:#e0f2fe;font-size:16px;margin-bottom:24px;max-width:720px;line-height:1.8;position:relative;z-index:1;
         }
         .banner-nut{
             display:inline-block;
@@ -114,7 +111,6 @@
             transition:all .3s;position:relative;z-index:1;
         }
         .banner-nut:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(250,204,21,.45);}
-
         /* === TIÊU ĐỀ MỤC === */
         .section-head{
             display:flex;align-items:center;justify-content:space-between;
@@ -130,7 +126,6 @@
             font-weight:600;transition:all .2s;
         }
         .xem-tat-ca:hover{color:var(--accent-gold);text-decoration:underline;}
-
         /* === LƯỚI BÀI VIẾT === */
         .grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px;}
         .card{
@@ -155,7 +150,6 @@
         .card h3{font-size:16px;font-weight:700;color:var(--text-primary);margin-bottom:10px;line-height:1.4;}
         .card p{font-size:14px;color:var(--text-muted);line-height:1.6;}
         .card .hint{margin-top:12px;font-size:14px;color:var(--accent-gold);font-weight:600;}
-
         /* === KẾT NỐI & MIỄN TRỪ === */
         .box-thongtin{
             background:linear-gradient(135deg,rgba(34,197,94,.1),rgba(59,130,246,.08));
@@ -179,11 +173,9 @@
         .disclaimer h4{font-size:15px;font-weight:700;color:#fcd34d;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
         .disclaimer p{font-size:14px;color:#d4d4d8;line-height:1.7;margin-bottom:6px;}
         .disclaimer p:last-child{margin-bottom:0;}
-
         .empty{text-align:center;color:var(--text-muted);padding:50px 20px;}
         .loading{text-align:center;color:var(--accent-gold);padding:40px;animation:nhapnhay 1.5s infinite;}
         @keyframes nhapnhay{0%,100%{opacity:1;}50%{opacity:.4;}}
-
         @media(max-width:768px){
             .menu{justify-content:center;}
             .menu-btn{padding:10px 12px;font-size:13px;}
@@ -197,7 +189,6 @@
 </head>
 <body>
 <div class="container">
-
 <!-- LOGO + TÊN THƯƠNG HIỆU -->
 <div class="dau-trang">
     <div class="logo">⚽</div>
@@ -205,9 +196,8 @@
         <div class="ten-thuong-hieu">Score Vision</div>
     </div>
 </div>
-<p class="slogan-dau">PHÂN TÍCH & DỰ ĐOÁN BÓNG ĐÁ CHUYÊN NGHIỆP</p>
-
-<!-- MENU — ĐÃ SỬA CHỮA CHỮ ĐÚNG "PHÂN TÍCH & DỰ ĐOÁN" -->
+<p class="slogan-dau">PHÂN TÍCH & DỰ ĐOÁN BÓNG ĐÁ HÀNG NGÀY</p>
+<!-- MENU -->
 <nav class="menu">
     <a href="index.html" class="menu-btn active">🏠 Trang chủ</a>
     <a href="lich-dau.html" class="menu-btn">📅 Lịch đấu</a>
@@ -216,54 +206,47 @@
     <a href="thong-ke.html" class="menu-btn">📈 Thống kê</a>
     <a href="tin-nong.html" class="menu-btn">📰 Tin Nóng</a>
 </nav>
-
-<!-- BANNER -->
+<!-- BANNER ĐÃ SỬA -->
 <div class="banner">
-    <h1>⚽ PHÂN TÍCH & DỰ ĐOÁN <span>BÓNG ĐÁ CHUYÊN NGHIỆP</span></h1>
-    <p>Dựa trên số liệu thống kê chi tiết, phong độ từng đội, lịch sử đối đầu và thông tin lực lượng mới nhất. Chỉ cần cập nhật trên Sheet → Trang chủ tự động cập nhật!</p>
+    <h1>⚽ PHÂN TÍCH & DỰ ĐOÁN <span>BÓNG ĐÁ HÀNG NGÀY</span></h1>
+    <p>🔍 Dựa trên số liệu thống kê chi tiết, phong độ từng đội, lịch sử đối đầu và thông tin lực lượng mới nhất. <strong>Không bỏ lỡ thông tin quan trọng — cập nhật liên tục mỗi ngày!</strong></p>
     <a href="du-doan.html" class="banner-nut">👉 Xem Phân Tích Chi Tiết</a>
 </div>
-
 <!-- BÀI VIẾT MỚI NHẤT TỪ PHÂN TÍCH & DỰ ĐOÁN -->
 <div class="section-head">
     <h2 class="section-title">🔥 Phân Tích & Dự Đoán Mới Nhất</h2>
     <a href="du-doan.html" class="xem-tat-ca">Xem tất cả →</a>
 </div>
 <div id="phan-tich-list"><div class="loading">Đang tải bài phân tích mới nhất...</div></div>
-
 <!-- TIN TỨC MỚI NHẤT -->
 <div class="section-head">
     <h2 class="section-title">📰 Tin Nóng Mới Nhất</h2>
     <a href="tin-nong.html" class="xem-tat-ca">Xem tất cả →</a>
 </div>
 <div id="tin-list"><div class="loading">Đang tải tin tức...</div></div>
-
 <!-- TRẬN SẮP DIỄN RA -->
 <div class="section-head">
     <h2 class="section-title">📅 Trận Sắp Đấu</h2>
     <a href="lich-dau.html" class="xem-tat-ca">Xem tất cả →</a>
 </div>
 <div id="lich-list"><div class="loading">Đang tải lịch thi đấu...</div></div>
-
 <!-- KẾT NỐI & MIỄN TRỪ TRÁCH NHIỆM -->
 <div class="box-thongtin">
     <h3>🤝 CẬP NHẬT THÔNG TIN LIÊN TỤC</h3>
-    <p>Chỉ cần viết bài trên Google Sheet → Trang chủ tự động kéo bài MỚI NHẤT ra hiển thị. Không bao giờ sửa file trang chủ nữa!</p>
+    <p>Nguồn thông tin được cập nhật liên tục, nhanh chóng và chính xác. Luôn theo dõi những diễn biến mới nhất trước mỗi trận đấu!</p>
     <a href="https://t.me/+LBCsBd-LjPI3ZDRl" target="_blank" class="nut-tel">✈️ THAM GIA NHÓM TELEGRAM</a>
 </div>
-
 <div class="disclaimer">
     <h4>⚠️ THÔNG BÁO & MIỄN TRỪ TRÁCH NHIỆM</h4>
     <p>Nội dung trên trang web chỉ phục vụ mục đích phân tích, tham khảo và trao đổi thông tin về bóng đá. Nhận định đưa ra mang tính tham khảo, không phải là kết quả chắc chắn.</p>
     <p>❌ Chúng tôi <strong>khuyến khích giải trí, không khuyến khích cá độ</strong> dưới mọi hình thức. Mọi quyết định của người xem đều do người đó tự chịu trách nhiệm.</p>
 </div>
-
 </div>
 <script>
 // === ĐỊNH NGHĨA GID TẤT CẢ SHEET ===
-const GID_PHAN_TICH = "0";           // Sheet Phân Tích & Dự Đoán
-const GID_TIN_NONG = "1328630352";   // Sheet Tin Nóng
-const GID_LICH_DAU = "2128823111";   // Sheet Lịch Thi Đấu
+const GID_PHAN_TICH = "0";
+const GID_TIN_NONG = "1328630352";
+const GID_LICH_DAU = "2128823111";
 const BASE_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQwrXKqXdfjGK7EQCkNwjuv-FbFJxHhQyCg1NxBl2kkMnGuPCYL1vnG6QFBujGwNCVlx5v1keQuviBV/pub?output=csv&gid=";
 
 // === BỘ ẢNH THEO GIẢI ===
@@ -275,7 +258,6 @@ const ANH_GIAI = {
     "default": ["https://images.unsplash.com/photo-1574629810360-7ef513a43c33?w=600&h=400&fit=crop&q=80"]
 };
 
-function soNgauNhien(max){ return Math.floor(Math.random()*max); }
 function layAnhTheoGiai(ten){
     for(let g of ["Việt Nam","Ngoại Hạng Anh","Serie A","La Liga"]){
         if(ten.includes(g)) return ANH_GIAI[g][0];
@@ -298,7 +280,7 @@ function parseCSV(text){
     return rows;
 }
 
-// === 1. TẢI BÀI PHÂN TÍCH & DỰ ĐOÁN MỚI NHẤT ===
+// === 1. TẢI BÀI PHÂN TÍCH & DỰ ĐOÁN ===
 fetch(BASE_URL+GID_PHAN_TICH).then(r=>r.text()).then(csv=>{
     const rows=parseCSV(csv), data=[];
     for(let i=1;i<rows.length;i++){
@@ -324,7 +306,7 @@ fetch(BASE_URL+GID_PHAN_TICH).then(r=>r.text()).then(csv=>{
     box.innerHTML+=`</div>`;
 });
 
-// === 2. TẢI TIN NÓNG MỚI NHẤT ===
+// === 2. TẢI TIN NÓNG ===
 fetch(BASE_URL+GID_TIN_NONG).then(r=>r.text()).then(csv=>{
     const rows=parseCSV(csv), data=[];
     for(let i=1;i<rows.length;i++){
