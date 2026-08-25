@@ -52,19 +52,41 @@ const BASE_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQwrXKqXdfjGK7
 
 let tatCaDuLieu = {};
 
+// === ĐỌC CSV ĐÚNG NỘI DUNG CÓ DẤU PHẨM & XUỐNG DÒNG ===
 function parseCSV(text){
-    const rows=[], lines=text.split("\n");
-    for(let l of lines){
-        if(!l.trim())continue;
-        let p=[],c="",q=0;
-        for(let ch of l){
-            if(ch=='"')q=!q;
-            else if(ch==','&&!q){p.push(c.trim());c="";}
-            else c+=ch;
+    const rows = [];
+    let row = [], cell = "", inQuote = false;
+    
+    for(let i = 0; i < text.length; i++){
+        let ch = text[i];
+        let next = text[i+1] || "";
+        
+        if(ch === '"'){
+            if(inQuote && next === '"'){ cell += '"'; i++; }
+            else inQuote = !inQuote;
         }
-        p.push(c.trim());rows.push(p);
+        else if(ch === ',' && !inQuote){
+            row.push(cell.trim());
+            cell = "";
+        }
+        else if((ch === '\n' || ch === '\r') && !inQuote){
+            if(cell || row.length > 0){
+                row.push(cell.trim());
+                rows.push(row);
+                row = [];
+                cell = "";
+            }
+        }
+        else cell += ch;
     }
+    if(cell || row.length > 0){ row.push(cell.trim()); rows.push(row); }
     return rows;
+}
+
+// === CHUYỂN XUỐNG DÒNG THÀNH HTML ===
+function xuLyNoiDung(text){
+    if(!text) return "Đang cập nhật...";
+    return text.replace(/\r\n/g, "<br>").replace(/\r/g, "<br>").replace(/\n/g, "<br>");
 }
 
 function hienDanhSach(giai){
@@ -100,16 +122,16 @@ function hienChiTiet(giai,index){
         
         <div class="bai-noidung">
             <strong>📝 Phân tích chi tiết:</strong><br><br>
-            ${x.phan_tich || "Đang cập nhật..."}
+            ${xuLyNoiDung(x.phan_tich)}
         </div>
         <div class="bai-phando">
             <strong>📊 Phong độ & Thông tin:</strong><br><br>
-            ${x.phong_do || "Đang cập nhật..."}
+            ${xuLyNoiDung(x.phong_do)}
         </div>
         ${x.du_doan ? `
         <div class="bai-dudoan">
             ✅ NHẬN ĐỊNH & DỰ ĐOÁN:<br><br>
-            ${x.du_doan}
+            ${xuLyNoiDung(x.du_doan)}
         </div>` : ""}
         <button class="nut-donglai" onclick="hienDanhSach('${giai}')">← Quay lại danh sách</button>
     </div>`;
@@ -121,39 +143,25 @@ fetch(BASE_URL+GID)
     const rows=parseCSV(csv);
     if(rows.length<2){document.getElementById("pt-container").innerHTML=`<div class="empty">Chưa có dữ liệu trên Sheet</div>`;return;}
     
-    const header=rows[0].map(h=>h.trim().toLowerCase());
-    const idx_loai = header.indexOf("loai_muc");
-    const idx_thutu = header.indexOf("thu_tu");
-    const idx_giai = header.indexOf("giai_dau");
-    const idx_ten = header.indexOf("ten_noi_dung");
-    const idx_ngay = header.indexOf("ngay_gio");
-    const idx_pt = header.indexOf("phan_tich");
-    const idx_phong = header.indexOf("phong_do");
-    const idx_du = header.indexOf("du_doan");
-
-    if([idx_loai,idx_giai,idx_ten,idx_ngay,idx_pt,idx_phong,idx_du].includes(-1)){
-        document.getElementById("pt-container").innerHTML=`<div class="empty">❌ Kiểm tra Hàng 1 Sheet: Phải có đúng tên cột: loai_muc, thu_tu, giai_dau, ten_noi_dung, ngay_gio, phan_tich, phong_do, du_doan</div>`;
-        return;
-    }
-
+    // Đọc theo vị trí cột cố định
     for(let i=1;i<rows.length;i++){
         const r=rows[i];
-        const loai = (r[idx_loai]||"").trim();
+        const loai = (r[0]||"").trim();
         if(loai!=="phan_tich") continue;
         
-        const ten_giai = (r[idx_giai]||"").trim();
-        const ten_tran = (r[idx_ten]||"").trim();
+        const ten_giai = (r[2]||"").trim();
+        const ten_tran = (r[3]||"").trim();
         if(!ten_giai || !ten_tran) continue;
 
         if(!tatCaDuLieu[ten_giai]) tatCaDuLieu[ten_giai]=[];
         tatCaDuLieu[ten_giai].push({
-            st: Number(r[idx_thutu])||999,
+            st: Number(r[1])||999,
             giai: ten_giai,
             ten_tran: ten_tran,
-            ngay_gio: (r[idx_ngay]||"").trim(),
-            phan_tich: (r[idx_pt]||"").trim(),
-            phong_do: (r[idx_phong]||"").trim(),
-            du_doan: (r[idx_du]||"").trim()
+            ngay_gio: (r[4]||"").trim(),
+            phan_tich: (r[5]||"").trim(),
+            phong_do: (r[6]||"").trim(),
+            du_doan: (r[7]||"").trim()
         });
     }
 
