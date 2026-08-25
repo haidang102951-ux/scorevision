@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Score Vision ⚽ Phân Tích & Nhận Định Bóng Đá Chuyên Nghiệp</title>
+    <title>Score Vision ⚽ Phân Tích & Dự Đoán Bóng Đá Chuyên Nghiệp</title>
     <style>
         *{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;}
         
@@ -59,7 +59,7 @@
             letter-spacing:1px;
         }
 
-        /* === MENU === */
+        /* === MENU — ĐÃ SỬA CHỮA CHỮ ĐÚNG === */
         .menu{
             display:flex;flex-wrap:wrap;gap:10px;margin-bottom:36px;
             padding:14px 18px;background:rgba(15,16,32,.7);
@@ -68,9 +68,10 @@
         }
         .menu-btn{
             background:linear-gradient(135deg,#1e293b,#1a1c35);
-            color:var(--text-secondary);padding:11px 16px;border-radius:12px;
+            color:var(--text-secondary);padding:11px 18px;border-radius:12px;
             text-align:center;text-decoration:none;font-size:14px;font-weight:600;
             border:1px solid rgba(59,130,246,.2);transition:all .3s;
+            white-space:nowrap;
         }
         .menu-btn:hover{
             transform:translateY(-3px);border-color:var(--accent-gold);
@@ -183,6 +184,10 @@
         .loading{text-align:center;color:var(--accent-gold);padding:40px;animation:nhapnhay 1.5s infinite;}
         @keyframes nhapnhay{0%,100%{opacity:1;}50%{opacity:.4;}}
 
+        @media(max-width:768px){
+            .menu{justify-content:center;}
+            .menu-btn{padding:10px 12px;font-size:13px;}
+        }
         @media(max-width:640px){
             .dau-trang{flex-direction:column;gap:10px;}
             .banner{padding:28px 20px;}
@@ -200,13 +205,13 @@
         <div class="ten-thuong-hieu">Score Vision</div>
     </div>
 </div>
-<p class="slogan-dau">PHÂN TÍCH & NHẬN ĐỊNH BÓNG ĐÁ CHUYÊN NGHIỆP</p>
+<p class="slogan-dau">PHÂN TÍCH & DỰ ĐOÁN BÓNG ĐÁ CHUYÊN NGHIỆP</p>
 
-<!-- MENU -->
+<!-- MENU — ĐÃ SỬA CHỮA CHỮ ĐÚNG "PHÂN TÍCH & DỰ ĐOÁN" -->
 <nav class="menu">
     <a href="index.html" class="menu-btn active">🏠 Trang chủ</a>
     <a href="lich-dau.html" class="menu-btn">📅 Lịch đấu</a>
-    <a href="du-doan.html" class="menu-btn">🔮 Phân Tích</a>
+    <a href="du-doan.html" class="menu-btn">🔮 Phân Tích & Dự Đoán</a>
     <a href="bang-xep-hang.html" class="menu-btn">📊 Bảng xếp hạng</a>
     <a href="thong-ke.html" class="menu-btn">📈 Thống kê</a>
     <a href="tin-nong.html" class="menu-btn">📰 Tin Nóng</a>
@@ -214,14 +219,14 @@
 
 <!-- BANNER -->
 <div class="banner">
-    <h1>⚽ PHÂN TÍCH & NHẬN ĐỊNH <span>BÓNG ĐÁ CHUYÊN NGHIỆP</span></h1>
+    <h1>⚽ PHÂN TÍCH & DỰ ĐOÁN <span>BÓNG ĐÁ CHUYÊN NGHIỆP</span></h1>
     <p>Dựa trên số liệu thống kê chi tiết, phong độ từng đội, lịch sử đối đầu và thông tin lực lượng mới nhất. Chỉ cần cập nhật trên Sheet → Trang chủ tự động cập nhật!</p>
     <a href="du-doan.html" class="banner-nut">👉 Xem Phân Tích Chi Tiết</a>
 </div>
 
-<!-- BÀI VIẾT MỚI NHẤT TỪ PHÂN TÍCH -->
+<!-- BÀI VIẾT MỚI NHẤT TỪ PHÂN TÍCH & DỰ ĐOÁN -->
 <div class="section-head">
-    <h2 class="section-title">🔥 Phân Tích Mới Nhất</h2>
+    <h2 class="section-title">🔥 Phân Tích & Dự Đoán Mới Nhất</h2>
     <a href="du-doan.html" class="xem-tat-ca">Xem tất cả →</a>
 </div>
 <div id="phan-tich-list"><div class="loading">Đang tải bài phân tích mới nhất...</div></div>
@@ -256,7 +261,7 @@
 </div>
 <script>
 // === ĐỊNH NGHĨA GID TẤT CẢ SHEET ===
-const GID_PHAN_TICH = "0";           // Sheet Phân Tích/Dự Đoán
+const GID_PHAN_TICH = "0";           // Sheet Phân Tích & Dự Đoán
 const GID_TIN_NONG = "1328630352";   // Sheet Tin Nóng
 const GID_LICH_DAU = "2128823111";   // Sheet Lịch Thi Đấu
 const BASE_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQwrXKqXdfjGK7EQCkNwjuv-FbFJxHhQyCg1NxBl2kkMnGuPCYL1vnG6QFBujGwNCVlx5v1keQuviBV/pub?output=csv&gid=";
@@ -293,7 +298,7 @@ function parseCSV(text){
     return rows;
 }
 
-// === 1. TẢI BÀI PHÂN TÍCH MỚI NHẤT ===
+// === 1. TẢI BÀI PHÂN TÍCH & DỰ ĐOÁN MỚI NHẤT ===
 fetch(BASE_URL+GID_PHAN_TICH).then(r=>r.text()).then(csv=>{
     const rows=parseCSV(csv), data=[];
     for(let i=1;i<rows.length;i++){
@@ -301,7 +306,7 @@ fetch(BASE_URL+GID_PHAN_TICH).then(r=>r.text()).then(csv=>{
         if(loai!=="phan_tich")continue;
         data.push({st:Number(thutu)||999,ten,ngay,tomtat:(phantich||phongdo||"").substring(0,60),anh:layAnhTheoGiai(ten)});
     }
-    data.sort((a,b)=>a.st-b.st); // SỐ NHỎ NHẤT = MỚI NHẤT LÊN ĐẦU
+    data.sort((a,b)=>a.st-b.st);
     const box=document.getElementById("phan-tich-list");
     if(!data.length){box.innerHTML=`<div class="empty">Chưa có bài phân tích → điền vào Sheet!</div>`;return;}
     box.innerHTML=`<div class="grid-2">`;
@@ -327,7 +332,7 @@ fetch(BASE_URL+GID_TIN_NONG).then(r=>r.text()).then(csv=>{
         if(loai!=="tin_nong")continue;
         data.push({st:Number(thutu)||999,tieu_de,ngay,tomtat:tomtat||"",anh:layAnhTheoGiai(tieu_de)});
     }
-    data.sort((a,b)=>a.st-b.st); // SỐ NHỎ NHẤT = MỚI NHẤT LÊN ĐẦU
+    data.sort((a,b)=>a.st-b.st);
     const box=document.getElementById("tin-list");
     if(!data.length){box.innerHTML=`<div class="empty">Chưa có tin tức → điền vào Sheet!</div>`;return;}
     box.innerHTML=`<div class="grid-2">`;
@@ -353,7 +358,7 @@ fetch(BASE_URL+GID_LICH_DAU).then(r=>r.text()).then(csv=>{
         if(loai!=="lich_dau")continue;
         data.push({st:Number(thutu)||999,ten,ngaygio,san,anh:layAnhTheoGiai(ten)});
     }
-    data.sort((a,b)=>a.st-b.st); // SỐ NHỎ NHẤT = SẮP DIỄN RA NHẤT
+    data.sort((a,b)=>a.st-b.st);
     const box=document.getElementById("lich-list");
     if(!data.length){box.innerHTML=`<div class="empty">Chưa có lịch thi đấu → điền vào Sheet!</div>`;return;}
     box.innerHTML=`<div class="grid-2">`;
