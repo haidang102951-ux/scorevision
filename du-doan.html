@@ -3,44 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dự Đoán Chi Tiết | Score Vision</title>
+    <title>Phân Tích & Dự Đoán | Score Vision</title>
     <style>
         *{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;}
-        body{background:#05050a;color:#f8fafc;line-height:1.8;padding:16px;max-width:768px;margin:0 auto;}
-        .menu{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px;}
-        .menu-btn{background:#0f172a;color:#cbd5e1;padding:10px 14px;border-radius:10px;text-align:center;text-decoration:none;font-size:14px;font-weight:600;display:inline-flex;align-items:center;gap:5px;border:1px solid #1e293b;transition:all .2s;}
-        .menu-btn:hover{transform:translateY(-2px);border-color:#334155;}
-        .menu-btn.active{background:linear-gradient(135deg,#22c55e 0%,#16a34a 100%);color:white;border-color:#22c55e;box-shadow:0 4px 12px rgba(34,197,94,.25);}
-        .page-title{font-size:24px;font-weight:800;margin:20px 0 30px;text-align:center;color:#fef08a;}
-        .card{background:linear-gradient(145deg,#1e293b,#0f172a);border-radius:20px;padding:20px;margin-bottom:16px;border:2px solid #334155;}
-        .card:hover{border-color:#fef08a;}
-        .card-teams{font-size:18px;font-weight:800;text-align:center;margin-bottom:10px;color:#fef08a;}
-        .card-time{text-align:center;color:#94a3b8;margin-bottom:12px;}
-        .section{margin-bottom:10px;padding-left:10px;border-left:3px solid #22c55e;}
-        .section h3{font-size:14px;color:#86efac;margin-bottom:4px;}
-        .section p{color:#e2e8f0;font-size:14px;}
-        .kq{background:rgba(34,197,94,.1);border-radius:10px;padding:12px;margin-top:12px;border:1px solid #22c55e;}
-        .kq h3{color:#86efac;font-size:15px;margin-bottom:6px;}
-        .kq p{font-weight:700;color:#fef08a;}
-        .empty{text-align:center;color:#64748b;padding:50px 20px;}
+        body{background:#020617;color:#f8fafc;line-height:1.7;padding:16px;max-width:820px;margin:0 auto;}
+
+        /* === MENU === */
+        .menu{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px;position:sticky;top:0;background:#020617f0;padding:10px 0;z-index:99;backdrop-filter:blur(8px);}
+        .menu-btn{background:linear-gradient(135deg,#1e293b,#0f172a);color:#e2e8f0;padding:10px 12px;border-radius:12px;text-align:center;text-decoration:none;font-size:13px;font-weight:700;display:inline-flex;align-items:center;gap:4px;border:1px solid #334155;transition:all .25s;}
+        .menu-btn:hover{transform:translateY(-2px);border-color:#fef08a;box-shadow:0 4px 12px rgba(254,240,138,.15);}
+        .menu-btn.active{background:linear-gradient(135deg,#eab308,#ca8a04);color:#000;border-color:#eab308;box-shadow:0 4px 14px rgba(234,179,8,.35);}
+
+        h2{text-align:center;font-size:22px;color:#fef08a;margin-bottom:20px;}
+
+        /* === NÚT CHỌN GIẢI === */
+        .chon-giai{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:24px;}
+        .nut-giai{padding:10px 18px;border-radius:12px;background:#1e293b;color:#cbd5e1;border:2px solid #334155;font-size:14px;font-weight:600;cursor:pointer;transition:all .3s;}
+        .nut-giai:hover{border-color:#fef08a;transform:translateY(-2px);}
+        .nut-giai.dang-chon{background:linear-gradient(135deg,#eab308,#ca8a04);color:#000;border-color:#eab308;box-shadow:0 4px 12px rgba(234,179,8,.25);}
+
+        /* === THẺ TRẬN ĐẤU === */
+        .tran-card{background:linear-gradient(145deg,#1e293b,#0f172a);border-radius:16px;padding:16px;margin-bottom:12px;border:2px solid #1e293b;border-left:4px solid #3b82f6;cursor:pointer;transition:all .3s;}
+        .tran-card:hover{border-color:#fef08a;transform:translateY(-2px);box-shadow:0 6px 16px rgba(59,130,246,.15);}
+        .tran-ten{font-size:17px;color:#fef08a;font-weight:800;margin-bottom:4px;}
+        .tran-thongtin{font-size:13px;color:#94a3b8;}
+        .tran-xem{display:inline-block;margin-top:8px;padding:6px 14px;background:#3b82f620;color:#93c5fd;border-radius:8px;font-size:13px;}
+
+        /* === BÀI CHI TIẾT === */
+        .bai-chitiet{background:linear-gradient(145deg,#1e293b,#0f172a);border-radius:18px;padding:20px;border:2px solid #eab308;margin-bottom:16px;}
+        .bai-tieude{font-size:18px;color:#fef08a;font-weight:800;margin-bottom:6px;}
+        .bai-giai{font-size:14px;color:#94a3b8;margin-bottom:16px;}
+        .bai-noidung{font-size:15px;color:#e2e8f0;line-height:1.8;margin-bottom:20px;padding:14px;background:rgba(30,41,59,.5);border-radius:10px;}
+        .bai-phando{font-size:14px;color:#cbd5e1;line-height:1.7;margin-bottom:20px;padding:12px;background:rgba(59,130,246,.08);border-radius:10px;border-left:3px solid #3b82f6;}
+        .bai-dudoan{font-size:16px;color:#fef08a;font-weight:700;padding:16px;background:rgba(234,179,8,.12);border-radius:12px;border-left:4px solid #eab308;line-height:1.8;margin-top:10px;}
+        .nut-donglai{margin-top:16px;padding:10px 20px;background:#1e293b;color:#cbd5e1;border:1px solid #334155;border-radius:10px;cursor:pointer;font-size:14px;}
+        .nut-donglai:hover{border-color:#fef08a;}
+
+        .an{display:none !important;}
+        .empty{text-align:center;color:#64748b;padding:60px 20px;}
+        .loading{text-align:center;color:#fef08a;padding:40px;animation:nhapnhay 1.5s infinite;}
+        @keyframes nhapnhay{0%,100%{opacity:1;}50%{opacity:.4;}}
     </style>
 </head>
 <body>
+
 <nav class="menu">
     <a href="index.html" class="menu-btn">🏠 Trang chủ</a>
     <a href="lich-dau.html" class="menu-btn">📅 Lịch đấu</a>
-    <a href="du-doan.html" class="menu-btn active">🔮 Dự đoán</a>
+    <a href="du-doan.html" class="menu-btn active">🔮 Phân Tích</a>
     <a href="bang-xep-hang.html" class="menu-btn">📊 Bảng xếp hạng</a>
     <a href="thong-ke.html" class="menu-btn">📈 Thống kê</a>
     <a href="tin-nong.html" class="menu-btn">📰 Tin Nóng</a>
 </nav>
 
-<h1 class="page-title">🔮 Dự Đoán Chi Tiết</h1>
-<div id="list"><div class="empty">Đang tải dữ liệu...</div></div>
+<h2>🔮 Phân Tích & Dự Đoán Chuyên Gia</h2>
+
+<!-- NÚT CHỌN GIẢI -->
+<div class="chon-giai" id="nutGiai"></div>
+
+<!-- DANH SÁCH TRẬN ĐẤU / BÀI CHI TIẾT -->
+<div id="pt-container"><div class="loading">Đang tải phân tích...</div></div>
 
 <script>
-const GID_DU_DOAN = "0";
-const URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQwrXKqXdfjGK7EQCkNwjuv-FbFJxHhQyCg1NxBl2kkMnGuPCYL1vnG6QFBujGwNCVlx5v1keQuviBV/pub?output=csv&gid="+GID_DU_DOAN;
+// === GID ĐÃ ĐIỀN SẴN ===
+const GID = "0";
+const BASE_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQwrXKqXdfjGK7EQCkNwjuv-FbFJxHhQyCg1NxBl2kkMnGuPCYL1vnG6QFBujGwNCVlx5v1keQuviBV/pub?output=csv&gid=";
+
+let tatCaDuLieu = {};
+let dangXemChiTiet = null;
 
 function parseCSV(text){
     const rows=[], lines=text.split("\n");
@@ -57,31 +87,144 @@ function parseCSV(text){
     return rows;
 }
 
-fetch(URL).then(r=>r.text()).then(csv=>{
-    const rows=parseCSV(csv), data=[];
-    for(let i=1;i<rows.length;i++){
-        const [loai,thutu,ten,ngaygio,phantich,phongdo,dudoan,tyso]=rows[i];
-        if(loai!=="du_doan")continue;
-        data.push({st:Number(thutu)||999,ten,ngaygio,phantich,phongdo,dudoan,tyso});
+// === HIỂN DANH SÁCH TRẬN ĐẤU ===
+function hienDanhSach(giai){
+    dangXemChiTiet = null;
+    const container = document.getElementById("pt-container");
+    if(!tatCaDuLieu[giai]){
+        container.innerHTML = `<div class="empty">Chưa có phân tích cho giải này</div>`;
+        return;
     }
-    data.sort((a,b)=>a.st-b.st);
-    const box=document.getElementById("list");
-    if(!data.length){box.innerHTML=`<div class="empty">Chưa có dữ liệu<br>Điền vào Sheet "Dự Đoán" → tự hiện!</div>`;return;}
-    box.innerHTML="";
-    data.forEach(x=>{
-        let html=`<div class="card"><div class="card-teams">${x.ten}</div><div class="card-time">📅 ${x.ngaygio}</div>`;
-        if(x.phantich)html+=`<div class="section"><h3>📝 Phân tích</h3><p>${x.phantich}</p></div>`;
-        if(x.phongdo)html+=`<div class="section"><h3>📊 Phong độ</h3><p>${x.phongdo}</p></div>`;
-        if(x.dudoan||x.tyso){
-            html+=`<div class="kq">`;
-            if(x.dudoan)html+=`<h3>✅ DỰ ĐOÁN</h3><p>${x.dudoan}</p>`;
-            if(x.tyso)html+=`<h3>📈 TỶ SỐ / TÀI XỈU</h3><p>${x.tyso}</p>`;
-            html+=`</div>`;
-        }
-        html+=`</div>`;
-        box.innerHTML+=html;
+    const ds = tatCaDuLieu[giai];
+    container.innerHTML = "";
+    ds.forEach((x,idx)=>{
+        container.innerHTML += `
+        <div class="tran-card" data-giai="${giai}" data-index="${idx}">
+            <div class="tran-ten">⚽ ${x.ten_tran}</div>
+            <div class="tran-thongtin">🏆 ${x.giai} • 📅 ${x.ngay_gio}</div>
+            <div class="tran-xem">👉 Bấm vào xem phân tích chi tiết →</div>
+        </div>`;
     });
-}).catch(()=>{document.getElementById("list").innerHTML=`<div class="empty" style="color:#f87171;">⚠️ Kiểm tra Sheet đã Xuất bản & Chia sẻ công khai chưa!</div>`;});
+
+    // GÁN SỰ KIỆN BẤM XEM CHI TIẾT
+    document.querySelectorAll(".tran-card").forEach(card=>{
+        card.addEventListener("click", ()=>{
+            const g = card.dataset.giai;
+            const i = parseInt(card.dataset.index);
+            hienChiTiet(g,i);
+        });
+    });
+
+    // Cập nhật trạng thái nút
+    document.querySelectorAll(".nut-giai").forEach(nut=>{
+        nut.classList.toggle("dang-chon", nut.dataset.giai === giai);
+    });
+}
+
+// === HIỂN BÀI CHI TIẾT ===
+function hienChiTiet(giai,index){
+    dangXemChiTiet = {giai,index};
+    const x = tatCaDuLieu[giai][index];
+    const container = document.getElementById("pt-container");
+    container.innerHTML = `
+    <div class="bai-chitiet">
+        <div class="bai-tieude">⚽ ${x.ten_tran}</div>
+        <div class="bai-giai">🏆 ${x.giai} • 📅 ${x.ngay_gio}</div>
+        
+        <div class="bai-noidung">
+            <strong>📝 Phân tích chi tiết:</strong><br><br>
+            ${x.phan_tich || "Đang cập nhật..."}
+        </div>
+
+        <div class="bai-phando">
+            <strong>📊 Phong độ & Thông tin:</strong><br><br>
+            ${x.phong_do || "Đang cập nhật..."}
+        </div>
+
+        <div class="bai-dudoan">
+            ✅ NHẬN ĐỊNH & DỰ ĐOÁN:<br><br>
+            ${x.du_doan || "Đang cập nhật..."}
+        </div>
+
+        <button class="nut-donglai" onclick="hienDanhSach('${giai}')">← Quay lại danh sách</button>
+    </div>`;
+}
+
+fetch(BASE_URL+GID).then(r=>r.text()).then(csv=>{
+    const rows=parseCSV(csv);
+    console.log("✅ Đọc được:", rows);
+
+    if(rows.length<2){
+        document.getElementById("pt-container").innerHTML=`<div class="empty">Chưa có dữ liệu → Điền vào Sheet Phân Tích!</div>`;
+        return;
+    }
+
+    const header=rows[0].map(h=>h.trim().toLowerCase());
+    const idx_loai = header.indexOf("loai_muc");
+    const idx_thutu = header.indexOf("thu_tu");
+    const idx_ten_tran = header.indexOf("ten_noi_dung");
+    const idx_ngay_gio = header.indexOf("ngay_gio");
+    const idx_phan_tich = header.indexOf("phan_tich");
+    const idx_phong_do = header.indexOf("phong_do");
+    const idx_du_doan = header.indexOf("du_doan");
+
+    if([idx_loai,idx_ten_tran,idx_ngay_gio,idx_phan_tich,idx_du_doan].includes(-1)){
+        document.getElementById("pt-container").innerHTML=`<div class="empty">❌ Kiểm tra lại tên cột Hàng 1 trên Sheet</div>`;
+        return;
+    }
+
+    // NHÓM DỮ LIỆU THEO TÊN TRẬN (lấy tên giải từ tên trận)
+    for(let i=1;i<rows.length;i++){
+        const r=rows[i];
+        if(r[idx_loai]!=="phan_tich")continue;
+        const ten_tran = (r[idx_ten_tran]||"").trim();
+        if(!ten_tran) continue;
+
+        // Lấy tên giải từ tên trận hoặc để mặc định
+        let ten_giai = "Phân Tích";
+        const dsGiaiTest = ["Ngoại Hạng Anh","Serie A","La Liga","Bundesliga","Ligue 1"];
+        for(let g of dsGiaiTest){
+            if(ten_tran.includes(g)){ ten_giai = g; break; }
+        }
+
+        const dong = {
+            st:Number(r[idx_thutu])||999,
+            giai: ten_giai,
+            ten_tran: ten_tran,
+            ngay_gio: (r[idx_ngay_gio]||"").trim(),
+            phan_tich: (r[idx_phan_tich]||"").trim(),
+            phong_do: (r[idx_phong_do]||"").trim(),
+            du_doan: (r[idx_du_doan]||"").trim()
+        };
+        if(!tatCaDuLieu[ten_giai]) tatCaDuLieu[ten_giai]=[];
+        tatCaDuLieu[ten_giai].push(dong);
+    }
+
+    // SẮP XẾP THEO THỨ TỰ
+    Object.keys(tatCaDuLieu).forEach(g=>tatCaDuLieu[g].sort((a,b)=>a.st-b.st));
+
+    // TẠO NÚT TỰ ĐỘNG
+    const dsGiai = Object.keys(tatCaDuLieu).sort();
+    const nutContainer = document.getElementById("nutGiai");
+    nutContainer.innerHTML = dsGiai.map(giai=>`
+        <button class="nut-giai" data-giai="${giai}">${giai}</button>
+    `).join("");
+
+    // BẤM NÚT → HIỂN DANH SÁCH
+    document.querySelectorAll(".nut-giai").forEach(nut=>{
+        nut.addEventListener("click", ()=>hienDanhSach(nut.dataset.giai));
+    });
+
+    // MẶC ĐỊNH HIỂN GIẢI ĐẦU TIÊN
+    if(dsGiai.length > 0){
+        hienDanhSach(dsGiai[0]);
+    }else{
+        document.getElementById("pt-container").innerHTML=`<div class="empty">Điền dữ liệu vào Sheet → nút giải sẽ hiện!</div>`;
+    }
+
+}).catch(err=>{
+    document.getElementById("pt-container").innerHTML=`<div class="empty">Lỗi: ${err.message}</div>`;
+});
 </script>
 </body>
 </html>
