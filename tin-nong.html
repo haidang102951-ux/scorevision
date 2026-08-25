@@ -7,13 +7,11 @@
     <style>
         *{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;}
         body{background:#020617;color:#f8fafc;line-height:1.7;padding:16px;max-width:780px;margin:0 auto;}
-
         /* === MENU === */
         .menu{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px;position:sticky;top:0;background:#020617f0;padding:10px 0;z-index:99;backdrop-filter:blur(8px);}
         .menu-btn{background:linear-gradient(135deg,#1e293b,#0f172a);color:#e2e8f0;padding:10px 12px;border-radius:12px;text-align:center;text-decoration:none;font-size:13px;font-weight:700;display:inline-flex;align-items:center;gap:4px;border:1px solid #334155;transition:all .25s;}
         .menu-btn:hover{transform:translateY(-3px);border-color:#fef08a;box-shadow:0 6px 16px rgba(254,240,138,.15);}
         .menu-btn.active{background:linear-gradient(135deg,#f97316,#ef4444);color:white;border-color:#f97316;box-shadow:0 4px 14px rgba(249,115,22,.35);}
-
         /* === TIN NÓNG === */
         .tin-item{background:linear-gradient(145deg,#1e293b,#0f172a);border-radius:18px;padding:20px;margin-bottom:16px;border:2px solid #1e293b;cursor:pointer;transition:all .3s;}
         .tin-item:hover{border-color:#f97316;transform:translateY(-2px);box-shadow:0 8px 20px rgba(249,115,22,.15);}
@@ -22,20 +20,17 @@
         .tin-ngay{display:inline-block;background:rgba(239,68,68,.15);color:#fca5a5;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;margin-bottom:12px;}
         .tin-tom-tat{font-size:14px;color:#e2e8f0;line-height:1.6;margin-bottom:8px;}
         .tin-hint{font-size:13px;color:#94a3b8;font-style:italic;}
-
         /* === NỘI DUNG CHI TIẾT — ẨN / HIỆN === */
         .tin-full{display:none;margin-top:14px;padding-top:14px;border-top:1px dashed #334155;}
         .tin-full.show{display:block;}
         .tin-noi-dung{font-size:15px;color:#f1f5f9;line-height:1.8;white-space:pre-wrap;}
         .tin-noi-dung p{margin-bottom:10px;}
-
         .empty{text-align:center;color:#64748b;padding:60px 20px;}
         .loading{text-align:center;color:#fef08a;padding:40px;animation:nhapnhay 1.5s infinite;}
         @keyframes nhapnhay{0%,100%{opacity:1;}50%{opacity:.4;}}
     </style>
 </head>
 <body>
-
 <nav class="menu">
     <a href="index.html" class="menu-btn">🏠 Trang chủ</a>
     <a href="lich-dau.html" class="menu-btn">📅 Lịch đấu</a>
@@ -44,37 +39,59 @@
     <a href="thong-ke.html" class="menu-btn">📈 Thống kê</a>
     <a href="tin-nong.html" class="menu-btn active">📰 Tin Nóng</a>
 </nav>
-
 <h2 style="font-size:22px;color:#fef08a;margin-bottom:20px;">📰 Tin Nóng & Cập Nhật Mới</h2>
 <div id="list-tin"><div class="loading">Đang tải tin tức...</div></div>
-
 <script>
 const GID = "1328630352";
 const BASE_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQwrXKqXdfjGK7EQCkNwjuv-FbFJxHhQyCg1NxBl2kkMnGuPCYL1vnG6QFBujGwNCVlx5v1keQuviBV/pub?output=csv&gid=";
 
+// === ĐỌC CSV ĐÚNG NỘI DUNG CÓ XUỐNG DÒNG ===
 function parseCSV(text){
-    const rows=[], lines=text.split("\n");
-    for(let l of lines){
-        if(!l.trim())continue;
-        let p=[],c="",q=0;
-        for(let ch of l){
-            if(ch=='"')q=!q;
-            else if(ch==','&&!q){p.push(c.trim());c="";}
-            else c+=ch;
+    const rows = [];
+    let row = [], cell = "", inQuote = false;
+    
+    for(let i = 0; i < text.length; i++){
+        let ch = text[i];
+        let next = text[i+1] || "";
+        
+        if(ch === '"'){
+            if(inQuote && next === '"'){ cell += '"'; i++; }
+            else inQuote = !inQuote;
         }
-        p.push(c.trim());rows.push(p);
+        else if(ch === ',' && !inQuote){
+            row.push(cell.trim());
+            cell = "";
+        }
+        else if((ch === '\n' || ch === '\r') && !inQuote){
+            if(cell || row.length > 0){
+                row.push(cell.trim());
+                rows.push(row);
+                row = [];
+                cell = "";
+            }
+        }
+        else cell += ch;
     }
+    if(cell || row.length > 0){ row.push(cell.trim()); rows.push(row); }
     return rows;
 }
 
-fetch(BASE_URL+GID).then(r=>r.text()).then(csv=>{
+// === CHUYỂN XUỐNG DÒNG THÀNH HTML ===
+function xuLyNoiDung(text){
+    if(!text || text.trim() === "") return "Chưa có nội dung chi tiết";
+    return text.replace(/\r\n/g, "<br>").replace(/\r/g, "<br>").replace(/\n/g, "<br>");
+}
+
+fetch(BASE_URL+GID)
+.then(r=>{if(!r.ok)throw new Error("Lỗi kết nối Sheet");return r.text();})
+.then(csv=>{
     const rows=parseCSV(csv);
     if(rows.length<2){
-        document.getElementById("list-tin").innerHTML=`<div class="empty">Chưa có dữ liệu — Kiểm tra lại Sheet!</div>`;
+        document.getElementById("list-tin").innerHTML=`<div class="empty">Chưa có dữ liệu trên Sheet!</div>`;
         return;
     }
-
-    // === TÌM ĐÚNG CỘT THEO TÊN, KHÔNG CẦN QUAN TÂM THỨ TỰ ===
+    
+    // === TÌM ĐÚNG TÊN CỘT NHƯ TRÊN SHEET CỦA BẠN ===
     const header=rows[0].map(h=>h.trim().toLowerCase());
     const idx_loai = header.indexOf("loai_muc");
     const idx_thutu = header.indexOf("thu_tu");
@@ -83,10 +100,8 @@ fetch(BASE_URL+GID).then(r=>r.text()).then(csv=>{
     const idx_tomtat = header.indexOf("tom_tat");
     const idx_noidung = header.indexOf("noi_dung_day_du");
 
-    console.log("✅ Tìm thấy cột:", {idx_loai,idx_thutu,idx_tieu_de,idx_ngay,idx_tomtat,idx_noidung});
-
     if([idx_loai,idx_thutu,idx_tieu_de,idx_ngay,idx_tomtat,idx_noidung].includes(-1)){
-        document.getElementById("list-tin").innerHTML=`<div class="empty">❌ Thiếu tên cột! Hàng 1 phải có đúng: loai_muc, thu_tu, tieu_de, ngay_cap_nhat, tom_tat, noi_dung_day_du</div>`;
+        document.getElementById("list-tin").innerHTML=`<div class="empty">❌ Kiểm tra Hàng 1 Sheet: Phải có đúng cột: loai_muc, thu_tu, tieu_de, ngay_cap_nhat, tom_tat, noi_dung_day_du</div>`;
         return;
     }
 
@@ -94,23 +109,28 @@ fetch(BASE_URL+GID).then(r=>r.text()).then(csv=>{
     const data=[];
     for(let i=1;i<rows.length;i++){
         const r=rows[i];
-        if(r[idx_loai]!=="tin_nong")continue;
+        if(!r || r.length < 6) continue;
+        if((r[idx_loai]||"").trim() !== "tin_nong") continue;
+        
         data.push({
-            st:Number(r[idx_thutu])||999,
-            tieu_de:r[idx_tieu_de],
-            ngay:r[idx_ngay],
-            tom_tat:r[idx_tomtat],
-            noi_dung:r[idx_noidung]
+            st: Number(r[idx_thutu])||999,
+            tieu_de: (r[idx_tieu_de]||"").trim(),
+            ngay: (r[idx_ngay]||"").trim(),
+            tom_tat: (r[idx_tomtat]||"").trim(),
+            noi_dung: (r[idx_noidung]||"").trim()
         });
     }
-    data.sort((a,b)=>a.st-b.st);
+
+    // === SẮP XẾP THEO SỐ THỨ TỤ — NHỎ NHẤT LÊN TRÊN ===
+    data.sort((a,b)=>a.st - b.st);
 
     const box=document.getElementById("list-tin");
     if(!data.length){
-        box.innerHTML=`<div class="empty">Chưa có tin tức nào → điền vào Sheet Tin Nóng!</div>`;
+        box.innerHTML=`<div class="empty">Chưa có tin tức nào → điền loai_muc = tin_nong vào Sheet!</div>`;
         return;
     }
 
+    // === HIỂN THỊ DANH SÁCH ===
     box.innerHTML="";
     data.forEach((x,idx)=>{
         const id_tin = "tin-"+idx;
@@ -121,25 +141,28 @@ fetch(BASE_URL+GID).then(r=>r.text()).then(csv=>{
             <p class="tin-tom-tat">${x.tom_tat}</p>
             <p class="tin-hint">👉 Bấm vào xem chi tiết ↓</p>
             <div class="tin-full" id="${id_tin}-full">
-                <div class="tin-noi-dung">${(x.noi_dung||"Chưa có nội dung chi tiết").replace(/<br\s*\/?>/gi,'\n')}</div>
+                <div class="tin-noi-dung">${xuLyNoiDung(x.noi_dung)}</div>
             </div>
         </div>`;
     });
 
-    // Bấm xem chi tiết
+    // === BẤM XEM / THU GỌN ===
     data.forEach((_,idx)=>{
         const id_tin = "tin-"+idx;
         const item = document.getElementById(id_tin);
         const full = document.getElementById(id_tin+"-full");
-        item.addEventListener("click",()=>{
-            full.classList.toggle("show");
-            const hint = item.querySelector(".tin-hint");
-            if(full.classList.contains("show")) hint.textContent = "↑ Thu gọn lại ↑";
-            else hint.textContent = "👉 Bấm vào xem chi tiết ↓";
-        });
+        if(item && full){
+            item.addEventListener("click",()=>{
+                full.classList.toggle("show");
+                const hint = item.querySelector(".tin-hint");
+                if(full.classList.contains("show")) hint.textContent = "↑ Thu gọn lại ↑";
+                else hint.textContent = "👉 Bấm vào xem chi tiết ↓";
+            });
+        }
     });
-}).catch(err=>{
-    document.getElementById("list-tin").innerHTML=`<div class="empty">Lỗi tải dữ liệu: ${err.message}</div>`;
+})
+.catch(err=>{
+    document.getElementById("list-tin").innerHTML=`<div class="empty">❌ Lỗi: ${err.message}</div>`;
 });
 </script>
 </body>
