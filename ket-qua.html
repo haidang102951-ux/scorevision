@@ -158,7 +158,6 @@
 </head>
 <body>
 <div class="container">
-
 <div class="dau-trang">
     <div class="logo">⚽</div>
     <div>
@@ -166,7 +165,6 @@
     </div>
 </div>
 <p class="slogan-dau">PHÂN TÍCH & DỰ ĐOÁN BÓNG ĐÁ HÀNG NGÀY</p>
-
 <nav class="menu">
     <a href="index.html" class="menu-btn">🏠 Trang chủ</a>
     <a href="lich-dau.html" class="menu-btn">📅 Lịch đấu</a>
@@ -176,19 +174,13 @@
     <a href="tin-nong.html" class="menu-btn">📰 Tin Nóng</a>
     <a href="ket-qua.html" class="menu-btn active">⚽ Kết Quả</a>
 </nav>
-
 <a href="index.html" class="back-link">← Quay lại Trang Chủ</a>
 <h1 class="page-title">⚽ Tất Cả Kết Quả Trận Đấu</h1>
-
 <div id="ketqua-list"><div class="loading">Đang tải kết quả trận đấu...</div></div>
-
 </div>
 <script>
-// === ĐƯỜNG DẪN SHEET KẾT QUẢ ===
-const GID_KET_QUA = "0";
-const BASE_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQwrXKqXdfjGK7EQCkNwjuv-FbFJxHhQyCg1NxBl2kkMnGuPCYL1vnG6QFBujGwNCVlx5v1keQuviBV/pub?output=csv&gid=";
+const BASE_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRjGewmdAmJVjyi-0vSc22hhFPacMgGc-WmVE8PEM3jHfA7IvED3XbBp68Bwp16n1Dc2FFP9ETKTaSH/pub?output=csv&gid=1819801064";
 
-// === ĐỌC CSV ĐÚNG ĐỊNH DẠNG ===
 function parseCSV(text){
     const rows = [];
     let row = [], cell = "", inQuote = false;
@@ -210,26 +202,24 @@ function parseCSV(text){
     return rows;
 }
 
-// === ⚽ TẢI TẤT CẢ KẾT QUẢ ===
-fetch(BASE_URL + GID_KET_QUA)
+fetch(BASE_URL)
 .then(r => { if(!r.ok) throw new Error("Lỗi kết nối Sheet Kết Quả"); return r.text(); })
 .then(csv => {
     const rows = parseCSV(csv);
     if(rows.length < 2){
-        document.getElementById("ketqua-list").innerHTML = `<div class="empty">Chưa có dữ liệu Kết Quả! → Kiểm tra Sheet Kết Quả với cột: loai_muc, thu_tu, doi_nha, ty_so, doi_khach, ngay_gio, giai_dau</div>`;
+        document.getElementById("ketqua-list").innerHTML = `<div class="empty">Chưa có dữ liệu Kết Quả! → Kiểm tra Sheet Kết Quả với cột: loai_muc, thu_tu, tran_dau, ty_so, giai_dau, ngay_gio</div>`;
         return;
     }
     const header = rows[0].map(h => h.trim().toLowerCase());
     const idx_loai = header.indexOf("loai_muc");
     const idx_thutu = header.indexOf("thu_tu");
-    const idx_nha = header.indexOf("doi_nha");
+    const idx_tran = header.indexOf("tran_dau");
     const idx_tyso = header.indexOf("ty_so");
-    const idx_khach = header.indexOf("doi_khach");
-    const idx_ngay = header.indexOf("ngay_gio");
     const idx_giai = header.indexOf("giai_dau");
+    const idx_ngay = header.indexOf("ngay_gio");
     
-    if([idx_loai, idx_thutu, idx_nha, idx_tyso, idx_khach].includes(-1)){
-        document.getElementById("ketqua-list").innerHTML = `<div class="empty">❌ Kiểm tra hàng 1 Sheet Kết Quả: loai_muc, thu_tu, doi_nha, ty_so, doi_khach, ngay_gio, giai_dau</div>`;
+    if([idx_loai, idx_thutu, idx_tran, idx_tyso].includes(-1)){
+        document.getElementById("ketqua-list").innerHTML = `<div class="empty">❌ Kiểm tra hàng 1 Sheet Kết Quả: loai_muc, thu_tu, tran_dau, ty_so, giai_dau, ngay_gio</div>`;
         return;
     }
     
@@ -237,13 +227,23 @@ fetch(BASE_URL + GID_KET_QUA)
     for(let i = 1; i < rows.length; i++){
         const r = rows[i];
         if((r[idx_loai] || "").trim() !== "ket_qua") continue;
+        const tran = (r[idx_tran] || "").trim();
+        if(tran.includes("Không có trận")) continue;
+        let doiNha = "", doiKhach = "";
+        if(tran.includes(" vs ")){
+            const phan = tran.split(" vs ");
+            doiNha = phan[0].trim();
+            doiKhach = phan[1].trim();
+        } else {
+            continue;
+        }
         data.push({
             st: Number(r[idx_thutu]) || 999,
-            nha: r[idx_nha] || "",
-            tyso: r[idx_tyso] || "-",
-            khach: r[idx_khach] || "",
-            ngay: r[idx_ngay] || "",
-            giai: r[idx_giai] || "Bóng Đá"
+            nha: doiNha,
+            tyso: (r[idx_tyso] || "-").trim(),
+            khach: doiKhach,
+            ngay: (r[idx_ngay] || "").trim(),
+            giai: (r[idx_giai] || "Bóng Đá").trim()
         });
     }
     data.sort((a, b) => a.st - b.st);
