@@ -11,7 +11,6 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-RTY3P63JJL');
 </script>
     <style>
@@ -153,6 +152,48 @@
         }
         .card-body{padding:18px;}
         
+        /* === THẺ KẾT QUẢ — THIẾT KẾ ĐỘC ĐỈNH === */
+        .card-ketqua{
+            background:linear-gradient(145deg,#1e293b,#1a1c35);border-radius:16px;padding:20px;
+            border:2px solid rgba(249,115,22,.2);box-shadow:0 8px 24px rgba(0,0,0,.3);
+            text-decoration:none;color:inherit;display:block;transition:all .35s;
+            position:relative;overflow:hidden;
+        }
+        .card-ketqua::before{
+            content:"";position:absolute;top:0;left:0;width:100%;height:3px;
+            background:linear-gradient(90deg,#f97316,#ef4444,#f97316);
+        }
+        .card-ketqua:hover{
+            border-color:rgba(249,115,22,.4);transform:translateY(-4px);
+            box-shadow:0 12px 32px rgba(249,115,22,.2);
+        }
+        .ketqua-header{
+            display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;
+            padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.08);
+        }
+        .ketqua-league{color:#f97316;font-size:13px;font-weight:600;}
+        .ketqua-date{color:#94a3b8;font-size:13px;}
+        .ketqua-match{
+            display:flex;align-items:center;justify-content:space-between;gap:10px;
+        }
+        .ketqua-team{flex:1;font-size:15px;font-weight:600;color:#f8fafc;}
+        .ketqua-team-home{text-align:right;}
+        .ketqua-team-away{text-align:left;}
+        .ketqua-score{
+            padding:10px 16px;background:rgba(249,115,22,.15);border-radius:12px;
+            border:1px solid rgba(249,115,22,.3);min-width:90px;text-align:center;
+        }
+        .ketqua-score-num{font-size:22px;font-weight:800;color:#fff;}
+        .ketqua-status{
+            text-align:center;margin-top:12px;padding-top:10px;
+            border-top:1px solid rgba(255,255,255,.08);
+        }
+        .status-finished{
+            display:inline-flex;align-items:center;gap:6px;color:#4ade80;
+            font-size:13px;font-weight:600;background:rgba(74,222,128,.1);
+            padding:4px 12px;border-radius:20px;
+        }
+        
         /* === THẺ PHÂN TÍCH & LỊCH ĐẤU: KHÔNG CÓ ẢNH === */
         .card-khong-anh{
             background:var(--bg-card);border-radius:14px;padding:18px;
@@ -172,6 +213,7 @@
         .label-pb{background:rgba(59,130,246,.2);color:#93c5fd;border:1px solid rgba(59,130,246,.3);}
         .label-tin{background:rgba(34,197,94,.15);color:#86efac;border:1px solid rgba(34,197,94,.3);}
         .label-lich{background:rgba(239,68,68,.15);color:#fca5a5;border:1px solid rgba(239,68,68,.3);}
+        .label-kq{background:rgba(249,115,22,.15);color:#fdba74;border:1px solid rgba(249,115,22,.3);}
         
         .card-tin h3, .card-khong-anh h3{
             font-size:16px;font-weight:700;color:var(--text-primary);
@@ -212,6 +254,9 @@
         @media(max-width:768px){
             .menu{justify-content:center;}
             .menu-btn{padding:10px 12px;font-size:13px;}
+            .ketqua-match{flex-wrap:wrap;}
+            .ketqua-team{font-size:14px;}
+            .ketqua-score-num{font-size:18px;}
         }
         @media(max-width:640px){
             .dau-trang{flex-direction:column;gap:10px;}
@@ -238,6 +283,7 @@
     <a href="bang-xep-hang.html" class="menu-btn">📊 Bảng xếp hạng</a>
     <a href="thong-ke.html" class="menu-btn">📈 Thống kê</a>
     <a href="tin-nong.html" class="menu-btn">📰 Tin Nóng</a>
+    <a href="ketqua.html" class="menu-btn">⚽ Kết Quả</a>
 </nav>
 
 <div class="banner">
@@ -245,6 +291,13 @@
     <p>🔍 Dựa trên số liệu thống kê chi tiết, phong độ từng đội, lịch sử đối đầu và thông tin lực lượng mới nhất. <strong>Không bỏ lỡ thông tin quan trọng — cập nhật liên tục mỗi ngày!</strong></p>
     <a href="du-doan.html" class="banner-nut">👉 Xem Phân Tích Chi Tiết</a>
 </div>
+
+<!-- ⚽ KẾT QUẢ MỚI NHẤT — CÓ NÚT XEM TẤT CẢ → ĐỒNG BỘ VỚI TRANG -->
+<div class="section-head">
+    <h2 class="section-title">⚽ Kết Quả Trận Đấu Mới Nhất</h2>
+    <a href="ketqua.html" class="xem-tat-ca">Xem tất cả →</a>
+</div>
+<div id="ketqua-list"><div class="loading">Đang tải kết quả trận đấu...</div></div>
 
 <!-- 🔥 PHÂN TÍCH & DỰ ĐOÁN — KHÔNG CÓ ẢNH → ĐỌC THEO CỘT TÊN MỚI: ten_noi_dung -->
 <div class="section-head">
@@ -285,6 +338,7 @@
 const GID_PHAN_TICH = "0";
 const GID_TIN_NONG = "1328630352";
 const GID_LICH_DAU = "2128823111";
+const GID_KET_QUA = "0"; // ⚽ Sheet Kết Quả
 const BASE_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQwrXKqXdfjGK7EQCkNwjuv-FbFJxHhQyCg1NxBl2kkMnGuPCYL1vnG6QFBujGwNCVlx5v1keQuviBV/pub?output=csv&gid=";
 const ANH_MAC_DINH = "https://images.unsplash.com/photo-1574629810360-7ef513a43c33?w=800&h=400&fit=crop&q=80";
 
@@ -314,6 +368,71 @@ function layAnh(link){
     return link && link.trim().startsWith("http") ? link.trim() : ANH_MAC_DINH;
 }
 
+// === ⚽ KẾT QUẢ — LẤY DỮ LIỆU MỚI NHẤT ===
+fetch(BASE_URL + GID_KET_QUA)
+.then(r => { if(!r.ok) throw new Error("Lỗi kết nối Sheet Kết Quả"); return r.text(); })
+.then(csv => {
+    const rows = parseCSV(csv);
+    if(rows.length < 2){
+        document.getElementById("ketqua-list").innerHTML = `<div class="empty">Chưa có dữ liệu Kết Quả! → Tạo Sheet Kết Quả với cột: loai_muc, thu_tu, doi_nha, ty_so, doi_khach, ngay_gio, giai_dau</div>`;
+        return;
+    }
+    const header = rows[0].map(h => h.trim().toLowerCase());
+    const idx_loai = header.indexOf("loai_muc");
+    const idx_thutu = header.indexOf("thu_tu");
+    const idx_nha = header.indexOf("doi_nha");
+    const idx_tyso = header.indexOf("ty_so");
+    const idx_khach = header.indexOf("doi_khach");
+    const idx_ngay = header.indexOf("ngay_gio");
+    const idx_giai = header.indexOf("giai_dau");
+    
+    if([idx_loai, idx_thutu, idx_nha, idx_tyso, idx_khach].includes(-1)){
+        document.getElementById("ketqua-list").innerHTML = `<div class="empty">❌ Kiểm tra hàng 1 Sheet Kết Quả: loai_muc, thu_tu, doi_nha, ty_so, doi_khach, ngay_gio, giai_dau</div>`;
+        return;
+    }
+    
+    const data = [];
+    for(let i = 1; i < rows.length; i++){
+        const r = rows[i];
+        if((r[idx_loai] || "").trim() !== "ket_qua") continue;
+        data.push({
+            st: Number(r[idx_thutu]) || 999,
+            nha: r[idx_nha] || "",
+            tyso: r[idx_tyso] || "-",
+            khach: r[idx_khach] || "",
+            ngay: r[idx_ngay] || "",
+            giai: r[idx_giai] || "Bóng Đá"
+        });
+    }
+    data.sort((a, b) => a.st - b.st);
+    
+    const box = document.getElementById("ketqua-list");
+    if(!data.length){ box.innerHTML = `<div class="empty">Chưa có kết quả trận đấu → Điền loai_muc = ket_qua vào Sheet Kết Quả!</div>`; return; }
+    box.innerHTML = `<div class="grid-2">`;
+    data.slice(0, 2).forEach(x => {
+        box.innerHTML += `<a href="ketqua.html" class="card-ketqua">
+            <div class="ketqua-header">
+                <span class="ketqua-league">🏆 ${x.giai}</span>
+                <span class="ketqua-date">${x.ngay}</span>
+            </div>
+            <div class="ketqua-match">
+                <span class="ketqua-team ketqua-team-home">${x.nha}</span>
+                <div class="ketqua-score">
+                    <span class="ketqua-score-num">${x.tyso}</span>
+                </div>
+                <span class="ketqua-team ketqua-team-away">${x.khach}</span>
+            </div>
+            <div class="ketqua-status">
+                <span class="status-finished">✓ Kết thúc</span>
+            </div>
+        </a>`;
+    });
+    box.innerHTML += `</div>`;
+})
+.catch(err => {
+    document.getElementById("ketqua-list").innerHTML = `<div class="empty">❌ Lỗi: ${err.message}</div>`;
+});
+
 // === 1. PHÂN TÍCH — ĐỌC THEO CỘT TÊN MỚI: ten_noi_dung ===
 fetch(BASE_URL + GID_PHAN_TICH)
 .then(r => { if(!r.ok) throw new Error("Lỗi kết nối Sheet"); return r.text(); })
@@ -326,7 +445,7 @@ fetch(BASE_URL + GID_PHAN_TICH)
     const header = rows[0].map(h => h.trim().toLowerCase());
     const idx_loai = header.indexOf("loai_muc");
     const idx_thutu = header.indexOf("thu_tu");
-    const idx_tieu_de = header.indexOf("ten_noi_dung");  // ✅ ĐÚNG TÊN CỘT CỦA BẠN
+    const idx_tieu_de = header.indexOf("ten_noi_dung");
     const idx_ngay_gio = header.indexOf("ngay_gio");
     const idx_tom_tat = header.indexOf("phan_tich");
     
@@ -365,7 +484,7 @@ fetch(BASE_URL + GID_PHAN_TICH)
     document.getElementById("phan-tich-list").innerHTML = `<div class="empty">❌ Lỗi: ${err.message}</div>`;
 });
 
-// === 2. TIN NÓNG — CÓ ẢNH BÌA (Bạn tạo Sheet sau) ===
+// === 2. TIN NÓNG — CÓ ẢNH BÌA ===
 fetch(BASE_URL + GID_TIN_NONG)
 .then(r => { if(!r.ok) throw new Error("Lỗi kết nối Sheet"); return r.text(); })
 .then(csv => {
@@ -421,7 +540,7 @@ fetch(BASE_URL + GID_TIN_NONG)
     document.getElementById("tin-list").innerHTML = `<div class="empty">❌ Chưa có Sheet TinNong → Tạo sau</div>`;
 });
 
-// === 3. LỊCH ĐẤU — ĐÃ CÓ DỮ LIỆU SẼ HIỂN THỊ NGAY ===
+// === 3. LỊCH ĐẤU ===
 fetch(BASE_URL + GID_LICH_DAU)
 .then(r => { if(!r.ok) throw new Error("Lỗi kết nối Sheet"); return r.text(); })
 .then(csv => {
