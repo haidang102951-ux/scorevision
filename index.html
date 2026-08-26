@@ -136,7 +136,6 @@
         
         .grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:20px;}
         
-        /* === THẺ TIN NÓNG: CÓ ẢNH BÌA === */
         .card-tin{
             background:var(--bg-card);border-radius:18px;overflow:hidden;
             border:2px solid transparent;box-shadow:var(--shadow-soft);
@@ -152,7 +151,6 @@
         }
         .card-body{padding:18px;}
         
-        /* === THẺ KẾT QUẢ — THIẾT KẾ ĐỘC ĐỈNH === */
         .card-ketqua{
             background:linear-gradient(145deg,#1e293b,#1a1c35);border-radius:16px;padding:20px;
             border:2px solid rgba(249,115,22,.2);box-shadow:0 8px 24px rgba(0,0,0,.3);
@@ -194,7 +192,6 @@
             padding:4px 12px;border-radius:20px;
         }
         
-        /* === THẺ PHÂN TÍCH & LỊCH ĐẤU: KHÔNG CÓ ẢNH === */
         .card-khong-anh{
             background:var(--bg-card);border-radius:14px;padding:18px;
             border:2px solid transparent;box-shadow:var(--shadow-soft);
@@ -267,7 +264,6 @@
 </head>
 <body>
 <div class="container">
-
 <div class="dau-trang">
     <div class="logo">⚽</div>
     <div>
@@ -275,7 +271,6 @@
     </div>
 </div>
 <p class="slogan-dau">PHÂN TÍCH & DỰ ĐOÁN BÓNG ĐÁ HÀNG NGÀY</p>
-
 <nav class="menu">
     <a href="index.html" class="menu-btn active">🏠 Trang chủ</a>
     <a href="lich-dau.html" class="menu-btn">📅 Lịch đấu</a>
@@ -283,66 +278,51 @@
     <a href="bang-xep-hang.html" class="menu-btn">📊 Bảng xếp hạng</a>
     <a href="thong-ke.html" class="menu-btn">📈 Thống kê</a>
     <a href="tin-nong.html" class="menu-btn">📰 Tin Nóng</a>
-    <a href="ketqua.html" class="menu-btn">⚽ Kết Quả</a>
+    <a href="ket-qua.html" class="menu-btn">⚽ Kết Quả</a>
 </nav>
-
 <div class="banner">
     <h1>⚽ PHÂN TÍCH & DỰ ĐOÁN <span>BÓNG ĐÁ HÀNG NGÀY</span></h1>
     <p>🔍 Dựa trên số liệu thống kê chi tiết, phong độ từng đội, lịch sử đối đầu và thông tin lực lượng mới nhất. <strong>Không bỏ lỡ thông tin quan trọng — cập nhật liên tục mỗi ngày!</strong></p>
     <a href="du-doan.html" class="banner-nut">👉 Xem Phân Tích Chi Tiết</a>
 </div>
-
-<!-- ⚽ KẾT QUẢ MỚI NHẤT — CÓ NÚT XEM TẤT CẢ → ĐỒNG BỘ VỚI TRANG -->
 <div class="section-head">
     <h2 class="section-title">⚽ Kết Quả Trận Đấu Mới Nhất</h2>
-    <a href="ketqua.html" class="xem-tat-ca">Xem tất cả →</a>
+    <a href="ket-qua.html" class="xem-tat-ca">Xem tất cả →</a>
 </div>
 <div id="ketqua-list"><div class="loading">Đang tải kết quả trận đấu...</div></div>
-
-<!-- 🔥 PHÂN TÍCH & DỰ ĐOÁN — KHÔNG CÓ ẢNH → ĐỌC THEO CỘT TÊN MỚI: ten_noi_dung -->
 <div class="section-head">
     <h2 class="section-title">🔥 Phân Tích & Dự Đoán Mới Nhất</h2>
     <a href="du-doan.html" class="xem-tat-ca">Xem tất cả →</a>
 </div>
 <div id="phan-tich-list"><div class="loading">Đang tải bài phân tích mới nhất...</div></div>
-
-<!-- 📰 TIN NÓNG — CÓ ẢNH BÌA (Bạn điền dữ liệu vào Sheet TinNong sau) -->
 <div class="section-head">
     <h2 class="section-title">📰 Tin Nóng Mới Nhất</h2>
     <a href="tin-nong.html" class="xem-tat-ca">Xem tất cả →</a>
 </div>
 <div id="tin-list"><div class="loading">Đang tải tin tức...</div></div>
-
-<!-- 📅 LỊCH THI ĐẤU — KHÔNG CÓ ẢNH → ĐÃ CÓ DỮ LIỆU SẼ HIỂN THỊ NGAY -->
 <div class="section-head">
     <h2 class="section-title">📅 Trận Sắp Đấu</h2>
     <a href="lich-dau.html" class="xem-tat-ca">Xem tất cả →</a>
 </div>
 <div id="lich-list"><div class="loading">Đang tải lịch thi đấu...</div></div>
-
 <div class="box-thongtin">
     <h3>🤝 CẬP NHẬT THÔNG TIN LIÊN TỤC</h3>
     <p>Nguồn thông tin được cập nhật liên tục, nhanh chóng và chính xác. Luôn theo dõi những diễn biến mới nhất trước mỗi trận đấu!</p>
     <a href="https://t.me/+LBCsBd-LjPI3ZDRl" target="_blank" class="nut-tel">✈️ THAM GIA NHÓM TELEGRAM</a>
 </div>
-
 <div class="disclaimer">
     <h4>⚠️ THÔNG BÁO & MIỄN TRỪ TRÁCH NHIỆM</h4>
     <p>Nội dung trên trang web chỉ phục vụ mục đích phân tích, tham khảo và trao đổi thông tin về bóng đá. Nhận định đưa ra mang tính tham khảo, không phải là kết quả chắc chắn.</p>
     <p>❌ Chúng tôi <strong>khuyến khích giải trí, không khuyến khích cá độ</strong> dưới mọi hình thức. Mọi quyết định của người xem đều do người đó tự chịu trách nhiệm.</p>
 </div>
-
 </div>
 <script>
-// === ĐƯỜNG DẪN SHEET ===
 const GID_PHAN_TICH = "0";
 const GID_TIN_NONG = "1328630352";
 const GID_LICH_DAU = "2128823111";
-const GID_KET_QUA = "0"; // ⚽ Sheet Kết Quả
-const BASE_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQwrXKqXdfjGK7EQCkNwjuv-FbFJxHhQyCg1NxBl2kkMnGuPCYL1vnG6QFBujGwNCVlx5v1keQuviBV/pub?output=csv&gid=";
+const BASE_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRjGewmdAmJVjyi-0vSc22hhFPacMgGc-WmVE8PEM3jHfA7IvED3XbBp68Bwp16n1Dc2FFP9ETKTaSH/pub?output=csv&gid=";
 const ANH_MAC_DINH = "https://images.unsplash.com/photo-1574629810360-7ef513a43c33?w=800&h=400&fit=crop&q=80";
 
-// === ĐỌC CSV ĐÚNG ĐỊNH DẠNG ===
 function parseCSV(text){
     const rows = [];
     let row = [], cell = "", inQuote = false;
@@ -363,31 +343,29 @@ function parseCSV(text){
     if(cell || row.length > 0){ row.push(cell.trim()); rows.push(row); }
     return rows;
 }
-
 function layAnh(link){
     return link && link.trim().startsWith("http") ? link.trim() : ANH_MAC_DINH;
 }
 
-// === ⚽ KẾT QUẢ — LẤY DỮ LIỆU MỚI NHẤT ===
-fetch(BASE_URL + GID_KET_QUA)
+// === ⚽ KẾT QUẢ ===
+fetch(BASE_URL + "1819801064")
 .then(r => { if(!r.ok) throw new Error("Lỗi kết nối Sheet Kết Quả"); return r.text(); })
 .then(csv => {
     const rows = parseCSV(csv);
     if(rows.length < 2){
-        document.getElementById("ketqua-list").innerHTML = `<div class="empty">Chưa có dữ liệu Kết Quả! → Tạo Sheet Kết Quả với cột: loai_muc, thu_tu, doi_nha, ty_so, doi_khach, ngay_gio, giai_dau</div>`;
+        document.getElementById("ketqua-list").innerHTML = `<div class="empty">Chưa có dữ liệu Kết Quả!</div>`;
         return;
     }
     const header = rows[0].map(h => h.trim().toLowerCase());
     const idx_loai = header.indexOf("loai_muc");
     const idx_thutu = header.indexOf("thu_tu");
-    const idx_nha = header.indexOf("doi_nha");
+    const idx_tran = header.indexOf("tran_dau");
     const idx_tyso = header.indexOf("ty_so");
-    const idx_khach = header.indexOf("doi_khach");
-    const idx_ngay = header.indexOf("ngay_gio");
     const idx_giai = header.indexOf("giai_dau");
+    const idx_ngay = header.indexOf("ngay_gio");
     
-    if([idx_loai, idx_thutu, idx_nha, idx_tyso, idx_khach].includes(-1)){
-        document.getElementById("ketqua-list").innerHTML = `<div class="empty">❌ Kiểm tra hàng 1 Sheet Kết Quả: loai_muc, thu_tu, doi_nha, ty_so, doi_khach, ngay_gio, giai_dau</div>`;
+    if([idx_loai, idx_thutu, idx_tran, idx_tyso].includes(-1)){
+        document.getElementById("ketqua-list").innerHTML = `<div class="empty">❌ Sai cột Sheet Kết Quả!</div>`;
         return;
     }
     
@@ -395,22 +373,32 @@ fetch(BASE_URL + GID_KET_QUA)
     for(let i = 1; i < rows.length; i++){
         const r = rows[i];
         if((r[idx_loai] || "").trim() !== "ket_qua") continue;
+        const tran = (r[idx_tran] || "").trim();
+        if(tran.includes("Không có trận")) continue;
+        let doiNha = "", doiKhach = "";
+        if(tran.includes(" vs ")){
+            const phan = tran.split(" vs ");
+            doiNha = phan[0].trim();
+            doiKhach = phan[1].trim();
+        } else {
+            continue;
+        }
         data.push({
             st: Number(r[idx_thutu]) || 999,
-            nha: r[idx_nha] || "",
-            tyso: r[idx_tyso] || "-",
-            khach: r[idx_khach] || "",
-            ngay: r[idx_ngay] || "",
-            giai: r[idx_giai] || "Bóng Đá"
+            nha: doiNha,
+            khach: doiKhach,
+            tyso: (r[idx_tyso] || "-").trim(),
+            ngay: (r[idx_ngay] || "").trim(),
+            giai: (r[idx_giai] || "Bóng Đá").trim()
         });
     }
     data.sort((a, b) => a.st - b.st);
     
     const box = document.getElementById("ketqua-list");
-    if(!data.length){ box.innerHTML = `<div class="empty">Chưa có kết quả trận đấu → Điền loai_muc = ket_qua vào Sheet Kết Quả!</div>`; return; }
+    if(!data.length){ box.innerHTML = `<div class="empty">Chưa có kết quả trận đấu!</div>`; return; }
     box.innerHTML = `<div class="grid-2">`;
     data.slice(0, 2).forEach(x => {
-        box.innerHTML += `<a href="ketqua.html" class="card-ketqua">
+        box.innerHTML += `<a href="ket-qua.html" class="card-ketqua">
             <div class="ketqua-header">
                 <span class="ketqua-league">🏆 ${x.giai}</span>
                 <span class="ketqua-date">${x.ngay}</span>
@@ -433,13 +421,13 @@ fetch(BASE_URL + GID_KET_QUA)
     document.getElementById("ketqua-list").innerHTML = `<div class="empty">❌ Lỗi: ${err.message}</div>`;
 });
 
-// === 1. PHÂN TÍCH — ĐỌC THEO CỘT TÊN MỚI: ten_noi_dung ===
+// === PHÂN TÍCH, TIN NÓNG, LỊCH ĐẤU — GIỮ NGUYÊN ===
 fetch(BASE_URL + GID_PHAN_TICH)
 .then(r => { if(!r.ok) throw new Error("Lỗi kết nối Sheet"); return r.text(); })
 .then(csv => {
     const rows = parseCSV(csv);
     if(rows.length < 2){
-        document.getElementById("phan-tich-list").innerHTML = `<div class="empty">Chưa có dữ liệu trên Sheet Phân Tích! → Điền vào hàng 2 trở đi</div>`;
+        document.getElementById("phan-tich-list").innerHTML = `<div class="empty">Chưa có dữ liệu trên Sheet Phân Tích!</div>`;
         return;
     }
     const header = rows[0].map(h => h.trim().toLowerCase());
@@ -484,7 +472,6 @@ fetch(BASE_URL + GID_PHAN_TICH)
     document.getElementById("phan-tich-list").innerHTML = `<div class="empty">❌ Lỗi: ${err.message}</div>`;
 });
 
-// === 2. TIN NÓNG — CÓ ẢNH BÌA ===
 fetch(BASE_URL + GID_TIN_NONG)
 .then(r => { if(!r.ok) throw new Error("Lỗi kết nối Sheet"); return r.text(); })
 .then(csv => {
@@ -540,7 +527,6 @@ fetch(BASE_URL + GID_TIN_NONG)
     document.getElementById("tin-list").innerHTML = `<div class="empty">❌ Chưa có Sheet TinNong → Tạo sau</div>`;
 });
 
-// === 3. LỊCH ĐẤU ===
 fetch(BASE_URL + GID_LICH_DAU)
 .then(r => { if(!r.ok) throw new Error("Lỗi kết nối Sheet"); return r.text(); })
 .then(csv => {
