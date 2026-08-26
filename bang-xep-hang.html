@@ -57,9 +57,8 @@
 <div id="bxh-container"><div class="loading">Đang tải bảng xếp hạng...</div></div>
 
 <script>
-// === GID SHEET BẢNG XẾP HẠNG ĐÃ ĐIỀN SẴN ===
-const GID = "2032200987";
-const BASE_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQwrXKqXdfjGK7EQCkNwjuv-FbFJxHhQyCg1NxBl2kkMnGuPCYL1vnG6QFBujGwNCVlx5v1keQuviBV/pub?output=csv&gid=";
+// === LINK SHEET MỚI ĐÃ THAY ===
+const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRjGewmdAmJVjyi-0vSc22hhFPacMgGc-WmVE8PEM3jHfA7IvED3XbBp68Bwp16n1Dc2FFP9ETKTaSH/pub?gid=0&single=true&output=csv";
 
 let tatCaDuLieu = {};
 let giaiDauChon = "";
@@ -124,7 +123,7 @@ function hienThiBang(giai){
     giaiDauChon = giai;
 }
 
-fetch(BASE_URL+GID).then(r=>r.text()).then(csv=>{
+fetch(CSV_URL).then(r=>r.text()).then(csv=>{
     const rows=parseCSV(csv);
     console.log("✅ Đọc được:", rows);
 
