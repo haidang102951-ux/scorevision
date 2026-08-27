@@ -1,7 +1,13 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
+    <!-- ✅ Thẻ xác minh quyền sở hữu -->
     <meta name="google-adsense-account" content="ca-pub-6588369693863083">
+    
+    <!-- ✅ ĐOẠN MÃ ADSENSE MỚI CHÈN VÀO ĐÂY -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6588369693863083"
+     crossorigin="anonymous"></script>
+    
     <meta name="monetag" content="9f18703360e44fe069c7f96a0278767f">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -36,9 +42,7 @@
             --shadow-hover:0 12px 32px rgba(0,0,0,.35);
             --tran:all .3s cubic-bezier(.4,0,.2,1);
         }
-
         html{scroll-behavior:smooth;}
-
         body{
             background:
                 radial-gradient(circle at 20% 0%, rgba(30,64,175,.08) 0%, transparent 50%),
@@ -49,8 +53,7 @@
             min-height:100vh;
         }
         .container{max-width:1100px;margin:0 auto;padding:0 16px;}
-
-        /* === ẢNH NỀN ĐẦU TRANG — ĐÃ CHỈNH SÁNG HƠN === */
+        /* === ẢNH NỀN ĐẦU TRANG === */
         .dau-trang-wrapper{
             position:relative;padding:32px 16px 16px;margin-bottom:8px;
             border-radius:0 0 20px 20px;
@@ -91,7 +94,6 @@
             position:relative;z-index:1;
         }
         .canh-giua{text-align:center;margin-bottom:12px;}
-
         /* === MENU === */
         .menu{
             display:flex;flex-wrap:wrap;gap:6px;margin-bottom:32px;
@@ -114,8 +116,7 @@
             background:linear-gradient(135deg,rgba(254,240,138,.15),rgba(253,224,71,.08));
             color:#fef08a;border-color:rgba(254,240,138,.20);font-weight:600;
         }
-
-        /* === BANNER — ĐÃ CHỈNH SÁNG HƠN === */
+        /* === BANNER === */
         .banner{
             background:linear-gradient(rgba(3,7,18,.50),rgba(15,23,42,.55)),
                         url('https://images.unsplash.com/photo-1574629810360-7ef513a43c33?w=1200&h=380&fit=crop&q=68');
@@ -140,7 +141,6 @@
             transition:var(--tran);
         }
         .banner-nut:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(253,224,71,.20);}
-
         /* === TIÊU ĐỀ MỤC === */
         .section-head{
             display:flex;align-items:center;justify-content:space-between;
@@ -156,10 +156,8 @@
             font-weight:500;transition:var(--tran);
         }
         .xem-tat-ca:hover{color:#fef08a;}
-
         /* === LƯỚI THẺ === */
         .grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:16px;}
-
         /* === THẺ KẾT QUẢ === */
         .card-ketqua{
             background:var(--bg-card);border-radius:14px;padding:18px;
@@ -201,8 +199,7 @@
             font-size:12px;font-weight:500;background:rgba(74,222,128,.06);
             padding:3px 10px;border-radius:12px;
         }
-
-        /* === THẺ TIN TỨC — ĐÃ TINH CHỈNH ẢNH BÌA === */
+        /* === THẺ TIN TỨC === */
         .card-tin{
             background:var(--bg-card);border-radius:14px;overflow:hidden;
             border:1px solid transparent;box-shadow:var(--shadow-soft);
@@ -213,7 +210,6 @@
             border-color:rgba(254,240,138,.15);transform:translateY(-3px);
             box-shadow:var(--shadow-hover);
         }
-        /* === KHUNG ẢNH BÌA — ĐỀU KÍCH THƯỚC, CHUẨN TỶ LỆ === */
         .card-anh-wrapper{
             width:100%;height:160px;overflow:hidden;position:relative;
             border-bottom:1px solid var(--border-subtle);
@@ -223,19 +219,16 @@
             transition:transform .4s ease, filter .4s ease;
             transform:scale(1.01);
         }
-        /* === HIỆU ỨNG KHI DI CHUỘT VÀO === */
         .card-tin:hover .card-img{
             transform:scale(1.06);
             filter:brightness(1.08);
         }
-        /* === LỚP PHỦ MỜ DƯỚI ẢNH === */
         .card-anh-overlay{
             position:absolute;bottom:0;left:0;right:0;
             height:60px;
             background:linear-gradient(to top, rgba(0,0,0,.75), rgba(0,0,0,.35), transparent);
             pointer-events:none;
         }
-        /* === BIỂU TƯỢNG XEM TRÊN ẢNH === */
         .card-anh-icon{
             position:absolute;top:12px;right:12px;
             width:32px;height:32px;border-radius:50%;
@@ -246,9 +239,7 @@
             backdrop-filter:blur(4px);
         }
         .card-tin:hover .card-anh-icon{opacity:1;transform:translateY(0);}
-
         .card-body{padding:16px;position:relative;}
-
         /* === THẺ KHÔNG ẢNH === */
         .card-khong-anh{
             background:var(--bg-card);border-radius:14px;padding:18px;
@@ -260,7 +251,6 @@
             border-color:rgba(254,240,138,.15);transform:translateY(-3px);
             box-shadow:var(--shadow-hover);
         }
-
         /* === NHÃN === */
         .card-label{
             display:inline-block;padding:3px 10px;border-radius:12px;
@@ -270,7 +260,6 @@
         .label-pb{background:rgba(59,130,246,.06);color:#93c5fd;border:1px solid rgba(59,130,246,.12);}
         .label-tin{background:rgba(34,197,94,.06);color:#86efac;border:1px solid rgba(34,197,94,.12);}
         .label-lich{background:rgba(239,68,68,.06);color:#fca5a5;border:1px solid rgba(239,68,68,.12);}
-
         .card-tin h3, .card-khong-anh h3{
             font-size:15px;font-weight:600;color:#e2e8f0;
             margin-bottom:6px;line-height:1.5;
@@ -279,7 +268,6 @@
             font-size:14px;color:#94a3b8;line-height:1.6;
         }
         .hint{margin-top:8px;font-size:13px;color:#60a5fa;font-weight:500;}
-
         /* === KHUNG THÔNG TIN === */
         .box-thongtin{
             background:linear-gradient(135deg,rgba(34,197,94,.04),rgba(59,130,246,.02));
@@ -296,7 +284,6 @@
             box-shadow:0 4px 14px rgba(34,197,94,.12);transition:var(--tran);
         }
         .nut-tel:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(34,197,94,.18);}
-
         /* === THÔNG BÁO === */
         .disclaimer{
             background:rgba(245,158,11,.03);border-radius:12px;padding:18px;margin-top:24px;
@@ -305,7 +292,6 @@
         .disclaimer h4{font-size:14px;font-weight:600;color:#fcd34d;margin-bottom:8px;display:flex;align-items:center;gap:6px;}
         .disclaimer p{font-size:13px;color:#a8a29e;line-height:1.7;margin-bottom:4px;}
         .disclaimer p:last-child{margin-bottom:0;}
-
         /* === CHÂN TRANG === */
         .chan-trang{
             margin-top:48px;padding:24px 0;border-top:1px solid var(--border-subtle);text-align:center;
@@ -314,11 +300,9 @@
         .chan-trang .lien-ket{margin:10px 0;}
         .chan-trang .lien-ket a{color:#94a3b8;font-size:13px;text-decoration:none;margin:0 10px;transition:var(--tran);}
         .chan-trang .lien-ket a:hover{color:#fef08a;}
-
         .empty{text-align:center;color:#64748b;padding:40px 20px;}
         .loading{text-align:center;color:#fef08a;padding:40px;animation:nhapnhay 1.5s infinite;}
         @keyframes nhapnhay{0%,100%{opacity:1;}50%{opacity:.4;}}
-
         /* === NÚT LÊN ĐẦU TRANG === */
         .len-dau{
             position:fixed;bottom:20px;right:20px;width:44px;height:44px;
@@ -330,7 +314,6 @@
         }
         .len-dau.hien{opacity:1;visibility:visible;}
         .len-dau:hover{transform:translateY(-3px);}
-
         /* === RESPONSIVE === */
         @media(max-width:768px){
             .menu{justify-content:center;}
@@ -349,7 +332,6 @@
     </style>
 </head>
 <body>
-
 <div class="dau-trang-wrapper">
     <div class="container">
         <div class="dau-trang">
@@ -364,7 +346,6 @@
         </div>
     </div>
 </div>
-
 <div class="container">
 <nav class="menu">
     <a href="index.html" class="menu-btn active">🏠 Trang chủ</a>
@@ -375,49 +356,41 @@
     <a href="tin-nong.html" class="menu-btn">📰 Tin Nóng</a>
     <a href="ket-qua.html" class="menu-btn">⚽ Kết Quả</a>
 </nav>
-
 <div class="banner">
     <h1>⚽ PHÂN TÍCH & DỰ ĐOÁN BÓNG ĐÁ</h1>
     <p>Dựa trên số liệu thống kê chi tiết, phong độ từng đội, lịch sử đối đầu và thông tin lực lượng mới nhất. Cập nhật liên tục hàng ngày!</p>
     <a href="du-doan.html" class="banner-nut">👉 Xem Phân Tích Chi Tiết</a>
 </div>
-
 <div class="section-head">
     <h2 class="section-title">⚽ Kết Quả Trận Đấu Mới Nhất</h2>
     <a href="ket-qua.html" class="xem-tat-ca">Xem tất cả →</a>
 </div>
 <div id="ketqua-list"><div class="loading">Đang tải kết quả trận đấu...</div></div>
-
 <div class="section-head">
     <h2 class="section-title">🔮 Phân Tích & Dự Đoán Mới Nhất</h2>
     <a href="du-doan.html" class="xem-tat-ca">Xem tất cả →</a>
 </div>
 <div id="phan-tich-list"><div class="loading">Đang tải bài phân tích...</div></div>
-
 <div class="section-head">
     <h2 class="section-title">📰 Tin Nóng Mới Nhất</h2>
     <a href="tin-nong.html" class="xem-tat-ca">Xem tất cả →</a>
 </div>
 <div id="tin-list"><div class="loading">Đang tải tin tức...</div></div>
-
 <div class="section-head">
     <h2 class="section-title">📅 Trận Sắp Đấu</h2>
     <a href="lich-dau.html" class="xem-tat-ca">Xem tất cả →</a>
 </div>
 <div id="lich-list"><div class="loading">Đang tải lịch thi đấu...</div></div>
-
 <div class="box-thongtin">
     <h3>🤝 LUÔN CẬP NHẬT LIÊN TỤC</h3>
     <p>Thông tin được cập nhật liên tục, nhanh chóng và chính xác. Luôn theo dõi những diễn biến mới nhất trước mỗi trận đấu!</p>
     <a href="https://t.me/+LBCsBd-LjPI3ZDRl" target="_blank" class="nut-tel">✈️ THAM GIA NHÓM TELEGRAM</a>
 </div>
-
 <div class="disclaimer">
     <h4>⚠️ THÔNG BÁO CHUNG</h4>
     <p>Nội dung trên trang web chỉ phục vụ mục đích tham khảo, trao đổi thông tin về bóng đá. Nhận định đưa ra mang tính tham khảo, không phải là kết quả chắc chắn.</p>
     <p>✅ Chúng tôi khuyến khích giải trí, không khuyến khích cá độ dưới mọi hình thức. Mọi quyết định của người xem đều do người đó tự chịu trách nhiệm.</p>
 </div>
-
 <div class="chan-trang">
     <p><strong>Score Vision</strong> — Phân tích & Dự đoán Bóng Đá Hàng Ngày</p>
     <div class="lien-ket">
@@ -427,11 +400,8 @@
     </div>
     <p>© 2026 Score Vision. Tất cả quyền được bảo lưu.</p>
 </div>
-
 </div>
-
 <a href="#" class="len-dau" id="btnLenDau">↑</a>
-
 <script>
 // === CẬP NHẬT THỜI GIAN ===
 function dinhDangNgay(gio){
@@ -596,5 +566,9 @@ fetch(BASE_URL+GID_LICH_DAU)
 })
 .catch(e=>{document.getElementById("lich-list").innerHTML=`<div class="empty">❌ ${e.message}</div>`;});
 </script>
+
+<!-- ✅ MÃ QUẢNG CÁO MoneTag → CHÈN TRƯỚC </body> -->
+<script>(function(s){s.dataset.zone='11665696',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
+
 </body>
 </html>
