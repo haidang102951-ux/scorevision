@@ -347,10 +347,11 @@
     </div>
 </div>
 <div class="container">
+<!-- === THANH ĐIỀU HƯỚNG ĐÃ SỬA ĐÚNG === -->
 <nav class="menu">
     <a href="index.html" class="menu-btn active">🏠 Trang chủ</a>
     <a href="lich-dau.html" class="menu-btn">📅 Lịch đấu</a>
-    <a href="du-doan.html" class="menu-btn">🔮 Phân Tích & Dự Đoán</a>
+    <a href="phan-tich.html" class="menu-btn">🔮 Phân Tích & Dự Đoán</a>
     <a href="bang-xep-hang.html" class="menu-btn">📊 Bảng xếp hạng</a>
     <a href="thong-ke.html" class="menu-btn">📈 Thống kê</a>
     <a href="tin-nong.html" class="menu-btn">📰 Tin Nóng</a>
@@ -359,7 +360,7 @@
 <div class="banner">
     <h1>⚽ PHÂN TÍCH & DỰ ĐOÁN BÓNG ĐÁ</h1>
     <p>Dựa trên số liệu thống kê chi tiết, phong độ từng đội, lịch sử đối đầu và thông tin lực lượng mới nhất. Cập nhật liên tục hàng ngày!</p>
-    <a href="du-doan.html" class="banner-nut">👉 Xem Phân Tích Chi Tiết</a>
+    <a href="phan-tich.html" class="banner-nut">👉 Xem Phân Tích Chi Tiết</a>
 </div>
 <div class="section-head">
     <h2 class="section-title">⚽ Kết Quả Trận Đấu Mới Nhất</h2>
@@ -368,7 +369,7 @@
 <div id="ketqua-list"><div class="loading">Đang tải kết quả trận đấu...</div></div>
 <div class="section-head">
     <h2 class="section-title">🔮 Phân Tích & Dự Đoán Mới Nhất</h2>
-    <a href="du-doan.html" class="xem-tat-ca">Xem tất cả →</a>
+    <a href="phan-tich.html" class="xem-tat-ca">Xem tất cả →</a>
 </div>
 <div id="phan-tich-list"><div class="loading">Đang tải bài phân tích...</div></div>
 <div class="section-head">
@@ -414,7 +415,6 @@ function dinhDangNgay(gio){
     return `${gio ? h+":"+ph+" " : ""}${d}/${m}/${y}`;
 }
 document.getElementById("thoi-gian-capnhat").textContent = "🔄 Cập nhật lúc: " + dinhDangNgay(true);
-
 // === NÚT LÊN ĐẦU TRANG ===
 const btnLenDau = document.getElementById("btnLenDau");
 window.addEventListener("scroll", ()=>{
@@ -425,7 +425,6 @@ btnLenDau.addEventListener("click", e=>{
     e.preventDefault();
     window.scrollTo({top:0,behavior:"smooth"});
 });
-
 // === GID ĐÃ THAY ĐÚNG ===
 const GID_PHAN_TICH = "1723464768";
 const GID_TIN_NONG = "2097322059";
@@ -433,10 +432,8 @@ const GID_LICH_DAU = "655851279";
 const GID_BANG_XEP_HANG = "0";
 const GID_THONG_KE = "575449196";
 const GID_KET_QUA = "1819801064";
-
 const BASE_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRjGewmdAmJVjyi-0vSc22hhFPacMgGc-WmVE8PEM3jHfA7IvED3XbBp68Bwp16n1Dc2FFP9ETKTaSH/pub?output=csv&gid=";
 const ANH_MAC_DINH = "https://images.unsplash.com/photo-1574629810360-7ef513a43c33?w=800&h=450&fit=crop&q=80";
-
 function parseCSV(text){
     const rows = [];let row=[],cell="",inQuote=false;
     for(let i=0;i<text.length;i++){
@@ -450,7 +447,6 @@ function parseCSV(text){
     return rows;
 }
 function layAnh(link){return link&&link.trim().startsWith("http")?link.trim():ANH_MAC_DINH;}
-
 // === ⚽ KẾT QUẢ ===
 fetch(BASE_URL+GID_KET_QUA)
 .then(r=>{if(!r.ok)throw new Error("Lỗi kết nối");return r.text();})
@@ -477,7 +473,6 @@ fetch(BASE_URL+GID_KET_QUA)
     box.innerHTML+=`</div>`;
 })
 .catch(e=>{document.getElementById("ketqua-list").innerHTML=`<div class="empty">❌ ${e.message}</div>`;});
-
 // === 🔮 PHÂN TÍCH ===
 fetch(BASE_URL+GID_PHAN_TICH)
 .then(r=>{if(!r.ok)throw new Error("Lỗi kết nối");return r.text();})
@@ -497,12 +492,11 @@ fetch(BASE_URL+GID_PHAN_TICH)
     if(!data.length){box.innerHTML=`<div class="empty">Chưa có dữ liệu Phân Tích!</div>`;return;}
     box.innerHTML=`<div class="grid-2">`;
     data.slice(0,2).forEach((x,i)=>{
-        box.innerHTML+=`<a href="du-doan.html" class="card-khong-anh"><span class="card-label ${i===0?'label-hot':'label-pb'}">${i===0?'🔥 Nổi bật':x.ngay}</span><h3>${x.tieude}</h3><p>${x.tomtat}…</p><div class="hint">Xem chi tiết →</div></a>`;
+        box.innerHTML+=`<a href="phan-tich.html" class="card-khong-anh"><span class="card-label ${i===0?'label-hot':'label-pb'}">${i===0?'🔥 Nổi bật':x.ngay}</span><h3>${x.tieude}</h3><p>${x.tomtat}…</p><div class="hint">Xem chi tiết →</div></a>`;
     });
     box.innerHTML+=`</div>`;
 })
 .catch(e=>{document.getElementById("phan-tich-list").innerHTML=`<div class="empty">❌ ${e.message}</div>`;});
-
 // === 📰 TIN NÓNG ===
 fetch(BASE_URL+GID_TIN_NONG)
 .then(r=>{if(!r.ok)throw new Error("Lỗi kết nối");return r.text();})
@@ -539,7 +533,6 @@ fetch(BASE_URL+GID_TIN_NONG)
     box.innerHTML+=`</div>`;
 })
 .catch(e=>{document.getElementById("tin-list").innerHTML=`<div class="empty">❌ ${e.message}</div>`;});
-
 // === 📅 LỊCH ĐẤU ===
 fetch(BASE_URL+GID_LICH_DAU)
 .then(r=>{if(!r.ok)throw new Error("Lỗi kết nối");return r.text();})
@@ -566,9 +559,7 @@ fetch(BASE_URL+GID_LICH_DAU)
 })
 .catch(e=>{document.getElementById("lich-list").innerHTML=`<div class="empty">❌ ${e.message}</div>`;});
 </script>
-
 <!-- ✅ MÃ QUẢNG CÁO MoneTag → CHÈN TRƯỚC </body> -->
 <script>(function(s){s.dataset.zone='11665696',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
-
 </body>
 </html>
