@@ -96,7 +96,6 @@
             border-bottom:2px solid rgba(254,240,138,.15);
             display:flex;align-items:center;gap:12px;
         }
-
         /* === THẺ NÚT LỌC THEO GIẢI ĐẤU === */
         .filter-tabs{
             display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px;
@@ -170,7 +169,6 @@
             text-decoration:none;font-weight:600;margin-bottom:20px;transition:all .2s;
         }
         .back-link:hover{color:var(--accent-gold);}
-
         .hidden-card{display:none !important;}
         
         @media(max-width:768px){
@@ -193,10 +191,11 @@
     </div>
 </div>
 <p class="slogan-dau">PHÂN TÍCH & DỰ ĐOÁN BÓNG ĐÁ HÀNG NGÀY</p>
+<!-- === THANH ĐIỀU HƯỚNG ĐÃ SỬA ĐÚNG === -->
 <nav class="menu">
     <a href="index.html" class="menu-btn">🏠 Trang chủ</a>
     <a href="lich-dau.html" class="menu-btn">📅 Lịch đấu</a>
-    <a href="du-doan.html" class="menu-btn">🔮 Phân Tích & Dự Đoán</a>
+    <a href="phan-tich.html" class="menu-btn">🔮 Phân Tích & Dự Đoán</a>
     <a href="bang-xep-hang.html" class="menu-btn">📊 Bảng xếp hạng</a>
     <a href="thong-ke.html" class="menu-btn">📈 Thống kê</a>
     <a href="tin-nong.html" class="menu-btn">📰 Tin Nóng</a>
@@ -204,7 +203,6 @@
 </nav>
 <a href="index.html" class="back-link">← Quay lại Trang Chủ</a>
 <h1 class="page-title">⚽ Tất Cả Kết Quả Trận Đấu</h1>
-
 <!-- === THẺ NÚT LỌC THEO GIẢI ĐẤU === -->
 <div class="filter-tabs">
     <button class="filter-tab active" data-giai="all">Tất cả giải đấu</button>
@@ -215,15 +213,12 @@
     <button class="filter-tab" data-giai="ligue 1">🇫🇷 Ligue 1</button>
     <button class="filter-tab" data-giai="champions">🏆 Champions League</button>
 </div>
-
 <div id="ketqua-list"><div class="loading">Đang tải kết quả trận đấu...</div></div>
 </div>
 <script>
 const BASE_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRjGewmdAmJVjyi-0vSc22hhFPacMgGc-WmVE8PEM3jHfA7IvED3XbBp68Bwp16n1Dc2FFP9ETKTaSH/pub?output=csv&gid=1819801064";
-
 let tatCaDuLieu = []; // Lưu toàn bộ dữ liệu để lọc
 let giaiDangChon = "all";
-
 // Lấy tên giải chuẩn để lọc
 function layTenGiaiChuan(tenGiai){
     const g = (tenGiai || "").trim().toLowerCase();
@@ -235,7 +230,6 @@ function layTenGiaiChuan(tenGiai){
     if(g.includes("champions")) return "champions";
     return g;
 }
-
 // Lọc và hiển thị dữ liệu theo giải được chọn
 function locVaHienThi(){
     const box = document.getElementById("ketqua-list");
@@ -268,7 +262,6 @@ function locVaHienThi(){
         </div>`;
     });
 }
-
 // Xử lý khi bấm nút lọc
 document.querySelectorAll(".filter-tab").forEach(tab => {
     tab.addEventListener("click", () => {
@@ -282,7 +275,6 @@ document.querySelectorAll(".filter-tab").forEach(tab => {
         locVaHienThi();
     });
 });
-
 function parseCSV(text){
     const rows = [];
     let row = [], cell = "", inQuote = false;
@@ -303,7 +295,6 @@ function parseCSV(text){
     if(cell || row.length > 0){ row.push(cell.trim()); rows.push(row); }
     return rows;
 }
-
 fetch(BASE_URL)
 .then(r => { if(!r.ok) throw new Error("Lỗi kết nối Sheet"); return r.text(); })
 .then(csv => {
