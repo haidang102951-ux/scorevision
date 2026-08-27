@@ -34,7 +34,6 @@
         @keyframes nhapnhay{0%,100%{opacity:1;}50%{opacity:.4;}}
     </style>
 </head>
-    <script>(function(s){s.dataset.zone='11651207',s.src='https://nap5k.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
 <body>
 <nav class="menu">
     <a href="index.html" class="menu-btn">🏠 Trang chủ</a>
@@ -48,9 +47,8 @@
 <div class="chon-giai" id="nutGiai"></div>
 <div id="pt-container"><div class="loading">Đang tải phân tích từ Sheet...</div></div>
 <script>
-const GID = "0";
-const BASE_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQwrXKqXdfjGK7EQCkNwjuv-FbFJxHhQyCg1NxBl2kkMnGuPCYL1vnG6QFBujGwNCVlx5v1keQuviBV/pub?output=csv&gid=";
-
+// ✅ LINK ĐÃ THAY BẰNG LINK CỦA BẠN
+const BASE_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRjGewmdAmJVjyi-0vSc22hhFPacMgGc-WmVE8PEM3jHfA7IvED3XbBp68Bwp16n1Dc2FFP9ETKTaSH/pub?output=csv&gid=1723464768";
 let tatCaDuLieu = {};
 
 // === ĐỌC CSV ĐÚNG NỘI DUNG CÓ DẤU PHẨM & XUỐNG DÒNG ===
@@ -102,7 +100,7 @@ function hienDanhSach(giai){
         container.innerHTML += `
         <div class="tran-card" data-giai="${giai}" data-index="${idx}">
             <div class="tran-ten">⚽ ${x.ten_tran}</div>
-            <div class="tran-thongtin">🏆 ${x.giai} • 📅 ${x.ngay_gio}</div>
+            <div class="tran-thongtin">🏆 ${x.ten_giai} • 📅 ${x.ngay_gio}</div>
             <div class="tran-xem">👉 Bấm xem phân tích chi tiết →</div>
         </div>`;
     });
@@ -119,7 +117,7 @@ function hienChiTiet(giai,index){
     document.getElementById("pt-container").innerHTML = `
     <div class="bai-chitiet">
         <div class="bai-tieude">⚽ ${x.ten_tran}</div>
-        <div class="bai-giai">🏆 ${x.giai} • 📅 ${x.ngay_gio}</div>
+        <div class="bai-giai">🏆 ${x.ten_giai} • 📅 ${x.ngay_gio}</div>
         
         <div class="bai-noidung">
             <strong>📝 Phân tích chi tiết:</strong><br><br>
@@ -138,39 +136,43 @@ function hienChiTiet(giai,index){
     </div>`;
 }
 
-fetch(BASE_URL+GID)
+fetch(BASE_URL)
 .then(r=>{if(!r.ok)throw new Error("Lỗi kết nối Sheet");return r.text();})
 .then(csv=>{
     const rows=parseCSV(csv);
     if(rows.length<2){document.getElementById("pt-container").innerHTML=`<div class="empty">Chưa có dữ liệu trên Sheet</div>`;return;}
     
-    // Đọc theo vị trí cột cố định
+    // Đọc theo vị trí cột khớp với tiêu đề: loai_du_lieu, thu_tu, ten_giai, ten_tran, ngay_gio, phan_tich, phong_do, du_doan
     for(let i=1;i<rows.length;i++){
         const r=rows[i];
         const loai = (r[0]||"").trim();
         if(loai!=="phan_tich") continue;
         
+        const thu_tu = Number(r[1])||999;
         const ten_giai = (r[2]||"").trim();
         const ten_tran = (r[3]||"").trim();
+        const ngay_gio = (r[4]||"").trim();
+        const phan_tich = (r[5]||"").trim();
+        const phong_do = (r[6]||"").trim();
+        const du_doan = (r[7]||"").trim();
+        
         if(!ten_giai || !ten_tran) continue;
-
         if(!tatCaDuLieu[ten_giai]) tatCaDuLieu[ten_giai]=[];
         tatCaDuLieu[ten_giai].push({
-            st: Number(r[1])||999,
-            giai: ten_giai,
+            st: thu_tu,
+            ten_giai: ten_giai,
             ten_tran: ten_tran,
-            ngay_gio: (r[4]||"").trim(),
-            phan_tich: (r[5]||"").trim(),
-            phong_do: (r[6]||"").trim(),
-            du_doan: (r[7]||"").trim()
+            ngay_gio: ngay_gio,
+            phan_tich: phan_tich,
+            phong_do: phong_do,
+            du_doan: du_doan
         });
     }
-
     Object.keys(tatCaDuLieu).forEach(g=>tatCaDuLieu[g].sort((a,b)=>a.st-b.st));
     const dsGiai = Object.keys(tatCaDuLieu).sort();
     const nutContainer = document.getElementById("nutGiai");
     if(dsGiai.length===0){
-        nutContainer.innerHTML=`<div style="color:#94a3b8">Điền dữ liệu → nút giải sẽ hiện!</div>`;
+        nutContainer.innerHTML=`<div style="color:#94a3b8">Điền dữ liệu vào Sheet → nút giải sẽ hiện!</div>`;
         return;
     }
     nutContainer.innerHTML = dsGiai.map(g=>`<button class="nut-giai" data-giai="${g}">${g}</button>`).join("");
@@ -179,7 +181,7 @@ fetch(BASE_URL+GID)
     });
     hienDanhSach(dsGiai[0]);
 })
-.catch(err=>{document.getElementById("pt-container").innerHTML=`<div class="empty">❌ Lỗi: Kiểm tra Chia sẻ Sheet → Bất kỳ ai có link + Xuất bản trên web</div>`;});
+.catch(err=>{document.getElementById("pt-container").innerHTML=`<div class="empty">❌ Lỗi: Kiểm tra Xuất bản → Bất kỳ ai có link</div>`;});
 </script>
 </body>
 </html>
