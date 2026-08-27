@@ -49,7 +49,7 @@
         }
         .container{max-width:1100px;margin:0 auto;padding:0 16px;}
 
-        /* === ẢNH NỀN ĐẦU TRANG === */
+        /* === ẢNH NỀN ĐẦU TRANG — ĐÃ CHỈNH SÁNG HƠN === */
         .dau-trang-wrapper{
             position:relative;padding:32px 16px 16px;margin-bottom:8px;
             border-radius:0 0 20px 20px;
@@ -58,7 +58,7 @@
         .dau-trang-wrapper::before{
             content:"";position:absolute;inset:0;z-index:0;
             background:
-                linear-gradient(180deg,rgba(3,7,18,.92) 0%,rgba(15,23,42,.85) 55%,rgba(15,23,42,.70) 100%),
+                linear-gradient(180deg,rgba(3,7,18,.55) 0%,rgba(15,23,42,.45) 55%,rgba(15,23,42,.40) 100%),
                 url('https://images.unsplash.com/photo-1574629810360-7ef513a43c33?w=1400&h=450&fit=crop&q=65');
             background-size:cover;background-position:center top;
         }
@@ -114,9 +114,9 @@
             color:#fef08a;border-color:rgba(254,240,138,.20);font-weight:600;
         }
 
-        /* === BANNER === */
+        /* === BANNER — ĐÃ CHỈNH SÁNG HƠN === */
         .banner{
-            background:linear-gradient(rgba(3,7,18,.90),rgba(15,23,42,.92)),
+            background:linear-gradient(rgba(3,7,18,.50),rgba(15,23,42,.55)),
                         url('https://images.unsplash.com/photo-1574629810360-7ef513a43c33?w=1200&h=380&fit=crop&q=68');
             background-size:cover;background-position:center;
             border-radius:16px;padding:32px 24px;margin-bottom:36px;
@@ -532,7 +532,7 @@ fetch(BASE_URL+GID_PHAN_TICH)
 })
 .catch(e=>{document.getElementById("phan-tich-list").innerHTML=`<div class="empty">❌ ${e.message}</div>`;});
 
-// === 📰 TIN NÓNG — ĐÃ CẬP NHẬT ẢNH BÌA CHUYÊN NGHIỆP ===
+// === 📰 TIN NÓNG ===
 fetch(BASE_URL+GID_TIN_NONG)
 .then(r=>{if(!r.ok)throw new Error("Lỗi kết nối");return r.text();})
 .then(csv=>{
