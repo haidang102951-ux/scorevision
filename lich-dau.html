@@ -7,12 +7,15 @@
     <style>
         *{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;}
         body{background:#020617;color:#f8fafc;line-height:1.7;padding:16px;max-width:850px;margin:0 auto;}
+
         /* === MENU === */
         .menu{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px;position:sticky;top:0;background:#020617f0;padding:10px 0;z-index:99;backdrop-filter:blur(8px);}
         .menu-btn{background:linear-gradient(135deg,#1e293b,#0f172a);color:#e2e8f0;padding:10px 14px;border-radius:12px;text-align:center;text-decoration:none;font-size:13px;font-weight:700;display:inline-flex;align-items:center;gap:4px;border:1px solid #334155;transition:all .25s;}
         .menu-btn:hover{transform:translateY(-2px);border-color:#fef08a;box-shadow:0 4px 12px rgba(254,240,138,.15);}
         .menu-btn.active{background:linear-gradient(135deg,#f97316,#ef4444);color:white;border-color:#f97316;box-shadow:0 4px 14px rgba(249,115,22,.35);}
+
         h2{text-align:center;font-size:22px;color:#fef08a;margin-bottom:24px;}
+
         /* === THẺ LỊCH ĐẤU === */
         .lich-item{background:linear-gradient(145deg,#1e293b,#0f172a);border-radius:16px;padding:20px;margin-bottom:16px;border:2px solid #1e293b;border-left:4px solid #f97316;transition:all .3s;}
         .lich-item:hover{border-color:#fef08a;transform:translateY(-2px);box-shadow:0 6px 16px rgba(254,240,138,.12);}
@@ -26,12 +29,14 @@
         .lich-thoi-gian{display:flex;align-items:center;justify-content:space-between;padding:0 8px;}
         .lich-ngay{font-size:14px;color:#e2e8f0;font-weight:600;display:flex;align-items:center;gap:6px;}
         .lich-trang-thai{font-size:13px;font-weight:700;padding:4px 12px;border-radius:12px;background:rgba(249,115,22,.15);color:#fdba74;}
+
         .empty{text-align:center;color:#64748b;padding:60px 20px;}
         .loading{text-align:center;color:#fef08a;padding:40px;animation:nhapnhay 1.5s infinite;}
         @keyframes nhapnhay{0%,100%{opacity:1;}50%{opacity:.4;}}
     </style>
 </head>
 <body>
+
 <nav class="menu">
     <a href="index.html" class="menu-btn">🏠 Trang chủ</a>
     <a href="lich-dau.html" class="menu-btn active">📅 Lịch đấu</a>
@@ -40,8 +45,10 @@
     <a href="thong-ke.html" class="menu-btn">📈 Thống kê</a>
     <a href="tin-nong.html" class="menu-btn">📰 Tin Nóng</a>
 </nav>
+
 <h2>📅 Lịch Thi Đấu Sắp Tới</h2>
 <div id="list-lich"><div class="loading">Đang tải lịch đấu...</div></div>
+
 <script>
 // === LINK MỚI ĐÃ THAY ===
 const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRjGewmdAmJVjyi-0vSc22hhFPacMgGc-WmVE8PEM3jHfA7IvED3XbBp68Bwp16n1Dc2FFP9ETKTaSH/pub?gid=655851279&single=true&output=csv";
@@ -52,7 +59,7 @@ function parseCSV(text){
         if(!l.trim())continue;
         let p=[],c="",q=0;
         for(let ch of l){
-            if(ch=='"')q=!q;
+            if(ch==='"')q=!q;
             else if(ch==','&&!q){p.push(c.trim());c="";}
             else c+=ch;
         }
@@ -60,13 +67,17 @@ function parseCSV(text){
     }
     return rows;
 }
-fetch(CSV_URL).then(r=>r.text()).then(csv=>{
+
+fetch(CSV_URL)
+.then(r=>r.text())
+.then(csv=>{
     const rows=parseCSV(csv);
     console.log("✅ Đọc được:", rows);
     if(rows.length<2){
         document.getElementById("list-lich").innerHTML=`<div class="empty">Chưa có dữ liệu → Kiểm tra Sheet!</div>`;
         return;
     }
+
     const header=rows[0].map(h=>h.trim().toLowerCase());
     const idx_loai = header.indexOf("loai_muc");
     const idx_thutu = header.indexOf("thu_tu");
@@ -76,10 +87,12 @@ fetch(CSV_URL).then(r=>r.text()).then(csv=>{
     const idx_giai = header.indexOf("giai_dau");
     const idx_trangthai = header.indexOf("trang_thai");
     const idx_sandau = header.indexOf("san_dau");
+
     if([idx_loai,idx_thutu,idx_nha,idx_khach,idx_ngaygio,idx_giai,idx_trangthai].includes(-1)){
         document.getElementById("list-lich").innerHTML=`<div class="empty">❌ Thiếu tên cột! Hàng 1: loai_muc, thu_tu, doi_nha, doi_khach, ngay_gio, giai_dau, trang_thai, san_dau</div>`;
         return;
     }
+
     const data=[];
     for(let i=1;i<rows.length;i++){
         const r=rows[i];
@@ -97,17 +110,19 @@ fetch(CSV_URL).then(r=>r.text()).then(csv=>{
             sandau:idx_sandau>=0 ? (r[idx_sandau]||"").trim() : ""
         });
     }
+
     data.sort((a,b)=>a.st-b.st);
     console.log("✅ Dữ liệu sạch:", data);
+
     const box=document.getElementById("list-lich");
     if(!data.length){
         box.innerHTML=`<div class="empty">Chưa có lịch đấu hợp lệ → Kiểm tra dữ liệu trên Sheet!</div>`;
         return;
     }
+
     box.innerHTML="";
     data.forEach(x=>{
-        box.innerHTML+=`
-        <div class="lich-item">
+        box.innerHTML+=`<div class="lich-item">
             <div class="lich-giai">🏆 ${x.giai}</div>
             <div class="lich-doi">
                 <span class="lich-doi-nha">${x.nha}</span>
@@ -122,9 +137,14 @@ fetch(CSV_URL).then(r=>r.text()).then(csv=>{
             </div>
         </div>`;
     });
-}).catch(err=>{
+})
+.catch(err=>{
     document.getElementById("list-lich").innerHTML=`<div class="empty">Lỗi: ${err.message}</div>`;
 });
 </script>
+
+<!-- ✅ MÃ QUẢNG CÁO ĐƯỢC CHÈN ĐÚNG VỊ TRÍ → TRƯỚC </body> -->
+<script>(function(s){s.dataset.zone='11665696',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
+
 </body>
 </html>
