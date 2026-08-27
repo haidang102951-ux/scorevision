@@ -7,15 +7,19 @@
     <style>
         *{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;}
         body{background:#020617;color:#f8fafc;line-height:1.7;padding:16px;max-width:850px;margin:0 auto;}
-
-        /* === MENU === */
-        .menu{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px;position:sticky;top:0;background:#020617f0;padding:10px 0;z-index:99;backdrop-filter:blur(8px);}
+        /* === MENU CHÍNH === */
+        .menu{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;position:sticky;top:0;background:#020617f0;padding:10px 0;z-index:99;backdrop-filter:blur(8px);}
         .menu-btn{background:linear-gradient(135deg,#1e293b,#0f172a);color:#e2e8f0;padding:10px 14px;border-radius:12px;text-align:center;text-decoration:none;font-size:13px;font-weight:700;display:inline-flex;align-items:center;gap:4px;border:1px solid #334155;transition:all .25s;}
         .menu-btn:hover{transform:translateY(-2px);border-color:#fef08a;box-shadow:0 4px 12px rgba(254,240,138,.15);}
         .menu-btn.active{background:linear-gradient(135deg,#f97316,#ef4444);color:white;border-color:#f97316;box-shadow:0 4px 14px rgba(249,115,22,.35);}
+        
+        /* === NÚT LỌC GIẢI ĐẤU === */
+        .loc-giai{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;padding-bottom:8px;border-bottom:1px solid #1e293b;}
+        .loc-btn{background:#1e293b;color:#cbd5e1;padding:8px 12px;border-radius:8px;border:none;font-size:12px;font-weight:600;cursor:pointer;transition:all .2s;}
+        .loc-btn:hover{background:#334155;color:#fff;}
+        .loc-btn.active{background:linear-gradient(135deg,#f97316,#ef4444);color:#fff;box-shadow:0 2px 8px rgba(249,115,22,.3);}
 
-        h2{text-align:center;font-size:22px;color:#fef08a;margin-bottom:24px;}
-
+        h2{text-align:center;font-size:22px;color:#fef08a;margin-bottom:20px;}
         /* === THẺ LỊCH ĐẤU === */
         .lich-item{background:linear-gradient(145deg,#1e293b,#0f172a);border-radius:16px;padding:20px;margin-bottom:16px;border:2px solid #1e293b;border-left:4px solid #f97316;transition:all .3s;}
         .lich-item:hover{border-color:#fef08a;transform:translateY(-2px);box-shadow:0 6px 16px rgba(254,240,138,.12);}
@@ -29,14 +33,12 @@
         .lich-thoi-gian{display:flex;align-items:center;justify-content:space-between;padding:0 8px;}
         .lich-ngay{font-size:14px;color:#e2e8f0;font-weight:600;display:flex;align-items:center;gap:6px;}
         .lich-trang-thai{font-size:13px;font-weight:700;padding:4px 12px;border-radius:12px;background:rgba(249,115,22,.15);color:#fdba74;}
-
         .empty{text-align:center;color:#64748b;padding:60px 20px;}
         .loading{text-align:center;color:#fef08a;padding:40px;animation:nhapnhay 1.5s infinite;}
         @keyframes nhapnhay{0%,100%{opacity:1;}50%{opacity:.4;}}
     </style>
 </head>
 <body>
-
 <nav class="menu">
     <a href="index.html" class="menu-btn">🏠 Trang chủ</a>
     <a href="lich-dau.html" class="menu-btn active">📅 Lịch đấu</a>
@@ -47,11 +49,29 @@
 </nav>
 
 <h2>📅 Lịch Thi Đấu Sắp Tới</h2>
+
+<!-- === NÚT LỌC THEO GIẢI ĐẤU === -->
+<div class="loc-giai">
+    <button class="loc-btn active" data-giai="TatCa">Tất Cả</button>
+    <button class="loc-btn" data-giai="Ngoại Hạng Anh">🏆 Anh</button>
+    <button class="loc-btn" data-giai="La Liga">🇪🇸 Tây Ban Nha</button>
+    <button class="loc-btn" data-giai="Seri A">🇮🇹 Ý</button>
+    <button class="loc-btn" data-giai="Bundesliga">🇩🇪 Đức</button>
+    <button class="loc-btn" data-giai="Ligue 1">🇫🇷 Pháp</button>
+    <button class="loc-btn" data-giai="Cúp C1 Châu Âu">🏆 Cúp C1</button>
+    <button class="loc-btn" data-giai="Cúp C3">🏆 Cúp C3</button>
+    <button class="loc-btn" data-giai="Liên đoàn Anh">🏴 Liên đoàn Anh</button>
+    <button class="loc-btn" data-giai="Aff Cup">🏆 Aff Cup</button>
+</div>
+
 <div id="list-lich"><div class="loading">Đang tải lịch đấu...</div></div>
 
 <script>
-// === LINK MỚI ĐÃ THAY ===
+// === LINK SHEET ===
 const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRjGewmdAmJVjyi-0vSc22hhFPacMgGc-WmVE8PEM3jHfA7IvED3XbBp68Bwp16n1Dc2FFP9ETKTaSH/pub?gid=655851279&single=true&output=csv";
+
+let duLieuGoc = [];
+let giaiDangChon = "TatCa";
 
 function parseCSV(text){
     const rows=[], lines=text.split("\n");
@@ -72,12 +92,10 @@ fetch(CSV_URL)
 .then(r=>r.text())
 .then(csv=>{
     const rows=parseCSV(csv);
-    console.log("✅ Đọc được:", rows);
     if(rows.length<2){
         document.getElementById("list-lich").innerHTML=`<div class="empty">Chưa có dữ liệu → Kiểm tra Sheet!</div>`;
         return;
     }
-
     const header=rows[0].map(h=>h.trim().toLowerCase());
     const idx_loai = header.indexOf("loai_muc");
     const idx_thutu = header.indexOf("thu_tu");
@@ -87,20 +105,18 @@ fetch(CSV_URL)
     const idx_giai = header.indexOf("giai_dau");
     const idx_trangthai = header.indexOf("trang_thai");
     const idx_sandau = header.indexOf("san_dau");
-
     if([idx_loai,idx_thutu,idx_nha,idx_khach,idx_ngaygio,idx_giai,idx_trangthai].includes(-1)){
-        document.getElementById("list-lich").innerHTML=`<div class="empty">❌ Thiếu tên cột! Hàng 1: loai_muc, thu_tu, doi_nha, doi_khach, ngay_gio, giai_dau, trang_thai, san_dau</div>`;
+        document.getElementById("list-lich").innerHTML=`<div class="empty">❌ Thiếu tên cột!</div>`;
         return;
     }
-
-    const data=[];
+    // Lưu toàn bộ dữ liệu
     for(let i=1;i<rows.length;i++){
         const r=rows[i];
         if(r[idx_loai]!=="lich_dau")continue;
         const nha = (r[idx_nha]||"").trim();
         const khach = (r[idx_khach]||"").trim();
         if(!nha || !khach) continue;
-        data.push({
+        duLieuGoc.push({
             st:Number(r[idx_thutu])||999,
             nha:nha,
             khach:khach,
@@ -110,18 +126,26 @@ fetch(CSV_URL)
             sandau:idx_sandau>=0 ? (r[idx_sandau]||"").trim() : ""
         });
     }
+    duLieuGoc.sort((a,b)=>a.st-b.st);
+    hienThiDuLieu();
+})
+.catch(err=>{
+    document.getElementById("list-lich").innerHTML=`<div class="empty">Lỗi: ${err.message}</div>`;
+});
 
-    data.sort((a,b)=>a.st-b.st);
-    console.log("✅ Dữ liệu sạch:", data);
-
+// === HIỂN THỊ DỮ LIỆU THEO GIẢI ĐƯỢC CHỌN ===
+function hienThiDuLieu(){
+    let dataLoc = duLieuGoc;
+    if(giaiDangChon !== "TatCa"){
+        dataLoc = duLieuGoc.filter(d => d.giai === giaiDangChon);
+    }
     const box=document.getElementById("list-lich");
-    if(!data.length){
-        box.innerHTML=`<div class="empty">Chưa có lịch đấu hợp lệ → Kiểm tra dữ liệu trên Sheet!</div>`;
+    if(!dataLoc.length){
+        box.innerHTML=`<div class="empty">📭 Chưa có lịch đấu cho giải này!</div>`;
         return;
     }
-
     box.innerHTML="";
-    data.forEach(x=>{
+    dataLoc.forEach(x=>{
         box.innerHTML+=`<div class="lich-item">
             <div class="lich-giai">🏆 ${x.giai}</div>
             <div class="lich-doi">
@@ -137,14 +161,20 @@ fetch(CSV_URL)
             </div>
         </div>`;
     });
-})
-.catch(err=>{
-    document.getElementById("list-lich").innerHTML=`<div class="empty">Lỗi: ${err.message}</div>`;
+}
+
+// === BẤM NÚT LỌC ===
+document.querySelectorAll(".loc-btn").forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+        document.querySelectorAll(".loc-btn").forEach(b=>b.classList.remove("active"));
+        btn.classList.add("active");
+        giaiDangChon = btn.dataset.giai;
+        hienThiDuLieu();
+    });
 });
 </script>
 
-<!-- ✅ MÃ QUẢNG CÁO ĐƯỢC CHÈN ĐÚNG VỊ TRÍ → TRƯỚC </body> -->
+<!-- ✅ MÃ QUẢNG CÁO GIỮ NGUYÊN === -->
 <script>(function(s){s.dataset.zone='11665696',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
-
 </body>
 </html>
