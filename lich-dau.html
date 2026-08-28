@@ -58,7 +58,7 @@
     <button class="loc-btn" data-giai="Cúp C1 Châu Âu">🏆 Cúp C1</button>
     <button class="loc-btn" data-giai="Cúp C3">🏆 Cúp C3</button>
     <button class="loc-btn" data-giai="Liên đoàn Anh">🏴 Liên đoàn Anh</button>
-    <button class="loc-btn" data-giai="Aff Cup">🏆 FIFA Asean Cup</button>
+    <button class="loc-btn" data-giai="FIFA Asean Cup">🏆 FIFA Asean Cup</button>
 </div>
 <div id="list-lich"><div class="loading">Đang tải lịch đấu...</div></div>
 <script>
@@ -66,6 +66,14 @@
 const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRjGewmdAmJVjyi-0vSc22hhFPacMgGc-WmVE8PEM3jHfA7IvED3XbBp68Bwp16n1Dc2FFP9ETKTaSH/pub?gid=655851279&single=true&output=csv";
 let duLieuGoc = [];
 let giaiDangChon = "TatCa";
+
+// === CHUẨN HÓA TÊN GIẢI — NHẬN CẢ 2 TÊN ===
+function chuanHoaTenGiai(ten){
+    ten = ten.trim();
+    if(ten === "Aff Cup" || ten === "FIFA Asean Cup") return "FIFA Asean Cup";
+    return ten;
+}
+
 function parseCSV(text){
     const rows=[], lines=text.split("\n");
     for(let l of lines){
@@ -80,6 +88,7 @@ function parseCSV(text){
     }
     return rows;
 }
+
 fetch(CSV_URL)
 .then(r=>r.text())
 .then(csv=>{
@@ -113,7 +122,7 @@ fetch(CSV_URL)
             nha:nha,
             khach:khach,
             ngaygio:(r[idx_ngaygio]||"").trim(),
-            giai:(r[idx_giai]||"").trim(),
+            giai:chuanHoaTenGiai(r[idx_giai]||""),
             trangthai:(r[idx_trangthai]||"").trim(),
             sandau:idx_sandau>=0 ? (r[idx_sandau]||"").trim() : ""
         });
@@ -124,6 +133,7 @@ fetch(CSV_URL)
 .catch(err=>{
     document.getElementById("list-lich").innerHTML=`<div class="empty">Lỗi: ${err.message}</div>`;
 });
+
 // === HIỂN THỊ DỮ LIỆU THEO GIẢI ĐƯỢC CHỌN ===
 function hienThiDuLieu(){
     let dataLoc = duLieuGoc;
@@ -153,6 +163,7 @@ function hienThiDuLieu(){
         </div>`;
     });
 }
+
 // === BẤM NÚT LỌC ===
 document.querySelectorAll(".loc-btn").forEach(btn=>{
     btn.addEventListener("click", ()=>{
