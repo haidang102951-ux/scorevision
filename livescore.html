@@ -102,15 +102,7 @@
             background:linear-gradient(135deg,rgba(34,197,94,.18),rgba(22,163,74,.10));
             color:#86efac;border-color:rgba(34,197,94,.25);font-weight:600;
         }
-        .menu-btn.livescore{
-            background:linear-gradient(135deg,rgba(34,197,94,.15),rgba(22,163,74,.08));
-            color:#86efac;border-color:rgba(34,197,94,.20);
-        }
-        .menu-btn.gopy{
-            background:linear-gradient(135deg,rgba(99,102,241,.15),rgba(79,70,229,.08));
-            color:#a5b4fc;border-color:rgba(99,102,241,.20);
-        }
-        /* === NỘI DUNG CHÍNH === */
+        /* === NỘI DUNG === */
         .khoi-chinh{
             background:linear-gradient(145deg,rgba(30,41,59,.85),rgba(15,23,42,.9));
             border-radius:16px;padding:32px 24px;
@@ -124,24 +116,60 @@
         .trang-thai{
             display:inline-flex;align-items:center;gap:6px;
             background:rgba(239,68,68,.10);color:#fca5a5;
-            padding:4px 12px;border-radius:12px;font-size:13px;margin-bottom:20px;
+            padding:4px 12px;border-radius:12px;font-size:13px;margin-bottom:24px;
         }
         .trang-thai span{
             width:8px;height:8px;background:#ef4444;border-radius:50%;
             animation:nhapnhay 1s infinite;
         }
         @keyframes nhapnhay{0%,100%{opacity:1;}50%{opacity:.2;}}
-        .empty{
-            text-align:center;padding:60px 20px;color:#64748b;
+
+        /* === KHỐI GIẢI ĐẤU === */
+        .khoi-giai{margin-bottom:28px;border:1px solid rgba(59,130,246,.15);border-radius:12px;overflow:hidden;}
+        .ten-giai{
+            background:linear-gradient(90deg,rgba(59,130,246,.15),rgba(59,130,246,.05));
+            padding:10px 16px;font-weight:600;color:#60a5fa;font-size:15px;
         }
+        .ds-tran{padding:12px;background:rgba(15,23,42,.5);}
+        .tran-item{
+            display:flex;align-items:center;justify-content:space-between;
+            padding:12px 10px;border-bottom:1px solid rgba(59,130,246,.08);
+            gap:8px;flex-wrap:wrap;
+        }
+        .tran-item:last-child{border-bottom:none;}
+        .tran-item:hover{background:rgba(59,130,246,.04);border-radius:8px;}
+
+        .doi-nha{flex:1;min-width:120px;text-align:right;font-size:14px;}
+        .ti-so-khoi{
+            display:flex;flex-direction:column;align-items:center;min-width:90px;
+        }
+        .ti-so{font-weight:bold;font-size:18px;color:#fef08a;line-height:1.2;}
+        .thoi-gian{font-size:11px;color:#94a3b8;}
+        .dang-da{color:#22c55e;}
+        .da-ket-thuc{color:#64748b;}
+        .doi-khach{flex:1;min-width:120px;text-align:left;font-size:14px;}
+        .thong-ke-nho{
+            width:100%;margin-top:6px;font-size:11px;color:#64748b;
+            padding-top:6px;border-top:1px dashed rgba(59,130,246,.1);
+            text-align:center;
+        }
+
+        .empty{text-align:center;padding:60px 20px;color:#64748b;}
         .empty .icon{font-size:48px;margin-bottom:12px;opacity:.5;}
+        .nut-tai-lai{
+            margin-top:10px;padding:10px 24px;background:linear-gradient(90deg,#22c55e,#16a34a);
+            color:#fff;border:none;border-radius:10px;cursor:pointer;font-weight:600;transition:var(--tran);
+        }
+        .nut-tai-lai:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(34,197,94,.20);}
         .chan-trang{
             margin-top:40px;padding:20px 0;border-top:1px solid var(--border-subtle);text-align:center;
         }
         .chan-trang p{font-size:13px;color:#64748b;}
-        @media(max-width:768px){
-            .menu{justify-content:center;}
-            .menu-btn{padding:8px 11px;font-size:12px;}
+
+        @media(max-width:600px){
+            .doi-nha,.doi-khach{min-width:100px;font-size:13px;}
+            .ti-so{font-size:16px;}
+            .ds-tran{padding:8px;}
         }
     </style>
 </head>
@@ -170,29 +198,33 @@
     <a href="thong-ke.html" class="menu-btn">📈 Thống kê</a>
     <a href="tin-nong.html" class="menu-btn">📰 Tin Nóng</a>
     <a href="ket-qua.html" class="menu-btn">🏆 Kết Quả</a>
-    <a href="livescore.html" class="menu-btn livescore active">⚽ LiveScore</a>
-    <a href="gop-y.html" class="menu-btn gopy">💬 Góp Ý</a>
+    <a href="livescore.html" class="menu-btn active">⚽ LiveScore</a>
+    <a href="gop-y.html" class="menu-btn">💬 Góp Ý</a>
 </nav>
-
 <!-- === NỘI DUNG LIVE SCORE === -->
 <div class="khoi-chinh">
     <h2>⚽ Trận Đấu Đang Diễn Ra</h2>
     <div class="trang-thai"><span></span> Đang theo dõi trực tiếp</div>
     
-    <div class="empty">
-        <div class="icon">📡</div>
-        <h3>Đang kết nối nguồn dữ liệu...</h3>
-        <p>Dữ liệu trận đấu đang được cập nhật. Vui lòng quay lại sau ít phút!</p>
+    <div id="noi-dung">
+        <div class="empty">
+            <div class="icon">📡</div>
+            <h3>Đang kết nối nguồn dữ liệu...</h3>
+            <p>Dữ liệu trận đấu đang được tải. Vui lòng chờ giây lát!</p>
+        </div>
     </div>
+    
+    <button class="nut-tai-lai" onclick="taiLaiDuLieu()">🔄 Tải Lại Dữ Liệu</button>
 </div>
-
 <div class="chan-trang">
     <p><strong>Score Vision</strong> — Theo dõi trực tiếp & Kết quả bóng đá</p>
     <p>© 2026 Score Vision. Tất cả quyền được bảo lưu.</p>
 </div>
 </div>
-
 <script>
+// ✅ === LINK CSV ĐÃ DÁN SẴN ===
+const LINK_CSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRjGewmdAmJVjyi-0vSc22hhFPacMgGc-WmVE8PEM3jHfA7IvED3XbBp68Bwp16n1Dc2FFP9ETKTaSH/pub?gid=1813200937&single=true&output=csv";
+
 // === CẬP NHẬT THỜI GIAN ===
 function dinhDangNgay(gio){
     const n = new Date();
@@ -204,7 +236,109 @@ function dinhDangNgay(gio){
     return `${gio ? h+":"+ph+" " : ""}${d}/${m}/${y}`;
 }
 document.getElementById("thoi-gian-capnhat").textContent = "🔄 Cập nhật lúc: " + dinhDangNgay(true);
-</script>
 
+// === TẢI & NHÓM DỮ LIỆU THEO GIẢI ===
+async function taiLaiDuLieu(){
+    document.getElementById("noi-dung").innerHTML = `
+        <div class="empty"><div class="icon">📡</div><h3>Đang tải dữ liệu...</h3></div>`;
+    
+    try {
+        const resp = await fetch(LINK_CSV);
+        if(!resp.ok) throw new Error("Không truy cập được Sheet");
+        const csv = await resp.text();
+        hienThiDuLieu(csv);
+    } catch(err) {
+        document.getElementById("noi-dung").innerHTML = `
+            <div class="empty">
+                <div class="icon">❌</div>
+                <h3>Lỗi kết nối dữ liệu</h3>
+                <p>${err.message}<br>Kiểm tra Sheet đã Xuất bản trên web chưa!</p>
+            </div>`;
+    }
+}
+
+// === NHÓM TRẬN ĐẤU THEO TỪNG GIẢI ===
+function hienThiDuLieu(csv){
+    const dong = csv.split("\n").map(d => d.split(","));
+    const khuon = document.getElementById("noi-dung");
+
+    if(dong.length <= 1){
+        khuon.innerHTML = `<div class="empty"><div class="icon">⚽</div><h3>Hiện chưa có trận đấu nào</h3><p>Không có trận đang diễn ra. Vui lòng quay lại sau!</p></div>`;
+        return;
+    }
+
+    // === BƯỚC 1: NHÓM TRẬN THEO GIẢI ===
+    const duLieuNhom = {};
+    let demTong = 0;
+
+    // Đọc từ dòng 2, bỏ dòng tiêu đề
+    for(let i=1; i<dong.length; i++){
+        const h = dong[i];
+        if(h.length < 8) continue;
+
+        const doiNha = h[2] || "";
+        const doiKhach = h[3] || "";
+        const tiSo = h[4] || "0-0";
+        const giai = (h[5] || "Chưa phân loại").trim();
+        const trangThai = h[6] || "";
+        const thoiGian = h[7] || "";
+        const kiemSoat = h[8] || "-/-";
+        const sutTrung = h[9] || "-/-";
+        const phatGoc = h[10] || "-/-";
+        const theVang = h[11] || "-/-";
+        const theDo = h[12] || "-/-";
+
+        if(!doiNha && !doiKhach) continue;
+
+        if(!duLieuNhom[giai]) duLieuNhom[giai] = [];
+        duLieuNhom[giai].push({doiNha, doiKhach, tiSo, trangThai, thoiGian, kiemSoat, sutTrung, phatGoc, theVang, theDo});
+        demTong++;
+    }
+
+    if(demTong === 0){
+        khuon.innerHTML = `<div class="empty"><div class="icon">⚽</div><h3>Hiện chưa có trận đấu nào</h3><p>Không có trận đang diễn ra. Vui lòng quay lại sau!</p></div>`;
+        return;
+    }
+
+    // === BƯỚC 2: HIỂN THỊ TỪNG GIẢI ===
+    let html = "";
+    for(const tenGiai in duLieuNhom){
+        html += `<div class="khoi-giai">
+            <div class="ten-giai">🏆 ${tenGiai}</div>
+            <div class="ds-tran">`;
+
+        duLieuNhom[tenGiai].forEach(tran => {
+            let lopThoiGian = "";
+            let hienThiTG = tran.thoiGian;
+            if(tran.trangThai.indexOf("Đang đá") !== -1){
+                lopThoiGian = "dang-da";
+                hienThiTG = "⚡ " + tran.thoiGian;
+            } else if(tran.trangThai.indexOf("Hết") !== -1 || tran.trangThai.indexOf("Kết thúc") !== -1){
+                lopThoiGian = "da-ket-thuc";
+                hienThiTG = "✅ Hết";
+            }
+
+            html += `<div class="tran-item">
+                <div class="doi-nha">${tran.doiNha}</div>
+                <div class="ti-so-khoi">
+                    <div class="ti-so">${tran.tiSo}</div>
+                    <div class="thoi-gian ${lopThoiGian}">${hienThiTG}</div>
+                </div>
+                <div class="doi-khach">${tran.doiKhach}</div>
+                <div class="thong-ke-nho">
+                    ⚽${tran.sutTrung} | 📐${tran.kiemSoat} | 📍${tran.phatGoc} | 🟨${tran.theVang} | 🟥${tran.theDo}
+                </div>
+            </div>`;
+        });
+
+        html += `</div></div>`;
+    }
+
+    khuon.innerHTML = html;
+}
+
+// === TỰ ĐỘNG TẢI LẦN ĐẦU ===
+taiLaiDuLieu();
+</script>
 </body>
 </html>
