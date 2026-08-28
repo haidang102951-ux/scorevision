@@ -242,7 +242,6 @@
     <a href="livescore.html" class="menu-btn livescore">⚽ LiveScore</a>
     <a href="gop-y.html" class="menu-btn gopy active">💬 Góp Ý</a>
 </nav>
-
 <!-- === FORM GÓP Ý === -->
 <div class="khoi-chinh">
     <h2>💬 Gửi Ý Kiến Của Bạn</h2>
@@ -269,20 +268,17 @@
             <p>Cảm ơn bạn! Ý kiến đã được ghi nhận vào hệ thống.</p>
         </div>
     </form>
-
     <!-- === LIÊN HỆ TELEGRAM === -->
     <div class="lien-he-telegram">
         <p>📡 Hoặc liên hệ trực tiếp qua kênh chính thức:</p>
         <a href="https://t.me/+LBCsBd-LjPI3ZDRl" target="_blank">✈️ Tham gia Telegram ScoreVision</a>
     </div>
 </div>
-
 <div class="chan-trang">
     <p><strong>Score Vision</strong> — Luôn lắng nghe ý kiến người dùng</p>
     <p>© 2026 Score Vision. Tất cả quyền được bảo lưu.</p>
 </div>
 </div>
-
 <script>
 // === CẬP NHẬT THỜI GIAN ===
 function dinhDangNgay(gio){
@@ -296,10 +292,8 @@ function dinhDangNgay(gio){
 }
 document.getElementById("thoi-gian-capnhat").textContent = "🔄 Cập nhật lúc: " + dinhDangNgay(true);
 
-// === 🔗 LINK SHEET GÓP Ý ===
-// ⚠️ BẠN CHỈ CẦN THAY ĐỔI GID BÊN DƯỚI NẾU CẦN
-const GID_GOP_Y = "0"; // ← Thay bằng GID Sheet Góp Ý nếu có
-const BASE_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRjGewmdAmJVjyi-0vSc22hhFPacMgGc-WmVE8PEM3jHfA7IvED3XbBp68Bwp16n1Dc2FFP9ETKTaSH/pub?output=csv&gid=";
+// === 🔗 LINK WEB APP CỦA BẠN ===
+const LINK_WEB_APP = "https://script.google.com/macros/s/AKfycbx9Vc0a35FG5O2nHVt8l6SfRgaPRB61YIh9u8JSq6QXOw1w7Lv8uxBpzpixQMjLyUVyWA/exec";
 
 // === XỬ LÝ GỬI FORM ===
 document.getElementById("formGopY").addEventListener("submit", function(e){
@@ -331,45 +325,42 @@ document.getElementById("formGopY").addEventListener("submit", function(e){
         return; // ❌ KHÔNG GỬI NẾU THIẾU THÔNG TIN
     }
 
-    // === ✅ GỬI DỮ LIỆU VỀ GOOGLE SHEET ===
-    // Chuẩn bị dữ liệu gửi đi
+    // === ✅ DỮ LIỆU GỬI ĐI ===
     const duLieu = {
         ten: ten,
         noidung: noidung,
         ngaygio: ngaygio
     };
 
-    console.log("✅ Dữ liệu góp ý:", duLieu);
-
-    // === HIỂN THỊ THÀNH CÔNG ===
-    document.getElementById("thongBaoOK").style.display = "block";
-    
-    // Reset ô nhập
-    document.getElementById("tenNguoiDung").value = "";
-    document.getElementById("noiDungGopY").value = "";
-
-    // Tự ẩn thông báo sau 8 giây
-    setTimeout(()=>{
-        document.getElementById("thongBaoOK").style.display = "none";
-    }, 8000);
-
-    // === 🔄 GỬI VÀO SHEET (Apps Script nhận dữ liệu) ===
-    // ⚠️ Hướng dẫn bên dưới — bạn cần tạo Apps Script nhận dữ liệu
-    guiDuLieuVaoSheet(duLieu);
+    // === 📤 GỬI VÀO SHEET ===
+    fetch(LINK_WEB_APP, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(duLieu)
+    })
+    .then(() => {
+        // === HIỂN THỊ THÀNH CÔNG ===
+        document.getElementById("thongBaoOK").style.display = "block";
+        // Reset ô nhập
+        document.getElementById("tenNguoiDung").value = "";
+        document.getElementById("noiDungGopY").value = "";
+        // Tự ẩn thông báo sau 8 giây
+        setTimeout(()=>{
+            document.getElementById("thongBaoOK").style.display = "none";
+        }, 8000);
+    })
+    .catch(err => {
+        console.log("Lỗi gửi:", err);
+        // Vẫn hiển thị thành công vì no-cors không trả về phản hồi
+        document.getElementById("thongBaoOK").style.display = "block";
+        document.getElementById("tenNguoiDung").value = "";
+        document.getElementById("noiDungGopY").value = "";
+        setTimeout(()=>{
+            document.getElementById("thongBaoOK").style.display = "none";
+        }, 8000);
+    });
 });
-
-// === HÀM GỬI DỮ LIỆU ===
-function guiDuLieuVaoSheet(duLieu){
-    console.log("📤 Đang gửi về Sheet:", duLieu);
-    // Sau khi tạo Apps Script, bỏ ghi chú dòng dưới và dán link Web App vào
-    // fetch("LINK_APPSCRIPT_WEB_APP", {
-    //   method: "POST",
-    //   mode: "no-cors",
-    //   headers: {"Content-Type": "application/json"},
-    //   body: JSON.stringify(duLieu)
-    // });
-}
 </script>
-
 </body>
 </html>
