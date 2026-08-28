@@ -7,19 +7,15 @@
     <style>
         *{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;}
         body{background:#020617;color:#f8fafc;line-height:1.7;padding:16px;max-width:850px;margin:0 auto;}
-        /* === MENU CHÍNH === */
         .menu{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;position:sticky;top:0;background:#020617f0;padding:10px 0;z-index:99;backdrop-filter:blur(8px);}
         .menu-btn{background:linear-gradient(135deg,#1e293b,#0f172a);color:#e2e8f0;padding:10px 14px;border-radius:12px;text-align:center;text-decoration:none;font-size:13px;font-weight:700;display:inline-flex;align-items:center;gap:4px;border:1px solid #334155;transition:all .25s;}
         .menu-btn:hover{transform:translateY(-2px);border-color:#fef08a;box-shadow:0 4px 12px rgba(254,240,138,.15);}
         .menu-btn.active{background:linear-gradient(135deg,#f97316,#ef4444);color:white;border-color:#f97316;box-shadow:0 4px 14px rgba(249,115,22,.35);}
-        
-        /* === NÚT LỌC GIẢI ĐẤU === */
         .loc-giai{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;padding-bottom:8px;border-bottom:1px solid #1e293b;}
         .loc-btn{background:#1e293b;color:#cbd5e1;padding:8px 12px;border-radius:8px;border:none;font-size:12px;font-weight:600;cursor:pointer;transition:all .2s;}
         .loc-btn:hover{background:#334155;color:#fff;}
         .loc-btn.active{background:linear-gradient(135deg,#f97316,#ef4444);color:#fff;box-shadow:0 2px 8px rgba(249,115,22,.3);}
         h2{text-align:center;font-size:22px;color:#fef08a;margin-bottom:20px;}
-        /* === THẺ LỊCH ĐẤU === */
         .lich-item{background:linear-gradient(145deg,#1e293b,#0f172a);border-radius:16px;padding:20px;margin-bottom:16px;border:2px solid #1e293b;border-left:4px solid #f97316;transition:all .3s;}
         .lich-item:hover{border-color:#fef08a;transform:translateY(-2px);box-shadow:0 6px 16px rgba(254,240,138,.12);}
         .lich-giai{font-size:14px;color:#94a3b8;margin-bottom:14px;display:flex;align-items:center;gap:6px;}
@@ -47,7 +43,6 @@
     <a href="tin-nong.html" class="menu-btn">📰 Tin Nóng</a>
 </nav>
 <h2>📅 Lịch Thi Đấu Sắp Tới</h2>
-<!-- === NÚT LỌC THEO GIẢI ĐẤU === -->
 <div class="loc-giai">
     <button class="loc-btn active" data-giai="TatCa">Tất Cả</button>
     <button class="loc-btn" data-giai="Ngoại Hạng Anh">🏆 Anh</button>
@@ -55,24 +50,16 @@
     <button class="loc-btn" data-giai="Seri A">🇮🇹 Ý</button>
     <button class="loc-btn" data-giai="Bundesliga">🇩🇪 Đức</button>
     <button class="loc-btn" data-giai="Ligue 1">🇫🇷 Pháp</button>
-    <button class="loc-btn" data-giai="Cúp C1 Châu Âu">🏆 Cúp C1</button>
+    <button class="loc-btn" data-giai="Cúp C1">🏆 Cúp C1</button>
     <button class="loc-btn" data-giai="Cúp C3">🏆 Cúp C3</button>
-    <button class="loc-btn" data-giai="Liên đoàn Anh">🏴 Liên đoàn Anh</button>
+    <button class="loc-btn" data-giai="Cúp Liên đoàn Anh">🏴 Cúp Liên đoàn Anh</button>
     <button class="loc-btn" data-giai="FIFA Asean Cup">🏆 FIFA Asean Cup</button>
 </div>
 <div id="list-lich"><div class="loading">Đang tải lịch đấu...</div></div>
 <script>
-// === LINK SHEET ===
 const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRjGewmdAmJVjyi-0vSc22hhFPacMgGc-WmVE8PEM3jHfA7IvED3XbBp68Bwp16n1Dc2FFP9ETKTaSH/pub?gid=655851279&single=true&output=csv";
 let duLieuGoc = [];
 let giaiDangChon = "TatCa";
-
-// === CHUẨN HÓA TÊN GIẢI — NHẬN CẢ 2 TÊN ===
-function chuanHoaTenGiai(ten){
-    ten = ten.trim();
-    if(ten === "Aff Cup" || ten === "FIFA Asean Cup") return "FIFA Asean Cup";
-    return ten;
-}
 
 function parseCSV(text){
     const rows=[], lines=text.split("\n");
@@ -94,7 +81,7 @@ fetch(CSV_URL)
 .then(csv=>{
     const rows=parseCSV(csv);
     if(rows.length<2){
-        document.getElementById("list-lich").innerHTML=`<div class="empty">Chưa có dữ liệu → Kiểm tra Sheet!</div>`;
+        document.getElementById("list-lich").innerHTML=`<div class="empty">Chưa có dữ liệu!</div>`;
         return;
     }
     const header=rows[0].map(h=>h.trim().toLowerCase());
@@ -107,10 +94,9 @@ fetch(CSV_URL)
     const idx_trangthai = header.indexOf("trang_thai");
     const idx_sandau = header.indexOf("san_dau");
     if([idx_loai,idx_thutu,idx_nha,idx_khach,idx_ngaygio,idx_giai,idx_trangthai].includes(-1)){
-        document.getElementById("list-lich").innerHTML=`<div class="empty">❌ Thiếu tên cột!</div>`;
+        document.getElementById("list-lich").innerHTML=`<div class="empty">❌ Thiếu cột!</div>`;
         return;
     }
-    // Lưu toàn bộ dữ liệu
     for(let i=1;i<rows.length;i++){
         const r=rows[i];
         if(r[idx_loai]!=="lich_dau")continue;
@@ -122,7 +108,7 @@ fetch(CSV_URL)
             nha:nha,
             khach:khach,
             ngaygio:(r[idx_ngaygio]||"").trim(),
-            giai:chuanHoaTenGiai(r[idx_giai]||""),
+            giai:(r[idx_giai]||"").trim(),
             trangthai:(r[idx_trangthai]||"").trim(),
             sandau:idx_sandau>=0 ? (r[idx_sandau]||"").trim() : ""
         });
@@ -134,7 +120,6 @@ fetch(CSV_URL)
     document.getElementById("list-lich").innerHTML=`<div class="empty">Lỗi: ${err.message}</div>`;
 });
 
-// === HIỂN THỊ DỮ LIỆU THEO GIẢI ĐƯỢC CHỌN ===
 function hienThiDuLieu(){
     let dataLoc = duLieuGoc;
     if(giaiDangChon !== "TatCa"){
@@ -154,7 +139,7 @@ function hienThiDuLieu(){
                 <span class="lich-vs">VS</span>
                 <span class="lich-doi-khach">${x.khach}</span>
             </div>
-            ${x.sandau ? `<div class="lich-san">🏟️ Sân: ${x.sandau}</div>` : ""}
+            ${x.sandau ? `<div class="lich-san">🏟️ ${x.sandau}</div>` : ""}
             <div class="lich-duong-ke"></div>
             <div class="lich-thoi-gian">
                 <span class="lich-ngay">📅 ${x.ngaygio}</span>
@@ -164,7 +149,6 @@ function hienThiDuLieu(){
     });
 }
 
-// === BẤM NÚT LỌC ===
 document.querySelectorAll(".loc-btn").forEach(btn=>{
     btn.addEventListener("click", ()=>{
         document.querySelectorAll(".loc-btn").forEach(b=>b.classList.remove("active"));
@@ -174,7 +158,6 @@ document.querySelectorAll(".loc-btn").forEach(btn=>{
     });
 });
 </script>
-<!-- ✅ MÃ QUẢNG CÁO GIỮ NGUYÊN === -->
 <script>(function(s){s.dataset.zone='11665696',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
 </body>
 </html>
