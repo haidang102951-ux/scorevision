@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>⚽ LiveScore — Score Vision</title>
+    <title>💬 Góp Ý — Score Vision</title>
     <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RTY3P63JJL"></script>
 <script>
@@ -21,24 +21,27 @@
             --bg-card:linear-gradient(145deg,#1e293b70,#0f172a80);
             --text-primary:#f1f5f9;
             --text-secondary:#cbd5e1;
-            --text-muted:#64748b;
-            --accent-gold:#fef08a;
+            --text-muted:#94a3b8;
+            --accent-blue:#6366f1;
+            --accent-blue-light:#a5b4fc;
             --accent-green:#22c55e;
             --accent-red:#ef4444;
             --border-subtle:rgba(148,163,184,.15);
+            --border-blue:rgba(99,102,241,.18);
             --tran:all .3s cubic-bezier(.4,0,.2,1);
+            --shadow-soft:0 8px 24px rgba(0,0,0,.30);
         }
         html{scroll-behavior:smooth;}
         body{
             background:
-                radial-gradient(circle at 20% 0%, rgba(30,64,175,.08) 0%, transparent 50%),
-                radial-gradient(circle at 80% 10%, rgba(34,197,94,.05) 0%, transparent 45%),
+                radial-gradient(circle at 20% 0%, rgba(99,102,241,.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 10%, rgba(59,130,246,.05) 0%, transparent 45%),
                 linear-gradient(180deg,#030712 0%,#0f172a 50%,#030712 100%);
             color:var(--text-primary);
             line-height:1.7;
             min-height:100vh;
         }
-        .container{max-width:1100px;margin:0 auto;padding:0 16px;}
+        .container{max-width:720px;margin:0 auto;padding:0 16px;}
         /* === ĐẦU TRANG === */
         .dau-trang-wrapper{
             position:relative;padding:32px 16px 16px;margin-bottom:8px;
@@ -49,7 +52,7 @@
             content:"";position:absolute;inset:0;z-index:0;
             background:
                 linear-gradient(180deg,rgba(3,7,18,.55) 0%,rgba(15,23,42,.45) 55%,rgba(15,23,42,.40) 100%),
-                url('https://images.unsplash.com/photo-1489944440615-453fc2b6a9a9?w=1400&h=320&fit=crop&q=60');
+                url('https://images.unsplash.com/photo-1579871620349-d090128a5b64?w=1400&h=300&fit=crop&q=60');
             background-size:cover;background-position:center top;
         }
         .dau-trang{
@@ -58,14 +61,14 @@
         }
         .logo{
             width:56px;height:56px;border-radius:16px;
-            background:linear-gradient(135deg,#22c55e,#16a34a);
+            background:linear-gradient(135deg,#6366f1,#4f46e5);
             display:flex;align-items:center;justify-content:center;
             font-size:28px;
-            box-shadow:0 4px 16px rgba(34,197,94,.20);
+            box-shadow:0 4px 16px rgba(99,102,241,.20);
         }
         .ten-thuong-hieu{
             font-size:28px;font-weight:800;letter-spacing:-.3px;
-            background:linear-gradient(90deg,#86efac,#22c55e);
+            background:linear-gradient(90deg,#a5b4fc,#6366f1);
             -webkit-background-clip:text;-webkit-text-fill-color:transparent;
         }
         .slogan-dau{
@@ -75,8 +78,8 @@
         .thanh-capnhat{
             text-align:center;font-size:13px;color:#94a3b8;
             padding:6px 12px;display:inline-block;
-            background:rgba(34,197,94,.06);border-radius:20px;
-            border:1px solid rgba(34,197,94,.12);
+            background:rgba(99,102,241,.06);border-radius:20px;
+            border:1px solid rgba(99,102,241,.12);
             position:relative;z-index:1;
         }
         .canh-giua{text-align:center;margin-bottom:12px;}
@@ -98,50 +101,116 @@
             background:rgba(254,240,138,.06);color:#fef08a;
             border-color:rgba(254,240,138,.12);transform:translateY(-1px);
         }
-        .menu-btn.active{
-            background:linear-gradient(135deg,rgba(34,197,94,.18),rgba(22,163,74,.10));
-            color:#86efac;border-color:rgba(34,197,94,.25);font-weight:600;
-        }
         .menu-btn.livescore{
             background:linear-gradient(135deg,rgba(34,197,94,.15),rgba(22,163,74,.08));
             color:#86efac;border-color:rgba(34,197,94,.20);
         }
         .menu-btn.gopy{
-            background:linear-gradient(135deg,rgba(99,102,241,.15),rgba(79,70,229,.08));
-            color:#a5b4fc;border-color:rgba(99,102,241,.20);
+            background:linear-gradient(135deg,rgba(99,102,241,.18),rgba(79,70,229,.10));
+            color:#a5b4fc;border-color:rgba(99,102,241,.25);font-weight:600;
         }
-        /* === NỘI DUNG CHÍNH === */
+        /* === KHỐI FORM CHÍNH === */
         .khoi-chinh{
             background:linear-gradient(145deg,rgba(30,41,59,.85),rgba(15,23,42,.9));
-            border-radius:16px;padding:32px 24px;
-            border:1px solid rgba(34,197,94,.15);
-            box-shadow:0 8px 24px rgba(0,0,0,.30);
+            border-radius:18px;padding:36px 28px;
+            border:1px solid var(--border-blue);
+            box-shadow:var(--shadow-soft);
+            position:relative;overflow:hidden;
+        }
+        .khoi-chinh::before{
+            content:"";position:absolute;top:0;left:0;width:100%;height:3px;
+            background:linear-gradient(90deg,#6366f1,#a5b4fc,#6366f1);
         }
         .khoi-chinh h2{
-            font-size:22px;color:#86efac;margin-bottom:12px;
+            font-size:22px;color:#a5b4fc;margin-bottom:8px;
             display:flex;align-items:center;gap:10px;
         }
-        .trang-thai{
-            display:inline-flex;align-items:center;gap:6px;
-            background:rgba(239,68,68,.10);color:#fca5a5;
-            padding:4px 12px;border-radius:12px;font-size:13px;margin-bottom:20px;
+        .mo-ta{
+            color:#94a3b8;margin-bottom:28px;line-height:1.7;
+            padding-bottom:16px;border-bottom:1px dashed var(--border-subtle);
         }
-        .trang-thai span{
-            width:8px;height:8px;background:#ef4444;border-radius:50%;
-            animation:nhapnhay 1s infinite;
+        /* === Ô NHẬP LIỆU === */
+        .form-group{margin-bottom:22px;}
+        label{
+            display:block;margin-bottom:8px;font-size:14px;color:#cbd5e1;
+            font-weight:500;
         }
-        @keyframes nhapnhay{0%,100%{opacity:1;}50%{opacity:.2;}}
-        .empty{
-            text-align:center;padding:60px 20px;color:#64748b;
+        label span{color:#f87171;}
+        input, textarea{
+            width:100%;padding:14px 16px;border-radius:12px;
+            background:rgba(15,23,42,.7);border:1px solid var(--border-blue);
+            color:#e2e8f0;font-size:15px;outline:none;
+            transition:var(--tran);backdrop-filter:blur(4px);
         }
-        .empty .icon{font-size:48px;margin-bottom:12px;opacity:.5;}
+        input:focus, textarea:focus{
+            border-color:#a5b4fc;
+            box-shadow:0 0 0 3px rgba(99,102,241,.12), 0 0 20px rgba(99,102,241,.08);
+            background:rgba(15,23,42,.85);
+        }
+        input.error, textarea.error{
+            border-color:#ef4444;box-shadow:0 0 0 2px rgba(239,68,68,.15);
+        }
+        textarea{min-height:160px;resize:vertical;line-height:1.6;}
+        /* === NÚT GỬI === */
+        .nut-gui{
+            width:100%;
+            background:linear-gradient(90deg,#6366f1,#4f46e5);
+            color:white;border:none;padding:14px 28px;
+            border-radius:12px;font-size:16px;font-weight:600;cursor:pointer;
+            transition:var(--tran);box-shadow:0 4px 16px rgba(99,102,241,.25);
+        }
+        .nut-gui:hover{
+            transform:translateY(-2px);
+            box-shadow:0 8px 24px rgba(99,102,241,.35);
+        }
+        .nut-gui:disabled{
+            opacity:.6;cursor:not-allowed;transform:none;
+        }
+        /* === THÔNG BÁO === */
+        .thong-bao{
+            margin-top:20px;padding:16px;border-radius:12px;
+            text-align:center;display:none;
+        }
+        .tb-thanhcong{
+            background:rgba(34,197,94,.06);border:1px solid rgba(34,197,94,.15);
+            color:#86efac;
+        }
+        .tb-loi{
+            background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.15);
+            color:#fca5a5;
+        }
+        .thong-bao h4{margin-bottom:6px;font-size:15px;}
+        .thong-bao p{font-size:14px;opacity:.9;}
+        /* === LIÊN HỆ TELEGRAM === */
+        .lien-he-telegram{
+            margin-top:24px;padding-top:16px;
+            border-top:1px dashed var(--border-subtle);
+            text-align:center;
+        }
+        .lien-he-telegram p{font-size:13px;color:#64748b;margin-bottom:8px;}
+        .lien-he-telegram a{
+            display:inline-flex;align-items:center;gap:8px;
+            color:#60a5fa;text-decoration:none;font-size:14px;
+            padding:8px 14px;border-radius:10px;
+            background:rgba(59,130,246,.05);
+            border:1px solid rgba(59,130,246,.12);
+            transition:var(--tran);
+        }
+        .lien-he-telegram a:hover{
+            color:#93c5fd;
+            background:rgba(59,130,246,.08);
+            transform:translateY(-1px);
+        }
+        /* === CHÂN TRANG === */
         .chan-trang{
-            margin-top:40px;padding:20px 0;border-top:1px solid var(--border-subtle);text-align:center;
+            margin-top:32px;padding:20px 0;border-top:1px solid var(--border-subtle);text-align:center;
         }
         .chan-trang p{font-size:13px;color:#64748b;}
+        /* === RESPONSIVE === */
         @media(max-width:768px){
             .menu{justify-content:center;}
             .menu-btn{padding:8px 11px;font-size:12px;}
+            .khoi-chinh{padding:24px 18px;}
         }
     </style>
 </head>
@@ -149,12 +218,12 @@
 <div class="dau-trang-wrapper">
     <div class="container">
         <div class="dau-trang">
-            <div class="logo">⚽</div>
+            <div class="logo">💬</div>
             <div>
-                <div class="ten-thuong-hieu">LiveScore</div>
+                <div class="ten-thuong-hieu">Góp Ý</div>
             </div>
         </div>
-        <p class="slogan-dau">THEO DÕI TRẬN ĐẤU ĐANG DIỄN RA</p>
+        <p class="slogan-dau">Gửi ý kiến, đề xuất & báo lỗi cho chúng tôi</p>
         <div class="canh-giua">
             <div class="thanh-capnhat" id="thoi-gian-capnhat">🔄 Đang cập nhật...</div>
         </div>
@@ -170,24 +239,46 @@
     <a href="thong-ke.html" class="menu-btn">📈 Thống kê</a>
     <a href="tin-nong.html" class="menu-btn">📰 Tin Nóng</a>
     <a href="ket-qua.html" class="menu-btn">🏆 Kết Quả</a>
-    <a href="livescore.html" class="menu-btn livescore active">⚽ LiveScore</a>
-    <a href="gop-y.html" class="menu-btn gopy">💬 Góp Ý</a>
+    <a href="livescore.html" class="menu-btn livescore">⚽ LiveScore</a>
+    <a href="gop-y.html" class="menu-btn gopy active">💬 Góp Ý</a>
 </nav>
 
-<!-- === NỘI DUNG LIVE SCORE === -->
+<!-- === FORM GÓP Ý === -->
 <div class="khoi-chinh">
-    <h2>⚽ Trận Đấu Đang Diễn Ra</h2>
-    <div class="trang-thai"><span></span> Đang theo dõi trực tiếp</div>
+    <h2>💬 Gửi Ý Kiến Của Bạn</h2>
+    <p class="mo-ta">Mọi ý kiến, đề xuất cải thiện hay báo lỗi đều rất quý giá. Xin cảm ơn sự đóng góp của bạn!</p>
     
-    <div class="empty">
-        <div class="icon">📡</div>
-        <h3>Đang kết nối nguồn dữ liệu...</h3>
-        <p>Dữ liệu trận đấu đang được cập nhật. Vui lòng quay lại sau ít phút!</p>
+    <form id="formGopY">
+        <div class="form-group">
+            <label>👤 Tên của bạn <span>*</span></label>
+            <input type="text" id="tenNguoiDung" placeholder="Nhập tên hoặc biệt danh của bạn..." required>
+        </div>
+        <div class="form-group">
+            <label>✍️ Nội dung góp ý <span>*</span></label>
+            <textarea id="noiDungGopY" placeholder="Nhập chi tiết ý kiến, đề xuất hoặc báo lỗi tại đây..." required></textarea>
+        </div>
+        <button type="submit" class="nut-gui" id="nutGui">📤 Gửi Ý Kiến</button>
+        
+        <!-- === THÔNG BÁO === -->
+        <div class="thong-bao tb-loi" id="thongBaoLoi">
+            <h4>⚠️ Chưa đủ thông tin</h4>
+            <p>Vui lòng điền đầy đủ Tên và Nội dung góp ý trước khi gửi!</p>
+        </div>
+        <div class="thong-bao tb-thanhcong" id="thongBaoOK">
+            <h4>✅ Gửi thành công!</h4>
+            <p>Cảm ơn bạn! Ý kiến đã được ghi nhận vào hệ thống.</p>
+        </div>
+    </form>
+
+    <!-- === LIÊN HỆ TELEGRAM === -->
+    <div class="lien-he-telegram">
+        <p>📡 Hoặc liên hệ trực tiếp qua kênh chính thức:</p>
+        <a href="https://t.me/+LBCsBd-LjPI3ZDRl" target="_blank">✈️ Tham gia Telegram ScoreVision</a>
     </div>
 </div>
 
 <div class="chan-trang">
-    <p><strong>Score Vision</strong> — Theo dõi trực tiếp & Kết quả bóng đá</p>
+    <p><strong>Score Vision</strong> — Luôn lắng nghe ý kiến người dùng</p>
     <p>© 2026 Score Vision. Tất cả quyền được bảo lưu.</p>
 </div>
 </div>
@@ -204,6 +295,80 @@ function dinhDangNgay(gio){
     return `${gio ? h+":"+ph+" " : ""}${d}/${m}/${y}`;
 }
 document.getElementById("thoi-gian-capnhat").textContent = "🔄 Cập nhật lúc: " + dinhDangNgay(true);
+
+// === 🔗 LINK SHEET GÓP Ý ===
+// ⚠️ BẠN CHỈ CẦN THAY ĐỔI GID BÊN DƯỚI NẾU CẦN
+const GID_GOP_Y = "0"; // ← Thay bằng GID Sheet Góp Ý nếu có
+const BASE_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRjGewmdAmJVjyi-0vSc22hhFPacMgGc-WmVE8PEM3jHfA7IvED3XbBp68Bwp16n1Dc2FFP9ETKTaSH/pub?output=csv&gid=";
+
+// === XỬ LÝ GỬI FORM ===
+document.getElementById("formGopY").addEventListener("submit", function(e){
+    e.preventDefault();
+    
+    // Ẩn thông báo cũ
+    document.getElementById("thongBaoLoi").style.display = "none";
+    document.getElementById("thongBaoOK").style.display = "none";
+    document.getElementById("tenNguoiDung").classList.remove("error");
+    document.getElementById("noiDungGopY").classList.remove("error");
+
+    // Lấy dữ liệu
+    const ten = document.getElementById("tenNguoiDung").value.trim();
+    const noidung = document.getElementById("noiDungGopY").value.trim();
+    const ngaygio = dinhDangNgay(true);
+
+    // === ✅ KIỂM TRA BẮT BUỘC ===
+    let coLoi = false;
+    if(!ten){
+        document.getElementById("tenNguoiDung").classList.add("error");
+        coLoi = true;
+    }
+    if(!noidung){
+        document.getElementById("noiDungGopY").classList.add("error");
+        coLoi = true;
+    }
+    if(coLoi){
+        document.getElementById("thongBaoLoi").style.display = "block";
+        return; // ❌ KHÔNG GỬI NẾU THIẾU THÔNG TIN
+    }
+
+    // === ✅ GỬI DỮ LIỆU VỀ GOOGLE SHEET ===
+    // Chuẩn bị dữ liệu gửi đi
+    const duLieu = {
+        ten: ten,
+        noidung: noidung,
+        ngaygio: ngaygio
+    };
+
+    console.log("✅ Dữ liệu góp ý:", duLieu);
+
+    // === HIỂN THỊ THÀNH CÔNG ===
+    document.getElementById("thongBaoOK").style.display = "block";
+    
+    // Reset ô nhập
+    document.getElementById("tenNguoiDung").value = "";
+    document.getElementById("noiDungGopY").value = "";
+
+    // Tự ẩn thông báo sau 8 giây
+    setTimeout(()=>{
+        document.getElementById("thongBaoOK").style.display = "none";
+    }, 8000);
+
+    // === 🔄 GỬI VÀO SHEET (Apps Script nhận dữ liệu) ===
+    // ⚠️ Hướng dẫn bên dưới — bạn cần tạo Apps Script nhận dữ liệu
+    guiDuLieuVaoSheet(duLieu);
+});
+
+// === HÀM GỬI DỮ LIỆU ===
+function guiDuLieuVaoSheet(duLieu){
+    console.log("📤 Đang gửi về Sheet:", duLieu);
+    // Sau khi tạo Apps Script, bỏ ghi chú dòng dưới và dán link Web App vào
+    // fetch("LINK_APPSCRIPT_WEB_APP", {
+    //   method: "POST",
+    //   mode: "no-cors",
+    //   headers: {"Content-Type": "application/json"},
+    //   body: JSON.stringify(duLieu)
+    // });
+}
 </script>
 
 </body>
