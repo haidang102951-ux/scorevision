@@ -150,6 +150,19 @@
             border:1px solid rgba(249,115,22,.3);min-width:100px;text-align:center;
         }
         .ketqua-score-num{font-size:26px;font-weight:800;color:#fff;}
+
+        /* === ✅ THỐNG KÊ THẺ VÀNG / THẺ ĐỎ / PHẠT GÓC === */
+        .ketqua-stats{
+            display:flex;justify-content:center;gap:24px;margin-top:12px;padding-top:12px;
+            border-top:1px solid rgba(255,255,255,.08);flex-wrap:wrap;
+        }
+        .stat-item{text-align:center;}
+        .stat-label{font-size:12px;color:#94a3b8;display:block;}
+        .stat-value{font-size:15px;font-weight:700;color:#f1f5f9;}
+        .stat-yellow{color:#facc15;}
+        .stat-red{color:#f87171;}
+        .stat-corners{color:#60a5fa;}
+
         .ketqua-status{
             text-align:center;margin-top:12px;padding-top:10px;
             border-top:1px solid rgba(255,255,255,.08);
@@ -179,6 +192,7 @@
             .ketqua-team{font-size:15px;}
             .ketqua-score-num{font-size:22px;}
             .page-title{font-size:22px;}
+            .ketqua-stats{gap:16px;}
         }
     </style>
 </head>
@@ -191,7 +205,7 @@
     </div>
 </div>
 <p class="slogan-dau">PHÂN TÍCH & DỰ ĐOÁN BÓNG ĐÁ HÀNG NGÀY</p>
-<!-- === THANH ĐIỀU HƯỚNG ĐÃ SỬA ĐÚNG === -->
+<!-- === THANH ĐIỀU HƯỚNG === -->
 <nav class="menu">
     <a href="index.html" class="menu-btn">🏠 Trang chủ</a>
     <a href="lich-dau.html" class="menu-btn">📅 Lịch đấu</a>
@@ -200,12 +214,12 @@
     <a href="thong-ke.html" class="menu-btn">📈 Thống kê</a>
     <a href="tin-nong.html" class="menu-btn">📰 Tin Nóng</a>
     <a href="ket-qua.html" class="menu-btn active">⚽ Kết Quả</a>
-    <a href="livescore.html" class="menu-btn livescore active">⚽ LiveScore</a>
-    <a href="gop-y.html" class="menu-btn gopy">💬 Góp Ý</a>
+    <a href="livescore.html" class="menu-btn">🟢 LiveScore</a>
+    <a href="gop-y.html" class="menu-btn">💬 Góp Ý</a>
 </nav>
 <a href="index.html" class="back-link">← Quay lại Trang Chủ</a>
 <h1 class="page-title">⚽ Tất Cả Kết Quả Trận Đấu</h1>
-<!-- === THẺ NÚT LỌC THEO GIẢI ĐẤU === -->
+<!-- === NÚT LỌC GIẢI === -->
 <div class="filter-tabs">
     <button class="filter-tab active" data-giai="all">Tất cả giải đấu</button>
     <button class="filter-tab" data-giai="ngoại hạng anh">🏴 Ngoại Hạng Anh</button>
@@ -218,10 +232,13 @@
 <div id="ketqua-list"><div class="loading">Đang tải kết quả trận đấu...</div></div>
 </div>
 <script>
+// === 🔗 LINK SHEET ===
 const BASE_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRjGewmdAmJVjyi-0vSc22hhFPacMgGc-WmVE8PEM3jHfA7IvED3XbBp68Bwp16n1Dc2FFP9ETKTaSH/pub?output=csv&gid=1819801064";
-let tatCaDuLieu = []; // Lưu toàn bộ dữ liệu để lọc
+
+let tatCaDuLieu = [];
 let giaiDangChon = "all";
-// Lấy tên giải chuẩn để lọc
+
+// Chuẩn hóa tên giải
 function layTenGiaiChuan(tenGiai){
     const g = (tenGiai || "").trim().toLowerCase();
     if(g.includes("ngoại hạng anh") || g.includes("premier")) return "ngoại hạng anh";
@@ -232,13 +249,12 @@ function layTenGiaiChuan(tenGiai){
     if(g.includes("champions")) return "champions";
     return g;
 }
-// Lọc và hiển thị dữ liệu theo giải được chọn
+
+// Hiển thị & lọc
 function locVaHienThi(){
     const box = document.getElementById("ketqua-list");
     box.innerHTML = "";
-    const duLieuLoc = giaiDangChon === "all" 
-        ? tatCaDuLieu 
-        : tatCaDuLieu.filter(x => x.giaiChuan === giaiDangChon);
+    const duLieuLoc = giaiDangChon === "all" ? tatCaDuLieu : tatCaDuLieu.filter(x => x.giaiChuan === giaiDangChon);
     
     if(!duLieuLoc.length){
         box.innerHTML = `<div class="empty">Chưa có kết quả của giải này!</div>`;
@@ -246,6 +262,16 @@ function locVaHienThi(){
     }
     
     duLieuLoc.forEach(x => {
+        // === HIỂN THỊ THỐNG KÊ CHỈ KHI CÓ DỮ LIỆU ===
+        let htmlThongKe = "";
+        if(x.theVang || x.theDo || x.phatGoc){
+            htmlThongKe = `<div class="ketqua-stats">
+                ${x.theVang ? `<div class="stat-item"><span class="stat-label">🟡 Thẻ vàng</span><span class="stat-value stat-yellow">${x.theVang}</span></div>` : ""}
+                ${x.theDo ? `<div class="stat-item"><span class="stat-label">🔴 Thẻ đỏ</span><span class="stat-value stat-red">${x.theDo}</span></div>` : ""}
+                ${x.phatGoc ? `<div class="stat-item"><span class="stat-label">⚽ Phạt góc</span><span class="stat-value stat-corners">${x.phatGoc}</span></div>` : ""}
+            </div>`;
+        }
+
         box.innerHTML += `<div class="card-ketqua">
             <div class="ketqua-header">
                 <span class="ketqua-league">${x.giai}</span>
@@ -258,45 +284,43 @@ function locVaHienThi(){
                 </div>
                 <span class="ketqua-team ketqua-team-away">${x.khach}</span>
             </div>
+            ${htmlThongKe}
             <div class="ketqua-status">
                 <span class="status-finished">✓ Kết thúc</span>
             </div>
         </div>`;
     });
 }
-// Xử lý khi bấm nút lọc
+
+// Bấm nút lọc
 document.querySelectorAll(".filter-tab").forEach(tab => {
     tab.addEventListener("click", () => {
-        // Bỏ active hết
         document.querySelectorAll(".filter-tab").forEach(t => t.classList.remove("active"));
-        // Thêm active nút vừa bấm
         tab.classList.add("active");
-        // Lưu giải đang chọn
         giaiDangChon = tab.dataset.giai;
-        // Lọc và hiển thị
         locVaHienThi();
     });
 });
+
+// Đọc CSV đúng định dạng
 function parseCSV(text){
-    const rows = [];
-    let row = [], cell = "", inQuote = false;
+    const rows = []; let row = [], cell = "", inQuote = false;
     for(let i = 0; i < text.length; i++){
         let ch = text[i], next = text[i+1] || "";
         if(ch === '"'){
             if(inQuote && next === '"'){ cell += '"'; i++; }
             else inQuote = !inQuote;
-        }
-        else if(ch === ',' && !inQuote){
+        } else if(ch === ',' && !inQuote){
             row.push(cell.trim()); cell = "";
-        }
-        else if((ch === '\n' || ch === '\r') && !inQuote){
+        } else if((ch === '\n' || ch === '\r') && !inQuote){
             if(cell || row.length > 0){ row.push(cell.trim()); rows.push(row); row = []; cell = ""; }
-        }
-        else cell += ch;
+        } else cell += ch;
     }
     if(cell || row.length > 0){ row.push(cell.trim()); rows.push(row); }
     return rows;
 }
+
+// === TẢI DỮ LIỆU TỪ SHEET ===
 fetch(BASE_URL)
 .then(r => { if(!r.ok) throw new Error("Lỗi kết nối Sheet"); return r.text(); })
 .then(csv => {
@@ -312,6 +336,9 @@ fetch(BASE_URL)
     const idx_tyso = header.indexOf("ty_so");
     const idx_giai = header.indexOf("giai_dau");
     const idx_ngay = header.indexOf("ngay_gio");
+    const idx_theVang = header.indexOf("the_vang");
+    const idx_theDo = header.indexOf("the_do");
+    const idx_phatGoc = header.indexOf("phat_goc");
     
     if([idx_loai, idx_tran, idx_tyso].includes(-1)){
         document.getElementById("ketqua-list").innerHTML = `<div class="empty">❌ Sai cột Sheet!</div>`;
@@ -340,12 +367,14 @@ fetch(BASE_URL)
             tyso: (r[idx_tyso] || "-").trim(),
             ngay: (r[idx_ngay] || "").trim(),
             giai: tenGiai,
-            giaiChuan: layTenGiaiChuan(tenGiai)
+            giaiChuan: layTenGiaiChuan(tenGiai),
+            theVang: idx_theVang >= 0 ? (r[idx_theVang] || "").trim() : "",
+            theDo: idx_theDo >= 0 ? (r[idx_theDo] || "").trim() : "",
+            phatGoc: idx_phatGoc >= 0 ? (r[idx_phatGoc] || "").trim() : ""
         });
     }
     tatCaDuLieu.sort((a, b) => a.st - b.st);
     
-    // Hiển thị lần đầu tiên
     locVaHienThi();
 })
 .catch(err => {
