@@ -10,7 +10,7 @@
     <!-- ✅ THÊM CHO PWA → KHÔNG ẢNH HƯỞNG GÌ KHÁC -->
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#fef08a">
-    <title>ScoreVision ⚽ Phân Tích & Dự Đoán Bóng Đá Hàng Ngày</title>
+    <title>Score Vision ⚽ Phân Tích & Dự Đoán Bóng Đá Hàng Ngày</title>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-RTY3P63JJL"></script>
     <script>
@@ -285,7 +285,7 @@
         @keyframes nhapnhay{0%,100%{opacity:1;}50%{opacity:.4;}}
         .len-dau{position:fixed;bottom:20px;right:20px;width:44px;height:44px;background:rgba(15,23,42,.85);color:#fef08a;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:20px;box-shadow:0 4px 16px rgba(0,0,0,.35);border:1px solid rgba(254,240,138,.15);opacity:0;visibility:hidden;transition:var(--tran);z-index:98;}
         .len-dau.hien{opacity:1;visibility:visible;}
-        .len-dau:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.5);}
+        .len-dau:hover{transform:translateY(-3px);}
         @media(max-width:768px){
             .menu{justify-content:center;}
             .menu-btn{padding:8px 11px;font-size:12px;}
@@ -307,7 +307,7 @@
         <div class="container">
             <div class="dau-trang">
                 <div class="logo">⚽</div>
-                <div><div class="ten-thuong-hieu">ScoreVision</div></div>
+                <div><div class="ten-thuong-hieu">Score Vision</div></div>
             </div>
             <p class="slogan-dau">PHÂN TÍCH & DỰ ĐOÁN BÓNG ĐÁ HÀNG NGÀY</p>
             <div class="canh-giua">
@@ -325,7 +325,7 @@
             <a href="tin-nong.html" class="menu-btn">📰 Tin Nóng</a>
             <a href="ket-qua.html" class="menu-btn">🏆 Kết Quả</a>
             <a href="livescore.html" class="menu-btn livescore">⚽ LiveScore</a>
-            <a href="phan-hoi.html" class="menu-btn gopy">💬 Góp Ý</a>
+            <a href="gop-y.html" class="menu-btn gopy">💬 Góp Ý</a>
             <a href="tai-app.html" class="menu-btn tai-app">📥 Tải App</a>
         </nav>
         <div class="banner" id="banner-phantich">
@@ -352,14 +352,14 @@
             <p>✅ Chúng tôi khuyến khích giải trí, không khuyến khích cá độ dưới mọi hình thức. Mọi quyết định của người xem đều do người đó tự chịu trách nhiệm.</p>
         </div>
         <div class="chan-trang">
-            <p><strong>ScoreVision</strong> — Phân Tích & Dự Đoán Bóng Đá Hàng Ngày</p>
+            <p><strong>Score Vision</strong> — Phân tích & Dự đoán Bóng Đá Hàng Ngày</p>
             <div class="lien-ket"><a href="#">Về chúng tôi</a> · <a href="#">Chính sách</a> · <a href="#">Liên hệ</a></div>
-            <p>© 2026 ScoreVision. Tất cả quyền được bảo lưu.</p>
+            <p>© 2026 Score Vision. Tất cả quyền được bảo lưu.</p>
         </div>
     </div>
     <a href="#" class="len-dau" id="btnLenDau">↑</a>
     <script>
-        // === CHỌN ẢNH NGẪU NHIÊN — 2 BANNER KHÔNG BAO GIỜ GIỐNG NHAU ===
+        // === ✅ CHỌN ẢNH NGẪU NHIÊN — 2 BANNER KHÔNG BAO GIỜ GIỐNG NHAU ===
         function laySoNgauNhien(min, max) {
             return Math.floor(Math.random() * (max - min + 1)) + min;
         }
@@ -399,19 +399,14 @@
             e.preventDefault();
             window.scrollTo({top:0,behavior:"smooth"});
         });
-        // =============================================
-        // ✅ DUY NHẤT ĐỔI 1 CHỮ m → f Ở DÒNG BASE_URL
-        // =============================================
+        // === ✅ GIữ NGUYÊN TOÀN BỘ LINK GOOGLE SHEET & GID ===
         const GID_PHAN_TICH = "1723464768";
         const GID_TIN_NONG = "2097322059";
         const GID_LICH_DAU = "655851279";
         const GID_BANG_XEP_HANG = "0";
         const GID_THONG_KE = "575449196";
         const GID_KET_QUA = "1819801064";
-
-        // ✅ ĐÃ SỬA ĐÚNG: WmVE8P → WfVE8P === KHÔNG ĐỔI GÌ KHÁC ===
-        const BASE_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRjGewmdAmJVjyi-0vSc22hhFPacMgGc-WfVE8PEM3jHfA7IvED3XbBp68Bwp16n1Dc2FFP9ETKTaSH/pub?output=csv&gid=";
-
+        const BASE_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRjGewmdAmJVjyi-0vSc22hhFPacMgGc-WmVE8PEM3jHfA7IvED3XbBp68Bwp16n1Dc2FFP9ETKTaSH/pub?output=csv&gid=";
         const ANH_MAC_DINH = "https://images.unsplash.com/photo-1489944440615-453fc2b6a9a9?w=800&h=450&fit=crop&q=80";
         function parseCSV(text){
             const rows = [];let row=[],cell="",inQuote=false;
@@ -439,14 +434,15 @@
             for(let i=1;i<rows.length;i++){
                 const r=rows[i];if((r[i_loai]||"").trim()!=="ket_qua") continue;
                 const tran=(r[i_tran]||"").trim();if(tran.includes("Không có trận")) continue;
-                data.push({st:Number(r[i_st])||999,nha:tran,tyso:(r[i_tyso]||"-").trim(),ngay:(r[i_ngay]||"").trim(),giai:(r[i_giai]||"Bóng Đá").trim()});
+                const phan=tran.split(" vs ");if(phan.length<2) continue;
+                data.push({st:Number(r[i_st])||999,nha:phan[0].trim(),khach:phan[1].trim(),tyso:(r[i_tyso]||"-").trim(),ngay:(r[i_ngay]||"").trim(),giai:(r[i_giai]||"Bóng Đá").trim()});
             }
             data.sort((a,b)=>a.st-b.st);
             const box=document.getElementById("ketqua-list");
             if(!data.length){box.innerHTML=`<div class="empty">Chưa có kết quả trận đấu!</div>`;return;}
             box.innerHTML=`<div class="grid-2">`;
             data.slice(0,2).forEach(x=>{
-                box.innerHTML+=`<a href="ket-qua.html" class="card-ketqua"><div class="ketqua-header"><span class="ketqua-league">🏆 ${x.giai}</span><span class="ketqua-date">${x.ngay}</span></div><div class="ketqua-match"><div class="ketqua-team ketqua-team-home">${x.nha}</div><div class="ketqua-score"><span class="ketqua-score-num">${x.tyso}</span></div><div class="ketqua-team ketqua-team-away"></div></div><div class="ketqua-status"><span class="status-finished">✓ Đã kết thúc</span></div></a>`;
+                box.innerHTML+=`<a href="ket-qua.html" class="card-ketqua"><div class="ketqua-header"><span class="ketqua-league">🏆 ${x.giai}</span><span class="ketqua-date">${x.ngay}</span></div><div class="ketqua-match"><span class="ketqua-team ketqua-team-home">${x.nha}</span><div class="ketqua-score"><span class="ketqua-score-num">${x.tyso}</span></div><span class="ketqua-team ketqua-team-away">${x.khach}</span></div><div class="ketqua-status"><span class="status-finished">✓ Đã kết thúc</span></div></a>`;
             });
             box.innerHTML+=`</div>`;
         })
@@ -470,7 +466,7 @@
             if(!data.length){box.innerHTML=`<div class="empty">Chưa có dữ liệu Phân Tích!</div>`;return;}
             box.innerHTML=`<div class="grid-2">`;
             data.slice(0,2).forEach((x,i)=>{
-                box.innerHTML+=`<a href="du-doan.html" class="card-khong-anh"><span class="card-label ${i===0?'label-hot':'label-pb'}">${i===0?'🔥 Nổi Bật':x.ngay}</span><h3>${x.tieude}</h3><p>${x.tomtat}…</p><div class="hint">Xem chi tiết →</div></a>`;
+                box.innerHTML+=`<a href="du-doan.html" class="card-khong-anh"><span class="card-label ${i===0?'label-hot':'label-pb'}">${i===0?'🔥 Nổi bật':x.ngay}</span><h3>${x.tieude}</h3><p>${x.tomtat}…</p><div class="hint">Xem chi tiết →</div></a>`;
             });
             box.innerHTML+=`</div>`;
         })
@@ -494,7 +490,7 @@
             if(!data.length){box.innerHTML=`<div class="empty">Chưa có tin tức!</div>`;return;}
             box.innerHTML=`<div class="grid-2">`;
             data.slice(0,2).forEach((x,i)=>{
-                box.innerHTML+=`<a href="tin-nong.html" class="card-tin"><div class="card-anh-wrapper"><img src="${x.anh}" alt="${x.tieude}" class="card-img" loading="lazy"><div class="card-anh-overlay"></div><div class="card-anh-icon">🔍</div></div><div class="card-body"><span class="card-label ${i===0?'label-hot':'label-tin'}">${i===0?'🔥 Nổi Bật':x.ngay}</span><h3>${x.tieude}</h3><p>${x.tomtat}…</p><div class="hint">Xem chi tiết →</div></div></a>`;
+                box.innerHTML+=`<a href="tin-nong.html" class="card-tin"><div class="card-anh-wrapper"><img src="${x.anh}" alt="${x.tieude}" class="card-img" loading="lazy"><div class="card-anh-overlay"></div><div class="card-anh-icon">🔍</div></div><div class="card-body"><span class="card-label ${i===0?'label-hot':'label-tin'}">${i===0?'🔥 Nổi bật':x.ngay}</span><h3>${x.tieude}</h3><p>${x.tomtat}…</p><div class="hint">Xem chi tiết →</div></div></a>`;
             });
             box.innerHTML+=`</div>`;
         })
@@ -516,4 +512,19 @@
             }
             data.sort((a,b)=>a.st-b.st);
             const box=document.getElementById("lich-list");
-            if(!data.length){box.innerHTML=`<div class="
+            if(!data.length){box.innerHTML=`<div class="empty">Chưa có lịch đấu!</div>`;return;}
+            box.innerHTML=`<div class="grid-2">`;
+            data.slice(0,2).forEach(x=>{
+                box.innerHTML+=`<a href="lich-dau.html" class="card-khong-anh"><span class="card-label label-lich">📅 ${x.ngay}</span><h3>${x.tieude}</h3><p>${x.tomtat}</p><div class="hint">Xem chi tiết →</div></a>`;
+            });
+            box.innerHTML+=`</div>`;
+        })
+        .catch(e=>{
+    document.getElementById("lich-list").innerHTML=`<div class="empty">❌ ${e.message}</div>`;
+});
+</script>
+
+    <!-- ✅ MÃ QUẢNG CÁO MoneTag -->
+    <script>(function(s){s.dataset.zone='11665696',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
+</body>
+</html>
