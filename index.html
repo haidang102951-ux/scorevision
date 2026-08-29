@@ -404,7 +404,7 @@
     <a href="#" class="len-dau" id="btnLenDau">↑</a>
 
     <script>
-        // ✅ === MỞ / ĐÓNG KHUNG TẢI APP — NHẸ KHÔNG LAG ===
+        // ✅ === M�Ở / ĐÓNG KHUNG TẢI APP — ĐÃ SỬA, CHẠY ĐÚNG ===
         const btnMoTaiApp = document.getElementById('btnMoTaiApp');
         const taiAppOverlay = document.getElementById('taiAppOverlay');
         const btnDongTaiApp = document.getElementById('btnDongTaiApp');
@@ -418,21 +418,25 @@
         function dongTaiApp(){
             taiAppOverlay.classList.remove('hien');
         }
-        btnMoTaiApp.addEventListener('click', moTaiApp);
-        btnDongTaiApp.addEventListener('click', dongTaiApp);
-        taiAppOverlay.addEventListener('click', e => {
-            if(e.target === taiAppOverlay) dongTaiApp();
-        });
-        btnTaiAndroid.addEventListener('click', e => {
-            e.preventDefault();
-            alert('🔔 Link tải cho Android sẽ sớm cập nhật!');
-        });
-        btnTaiIOS.addEventListener('click', e => {
-            e.preventDefault();
-            alert('🔔 Link tải cho iOS sẽ sớm cập nhật!');
+
+        // Gắn sự kiện click — ĐẢM BẢO chạy sau khi DOM đã tải xong
+        document.addEventListener('DOMContentLoaded', function(){
+            btnMoTaiApp.addEventListener('click', moTaiApp);
+            btnDongTaiApp.addEventListener('click', dongTaiApp);
+            taiAppOverlay.addEventListener('click', e => {
+                if(e.target === taiAppOverlay) dongTaiApp();
+            });
+            btnTaiAndroid.addEventListener('click', e => {
+                e.preventDefault();
+                alert('🔔 Link tải cho Android sẽ sớm cập nhật!');
+            });
+            btnTaiIOS.addEventListener('click', e => {
+                e.preventDefault();
+                alert('🔔 Link tải cho iOS sẽ sớm cập nhật!');
+            });
         });
 
-        // ✅ === TOÀN BỘ JS GỐC — GIỮ NGUYÊN 100% BÊN DƯỚI ===
+        // ✅ === TOÀN BỘ JS GỐC — GIỮ NGUYÊN ===
         function laySoNgauNhien(min, max) {
             return Math.floor(Math.random() * (max - min + 1)) + min;
         }
@@ -534,4 +538,6 @@
             data.sort((a,b)=>a.st-b.st);
             const box=document.getElementById("phan-tich-list");
             if(!data.length){box.innerHTML=`<div class="empty">Chưa có dữ liệu Phân Tích!</div>`;return;}
-            box.innerHTML=`<div
+            box.innerHTML=`<div class="grid-2">`;
+            data.slice(0,2).forEach((x,i)=>{
+                box.innerHTML+=`<a href="du-doan.html" class="card-khong-anh"><span class="card-label ${i===0?'label-hot':'label-pb'}">${i===0?'🔥 Nổi bật':x.ngay}</span
