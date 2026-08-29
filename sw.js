@@ -12,6 +12,7 @@ const ASSETS = [
     './livescore.html',
     './thong-ke.html',
     './tin-nong.html',
+    './tai-app.html',     // ✅ THÊM DÒNG NÀY LÀ ĐỦ
     './manifest.json',
     './ads.txt'
 ];
