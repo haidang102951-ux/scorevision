@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cài đặt App - Score Vision</title>
+    <link rel="manifest" href="manifest.json"> <!-- ✅ Kết nối với manifest -->
+    <meta name="theme-color" content="#fef08a">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;}
+        :root{
+            --bg-main:#030712;
+            --bg-surface:#0f172a;
+            --text-primary:#f1f5f9;
+            --accent-gold:#fef08a;
+            --accent-blue:#3b82f6;
+            --border-subtle:rgba(148,163,184,.15);
+        }
+        body{
+            background:linear-gradient(180deg,#030712 0%,#0f172a 100%);
+            color:var(--text-primary);
+            min-height:100vh;
+            padding:40px 20px;
+        }
+        .container{max-width:520px;margin:0 auto;}
+        .quay-lai{color:#94a3b8;text-decoration:none;margin-bottom:24px;display:inline-block;}
+        .quay-lai:hover{color:var(--accent-gold);}
+        .khung{
+            background:rgba(15,23,42,.8);border-radius:20px;padding:36px 28px;
+            border:1px solid var(--border-subtle);box-shadow:0 8px 32px rgba(0,0,0,.3);
+        }
+        .bieu-tuong{
+            width:84px;height:84px;background:linear-gradient(135deg,#fef08a,#f59e0b);
+            border-radius:20px;display:flex;align-items:center;justify-content:center;
+            font-size:42px;margin:0 auto 20px;
+        }
+        h1{text-align:center;color:var(--accent-gold);font-size:22px;margin-bottom:10px;}
+        .mo-ta{text-align:center;color:#94a3b8;margin-bottom:28px;line-height:1.6;}
+        .nut-cai-dat{
+            display:block;width:100%;padding:15px 20px;border-radius:12px;
+            background:linear-gradient(90deg,#22c55e,#16a34a);color:white;
+            font-size:17px;font-weight:600;text-align:center;text-decoration:none;
+            border:none;cursor:pointer;transition:transform .2s;
+        }
+        .nut-cai-dat:hover{transform:translateY(-2px);}
+        .nut-cai-dat:disabled{background:#374151;cursor:not-allowed;opacity:.6;}
+        .hoac{text-align:center;margin:24px 0;color:#64748b;position:relative;}
+        .hoac span{background:#030712;padding:0 12px;position:relative;z-index:1;}
+        .hoac::before{content:'';position:absolute;left:0;top:50%;width:100%;height:1px;background:var(--border-subtle);}
+        .huong-dan{margin-top:24px;}
+        .buoc{background:rgba(59,130,246,.04);border-left:2px solid #3b82f6;padding:14px 16px;border-radius:0 10px 10px 0;margin-bottom:12px;}
+        .buoc strong{color:#93c5fd;display:block;margin-bottom:4px;}
+        .buoc p{color:#94a3b8;font-size:14px;line-height:1.5;}
+        .thanh-cong{margin-top:16px;padding:12px;background:rgba(34,197,94,.08);border-radius:10px;color:#86efac;text-align:center;display:none;}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="quay-lai">← Quay lại Trang chủ</a>
+        <div class="khung">
+            <div class="bieu-tuong">⚽</div>
+            <h1>Cài đặt Score Vision</h1>
+            <p class="mo-ta">Thêm vào màn hình chính điện thoại, sử dụng như ứng dụng thật không cần qua CH Play hay App Store</p>
+
+            <!-- ✅ Nút tự động cài đặt PWA -->
+            <button class="nut-cai-dat" id="nutCaiDat" disabled>⏳ Đang chuẩn bị...</button>
+            <div class="thanh-cong" id="thongBaoThanhCong">✅ Đã thêm vào màn hình chính!</div>
+
+            <div class="hoac"><span>Nếu không có nút trên</span></div>
+
+            <!-- ✅ Hướng dẫn thủ công cho từng máy -->
+            <div class="huong-dan">
+                <div class="buoc">
+                    <strong>🤖 Điện thoại Android (Chrome)</strong>
+                    <p>1. Nhấn dấu ba chấm ⋮ ở góc trên bên phải<br>2. Chọn <strong>"Thêm vào màn hình chính"</strong> hoặc "Cài đặt ứng dụng"<br>3. Nhấn <strong>Cài đặt / Thêm</strong> → Xong!</p>
+                </div>
+                <div class="buoc">
+                    <strong>🍎 iPhone / iPad (Safari)</strong>
+                    <p>1. Nhấn nút Chia sẻ ↗︎ ở thanh địa chỉ<br>2. Chọn <strong>"Thêm vào Màn hình chính"</strong><br>3. Nhấn <strong>Thêm</strong> ở góc trên bên phải → Xong!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let deferredPrompt;
+        const nutCaiDat = document.getElementById('nutCaiDat');
+        const thongBaoThanhCong = document.getElementById('thongBaoThanhCong');
+
+        // Lưu sự kiện cài đặt khi trình duyệt sẵn sàng
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            nutCaiDat.textContent = '📲 Cài đặt Ứng dụng ngay';
+            nutCaiDat.disabled = false;
+        });
+
+        // Khi nhấn nút Cài đặt
+        nutCaiDat.addEventListener('click', async () => {
+            if (!deferredPrompt) return;
+            deferredPrompt.prompt();
+            const { outcome } = await deferredPrompt.userChoice;
+            if (outcome === 'accepted') {
+                nutCaiDat.style.display = 'none';
+                thongBaoThanhCong.style.display = 'block';
+            }
+            deferredPrompt = null;
+        });
+
+        // Nếu đã cài đặt rồi
+        window.addEventListener('appinstalled', () => {
+            nutCaiDat.style.display = 'none';
+            thongBaoThanhCong.style.display = 'block';
+            thongBaoThanhCong.textContent = '✅ Ứng dụng đã được cài đặt!';
+        });
+    </script>
+</body>
+</html>
