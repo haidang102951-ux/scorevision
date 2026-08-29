@@ -7,7 +7,7 @@
     <meta name="monetag" content="9f18703360e44fe069c7f96a0278767f">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- ✅ Thẻ kết nối PWA Manifest -->
+    <!-- ✅ THÊM CHO PWA → KHÔNG ẢNH HƯỞNG GÌ KHÁC -->
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#fef08a">
     <title>Score Vision ⚽ Phân Tích & Dự Đoán Bóng Đá Hàng Ngày</title>
@@ -18,6 +18,20 @@
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', 'G-RTY3P63JJL');
+    </script>
+    <!-- ✅ ĐĂNG KÝ SERVICE WORKER CHO PWA -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(function(registration) {
+                        console.log('✅ Service Worker đã đăng ký!', registration);
+                    })
+                    .catch(function(error) {
+                        console.log('❌ Lỗi đăng ký Service Worker:', error);
+                    });
+            });
+        }
     </script>
     <style>
         *{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;}
@@ -50,6 +64,7 @@
             min-height:100vh;
         }
         .container{max-width:1100px;margin:0 auto;padding:0 16px;}
+        /* === ẢNH NỀN ĐẦU TRANG — LUÂN PHIÊN THAY ĐỔI === */
         .dau-trang-wrapper{
             position:relative;padding:32px 16px 16px;margin-bottom:8px;
             border-radius:0 0 20px 20px;
@@ -102,6 +117,7 @@
             position:relative;z-index:1;
         }
         .canh-giua{text-align:center;margin-bottom:12px;}
+        /* === MENU === */
         .menu{
             display:flex;flex-wrap:wrap;gap:6px;margin-bottom:32px;
             padding:10px 14px;background:rgba(15,23,42,.65);
@@ -147,6 +163,7 @@
             background:linear-gradient(135deg,rgba(254,240,138,.25),rgba(253,224,71,.15));
             color:#fff;border-color:rgba(254,240,138,.35);
         }
+        /* === BANNER PHÂN TÍCH — LUÂN PHIÊN ẢNH KHÁC === */
         .banner{
             background:linear-gradient(rgba(3,7,18,.50),rgba(15,23,42,.55)),
                         url('https://images.unsplash.com/photo-1489944440615-453fc2b6a9a9?w=1200&h=380&fit=crop&q=68');
@@ -195,6 +212,7 @@
         .xem-tat-ca{color:#60a5fa;font-size:14px;text-decoration:none;font-weight:500;transition:var(--tran);}
         .xem-tat-ca:hover{color:#fef08a;}
         .grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:16px;}
+        /* === THẺ KẾT QUẢ === */
         .card-ketqua{
             background:var(--bg-card);border-radius:14px;padding:18px;
             border:1px solid rgba(249,115,22,.12);box-shadow:var(--shadow-soft);
@@ -217,6 +235,7 @@
         .ketqua-score-num{font-size:20px;font-weight:700;color:#fff;}
         .ketqua-status{text-align:center;margin-top:10px;padding-top:8px;border-top:1px solid rgba(148,163,184,.10);}
         .status-finished{display:inline-flex;align-items:center;gap:4px;color:#86efac;font-size:12px;font-weight:500;background:rgba(74,222,128,.06);padding:3px 10px;border-radius:12px;}
+        /* === THẺ TIN TỨC === */
         .card-tin{
             background:var(--bg-card);border-radius:14px;overflow:hidden;
             border:1px solid transparent;box-shadow:var(--shadow-soft);
@@ -231,6 +250,7 @@
         .card-anh-icon{position:absolute;top:12px;right:12px;width:32px;height:32px;border-radius:50%;background:rgba(0,0,0,.5);color:rgba(255,255,255,.85);display:flex;align-items:center;justify-content:center;font-size:14px;opacity:0;transform:translateY(4px);transition:var(--tran);backdrop-filter:blur(4px);}
         .card-tin:hover .card-anh-icon{opacity:1;transform:translateY(0);}
         .card-body{padding:16px;position:relative;}
+        /* === THẺ KHÔNG ẢNH === */
         .card-khong-anh{
             background:var(--bg-card);border-radius:14px;padding:18px;
             border:1px solid transparent;box-shadow:var(--shadow-soft);
@@ -306,7 +326,6 @@
             <a href="ket-qua.html" class="menu-btn">🏆 Kết Quả</a>
             <a href="livescore.html" class="menu-btn livescore">⚽ LiveScore</a>
             <a href="gop-y.html" class="menu-btn gopy">💬 Góp Ý</a>
-            <!-- ✅ NÚT TẢI APP ĐÃ SỬA THÀNH LINK -->
             <a href="tai-app.html" class="menu-btn tai-app">📥 Tải App</a>
         </nav>
         <div class="banner" id="banner-phantich">
@@ -380,7 +399,7 @@
             e.preventDefault();
             window.scrollTo({top:0,behavior:"smooth"});
         });
-        // === GID ===
+        // === ✅ GIữ NGUYÊN TOÀN BỘ LINK GOOGLE SHEET & GID ===
         const GID_PHAN_TICH = "1723464768";
         const GID_TIN_NONG = "2097322059";
         const GID_LICH_DAU = "655851279";
@@ -500,9 +519,6 @@
             });
             box.innerHTML+=`</div>`;
         })
-        .catch(e=>{document.getElementById("lich-list").innerHTML=`<div class="empty">❌ ${e.message}</div>`;});
-    </script>
-    <!-- ✅ MÃ QUẢNG CÁO MoneTag -->
-    <script>(function(s){s.dataset.zone='11665696',
+        .catch(e=>{document.getElementById("lich-list").innerHTML=`<div class="empty">❌ ${e.message}</div>`;
 </body>
 </html>
