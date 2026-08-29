@@ -1,46 +1,47 @@
-const CACHE_NAME = 'scorevision-v3';  // ✅ Đổi thành v3 để trình duyệt cập nhật lại
+const CACHE_NAME = 'scorevision-v3';
 const ASSETS = [
     './',
     './index.html',
+    './tai-app.html',
+    './lich-dau.html',
     './du-doan.html',
     './bang-xep-hang.html',
-    './gop-y.html',
-    './gioi-thieu.html',
-    './ket-qua.html',
-    './lich-dau.html',
-    './lien-he.html',
-    './livescore.html',
     './thong-ke.html',
     './tin-nong.html',
-    './tai-app.html',     // ✅ Đã thêm file mới
+    './ket-qua.html',
+    './livescore.html',
+    './gop-y.html',
     './manifest.json',
-    './ads.txt'
+    'https://cdn-icons-png.flaticon.com/512/1041/1041916.png'
 ];
 
 self.addEventListener('install', e => {
     e.waitUntil(
-        caches.open(CACHE_NAME).then(cache =>
-            cache.addAll(ASSETS).then(() => self.skipWaiting())
-        )
+        caches.open(CACHE_NAME).then(cache => {
+            return cache.addAll(ASSETS);
+        }).then(() => self.skipWaiting())
     );
 });
 
 self.addEventListener('activate', e => {
     e.waitUntil(
-        caches.keys().then(keys =>
-            Promise.all(keys.filter(k => k !== CACHE_NAME).map(k => caches.delete(k)))
-        ).then(() => self.clients.claim())
+        caches.keys().then(names => {
+            return Promise.all(
+                names.filter(n => n !== CACHE_NAME).map(n => caches.delete(n))
+            );
+        }).then(() => self.clients.claim())
     );
 });
 
 self.addEventListener('fetch', e => {
     e.respondWith(
-        fetch(e.request)
-            .then(res => {
-                const resClone = res.clone();
-                caches.open(CACHE_NAME).then(cache => cache.put(e.request, resClone));
-                return res;
-            })
-            .catch(() => caches.match(e.request))
+        caches.match(e.request).then(r => {
+            return r || fetch(e.request).then(res => {
+                return caches.open(CACHE_NAME).then(cache => {
+                    cache.put(e.request, res.clone());
+                    return res;
+                });
+            });
+        })
     );
 });
