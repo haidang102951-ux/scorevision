@@ -7,6 +7,9 @@
     <meta name="monetag" content="9f18703360e44fe069c7f96a0278767f">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- ✅ Thẻ kết nối PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#fef08a">
     <title>Score Vision ⚽ Phân Tích & Dự Đoán Bóng Đá Hàng Ngày</title>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-RTY3P63JJL"></script>
@@ -14,7 +17,7 @@
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-        gtag('config", "G-RTY3P63JJL');
+        gtag('config', 'G-RTY3P63JJL');
     </script>
     <style>
         *{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;}
@@ -47,7 +50,6 @@
             min-height:100vh;
         }
         .container{max-width:1100px;margin:0 auto;padding:0 16px;}
-        /* === ẢNH NỀN ĐẦU TRANG — LUÂN PHIÊN THAY ĐỔI === */
         .dau-trang-wrapper{
             position:relative;padding:32px 16px 16px;margin-bottom:8px;
             border-radius:0 0 20px 20px;
@@ -100,7 +102,6 @@
             position:relative;z-index:1;
         }
         .canh-giua{text-align:center;margin-bottom:12px;}
-        /* === MENU === */
         .menu{
             display:flex;flex-wrap:wrap;gap:6px;margin-bottom:32px;
             padding:10px 14px;background:rgba(15,23,42,.65);
@@ -128,33 +129,31 @@
         }
         .menu-btn.livescore:hover{
             background:linear-gradient(135deg,rgba(34,197,94,.25),rgba(22,163,74,.12));
-            color:#bbf7d0;border-color:rgba(34,197,94,.35));
+            color:#bbf7d0;border-color:rgba(34,197,94,.35);
         }
         .menu-btn.gopy{
             background:linear-gradient(135deg,rgba(99,102,241,.15),rgba(79,70,229,.08));
-            color:#a5b4fc;border-color:rgba(99,102,241,.20));
+            color:#a5b4fc;border-color:rgba(99,102,241,.20);
         }
         .menu-btn.gopy:hover{
             background:linear-gradient(135deg,rgba(99,102,241,.25),rgba(79,70,229,.12));
-            color:#c7d2fe;border-color:rgba(99,102,241,.35));
+            color:#c7d2fe;border-color:rgba(99,102,241,.35);
         }
-        /* === ✅ THÊM CSS CHO NÚT TẢI APP === */
         .menu-btn.tai-app{
             background:linear-gradient(135deg,rgba(254,240,138,.15),rgba(253,224,71,.08));
-            color:#fef08a;border-color:rgba(254,240,138,.20));
+            color:#fef08a;border-color:rgba(254,240,138,.20);
         }
         .menu-btn.tai-app:hover{
             background:linear-gradient(135deg,rgba(254,240,138,.25),rgba(253,224,71,.15));
-            color:#fff;border-color:rgba(254,240,138,.35));
+            color:#fff;border-color:rgba(254,240,138,.35);
         }
-        /* === BANNER PHÂN TÍCH — LUÂN PHIÊN ẢNH KHÁC === */
         .banner{
             background:linear-gradient(rgba(3,7,18,.50),rgba(15,23,42,.55)),
                         url('https://images.unsplash.com/photo-1489944440615-453fc2b6a9a9?w=1200&h=380&fit=crop&q=68');
             background-size:cover;background-position:center;
             border-radius:16px;padding:32px 24px;margin-bottom:36px;
             border:1px solid var(--border-gold);
-            box-shadow:0 8px 30px rgba(0,0,0,.30));
+            box-shadow:0 8px 30px rgba(0,0,0,.30);
             position:relative;overflow:hidden;
             transition:background-image .8s ease-in-out;
         }
@@ -180,10 +179,10 @@
             background:linear-gradient(90deg,#fef08a,#fde047);
             color:#713f12;padding:11px 26px;border-radius:10px;
             text-decoration:none;font-weight:700;font-size:15px;
-            box-shadow:0 4px 14px rgba(253,224,71,.15));
+            box-shadow:0 4px 14px rgba(253,224,71,.15);
             transition:var(--tran);
         }
-        .banner-nut:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(253,224,71,.20));}
+        .banner-nut:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(253,224,71,.20);}
         .section-head{
             display:flex;align-items:center;justify-content:space-between;
             margin:44px 0 16px;padding-bottom:8px;
@@ -196,10 +195,9 @@
         .xem-tat-ca{color:#60a5fa;font-size:14px;text-decoration:none;font-weight:500;transition:var(--tran);}
         .xem-tat-ca:hover{color:#fef08a;}
         .grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:16px;}
-        /* === THẺ KẾT QUẢ === */
         .card-ketqua{
             background:var(--bg-card);border-radius:14px;padding:18px;
-            border:1px solid rgba(249,115,22,.12));box-shadow:var(--shadow-soft);
+            border:1px solid rgba(249,115,22,.12);box-shadow:var(--shadow-soft);
             text-decoration:none;color:inherit;display:block;transition:var(--tran);
             position:relative;overflow:hidden;backdrop-filter:blur(4px);
         }
@@ -207,55 +205,53 @@
             content:"";position:absolute;top:0;left:0;width:100%;height:3px;
             background:linear-gradient(90deg,#f97316,#fb923c,#f97316);
         }
-        .card-ketqua:hover{border-color:rgba(249,115,22,.25));transform:translateY(-3px);box-shadow:var(--shadow-hover);}
-        .ketqua-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid rgba(148,163,184,.10));}
+        .card-ketqua:hover{border-color:rgba(249,115,22,.25);transform:translateY(-3px);box-shadow:var(--shadow-hover);}
+        .ketqua-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid rgba(148,163,184,.10);}
         .ketqua-league{color:#fb923c;font-size:13px;font-weight:600;}
         .ketqua-date{color:#64748b;font-size:12px;}
         .ketqua-match{display:flex;align-items:center;justify-content:space-between;gap:8px;}
         .ketqua-team{flex:1;font-size:15px;font-weight:500;color:#e2e8f0;}
         .ketqua-team-home{text-align:right;}
         .ketqua-team-away{text-align:left;}
-        .ketqua-score{padding:8px 16px;background:rgba(249,115,22,.08));border-radius:10px;border:1px solid rgba(249,115,22,.18));min-width:86px;text-align:center;}
+        .ketqua-score{padding:8px 16px;background:rgba(249,115,22,.08);border-radius:10px;border:1px solid rgba(249,115,22,.18);min-width:86px;text-align:center;}
         .ketqua-score-num{font-size:20px;font-weight:700;color:#fff;}
-        .ketqua-status{text-align:center;margin-top:10px;padding-top:8px;border-top:1px solid rgba(148,163,184,.10));}
-        .status-finished{display:inline-flex;align-items:center;gap:4px;color:#86efac;font-size:12px;font-weight:500;background:rgba(74,222,128,.06));padding:3px 10px;border-radius:12px;}
-        /* === THẺ TIN TỨC === */
+        .ketqua-status{text-align:center;margin-top:10px;padding-top:8px;border-top:1px solid rgba(148,163,184,.10);}
+        .status-finished{display:inline-flex;align-items:center;gap:4px;color:#86efac;font-size:12px;font-weight:500;background:rgba(74,222,128,.06);padding:3px 10px;border-radius:12px;}
         .card-tin{
             background:var(--bg-card);border-radius:14px;overflow:hidden;
             border:1px solid transparent;box-shadow:var(--shadow-soft);
             text-decoration:none;color:inherit;display:block;transition:var(--tran);
             backdrop-filter:blur(4px);
         }
-        .card-tin:hover{border-color:rgba(254,240,138,.15));transform:translateY(-3px);box-shadow:var(--shadow-hover);}
+        .card-tin:hover{border-color:rgba(254,240,138,.15);transform:translateY(-3px);box-shadow:var(--shadow-hover);}
         .card-anh-wrapper{width:100%;height:160px;overflow:hidden;position:relative;border-bottom:1px solid var(--border-subtle);}
         .card-img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease, filter .4s ease;transform:scale(1.01);}
         .card-tin:hover .card-img{transform:scale(1.06);filter:brightness(1.08);}
-        .card-anh-overlay{position:absolute;bottom:0;left:0;right:0;height:60px;background:linear-gradient(to top, rgba(0,0,0,.75)), rgba(0,0,0,.35)), transparent);pointer-events:none;}
-        .card-anh-icon{position:absolute;top:12px;right:12px;width:32px;height:32px;border-radius:50%;background:rgba(0,0,0,.5));color:rgba(255,255,255,.85));display:flex;align-items:center;justify-content:center;font-size:14px;opacity:0;transform:translateY(4px);transition:var(--tran);backdrop-filter:blur(4px);}
+        .card-anh-overlay{position:absolute;bottom:0;left:0;right:0;height:60px;background:linear-gradient(to top, rgba(0,0,0,.75), rgba(0,0,0,.35), transparent);pointer-events:none;}
+        .card-anh-icon{position:absolute;top:12px;right:12px;width:32px;height:32px;border-radius:50%;background:rgba(0,0,0,.5);color:rgba(255,255,255,.85);display:flex;align-items:center;justify-content:center;font-size:14px;opacity:0;transform:translateY(4px);transition:var(--tran);backdrop-filter:blur(4px);}
         .card-tin:hover .card-anh-icon{opacity:1;transform:translateY(0);}
         .card-body{padding:16px;position:relative;}
-        /* === THẺ KHÔNG ẢNH === */
         .card-khong-anh{
             background:var(--bg-card);border-radius:14px;padding:18px;
             border:1px solid transparent;box-shadow:var(--shadow-soft);
             text-decoration:none;color:inherit;display:block;transition:var(--tran);
             backdrop-filter:blur(4px);
         }
-        .card-khong-anh:hover{border-color:rgba(254,240,138,.15));transform:translateY(-3px);box-shadow:var(--shadow-hover);}
+        .card-khong-anh:hover{border-color:rgba(254,240,138,.15);transform:translateY(-3px);box-shadow:var(--shadow-hover);}
         .card-label{display:inline-block;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;margin-bottom:10px;letter-spacing:.2px;}
-        .label-hot{background:rgba(254,240,138,.08));color:#fef08a;border:1px solid rgba(254,240,138,.12));}
-        .label-pb{background:rgba(59,130,246,.06));color:#93c5fd;border:1px solid rgba(59,130,246,.12));}
-        .label-tin{background:rgba(34,197,94,.06));color:#86efac;border:1px solid rgba(34,197,94,.12));}
-        .label-lich{background:rgba(239,68,68,.06));color:#fca5a5;border:1px solid rgba(239,68,68,.12));}
+        .label-hot{background:rgba(254,240,138,.08);color:#fef08a;border:1px solid rgba(254,240,138,.12);}
+        .label-pb{background:rgba(59,130,246,.06);color:#93c5fd;border:1px solid rgba(59,130,246,.12);}
+        .label-tin{background:rgba(34,197,94,.06);color:#86efac;border:1px solid rgba(34,197,94,.12);}
+        .label-lich{background:rgba(239,68,68,.06);color:#fca5a5;border:1px solid rgba(239,68,68,.12);}
         .card-tin h3, .card-khong-anh h3{font-size:15px;font-weight:600;color:#e2e8f0;margin-bottom:6px;line-height:1.5;}
         .card-tin p, .card-khong-anh p{font-size:14px;color:#94a3b8;line-height:1.6;}
         .hint{margin-top:8px;font-size:13px;color:#60a5fa;font-weight:500;}
-        .box-thongtin{background:linear-gradient(135deg,rgba(34,197,94,.04)),rgba(59,130,246,.02));border-radius:16px;padding:24px;margin-top:44px;border:1px solid rgba(34,197,94,.08));}
+        .box-thongtin{background:linear-gradient(135deg,rgba(34,197,94,.04),rgba(59,130,246,.02));border-radius:16px;padding:24px;margin-top:44px;border:1px solid rgba(34,197,94,.08);}
         .box-thongtin h3{font-size:16px;font-weight:700;color:#86efac;margin-bottom:10px;}
         .box-thongtin p{font-size:14px;color:#cbd5e1;line-height:1.7;margin-bottom:14px;}
-        .nut-tel{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(90deg,#22c55e,#16a34a);color:white;padding:11px 24px;border-radius:10px;text-decoration:none;font-weight:600;font-size:15px;box-shadow:0 4px 14px rgba(34,197,94,.12));transition:var(--tran);}
-        .nut-tel:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(34,197,94,.18));}
-        .disclaimer{background:rgba(245,158,11,.03));border-radius:12px;padding:18px;margin-top:24px;border-left:3px solid #f59e0b;}
+        .nut-tel{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(90deg,#22c55e,#16a34a);color:white;padding:11px 24px;border-radius:10px;text-decoration:none;font-weight:600;font-size:15px;box-shadow:0 4px 14px rgba(34,197,94,.12);transition:var(--tran);}
+        .nut-tel:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(34,197,94,.18);}
+        .disclaimer{background:rgba(245,158,11,.03);border-radius:12px;padding:18px;margin-top:24px;border-left:3px solid #f59e0b;}
         .disclaimer h4{font-size:14px;font-weight:600;color:#fcd34d;margin-bottom:8px;display:flex;align-items:center;gap:6px;}
         .disclaimer p{font-size:13px;color:#a8a29e;line-height:1.7;margin-bottom:4px;}
         .disclaimer p:last-child{margin-bottom:0;}
@@ -267,7 +263,7 @@
         .empty{text-align:center;color:#64748b;padding:40px 20px;}
         .loading{text-align:center;color:#fef08a;padding:40px;animation:nhapnhay 1.5s infinite;}
         @keyframes nhapnhay{0%,100%{opacity:1;}50%{opacity:.4;}}
-        .len-dau{position:fixed;bottom:20px;right:20px;width:44px;height:44px;background:rgba(15,23,42,.85));color:#fef08a;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:20px;box-shadow:0 4px 16px rgba(0,0,0,.35));border:1px solid rgba(254,240,138,.15));opacity:0;visibility:hidden;transition:var(--tran);z-index:98;}
+        .len-dau{position:fixed;bottom:20px;right:20px;width:44px;height:44px;background:rgba(15,23,42,.85);color:#fef08a;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:20px;box-shadow:0 4px 16px rgba(0,0,0,.35);border:1px solid rgba(254,240,138,.15);opacity:0;visibility:hidden;transition:var(--tran);z-index:98;}
         .len-dau.hien{opacity:1;visibility:visible;}
         .len-dau:hover{transform:translateY(-3px);}
         @media(max-width:768px){
@@ -310,8 +306,8 @@
             <a href="ket-qua.html" class="menu-btn">🏆 Kết Quả</a>
             <a href="livescore.html" class="menu-btn livescore">⚽ LiveScore</a>
             <a href="gop-y.html" class="menu-btn gopy">💬 Góp Ý</a>
-            <!-- ✅ NÚT TẢI APP ĐƯỢC THÊM Ở ĐÂY → SAU GÓP Ý -->
-            <a class="menu-btn tai-app">📥 Tải App</a>
+            <!-- ✅ NÚT TẢI APP ĐÃ SỬA THÀNH LINK -->
+            <a href="tai-app.html" class="menu-btn tai-app">📥 Tải App</a>
         </nav>
         <div class="banner" id="banner-phantich">
             <h1>⚽ PHÂN TÍCH & DỰ ĐOÁN BÓNG ĐÁ</h1>
@@ -376,7 +372,7 @@
         document.getElementById("thoi-gian-capnhat").textContent = "🔄 Cập nhật lúc: " + dinhDangNgay(true);
         // === NÚT LÊN ĐẦU TRANG ===
         const btnLenDau = document.getElementById("btnLenDau");
-        window.addEventListener("scroll, ()=>{
+        window.addEventListener("scroll", ()=>{
             if(window.scrollY > 400) btnLenDau.classList.add("hien");
             else btnLenDau.classList.remove("hien");
         });
@@ -468,7 +464,7 @@
             const data=[];
             for(let i=1;i<rows.length;i++){
                 const r=rows[i];if((r[i_loai]||"").trim()!=="tin_nong") continue;
-                data.push({st:Number(r[i_st])||999,tieude:r[i_tieude]||"",ngay:r[i_ngay)||"",tomtat:(r[i_tomtat]||"").substring(0,80),anh:i_anh>=0?layAnh(r[i_anh]):ANH_MAC_DINH});
+                data.push({st:Number(r[i_st])||999,tieude:r[i_tieude]||"",ngay:r[i_ngay]||"",tomtat:(r[i_tomtat]||"").substring(0,80),anh:i_anh>=0?layAnh(r[i_anh]):ANH_MAC_DINH});
             }
             data.sort((a,b)=>a.st-b.st);
             const box=document.getElementById("tin-list");
@@ -507,6 +503,6 @@
         .catch(e=>{document.getElementById("lich-list").innerHTML=`<div class="empty">❌ ${e.message}</div>`;});
     </script>
     <!-- ✅ MÃ QUẢNG CÁO MoneTag -->
-    <script>(function(s){s.dataset.zone='11665696',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
+    <script>(function(s){s.dataset.zone='11665696',
 </body>
 </html>
