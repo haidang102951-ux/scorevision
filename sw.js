@@ -1,4 +1,4 @@
-const CACHE_NAME = 'scorevision-v2';
+const CACHE_NAME = 'scorevision-v3';  // ✅ Đổi thành v3 để trình duyệt cập nhật lại
 const ASSETS = [
     './',
     './index.html',
@@ -12,7 +12,7 @@ const ASSETS = [
     './livescore.html',
     './thong-ke.html',
     './tin-nong.html',
-    './tai-app.html',
+    './tai-app.html',     // ✅ Đã thêm file mới
     './manifest.json',
     './ads.txt'
 ];
