@@ -1,6 +1,6 @@
 import gspread, json, os, requests, re
 from bs4 import BeautifulSoup
-import google.generativeai as genai
+import google.genai as genai
 from datetime import datetime
 
 # === KẾT NỐI DỊCH VỤ ===
