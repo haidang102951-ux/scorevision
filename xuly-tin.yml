@@ -12,7 +12,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - run: pip install google-genai beautifulsoup4 requests
+      - name: Cài thư viện
+        run: pip install google-genai beautifulsoup4 requests
       - name: Xử lý tin
         env:
           SHEET_ID: ${{ secrets.SHEET_ID }}
