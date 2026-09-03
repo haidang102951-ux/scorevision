@@ -1,5 +1,4 @@
 name: Xử lý tin nóng
-
 on:
   schedule:
     - cron: '*/30 * * * *'
@@ -8,31 +7,16 @@ on:
 jobs:
   process:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Lấy code
-        uses: actions/checkout@v4
-
-      - name: Cài Python
-        uses: actions/setup-python@v5
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-
       - name: Cài thư viện
         run: |
           python -m pip install --upgrade pip
           pip install -U google-genai beautifulsoup4 requests
-
-      - name: Kiểm tra file
-        run: |
-          echo "=== KIỂM TRA xuly_tin.py ==="
-          head -40 scripts/xuly_tin.py
-          echo "=== KIỂM TRA CODE CŨ ==="
-          grep -R "gspread" -n scripts/xuly_tin.py || true
-          grep -R "GOOGLE_SERVICE_ACCOUNT_JSON" -n scripts/xuly_tin.py || true
-          grep -R "genai.configure" -n scripts/xuly_tin.py || true
-
-      - name: Xử lý tin
+      - name: Chạy xử lý tin
         env:
           SHEET_ID: ${{ secrets.SHEET_ID }}
           GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
