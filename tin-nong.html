@@ -8,37 +8,25 @@
         *{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;}
         body{background:#020617;color:#f8fafc;line-height:1.7;padding:16px;max-width:780px;margin:0 auto;}
         
-        /* === MENU === */
         .menu{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px;position:sticky;top:0;background:#020617f0;padding:10px 0;z-index:99;backdrop-filter:blur(8px);}
         .menu-btn{background:linear-gradient(135deg,#1e293b,#0f172a);color:#e2e8f0;padding:10px 12px;border-radius:12px;text-align:center;text-decoration:none;font-size:13px;font-weight:700;display:inline-flex;align-items:center;gap:4px;border:1px solid #334155;transition:all .25s;}
         .menu-btn:hover{transform:translateY(-3px);border-color:#fef08a;box-shadow:0 6px 16px rgba(254,240,138,.15);}
         .menu-btn.active{background:linear-gradient(135deg,#f97316,#ef4444);color:white;border-color:#f97316;box-shadow:0 4px 14px rgba(249,115,22,.35);}
         
-        /* === THẺ BÀI VIẾT === */
         .tin-item{background:linear-gradient(145deg,#1e293b,#0f172a);border-radius:18px;padding:0;margin-bottom:16px;border:2px solid #1e293b;cursor:pointer;transition:all .3s;overflow:hidden;}
         .tin-item:hover{border-color:#f97316;transform:translateY(-2px);box-shadow:0 8px 20px rgba(249,115,22,.15);}
         .tin-hot{border-color:#ef4444;box-shadow:0 0 15px rgba(239,68,68,.15);}
         
-        /* === ẢNH BÌA === */
-        .tin-anh-bia{
-            width:100%;
-            height:180px;
-            object-fit:cover;
-            background:#1a1c35;
-            border-bottom:1px solid rgba(254,240,138,.15);
-        }
-        
+        .tin-anh-bia{width:100%;height:180px;object-fit:cover;background:#1a1c35;border-bottom:1px solid rgba(254,240,138,.15);}
         .tin-noi-dung{padding:18px;}
         .tin-tieu-de{font-size:17px;font-weight:800;color:#fef08a;margin-bottom:6px;line-height:1.4;}
         .tin-ngay{display:inline-block;background:rgba(239,68,68,.15);color:#fca5a5;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;margin-bottom:12px;}
         .tin-tom-tat{font-size:14px;color:#e2e8f0;line-height:1.6;margin-bottom:8px;}
         .tin-hint{font-size:13px;color:#94a3b8;font-style:italic;}
         
-        /* === NỘI DUNG CHI TIẾT — ẨN / HIỆN === */
         .tin-full{display:none;margin-top:14px;padding-top:14px;border-top:1px dashed #334155;}
         .tin-full.show{display:block;}
         .tin-noi-dung-chi-tiet{font-size:15px;color:#f1f5f9;line-height:1.8;white-space:pre-wrap;}
-        .tin-noi-dung-chi-tiet p{margin-bottom:10px;}
         
         .empty{text-align:center;color:#64748b;padding:60px 20px;}
         .loading{text-align:center;color:#fef08a;padding:40px;animation:nhapnhay 1.5s infinite;}
@@ -54,41 +42,27 @@
     <a href="thong-ke.html" class="menu-btn">📈 Thống kê</a>
     <a href="tin-nong.html" class="menu-btn active">📰 Tin Nóng</a>
     <a href="ket-qua.html" class="menu-btn">⚽ Kết Quả</a>
-    <a href="livescore.html" class="menu-btn livescore active">⚽ LiveScore</a>
-    <a href="gop-y.html" class="menu-btn gopy">💬 Góp Ý</a>
+    <a href="livescore.html" class="menu-btn">⚽ LiveScore</a>
+    <a href="gop-y.html" class="menu-btn">💬 Góp Ý</a>
 </nav>
 <h2 style="font-size:22px;color:#fef08a;margin-bottom:20px;">📰 Tin Nóng & Cập Nhật Mới</h2>
 <div id="list-tin"><div class="loading">Đang tải tin tức...</div></div>
+
 <script>
-// ✅ LINK CỦA BẠN
-const BASE_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRjGewmdAmJVjyi-0vSc22hhFPacMgGc-WmVE8PEM3jHfA7IvED3XbBp68Bwp16n1Dc2FFP9ETKTaSH/pub?gid=2097322059&single=true&output=csv";
-// === Ảnh mặc định nếu không có link ảnh bìa ===
+// ✅ LINK ĐÃ LẤY TỪ "XUẤT BẢN LÊN WEB" CỦA BẠN
+const BASE_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRjGewmdAmJVjyi-0vSc22hhFPacMgGc-WmVE8PEM3jHfA7IvED3XbBp68Bwp16n1Dc2FFP9ETKTaSH/pub?gid=840175350&single=true&output=csv";
+
 const ANH_MAC_DINH = "https://images.unsplash.com/photo-1574629810360-7ef513a43c33?w=800&h=400&fit=crop&q=80";
 
-// === ĐỌC CSV ĐÚNG NỘI DUNG CÓ XUỐNG DÒNG ===
+// === Đọc CSV đúng định dạng ===
 function parseCSV(text){
-    const rows = [];
-    let row = [], cell = "", inQuote = false;
-    
-    for(let i = 0; i < text.length; i++){
-        let ch = text[i];
-        let next = text[i+1] || "";
-        
-        if(ch === '"'){
-            if(inQuote && next === '"'){ cell += '"'; i++; }
-            else inQuote = !inQuote;
-        }
-        else if(ch === ',' && !inQuote){
-            row.push(cell.trim());
-            cell = "";
-        }
+    const rows = []; let row = [], cell = "", inQuote = false;
+    for(let i=0; i<text.length; i++){
+        let ch = text[i], next = text[i+1]||"";
+        if(ch === '"'){ if(inQuote && next === '"'){ cell += '"'; i++; } else inQuote = !inQuote; }
+        else if(ch === ',' && !inQuote){ row.push(cell.trim()); cell = ""; }
         else if((ch === '\n' || ch === '\r') && !inQuote){
-            if(cell || row.length > 0){
-                row.push(cell.trim());
-                rows.push(row);
-                row = [];
-                cell = "";
-            }
+            if(cell || row.length > 0){ row.push(cell.trim()); rows.push(row); row = []; cell = ""; }
         }
         else cell += ch;
     }
@@ -96,81 +70,68 @@ function parseCSV(text){
     return rows;
 }
 
-// === CHUYỂN XUỐNG DÒNG THÀNH HTML ===
-function xuLyNoiDung(text){
-    if(!text || text.trim() === "") return "Chưa có nội dung chi tiết";
-    return text.replace(/\r\n/g, "<br>").replace(/\r/g, "<br>").replace(/\n/g, "<br>");
-}
+function xuLyNoiDung(t){ return t?t.replace(/\r\n/g,"<br>").replace(/\r/g,"<br>").replace(/\n/g,"<br>"):"Chưa có nội dung"; }
 
 fetch(BASE_URL)
-.then(r=>{if(!r.ok)throw new Error("Lỗi kết nối Sheet");return r.text();})
+.then(r=>{
+    if(!r.ok) throw new Error(`Lỗi ${r.status}`);
+    return r.text();
+})
 .then(csv=>{
     const rows=parseCSV(csv);
     if(rows.length<2){
-        document.getElementById("list-tin").innerHTML=`<div class="empty">Chưa có dữ liệu trên Sheet! Điền tin tức vào hàng 2 trở đi → Cột A ghi: tin_nong</div>`;
+        document.getElementById("list-tin").innerHTML=`<div class="empty">Chưa có dữ liệu trên Sheet!</div>`;
         return;
     }
-    
-    // === TÌM ĐÚNG VỊ TRÍ CỘT THEO SHEET CỦA BẠN ===
-    // Cột K = vị trí 10 | Cột M = vị trí 12 (đếm từ 0)
-    const data=[];
-    for(let i=1;i<rows.length;i++){
-        const r=rows[i];
+
+    // === ĐỌC ĐÚNG VỊ TRÍ CỘT TRÊN SHEET "Nguồn Tin" ===
+    // Cột A=Tiêu đề(0), Cột C=Ngày(2), Cột K=Ảnh bìa(10), Cột M=Nội dung viết lại(12)
+    const DANH_SACH = [];
+    for(let i=1; i<rows.length; i++){ // Bắt đầu từ hàng 2
+        const r = rows[i];
         if(!r || r.length < 13) continue;
-        if((r[0]||"").trim() !== "tin_nong") continue; // Cột A = tin_nong
-        
-        data.push({
-            st: Number(r[1])||999,                          // Cột B: thu_tu
-            tieu_de: (r[2]||"").trim(),                      // Cột C: tieu_de
-            ngay: (r[3]||"").trim(),                         // Cột D: ngay_cap_nhat
-            tom_tat: (r[4]||"").trim(),                      // Cột E: tom_tat
-            // ✅ CỘT M: Nội dung viết lại → làm nội dung chi tiết
-            noi_dung: (r[12]||"").trim(),
-            // ✅ CỘT K: Ảnh bìa URL → làm ảnh bìa hiển thị
-            anh_bia: r[10]?.trim()?.startsWith("http") ? r[10].trim() : ANH_MAC_DINH
+
+        DANH_SACH.push({
+            tieu_de: r[0]?.trim() || "Không có tiêu đề",
+            ngay: r[2]?.trim() || "",
+            anh_bia: r[10]?.trim()?.startsWith("http") ? r[10].trim() : ANH_MAC_DINH,
+            noi_dung: r[12]?.trim() || "Chưa có nội dung"
         });
     }
-    
-    // === SẮP XẾP THEO SỐ THỨ TỤ — NHỎ NHẤT LÊN TRÊN ===
-    data.sort((a,b)=>a.st - b.st);
-    const box=document.getElementById("list-tin");
-    if(!data.length){
-        box.innerHTML=`<div class="empty">Chưa có tin tức nào → điền loai_muc = tin_nong vào Sheet!</div>`;
+
+    if(!DANH_SACH.length){
+        document.getElementById("list-tin").innerHTML=`<div class="empty">Không đọc được dữ liệu! Kiểm tra cấu trúc cột.</div>`;
         return;
     }
-    
-    // === HIỂN THỊ DANH SÁCH CÓ ẢNH BÌA ===
-    box.innerHTML="";
-    data.forEach((x,idx)=>{
-        const id_tin = "tin-"+idx;
-        const link_anh = x.anh_bia && x.anh_bia.startsWith("http") ? x.anh_bia : ANH_MAC_DINH;
-        
-        box.innerHTML+=`
+
+    // === HIỂN THỊ: Ảnh Cột K + Nội dung Cột M ===
+    const box = document.getElementById("list-tin");
+    box.innerHTML = "";
+    DANH_SACH.forEach((x, idx) => {
+        const id_tin = "tin-" + idx;
+        box.innerHTML += `
         <div class="tin-item ${idx===0?'tin-hot':''}" id="${id_tin}">
-            <img src="${link_anh}" alt="${x.tieu_de}" class="tin-anh-bia" loading="lazy">
+            <img src="${x.anh_bia}" alt="${x.tieu_de}" class="tin-anh-bia" loading="lazy">
             <div class="tin-noi-dung">
                 <h3 class="tin-tieu-de">${idx===0?'🔥 ':''}${x.tieu_de}</h3>
-                <span class="tin-ngay">📅 ${x.ngay}</span>
-                <p class="tin-tom-tat">${x.tom_tat}</p>
-                <p class="tin-hint">👉 Bấm vào xem chi tiết ↓</p>
+                ${x.ngay?`<span class="tin-ngay">📅 ${x.ngay}</span>`:""}
+                <p class="tin-hint">👉 Bấm vào xem nội dung chi tiết ↓</p>
                 <div class="tin-full" id="${id_tin}-full">
                     <div class="tin-noi-dung-chi-tiet">${xuLyNoiDung(x.noi_dung)}</div>
                 </div>
             </div>
         </div>`;
     });
-    
-    // === BẤM XEM / THU GỌN ===
-    data.forEach((_,idx)=>{
-        const id_tin = "tin-"+idx;
-        const item = document.getElementById(id_tin);
-        const full = document.getElementById(id_tin+"-full");
+
+    // === Bấm xem / thu gọn nội dung ===
+    DANH_SACH.forEach((_, idx) => {
+        const item = document.getElementById("tin-" + idx);
+        const full = document.getElementById("tin-" + idx + "-full");
         if(item && full){
-            item.addEventListener("click",()=>{
+            item.addEventListener("click", () => {
                 full.classList.toggle("show");
                 const hint = item.querySelector(".tin-hint");
-                if(full.classList.contains("show")) hint.textContent = "↑ Thu gọn lại ↑";
-                else hint.textContent = "👉 Bấm vào xem chi tiết ↓";
+                hint.textContent = full.classList.contains("show") ? "↑ Thu gọn lại ↑" : "👉 Bấm vào xem nội dung chi tiết ↓";
             });
         }
     });
