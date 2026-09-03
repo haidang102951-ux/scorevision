@@ -1,16 +1,15 @@
 import os
+import requests
 import re
 import time
-import requests
 
 from bs4 import BeautifulSoup
 from google import genai
 from datetime import datetime
 
-
-# ============================================================
+# =========================
 # CẤU HÌNH
-# ============================================================
+# =========================
 
 SHEET_ID = os.environ["SHEET_ID"]
 GOOGLE_API_KEY = os.environ["GOOGLE_API_KEY"]
@@ -18,28 +17,22 @@ GEMINI_API_KEY = os.environ["GEMINI_API_KEY"]
 PEXELS_API_KEY = os.environ.get("PEXELS_API_KEY", "")
 
 SHEET_NAME = "Nguồn Tin"
-
-# Model Gemini
 GEMINI_MODEL = "gemini-2.0-flash"
 
-# Ảnh mặc định nếu Pexels không tìm được
 FALLBACK_IMAGE = (
     "https://images.pexels.com/photos/177948/"
     "pexels-photo-177948.jpeg"
 )
 
-# Khởi tạo Gemini Client mới
+# Gemini SDK mới
 client = genai.Client(api_key=GEMINI_API_KEY)
 
 
-# ============================================================
+# =========================
 # GOOGLE SHEETS
-# ============================================================
+# =========================
 
 def sheet_req(method, path, data=None):
-    """
-    Gọi Google Sheets API.
-    """
 
     url = (
         f"https://sheets.googleapis.com/v4/"
@@ -52,101 +45,64 @@ def sheet_req(method, path, data=None):
         url += "?key=" + GOOGLE_API_KEY
 
     if method == "GET":
-        response = requests.get(
-            url,
-            timeout=20
-        )
+        r = requests.get(url, timeout=20)
 
     elif method == "PUT":
-        response = requests.put(
-            url,
-            json=data,
-            timeout=20
-        )
+        r = requests.put(url, json=data, timeout=20)
 
     elif method == "POST":
-        response = requests.post(
-            url,
-            json=data,
-            timeout=20
-        )
+        r = requests.post(url, json=data, timeout=20)
 
     else:
+        raise Exception(f"Method không hợp lệ: {method}")
+
+    if r.status_code >= 400:
         raise Exception(
-            f"Method không hợp lệ: {method}"
+            f"Google Sheets error {r.status_code}: {r.text[:500]}"
         )
 
-    if response.status_code >= 400:
-        raise Exception(
-            f"Google Sheets error "
-            f"{response.status_code}: "
-            f"{response.text[:500]}"
-        )
-
-    return response.json()
+    return r.json()
 
 
 def get_records(name=SHEET_NAME):
-    """
-    Đọc toàn bộ dữ liệu từ Sheet.
-    """
 
-    data = sheet_req(
-        "GET",
-        f"/values/{name}"
-    )
+    d = sheet_req("GET", f"/values/{name}")
 
-    rows = data.get("values", [])
+    rows = d.get("values", [])
 
     if not rows:
         return []
 
-    headers = [
-        str(header).strip()
-        for header in rows[0]
-    ]
+    headers = [str(h).strip() for h in rows[0]]
 
     records = []
 
     for row in rows[1:]:
-        row = row + [
-            ""
-        ] * (
-            len(headers) - len(row)
-        )
+
+        row = row + [""] * (len(headers) - len(row))
 
         records.append(
-            dict(
-                zip(
-                    headers,
-                    row
-                )
-            )
+            dict(zip(headers, row))
         )
 
     return records
 
 
 def update_cell(name, row, col, value):
-    """
-    Cập nhật một ô trong Google Sheet.
-    """
 
-    # Chuyển số cột thành chữ cái Excel/Sheets
     if col <= 26:
-        column_letter = chr(
-            64 + col
-        )
+
+        column_letter = chr(64 + col)
 
     else:
-        column_letter = ""
-        number = col
 
-        while number > 0:
-            number, remainder = divmod(
-                number - 1,
-                26
-            )
+        column_letter = ""
+
+        n = col
+
+        while n > 0:
+
+            n, remainder = divmod(n - 1, 26)
 
             column_letter = (
                 chr(65 + remainder)
@@ -164,21 +120,16 @@ def update_cell(name, row, col, value):
         "PUT",
         path,
         {
-            "values": [
-                [value]
-            ]
+            "values": [[value]]
         }
     )
 
 
-# ============================================================
-# LẤY NỘI DUNG BÀI VIẾT
-# ============================================================
+# =========================
+# LẤY NỘI DUNG BÀI
+# =========================
 
 def get_article_content(link):
-    """
-    Tải nội dung bài viết từ link nguồn.
-    """
 
     if not link:
         return ""
@@ -203,7 +154,6 @@ def get_article_content(link):
         "html.parser"
     )
 
-    # Xóa các thành phần không phải nội dung bài
     for element in soup(
         [
             "script",
@@ -219,9 +169,9 @@ def get_article_content(link):
 
     paragraphs = []
 
-    for paragraph in soup.find_all("p"):
+    for p in soup.find_all("p"):
 
-        text = paragraph.get_text(
+        text = p.get_text(
             " ",
             strip=True
         )
@@ -229,17 +179,14 @@ def get_article_content(link):
         if len(text) >= 40:
             paragraphs.append(text)
 
-    # Giới hạn để tránh đưa quá nhiều dữ liệu vào Gemini
     paragraphs = paragraphs[:20]
 
-    return "\n\n".join(
-        paragraphs
-    )
+    return "\n\n".join(paragraphs)
 
 
-# ============================================================
-# GEMINI - TẠO TỪ KHÓA ẢNH
-# ============================================================
+# =========================
+# GEMINI - TỪ KHÓA ẢNH
+# =========================
 
 def extract_keywords(title, content):
 
@@ -282,7 +229,6 @@ NỘI DUNG:
 
     keywords = response.text.strip()
 
-    # Loại bỏ ký tự Markdown thừa
     keywords = re.sub(
         r"[*#`\"]",
         "",
@@ -292,13 +238,14 @@ NỘI DUNG:
     return keywords[:200]
 
 
-# ============================================================
+# =========================
 # PEXELS
-# ============================================================
+# =========================
 
 def get_image(keywords):
 
     if not PEXELS_API_KEY:
+
         print(
             "⚠️ Không có PEXELS_API_KEY "
             "→ dùng ảnh mặc định"
@@ -308,10 +255,7 @@ def get_image(keywords):
 
     try:
 
-        query = (
-            "football "
-            + keywords
-        )
+        query = "football " + keywords
 
         response = requests.get(
             "https://api.pexels.com/v1/search",
@@ -320,8 +264,7 @@ def get_image(keywords):
                 "per_page": 5
             },
             headers={
-                "Authorization":
-                    PEXELS_API_KEY
+                "Authorization": PEXELS_API_KEY
             },
             timeout=15
         )
@@ -365,19 +308,19 @@ def get_image(keywords):
 
         return image
 
-    except Exception as error:
+    except Exception as e:
 
         print(
             "⚠️ Lỗi Pexels:",
-            error
+            e
         )
 
         return FALLBACK_IMAGE
 
 
-# ============================================================
+# =========================
 # GEMINI - VIẾT LẠI BÀI
-# ============================================================
+# =========================
 
 def rewrite_article(
     title,
@@ -402,8 +345,8 @@ YÊU CẦU:
 - Giữ chính xác tên cầu thủ,
   đội bóng, giải đấu và sự kiện.
 - Viết theo phong cách báo bóng đá hiện đại.
-- Tiêu đề phải hấp dẫn nhưng không giật tít sai.
-- Mở bài phải tạo sự tò mò.
+- Tiêu đề hấp dẫn nhưng không giật tít sai.
+- Mở bài tạo sự tò mò.
 - Chia đoạn ngắn, dễ đọc trên điện thoại.
 - Có thể sử dụng tiêu đề phụ khi phù hợp.
 - Nếu nguồn không xác nhận điều gì,
@@ -428,6 +371,7 @@ NỘI DUNG GỐC:
     )
 
     if not response.text:
+
         raise Exception(
             "Gemini không trả về nội dung"
         )
@@ -435,9 +379,9 @@ NỘI DUNG GỐC:
     return response.text.strip()
 
 
-# ============================================================
-# TẠO TÊN FILE
-# ============================================================
+# =========================
+# TÊN FILE
+# =========================
 
 def safe_filename(title):
 
@@ -461,9 +405,9 @@ def safe_filename(title):
     return name[:70]
 
 
-# ============================================================
+# =========================
 # BẮT ĐẦU
-# ============================================================
+# =========================
 
 print(
     "========================================"
@@ -478,19 +422,15 @@ print(
 )
 
 
-# ============================================================
-# ĐỌC GOOGLE SHEETS
-# ============================================================
-
 try:
 
     rows = get_records()
 
-except Exception as error:
+except Exception as e:
 
     print(
         "❌ Không đọc được Google Sheets:",
-        error
+        e
     )
 
     raise
@@ -501,14 +441,14 @@ print(
 )
 
 
-# ============================================================
-# XỬ LÝ TỪNG DÒNG
-# ============================================================
-
 processed = 0
 skipped = 0
 errors = 0
 
+
+# =========================
+# XỬ LÝ TỪNG DÒNG
+# =========================
 
 for idx, row in enumerate(
     rows,
@@ -522,11 +462,12 @@ for idx, row in enumerate(
         )
     ).strip()
 
-    # Chỉ xử lý tin đang chờ
     if status != "Chờ xử lý":
 
         skipped += 1
+
         continue
+
 
     title = str(
         row.get(
@@ -535,12 +476,14 @@ for idx, row in enumerate(
         )
     ).strip()
 
+
     link = str(
         row.get(
             "Link bài viết",
             ""
         )
     ).strip()
+
 
     source = str(
         row.get(
@@ -549,10 +492,6 @@ for idx, row in enumerate(
         )
     ).strip()
 
-
-    # ========================================================
-    # KIỂM TRA LINK
-    # ========================================================
 
     if not link:
 
@@ -584,23 +523,13 @@ for idx, row in enumerate(
 
     try:
 
-        # ====================================================
-        # LẤY NỘI DUNG
-        # ====================================================
-
-        content = get_article_content(
-            link
-        )
+        # Lấy bài gốc
+        content = get_article_content(link)
 
         print(
-            f"📄 Nội dung: "
-            f"{len(content)} ký tự"
+            f"📄 Nội dung: {len(content)} ký tự"
         )
 
-
-        # ====================================================
-        # KIỂM TRA NỘI DUNG
-        # ====================================================
 
         if len(content) < 150:
 
@@ -620,10 +549,7 @@ for idx, row in enumerate(
             continue
 
 
-        # ====================================================
-        # GEMINI TẠO TỪ KHÓA
-        # ====================================================
-
+        # Gemini tạo từ khóa ảnh
         keywords = extract_keywords(
             title,
             content
@@ -634,24 +560,17 @@ for idx, row in enumerate(
         )
 
 
-        # ====================================================
-        # TÌM ẢNH
-        # ====================================================
-
+        # Pexels
         image_url = get_image(
             keywords
         )
 
         print(
-            f"🖼️ Ảnh: "
-            f"{image_url[:100]}"
+            f"🖼️ Ảnh: {image_url[:100]}"
         )
 
 
-        # ====================================================
-        # GHI THÔNG TIN ẢNH VÀO SHEET
-        # ====================================================
-
+        # Ghi dữ liệu vào Sheet
         update_cell(
             SHEET_NAME,
             idx,
@@ -674,10 +593,7 @@ for idx, row in enumerate(
         )
 
 
-        # ====================================================
-        # GEMINI VIẾT BÀI
-        # ====================================================
-
+        # Gemini viết bài
         print(
             "🤖 Gemini đang viết lại..."
         )
@@ -690,23 +606,24 @@ for idx, row in enumerate(
         )
 
 
-        # ====================================================
-        # LƯU FILE
-        # ====================================================
-
+        # Tạo thư mục output
         os.makedirs(
             "output",
             exist_ok=True
         )
 
+
         date_str = datetime.now().strftime(
             "%Y-%m-%d"
         )
 
+
         filename = (
             f"{date_str}-"
-            f"{safe_filename(title)}.md"
+            f"{safe_filename(title)}"
+            f".md"
         )
+
 
         filepath = os.path.join(
             "output",
@@ -718,21 +635,19 @@ for idx, row in enumerate(
             filepath,
             "w",
             encoding="utf-8"
-        ) as file:
+        ) as f:
 
-            file.write(output)
+            f.write(output)
 
 
-        # ====================================================
-        # CẬP NHẬT SHEET
-        # ====================================================
-
+        # Cập nhật trạng thái
         update_cell(
             SHEET_NAME,
             idx,
             7,
             "✅ Đã xử lý"
         )
+
 
         update_cell(
             SHEET_NAME,
@@ -744,27 +659,26 @@ for idx, row in enumerate(
 
         processed += 1
 
+
         print(
             f"✅ HOÀN THÀNH: {filepath}"
         )
 
 
-        # Nghỉ ngắn để tránh gửi request quá dồn
         time.sleep(1)
 
 
-    except Exception as error:
+    except Exception as e:
 
         errors += 1
 
-        error_text = str(error)
+        error_text = str(e)
 
         print(
             f"❌ LỖI: {error_text}"
         )
 
 
-        # Cố gắng ghi lỗi vào Sheet
         try:
 
             update_cell(
@@ -784,9 +698,9 @@ for idx, row in enumerate(
             )
 
 
-# ============================================================
+# =========================
 # KẾT THÚC
-# ============================================================
+# =========================
 
 print("")
 
