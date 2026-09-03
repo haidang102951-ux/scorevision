@@ -1,6 +1,6 @@
 import os, requests, re
 from bs4 import BeautifulSoup
-from google import genai  # ✅ KHỚP với google-genai trong .yml
+from google import genai
 from datetime import datetime
 
 SHEET_ID = os.environ["SHEET_ID"]
@@ -8,10 +8,8 @@ GOOGLE_API_KEY = os.environ["GOOGLE_API_KEY"]
 GEMINI_API_KEY = os.environ["GEMINI_API_KEY"]
 PEXELS_API_KEY = os.environ["PEXELS_API_KEY"]
 
-# ✅ KHỞI TẠO ĐÚNG CÁCH thư viện google-genai — KHÔNG CÓ genai.configure!
 client = genai.Client(api_key=GEMINI_API_KEY)
 
-# === GỌI AI ĐÚNG CÁCH ===
 def go_ai(prompt):
     try:
         resp = client.models.generate_content(model="gemini-2.0-flash", contents=prompt)
@@ -20,7 +18,6 @@ def go_ai(prompt):
         print(f"⚠️ Lỗi AI: {e}")
         return ""
 
-# === ĐỌC/GHI SHEET KHÔNG DÙNG gspread ===
 def sheet_req(method, path, data=None):
     url = f"https://sheets.googleapis.com/v4/spreadsheets/{SHEET_ID}{path}"
     url += "&key=" + GOOGLE_API_KEY if "?" in path else "?key=" + GOOGLE_API_KEY
@@ -43,20 +40,16 @@ def get_records(tab="Nguồn Tin"):
     return [dict(zip(headers, row)) for row in rows[1:]]
 
 def update_cell(tab, row, col, val):
-    sheet_req("PUT", f"/values/{tab}!{chr(64+col)}{row}:{chr(64+col)}{row}?valueInputOption=RAW",
-              {"values": [[val]]})
+    sheet_req("PUT", f"/values/{tab}!{chr(64+col)}{row}:{chr(64+col)}{row}?valueInputOption=RAW", {"values": [[val]]})
 
-# === ẢNH PEXELS ===
 def get_image(kw):
     default = "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800"
     if not PEXELS_API_KEY or not kw: return default
     try:
-        r = requests.get(f"https://api.pexels.com/v1/search?query=football+{kw}&per_page=1",
-                        headers={"Authorization": PEXELS_API_KEY}, timeout=10)
+        r = requests.get(f"https://api.pexels.com/v1/search?query=football+{kw}&per_page=1", headers={"Authorization": PEXELS_API_KEY}, timeout=10)
         return r.json()["photos"][0]["src"]["large"] if r.ok and r.json().get("photos") else default
     except: return default
 
-# === CHẠY ===
 print("🔄 Bắt đầu xử lý...")
 rows = get_records("Nguồn Tin")
 print(f"✅ Đọc được {len(rows)} dòng")
@@ -67,7 +60,6 @@ for idx, row in enumerate(rows, start=2):
     title = row.get("Tiêu đề", "")
     src = row.get("Nguồn", "")
     print(f"🔄 Xử lý: {title[:40]}...")
-    
     try:
         html = requests.get(link, timeout=15, headers={"User-Agent":"Mozilla/5.0"}).text
         soup = BeautifulSoup(html, "html.parser")
