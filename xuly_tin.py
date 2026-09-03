@@ -22,10 +22,7 @@ def sheet_req(method, path, data=None):
     url = f"https://sheets.googleapis.com/v4/spreadsheets/{SHEET_ID}{path}"
     url += "&key=" + GOOGLE_API_KEY if "?" in path else "?key=" + GOOGLE_API_KEY
     try:
-        if method == "GET":
-            r = requests.get(url, timeout=15)
-        else:
-            r = requests.post(url, json=data, timeout=15)
+        r = requests.get(url, timeout=15) if method == "GET" else requests.post(url, json=data, timeout=15)
         return r.json() if r.ok else None
     except Exception as e:
         print(f"⚠️ Lỗi Sheet: {e}")
@@ -56,9 +53,7 @@ print(f"✅ Đọc được {len(rows)} dòng")
 
 for idx, row in enumerate(rows, start=2):
     if str(row.get("Trạng thái", "")).strip() != "Chờ xử lý": continue
-    link = row.get("Link bài viết", "")
-    title = row.get("Tiêu đề", "")
-    src = row.get("Nguồn", "")
+    link, title, src = row.get("Link bài viết",""), row.get("Tiêu đề",""), row.get("Nguồn","")
     print(f"🔄 Xử lý: {title[:40]}...")
     try:
         html = requests.get(link, timeout=15, headers={"User-Agent":"Mozilla/5.0"}).text
@@ -77,15 +72,13 @@ for idx, row in enumerate(rows, start=2):
 
         bai_moi = go_ai(f"""Viết lại bài bóng đá, đổi cách diễn đạt, không dịch nguyên văn.
 Ghi nguồn cuối: Nguồn: {src} — {link}
-
 TIÊU ĐỀ: {title}
 NỘI DUNG: {content}""")
 
         os.makedirs("output", exist_ok=True)
         safe_title = re.sub(r'[^\w\s-]', '', title[:40]).strip()
         fn = f"output/{datetime.now().strftime('%Y-%m-%d')}-{safe_title}.md"
-        with open(fn, "w", encoding="utf-8") as f:
-            f.write(bai_moi)
+        with open(fn, "w", encoding="utf-8") as f: f.write(bai_moi)
 
         update_cell("Nguồn Tin", idx, 7, "✅ Đã xử lý")
         update_cell("Nguồn Tin", idx, 8, fn)
