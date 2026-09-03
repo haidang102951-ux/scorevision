@@ -21,7 +21,6 @@
         .tin-noi-dung{padding:18px;}
         .tin-tieu-de{font-size:17px;font-weight:800;color:#fef08a;margin-bottom:6px;line-height:1.4;}
         .tin-ngay{display:inline-block;background:rgba(239,68,68,.15);color:#fca5a5;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;margin-bottom:12px;}
-        .tin-tom-tat{font-size:14px;color:#e2e8f0;line-height:1.6;margin-bottom:8px;}
         .tin-hint{font-size:13px;color:#94a3b8;font-style:italic;}
         
         .tin-full{display:none;margin-top:14px;padding-top:14px;border-top:1px dashed #334155;}
@@ -49,7 +48,7 @@
 <div id="list-tin"><div class="loading">Đang tải tin tức...</div></div>
 
 <script>
-// ✅ LINK ĐÃ LẤY TỪ "XUẤT BẢN LÊN WEB" CỦA BẠN
+// ✅ LINK ĐÚNG TỪ "XUẤT BẢN LÊN WEB"
 const BASE_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRjGewmdAmJVjyi-0vSc22hhFPacMgGc-WmVE8PEM3jHfA7IvED3XbBp68Bwp16n1Dc2FFP9ETKTaSH/pub?gid=840175350&single=true&output=csv";
 
 const ANH_MAC_DINH = "https://images.unsplash.com/photo-1574629810360-7ef513a43c33?w=800&h=400&fit=crop&q=80";
@@ -74,22 +73,24 @@ function xuLyNoiDung(t){ return t?t.replace(/\r\n/g,"<br>").replace(/\r/g,"<br>"
 
 fetch(BASE_URL)
 .then(r=>{
-    if(!r.ok) throw new Error(`Lỗi ${r.status}`);
+    if(!r.ok) throw new Error(`Lỗi kết nối: ${r.status}`);
     return r.text();
 })
 .then(csv=>{
     const rows=parseCSV(csv);
+    console.log("Số hàng đọc được:", rows.length); // Kiểm tra dữ liệu
     if(rows.length<2){
         document.getElementById("list-tin").innerHTML=`<div class="empty">Chưa có dữ liệu trên Sheet!</div>`;
         return;
     }
 
-    // === ĐỌC ĐÚNG VỊ TRÍ CỘT TRÊN SHEET "Nguồn Tin" ===
-    // Cột A=Tiêu đề(0), Cột C=Ngày(2), Cột K=Ảnh bìa(10), Cột M=Nội dung viết lại(12)
+    // === BỎ KIỂM TRA loai_muc = tin_nong ===
+    // Đọc THẲNG dữ liệu từ hàng 2 trở đi
+    // Cột A=Tiêu đề(0), Cột C=Ngày(2), Cột K=Ảnh bìa(10), Cột M=Nội dung(12)
     const DANH_SACH = [];
-    for(let i=1; i<rows.length; i++){ // Bắt đầu từ hàng 2
+    for(let i=1; i<rows.length; i++){
         const r = rows[i];
-        if(!r || r.length < 13) continue;
+        if(!r || r.length < 13) continue; // Bỏ hàng không đủ cột
 
         DANH_SACH.push({
             tieu_de: r[0]?.trim() || "Không có tiêu đề",
@@ -100,11 +101,11 @@ fetch(BASE_URL)
     }
 
     if(!DANH_SACH.length){
-        document.getElementById("list-tin").innerHTML=`<div class="empty">Không đọc được dữ liệu! Kiểm tra cấu trúc cột.</div>`;
+        document.getElementById("list-tin").innerHTML=`<div class="empty">Không đọc được dữ liệu! Kiểm tra cấu trúc cột trên Sheet.</div>`;
         return;
     }
 
-    // === HIỂN THỊ: Ảnh Cột K + Nội dung Cột M ===
+    // === HIỂN THỊ: Ảnh Cột K ở đầu + Nội dung Cột M bên dưới ===
     const box = document.getElementById("list-tin");
     box.innerHTML = "";
     DANH_SACH.forEach((x, idx) => {
@@ -123,7 +124,7 @@ fetch(BASE_URL)
         </div>`;
     });
 
-    // === Bấm xem / thu gọn nội dung ===
+    // === Bấm xem / thu gọn ===
     DANH_SACH.forEach((_, idx) => {
         const item = document.getElementById("tin-" + idx);
         const full = document.getElementById("tin-" + idx + "-full");
