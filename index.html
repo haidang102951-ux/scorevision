@@ -49,7 +49,7 @@
             min-height:100vh;
         }
         .container{max-width:1100px;margin:0 auto;padding:0 16px;}
-        /* === ẢNH NỀN ĐẦU TRANG — DÙNG ẢNH NỀN CỦA BẠN === */
+        /* === ẢNH NỀN ĐẦU TRANG === */
         .dau-trang-wrapper{
             position:relative;padding:32px 16px 16px;margin-bottom:8px;
             border-radius:0 0 20px 20px;
@@ -66,18 +66,20 @@
             display:flex;align-items:center;justify-content:center;gap:14px;
             position:relative;z-index:1;
         }
-        /* === ✅ LOGO MỚI — BỎ NỀN VÀNG === */
+        /* === LOGO === */
         .logo{
             width:64px;height:64px;border-radius:16px;
             background:transparent;
             display:flex;align-items:center;justify-content:center;
             box-shadow:0 4px 16px rgba(0,0,0,.20);
             overflow:hidden;
+            border:1px solid rgba(255,255,255,0.1);
         }
         .logo img{
             width:100%;height:100%;
             object-fit:contain;
             border-radius:12px;
+            background:#fff;
         }
         .ten-thuong-hieu{
             font-size:28px;font-weight:800;letter-spacing:-.3px;
@@ -88,7 +90,6 @@
             text-align:center;color:var(--text-muted);font-size:14px;letter-spacing:.5px;
             margin:8px 0 0;position:relative;z-index:1;
         }
-        /* === ĐÃ XÓA CSS dòng CẬP NHẬT LÚC === */
         /* === MENU === */
         .menu{
             display:flex;flex-wrap:wrap;gap:6px;margin-bottom:32px;
@@ -127,7 +128,7 @@
             background:linear-gradient(135deg,rgba(99,102,241,.25),rgba(79,70,229,.12));
             color:#c7d2fe;border-color:rgba(99,102,241,.35);
         }
-        /* === BANNER PHÂN TÍCH — DÙNG ẢNH NỀN CỦA BẠN === */
+        /* === BANNER PHÂN TÍCH === */
         .banner{
             background:linear-gradient(rgba(3,7,18,.50),rgba(15,23,42,.55)),
                         url('https://drive.google.com/uc?export=view&id=1uKSQ-T0kphC-dn6SKPwQLkKK_ltDRadA');
@@ -195,8 +196,6 @@
         .card-img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease, filter .4s ease;transform:scale(1.01);}
         .card-tin:hover .card-img{transform:scale(1.06);filter:brightness(1.08);}
         .card-anh-overlay{position:absolute;bottom:0;left:0;right:0;height:60px;background:linear-gradient(to top, rgba(0,0,0,.75), rgba(0,0,0,.35), transparent);pointer-events:none;}
-        .card-anh-icon{position:absolute;top:12px;right:12px;width:32px;height:32px;border-radius:50%;background:rgba(0,0,0,.5);color:rgba(255,255,255,.85);display:flex;align-items:center;justify-content:center;font-size:14px;opacity:0;transform:translateY(4px);transition:var(--tran);backdrop-filter:blur(4px);}
-        .card-tin:hover .card-anh-icon{opacity:1;transform:translateY(0);}
         .card-body{padding:16px;position:relative;}
         /* === THẺ KHÔNG ẢNH === */
         .card-khong-anh{
@@ -254,14 +253,13 @@
     <div class="dau-trang-wrapper">
         <div class="container">
             <div class="dau-trang">
-                <!-- ✅ LOGO MỚI THAY VÀO -->
+                <!-- ✅ LOGO ĐÃ ĐỔI LINK ĐÚNG -->
                 <div class="logo">
-                    <img src="https://drive.google.com/uc?export=view&id=1HI7m48fOeFQaL2joWRn09WAnoIGiuh2I" alt="Score Vision">
+                    <img src="https://drive.google.com/uc?export=view&id=1HI7m48fOeFQaL2joWRn09WAnoIGiuh2I" alt="Score Vision" onerror="this.style.display='none'">
                 </div>
                 <div><div class="ten-thuong-hieu">Score Vision</div></div>
             </div>
             <p class="slogan-dau">PHÂN TÍCH & DỰ ĐOÁN BÓNG ĐÁ HÀNG NGÀY</p>
-            <!-- ✅ ĐÃ XÓA DÒNG CẬP NHẬT LÚC -->
         </div>
     </div>
     <div class="container">
@@ -307,7 +305,7 @@
     </div>
     <a href="#" class="len-dau" id="btnLenDau">↑</a>
     <script>
-        // === ✅ NÚT LÊN ĐẦU TRANG ===
+        // === NÚT LÊN ĐẦU TRANG ===
         const btnLenDau = document.getElementById("btnLenDau");
         window.addEventListener("scroll", ()=>{
             if(window.scrollY > 400) btnLenDau.classList.add("hien");
@@ -317,7 +315,7 @@
             e.preventDefault();
             window.scrollTo({top:0,behavior:"smooth"});
         });
-        // === ✅ GID ĐÚNG TỪ LINK ===
+        // === GID & URL ===
         const GID_PHAN_TICH = "1723464768";
         const GID_TIN_NONG = "840175350";
         const GID_LICH_DAU = "655851279";
@@ -343,7 +341,7 @@
             const match = link.match(/src\s*=\s*["']([^"']+)["']/i);
             return match && match[1] ? match[1] : link.trim();
         }
-        // === ⚽ KẾT QUẢ ===
+        // === KẾT QUẢ ===
         fetch(BASE_URL+GID_KET_QUA)
         .then(r=>{if(!r.ok)throw new Error("Lỗi kết nối");return r.text();})
         .then(csv=>{
@@ -369,7 +367,7 @@
             box.innerHTML+=`</div>`;
         })
         .catch(e=>{document.getElementById("ketqua-list").innerHTML=`<div class="empty">❌ ${e.message}</div>`;});
-        // === 🔮 PHÂN TÍCH ===
+        // === PHÂN TÍCH ===
         fetch(BASE_URL+GID_PHAN_TICH)
         .then(r=>{if(!r.ok)throw new Error("Lỗi kết nối");return r.text();})
         .then(csv=>{
@@ -393,40 +391,26 @@
             box.innerHTML+=`</div>`;
         })
         .catch(e=>{document.getElementById("phan-tich-list").innerHTML=`<div class="empty">❌ ${e.message}</div>`;});
-        // === 📰 TIN NÓNG — BỎ CỘT G, CHIA LOẠI, CÙNG KÍCH THƯỚC ===
+        // === TIN NÓNG ===
         fetch(BASE_URL+GID_TIN_NONG)
         .then(r=>{if(!r.ok)throw new Error("Lỗi kết nối");return r.text();})
         .then(csv=>{
             const rows=parseCSV(csv);
             if(rows.length<2){document.getElementById("tin-list").innerHTML=`<div class="empty">Chưa có dữ liệu Tin Nóng!</div>`;return;}
-            
             const data=[];
             for(let i=1;i<rows.length;i++){
                 const r=rows[i];
                 if(!r || r.length < 13) continue;
-                
                 const tieude = (r[0]||"").trim();
                 const ngaydang = (r[2]||"").trim();
                 const anh_bia = (r[10]||"").trim();
                 const noidung = (r[12]||"").trim();
-                
                 if(!tieude) continue;
-                
                 const tomtat = noidung.replace(/<[^>]*>/g," ").replace(/\s+/g," ").trim().substring(0,80);
-                
-                data.push({
-                    tieude: tieude,
-                    ngay: ngaydang,
-                    anh: layAnh(anh_bia),
-                    tomtat: tomtat
-                });
+                data.push({tieude,ngay:ngaydang,anh:layAnh(anh_bia),tomtat});
             }
-            
             const box=document.getElementById("tin-list");
-            if(!data.length){
-                box.innerHTML=`<div class="empty">Chưa có bài tin nào!</div>`;
-                return;
-            }
+            if(!data.length){box.innerHTML=`<div class="empty">Chưa có bài tin nào!</div>`;return;}
             const baiNoiBat = data[0];
             const listTinMoi = data.slice(1,6);
             const cotTrai = listTinMoi.slice(0,3);
@@ -444,44 +428,27 @@
                     <div class="hint">Xem chi tiết →</div>
                 </div>
             </a>`;
-            html += `<div class="grid-2">`;
-            html += `<div>`;
+            html += `<div class="grid-2"><div>`;
             cotTrai.forEach(x=>{
                 const ngay = x.ngay.split(" ")[0];
                 html += `<a href="tin-nong.html" class="card-tin" style="margin-bottom:16px;display:block;">
-                    <div class="card-anh-wrapper">
-                        <img src="${x.anh}" alt="${x.tieude}" class="card-img" loading="lazy">
-                    </div>
-                    <div class="card-body">
-                        <span class="card-label label-tin">📰 ${ngay}</span>
-                        <h3>${x.tieude}</h3>
-                        <p>${x.tomtat}…</p>
-                        <div class="hint">Xem chi tiết →</div>
-                    </div>
+                    <div class="card-anh-wrapper"><img src="${x.anh}" alt="${x.tieude}" class="card-img" loading="lazy"></div>
+                    <div class="card-body"><span class="card-label label-tin">📰 ${ngay}</span><h3>${x.tieude}</h3><p>${x.tomtat}…</p><div class="hint">Xem chi tiết →</div></div>
                 </a>`;
             });
-            html += `</div>`;
-            html += `<div>`;
+            html += `</div><div>`;
             cotPhai.forEach(x=>{
                 const ngay = x.ngay.split(" ")[0];
                 html += `<a href="tin-nong.html" class="card-tin" style="margin-bottom:16px;display:block;">
-                    <div class="card-anh-wrapper">
-                        <img src="${x.anh}" alt="${x.tieude}" class="card-img" loading="lazy">
-                    </div>
-                    <div class="card-body">
-                        <span class="card-label label-tin">📰 ${ngay}</span>
-                        <h3>${x.tieude}</h3>
-                        <p>${x.tomtat}…</p>
-                        <div class="hint">Xem chi tiết →</div>
-                    </div>
+                    <div class="card-anh-wrapper"><img src="${x.anh}" alt="${x.tieude}" class="card-img" loading="lazy"></div>
+                    <div class="card-body"><span class="card-label label-tin">📰 ${ngay}</span><h3>${x.tieude}</h3><p>${x.tomtat}…</p><div class="hint">Xem chi tiết →</div></div>
                 </a>`;
             });
-            html += `</div>`;
-            html += `</div>`;
+            html += `</div></div>`;
             box.innerHTML = html;
         })
         .catch(e=>{document.getElementById("tin-list").innerHTML=`<div class="empty">❌ ${e.message}</div>`;});
-        // === 📅 LỊCH ĐẤU ===
+        // === LỊCH ĐẤU ===
         fetch(BASE_URL+GID_LICH_DAU)
         .then(r=>{if(!r.ok)throw new Error("Lỗi kết nối");return r.text();})
         .then(csv=>{
@@ -507,7 +474,7 @@
         })
         .catch(e=>{document.getElementById("lich-list").innerHTML=`<div class="empty">❌ ${e.message}</div>`;});
     </script>
-    <!-- ✅ MÃ QUẢNG CÁO MoneTag -->
+    <!-- MÃ QUẢNG CÁO MoneTag -->
     <script>(function(s){s.dataset.zone='11665696',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
 </body>
 </html>
