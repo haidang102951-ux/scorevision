@@ -375,9 +375,9 @@
             e.preventDefault();
             window.scrollTo({top:0,behavior:"smooth"});
         });
-        // === ✅ GID ĐÚNG TỪ LINK MÀY GỬI ===
+        // === ✅ GID ĐÚNG TỪ LINK ===
         const GID_PHAN_TICH = "1723464768";
-        const GID_TIN_NONG = "840175350";  // ✅ ĐÚNG TỪ LINK: gid=840175350
+        const GID_TIN_NONG = "840175350";
         const GID_LICH_DAU = "655851279";
         const GID_BANG_XEP_HANG = "0";
         const GID_THONG_KE = "575449196";
@@ -451,7 +451,7 @@
             box.innerHTML+=`</div>`;
         })
         .catch(e=>{document.getElementById("phan-tich-list").innerHTML=`<div class="empty">❌ ${e.message}</div>`;});
-        // === 📰 TIN NÓNG — ĐÚNG CỘT A, C, G, K, M + LỌC "ĐÃ XỬ LÝ" ===
+        // === 📰 TIN NÓNG — ✅ BỎ CỘT G, CHỈ LẤY A, C, K, M ===
         fetch(BASE_URL+GID_TIN_NONG)
         .then(r=>{if(!r.ok)throw new Error("Lỗi kết nối");return r.text();})
         .then(csv=>{
@@ -463,15 +463,13 @@
                 const r=rows[i];
                 if(!r || r.length < 13) continue;
                 
-                // Cột A=0, Cột C=2, Cột G=6, Cột K=10, Cột M=12
-                const tieude = (r[0]||"").trim();
-                const ngaydang = (r[2]||"").trim();
-                const trangthai = (r[6]||"").trim();
-                const anh_bia = (r[10]||"").trim();
-                const noidung = (r[12]||"").trim();
+                // === CHỈ LẤY NHỮNG CẦN DÙNG — BỎ CỘT G HOÀN TOÀN ===
+                const tieude = (r[0]||"").trim();     // Cột A = Tiêu đề
+                const ngaydang = (r[2]||"").trim();   // Cột C = Ngày đăng
+                const anh_bia = (r[10]||"").trim();   // Cột K = Ảnh bìa
+                const noidung = (r[12]||"").trim();   // Cột M = Nội dung
                 
-                // Chỉ lấy dòng có trạng thái "Đã xử lý"
-                if(trangthai !== "Đã xử lý") continue;
+                // === KHÔNG LỌC TRẠNG THÁI — LẤY TẤT CẢ ===
                 if(!tieude) continue;
                 
                 const tomtat = noidung.replace(/<[^>]*>/g," ").replace(/\s+/g," ").trim().substring(0,80);
@@ -486,7 +484,7 @@
             
             const box=document.getElementById("tin-list");
             if(!data.length){
-                box.innerHTML=`<div class="empty">Chưa có bài tin nào ở trạng thái "Đã xử lý"!</div>`;
+                box.innerHTML=`<div class="empty">Chưa có bài tin nào!</div>`;
                 return;
             }
             
