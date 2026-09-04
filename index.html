@@ -451,7 +451,7 @@
             box.innerHTML+=`</div>`;
         })
         .catch(e=>{document.getElementById("phan-tich-list").innerHTML=`<div class="empty">❌ ${e.message}</div>`;});
-        // === 📰 TIN NÓNG — ✅ BỎ CỘT G, CHỈ LẤY A, C, K, M ===
+                // === 📰 TIN NÓNG — ✅ BỎ CỘT G + CHIA LOẠI, CÙNG KÍCH THƯỚC ẢNH ===
         fetch(BASE_URL+GID_TIN_NONG)
         .then(r=>{if(!r.ok)throw new Error("Lỗi kết nối");return r.text();})
         .then(csv=>{
@@ -463,13 +463,12 @@
                 const r=rows[i];
                 if(!r || r.length < 13) continue;
                 
-                // === CHỈ LẤY NHỮNG CẦN DÙNG — BỎ CỘT G HOÀN TOÀN ===
-                const tieude = (r[0]||"").trim();     // Cột A = Tiêu đề
-                const ngaydang = (r[2]||"").trim();   // Cột C = Ngày đăng
-                const anh_bia = (r[10]||"").trim();   // Cột K = Ảnh bìa
-                const noidung = (r[12]||"").trim();   // Cột M = Nội dung
+                // === CHỈ LẤY A, C, K, M — BỎ CỘT G ===
+                const tieude = (r[0]||"").trim();     // A = Tiêu đề
+                const ngaydang = (r[2]||"").trim();   // C = Ngày
+                const anh_bia = (r[10]||"").trim();   // K = Ảnh bìa
+                const noidung = (r[12]||"").trim();   // M = Nội dung
                 
-                // === KHÔNG LỌC TRẠNG THÁI — LẤY TẤT CẢ ===
                 if(!tieude) continue;
                 
                 const tomtat = noidung.replace(/<[^>]*>/g," ").replace(/\s+/g," ").trim().substring(0,80);
@@ -487,26 +486,70 @@
                 box.innerHTML=`<div class="empty">Chưa có bài tin nào!</div>`;
                 return;
             }
-            
-            // Hiển thị 3 bài đầu tiên
-            box.innerHTML=`<div class="grid-2">`;
-            data.slice(0,3).forEach((x,i)=>{
-                const ngayThue = x.ngay.split(" ")[0];
-                box.innerHTML+=`<a href="tin-nong.html" class="card-tin">
+
+            // === ✅ LẤY 6 BÀI ĐẦU, BÀI 1 = NỔI BẬT, CÒN LẠI = TIN MỚI ===
+            const baiNoiBat = data[0];
+            const listTinMoi = data.slice(1,6); // 5 bài tiếp
+            const cotTrai = listTinMoi.slice(0,3); // 3 bài trái
+            const cotPhai = listTinMoi.slice(3,5); // 2 bài phải
+            const ngayNB = baiNoiBat.ngay.split(" ")[0];
+
+            let html = "";
+
+            // === 🔥 BÀI NỔI BẬT — CÙNG KÍCH THƯỚC, KHÔNG LỚN HƠN ===
+            html += `<a href="tin-nong.html" class="card-tin" style="margin-bottom:16px;display:block;">
+                <div class="card-anh-wrapper">
+                    <img src="${baiNoiBat.anh}" alt="${baiNoiBat.tieude}" class="card-img" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <span class="card-label label-hot">🔥 NỔI BẬT — ${ngayNB}</span>
+                    <h3>${baiNoiBat.tieude}</h3>
+                    <p>${baiNoiBat.tomtat}…</p>
+                    <div class="hint">Xem chi tiết →</div>
+                </div>
+            </a>`;
+
+            // === 📰 TIN MỚI — CHIA 2 CỘT ===
+            html += `<div class="grid-2">`;
+
+            // CỘT TRÁI
+            html += `<div>`;
+            cotTrai.forEach(x=>{
+                const ngay = x.ngay.split(" ")[0];
+                html += `<a href="tin-nong.html" class="card-tin" style="margin-bottom:16px;display:block;">
                     <div class="card-anh-wrapper">
                         <img src="${x.anh}" alt="${x.tieude}" class="card-img" loading="lazy">
                     </div>
                     <div class="card-body">
-                        <span class="card-label ${i===0?'label-hot':'label-tin'}">
-                            ${i===0?'🔥 Nổi bật':'📰 '+ngayThue}
-                        </span>
+                        <span class="card-label label-tin">📰 ${ngay}</span>
                         <h3>${x.tieude}</h3>
                         <p>${x.tomtat}…</p>
                         <div class="hint">Xem chi tiết →</div>
                     </div>
                 </a>`;
             });
-            box.innerHTML+=`</div>`;
+            html += `</div>`;
+
+            // CỘT PHẢI
+            html += `<div>`;
+            cotPhai.forEach(x=>{
+                const ngay = x.ngay.split(" ")[0];
+                html += `<a href="tin-nong.html" class="card-tin" style="margin-bottom:16px;display:block;">
+                    <div class="card-anh-wrapper">
+                        <img src="${x.anh}" alt="${x.tieude}" class="card-img" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <span class="card-label label-tin">📰 ${ngay}</span>
+                        <h3>${x.tieude}</h3>
+                        <p>${x.tomtat}…</p>
+                        <div class="hint">Xem chi tiết →</div>
+                    </div>
+                </a>`;
+            });
+            html += `</div>`;
+            html += `</div>`;
+
+            box.innerHTML = html;
         })
         .catch(e=>{document.getElementById("tin-list").innerHTML=`<div class="empty">❌ ${e.message}</div>`;});
         // === 📅 LỊCH ĐẤU ===
