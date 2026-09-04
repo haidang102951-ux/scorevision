@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <link rel="icon" type="image/png" href="/favicon.png">
-<link rel="apple-touch-icon" href="/favicon.png">
-    <!-- ✅ Thẻ xác minh quyền sở hữu -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="favicon.png">
+    <!-- ✅ Thẻ xác minh quyền sở hữu AdSense -->
     <meta name="google-adsense-account" content="ca-pub-6588369693863083">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6588369693863083" crossorigin="anonymous"></script>
     <meta name="monetag" content="9f18703360e44fe069c7f96a0278767f">
@@ -49,7 +49,7 @@
             min-height:100vh;
         }
         .container{max-width:1100px;margin:0 auto;padding:0 16px;}
-        /* === ẢNH NỀN ĐẦU TRANG === */
+        /* === ĐẦU TRANG === */
         .dau-trang-wrapper{
             position:relative;padding:32px 16px 16px;margin-bottom:8px;
             border-radius:0 0 20px 20px;
@@ -58,7 +58,7 @@
         .dau-trang-wrapper::before{
             content:"";position:absolute;inset:0;z-index:0;
             background:linear-gradient(180deg,rgba(2,6,23,0.60) 0%,rgba(15,23,42,0.55) 100%),
-                        url('https://drive.google.com/uc?export=view&id=1uKSQ-T0kphC-dn6SKPwQLkKK_ltDRadA');
+                        url('anh_nen.png');
             background-size:cover;background-position:center top;
             background-repeat:no-repeat;
         }
@@ -128,10 +128,10 @@
             background:linear-gradient(135deg,rgba(99,102,241,.25),rgba(79,70,229,.12));
             color:#c7d2fe;border-color:rgba(99,102,241,.35);
         }
-        /* === BANNER PHÂN TÍCH === */
+        /* === BANNER === */
         .banner{
             background:linear-gradient(rgba(3,7,18,.50),rgba(15,23,42,.55)),
-                        url('https://drive.google.com/uc?export=view&id=1uKSQ-T0kphC-dn6SKPwQLkKK_ltDRadA');
+                        url('anh_nen.png');
             background-size:cover;background-position:center;
             border-radius:16px;padding:32px 24px;margin-bottom:36px;
             border:1px solid var(--border-gold);
@@ -253,9 +253,9 @@
     <div class="dau-trang-wrapper">
         <div class="container">
             <div class="dau-trang">
-                <!-- ✅ LOGO ĐÃ ĐỔI LINK ĐÚNG -->
+                <!-- ✅ LOGO DÙNG LINK TRỰC TIẾP -->
                 <div class="logo">
-                    <img src="https://drive.google.com/uc?export=view&id=1HI7m48fOeFQaL2joWRn09WAnoIGiuh2I" alt="Score Vision" onerror="this.style.display='none'">
+                    <img src="logo.png" alt="Score Vision" onerror="this.style.display='none'">
                 </div>
                 <div><div class="ten-thuong-hieu">Score Vision</div></div>
             </div>
@@ -315,7 +315,7 @@
             e.preventDefault();
             window.scrollTo({top:0,behavior:"smooth"});
         });
-        // === GID & URL ===
+        // === GID SHEET ===
         const GID_PHAN_TICH = "1723464768";
         const GID_TIN_NONG = "840175350";
         const GID_LICH_DAU = "655851279";
@@ -323,7 +323,8 @@
         const GID_THONG_KE = "575449196";
         const GID_KET_QUA = "1819801064";
         const BASE_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRjGewmdAmJVjyi-0vSc22hhFPacMgGc-WmVE8PEM3jHfA7IvED3XbBp68Bwp16n1Dc2FFP9ETKTaSH/pub?output=csv&gid=";
-        const ANH_MAC_DINH = "https://drive.google.com/uc?export=view&id=1uKSQ-T0kphC-dn6SKPwQLkKK_ltDRadA";
+        // === ẢNH MẶC ĐỊNH ===
+        const ANH_MAC_DINH = "anh_nen.png";
         function parseCSV(text){
             const rows = [];let row=[],cell="",inQuote=false;
             for(let i=0;i<text.length;i++){
