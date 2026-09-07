@@ -65,8 +65,8 @@
 </div>
 <div id="list-lich"><div class="loading">Đang tải lịch đấu...</div></div>
 <script>
-// ✅ LINK ĐỌC DỮ LIỆU TỪ SHEET
-const CSV_URL = "https://docs.google.com/spreadsheets/d/1-EcewgzQ1P9pyk6lp3ADV69kwWccuQuY72TK77OPmYk/pub?gid=655851279&single=true&output=csv";
+// ✅ LINK ĐÚNG NHẤT — TỪ XUẤT BẢN TRÊN WEB CỦA BẠN
+const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRGEwmdAm-JVyi-0vSc22hFPacMgGc-WmV8EPM3jHfA7ivED3XbP68Bwp16n1Dc2FFP9ETKTaSH/pub?gid=655851279&single=true&output=csv";
 
 let duLieuGoc = [];
 let giaiDangChon = "TatCa";
@@ -88,7 +88,7 @@ function parseCSV(text){
 
 fetch(CSV_URL)
 .then(r=>{
-    if(!r.ok) throw new Error("Không đọc được sheet! Kiểm tra quyền chia sẻ");
+    if(!r.ok) throw new Error("Không đọc được sheet! Kiểm tra Xuất bản trên web");
     return r.text();
 })
 .then(csv=>{
@@ -133,7 +133,7 @@ fetch(CSV_URL)
     hienThiDuLieu();
 })
 .catch(err=>{
-    document.getElementById("list-lich").innerHTML=`<div class="empty">❌ Lỗi: ${err.message}<br>Kiểm tra: Chia sẻ sheet → Bất kỳ ai có liên kết</div>`;
+    document.getElementById("list-lich").innerHTML=`<div class="empty">❌ Lỗi: ${err.message}<br>Kiểm tra: Tệp → Xuất bản trên web → Nhấn Xuất bản</div>`;
 });
 
 function hienThiDuLieu(){
