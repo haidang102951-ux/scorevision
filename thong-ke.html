@@ -52,9 +52,9 @@
 <div id="list-tran"><div class="loading">Đang tải dữ liệu trận đấu...</div></div>
 
 <script>
-// === LINK SHEET + THÊM DẤU THỜI GIAN → LUÔN LẤY MỚI NHẤT ===
+// === LINK SHEET CỦA BẠN ===
 const GOC_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRjGewmdAmJVjyi-0vSc22hhFPacMgGc-WmVE8PEM3jHfA7IvED3XbBp68Bwp16n1Dc2FFP9ETKTaSH/pub?gid=575449196&single=true&output=csv";
-// Thêm thời gian vào URL → Trình duyệt KHÔNG lưu đệm → LUÔN LẤY MỚI TỪ SHEET
+// Thêm thời gian vào URL → Luôn lấy MỚI nhất, không lấy từ bộ nhớ đệm
 const CSV_URL = GOC_URL + "&t=" + Date.now();
 
 // === HÀM ĐỌC CSV ĐÚNG ĐỊNH DẠNG ===
@@ -74,7 +74,7 @@ function parseCSV(text){
     return rows;
 }
 
-// === TÁCH NGÀY GIỎ TỪ CHUỖI ĐỂ SẮP XẾP ===
+// === TÁCH NGÀY GIỜ TỪ CỘT CHỈ TIÊU ĐỂ SẮP XẾP ===
 function tachNgayGio(chiTieu){
     if(!chiTieu) return 0;
     const phanTach = chiTieu.split(" | ");
@@ -95,30 +95,30 @@ fetch(CSV_URL)
 })
 .then(csv => {
     const rows = parseCSV(csv);
-    console.log("✅ Đọc được " + rows.length + " hàng từ Sheet (dữ liệu mới nhất)");
+    console.log("✅ Đọc được " + rows.length + " hàng từ Sheet");
 
     if(rows.length < 2){
         document.getElementById("list-tran").innerHTML = `<div class="empty">Chưa có dữ liệu trận đấu trên Sheet!</div>`;
         return;
     }
 
-    // === TÌM ĐÚNG CỘT THEO SHEET ===
+    // ✅ === TÌM ĐÚNG TÊN CỘT TRÊN SHEET CỦA BẠN ===
     const header = rows[0].map(h => h.trim().toLowerCase());
-    const idx_loai   = header.indexOf("loai_muc");     // Cột A trên Sheet thực tế
-    const idx_thutu  = header.indexOf("thu_tu");       // Cột B
-    const idx_chitieu= header.indexOf("danh_muc");     // Cột C
-    const idx_donvi  = header.indexOf("doi");          // Cột D
-    const idx_solieu = header.indexOf("chi_so");       // Cột E
-    const idx_ghichu = header.indexOf("ghi_chu");      // Cột F
+    const idx_loai   = header.indexOf("loại");     // Cột A
+    const idx_thutu  = header.indexOf("thứ tự");   // Cột B
+    const idx_chitieu= header.indexOf("chỉ tiêu"); // Cột C
+    const idx_donvi  = header.indexOf("đơn vị");   // Cột D
+    const idx_solieu = header.indexOf("số liệu");  // Cột E
+    const idx_ghichu = header.indexOf("ghi chú");  // Cột F
 
     // === KIỂM TRA CỘT ĐỦ CHƯA ===
     const thieuCot = [];
-    if(idx_loai   === -1) thieuCot.push("loai_muc (cột A)");
-    if(idx_thutu  === -1) thieuCot.push("thu_tu (cột B)");
-    if(idx_chitieu=== -1) thieuCot.push("danh_muc (cột C)");
-    if(idx_donvi  === -1) thieuCot.push("doi (cột D)");
-    if(idx_solieu === -1) thieuCot.push("chi_so (cột E)");
-    if(idx_ghichu === -1) thieuCot.push("ghi_chu (cột F)");
+    if(idx_loai   === -1) thieuCot.push("Loại (cột A)");
+    if(idx_thutu  === -1) thieuCot.push("Thứ tự (cột B)");
+    if(idx_chitieu=== -1) thieuCot.push("Chỉ tiêu (cột C)");
+    if(idx_donvi  === -1) thieuCot.push("Đơn vị (cột D)");
+    if(idx_solieu === -1) thieuCot.push("Số liệu (cột E)");
+    if(idx_ghichu === -1) thieuCot.push("Ghi chú (cột F)");
 
     if(thieuCot.length > 0){
         document.getElementById("list-tran").innerHTML = `<div class="empty">❌ Thiếu cột: ${thieuCot.join(", ")}<br>Kiểm tra hàng tiêu đề trên Sheet!</div>`;
@@ -145,20 +145,20 @@ fetch(CSV_URL)
     }
 
     // ✅ === SẮP XẾP THÔNG MINH ===
-    // 1. TRẬN SẮP ĐẤU lên TRƯỚC → sắp xếp theo NGÀY GẦN NHẤT trước
-    // 2. TRẬN ĐÃ ĐẤU ở DƯỚI → sắp xếp theo NGÀY MỚI NHẤT trước
+    // 1. TRẬN SẮP ĐẤU → ĐỨNG ĐẦU TRANG (gần nhất trước)
+    // 2. TRẬN ĐÃ ĐẤU → Ở DƯỚI (mới nhất trước)
     danhSachTran.sort((a, b) => {
         const aSap = a.loai.includes("Sắp đấu") || a.loai.includes("Chờ");
         const bSap = b.loai.includes("Sắp đấu") || b.loai.includes("Chờ");
 
-        if(aSap && !bSap) return -1;    // a Sắp đấu → lên trước
-        if(!aSap && bSap) return 1;     // b Sắp đấu → a xuống sau
+        if(aSap && !bSap) return -1;
+        if(!aSap && bSap) return 1;
 
-        // Cùng loại → Sắp theo NGÀY: Sắp đấu thì GẦN NHẤT trước / Đã đấu thì MỚI NHẤT trước
+        // Cùng loại → sắp theo ngày
         return aSap ? a.ngayGioSoSanh - b.ngayGioSoSanh : b.ngayGioSoSanh - a.ngayGioSoSanh;
     });
 
-    console.log("✅ " + danhSachTran.length + " trận hợp lệ (Đã sắp xếp: Sắp đấu trước → Đã đấu sau)");
+    console.log("✅ " + danhSachTran.length + " trận hợp lệ");
 
     if(!danhSachTran.length){
         document.getElementById("list-tran").innerHTML = `<div class="empty">Không có trận đấu nào hợp lệ!</div>`;
@@ -170,17 +170,17 @@ fetch(CSV_URL)
     box.innerHTML = "";
 
     danhSachTran.forEach(t => {
-        // Tách "Giải đấu" và "Ngày giờ" từ cột Chỉ tiêu/Danh mục
+        // Tách Giải đấu và Ngày giờ từ cột Chỉ tiêu
         const phanTach = t.chiTieu.split(" | ");
         const tenGiai = phanTach[0] || "Bóng Đá";
         const ngayGio = phanTach[1] || "";
 
-        // Màu loại trận
+        // Màu & Nhãn loại trận
         const laSap = t.loai.includes("Sắp đấu") || t.loai.includes("Chờ");
         const classLoai = laSap ? "sap" : "dau";
         const textLoai = laSap ? "⏰ Sắp đấu" : "✅ Đã đấu";
 
-        // Tách tỷ số nổi bật
+        // Tách tỷ số to nổi bật
         let tySoLon = t.soLieu;
         const matchTySo = t.soLieu.match(/(\d+)\s*[-–:]\s*(\d+)/);
         if(matchTySo){
