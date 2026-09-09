@@ -184,19 +184,27 @@
         .ketqua-score-num{font-size:20px;font-weight:700;color:#fff;}
         .ketqua-status{text-align:center;margin-top:10px;padding-top:8px;border-top:1px solid rgba(148,163,184,.10);}
         .status-finished{display:inline-flex;align-items:center;gap:4px;color:#86efac;font-size:12px;font-weight:500;background:rgba(74,222,128,.06);padding:3px 10px;border-radius:12px;}
-        /* === ✅ THẺ PHÂN TÍCH — TÓM TẮT CHỈ HIỂN THỊ 1-2 DÒNG === */
+        /* === ✅ THẺ PHÂN TÍCH — CÓ ẢNH BÌA THEO GIẢI === */
         .card-phantich{
-            background:var(--bg-card);border-radius:14px;padding:18px;
+            background:var(--bg-card);border-radius:14px;overflow:hidden;
             border:1px solid rgba(254,240,138,.12);box-shadow:var(--shadow-soft);
             text-decoration:none;color:inherit;display:block;transition:var(--tran);
-            position:relative;overflow:hidden;backdrop-filter:blur(4px);
             cursor:pointer;
         }
-        .card-phantich::before{
-            content:"";position:absolute;top:0;left:0;width:100%;height:3px;
-            background:linear-gradient(90deg,#fef08a,#fde047,#fef08a);
-        }
         .card-phantich:hover{border-color:rgba(254,240,138,.25);transform:translateY(-3px);box-shadow:var(--shadow-hover);}
+        /* === 🎨 ẢNH BÌA THEO GIẢI === */
+        .anh-bia-giai{
+            width:100%;
+            height:200px;
+            object-fit:cover;
+            object-position:center;
+            border:none;
+            transition:transform .35s ease, box-shadow .35s ease;
+        }
+        .card-phantich:hover .anh-bia-giai{
+            transform:scale(1.03);
+        }
+        .card-body-phantich{padding:18px;}
         .pt-giai{color:#fde047;font-size:13px;font-weight:600;margin-bottom:6px;}
         .pt-tran{font-size:16px;font-weight:700;color:#fef08a;margin-bottom:6px;}
         .pt-ngay{color:#94a3b8;font-size:12px;margin-bottom:10px;}
@@ -259,12 +267,14 @@
             .ketqua-team{font-size:14px;}
             .ketqua-score-num{font-size:18px;}
             .card-anh-wrapper{height:140px;}
+            .anh-bia-giai{height:160px;}
         }
         @media(max-width:640px){
             .banner{padding:22px 16px;}
             .banner h1{font-size:19px;}
             .grid-2{grid-template-columns:1fr;}
             .card-anh-wrapper{height:130px;}
+            .anh-bia-giai{height:140px;}
         }
     </style>
 </head>
@@ -334,6 +344,7 @@
             e.preventDefault();
             window.scrollTo({top:0,behavior:"smooth"});
         });
+
         // === GID SHEET ===
         const GID_PHAN_TICH = "1723464768";
         const GID_TIN_NONG = "840175350";
@@ -342,8 +353,36 @@
         const GID_THONG_KE = "575449196";
         const GID_KET_QUA = "1819801064";
         const BASE_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRjGewmdAmJVjyi-0vSc22hhFPacMgGc-WmVE8PEM3jHfA7IvED3XbBp68Bwp16n1Dc2FFP9ETKTaSH/pub?output=csv&gid=";
-        // === ẢNH MẶC ĐỊNH ===
+
+        // === ✅ ẢNH BÌA THEO TÊN GIẢI — THÊM/SỬA Ở ĐÂY ===
+        const ANH_GIAI = {
+            "Premier League": "https://i.imgur.com/UkYdXw8.png",
+            "Ngoại Hạng Anh": "https://i.imgur.com/UkYdXw8.png",
+            "La Liga": "https://i.imgur.com/9ZfRsB9.png",
+            "Bundesliga": "https://i.imgur.com/8A2tQXM.png",
+            "Serie A": "https://i.imgur.com/kN9ZqLd.png",
+            "Ligue 1": "https://i.imgur.com/7wqBZfN.png",
+            "Champions League": "https://i.imgur.com/4QZxQw8.png",
+            "Cúp C1": "https://i.imgur.com/4QZxQw8.png",
+            "AFC ASEAN U20": "https://i.imgur.com/xyz123a.png",
+            "SEA Games": "https://i.imgur.com/sea456b.png",
+            "U23 ASIAD": "https://i.imgur.com/asiad789.png",
+            "ĐT Việt Nam": "https://i.imgur.com/vn999vn.png"
+        };
         const ANH_MAC_DINH = "anh_nen.png";
+
+        // === ✅ HÀM LẤY ẢNH THEO TÊN GIẢI ===
+        function layAnhGiai(tenGiai){
+            if(!tenGiai) return ANH_MAC_DINH;
+            tenGiai = tenGiai.trim();
+            for(let tenKhoa in ANH_GIAI){
+                if(tenGiai.toLowerCase().includes(tenKhoa.toLowerCase())){
+                    return ANH_GIAI[tenKhoa];
+                }
+            }
+            return ANH_MAC_DINH;
+        }
+
         // === ĐỌC CSV ĐÚNG ĐỊNH DẠNG ===
         function parseCSV(text){
             const rows = [];let row=[],cell="",inQuote=false;
@@ -357,16 +396,19 @@
             if(cell||row.length>0){row.push(cell.trim());rows.push(row);}
             return rows;
         }
+
         // === LẤY TÓM TẮT — CHỈ LẤY 1-2 DÒNG ===
         function layTomTat(text, doDai=100){
             if(!text) return "Đang cập nhật...";
             return text.replace(/<[^>]*>/g," ").replace(/\s+/g," ").trim().substring(0, doDai) + "…";
         }
+
         function layAnh(link){
             if(!link||!link.trim().startsWith("http")) return ANH_MAC_DINH;
             const match = link.match(/src\s*=\s*["']([^"']+)["']/i);
             return match && match[1] ? match[1] : link.trim();
         }
+
         // === KẾT QUẢ ===
         fetch(BASE_URL+GID_KET_QUA)
         .then(r=>{if(!r.ok)throw new Error("Lỗi kết nối");return r.text();})
@@ -393,7 +435,8 @@
             box.innerHTML+=`</div>`;
         })
         .catch(e=>{document.getElementById("ketqua-list").innerHTML=`<div class="empty">❌ ${e.message}</div>`;});
-        // === ✅ PHÂN TÍCH — CHỈ HIỂN THỊ TÓM TẮT → NHẤP XEM CHI TIẾT ===
+
+        // === ✅ PHÂN TÍCH — CÓ ẢNH BÌA THEO GIẢI ===
         fetch(BASE_URL+GID_PHAN_TICH)
         .then(r=>{if(!r.ok)throw new Error("Lỗi kết nối");return r.text();})
         .then(csv=>{
@@ -422,10 +465,12 @@
                 const r=rows[i];
                 const loai = (r[idx.loai]||"").trim().toLowerCase();
                 if(loai !== "trận đấu") continue;
-                
+
+                const tenGiai = (r[idx.giai]||"").trim();
                 data.push({
                     st: Number(r[idx.thuTu])||999,
-                    giai: (r[idx.giai]||"").trim(),
+                    giai: tenGiai,
+                    anhBia: layAnhGiai(tenGiai),
                     tran: (r[idx.tran]||"").trim(),
                     ngay: (r[idx.ngay]||"").trim(),
                     pt: layTomTat((r[idx.pt]||"").trim(), 90),
@@ -441,22 +486,26 @@
                 return;
             }
             
-            // ✅ CHỈ HIỂN THỊ 3-4 TRẬN + TÓM TẮT → NHẤP VÀO XEM CHI TIẾT
+            // ✅ CHỈ HIỂN THỊ 4 TRẬN + ẢNH BÌA THEO GIẢI
             box.innerHTML=`<div class="grid-2">`;
             data.slice(0,4).forEach(x=>{
                 box.innerHTML += `
                 <a href="du-doan.html" class="card-phantich">
-                    <div class="pt-giai">🏆 ${x.giai}</div>
-                    <div class="pt-tran">⚽ ${x.tran}</div>
-                    <div class="pt-ngay">📅 ${x.ngay}</div>
-                    <div class="pt-tomtat">📝 ${x.pt}</div>
-                    <div class="pt-tomtat">✅ Dự đoán: ${x.doan}</div>
-                    <div class="pt-xemchitiet">👉 Nhấp vào xem chi tiết đầy đủ →</div>
+                    <img src="${x.anhBia}" alt="${x.giai}" class="anh-bia-giai" loading="lazy">
+                    <div class="card-body-phantich">
+                        <div class="pt-giai">🏆 ${x.giai}</div>
+                        <div class="pt-tran">⚽ ${x.tran}</div>
+                        <div class="pt-ngay">📅 ${x.ngay}</div>
+                        <div class="pt-tomtat">📝 ${x.pt}</div>
+                        <div class="pt-tomtat">✅ Dự đoán: ${x.doan}</div>
+                        <div class="pt-xemchitiet">👉 Nhấp vào xem chi tiết đầy đủ →</div>
+                    </div>
                 </a>`;
             });
             box.innerHTML += `</div>`;
         })
         .catch(e=>{document.getElementById("phan-tich-list").innerHTML=`<div class="empty">❌ Lỗi: ${e.message}</div>`;});
+
         // === TIN NÓNG ===
         fetch(BASE_URL+GID_TIN_NONG)
         .then(r=>{if(!r.ok)throw new Error("Lỗi kết nối");return r.text();})
@@ -514,6 +563,7 @@
             box.innerHTML = html;
         })
         .catch(e=>{document.getElementById("tin-list").innerHTML=`<div class="empty">❌ ${e.message}</div>`;});
+
         // === LỊCH ĐẤU ===
         fetch(BASE_URL+GID_LICH_DAU)
         .then(r=>{if(!r.ok)throw new Error("Lỗi kết nối");return r.text();})
