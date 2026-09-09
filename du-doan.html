@@ -43,16 +43,15 @@
     <a href="thong-ke.html" class="menu-btn">📈 Thống kê</a>
     <a href="tin-nong.html" class="menu-btn">📰 Tin Nóng</a>
     <a href="ket-qua.html" class="menu-btn">⚽ Kết Quả</a>
-    <a href="livescore.html" class="menu-btn livescore active">⚽ LiveScore</a>
-    <a href="gop-y.html" class="menu-btn gopy">💬 Góp Ý</a>
+    <a href="livescore.html" class="menu-btn">⚽ LiveScore</a>
+    <a href="gop-y.html" class="menu-btn">💬 Góp Ý</a>
 </nav>
 <h2>🔮 Phân Tích & Dự Đoán Chuyên Gia</h2>
 <div class="chon-giai" id="nutGiai"></div>
 <div id="pt-container"><div class="loading">Đang tải phân tích từ Sheet...</div></div>
 <script>
-// ✅ LINK ĐÃ ĐIỀN SẴN — KHÔNG CẦN THAY GÌ
+// ✅ LINK ĐÃ ĐIỀN SẴN
 const BASE_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRjGewmdAmJVjyi-0vSc22hhFPacMgGc-WmVE8PEM3jHfA7IvED3XbBp68Bwp16n1Dc2FFP9ETKTaSH/pub?gid=1723464768&single=true&output=csv";
-
 let tatCaDuLieu = {};
 
 // === ĐỌC CSV ĐÚNG DẤU NGOẶC & XUỐNG DÒNG ===
@@ -103,7 +102,7 @@ function hienDanhSach(giai){
         container.innerHTML += `
         <div class="tran-card" data-giai="${giai}" data-index="${idx}">
             <div class="tran-ten">⚽ ${x.ten_tran}</div>
-            <div class="tran-thongtin">🏆 ${x.ten_giai} • 📅 ${x.ngay_gio}</div>
+            <div class="tran-thongtin">🏆 ${x.ten_giai} • 📅 ${x.ngay_gio} • #${x.thu_tu}</div>
             <div class="tran-xem">👉 Bấm xem phân tích chi tiết →</div>
         </div>`;
     });
@@ -121,7 +120,7 @@ function hienChiTiet(giai,index){
     document.getElementById("pt-container").innerHTML = `
     <div class="bai-chitiet">
         <div class="bai-tieude">⚽ ${x.ten_tran}</div>
-        <div class="bai-giai">🏆 ${x.ten_giai} • 📅 ${x.ngay_gio}</div>
+        <div class="bai-giai">🏆 ${x.ten_giai} • 📅 ${x.ngay_gio} • Thứ tự: ${x.thu_tu}</div>
         <div class="bai-noidung">
             <strong>📝 Phân tích chi tiết:</strong><br><br>
             ${xuLyNoiDung(x.phan_tich)}
@@ -139,7 +138,7 @@ function hienChiTiet(giai,index){
     </div>`;
 }
 
-// === ĐỌC CSV & HIỂN THỊ ===
+// === ĐỌC CSV & SẮP XẾP ===
 fetch(BASE_URL)
 .then(r=>{if(!r.ok)throw new Error("Lỗi kết nối Sheet");return r.text();})
 .then(csv=>{
@@ -149,10 +148,10 @@ fetch(BASE_URL)
         return;
     }
     
-    // ✅ ĐỌC TẤT CẢ DÒNG KHÔNG LỌC
+    // === ĐỌC TẤT CẢ DÒNG ===
     for(let i=1;i<rows.length;i++){
         const r=rows[i];
-        const thu_tu = Number(r[1])||999;
+        const thu_tu = Number(r[1])||0;
         const ten_giai = (r[2]||"").trim();
         const ten_tran = (r[3]||"").trim();
         const ngay_gio = (r[4]||"").trim();
@@ -163,7 +162,7 @@ fetch(BASE_URL)
         if(!ten_giai || !ten_tran) continue;
         if(!tatCaDuLieu[ten_giai]) tatCaDuLieu[ten_giai]=[];
         tatCaDuLieu[ten_giai].push({
-            st: thu_tu,
+            thu_tu: thu_tu,
             ten_giai: ten_giai,
             ten_tran: ten_tran,
             ngay_gio: ngay_gio,
@@ -173,10 +172,10 @@ fetch(BASE_URL)
         });
     }
     
-    // Sắp xếp theo thứ tự
-    Object.keys(tatCaDuLieu).forEach(g=>tatCaDuLieu[g].sort((a,b)=>a.st-b.st));
-    const dsGiai = Object.keys(tatCaDuLieu).sort();
+    // ✅ SẮP XẾP: SỐ CAO NHẤT → LÊN ĐẦU (GIẢM DẦN)
+    Object.keys(tatCaDuLieu).forEach(g=>tatCaDuLieu[g].sort((a,b)=>b.thu_tu - a.thu_tu));
     
+    const dsGiai = Object.keys(tatCaDuLieu).sort();
     const nutContainer = document.getElementById("nutGiai");
     if(dsGiai.length===0){
         nutContainer.innerHTML=`<div style="color:#94a3b8">❌ Điền dữ liệu vào Sheet → nút giải sẽ hiện!</div>`;
