@@ -311,7 +311,6 @@
         <div class="disclaimer">
             <h4>⚠️ THÔNG BÁO CHUNG</h4>
             <p>Nội dung trên trang web chỉ phục vụ mục đích tham khảo, trao đổi thông tin về bóng đá. Nhận định đưa ra mang tính tham khảo, không phải là kết quả chắc chắn.</p>
-            <p>✅ Chúng tôi khuyến khích giải trí, không khuyến khích cá độ dưới mọi hình thức. Mọi quyết định của người xem đều do người đó tự chịu trách nhiệm.</p>
         </div>
         <div class="chan-trang">
             <p><strong>Score Vision</strong> — Phân tích & Dự đoán Bóng Đá Hàng Ngày</p>
@@ -335,7 +334,6 @@
         const GID_LICH_DAU = "655851279";
         const GID_KET_QUA = "1819801064";
         const BASE_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRjGewmdAmJVjyi-0vSc22hhFPacMgGc-WmVE8PEM3jHfA7IvED3XbBp68Bwp16n1Dc2FFP9ETKTaSH/pub?output=csv&gid=";
-
         // ==================================================
         // 🖼️ ẢNH BÌA THEO TỪNG GIẢI — DÙNG LINK POSTIMG
         // ==================================================
@@ -357,20 +355,15 @@
             "Asiad Cup": "https://i.postimg.cc/MHq8dC9C/Asia-Cup.png"
         };
         const ANH_MAC_DINH = "https://i.postimg.cc/Zn4hVGfJ/Cup-C1.png";
-
-        // ✅ TỰ ĐỘNG LẤY ẢNH THEO TÊN GIẢI — KHỚP CHỮ CHÍNH HOẶC CHỮA TỪ
         function layAnhGiai(tenGiai){
             if(!tenGiai) return ANH_MAC_DINH;
             tenGiai = tenGiai.trim();
-            // Khớp chính xác trước
             if(ANH_GIAI[tenGiai]) return ANH_GIAI[tenGiai];
-            // Khớp chứa từ khóa
             for(let tenKhoa in ANH_GIAI){
                 if(tenGiai.includes(tenKhoa)) return ANH_GIAI[tenKhoa];
             }
             return ANH_MAC_DINH;
         }
-
         function parseCSV(text){
             const rows = [];let row=[],cell="",inQuote=false;
             for(let i=0;i<text.length;i++){
@@ -387,9 +380,8 @@
             if(!text) return "Đang cập nhật...";
             return text.replace(/<[^>]*>/g," ").replace(/\s+/g," ").trim().substring(0, doDai) + "…";
         }
-
         // ==================================================
-        // 📖 PHẦN PHÂN TÍCH & DỰ ĐOÁN
+        // 📖 PHẦN PHÂN TÍCH & DỰ ĐOÁN — SỐ LỚN NHẤT LÊN ĐẦU
         // ==================================================
         fetch(BASE_URL+GID_PHAN_TICH)
         .then(r=>{if(!r.ok)throw new Error("Lỗi kết nối");return r.text();})
@@ -416,7 +408,7 @@
                 if(loai!=="Trận đấu") continue;
                 const tenGiai=(r[idx.giai]||"").trim();
                 data.push({
-                    st:Number(r[idx.thuTu])||999,
+                    st:Number(r[idx.thuTu])||0,
                     giai:tenGiai,
                     anhBia:layAnhGiai(tenGiai),
                     tran:(r[idx.tran]||"").trim(),
@@ -425,7 +417,8 @@
                     doan:layTomTat((r[idx.doan]||"").trim(),60)
                 });
             }
-            data.sort((a,b)=>a.st-b.st);
+            // ✅ SỐ LỚN NHẤT → LÊN ĐẦU
+            data.sort((a,b)=>b.st - a.st);
             const box=document.getElementById("phan-tich-list");
             if(!data.length){box.innerHTML=`<div class="empty">⚠️ Không tìm thấy dòng có loai_du_lieu = "Trận đấu"!</div>`;return;}
             box.innerHTML=`<div class="grid-2">`;
@@ -436,7 +429,7 @@
                     <div class="card-body-phantich">
                         <div class="pt-giai">🏆 ${x.giai}</div>
                         <div class="pt-tran">⚽ ${x.tran}</div>
-                        <div class="pt-ngay">📅 ${x.ngay}</div>
+                        <div class="pt-ngay">📅 ${x.ngay} · #${x.st}</div>
                         <div class="pt-tomtat">📝 ${x.pt}</div>
                         <div class="pt-tomtat">✅ Dự đoán: ${x.doan}</div>
                         <div class="pt-xemchitiet">👉 Nhấp vào xem chi tiết đầy đủ →</div>
@@ -446,9 +439,8 @@
             box.innerHTML+=`</div>`;
         })
         .catch(e=>{document.getElementById("phan-tich-list").innerHTML=`<div class="empty">❌ Lỗi: ${e.message}</div>`;});
-
         // ==================================================
-        // 📖 PHẦN KẾT QUẢ
+        // 📖 PHẦN KẾT QUẢ — SỐ LỚN NHẤT LÊN ĐẦU
         // ==================================================
         fetch(BASE_URL+GID_KET_QUA)
         .then(r=>{if(!r.ok)throw new Error("Lỗi kết nối");return r.text();})
@@ -463,21 +455,28 @@
                 const r=rows[i];if((r[i_loai]||"").trim()!=="ket_qua") continue;
                 const tran=(r[i_tran]||"").trim();if(tran.includes("Không có trận")) continue;
                 const phan=tran.split(" vs ");if(phan.length<2) continue;
-                data.push({st:Number(r[i_st])||999,nha:phan[0].trim(),khach:phan[1].trim(),tyso:(r[i_tyso]||"-").trim(),ngay:(r[i_ngay]||"").trim(),giai:(r[i_giai]||"Bóng Đá").trim()});
+                data.push({
+                    st:Number(r[i_st])||0,
+                    nha:phan[0].trim(),
+                    khach:phan[1].trim(),
+                    tyso:(r[i_tyso]||"-").trim(),
+                    ngay:(r[i_ngay]||"").trim(),
+                    giai:(r[i_giai]||"Bóng Đá").trim()
+                });
             }
-            data.sort((a,b)=>a.st-b.st);
+            // ✅ SỐ LỚN NHẤT → LÊN ĐẦU
+            data.sort((a,b)=>b.st - a.st);
             const box=document.getElementById("ketqua-list");
             if(!data.length){box.innerHTML=`<div class="empty">Chưa có kết quả trận đấu!</div>`;return;}
             box.innerHTML=`<div class="grid-2">`;
             data.slice(0,2).forEach(x=>{
-                box.innerHTML+=`<a href="ket-qua.html" class="card-ketqua"><div class="ketqua-header"><span class="ketqua-league">🏆 ${x.giai}</span><span class="ketqua-date">${x.ngay}</span></div><div class="ketqua-match"><span class="ketqua-team ketqua-team-home">${x.nha}</span><div class="ketqua-score"><span class="ketqua-score-num">${x.tyso}</span></div><span class="ketqua-team ketqua-team-away">${x.khach}</span></div><div class="ketqua-status"><span class="status-finished">✓ Đã kết thúc</span></div></a>`;
+                box.innerHTML+=`<a href="ket-qua.html" class="card-ketqua"><div class="ketqua-header"><span class="ketqua-league">🏆 ${x.giai}</span><span class="ketqua-date">${x.ngay} · #${x.st}</span></div><div class="ketqua-match"><span class="ketqua-team ketqua-team-home">${x.nha}</span><div class="ketqua-score"><span class="ketqua-score-num">${x.tyso}</span></div><span class="ketqua-team ketqua-team-away">${x.khach}</span></div><div class="ketqua-status"><span class="status-finished">✓ Đã kết thúc</span></div></a>`;
             });
             box.innerHTML+=`</div>`;
         })
         .catch(e=>{document.getElementById("ketqua-list").innerHTML=`<div class="empty">❌ ${e.message}</div>`;});
-
         // ==================================================
-        // 📰 PHẦN TIN NÓNG
+        // 📰 PHẦN TIN NÓNG — GIỮ NGUYÊN HOẶC SẮP XẾP THEO NGÀY
         // ==================================================
         fetch(BASE_URL+GID_TIN_NONG)
         .then(r=>{if(!r.ok)throw new Error("Lỗi kết nối");return r.text();})
@@ -513,9 +512,8 @@
             box.innerHTML=html;
         })
         .catch(e=>{document.getElementById("tin-list").innerHTML=`<div class="empty">❌ ${e.message}</div>`;});
-
         // ==================================================
-        // 📅 PHẦN LỊCH ĐẤU
+        // 📅 PHẦN LỊCH ĐẤU — SỐ LỚN NHẤT LÊN ĐẦU
         // ==================================================
         fetch(BASE_URL+GID_LICH_DAU)
         .then(r=>{if(!r.ok)throw new Error("Lỗi kết nối");return r.text();})
@@ -529,14 +527,20 @@
             for(let i=1;i<rows.length;i++){
                 const r=rows[i];if((r[i_loai]||"").trim()!=="lich_dau") continue;
                 const nha=r[i_nha]||"",khach=r[i_khach]||"";if(!nha||!khach) continue;
-                data.push({st:Number(r[i_st])||999,tieude:nha+" vs "+khach,ngay:r[i_ngay]||"",tomtat:(r[i_giai]||"")});
+                data.push({
+                    st:Number(r[i_st])||0,
+                    tieude:nha+" vs "+khach,
+                    ngay:r[i_ngay]||"",
+                    tomtat:(r[i_giai]||"")
+                });
             }
-            data.sort((a,b)=>a.st-b.st);
+            // ✅ SỐ LỚN NHẤT → LÊN ĐẦU
+            data.sort((a,b)=>b.st - a.st);
             const box=document.getElementById("lich-list");
             if(!data.length){box.innerHTML=`<div class="empty">Chưa có lịch đấu!</div>`;return;}
             box.innerHTML=`<div class="grid-2">`;
             data.slice(0,2).forEach(x=>{
-                box.innerHTML+=`<a href="lich-dau.html" class="card-khong-anh"><span class="card-label label-lich">📅 ${x.ngay}</span><h3>${x.tieude}</h3><p>${x.tomtat}</p><div class="hint">Xem chi tiết →</div></a>`;
+                box.innerHTML+=`<a href="lich-dau.html" class="card-khong-anh"><span class="card-label label-lich">📅 ${x.ngay} · #${x.st}</span><h3>${x.tieude}</h3><p>${x.tomtat}</p><div class="hint">Xem chi tiết →</div></a>`;
             });
             box.innerHTML+=`</div>`;
         })
