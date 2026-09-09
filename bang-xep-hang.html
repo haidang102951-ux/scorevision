@@ -4,41 +4,323 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bảng Xếp Hạng | Score Vision</title>
+
     <style>
-        *{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;}
-        body{background:#020617;color:#f8fafc;line-height:1.7;padding:16px;max-width:860px;margin:0 auto;}
-        .menu{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px;position:sticky;top:0;background:#020617f0;padding:10px 0;z-index:99;backdrop-filter:blur(8px);}
-        .menu-btn{background:linear-gradient(135deg,#1e293b,#0f172a);color:#e2e8f0;padding:10px 14px;border-radius:12px;text-align:center;text-decoration:none;font-size:13px;font-weight:700;display:inline-flex;align-items:center;gap:4px;border:1px solid #334155;transition:all .25s;}
-        .menu-btn:hover{transform:translateY(-2px);border-color:#fef08a;box-shadow:0 4px 12px rgba(254,240,138,.15);}
-        .menu-btn.active{background:linear-gradient(135deg,#fef08a,#fde047);color:#713f12;border-color:#fef08a;box-shadow:0 4px 14px rgba(253,224,71,.20);}
-        h2{text-align:center;font-size:22px;color:#fef08a;margin-bottom:20px;}
-        .loc-giai{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;padding-bottom:8px;border-bottom:1px solid #1e293b;}
-        .loc-btn{background:#1e293b;color:#cbd5e1;padding:8px 12px;border-radius:8px;border:none;font-size:12px;font-weight:600;cursor:pointer;transition:all .2s;}
-        .loc-btn:hover{background:#334155;color:#fff;}
-        .loc-btn.active{background:linear-gradient(135deg,#fef08a,#fde047);color:#713f12;}
-        .bang-wrap{overflow-x:auto;border-radius:16px;border:2px solid #1e293b;background:linear-gradient(145deg,#1e293b,#0f172a);box-shadow:0 6px 20px rgba(0,0,0,.30);}
-        table{width:100%;border-collapse:collapse;min-width:640px;}
-        th{background:linear-gradient(135deg,#fef08a,#fde047);color:#713f12;padding:12px 6px;text-align:center;font-size:13px;font-weight:800;position:sticky;top:0;}
-        td{padding:10px 6px;text-align:center;border-bottom:1px solid #334155;font-size:14px;}
-        tr:hover{background:rgba(254,240,138,.06);}
-        tr:last-child td{border-bottom:none;}
-        .hang-1{background:rgba(250,204,21,.12);border-left:3px solid #facc15;}
-        .hang-2{background:rgba(215,223,233,.08);border-left:3px solid #cbd5e1;}
-        .hang-3{background:rgba(180,83,9,.08);border-left:3px solid #f59e0b;}
-        .vi-tri{font-weight:800;font-size:15px;width:40px;}
-        .doi-ten{text-align:left;padding-left:12px;font-weight:600;}
-        .tong-diem{font-weight:800;color:#fef08a;font-size:15px;}
-        .thang{color:#22c55e;font-weight:600;}
-        .hoa{color:#94a3b8;font-weight:600;}
-        .thua{color:#f87171;font-weight:600;}
-        .hieu-so{color:#93c5fd;font-weight:600;}
-        .empty{text-align:center;color:#64748b;padding:60px 20px;}
-        .loading{text-align:center;color:#fef08a;padding:40px;animation:nhapnhay 1.5s infinite;}
-        @keyframes nhapnhay{0%,100%{opacity:1;}50%{opacity:.4;}}
-        .ghi-chu{margin-top:12px;padding:10px 14px;background:rgba(254,240,138,.05);border-radius:10px;border-left:3px solid #fef08a;font-size:12px;color:#d4d4d8;line-height:1.6;}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        body {
+            background: #020617;
+            color: #f8fafc;
+            line-height: 1.7;
+            padding: 16px;
+            max-width: 860px;
+            margin: 0 auto;
+        }
+
+        .menu {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 24px;
+            position: sticky;
+            top: 0;
+            background: #020617f0;
+            padding: 10px 0;
+            z-index: 99;
+            backdrop-filter: blur(8px);
+        }
+
+        .menu-btn {
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            color: #e2e8f0;
+            padding: 10px 14px;
+            border-radius: 12px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            border: 1px solid #334155;
+            transition: all .25s;
+        }
+
+        .menu-btn:hover {
+            transform: translateY(-2px);
+            border-color: #fef08a;
+            box-shadow: 0 4px 12px rgba(254,240,138,.15);
+        }
+
+        .menu-btn.active {
+            background: linear-gradient(135deg, #fef08a, #fde047);
+            color: #713f12;
+            border-color: #fef08a;
+            box-shadow: 0 4px 14px rgba(253,224,71,.20);
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 22px;
+            color: #fef08a;
+            margin-bottom: 20px;
+        }
+
+        .loc-giai {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #1e293b;
+        }
+
+        .loc-btn {
+            background: #1e293b;
+            color: #cbd5e1;
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: none;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all .2s;
+        }
+
+        .loc-btn:hover {
+            background: #334155;
+            color: #fff;
+        }
+
+        .loc-btn.active {
+            background: linear-gradient(135deg, #fef08a, #fde047);
+            color: #713f12;
+        }
+
+        /* ================================
+           KHUNG BẢNG
+        ================================= */
+
+        .bang-wrap {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            border-radius: 16px;
+            border: 2px solid #1e293b;
+            background: linear-gradient(145deg, #1e293b, #0f172a);
+            box-shadow: 0 6px 20px rgba(0,0,0,.30);
+        }
+
+        /* ÉP TABLE LUÔN LÀ TABLE */
+        .bang-wrap table {
+            display: table !important;
+            width: 100%;
+            min-width: 760px;
+            border-collapse: collapse;
+            border-spacing: 0;
+            table-layout: fixed;
+        }
+
+        .bang-wrap thead {
+            display: table-header-group !important;
+        }
+
+        .bang-wrap tbody {
+            display: table-row-group !important;
+        }
+
+        .bang-wrap tr {
+            display: table-row !important;
+        }
+
+        .bang-wrap th,
+        .bang-wrap td {
+            display: table-cell !important;
+            vertical-align: middle;
+        }
+
+        /* Độ rộng từng cột */
+        .bang-wrap th:nth-child(1),
+        .bang-wrap td:nth-child(1) {
+            width: 45px;
+        }
+
+        .bang-wrap th:nth-child(2),
+        .bang-wrap td:nth-child(2) {
+            width: 190px;
+        }
+
+        .bang-wrap th:nth-child(3),
+        .bang-wrap td:nth-child(3) {
+            width: 65px;
+        }
+
+        .bang-wrap th:nth-child(4),
+        .bang-wrap td:nth-child(4),
+        .bang-wrap th:nth-child(5),
+        .bang-wrap td:nth-child(5),
+        .bang-wrap th:nth-child(6),
+        .bang-wrap td:nth-child(6) {
+            width: 50px;
+        }
+
+        .bang-wrap th:nth-child(7),
+        .bang-wrap td:nth-child(7),
+        .bang-wrap th:nth-child(8),
+        .bang-wrap td:nth-child(8) {
+            width: 90px;
+        }
+
+        .bang-wrap th:nth-child(9),
+        .bang-wrap td:nth-child(9) {
+            width: 80px;
+        }
+
+        .bang-wrap th:nth-child(10),
+        .bang-wrap td:nth-child(10) {
+            width: 70px;
+        }
+
+        .bang-wrap th {
+            background: linear-gradient(135deg, #fef08a, #fde047);
+            color: #713f12;
+            padding: 12px 6px;
+            text-align: center !important;
+            font-size: 13px;
+            font-weight: 800;
+            white-space: nowrap;
+            border: none;
+        }
+
+        .bang-wrap td {
+            padding: 10px 6px;
+            text-align: center !important;
+            border-bottom: 1px solid #334155;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+
+        .bang-wrap tbody tr:hover {
+            background: rgba(254,240,138,.06);
+        }
+
+        .bang-wrap tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .hang-1 {
+            background: rgba(250,204,21,.12);
+            border-left: 3px solid #facc15;
+        }
+
+        .hang-2 {
+            background: rgba(215,223,233,.08);
+            border-left: 3px solid #cbd5e1;
+        }
+
+        .hang-3 {
+            background: rgba(180,83,9,.08);
+            border-left: 3px solid #f59e0b;
+        }
+
+        .vi-tri {
+            font-weight: 800;
+            font-size: 15px;
+        }
+
+        .doi-ten {
+            text-align: left !important;
+            padding-left: 12px !important;
+            font-weight: 600;
+            white-space: normal !important;
+        }
+
+        .tong-diem {
+            font-weight: 800;
+            color: #fef08a;
+            font-size: 15px;
+        }
+
+        .thang {
+            color: #22c55e;
+            font-weight: 600;
+        }
+
+        .hoa {
+            color: #94a3b8;
+            font-weight: 600;
+        }
+
+        .thua {
+            color: #f87171;
+            font-weight: 600;
+        }
+
+        .hieu-so {
+            color: #93c5fd;
+            font-weight: 600;
+        }
+
+        .empty {
+            text-align: center;
+            color: #64748b;
+            padding: 60px 20px;
+        }
+
+        .loading {
+            text-align: center;
+            color: #fef08a;
+            padding: 40px;
+            animation: nhapnhay 1.5s infinite;
+        }
+
+        @keyframes nhapnhay {
+            0%,100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: .4;
+            }
+        }
+
+        .ghi-chu {
+            margin-top: 12px;
+            padding: 10px 14px;
+            background: rgba(254,240,138,.05);
+            border-radius: 10px;
+            border-left: 3px solid #fef08a;
+            font-size: 12px;
+            color: #d4d4d8;
+            line-height: 1.6;
+        }
+
+        /* MOBILE */
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+
+            .bang-wrap table {
+                min-width: 760px;
+            }
+
+            .bang-wrap th,
+            .bang-wrap td {
+                font-size: 12px;
+                padding: 9px 5px;
+            }
+        }
     </style>
 </head>
+
 <body>
+
 <nav class="menu">
     <a href="index.html" class="menu-btn">🏠 Trang chủ</a>
     <a href="lich-dau.html" class="menu-btn">📅 Lịch đấu</a>
@@ -58,171 +340,466 @@
     <button class="loc-btn" data-giai="Ngoại Hạng Anh">🏴 Ngoại Hạng Anh</button>
     <button class="loc-btn" data-giai="Bundesliga">🇩🇪 Bundesliga</button>
     <button class="loc-btn" data-giai="Ligue 1">🇫🇷 Ligue 1</button>
-    <button class="loc-btn" data-giai="Seri A">🇮🇹 Serie A</button>
+    <button class="loc-btn" data-giai="Serie A">🇮🇹 Serie A</button>
     <button class="loc-btn" data-giai="La Liga">🇪🇸 La Liga</button>
     <button class="loc-btn" data-giai="Cúp C1 Châu Âu">🏆 Cúp C1 Châu Âu</button>
 </div>
 
-<div id="bxh-list"><div class="loading">Đang tải bảng xếp hạng...</div></div>
+<div id="bxh-list">
+    <div class="loading">Đang tải bảng xếp hạng...</div>
+</div>
 
 <div class="ghi-chu">
-    💡 <strong>Giải thích màu sắc:</strong> 🟡 Đầu bảng | ⚪ Thứ 2 | 🟠 Thứ 3 — Sắp xếp theo: Điểm → Hiệu số → Số bàn thắng
+    💡 <strong>Giải thích màu sắc:</strong>
+    🟡 Đầu bảng |
+    ⚪ Thứ 2 |
+    🟠 Thứ 3
+    — Sắp xếp theo: Điểm → Hiệu số → Số bàn thắng
 </div>
 
 <script>
-// ✅ LINK CSV ĐÚNG
-const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRjGewmdAmJVjyi-0vSc22hhFPacMgGc-WmVE8PEM3jHfA7IvED3XbBp68Bwp16n1Dc2FFP9ETKTaSH/pub?gid=0&single=true&output=csv";
+
+const CSV_URL =
+"https://docs.google.com/spreadsheets/d/e/2PACX-1vRjGewmdAmJVjyi-0vSc22hhFPacMgGc-WmVE8PEM3jHfA7IvED3XbBp68Bwp16n1Dc2FFP9ETKTaSH/pub?gid=0&single=true&output=csv";
 
 let duLieuGoc = [];
 let giaiDangChon = "TatCa";
 
-// ✅ HÀM TÁCH CSV ĐƠN GIẢN — CSV ĐÃ ĐÚNG ĐỊNH DẠNG
-function parseCSV(text){
+
+/* =========================================
+   ĐỌC CSV
+========================================= */
+
+function parseCSV(text) {
+
     const rows = [];
-    const lines = text.trim().split("\n"); // Tách theo dòng
-    
-    for(let line of lines){
-        line = line.trim();
-        if(!line) continue;
-        
-        const cells = [];
-        let cell = "", inQuote = false;
-        for(let ch of line){
-            if(ch === '"'){
+    let row = [];
+    let cell = "";
+    let inQuote = false;
+
+    for (let i = 0; i < text.length; i++) {
+
+        const ch = text[i];
+        const next = text[i + 1] || "";
+
+        if (ch === '"') {
+
+            if (inQuote && next === '"') {
+                cell += '"';
+                i++;
+            } else {
                 inQuote = !inQuote;
             }
-            else if(ch === ',' && !inQuote){
-                cells.push(cell.trim());
+
+        } else if (ch === "," && !inQuote) {
+
+            row.push(cell.trim());
+            cell = "";
+
+        } else if ((ch === "\n" || ch === "\r") && !inQuote) {
+
+            if (cell !== "" || row.length > 0) {
+
+                row.push(cell.trim());
+                rows.push(row);
+
+                row = [];
                 cell = "";
             }
-            else {
-                cell += ch;
-            }
+
+        } else {
+
+            cell += ch;
         }
-        cells.push(cell.trim());
-        rows.push(cells);
     }
+
+    if (cell !== "" || row.length > 0) {
+        row.push(cell.trim());
+        rows.push(row);
+    }
+
     return rows;
 }
 
+
+/* =========================================
+   ĐỌC DỮ LIỆU GOOGLE SHEET
+========================================= */
+
 fetch(CSV_URL)
-.then(r => {
-    if(!r.ok) throw new Error("Không đọc được Sheet! Bật Xuất bản trên web");
-    return r.text();
+
+.then(response => {
+
+    if (!response.ok) {
+        throw new Error(
+            "Không đọc được Google Sheet."
+        );
+    }
+
+    return response.text();
 })
+
 .then(csv => {
+
     const rows = parseCSV(csv);
-    
-    if(rows.length < 2){
-        document.getElementById("bxh-list").innerHTML = `<div class="empty">⚠️ Chưa có dữ liệu!</div>`;
+
+    if (rows.length < 2) {
+
+        document.getElementById("bxh-list").innerHTML =
+        `<div class="empty">
+            ⚠️ Sheet chưa có dữ liệu Bảng Xếp Hạng!
+        </div>`;
+
         return;
     }
-    
-    // Đọc cột
-    const header = rows[0].map(h => h.trim().toLowerCase());
-    const idx_loai = header.indexOf("loai_muc");
-    const idx_thutu = header.indexOf("thu_tu");
-    const idx_giai = header.indexOf("giai_dau");
-    const idx_doi = header.indexOf("doi_bong");
-    const idx_sotran = header.indexOf("so_tran");
-    const idx_thang = header.indexOf("thang");
-    const idx_hoa = header.indexOf("hoa");
-    const idx_thua = header.indexOf("thua");
-    const idx_ban_thang = header.indexOf("ban_thang");
-    const idx_ban_thua = header.indexOf("ban_thua");
-    const idx_hieu_so = header.indexOf("hieu_so");
-    const idx_diem = header.indexOf("diem_so");
 
-    // Đọc dữ liệu
-    for(let i = 1; i < rows.length; i++){
+    const header =
+        rows[0].map(h =>
+            h.trim().toLowerCase()
+        );
+
+
+    const idx_loai =
+        header.indexOf("loai_muc");
+
+    const idx_thutu =
+        header.indexOf("thu_tu");
+
+    const idx_giai =
+        header.indexOf("giai_dau");
+
+    const idx_doi =
+        header.indexOf("doi_bong");
+
+    const idx_sotran =
+        header.indexOf("so_tran");
+
+    const idx_thang =
+        header.indexOf("thang");
+
+    const idx_hoa =
+        header.indexOf("hoa");
+
+    const idx_thua =
+        header.indexOf("thua");
+
+    const idx_ban_thang =
+        header.indexOf("ban_thang");
+
+    const idx_ban_thua =
+        header.indexOf("ban_thua");
+
+    const idx_hieu_so =
+        header.indexOf("hieu_so");
+
+    const idx_diem =
+        header.indexOf("diem_so");
+
+
+    if (
+        idx_loai === -1 ||
+        idx_giai === -1 ||
+        idx_doi === -1 ||
+        idx_diem === -1
+    ) {
+
+        document.getElementById("bxh-list").innerHTML =
+        `<div class="empty">
+            ❌ Thiếu cột dữ liệu!<br><br>
+            Cần có:<br>
+            loai_muc, thu_tu, giai_dau, doi_bong,
+            so_tran, thang, hoa, thua,
+            ban_thang, ban_thua, hieu_so, diem_so
+        </div>`;
+
+        return;
+    }
+
+
+    /* =========================================
+       ĐƯA DỮ LIỆU VÀO MẢNG
+    ========================================= */
+
+    for (let i = 1; i < rows.length; i++) {
+
         const r = rows[i];
-        if((r[idx_loai]||"").trim() !== "bang_xep_hang") continue;
-        
+
+        const loai =
+            (r[idx_loai] || "").trim();
+
+        if (loai !== "bang_xep_hang") {
+            continue;
+        }
+
+
+        const thang =
+            Number(r[idx_thang]) || 0;
+
+        const hoa =
+            Number(r[idx_hoa]) || 0;
+
+        const thua =
+            Number(r[idx_thua]) || 0;
+
+
         duLieuGoc.push({
-            st: Number(r[idx_thutu])||999,
-            giai: (r[idx_giai]||"").trim(),
-            doi: (r[idx_doi]||"").trim(),
-            sotran: Number(r[idx_sotran])||0,
-            thang: Number(r[idx_thang])||0,
-            hoa: Number(r[idx_hoa])||0,
-            thua: Number(r[idx_thua])||0,
-            ban_thang: Number(r[idx_ban_thang])||0,
-            ban_thua: Number(r[idx_ban_thua])||0,
-            hieu_so: Number(r[idx_hieu_so])||0,
-            diem: Number(r[idx_diem])||0
+
+            st:
+                Number(r[idx_thutu]) || 999,
+
+            giai:
+                (r[idx_giai] || "Chưa phân loại").trim(),
+
+            doi:
+                (r[idx_doi] || "").trim(),
+
+            sotran:
+                Number(r[idx_sotran]) ||
+                (thang + hoa + thua),
+
+            thang:
+                thang,
+
+            hoa:
+                hoa,
+
+            thua:
+                thua,
+
+            ban_thang:
+                Number(r[idx_ban_thang]) || 0,
+
+            ban_thua:
+                Number(r[idx_ban_thua]) || 0,
+
+            hieu_so:
+                Number(r[idx_hieu_so]) || 0,
+
+            diem:
+                Number(r[idx_diem]) || 0
         });
     }
 
-    // Sắp xếp: Điểm → Hiệu số → Bàn thắng
-    duLieuGoc.sort((a,b) => {
-        if(b.diem !== a.diem) return b.diem - a.diem;
-        if(b.hieu_so !== a.hieu_so) return b.hieu_so - a.hieu_so;
+
+    /* =========================================
+       SẮP XẾP
+    ========================================= */
+
+    duLieuGoc.sort((a, b) => {
+
+        if (b.diem !== a.diem) {
+            return b.diem - a.diem;
+        }
+
+        if (b.hieu_so !== a.hieu_so) {
+            return b.hieu_so - a.hieu_so;
+        }
+
         return b.ban_thang - a.ban_thang;
     });
 
+
     hienThiDuLieu();
+
 })
-.catch(err => {
-    document.getElementById("bxh-list").innerHTML = `<div class="empty">❌ Lỗi: ${err.message}</div>`;
+
+.catch(error => {
+
+    document.getElementById("bxh-list").innerHTML =
+    `<div class="empty">
+        ❌ Lỗi: ${error.message}<br><br>
+        👉 Kiểm tra Google Sheet đã được
+        "Xuất bản trên web" hay chưa.
+    </div>`;
 });
 
-function hienThiDuLieu(){
+
+/* =========================================
+   HIỂN THỊ BẢNG
+========================================= */
+
+function hienThiDuLieu() {
+
     let dataLoc = duLieuGoc;
-    if(giaiDangChon !== "TatCa"){
-        dataLoc = duLieuGoc.filter(d => d.giai === giaiDangChon);
+
+
+    if (giaiDangChon !== "TatCa") {
+
+        dataLoc =
+            duLieuGoc.filter(
+                d => d.giai === giaiDangChon
+            );
     }
-    if(!dataLoc.length){
-        document.getElementById("bxh-list").innerHTML = `<div class="empty">📭 Không có dữ liệu cho giải này!</div>`;
+
+
+    if (!dataLoc.length) {
+
+        document.getElementById("bxh-list").innerHTML =
+        `<div class="empty">
+            📭 Chưa có dữ liệu cho giải này!
+        </div>`;
+
         return;
     }
 
-    const box = document.getElementById("bxh-list");
-    box.innerHTML = `<div class="bang-wrap"><table><thead><tr>
-        <th>#</th>
-        <th>Đội Bóng</th>
-        <th>Trận</th>
-        <th>T</th>
-        <th>H</th>
-        <th>B</th>
-        <th>Bàn Thắng</th>
-        <th>Bàn Thua</th>
-        <th>Hiệu Số</th>
-        <th>Điểm</th>
-    </tr></thead><tbody>`;
+
+    const box =
+        document.getElementById("bxh-list");
+
+
+    let html = `
+
+    <div class="bang-wrap">
+
+        <table>
+
+            <colgroup>
+                <col style="width:45px">
+                <col style="width:190px">
+                <col style="width:65px">
+                <col style="width:50px">
+                <col style="width:50px">
+                <col style="width:50px">
+                <col style="width:90px">
+                <col style="width:90px">
+                <col style="width:80px">
+                <col style="width:70px">
+            </colgroup>
+
+            <thead>
+
+                <tr>
+                    <th>#</th>
+                    <th>Đội Bóng</th>
+                    <th>Trận</th>
+                    <th>T</th>
+                    <th>H</th>
+                    <th>B</th>
+                    <th>Bàn Thắng</th>
+                    <th>Bàn Thua</th>
+                    <th>Hiệu Số</th>
+                    <th>Điểm</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+    `;
+
 
     dataLoc.forEach((x, vitri) => {
+
         let lopHang = "";
-        if(vitri === 0) lopHang = "hang-1";
-        else if(vitri === 1) lopHang = "hang-2";
-        else if(vitri === 2) lopHang = "hang-3";
-        const hieuText = x.hieu_so > 0 ? `+${x.hieu_so}` : x.hieu_so;
-        
-        box.innerHTML += `<tr class="${lopHang}">
-            <td class="vi-tri">${vitri+1}</td>
-            <td class="doi-ten">${x.doi}</td>
-            <td>${x.sotran}</td>
-            <td class="thang">${x.thang}</td>
-            <td class="hoa">${x.hoa}</td>
-            <td class="thua">${x.thua}</td>
-            <td>${x.ban_thang}</td>
-            <td>${x.ban_thua}</td>
-            <td class="hieu-so">${hieuText}</td>
-            <td class="tong-diem">${x.diem}</td>
-        </tr>`;
+
+        if (vitri === 0) {
+            lopHang = "hang-1";
+        }
+        else if (vitri === 1) {
+            lopHang = "hang-2";
+        }
+        else if (vitri === 2) {
+            lopHang = "hang-3";
+        }
+
+
+        const hieuText =
+            x.hieu_so > 0
+            ? "+" + x.hieu_so
+            : x.hieu_so;
+
+
+        html += `
+
+            <tr class="${lopHang}">
+
+                <td class="vi-tri">
+                    ${vitri + 1}
+                </td>
+
+                <td class="doi-ten">
+                    ${x.doi}
+                </td>
+
+                <td>
+                    ${x.sotran}
+                </td>
+
+                <td class="thang">
+                    ${x.thang}
+                </td>
+
+                <td class="hoa">
+                    ${x.hoa}
+                </td>
+
+                <td class="thua">
+                    ${x.thua}
+                </td>
+
+                <td>
+                    ${x.ban_thang}
+                </td>
+
+                <td>
+                    ${x.ban_thua}
+                </td>
+
+                <td class="hieu-so">
+                    ${hieuText}
+                </td>
+
+                <td class="tong-diem">
+                    ${x.diem}
+                </td>
+
+            </tr>
+        `;
     });
 
-    box.innerHTML += `</tbody></table></div>`;
+
+    html += `
+
+            </tbody>
+
+        </table>
+
+    </div>
+    `;
+
+
+    box.innerHTML = html;
 }
 
-// ✅ LỌC ĐÚNG TÊN GIẢI "Seri A" KHỚP SHEET
-document.querySelectorAll(".loc-btn").forEach(btn => {
+
+/* =========================================
+   NÚT CHỌN GIẢI
+========================================= */
+
+document
+.querySelectorAll(".loc-btn")
+.forEach(btn => {
+
     btn.addEventListener("click", () => {
-        document.querySelectorAll(".loc-btn").forEach(b => b.classList.remove("active"));
+
+        document
+        .querySelectorAll(".loc-btn")
+        .forEach(b =>
+            b.classList.remove("active")
+        );
+
+
         btn.classList.add("active");
-        giaiDangChon = btn.dataset.giai;
+
+
+        giaiDangChon =
+            btn.dataset.giai;
+
+
         hienThiDuLieu();
     });
 });
+
 </script>
+
 </body>
 </html>
