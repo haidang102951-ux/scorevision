@@ -330,37 +330,43 @@
             e.preventDefault();
             window.scrollTo({top:0,behavior:"smooth"});
         });
-
         const GID_PHAN_TICH = "1723464768";
         const GID_TIN_NONG = "840175350";
         const GID_LICH_DAU = "655851279";
         const GID_KET_QUA = "1819801064";
         const BASE_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRjGewmdAmJVjyi-0vSc22hhFPacMgGc-WmVE8PEM3jHfA7IvED3XbBp68Bwp16n1Dc2FFP9ETKTaSH/pub?output=csv&gid=";
 
-          const ANH_GIAI = {
-            "U17 World Cup": "https://images.unsplash.com/photo-1574629810171-5f9e40329e63?w=800&q=80",
-            "Premier League": "https://images.unsplash.com/photo-1522778119337-4135d1dba254?w=800&q=80",
-            "Ngoại Hạng Anh": "https://images.unsplash.com/photo-1522778119337-4135d1dba254?w=800&q=80",
-            "La Liga": "https://images.unsplash.com/photo-1431324155611-3046c62d2214?w=800&q=80",
-            "Bundesliga": "https://images.unsplash.com/photo-1560272564-c83b66b2f471?w=800&q=80",
-            "Serie A": "https://images.unsplash.com/photo-1489944440615-453fc2b6a9a9?w=800&q=80",
-            "Champions League": "https://images.unsplash.com/photo-1551958219-acbc608c6377?w=800&q=80",
-            "Cúp C1": "https://images.unsplash.com/photo-1551958219-acbc608c6377?w=800&q=80",
-            "AFC ASEAN U20": "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=800&q=80",
-            "ASEAN U20": "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=800&q=80",
-            "Asean Cup": "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=800&q=80",
-            "FIFA ASEAN Cup": "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=800&q=80",
-            "U23 ASIAD": "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=800&q=80",
-            "ASIAD": "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=800&q=80",
-            "Asiad Cup": "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=800&q=80"
+        // ==================================================
+        // 🖼️ ẢNH BÌA THEO TỪNG GIẢI — DÙNG LINK POSTIMG
+        // ==================================================
+        const ANH_GIAI = {
+            "Ngoại Hạng Anh": "https://i.postimg.cc/brpj376y/Ngoai-hang-anh.png",
+            "Premier League": "https://i.postimg.cc/brpj376y/Ngoai-hang-anh.png",
+            "La Liga": "https://i.postimg.cc/8cRzCdYh/La-Liga.png",
+            "Bundesliga": "https://i.postimg.cc/0jPqcTVh/Bungdesliga.png",
+            "Serie A": "https://i.postimg.cc/MHq8dCsx/Seri-A.png",
+            "Cúp C1": "https://i.postimg.cc/Zn4hVGfJ/Cup-C1.png",
+            "Champions League": "https://i.postimg.cc/Zn4hVGfJ/Cup-C1.png",
+            "U17 World Cup": "https://i.postimg.cc/DZqTQvcv/U17-World-Cup.png",
+            "Asean Cup": "https://i.postimg.cc/90CjJ6Lv/c8490329-1b17-4b26-9722-99c00670b7df-(1).png",
+            "FIFA Asean Cup": "https://i.postimg.cc/90CjJ6Lv/c8490329-1b17-4b26-9722-99c00670b7df-(1).png",
+            "ASEAN U20": "https://i.postimg.cc/90CjJ6Lv/c8490329-1b17-4b26-9722-99c00670b7df-(1).png",
+            "AFC ASEAN U20": "https://i.postimg.cc/90CjJ6Lv/c8490329-1b17-4b26-9722-99c00670b7df-(1).png",
+            "U23 ASIAD": "https://i.postimg.cc/MHq8dC9C/Asia-Cup.png",
+            "ASIAD": "https://i.postimg.cc/MHq8dC9C/Asia-Cup.png",
+            "Asiad Cup": "https://i.postimg.cc/MHq8dC9C/Asia-Cup.png"
         };
-        const ANH_MAC_DINH = "https://images.unsplash.com/photo-1574629810171-5f9e40329e63?w=800&q=80";
+        const ANH_MAC_DINH = "https://i.postimg.cc/Zn4hVGfJ/Cup-C1.png";
 
+        // ✅ TỰ ĐỘNG LẤY ẢNH THEO TÊN GIẢI — KHỚP CHỮ CHÍNH HOẶC CHỮA TỪ
         function layAnhGiai(tenGiai){
             if(!tenGiai) return ANH_MAC_DINH;
-            tenGiai = tenGiai.trim().toLowerCase();
+            tenGiai = tenGiai.trim();
+            // Khớp chính xác trước
+            if(ANH_GIAI[tenGiai]) return ANH_GIAI[tenGiai];
+            // Khớp chứa từ khóa
             for(let tenKhoa in ANH_GIAI){
-                if(tenGiai.includes(tenKhoa.toLowerCase())) return ANH_GIAI[tenKhoa];
+                if(tenGiai.includes(tenKhoa)) return ANH_GIAI[tenKhoa];
             }
             return ANH_MAC_DINH;
         }
@@ -377,12 +383,14 @@
             if(cell||row.length>0){row.push(cell.trim());rows.push(row);}
             return rows;
         }
-
         function layTomTat(text, doDai=100){
             if(!text) return "Đang cập nhật...";
             return text.replace(/<[^>]*>/g," ").replace(/\s+/g," ").trim().substring(0, doDai) + "…";
         }
 
+        // ==================================================
+        // 📖 PHẦN PHÂN TÍCH & DỰ ĐOÁN
+        // ==================================================
         fetch(BASE_URL+GID_PHAN_TICH)
         .then(r=>{if(!r.ok)throw new Error("Lỗi kết nối");return r.text();})
         .then(csv=>{
@@ -439,6 +447,9 @@
         })
         .catch(e=>{document.getElementById("phan-tich-list").innerHTML=`<div class="empty">❌ Lỗi: ${e.message}</div>`;});
 
+        // ==================================================
+        // 📖 PHẦN KẾT QUẢ
+        // ==================================================
         fetch(BASE_URL+GID_KET_QUA)
         .then(r=>{if(!r.ok)throw new Error("Lỗi kết nối");return r.text();})
         .then(csv=>{
@@ -465,6 +476,9 @@
         })
         .catch(e=>{document.getElementById("ketqua-list").innerHTML=`<div class="empty">❌ ${e.message}</div>`;});
 
+        // ==================================================
+        // 📰 PHẦN TIN NÓNG
+        // ==================================================
         fetch(BASE_URL+GID_TIN_NONG)
         .then(r=>{if(!r.ok)throw new Error("Lỗi kết nối");return r.text();})
         .then(csv=>{
@@ -500,6 +514,9 @@
         })
         .catch(e=>{document.getElementById("tin-list").innerHTML=`<div class="empty">❌ ${e.message}</div>`;});
 
+        // ==================================================
+        // 📅 PHẦN LỊCH ĐẤU
+        // ==================================================
         fetch(BASE_URL+GID_LICH_DAU)
         .then(r=>{if(!r.ok)throw new Error("Lỗi kết nối");return r.text();})
         .then(csv=>{
