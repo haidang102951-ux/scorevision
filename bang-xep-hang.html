@@ -58,7 +58,7 @@
     <button class="loc-btn" data-giai="Ngoại Hạng Anh">🏴 Ngoại Hạng Anh</button>
     <button class="loc-btn" data-giai="Bundesliga">🇩🇪 Bundesliga</button>
     <button class="loc-btn" data-giai="Ligue 1">🇫🇷 Ligue 1</button>
-    <button class="loc-btn" data-giai="Serie A">🇮🇹 Serie A</button>
+    <button class="loc-btn" data-giai="Seri A">🇮🇹 Serie A</button>
     <button class="loc-btn" data-giai="La Liga">🇪🇸 La Liga</button>
     <button class="loc-btn" data-giai="Cúp C1 Châu Âu">🏆 Cúp C1 Châu Âu</button>
 </div>
@@ -70,65 +70,55 @@
 </div>
 
 <script>
-// ✅ LINK KHỚP SHEET BẢNG XẾP HẠNG
+// ✅ LINK CSV ĐÚNG
 const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRjGewmdAmJVjyi-0vSc22hhFPacMgGc-WmVE8PEM3jHfA7IvED3XbBp68Bwp16n1Dc2FFP9ETKTaSH/pub?gid=0&single=true&output=csv";
 
 let duLieuGoc = [];
 let giaiDangChon = "TatCa";
 
-// ✅ TÁCH CSV ĐÚNG ĐỊNH DẠNG GOOGLE SHEET
+// ✅ HÀM TÁCH CSV ĐƠN GIẢN — CSV ĐÃ ĐÚNG ĐỊNH DẠNG
 function parseCSV(text){
     const rows = [];
-    let row = [], cell = "", inQuote = false;
+    const lines = text.trim().split("\n"); // Tách theo dòng
     
-    for(let i = 0; i < text.length; i++){
-        const ch = text[i];
-        const next = text[i+1] || "";
+    for(let line of lines){
+        line = line.trim();
+        if(!line) continue;
         
-        if(ch === '"'){
-            if(inQuote && next === '"'){
-                cell += '"';
-                i++;
-            } else {
+        const cells = [];
+        let cell = "", inQuote = false;
+        for(let ch of line){
+            if(ch === '"'){
                 inQuote = !inQuote;
             }
-        }
-        else if(ch === ',' && !inQuote){
-            row.push(cell.trim());
-            cell = "";
-        }
-        else if((ch === "\n" || ch === "\r") && !inQuote){
-            if(cell || row.length > 0){
-                row.push(cell.trim());
-                rows.push(row);
-                row = [];
+            else if(ch === ',' && !inQuote){
+                cells.push(cell.trim());
                 cell = "";
             }
+            else {
+                cell += ch;
+            }
         }
-        else {
-            cell += ch;
-        }
-    }
-    
-    if(cell || row.length > 0){
-        row.push(cell.trim());
-        rows.push(row);
+        cells.push(cell.trim());
+        rows.push(cells);
     }
     return rows;
 }
 
 fetch(CSV_URL)
 .then(r => {
-    if(!r.ok) throw new Error("Không đọc được Sheet! Vào Sheet → Chia sẻ → Xuất bản trên web");
+    if(!r.ok) throw new Error("Không đọc được Sheet! Bật Xuất bản trên web");
     return r.text();
 })
 .then(csv => {
     const rows = parseCSV(csv);
+    
     if(rows.length < 2){
-        document.getElementById("bxh-list").innerHTML = `<div class="empty">⚠️ Sheet chưa có dữ liệu Bảng Xếp Hạng!</div>`;
+        document.getElementById("bxh-list").innerHTML = `<div class="empty">⚠️ Chưa có dữ liệu!</div>`;
         return;
     }
     
+    // Đọc cột
     const header = rows[0].map(h => h.trim().toLowerCase());
     const idx_loai = header.indexOf("loai_muc");
     const idx_thutu = header.indexOf("thu_tu");
@@ -143,27 +133,19 @@ fetch(CSV_URL)
     const idx_hieu_so = header.indexOf("hieu_so");
     const idx_diem = header.indexOf("diem_so");
 
-    if([idx_loai, idx_doi, idx_diem].includes(-1)){
-        document.getElementById("bxh-list").innerHTML = `<div class="empty">❌ Thiếu cột! Kiểm tra: loai_muc, doi_bong, diem_so</div>`;
-        return;
-    }
-
+    // Đọc dữ liệu
     for(let i = 1; i < rows.length; i++){
         const r = rows[i];
         if((r[idx_loai]||"").trim() !== "bang_xep_hang") continue;
         
-        const thang = Number(r[idx_thang])||0;
-        const hoa = Number(r[idx_hoa])||0;
-        const thua = Number(r[idx_thua])||0;
-        
         duLieuGoc.push({
             st: Number(r[idx_thutu])||999,
-            giai: (r[idx_giai]||"Chưa phân loại").trim(),
+            giai: (r[idx_giai]||"").trim(),
             doi: (r[idx_doi]||"").trim(),
-            sotran: Number(r[idx_sotran])||(thang+hoa+thua),
-            thang: thang,
-            hoa: hoa,
-            thua: thua,
+            sotran: Number(r[idx_sotran])||0,
+            thang: Number(r[idx_thang])||0,
+            hoa: Number(r[idx_hoa])||0,
+            thua: Number(r[idx_thua])||0,
             ban_thang: Number(r[idx_ban_thang])||0,
             ban_thua: Number(r[idx_ban_thua])||0,
             hieu_so: Number(r[idx_hieu_so])||0,
@@ -171,7 +153,7 @@ fetch(CSV_URL)
         });
     }
 
-    // ✅ SẮP XẾP: Điểm cao nhất → Hiệu số → Số bàn thắng
+    // Sắp xếp: Điểm → Hiệu số → Bàn thắng
     duLieuGoc.sort((a,b) => {
         if(b.diem !== a.diem) return b.diem - a.diem;
         if(b.hieu_so !== a.hieu_so) return b.hieu_so - a.hieu_so;
@@ -181,7 +163,7 @@ fetch(CSV_URL)
     hienThiDuLieu();
 })
 .catch(err => {
-    document.getElementById("bxh-list").innerHTML = `<div class="empty">❌ Lỗi: ${err.message}<br>👉 Vào Sheet → Chia sẻ → Bật Xuất bản trên web</div>`;
+    document.getElementById("bxh-list").innerHTML = `<div class="empty">❌ Lỗi: ${err.message}</div>`;
 });
 
 function hienThiDuLieu(){
@@ -190,7 +172,7 @@ function hienThiDuLieu(){
         dataLoc = duLieuGoc.filter(d => d.giai === giaiDangChon);
     }
     if(!dataLoc.length){
-        document.getElementById("bxh-list").innerHTML = `<div class="empty">📭 Chưa có dữ liệu cho giải này!</div>`;
+        document.getElementById("bxh-list").innerHTML = `<div class="empty">📭 Không có dữ liệu cho giải này!</div>`;
         return;
     }
 
@@ -232,7 +214,7 @@ function hienThiDuLieu(){
     box.innerHTML += `</tbody></table></div>`;
 }
 
-// ✅ LỌC ĐÚNG TÊN GIẢI TRONG SHEET
+// ✅ LỌC ĐÚNG TÊN GIẢI "Seri A" KHỚP SHEET
 document.querySelectorAll(".loc-btn").forEach(btn => {
     btn.addEventListener("click", () => {
         document.querySelectorAll(".loc-btn").forEach(b => b.classList.remove("active"));
