@@ -184,12 +184,13 @@
         .ketqua-score-num{font-size:20px;font-weight:700;color:#fff;}
         .ketqua-status{text-align:center;margin-top:10px;padding-top:8px;border-top:1px solid rgba(148,163,184,.10);}
         .status-finished{display:inline-flex;align-items:center;gap:4px;color:#86efac;font-size:12px;font-weight:500;background:rgba(74,222,128,.06);padding:3px 10px;border-radius:12px;}
-        /* === THẺ PHÂN TÍCH === */
+        /* === ✅ THẺ PHÂN TÍCH — TÓM TẮT CHỈ HIỂN THỊ 1-2 DÒNG === */
         .card-phantich{
             background:var(--bg-card);border-radius:14px;padding:18px;
             border:1px solid rgba(254,240,138,.12);box-shadow:var(--shadow-soft);
             text-decoration:none;color:inherit;display:block;transition:var(--tran);
             position:relative;overflow:hidden;backdrop-filter:blur(4px);
+            cursor:pointer;
         }
         .card-phantich::before{
             content:"";position:absolute;top:0;left:0;width:100%;height:3px;
@@ -198,12 +199,10 @@
         .card-phantich:hover{border-color:rgba(254,240,138,.25);transform:translateY(-3px);box-shadow:var(--shadow-hover);}
         .pt-giai{color:#fde047;font-size:13px;font-weight:600;margin-bottom:6px;}
         .pt-tran{font-size:16px;font-weight:700;color:#fef08a;margin-bottom:6px;}
-        .pt-ngay{color:#94a3b8;font-size:12px;margin-bottom:12px;}
-        .pt-block{background:rgba(30,41,59,.5);border-radius:10px;padding:12px;margin-bottom:10px;border-left:3px solid #3b82f6;}
-        .pt-block h4{font-size:14px;font-weight:600;color:#93c5fd;margin-bottom:6px;}
-        .pt-block p{font-size:14px;color:#e2e8f0;line-height:1.7;white-space:pre-wrap;}
-        .pt-doan{background:rgba(234,179,8,.08);border-left-color:#eab308;}
-        .pt-doan h4{color:#fef08a;}
+        .pt-ngay{color:#94a3b8;font-size:12px;margin-bottom:10px;}
+        .pt-tomtat{font-size:14px;color:#e2e8f0;line-height:1.6;margin-bottom:8px;}
+        .pt-xemchitiet{display:inline-block;color:#60a5fa;font-size:13px;font-weight:500;margin-top:4px;}
+        .pt-xemchitiet:hover{color:#fef08a;text-decoration:underline;}
         /* === THẺ TIN TỨC === */
         .card-tin{
             background:var(--bg-card);border-radius:14px;overflow:hidden;
@@ -358,10 +357,10 @@
             if(cell||row.length>0){row.push(cell.trim());rows.push(row);}
             return rows;
         }
-        // === XỬ LÝ XUỐNG DÒNG TRONG NỘI DUNG ===
-        function xuLyNoiDung(text){
-            if(!text) return "<em>Đang cập nhật...</em>";
-            return text.replace(/\r\n/g, "<br>").replace(/\r/g, "<br>").replace(/\n/g, "<br>");
+        // === LẤY TÓM TẮT — CHỈ LẤY 1-2 DÒNG ===
+        function layTomTat(text, doDai=100){
+            if(!text) return "Đang cập nhật...";
+            return text.replace(/<[^>]*>/g," ").replace(/\s+/g," ").trim().substring(0, doDai) + "…";
         }
         function layAnh(link){
             if(!link||!link.trim().startsWith("http")) return ANH_MAC_DINH;
@@ -394,14 +393,13 @@
             box.innerHTML+=`</div>`;
         })
         .catch(e=>{document.getElementById("ketqua-list").innerHTML=`<div class="empty">❌ ${e.message}</div>`;});
-        // === ✅ PHÂN TÍCH — ĐÃ SỬA ĐỌC ĐÚNG 8 CỘT & LỌC ĐÚNG GIÁ TRỊ ===
+        // === ✅ PHÂN TÍCH — CHỈ HIỂN THỊ TÓM TẮT → NHẤP XEM CHI TIẾT ===
         fetch(BASE_URL+GID_PHAN_TICH)
         .then(r=>{if(!r.ok)throw new Error("Lỗi kết nối");return r.text();})
         .then(csv=>{
             const rows=parseCSV(csv);
-            if(rows.length<2){document.getElementById("phan-tich-list").innerHTML=`<div class="empty">⚠️ Sheet chưa có dữ liệu hàng 2 trở đi!<br>👉 Kiểm tra: Chia sẻ → Bất kỳ ai có link → Lưu → Chờ 2-3 phút</div>`;return;}
+            if(rows.length<2){document.getElementById("phan-tich-list").innerHTML=`<div class="empty">⚠️ Sheet chưa có dữ liệu!</div>`;return;}
             
-            // ✅ ĐỌC ĐÚNG TÊN CỘT TRONG SHEET
             const h=rows[0].map(h=>h.trim().toLowerCase());
             const idx = {
                 loai: h.indexOf("loai_du_lieu"),
@@ -414,64 +412,51 @@
                 doan: h.indexOf("du_doan")
             };
             
-            // Kiểm tra đủ cột
             if(Object.values(idx).some(i => i === -1)){
-                document.getElementById("phan-tich-list").innerHTML=`<div class="empty">❌ Tên cột không khớp! Phải có: loai_du_lieu, thu_tu, ten_giai, ten_tran, ngay_gio, phan_tich, phong_do, du_doan</div>`;
+                document.getElementById("phan-tich-list").innerHTML=`<div class="empty">❌ Tên cột không khớp!</div>`;
                 return;
             }
             
-            // ✅ LỌC CHỈ LẤY DÒNG CÓ "Trận đấu" ở cột A
             let data=[];
             for(let i=1;i<rows.length;i++){
                 const r=rows[i];
                 const loai = (r[idx.loai]||"").trim().toLowerCase();
-                if(loai !== "trận đấu") continue; // ✅ ĐÚNG GIÁ TRỊ TRONG SHEET
+                if(loai !== "trận đấu") continue;
                 
                 data.push({
                     st: Number(r[idx.thuTu])||999,
                     giai: (r[idx.giai]||"").trim(),
                     tran: (r[idx.tran]||"").trim(),
                     ngay: (r[idx.ngay]||"").trim(),
-                    pt: (r[idx.pt]||"").trim(),
-                    phong: (r[idx.phong]||"").trim(),
-                    doan: (r[idx.doan]||"").trim()
+                    pt: layTomTat((r[idx.pt]||"").trim(), 90),
+                    doan: layTomTat((r[idx.doan]||"").trim(), 60)
                 });
             }
             
-            // ✅ SẮP XẾP THEO THỨ TỰ
             data.sort((a,b)=>a.st - b.st);
             
             const box=document.getElementById("phan-tich-list");
             if(!data.length){
-                box.innerHTML=`<div class="empty">⚠️ Không tìm thấy dòng nào có giá trị "Trận đấu" ở cột A!<br>👉 Kiểm tra lại Sheet Phân Tích, cột A phải ghi "Trận đấu"</div>`;
+                box.innerHTML=`<div class="empty">⚠️ Không tìm thấy dòng "Trận đấu"!</div>`;
                 return;
             }
             
-            // ✅ HIỂN THỊ ĐẦY ĐỦ 3 PHẦN: Phân tích + Phong độ + Dự đoán
+            // ✅ CHỈ HIỂN THỊ 3-4 TRẬN + TÓM TẮT → NHẤP VÀO XEM CHI TIẾT
             box.innerHTML=`<div class="grid-2">`;
-            data.slice(0,2).forEach(x=>{
+            data.slice(0,4).forEach(x=>{
                 box.innerHTML += `
-                <div class="card-phantich">
+                <a href="du-doan.html" class="card-phantich">
                     <div class="pt-giai">🏆 ${x.giai}</div>
                     <div class="pt-tran">⚽ ${x.tran}</div>
                     <div class="pt-ngay">📅 ${x.ngay}</div>
-                    <div class="pt-block">
-                        <h4>📝 Phân tích</h4>
-                        <p>${xuLyNoiDung(x.pt)}</p>
-                    </div>
-                    <div class="pt-block">
-                        <h4>📊 Phong độ & Thông tin</h4>
-                        <p>${xuLyNoiDung(x.phong)}</p>
-                    </div>
-                    <div class="pt-block pt-doan">
-                        <h4>✅ Dự đoán</h4>
-                        <p>${xuLyNoiDung(x.doan)}</p>
-                    </div>
-                </div>`;
+                    <div class="pt-tomtat">📝 ${x.pt}</div>
+                    <div class="pt-tomtat">✅ Dự đoán: ${x.doan}</div>
+                    <div class="pt-xemchitiet">👉 Nhấp vào xem chi tiết đầy đủ →</div>
+                </a>`;
             });
             box.innerHTML += `</div>`;
         })
-        .catch(e=>{document.getElementById("phan-tich-list").innerHTML=`<div class="empty">❌ Lỗi: ${e.message}<br>👉 Kiểm tra Chia sẻ → Bất kỳ ai có link → Lưu</div>`;});
+        .catch(e=>{document.getElementById("phan-tich-list").innerHTML=`<div class="empty">❌ Lỗi: ${e.message}</div>`;});
         // === TIN NÓNG ===
         fetch(BASE_URL+GID_TIN_NONG)
         .then(r=>{if(!r.ok)throw new Error("Lỗi kết nối");return r.text();})
