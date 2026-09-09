@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>⚽ LiveScore — Score Vision</title>
-    <!-- Google tag (gtag.js) -->
+    <title>⚽ LiveScore — Tỉ Số & Xem Trực Tiếp | Score Vision</title>
+<!-- Google tag -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RTY3P63JJL"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -13,332 +13,248 @@
   gtag('config', 'G-RTY3P63JJL');
 </script>
     <style>
-        *{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;}
-        
-        :root{
-            --bg-main:#030712;
-            --bg-surface:#0f172a;
-            --bg-card:linear-gradient(145deg,#1e293b70,#0f172a80);
-            --text-primary:#f1f5f9;
-            --text-secondary:#cbd5e1;
-            --text-muted:#64748b;
-            --accent-gold:#fef08a;
-            --accent-green:#22c55e;
-            --accent-red:#ef4444;
-            --border-subtle:rgba(148,163,184,.15);
-            --tran:all .3s cubic-bezier(.4,0,.2,1);
-        }
-        html{scroll-behavior:smooth;}
-        body{
-            background:
-                radial-gradient(circle at 20% 0%, rgba(30,64,175,.08) 0%, transparent 50%),
-                radial-gradient(circle at 80% 10%, rgba(34,197,94,.05) 0%, transparent 45%),
-                linear-gradient(180deg,#030712 0%,#0f172a 50%,#030712 100%);
-            color:var(--text-primary);
-            line-height:1.7;
-            min-height:100vh;
-        }
+        *{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;}
+        :root{--bg-main:#030712; --text-primary:#f1f5f9; --accent-green:#22c55e; --accent-gold:#fef08a; --border-subtle:rgba(148,163,184,.15);}
+        body{background:radial-gradient(circle at 20% 0%, rgba(30,64,175,.08) 0%, transparent 50%),radial-gradient(circle at 80% 10%, rgba(34,197,94,.05) 0%, transparent 45%),linear-gradient(180deg,#030712 0%,#0f172a 50%,#030712 100%);color:var(--text-primary);line-height:1.7;min-height:100vh;}
         .container{max-width:1100px;margin:0 auto;padding:0 16px;}
-        /* === ĐẦU TRANG === */
-        .dau-trang-wrapper{
-            position:relative;padding:32px 16px 16px;margin-bottom:8px;
-            border-radius:0 0 20px 20px;
-            overflow:hidden;
-        }
-        .dau-trang-wrapper::before{
-            content:"";position:absolute;inset:0;z-index:0;
-            background:
-                linear-gradient(180deg,rgba(3,7,18,.55) 0%,rgba(15,23,42,.45) 55%,rgba(15,23,42,.40) 100%),
-                url('https://images.unsplash.com/photo-1489944440615-453fc2b6a9a9?w=1400&h=320&fit=crop&q=60');
-            background-size:cover;background-position:center top;
-        }
-        .dau-trang{
-            display:flex;align-items:center;justify-content:center;gap:14px;
-            position:relative;z-index:1;
-        }
-        .logo{
-            width:56px;height:56px;border-radius:16px;
-            background:linear-gradient(135deg,#22c55e,#16a34a);
-            display:flex;align-items:center;justify-content:center;
-            font-size:28px;
-            box-shadow:0 4px 16px rgba(34,197,94,.20);
-        }
-        .ten-thuong-hieu{
-            font-size:28px;font-weight:800;letter-spacing:-.3px;
-            background:linear-gradient(90deg,#86efac,#22c55e);
-            -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-        }
-        .slogan-dau{
-            text-align:center;color:var(--text-muted);font-size:14px;letter-spacing:.5px;
-            margin:8px 0 12px;position:relative;z-index:1;
-        }
-        .thanh-capnhat{
-            text-align:center;font-size:13px;color:#94a3b8;
-            padding:6px 12px;display:inline-block;
-            background:rgba(34,197,94,.06);border-radius:20px;
-            border:1px solid rgba(34,197,94,.12);
-            position:relative;z-index:1;
-        }
-        .canh-giua{text-align:center;margin-bottom:12px;}
-        /* === MENU === */
-        .menu{
-            display:flex;flex-wrap:wrap;gap:6px;margin-bottom:32px;
-            padding:10px 14px;background:rgba(15,23,42,.65);
-            border-radius:14px;border:1px solid var(--border-subtle);
-            position:sticky;top:8px;z-index:99;backdrop-filter:blur(12px);
-        }
-        .menu-btn{
-            background:transparent;color:var(--text-secondary);
-            padding:9px 13px;border-radius:10px;
-            text-align:center;text-decoration:none;font-size:13px;font-weight:500;
-            border:1px solid transparent;transition:var(--tran);
-            white-space:nowrap;
-        }
-        .menu-btn:hover{
-            background:rgba(254,240,138,.06);color:#fef08a;
-            border-color:rgba(254,240,138,.12);transform:translateY(-1px);
-        }
-        .menu-btn.active{
-            background:linear-gradient(135deg,rgba(34,197,94,.18),rgba(22,163,74,.10));
-            color:#86efac;border-color:rgba(34,197,94,.25);font-weight:600;
-        }
-        /* === NỘI DUNG === */
-        .khoi-chinh{
-            background:linear-gradient(145deg,rgba(30,41,59,.85),rgba(15,23,42,.9));
-            border-radius:16px;padding:32px 24px;
-            border:1px solid rgba(34,197,94,.15);
-            box-shadow:0 8px 24px rgba(0,0,0,.30);
-        }
-        .khoi-chinh h2{
-            font-size:22px;color:#86efac;margin-bottom:12px;
-            display:flex;align-items:center;gap:10px;
-        }
-        .trang-thai{
-            display:inline-flex;align-items:center;gap:6px;
-            background:rgba(239,68,68,.10);color:#fca5a5;
-            padding:4px 12px;border-radius:12px;font-size:13px;margin-bottom:24px;
-        }
-        .trang-thai span{
-            width:8px;height:8px;background:#ef4444;border-radius:50%;
-            animation:nhapnhay 1s infinite;
-        }
-        @keyframes nhapnhay{0%,100%{opacity:1;}50%{opacity:.2;}}
-
-        /* === KHỐI GIẢI ĐẤU === */
-        .khoi-giai{margin-bottom:28px;border:1px solid rgba(59,130,246,.15);border-radius:12px;overflow:hidden;}
-        .ten-giai{
-            background:linear-gradient(90deg,rgba(59,130,246,.15),rgba(59,130,246,.05));
-            padding:10px 16px;font-weight:600;color:#60a5fa;font-size:15px;
-        }
+        .dau-trang{text-align:center;padding:30px 10px 10px;}
+        .dau-trang h1{font-size:26px;color:#22c55e;}
+        .dau-trang p{color:#94a3b8;font-size:14px;}
+        .capnhat{text-align:center;font-size:13px;color:#94a3b8;padding:6px 12px;background:rgba(34,197,94,.06);border-radius:20px;display:inline-block;margin:8px 0;}
+        .menu{display:flex;flex-wrap:wrap;gap:6px;margin:20px 0;padding:10px 14px;background:rgba(15,23,42,.65);border-radius:14px;border:1px solid var(--border-subtle);position:sticky;top:8px;z-index:99;}
+        .menu a{color:#cbd5e1;text-decoration:none;padding:8px 12px;border-radius:8px;font-size:13px;}
+        .menu a:hover,.menu a.active{background:rgba(34,197,94,.12);color:#86efac;}
+        .khoi-chinh{background:linear-gradient(145deg,rgba(30,41,59,.85),rgba(15,23,42,.9));border-radius:16px;padding:24px;border:1px solid rgba(34,197,94,.15);}
+        .khoi-giai{margin-bottom:20px;border:1px solid rgba(59,130,246,.15);border-radius:12px;overflow:hidden;}
+        .ten-giai{background:rgba(59,130,246,.1);padding:10px 16px;font-weight:600;color:#60a5fa;}
         .ds-tran{padding:12px;background:rgba(15,23,42,.5);}
-        .tran-item{
-            display:flex;align-items:center;justify-content:space-between;
-            padding:12px 10px;border-bottom:1px solid rgba(59,130,246,.08);
-            gap:8px;flex-wrap:wrap;
-        }
+        .tran-item{display:flex;align-items:center;justify-content:space-between;padding:12px 8px;border-bottom:1px solid rgba(59,130,246,.08);gap:8px;flex-wrap:wrap;}
         .tran-item:last-child{border-bottom:none;}
-        .tran-item:hover{background:rgba(59,130,246,.04);border-radius:8px;}
-
-        .doi-nha{flex:1;min-width:120px;text-align:right;font-size:14px;}
-        .ti-so-khoi{
-            display:flex;flex-direction:column;align-items:center;min-width:90px;
-        }
-        .ti-so{font-weight:bold;font-size:18px;color:#fef08a;line-height:1.2;}
-        .thoi-gian{font-size:11px;color:#94a3b8;}
-        .dang-da{color:#22c55e;}
-        .da-ket-thuc{color:#64748b;}
-        .doi-khach{flex:1;min-width:120px;text-align:left;font-size:14px;}
-        .thong-ke-nho{
-            width:100%;margin-top:6px;font-size:11px;color:#64748b;
-            padding-top:6px;border-top:1px dashed rgba(59,130,246,.1);
-            text-align:center;
-        }
-
-        .empty{text-align:center;padding:60px 20px;color:#64748b;}
-        .empty .icon{font-size:48px;margin-bottom:12px;opacity:.5;}
-        .nut-tai-lai{
-            margin-top:10px;padding:10px 24px;background:linear-gradient(90deg,#22c55e,#16a34a);
-            color:#fff;border:none;border-radius:10px;cursor:pointer;font-weight:600;transition:var(--tran);
-        }
-        .nut-tai-lai:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(34,197,94,.20);}
-        .chan-trang{
-            margin-top:40px;padding:20px 0;border-top:1px solid var(--border-subtle);text-align:center;
-        }
-        .chan-trang p{font-size:13px;color:#64748b;}
-
-        @media(max-width:600px){
-            .doi-nha,.doi-khach{min-width:100px;font-size:13px;}
-            .ti-so{font-size:16px;}
-            .ds-tran{padding:8px;}
-        }
+        .doi-nha{flex:1;min-width:110px;text-align:right;font-size:14px;}
+        .ti-so-khoi{min-width:90px;text-align:center;}
+        .ti-so{font-weight:bold;font-size:18px;color:#fef08a;}
+        .trangthai{font-size:11px;margin-top:2px;}
+        .dangda{color:#22c55e;font-weight:600;}
+        .doi-khach{flex:1;min-width:110px;text-align:left;font-size:14px;}
+        .nut-xem{font-size:11px;padding:5px 10px;background:rgba(34,197,94,.18);border-radius:6px;color:#86efac;text-decoration:none;white-space:nowrap;border:1px solid rgba(34,197,94,.3);}
+        .nut-xem:hover{background:rgba(34,197,94,.3);}
+        .rong{text-align:center;padding:60px 20px;color:#64748b;}
+        .huongdan{background:rgba(59,130,246,.05);border:1px solid rgba(59,130,246,.1);border-radius:10px;padding:12px;margin-top:20px;font-size:12px;color:#94a3b8;}
+        .chan-trang{margin-top:30px;text-align:center;padding:20px 0;border-top:1px solid var(--border-subtle);font-size:12px;color:#64748b;}
+        .nut-tai{margin-top:10px;padding:10px 24px;background:linear-gradient(90deg,#22c55e,#16a34a);color:#fff;border:none;border-radius:10px;cursor:pointer;}
+        iframe{width:100%;border-radius:12px;border:1px solid rgba(34,197,94,.15);margin-top:12px;}
     </style>
 </head>
 <body>
-<div class="dau-trang-wrapper">
-    <div class="container">
-        <div class="dau-trang">
-            <div class="logo">⚽</div>
-            <div>
-                <div class="ten-thuong-hieu">LiveScore</div>
-            </div>
-        </div>
-        <p class="slogan-dau">THEO DÕI TRẬN ĐẤU ĐANG DIỄN RA</p>
-        <div class="canh-giua">
-            <div class="thanh-capnhat" id="thoi-gian-capnhat">🔄 Đang cập nhật...</div>
-        </div>
-    </div>
-</div>
 <div class="container">
-<!-- === MENU === -->
-<nav class="menu">
-    <a href="index.html" class="menu-btn">🏠 Trang chủ</a>
-    <a href="lich-dau.html" class="menu-btn">📅 Lịch đấu</a>
-    <a href="du-doan.html" class="menu-btn">🔮 Phân Tích & Dự Đoán</a>
-    <a href="bang-xep-hang.html" class="menu-btn">📊 Bảng xếp hạng</a>
-    <a href="thong-ke.html" class="menu-btn">📈 Thống kê</a>
-    <a href="tin-nong.html" class="menu-btn">📰 Tin Nóng</a>
-    <a href="ket-qua.html" class="menu-btn">🏆 Kết Quả</a>
-    <a href="livescore.html" class="menu-btn active">⚽ LiveScore</a>
-    <a href="gop-y.html" class="menu-btn">💬 Góp Ý</a>
-</nav>
-<!-- === NỘI DUNG LIVE SCORE === -->
-<div class="khoi-chinh">
-    <h2>⚽ Trận Đấu Đang Diễn Ra</h2>
-    <div class="trang-thai"><span></span> Đang theo dõi trực tiếp</div>
-    
-    <div id="noi-dung">
-        <div class="empty">
-            <div class="icon">📡</div>
-            <h3>Đang kết nối nguồn dữ liệu...</h3>
-            <p>Dữ liệu trận đấu đang được tải. Vui lòng chờ giây lát!</p>
-        </div>
+    <div class="dau-trang">
+        <h1>⚽ TỈ SỐ TRỰC TIẾP</h1>
+        <p>Tự động cập nhật — Nguồn chính thống, không cá độ</p>
+        <div class="capnhat" id="gioCapNhat">🔄 Đang tải...</div>
     </div>
-    
-    <button class="nut-tai-lai" onclick="taiLaiDuLieu()">🔄 Tải Lại Dữ Liệu</button>
+
+<nav class="menu">
+    <a href="index.html">🏠 Trang chủ</a>
+    <a href="lich-dau.html">📅 Lịch đấu</a>
+    <a href="du-doan.html">🔮 Phân Tích & Dự Đoán</a>
+    <a href="bang-xep-hang.html">📊 Bảng xếp hạng</a>
+    <a href="thong-ke.html">📈 Thống kê</a>
+    <a href="tin-nong.html">📰 Tin Nóng</a>
+    <a href="ket-qua.html">🏆 Kết Quả</a>
+    <a href="livescore.html" class="active">⚽ LiveScore</a>
+    <a href="gop-y.html">💬 Góp Ý</a>
+</nav>
+
+<div class="khoi-chinh">
+    <div id="noiDung">
+        <div class="rong">⏳ Đang tải dữ liệu trận đấu...</div>
+    </div>
+    <button class="nut-tai" onclick="taiDuLieu()">🔄 Tải Lại Tỉ Số</button>
+
+    <div class="huongdan">
+        <p>📺 <strong>Cách xem trực tiếp:</strong> Khi trận đang diễn ra → nút <strong>"📺 VTV / 📺 BTV / 📺 FPT Play"</strong> sẽ hiện → bấm mở trang chính thức của đài → chọn kênh phát sóng trận đó.</p>
+        <p>✅ Tất cả link đều từ đài/trang chính thống — không cá độ, hoàn toàn hợp pháp.</p>
+    </div>
 </div>
+
 <div class="chan-trang">
-    <p><strong>Score Vision</strong> — Theo dõi trực tiếp & Kết quả bóng đá</p>
-    <p>© 2026 Score Vision. Tất cả quyền được bảo lưu.</p>
+    <p>🔄 Tự cập nhật mỗi 3 phút | ✅ Nguồn: BBC Sport + VTV + BTV + FPT Play</p>
 </div>
 </div>
+
 <script>
-// ✅ === LINK CSV ĐÃ DÁN SẴN ===
-const LINK_CSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRjGewmdAmJVjyi-0vSc22hhFPacMgGc-WmVE8PEM3jHfA7IvED3XbBp68Bwp16n1Dc2FFP9ETKTaSH/pub?gid=1813200937&single=true&output=csv";
+// ==================================================
+// ✅ BẢNG KÊNH PHÁT SÓNG CHÍNH THỐNG — HOÀN TOÀN HỢP PHÁP
+// Chỉ dẫn đến trang chính thức của đài — KHÔNG cá độ, KHÔNG vi phạm bản quyền
+// ==================================================
+const KENH_PHAT_SONG = {
+    "Premier League": [
+        { ten: "VTV", link: "https://www.vtv.vn/live" },
+        { ten: "FPT Play", link: "https://fptplay.vn/the-thao/bong-da" }
+    ],
+    "Champions League": [
+        { ten: "BTV", link: "https://www.btv.org.vn/btv-live" },
+        { ten: "FPT Play", link: "https://fptplay.vn/the-thao/bong-da" }
+    ],
+    "Cúp C1": [
+        { ten: "BTV", link: "https://www.btv.org.vn/btv-live" }
+    ],
+    "V.League": [
+        { ten: "VTV", link: "https://www.vtv.vn/live" },
+        { ten: "VTC", link: "https://www.vtc.vn/live" }
+    ],
+    "Vietnam": [
+        { ten: "VTV", link: "https://www.vtv.vn/live" },
+        { ten: "VTC", link: "https://www.vtc.vn/live" }
+    ],
+    "ASEAN": [
+        { ten: "VTV", link: "https://www.vtv.vn/live" },
+        { ten: "VTC", link: "https://www.vtc.vn/live" }
+    ],
+    "La Liga": [
+        { ten: "FPT Play", link: "https://fptplay.vn/the-thao/bong-da" }
+    ],
+    "Bundesliga": [
+        { ten: "FPT Play", link: "https://fptplay.vn/the-thao/bong-da" }
+    ],
+    "Serie A": [
+        { ten: "FPT Play", link: "https://fptplay.vn/the-thao/bong-da" }
+    ]
+};
 
-// === CẬP NHẬT THỜI GIAN ===
-function dinhDangNgay(gio){
-    const n = new Date();
-    const d = String(n.getDate()).padStart(2,'0');
-    const m = String(n.getMonth()+1).padStart(2,'0');
-    const y = n.getFullYear();
-    const h = String(n.getHours()).padStart(2,'0');
-    const ph = String(n.getMinutes()).padStart(2,'0');
-    return `${gio ? h+":"+ph+" " : ""}${d}/${m}/${y}`;
+// === LẤY THỜI GIAN HIỆN TẠI ===
+function gioHienTai(){
+    const d=new Date();
+    return `${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')} ${String(d.getDate()).padStart(2,'0')}/${String(d.getMonth()+1).padStart(2,'0')}`;
 }
-document.getElementById("thoi-gian-capnhat").textContent = "🔄 Cập nhật lúc: " + dinhDangNgay(true);
+document.getElementById("gioCapNhat").textContent="🔄 Cập nhật lúc: "+gioHienTai();
 
-// === TẢI & NHÓM DỮ LIỆU THEO GIẢI ===
-async function taiLaiDuLieu(){
-    document.getElementById("noi-dung").innerHTML = `
-        <div class="empty"><div class="icon">📡</div><h3>Đang tải dữ liệu...</h3></div>`;
-    
-    try {
-        const resp = await fetch(LINK_CSV);
-        if(!resp.ok) throw new Error("Không truy cập được Sheet");
-        const csv = await resp.text();
-        hienThiDuLieu(csv);
-    } catch(err) {
-        document.getElementById("noi-dung").innerHTML = `
-            <div class="empty">
-                <div class="icon">❌</div>
-                <h3>Lỗi kết nối dữ liệu</h3>
-                <p>${err.message}<br>Kiểm tra Sheet đã Xuất bản trên web chưa!</p>
-            </div>`;
+// === TÌM KÊNH PHÁT SÓNG THEO TÊN GIẢI ===
+function layKenhTheoGiai(tenGiai){
+    if(!tenGiai) return null;
+    const tenGiaiKhongDau = tenGiai.toLowerCase().replace(/\s/g,"");
+    for(const tuKhoa in KENH_PHAT_SONG){
+        if(tenGiaiKhongDau.includes(tuKhoa.toLowerCase()) || tuKhoa.toLowerCase().includes(tenGiaiKhongDau)){
+            return KENH_PHAT_SONG[tuKhoa];
+        }
     }
+    return null;
 }
 
-// === NHÓM TRẬN ĐẤU THEO TỪNG GIẢI ===
-function hienThiDuLieu(csv){
-    const dong = csv.split("\n").map(d => d.split(","));
-    const khuon = document.getElementById("noi-dung");
+// === LẤY DỮ LIỆU TỪ BBC SPORT ===
+async function taiDuLieu(){
+    const khung=document.getElementById("noiDung");
+    khung.innerHTML=`<div class="rong">⏳ Đang tải dữ liệu tỉ số...</div>`;
 
-    if(dong.length <= 1){
-        khuon.innerHTML = `<div class="empty"><div class="icon">⚽</div><h3>Hiện chưa có trận đấu nào</h3><p>Không có trận đang diễn ra. Vui lòng quay lại sau!</p></div>`;
-        return;
-    }
+    try{
+        // Thêm & để không bị cache dữ liệu cũ
+        const resp=await fetch("https://www.bbc.com/sport/football/scores-fixtures?t="+Date.now(),{cache:"no-store"});
+        if(!resp.ok) throw new Error("Lỗi kết nối nguồn dữ liệu");
+        const html=await resp.text();
 
-    // === BƯỚC 1: NHÓM TRẬN THEO GIẢI ===
-    const duLieuNhom = {};
-    let demTong = 0;
+        // === TRÍCH XUẤT TỪNG TRẬN ĐẤU ===
+        const tranDau=[];
+        const regex=/<span class="gs-c-fixture__team-name--long">([^<]+)<\/span>[\s\S]*?<span class="gs-c-fixture__score gs-c-fixture__score--home">(\d+)<\/span>[\s\S]*?<span class="gs-c-fixture__score gs-c-fixture__score--away">(\d+)<\/span>[\s\S]*?<span class="gs-c-fixture__status [^"]+">([^<]+)<\/span>[\s\S]*?<span class="gs-c-fixture__competition-name">([^<]+)<\/span>/gi;
+        
+        let m;
+        while((m=regex.exec(html))!==null){
+            const doiNha=m[1].trim();
+            const tiSoNha=m[2];
+            const tiSoKhach=m[3];
+            const trangThaiBBC=m[4].trim();
+            const giai=m[5].trim();
+            
+            // ✅ KIỂM TRA: TRẬN ĐANG ĐÁ → HIỆN NÚT XEM
+            const dangDa = (trangThaiBBC.toLowerCase() === "live");
+            const kenh = layKenhTheoGiai(giai);
 
-    // Đọc từ dòng 2, bỏ dòng tiêu đề
-    for(let i=1; i<dong.length; i++){
-        const h = dong[i];
-        if(h.length < 8) continue;
+            tranDau.push({
+                doiNha,
+                doiKhach: "",
+                tiSo: `${tiSoNha} - ${tiSoKhach}`,
+                trangThai: trangThaiBBC,
+                giai,
+                dangDa,
+                kenh
+            });
+        }
 
-        const doiNha = h[2] || "";
-        const doiKhach = h[3] || "";
-        const tiSo = h[4] || "0-0";
-        const giai = (h[5] || "Chưa phân loại").trim();
-        const trangThai = h[6] || "";
-        const thoiGian = h[7] || "";
-        const kiemSoat = h[8] || "-/-";
-        const sutTrung = h[9] || "-/-";
-        const phatGoc = h[10] || "-/-";
-        const theVang = h[11] || "-/-";
-        const theDo = h[12] || "-/-";
-
-        if(!doiNha && !doiKhach) continue;
-
-        if(!duLieuNhom[giai]) duLieuNhom[giai] = [];
-        duLieuNhom[giai].push({doiNha, doiKhach, tiSo, trangThai, thoiGian, kiemSoat, sutTrung, phatGoc, theVang, theDo});
-        demTong++;
-    }
-
-    if(demTong === 0){
-        khuon.innerHTML = `<div class="empty"><div class="icon">⚽</div><h3>Hiện chưa có trận đấu nào</h3><p>Không có trận đang diễn ra. Vui lòng quay lại sau!</p></div>`;
-        return;
-    }
-
-    // === BƯỚC 2: HIỂN THỊ TỪNG GIẢI ===
-    let html = "";
-    for(const tenGiai in duLieuNhom){
-        html += `<div class="khoi-giai">
-            <div class="ten-giai">🏆 ${tenGiai}</div>
-            <div class="ds-tran">`;
-
-        duLieuNhom[tenGiai].forEach(tran => {
-            let lopThoiGian = "";
-            let hienThiTG = tran.thoiGian;
-            if(tran.trangThai.indexOf("Đang đá") !== -1){
-                lopThoiGian = "dang-da";
-                hienThiTG = "⚡ " + tran.thoiGian;
-            } else if(tran.trangThai.indexOf("Hết") !== -1 || tran.trangThai.indexOf("Kết thúc") !== -1){
-                lopThoiGian = "da-ket-thuc";
-                hienThiTG = "✅ Hết";
-            }
-
-            html += `<div class="tran-item">
-                <div class="doi-nha">${tran.doiNha}</div>
-                <div class="ti-so-khoi">
-                    <div class="ti-so">${tran.tiSo}</div>
-                    <div class="thoi-gian ${lopThoiGian}">${hienThiTG}</div>
-                </div>
-                <div class="doi-khach">${tran.doiKhach}</div>
-                <div class="thong-ke-nho">
-                    ⚽${tran.sutTrung} | 📐${tran.kiemSoat} | 📍${tran.phatGoc} | 🟨${tran.theVang} | 🟥${tran.theDo}
-                </div>
+        // === KHÔNG TRÍCH XUẤT ĐƯỢC → HIỂN KHUNG BBC TRỰC TIẾP ===
+        if(tranDau.length === 0){
+            khung.innerHTML=`
+            <div style="text-align:center;padding:10px;">
+                <h3 style="color:#86efac;margin-bottom:12px;">📊 TỈ SỐ TRỰC TIẾP</h3>
+                <iframe src="https://www.bbc.com/sport/football/scores-fixtures" height="480" allowfullscreen></iframe>
+                <p style="margin-top:12px;color:#94a3b8;font-size:13px;">
+                    🔴 Khi trận đang diễn ra → mở kênh chính thức:<br>
+                    📺 VTV → <a href="https://www.vtv.vn/live" target="_blank" style="color:#86efac;">vtv.vn/live</a> | 
+                    📺 BTV → <a href="https://www.btv.org.vn/btv-live" target="_blank" style="color:#86efac;">btv.org.vn/btv-live</a> | 
+                    📺 FPT Play → <a href="https://fptplay.vn/the-thao/bong-da" target="_blank" style="color:#86efac;">fptplay.vn</a>
+                </p>
             </div>`;
+            return;
+        }
+
+        // === NHÓM TRẬN THEO GIẢI ===
+        const nhomGiai={};
+        tranDau.forEach(t=>{
+            if(!nhomGiai[t.giai]) nhomGiai[t.giai]=[];
+            nhomGiai[t.giai].push(t);
         });
 
-        html += `</div></div>`;
-    }
+        // === HIỂN THỊ DỮ LIỆU ===
+        let htmlRa="";
+        for(const tenGiai in nhomGiai){
+            htmlRa+=`<div class="khoi-giai"><div class="ten-giai">🏆 ${tenGiai}</div><div class="ds-tran">`;
+            nhomGiai[tenGiai].forEach(t=>{
+                let trangThaiHien = t.dangDa ? "🔴 Đang đá" : t.trangThai;
+                let nutXem = "";
 
-    khuon.innerHTML = html;
+                // ✅ CHỈ HIỆN NÚT XEM KHI: TRẬN ĐANG ĐÁ + CÓ KÊNH PHÁT SÓNG
+                if(t.dangDa && t.kenh){
+                    const danhSachNut = t.kenh.map(k=>
+                        `<a href="${k.link}" target="_blank" class="nut-xem">📺 ${k.ten}</a>`
+                    ).join(" ");
+                    nutXem = `<div style="display:flex;gap:4px;flex-wrap:wrap;">${danhSachNut}</div>`;
+                }
+
+                htmlRa+=`<div class="tran-item">
+                    <div class="doi-nha">${t.doiNha}</div>
+                    <div class="ti-so-khoi">
+                        <div class="ti-so">${t.tiSo}</div>
+                        <div class="trangthai ${t.dangDa?'dangda':''}">${trangThaiHien}</div>
+                    </div>
+                    <div class="doi-khach">${t.doiKhach||"—"}</div>
+                    ${nutXem}
+                </div>`;
+            });
+            htmlRa+=`</div></div>`;
+        }
+        khung.innerHTML=htmlRa;
+
+    }catch(err){
+        // === LỖI → HIỂN KHUNG BBC TRỰC TIẾP ===
+        khung.innerHTML=`
+        <div class="rong">
+            <div style="font-size:48px;margin-bottom:12px;">📡</div>
+            <h3>Đang tải từ nguồn chính thống...</h3>
+            <iframe src="https://www.bbc.com/sport/football/scores-fixtures" height="480" allowfullscreen></iframe>
+            <p style="margin-top:12px;color:#94a3b8;font-size:13px;">
+                🔴 Khi trận đang diễn ra → mở kênh chính thức:<br>
+                📺 VTV → vtv.vn/live | 📺 BTV → btv.org.vn/btv-live | 📺 FPT Play → fptplay.vn
+            </p>
+        </div>`;
+    }
 }
 
 // === TỰ ĐỘNG TẢI LẦN ĐẦU ===
-taiLaiDuLieu();
+taiDuLieu();
+
+// === TỰ LÀM MỚI MỖI 3 PHÚT ===
+setInterval(()=>{
+    taiDuLieu();
+    document.getElementById("gioCapNhat").textContent="🔄 Cập nhật lúc: "+gioHienTai();
+}, 180000);
 </script>
 </body>
 </html>
