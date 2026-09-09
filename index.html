@@ -3,14 +3,12 @@
 <head>
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="apple-touch-icon" href="favicon.png">
-    <!-- ✅ Thẻ xác minh quyền sở hữu AdSense -->
     <meta name="google-adsense-account" content="ca-pub-6588369693863083">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6588369693863083" crossorigin="anonymous"></script>
     <meta name="monetag" content="9f18703360e44fe069c7f96a0278767f">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Score Vision ⚽ Phân Tích & Dự Đoán Bóng Đá Hàng Ngày</title>
-    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-RTY3P63JJL"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -49,7 +47,6 @@
             min-height:100vh;
         }
         .container{max-width:1100px;margin:0 auto;padding:0 16px;}
-        /* === ĐẦU TRANG === */
         .dau-trang-wrapper{
             position:relative;padding:32px 16px 16px;margin-bottom:8px;
             border-radius:0 0 20px 20px;
@@ -66,7 +63,6 @@
             display:flex;align-items:center;justify-content:center;gap:14px;
             position:relative;z-index:1;
         }
-        /* === LOGO === */
         .logo{
             width:64px;height:64px;border-radius:16px;
             background:transparent;
@@ -90,7 +86,6 @@
             text-align:center;color:var(--text-muted);font-size:14px;letter-spacing:.5px;
             margin:8px 0 0;position:relative;z-index:1;
         }
-        /* === MENU === */
         .menu{
             display:flex;flex-wrap:wrap;gap:6px;margin-bottom:32px;
             padding:10px 14px;background:rgba(15,23,42,.65);
@@ -128,7 +123,6 @@
             background:linear-gradient(135deg,rgba(99,102,241,.25),rgba(79,70,229,.12));
             color:#c7d2fe;border-color:rgba(99,102,241,.35);
         }
-        /* === BANNER === */
         .banner{
             background:linear-gradient(rgba(3,7,18,.50),rgba(15,23,42,.55)),
                         url('anh_nen.png');
@@ -184,7 +178,7 @@
         .ketqua-score-num{font-size:20px;font-weight:700;color:#fff;}
         .ketqua-status{text-align:center;margin-top:10px;padding-top:8px;border-top:1px solid rgba(148,163,184,.10);}
         .status-finished{display:inline-flex;align-items:center;gap:4px;color:#86efac;font-size:12px;font-weight:500;background:rgba(74,222,128,.06);padding:3px 10px;border-radius:12px;}
-        /* === ✅ THẺ PHÂN TÍCH — CÓ ẢNH BÌA THEO GIẢI === */
+        /* === THẺ PHÂN TÍCH === */
         .card-phantich{
             background:var(--bg-card);border-radius:14px;overflow:hidden;
             border:1px solid rgba(254,240,138,.12);box-shadow:var(--shadow-soft);
@@ -199,16 +193,15 @@
             object-fit:cover;
             object-position:center;
             border:none;
-            transition:transform .35s ease, box-shadow .35s ease;
+            transition:transform .35s ease;
+            background:#1e293b;
         }
-        .card-phantich:hover .anh-bia-giai{
-            transform:scale(1.03);
-        }
+        .card-phantich:hover .anh-bia-giai{transform:scale(1.03);}
         .card-body-phantich{padding:18px;}
         .pt-giai{color:#fde047;font-size:13px;font-weight:600;margin-bottom:6px;}
         .pt-tran{font-size:16px;font-weight:700;color:#fef08a;margin-bottom:6px;}
         .pt-ngay{color:#94a3b8;font-size:12px;margin-bottom:10px;}
-        .pt-tomtat{font-size:14px;color:#e2e8f0;line-height:1.6;margin-bottom:8px;}
+        .pt-tomtat{font-size:14px;color:#e2e8f0;line-height:1.6;margin-bottom:6px;}
         .pt-xemchitiet{display:inline-block;color:#60a5fa;font-size:13px;font-weight:500;margin-top:4px;}
         .pt-xemchitiet:hover{color:#fef08a;text-decoration:underline;}
         /* === THẺ TIN TỨC === */
@@ -282,7 +275,6 @@
     <div class="dau-trang-wrapper">
         <div class="container">
             <div class="dau-trang">
-                <!-- ✅ LOGO DÙNG LINK TRỰC TIẾP -->
                 <div class="logo">
                     <img src="logo.png" alt="Score Vision" onerror="this.style.display='none'">
                 </div>
@@ -354,7 +346,7 @@
         const GID_KET_QUA = "1819801064";
         const BASE_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRjGewmdAmJVjyi-0vSc22hhFPacMgGc-WmVE8PEM3jHfA7IvED3XbBp68Bwp16n1Dc2FFP9ETKTaSH/pub?output=csv&gid=";
 
-        // === ✅ ẢNH BÌA THEO TÊN GIẢI — THÊM/SỬA Ở ĐÂY ===
+        // === ✅ BẢNG ẢNH BÌA THEO TỪNG GIẢI ===
         const ANH_GIAI = {
             "Premier League": "https://i.imgur.com/UkYdXw8.png",
             "Ngoại Hạng Anh": "https://i.imgur.com/UkYdXw8.png",
@@ -365,25 +357,28 @@
             "Champions League": "https://i.imgur.com/4QZxQw8.png",
             "Cúp C1": "https://i.imgur.com/4QZxQw8.png",
             "AFC ASEAN U20": "https://i.imgur.com/xyz123a.png",
+            "ASEAN U20": "https://i.imgur.com/xyz123a.png",
             "SEA Games": "https://i.imgur.com/sea456b.png",
             "U23 ASIAD": "https://i.imgur.com/asiad789.png",
-            "ĐT Việt Nam": "https://i.imgur.com/vn999vn.png"
+            "ASIAD": "https://i.imgur.com/asiad789.png",
+            "ĐT Việt Nam": "https://i.imgur.com/vn999vn.png",
+            "Đội tuyển Việt Nam": "https://i.imgur.com/vn999vn.png"
         };
-        const ANH_MAC_DINH = "anh_nen.png";
+        const ANH_MAC_DINH = "https://i.imgur.com/4QZxQw8.png";
 
         // === ✅ HÀM LẤY ẢNH THEO TÊN GIẢI ===
         function layAnhGiai(tenGiai){
             if(!tenGiai) return ANH_MAC_DINH;
-            tenGiai = tenGiai.trim();
+            tenGiai = tenGiai.trim().toLowerCase();
             for(let tenKhoa in ANH_GIAI){
-                if(tenGiai.toLowerCase().includes(tenKhoa.toLowerCase())){
+                if(tenGiai.includes(tenKhoa.toLowerCase())){
                     return ANH_GIAI[tenKhoa];
                 }
             }
             return ANH_MAC_DINH;
         }
 
-        // === ĐỌC CSV ĐÚNG ĐỊNH DẠNG ===
+        // === ✅ HÀM ĐỌC CSV ĐÚNG ĐỊNH DẠNG ===
         function parseCSV(text){
             const rows = [];let row=[],cell="",inQuote=false;
             for(let i=0;i<text.length;i++){
@@ -397,17 +392,79 @@
             return rows;
         }
 
-        // === LẤY TÓM TẮT — CHỈ LẤY 1-2 DÒNG ===
+        // === LẤY TÓM TẮT ===
         function layTomTat(text, doDai=100){
             if(!text) return "Đang cập nhật...";
             return text.replace(/<[^>]*>/g," ").replace(/\s+/g," ").trim().substring(0, doDai) + "…";
         }
 
-        function layAnh(link){
-            if(!link||!link.trim().startsWith("http")) return ANH_MAC_DINH;
-            const match = link.match(/src\s*=\s*["']([^"']+)["']/i);
-            return match && match[1] ? match[1] : link.trim();
-        }
+        // === ✅ KIỂM TRA TÊN CỘT — KHỚP VỚI SHEET PHÂN TÍCH ===
+        fetch(BASE_URL+GID_PHAN_TICH)
+        .then(r=>{if(!r.ok)throw new Error("Lỗi kết nối");return r.text();})
+        .then(csv=>{
+            const rows=parseCSV(csv);
+            if(rows.length<2){document.getElementById("phan-tich-list").innerHTML=`<div class="empty">⚠️ Sheet chưa có dữ liệu!</div>`;return;}
+            
+            const h=rows[0].map(h=>h.trim().toLowerCase());
+            const idx = {
+                loai: h.indexOf("loai_du_lieu"),
+                thuTu: h.indexOf("thu_tu"),
+                giai: h.indexOf("ten_giai"),
+                tran: h.indexOf("ten_tran"),
+                ngay: h.indexOf("ngay_gio"),
+                pt: h.indexOf("phan_tich"),
+                doan: h.indexOf("du_doan")
+            };
+            
+            if(idx.loai === -1 || idx.giai === -1 || idx.tran === -1){
+                document.getElementById("phan-tich-list").innerHTML=`<div class="empty">❌ Tên cột không khớp! Kiểm tra: loai_du_lieu, ten_giai, ten_tran</div>`;
+                return;
+            }
+            
+            let data=[];
+            for(let i=1;i<rows.length;i++){
+                const r=rows[i];
+                const loai = (r[idx.loai]||"").trim();
+                if(loai !== "Trận đấu") continue;
+                const tenGiai = (r[idx.giai]||"").trim();
+                data.push({
+                    st: Number(r[idx.thuTu])||999,
+                    giai: tenGiai,
+                    anhBia: layAnhGiai(tenGiai),
+                    tran: (r[idx.tran]||"").trim(),
+                    ngay: (r[idx.ngay]||"").trim(),
+                    pt: layTomTat((r[idx.pt]||"").trim(), 90),
+                    doan: layTomTat((r[idx.doan]||"").trim(), 60)
+                });
+            }
+            
+            data.sort((a,b)=>a.st - b.st);
+            
+            const box=document.getElementById("phan-tich-list");
+            if(!data.length){
+                box.innerHTML=`<div class="empty">⚠️ Không tìm thấy dòng có loai_du_lieu = "Trận đấu"!</div>`;
+                return;
+            }
+            
+            // ✅ HIỂN THỊ 4 TRẬN ĐẦU + ẢNH BÌA THEO GIẢI
+            box.innerHTML=`<div class="grid-2">`;
+            data.slice(0,4).forEach(x=>{
+                box.innerHTML += `
+                <a href="du-doan.html" class="card-phantich">
+                    <img src="${x.anhBia}" alt="${x.giai}" class="anh-bia-giai" loading="lazy" onerror="this.src='${ANH_MAC_DINH}'">
+                    <div class="card-body-phantich">
+                        <div class="pt-giai">🏆 ${x.giai}</div>
+                        <div class="pt-tran">⚽ ${x.tran}</div>
+                        <div class="pt-ngay">📅 ${x.ngay}</div>
+                        <div class="pt-tomtat">📝 ${x.pt}</div>
+                        <div class="pt-tomtat">✅ Dự đoán: ${x.doan}</div>
+                        <div class="pt-xemchitiet">👉 Nhấp vào xem chi tiết đầy đủ →</div>
+                    </div>
+                </a>`;
+            });
+            box.innerHTML += `</div>`;
+        })
+        .catch(e=>{document.getElementById("phan-tich-list").innerHTML=`<div class="empty">❌ Lỗi: ${e.message}</div>`;});
 
         // === KẾT QUẢ ===
         fetch(BASE_URL+GID_KET_QUA)
@@ -436,76 +493,6 @@
         })
         .catch(e=>{document.getElementById("ketqua-list").innerHTML=`<div class="empty">❌ ${e.message}</div>`;});
 
-        // === ✅ PHÂN TÍCH — CÓ ẢNH BÌA THEO GIẢI ===
-        fetch(BASE_URL+GID_PHAN_TICH)
-        .then(r=>{if(!r.ok)throw new Error("Lỗi kết nối");return r.text();})
-        .then(csv=>{
-            const rows=parseCSV(csv);
-            if(rows.length<2){document.getElementById("phan-tich-list").innerHTML=`<div class="empty">⚠️ Sheet chưa có dữ liệu!</div>`;return;}
-            
-            const h=rows[0].map(h=>h.trim().toLowerCase());
-            const idx = {
-                loai: h.indexOf("loai_du_lieu"),
-                thuTu: h.indexOf("thu_tu"),
-                giai: h.indexOf("ten_giai"),
-                tran: h.indexOf("ten_tran"),
-                ngay: h.indexOf("ngay_gio"),
-                pt: h.indexOf("phan_tich"),
-                phong: h.indexOf("phong_do"),
-                doan: h.indexOf("du_doan")
-            };
-            
-            if(Object.values(idx).some(i => i === -1)){
-                document.getElementById("phan-tich-list").innerHTML=`<div class="empty">❌ Tên cột không khớp!</div>`;
-                return;
-            }
-            
-            let data=[];
-            for(let i=1;i<rows.length;i++){
-                const r=rows[i];
-                const loai = (r[idx.loai]||"").trim().toLowerCase();
-                if(loai !== "trận đấu") continue;
-
-                const tenGiai = (r[idx.giai]||"").trim();
-                data.push({
-                    st: Number(r[idx.thuTu])||999,
-                    giai: tenGiai,
-                    anhBia: layAnhGiai(tenGiai),
-                    tran: (r[idx.tran]||"").trim(),
-                    ngay: (r[idx.ngay]||"").trim(),
-                    pt: layTomTat((r[idx.pt]||"").trim(), 90),
-                    doan: layTomTat((r[idx.doan]||"").trim(), 60)
-                });
-            }
-            
-            data.sort((a,b)=>a.st - b.st);
-            
-            const box=document.getElementById("phan-tich-list");
-            if(!data.length){
-                box.innerHTML=`<div class="empty">⚠️ Không tìm thấy dòng "Trận đấu"!</div>`;
-                return;
-            }
-            
-            // ✅ CHỈ HIỂN THỊ 4 TRẬN + ẢNH BÌA THEO GIẢI
-            box.innerHTML=`<div class="grid-2">`;
-            data.slice(0,4).forEach(x=>{
-                box.innerHTML += `
-                <a href="du-doan.html" class="card-phantich">
-                    <img src="${x.anhBia}" alt="${x.giai}" class="anh-bia-giai" loading="lazy">
-                    <div class="card-body-phantich">
-                        <div class="pt-giai">🏆 ${x.giai}</div>
-                        <div class="pt-tran">⚽ ${x.tran}</div>
-                        <div class="pt-ngay">📅 ${x.ngay}</div>
-                        <div class="pt-tomtat">📝 ${x.pt}</div>
-                        <div class="pt-tomtat">✅ Dự đoán: ${x.doan}</div>
-                        <div class="pt-xemchitiet">👉 Nhấp vào xem chi tiết đầy đủ →</div>
-                    </div>
-                </a>`;
-            });
-            box.innerHTML += `</div>`;
-        })
-        .catch(e=>{document.getElementById("phan-tich-list").innerHTML=`<div class="empty">❌ Lỗi: ${e.message}</div>`;});
-
         // === TIN NÓNG ===
         fetch(BASE_URL+GID_TIN_NONG)
         .then(r=>{if(!r.ok)throw new Error("Lỗi kết nối");return r.text();})
@@ -522,7 +509,7 @@
                 const noidung = (r[12]||"").trim();
                 if(!tieude) continue;
                 const tomtat = noidung.replace(/<[^>]*>/g," ").replace(/\s+/g," ").trim().substring(0,80);
-                data.push({tieude,ngay:ngaydang,anh:layAnh(anh_bia),tomtat});
+                data.push({tieude,ngay:ngaydang,anh:anh_bia||ANH_MAC_DINH,tomtat});
             }
             const box=document.getElementById("tin-list");
             if(!data.length){box.innerHTML=`<div class="empty">Chưa có bài tin nào!</div>`;return;}
@@ -534,7 +521,7 @@
             let html = "";
             html += `<a href="tin-nong.html" class="card-tin" style="margin-bottom:16px;display:block;">
                 <div class="card-anh-wrapper">
-                    <img src="${baiNoiBat.anh}" alt="${baiNoiBat.tieude}" class="card-img" loading="lazy">
+                    <img src="${baiNoiBat.anh}" alt="${baiNoiBat.tieude}" class="card-img" loading="lazy" onerror="this.src='${ANH_MAC_DINH}'">
                 </div>
                 <div class="card-body">
                     <span class="card-label label-hot">🔥 NỔI BẬT — ${ngayNB}</span>
@@ -547,7 +534,7 @@
             cotTrai.forEach(x=>{
                 const ngay = x.ngay.split(" ")[0];
                 html += `<a href="tin-nong.html" class="card-tin" style="margin-bottom:16px;display:block;">
-                    <div class="card-anh-wrapper"><img src="${x.anh}" alt="${x.tieude}" class="card-img" loading="lazy"></div>
+                    <div class="card-anh-wrapper"><img src="${x.anh}" alt="${x.tieude}" class="card-img" loading="lazy" onerror="this.src='${ANH_MAC_DINH}'"></div>
                     <div class="card-body"><span class="card-label label-tin">📰 ${ngay}</span><h3>${x.tieude}</h3><p>${x.tomtat}…</p><div class="hint">Xem chi tiết →</div></div>
                 </a>`;
             });
@@ -555,7 +542,7 @@
             cotPhai.forEach(x=>{
                 const ngay = x.ngay.split(" ")[0];
                 html += `<a href="tin-nong.html" class="card-tin" style="margin-bottom:16px;display:block;">
-                    <div class="card-anh-wrapper"><img src="${x.anh}" alt="${x.tieude}" class="card-img" loading="lazy"></div>
+                    <div class="card-anh-wrapper"><img src="${x.anh}" alt="${x.tieude}" class="card-img" loading="lazy" onerror="this.src='${ANH_MAC_DINH}'"></div>
                     <div class="card-body"><span class="card-label label-tin">📰 ${ngay}</span><h3>${x.tieude}</h3><p>${x.tomtat}…</p><div class="hint">Xem chi tiết →</div></div>
                 </a>`;
             });
@@ -590,7 +577,6 @@
         })
         .catch(e=>{document.getElementById("lich-list").innerHTML=`<div class="empty">❌ ${e.message}</div>`;});
     </script>
-    <!-- MÃ QUẢNG CÁO MoneTag -->
     <script>(function(s){s.dataset.zone='11665696',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
 </body>
 </html>
