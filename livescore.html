@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>⚽ LiveScore — Tỉ Số Trực Tiếp</title>
+    <title>⚽ LiveScore — Tỉ Số Trực Tiếp | Score Vision</title>
     <style>
         *{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;}
-        :root{--bg-main:#030712; --text-primary:#f1f5f9; --accent-green:#22c55e; --accent-gold:#fef08a; --border-subtle:rgba(148,163,184,.15);}
+        :root{--bg-main:#030712; --text-primary:#f1f5f9; --accent-green:#22c55e; --accent-blue:#3b82f6; --border-subtle:rgba(148,163,184,.15);}
         body{background:radial-gradient(circle at 20% 0%, rgba(30,64,175,.08) 0%, transparent 50%),radial-gradient(circle at 80% 10%, rgba(34,197,94,.05) 0%, transparent 45%),linear-gradient(180deg,#030712 0%,#0f172a 50%,#030712 100%);color:var(--text-primary);line-height:1.7;min-height:100vh;}
         .container{max-width:1100px;margin:0 auto;padding:0 16px;}
         .dau-trang{text-align:center;padding:30px 10px 10px;}
@@ -16,21 +16,22 @@
         .menu{display:flex;flex-wrap:wrap;gap:6px;margin:20px 0;padding:10px 14px;background:rgba(15,23,42,.65);border-radius:14px;border:1px solid var(--border-subtle);position:sticky;top:8px;z-index:99;}
         .menu a{color:#cbd5e1;text-decoration:none;padding:8px 12px;border-radius:8px;font-size:13px;}
         .menu a:hover,.menu a.active{background:rgba(34,197,94,.12);color:#86efac;}
-        .khoi-chinh{background:linear-gradient(145deg,rgba(30,41,59,.85),rgba(15,23,42,.9));border-radius:16px;padding:24px;border:1px solid rgba(34,197,94,.15);}
-        .rong{text-align:center;padding:20px 0;color:#64748b;}
+        .khoi-chinh{background:linear-gradient(145deg,rgba(30,41,59,.85),rgba(15,23,42,.9));border-radius:16px;padding:24px;border:1px solid rgba(34,197,94,.15);margin-bottom:24px;}
+        .khoi-chinh h2{font-size:18px;color:#94a3b8;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid rgba(59,130,246,.15);}
         .huongdan{background:rgba(59,130,246,.05);border:1px solid rgba(59,130,246,.1);border-radius:10px;padding:12px;margin-top:20px;font-size:12px;color:#94a3b8;}
         .chan-trang{margin-top:30px;text-align:center;padding:20px 0;border-top:1px solid var(--border-subtle);font-size:12px;color:#64748b;}
         .nguon-khac{margin-top:16px;padding:12px;background:rgba(59,130,246,.05);border:1px solid rgba(59,130,246,.2);border-radius:10px;font-size:13px;color:#93c5fd;}
-        iframe{width:100%;border-radius:10px;border:1px solid rgba(34,197,94,.15);background:#0f172a;}
+        iframe{width:100%;border-radius:10px;border:1px solid rgba(59,130,246,.15);background:#0f172a;}
     </style>
 </head>
 <body>
 <div class="container">
     <div class="dau-trang">
-        <h1>⚽ TỈ SỐ TRỰC TIẾP</h1>
+        <h1>⚽ TỈ SỐ TRỰC TIẾP & CHI TIẾT TRẬN</h1>
         <p>Nguồn: GoalAPI — Cập nhật tự động mỗi 60 giây</p>
         <div class="capnhat">🔄 Tự động cập nhật liên tục</div>
     </div>
+
 <nav class="menu">
     <a href="index.html">🏠 Trang chủ</a>
     <a href="lich-dau.html">📅 Lịch đấu</a>
@@ -43,22 +44,39 @@
     <a href="gop-y.html">💬 Góp Ý</a>
 </nav>
 
-<div class="khoi-chinh">
-    <!-- ✅ GOALAPI IFRAME — KHÔNG CẦN KEY, KHÔNG BỊ LỖI -->
-    <iframe src="https://goalapi.net/nhung/livescore?theme=dark&lang=vi&accent=3b3b3f" 
-    id="goalapi-livescore" 
-    width="100%" 
-    height="700" 
-    frameborder="0" 
-    loading="lazy" 
-    scrolling="auto" 
-    style="border:0; border-radius:10px; overflow:hidden;" 
-    title="GoalAPI Livescore"></iframe>
+    <!-- ⚽ DANH SÁCH TỈ SỐ TRỰC TIẾP -->
+    <div class="khoi-chinh">
+        <h2>📋 TỈ SỐ TRẬN ĐẤU</h2>
+        <iframe src="https://goalapi.net/nhung/livescore?theme=dark&lang=vi&accent=3b3b3f" 
+        id="goalapi-livescore" 
+        width="100%" 
+        height="650" 
+        frameborder="0" 
+        loading="lazy" 
+        scrolling="auto" 
+        style="border:0; border-radius:10px; overflow:hidden;" 
+        title="GoalAPI Livescore"></iframe>
+    </div>
+
+    <!-- 📋 CHI TIẾT TRẬN ĐẤU -->
+    <div class="khoi-chinh">
+        <h2>📊 CHI TIẾT TRẬN ĐẤU</h2>
+        <iframe src="https://goalapi.net/nhung/chi-tiet-tran?theme=dark&lang=vi&id=100050926" 
+        id="goalapi-match" 
+        width="100%" 
+        height="600" 
+        frameborder="0" 
+        loading="lazy" 
+        scrolling="auto" 
+        style="border:0; border-radius:8px; overflow:hidden;" 
+        title="GoalAPI Chi Tiết Trận"></iframe>
+    </div>
 
     <div class="huongdan">
         <p>📺 <strong>Xem trực tiếp:</strong> Khi trận đang diễn ra → tra cứu kênh phát sóng chính thức tại trang chủ các đài VTV, BTV, FPT Play.</p>
-        <p>✅ Tất cả dữ liệu tỉ số cập nhật tự động mỗi 60 giây — Nguồn: GoalAPI, hoàn toàn miễn phí.</p>
+        <p>✅ Tất cả dữ liệu tỉ số & chi tiết trận cập nhật tự động mỗi 60 giây — Nguồn: GoalAPI, hoàn toàn miễn phí.</p>
     </div>
+
     <div class="nguon-khac">
         <strong>📌 Tra cứu thêm tỉ số & tin tức tại:</strong><br>
         • VnExpress Bóng Đá → <a href="https://vnexpress.net/bong-da" target="_blank" style="color:#93c5fd;">vnexpress.net/bong-da</a><br>
@@ -66,7 +84,7 @@
         • Bóng Đá Plus → <a href="https://bongdaplus.vn" target="_blank" style="color:#93c5fd;">bongdaplus.vn</a><br>
         📺 Kênh phát sóng: <a href="https://www.vtv.vn/live" target="_blank" style="color:#93c5fd;">VTV</a> | <a href="https://www.btv.org.vn/btv-live" target="_blank" style="color:#93c5fd;">BTV</a> | <a href="https://fptplay.vn/the-thao/bong-da" target="_blank" style="color:#93c5fd;">FPT Play</a>
     </div>
-</div>
+
 <div class="chan-trang">
     <p>🔄 Tự cập nhật mỗi 60 giây | ✅ Nguồn: GoalAPI — Không cần API Key</p>
 </div>
