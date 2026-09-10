@@ -8,6 +8,7 @@
     <meta name="monetag" content="9f18703360e44fe069c7f96a0278767f">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="module" src="https://widgets.api-sports.io/3.1.0/widgets.js"></script>
     <title>Score Vision ⚽ Phân Tích & Dự Đoán Bóng Đá Hàng Ngày</title>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-RTY3P63JJL"></script>
     <script>
@@ -358,8 +359,17 @@
                 <a href="du-doan.html" class="banner-nut">👉 Xem Phân Tích Chi Tiết</a>
             </div>
             <div class="widget-ngoai">
-                <div class="widget-scroll" id="khoi-widget-bongda">
-                    <div style="padding:20px;text-align:center;color:#94a3b8;">⏳ Đang tải dữ liệu trận đấu...</div>
+                <!-- Configuration -->
+                <api-sports-widget data-type="config"
+                    data-key="db3cb172848d850444676b821c1e9fd0"
+                    data-sport="football"
+                    data-lang="en"
+                    data-theme="dark"
+                    data-show-errors="true">
+                </api-sports-widget>
+
+                <div class="widget-scroll">
+                    <api-sports-widget data-type="games"></api-sports-widget>
                 </div>
             </div>
         </div>
@@ -401,168 +411,6 @@
             e.preventDefault();
             window.scrollTo({top:0,behavior:"smooth"});
         });
-
-        // === API-SPORTS: TỰ ĐỘNG ĐỔI API KEY KHI KEY HIỆN TẠI LỖI/HẾT QUOTA ===
-        const DANH_SACH_KEY = [
-            "db3cb172848d850444676b821c1e9fd0",
-            "THÊM_KEY_2_Ở_ĐÂY",
-            "THÊM_KEY_3_Ở_ĐÂY"
-        ];
-
-        async function taiTranDauAPI(){
-            const box = document.getElementById("khoi-widget-bongda");
-            const homSau = new Date();
-            homSau.setDate(homSau.getDate() + 2);
-
-            const formatNgay = d => d.toISOString().split("T")[0];
-            const ngayTu = formatNgay(new Date());
-            const ngayDen = formatNgay(homSau);
-
-            let loiCuoi = "";
-
-            for(let i = 0; i < DANH_SACH_KEY.length; i++){
-                const key = DANH_SACH_KEY[i];
-
-                if(!key || key.startsWith("THÊM_KEY_")) continue;
-
-                try{
-                    const url = `https://v3.football.api-sports.io/fixtures?league=39&from=${ngayTu}&to=${ngayDen}`;
-
-                    const res = await fetch(url, {
-                        headers: {
-                            "x-apisports-key": key,
-                            "Accept": "application/json"
-                        }
-                    });
-
-                    const text = await res.text();
-                    let json = null;
-
-                    try { json = JSON.parse(text); } catch(e) {}
-
-                    const errors = json?.errors || {};
-                    const errorText = typeof errors === "string"
-                        ? errors
-                        : Object.values(errors).join(" ").toUpperCase();
-
-                    const keyLoi =
-                        res.status === 401 ||
-                        res.status === 403 ||
-                        res.status === 429 ||
-                        /NOT AUTHORIZED|API KEY|USER BLOCKED|QUOTA|RATE LIMIT|RATELIMIT|EXHAUSTED|BALANCE|LIMIT/.test(errorText);
-
-                    if(keyLoi){
-                        loiCuoi = errorText || `HTTP ${res.status}`;
-                        console.warn(`API Key ${i + 1} không dùng được. Chuyển sang Key ${i + 2}...`);
-                        continue;
-                    }
-
-                    if(!res.ok || !json){
-                        loiCuoi = `HTTP ${res.status}`;
-                        continue;
-                    }
-
-                    if(json.errors && Object.keys(json.errors).length > 0){
-                        loiCuoi = errorText || "API trả về lỗi";
-                        continue;
-                    }
-
-                    const danhSach = json.response || [];
-
-                    if(!danhSach.length){
-                        box.innerHTML = `<div style="padding:20px;text-align:center;color:#94a3b8;">📅 Hiện chưa có trận đấu sắp diễn ra</div>`;
-                        return;
-                    }
-
-                    let htmlWidget = "";
-
-                    danhSach.slice(0, 12).forEach(tran => {
-                        const gio = new Date(tran.fixture.date);
-                        const gioLocal = gio.toLocaleTimeString("vi-VN", {
-                            hour:"2-digit",
-                            minute:"2-digit"
-                        });
-
-                        const ngayLocal = gio.toLocaleDateString("vi-VN", {
-                            day:"2-digit",
-                            month:"2-digit"
-                        });
-
-                        const status = tran.fixture.status.short;
-                        let trangThai = `${ngayLocal} ${gioLocal}`;
-                        let mau = "#93c5fd";
-                        let tySo = "";
-
-                        if(["1H","2H","HT","ET","P","BT"].includes(status)){
-                            trangThai = "🔴 Đang diễn ra";
-                            mau = "#fca5a5";
-                            tySo = `${tran.goals.home ?? 0} - ${tran.goals.away ?? 0}`;
-                        }else if(["FT","AET","PEN"].includes(status)){
-                            trangThai = "✓ Đã kết thúc";
-                            mau = "#86efac";
-                            tySo = `${tran.goals.home ?? 0} - ${tran.goals.away ?? 0}`;
-                        }
-
-                        htmlWidget += `
-                            <div style="
-                                background:rgba(15,23,42,.72);
-                                border:1px solid rgba(148,163,184,.12);
-                                border-radius:10px;
-                                padding:10px 11px;
-                                margin-bottom:8px;
-                            ">
-                                <div style="font-size:11px;color:#94a3b8;margin-bottom:6px;">
-                                    🏆 ${tran.league?.name || "Bóng đá"}
-                                </div>
-                                <div style="
-                                    display:grid;
-                                    grid-template-columns:1fr auto 1fr;
-                                    align-items:center;
-                                    gap:8px;
-                                ">
-                                    <div style="text-align:right;color:#e2e8f0;font-size:13px;font-weight:600;">
-                                        ${tran.teams?.home?.name || "Đội nhà"}
-                                    </div>
-
-                                    <div style="
-                                        min-width:58px;
-                                        text-align:center;
-                                        color:#fff;
-                                        font-weight:700;
-                                        font-size:14px;
-                                    ">
-                                        ${tySo || "VS"}
-                                    </div>
-
-                                    <div style="text-align:left;color:#e2e8f0;font-size:13px;font-weight:600;">
-                                        ${tran.teams?.away?.name || "Đội khách"}
-                                    </div>
-                                </div>
-                                <div style="text-align:center;margin-top:6px;color:${mau};font-size:11px;">
-                                    ${trangThai}
-                                </div>
-                            </div>`;
-                    });
-
-                    box.innerHTML = htmlWidget;
-                    console.log(`✅ API-Sports đang dùng Key ${i + 1}`);
-                    return;
-
-                }catch(err){
-                    loiCuoi = err.message || "Lỗi kết nối";
-                    console.warn(`❌ Key ${i + 1} lỗi, chuyển key tiếp theo...`, err);
-                }
-            }
-
-            box.innerHTML = `
-                <div style="padding:20px;text-align:center;color:#fca5a5;">
-                    ❌ Không thể tải dữ liệu trận đấu.<br>
-                    <span style="font-size:12px;color:#94a3b8;">Tất cả API key hiện có đều không sử dụng được.</span>
-                </div>`;
-            console.error("API-Sports:", loiCuoi);
-        }
-
-        taiTranDauAPI();
 
         const GID_PHAN_TICH = "1723464768";
         const GID_TIN_NONG = "840175350";
@@ -776,5 +624,116 @@
         .catch(e=>{document.getElementById("lich-list").innerHTML=`<div class="empty">❌ ${e.message}</div>`;});
     </script>
     <script>(function(s){s.dataset.zone='11665696',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
+
+<script>
+/* === API-SPORTS: TỰ ĐỘNG ĐỔI KEY KHI KEY HIỆN TẠI LỖI/HẾT QUOTA ===
+   Giữ nguyên widget gốc; chỉ thay data-key và khởi động lại widget.
+*/
+(function(){
+    const DANH_SACH_KEY = [
+        "db3cb172848d850444676b821c1e9fd0",
+        "DAN_KEY_2",
+        "DAN_KEY_3"
+    ].filter(k => k && !k.startsWith("DAN_KEY_"));
+
+    let keyHienTai = 0;
+    let dangDoiKey = false;
+    let lanDoiCuoi = 0;
+
+    function layWidget(type){
+        return document.querySelector('api-sports-widget[data-type="' + type + '"]');
+    }
+
+    function vanBanWidget(node){
+        if(!node) return "";
+        let text = node.textContent || "";
+        try{
+            if(node.shadowRoot){
+                text += " " + node.shadowRoot.textContent;
+                node.shadowRoot.querySelectorAll("*").forEach(el => {
+                    if(el.shadowRoot) text += " " + vanBanWidget(el);
+                });
+            }
+        }catch(e){}
+        return text.toLowerCase();
+    }
+
+    function coPhaiLoiKey(text){
+        return /not authorized|api key|api-key|invalid.*key|key.*invalid|quota|rate limit|too many requests|user blocked|requests limit|limit exceeded/.test(text);
+    }
+
+    function khoiDongLaiWidget(){
+        const config = layWidget("config");
+        const games = layWidget("games");
+        if(!config || !games) return;
+
+        config.innerHTML = "";
+        games.innerHTML = "";
+
+        if(typeof config.connectedCallback === "function"){
+            try{ config.connectedCallback(); }catch(e){}
+        }
+        if(typeof games.connectedCallback === "function"){
+            try{ games.connectedCallback(); }catch(e){}
+        }
+
+        window.document.dispatchEvent(new Event("DOMContentLoaded", {
+            bubbles:true,
+            cancelable:true
+        }));
+    }
+
+    function doiKey(){
+        if(dangDoiKey) return;
+        if(Date.now() - lanDoiCuoi < 4000) return;
+        if(keyHienTai >= DANH_SACH_KEY.length - 1) return;
+
+        dangDoiKey = true;
+        lanDoiCuoi = Date.now();
+
+        keyHienTai++;
+        const keyMoi = DANH_SACH_KEY[keyHienTai];
+        const config = layWidget("config");
+
+        if(!config){
+            dangDoiKey = false;
+            return;
+        }
+
+        config.setAttribute("data-key", keyMoi);
+        console.log("API-Sports: chuyển sang Key " + (keyHienTai + 1));
+
+        setTimeout(function(){
+            khoiDongLaiWidget();
+            setTimeout(function(){ dangDoiKey = false; }, 2500);
+        }, 100);
+    }
+
+    function kiemTraLoi(){
+        if(dangDoiKey) return;
+
+        const config = layWidget("config");
+        const games = layWidget("games");
+
+        const text = (vanBanWidget(config) + " " + vanBanWidget(games)).trim();
+
+        if(coPhaiLoiKey(text)){
+            doiKey();
+        }
+    }
+
+    function batDau(){
+        setInterval(kiemTraLoi, 2000);
+        setTimeout(kiemTraLoi, 1500);
+    }
+
+    if(document.readyState === "loading"){
+        document.addEventListener("DOMContentLoaded", batDau, {once:true});
+    }else{
+        batDau();
+    }
+})();
+</script>
+
 </body>
 </html>
