@@ -17,33 +17,19 @@
         .menu a{color:#cbd5e1;text-decoration:none;padding:8px 12px;border-radius:8px;font-size:13px;}
         .menu a:hover,.menu a.active{background:rgba(34,197,94,.12);color:#86efac;}
         .khoi-chinh{background:linear-gradient(145deg,rgba(30,41,59,.85),rgba(15,23,42,.9));border-radius:16px;padding:24px;border:1px solid rgba(34,197,94,.15);}
-        .khoi-giai{margin-bottom:20px;border:1px solid rgba(59,130,246,.15);border-radius:12px;overflow:hidden;}
-        .ten-giai{background:rgba(59,130,246,.1);padding:10px 16px;font-weight:600;color:#60a5fa;}
-        .ds-tran{padding:12px;background:rgba(15,23,42,.5);}
-        .tran-item{display:flex;align-items:center;justify-content:space-between;padding:12px 8px;border-bottom:1px solid rgba(59,130,246,.08);gap:8px;flex-wrap:wrap;}
-        .tran-item:last-child{border-bottom:none;}
-        .doi-nha{flex:1;min-width:110px;text-align:right;font-size:14px;}
-        .ti-so-khoi{min-width:90px;text-align:center;}
-        .ti-so{font-weight:bold;font-size:18px;color:#fef08a;}
-        .trangthai{font-size:11px;margin-top:2px;}
-        .dangda{color:#22c55e;font-weight:600;}
-        .doi-khach{flex:1;min-width:110px;text-align:left;font-size:14px;}
-        .nut-xem{font-size:11px;padding:5px 10px;background:rgba(34,197,94,.18);border-radius:6px;color:#86efac;text-decoration:none;white-space:nowrap;border:1px solid rgba(34,197,94,.3);}
-        .nut-xem:hover{background:rgba(34,197,94,.3);}
-        .rong{text-align:center;padding:60px 20px;color:#64748b;}
+        .rong{text-align:center;padding:20px 0;color:#64748b;}
         .huongdan{background:rgba(59,130,246,.05);border:1px solid rgba(59,130,246,.1);border-radius:10px;padding:12px;margin-top:20px;font-size:12px;color:#94a3b8;}
         .chan-trang{margin-top:30px;text-align:center;padding:20px 0;border-top:1px solid var(--border-subtle);font-size:12px;color:#64748b;}
-        .nut-tai{margin-top:10px;padding:10px 24px;background:linear-gradient(90deg,#22c55e,#16a34a);color:#fff;border:none;border-radius:10px;cursor:pointer;}
         .nguon-khac{margin-top:16px;padding:12px;background:rgba(59,130,246,.05);border:1px solid rgba(59,130,246,.2);border-radius:10px;font-size:13px;color:#93c5fd;}
-        .loi-box{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);border-radius:10px;padding:16px;color:#fca5a5;}
+        iframe{width:100%;border-radius:10px;border:1px solid rgba(34,197,94,.15);background:#0f172a;}
     </style>
 </head>
 <body>
 <div class="container">
     <div class="dau-trang">
         <h1>⚽ TỈ SỐ TRỰC TIẾP</h1>
-        <p>Nguồn: Footballdata.io — Cập nhật tự động</p>
-        <div class="capnhat" id="gioCapNhat">🔄 Đang tải...</div>
+        <p>Nguồn: GoalAPI — Cập nhật tự động mỗi 60 giây</p>
+        <div class="capnhat">🔄 Tự động cập nhật liên tục</div>
     </div>
 <nav class="menu">
     <a href="index.html">🏠 Trang chủ</a>
@@ -58,16 +44,23 @@
 </nav>
 
 <div class="khoi-chinh">
-    <div id="noiDung">
-        <div class="rong">⏳ Đang tải dữ liệu trận đấu...</div>
-    </div>
-    <button class="nut-tai" onclick="taiDuLieu()">🔄 Tải Lại Tỉ Số</button>
+    <!-- ✅ GOALAPI IFRAME — KHÔNG CẦN KEY, KHÔNG BỊ LỖI -->
+    <iframe src="https://goalapi.net/nhung/livescore?theme=dark&lang=vi&accent=3b3b3f" 
+    id="goalapi-livescore" 
+    width="100%" 
+    height="700" 
+    frameborder="0" 
+    loading="lazy" 
+    scrolling="auto" 
+    style="border:0; border-radius:10px; overflow:hidden;" 
+    title="GoalAPI Livescore"></iframe>
+
     <div class="huongdan">
-        <p>📺 <strong>Xem trực tiếp:</strong> Khi trận đang diễn ra → nút kênh phát sóng sẽ hiện → bấm mở trang chính thức của đài.</p>
-        <p>✅ Tất cả link đều từ đài và trang báo chính thức — KHÔNG nội dung cá độ.</p>
+        <p>📺 <strong>Xem trực tiếp:</strong> Khi trận đang diễn ra → tra cứu kênh phát sóng chính thức tại trang chủ các đài VTV, BTV, FPT Play.</p>
+        <p>✅ Tất cả dữ liệu tỉ số cập nhật tự động mỗi 60 giây — Nguồn: GoalAPI, hoàn toàn miễn phí.</p>
     </div>
     <div class="nguon-khac">
-        <strong>📌 Xem tỉ số trực tiếp tại:</strong><br>
+        <strong>📌 Tra cứu thêm tỉ số & tin tức tại:</strong><br>
         • VnExpress Bóng Đá → <a href="https://vnexpress.net/bong-da" target="_blank" style="color:#93c5fd;">vnexpress.net/bong-da</a><br>
         • 24h Bóng Đá → <a href="https://www.24h.com.vn/bong-da" target="_blank" style="color:#93c5fd;">24h.com.vn/bong-da</a><br>
         • Bóng Đá Plus → <a href="https://bongdaplus.vn" target="_blank" style="color:#93c5fd;">bongdaplus.vn</a><br>
@@ -75,155 +68,8 @@
     </div>
 </div>
 <div class="chan-trang">
-    <p>🔄 Tự cập nhật mỗi 5 phút | ✅ Nguồn duy nhất: Footballdata.io</p>
+    <p>🔄 Tự cập nhật mỗi 60 giây | ✅ Nguồn: GoalAPI — Không cần API Key</p>
 </div>
 </div>
-
-<script>
-// ==================================================
-// 🔑 KEY DUY NHẤT — FOOTBALLDATA.IO
-// ==================================================
-const FD_API_KEY = "fd_ee24d385d089185441e49900cc111f5c402f147a211289f5";
-const FD_BASE = "https://footballdata.io/api/v1";
-
-// 🌐 PROXY ĐỂ BỎ CORS — Gọi API thông qua proxy cho phép CORS
-const PROXY = "https://api.allorigins.win/raw?url=";
-
-// ==================================================
-// ✅ BẢNG KÊNH PHÁT SÓNG CHÍNH THỐNG
-// ==================================================
-const KENH_PHAT_SONG = {
-    "Ngoại Hạng Anh": [ { ten: "VTV", link: "https://www.vtv.vn/live" }, { ten: "FPT Play", link: "https://fptplay.vn/the-thao/bong-da" } ],
-    "Premier League": [ { ten: "VTV", link: "https://www.vtv.vn/live" }, { ten: "FPT Play", link: "https://fptplay.vn/the-thao/bong-da" } ],
-    "Champions League": [ { ten: "BTV", link: "https://www.btv.org.vn/btv-live" }, { ten: "FPT Play", link: "https://fptplay.vn/the-thao/bong-da" } ],
-    "Cúp C1": [ { ten: "BTV", link: "https://www.btv.org.vn/btv-live" } ],
-    "V.League": [ { ten: "VTV", link: "https://www.vtv.vn/live" }, { ten: "VTC", link: "https://www.vtc.vn/live" } ],
-    "La Liga": [ { ten: "FPT Play", link: "https://fptplay.vn/the-thao/bong-da" } ],
-    "Bundesliga": [ { ten: "FPT Play", link: "https://fptplay.vn/the-thao/bong-da" } ],
-    "Serie A": [ { ten: "FPT Play", link: "https://fptplay.vn/the-thao/bong-da" } ],
-    "ASEAN": [ { ten: "VTV", link: "https://www.vtv.vn/live" }, { ten: "VTC", link: "https://www.vtc.vn/live" } ]
-};
-
-// === LẤY THỜI GIAN HIỆN TẠI ===
-function gioHienTai(){
-    const d=new Date();
-    return `${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')} ${String(d.getDate()).padStart(2,'0')}/${String(d.getMonth()+1).padStart(2,'0')}`;
-}
-document.getElementById("gioCapNhat").textContent="🔄 Cập nhật lúc: "+gioHienTai();
-
-// === TÌM KÊNH PHÁT SÓNG THEO TÊN GIẢI ===
-function layKenhTheoGiai(tenGiai){
-    if(!tenGiai) return null;
-    const tenGiaiKhongDau = tenGiai.toLowerCase().replace(/\s/g,"");
-    for(const tuKhoa in KENH_PHAT_SONG){
-        if(tenGiaiKhongDau.includes(tuKhoa.toLowerCase().replace(/\s/g,"")) || tuKhoa.toLowerCase().replace(/\s/g,"").includes(tenGiaiKhongDau)){
-            return KENH_PHAT_SONG[tuKhoa];
-        }
-    }
-    return null;
-}
-
-// ==================================================
-// ⚽ GỌI FOOTBALLDATA.IO LẤY TRẬN HÔM NAY — CÓ PROXY
-// ==================================================
-async function taiDuLieu(){
-    const khung=document.getElementById("noiDung");
-    khung.innerHTML = `<div class="rong">⏳ Đang tải dữ liệu trận đấu...</div>`;
-
-    const homNay = new Date().toISOString().split('T')[0];
-    const urlGoc = `${FD_BASE}/fixtures?date=${homNay}`;
-    const urlProxied = PROXY + encodeURIComponent(urlGoc);
-
-    try{
-        const res = await fetch(urlProxied, {
-            headers: { "Authorization": `Bearer ${FD_API_KEY}` }
-        });
-
-        if(!res.ok) throw new Error(`HTTP ${res.status}`);
-        const json = await res.json();
-
-        // ❌ Lỗi từ API
-        if(!json.success && json.error){
-            khung.innerHTML = `
-            <div class="rong loi-box">
-                <div style="font-size:48px;margin-bottom:12px;">⚠️</div>
-                <h3>Lỗi từ Footballdata.io</h3>
-                <p style="margin:12px 0;">${json.error}</p>
-                <p style="font-size:13px;opacity:0.8;">Kiểm tra lại Key hoặc gói miễn phí đã hết lượt gọi.<br>Gói miễn phí chỉ lấy 5 giải do hệ thống cấp trong 24h.</p>
-            </div>`;
-            return;
-        }
-
-        // 📅 Không có trận nào
-        if(!json.data || !json.data.matches || !json.data.matches.length){
-            khung.innerHTML = `
-            <div class="rong">
-                <div style="font-size:48px;margin-bottom:12px;">📅</div>
-                <h3>Hôm nay chưa có trận đấu nào</h3>
-                <p style="color:#94a3b8;font-size:13px;margin-top:12px;">Gói miễn phí Footballdata.io chỉ trả về 5 giải do hệ thống cấp.<br>Nếu không có trận hôm nay → sẽ hiển thị vào ngày có trận thuộc 5 giải đó.</p>
-            </div>`;
-            return;
-        }
-
-        // ✅ Hiển thị danh sách trận
-        let htmlRa = `<div class="khoi-giai"><div class="ten-giai">⚽ TỈ SỐ TRẬN ĐẤU — FOOTBALLDATA.IO</div><div class="ds-tran">`;
-
-        json.data.matches.slice(0,15).forEach(tran => {
-            const g = tran.fixture || tran;
-            const t = g.status;
-            const tenGiai = tran.league?.name || "Bóng Đá";
-            const doiNha = g.home_team?.name || g.home?.name || "Đội Nhà";
-            const doiKhach = g.away_team?.name || g.away?.name || "Đội Khách";
-            const soNha = g.score?.home ?? "-";
-            const soKhach = g.score?.away ?? "-";
-            const gio = new Date(g.date);
-            const gioLocal = gio.toLocaleTimeString("vi-VN", {hour:"2-digit", minute:"2-digit"});
-            const ngayLocal = gio.toLocaleDateString("vi-VN");
-
-            let tenTrangThai = "⏳ Sắp diễn ra";
-            let classTrangThai = "";
-            if(["1H","2H","HT"].includes(t)){ tenTrangThai = "🔴 Đang trực tiếp"; classTrangThai = "dangda"; }
-            if(["FT","AET"].includes(t)){ tenTrangThai = "✅ Đã kết thúc"; classTrangThai = ""; }
-
-            const kenh = layKenhTheoGiai(tenGiai);
-            let nutXem = "";
-            if(["1H","2H","HT"].includes(t) && kenh){
-                nutXem = kenh.map(k=>`<a href="${k.link}" target="_blank" class="nut-xem">📺 ${k.ten}</a>`).join(" ");
-            }
-
-            htmlRa += `<div class="tran-item">
-                <div class="doi-nha">${doiNha}</div>
-                <div class="ti-so-khoi">
-                    <div class="ti-so">${soNha} - ${soKhach}</div>
-                    <div class="trangthai ${classTrangThai}">${tenTrangThai}</div>
-                </div>
-                <div class="doi-khach">${doiKhach}</div>
-                <div style="font-size:11px;color:#64748b;margin-top:4px;width:100%;">🏆 ${tenGiai} · 📅 ${ngayLocal} ⏰ ${gioLocal}</div>
-                ${nutXem}
-            </div>`;
-        });
-
-        htmlRa += `</div></div>`;
-        khung.innerHTML = htmlRa;
-
-    }catch(err){
-        khung.innerHTML = `
-        <div class="rong loi-box">
-            <div style="font-size:48px;margin-bottom:12px;">❌</div>
-            <h3>Lỗi kết nối API</h3>
-            <p style="margin:12px 0;">${err.message}</p>
-            <p style="font-size:13px;opacity:0.8;">Nếu vẫn báo lỗi → do gói miễn phí hết lượt gọi hoặc Key không hợp lệ.</p>
-        </div>`;
-    }
-
-    document.getElementById("gioCapNhat").textContent="🔄 Cập nhật lúc: "+gioHienTai();
-}
-
-// ==================================================
-// 🔄 TỰ ĐỘNG LÀM MỚI MỖI 5 PHÚT
-// ==================================================
-taiDuLieu();
-setInterval(taiDuLieu, 300000);
-</script>
 </body>
 </html>
