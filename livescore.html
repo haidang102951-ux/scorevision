@@ -12,24 +12,26 @@
         .dau-trang{text-align:center;padding:30px 10px 10px;}
         .dau-trang h1{font-size:26px;color:#22c55e;}
         .dau-trang p{color:#94a3b8;font-size:14px;}
-        .capnhat{text-align:center;font-size:13px;color:#94a3b8;padding:6px 12px;background:rgba(34,197,94,.06);border-radius:20px;display:inline-block;margin:8px 0;}
         .menu{display:flex;flex-wrap:wrap;gap:6px;margin:20px 0;padding:10px 14px;background:rgba(15,23,42,.65);border-radius:14px;border:1px solid var(--border-subtle);position:sticky;top:8px;z-index:99;}
         .menu a{color:#cbd5e1;text-decoration:none;padding:8px 12px;border-radius:8px;font-size:13px;}
         .menu a:hover,.menu a.active{background:rgba(34,197,94,.12);color:#86efac;}
+        .tab-menu{display:flex;gap:4px;margin-bottom:12px;}
+        .tab-btn{padding:8px 16px;background:rgba(30,41,59,.8);border:none;border-radius:8px 8px 0 0;color:#94a3b8;cursor:pointer;font-size:14px;}
+        .tab-btn.active{background:rgba(34,197,94,.15);color:#22c55e;font-weight:600;}
         .khoi-chinh{background:linear-gradient(145deg,rgba(30,41,59,.85),rgba(15,23,42,.9));border-radius:16px;padding:24px;border:1px solid rgba(34,197,94,.15);margin-bottom:24px;}
-        .khoi-chinh h2{font-size:18px;color:#94a3b8;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid rgba(59,130,246,.15);}
+        .tab-content{display:none;}
+        .tab-content.active{display:block;}
+        iframe{width:100%;border-radius:10px;border:1px solid rgba(59,130,246,.15);background:#0f172a;}
         .huongdan{background:rgba(59,130,246,.05);border:1px solid rgba(59,130,246,.1);border-radius:10px;padding:12px;margin-top:20px;font-size:12px;color:#94a3b8;}
         .chan-trang{margin-top:30px;text-align:center;padding:20px 0;border-top:1px solid var(--border-subtle);font-size:12px;color:#64748b;}
         .nguon-khac{margin-top:16px;padding:12px;background:rgba(59,130,246,.05);border:1px solid rgba(59,130,246,.2);border-radius:10px;font-size:13px;color:#93c5fd;}
-        iframe{width:100%;border-radius:10px;border:1px solid rgba(59,130,246,.15);background:#0f172a;}
     </style>
 </head>
 <body>
 <div class="container">
     <div class="dau-trang">
-        <h1>⚽ TỈ SỐ TRỰC TIẾP & CHI TIẾT TRẬN</h1>
+        <h1>⚽ TỈ SỐ TRỰC TIẾP</h1>
         <p>Nguồn: GoalAPI — Cập nhật tự động mỗi 60 giây</p>
-        <div class="capnhat">🔄 Tự động cập nhật liên tục</div>
     </div>
 
 <nav class="menu">
@@ -44,50 +46,63 @@
     <a href="gop-y.html">💬 Góp Ý</a>
 </nav>
 
-    <!-- ⚽ DANH SÁCH TỈ SỐ TRỰC TIẾP -->
     <div class="khoi-chinh">
-        <h2>📋 TỈ SỐ TRẬN ĐẤU</h2>
-        <iframe src="https://goalapi.net/nhung/livescore?theme=dark&lang=vi&accent=3b3b3f" 
-        id="goalapi-livescore" 
-        width="100%" 
-        height="650" 
-        frameborder="0" 
-        loading="lazy" 
-        scrolling="auto" 
-        style="border:0; border-radius:10px; overflow:hidden;" 
-        title="GoalAPI Livescore"></iframe>
-    </div>
+        <!-- TAB CHUYỂN ĐỔI -->
+        <div class="tab-menu">
+            <button class="tab-btn active" onclick="chuyenTab('tructiep')">🔴 Trực Tiếp</button>
+            <button class="tab-btn" onclick="chuyenTab('lich')">📅 Lịch Sắp Đấu</button>
+            <button class="tab-btn" onclick="chuyenTab('ketqua')">✅ Kết Quả Đã Đấu</button>
+        </div>
 
-    <!-- 📋 CHI TIẾT TRẬN ĐẤU -->
-    <div class="khoi-chinh">
-        <h2>📊 CHI TIẾT TRẬN ĐẤU</h2>
-        <iframe src="https://goalapi.net/nhung/chi-tiet-tran?theme=dark&lang=vi&id=100050926" 
-        id="goalapi-match" 
-        width="100%" 
-        height="600" 
-        frameborder="0" 
-        loading="lazy" 
-        scrolling="auto" 
-        style="border:0; border-radius:8px; overflow:hidden;" 
-        title="GoalAPI Chi Tiết Trận"></iframe>
+        <!-- TAB 1: TRỰC TIẾP -->
+        <div id="tab-tructiep" class="tab-content active">
+            <iframe src="https://goalapi.net/nhung/livescore?theme=dark&lang=vi&accent=3b3b3f" 
+            width="100%" height="650" frameborder="0" loading="lazy" scrolling="auto" 
+            style="border:0; border-radius:10px; overflow:hidden;" title="Trực Tiếp"></iframe>
+        </div>
+
+        <!-- TAB 2: LỊCH SẮP ĐẤU -->
+        <div id="tab-lich" class="tab-content">
+            <iframe src="https://goalapi.net/nhung/lich-thi-dau?theme=dark&lang=vi&accent=3b3b3f" 
+            width="100%" height="650" frameborder="0" loading="lazy" scrolling="auto" 
+            style="border:0; border-radius:10px; overflow:hidden;" title="Lịch Thi Đấu"></iframe>
+        </div>
+
+        <!-- TAB 3: KẾT QUẢ ĐÃ ĐẤU -->
+        <div id="tab-ketqua" class="tab-content">
+            <iframe src="https://goalapi.net/nhung/ket-qua?theme=dark&lang=vi&accent=3b3b3f" 
+            width="100%" height="650" frameborder="0" loading="lazy" scrolling="auto" 
+            style="border:0; border-radius:10px; overflow:hidden;" title="Kết Quả"></iframe>
+        </div>
     </div>
 
     <div class="huongdan">
-        <p>📺 <strong>Xem trực tiếp:</strong> Khi trận đang diễn ra → tra cứu kênh phát sóng chính thức tại trang chủ các đài VTV, BTV, FPT Play.</p>
-        <p>✅ Tất cả dữ liệu tỉ số & chi tiết trận cập nhật tự động mỗi 60 giây — Nguồn: GoalAPI, hoàn toàn miễn phí.</p>
+        <p>💡 <strong>Giải thích:</strong> Tab "Trực Tiếp" chỉ hiện trận đang đá. Nếu chưa có trận lớn nào đang diễn ra → bấm tab <strong>Lịch Sắp Đấu</strong> hoặc <strong>Kết Quả Đã Đấu</strong> để xem 5 giải lớn châu Âu + Cúp C1!</p>
+        <p>✅ Tất cả dữ liệu cập nhật tự động mỗi 60 giây — Nguồn: GoalAPI, hoàn toàn miễn phí.</p>
     </div>
 
     <div class="nguon-khac">
-        <strong>📌 Tra cứu thêm tỉ số & tin tức tại:</strong><br>
+        <strong>📌 Tra cứu thêm tại:</strong><br>
         • VnExpress Bóng Đá → <a href="https://vnexpress.net/bong-da" target="_blank" style="color:#93c5fd;">vnexpress.net/bong-da</a><br>
         • 24h Bóng Đá → <a href="https://www.24h.com.vn/bong-da" target="_blank" style="color:#93c5fd;">24h.com.vn/bong-da</a><br>
-        • Bóng Đá Plus → <a href="https://bongdaplus.vn" target="_blank" style="color:#93c5fd;">bongdaplus.vn</a><br>
-        📺 Kênh phát sóng: <a href="https://www.vtv.vn/live" target="_blank" style="color:#93c5fd;">VTV</a> | <a href="https://www.btv.org.vn/btv-live" target="_blank" style="color:#93c5fd;">BTV</a> | <a href="https://fptplay.vn/the-thao/bong-da" target="_blank" style="color:#93c5fd;">FPT Play</a>
+        • Bóng Đá Plus → <a href="https://bongdaplus.vn" target="_blank" style="color:#93c5fd;">bongdaplus.vn</a>
     </div>
 
 <div class="chan-trang">
     <p>🔄 Tự cập nhật mỗi 60 giây | ✅ Nguồn: GoalAPI — Không cần API Key</p>
 </div>
 </div>
+
+<script>
+// CHUYỂN TAB
+function chuyenTab(tenTab) {
+    // Tắt tất cả tab
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    // Bật tab được chọn
+    event.target.classList.add('active');
+    document.getElementById('tab-' + tenTab).classList.add('active');
+}
+</script>
 </body>
 </html>
