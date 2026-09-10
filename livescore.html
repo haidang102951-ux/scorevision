@@ -15,8 +15,8 @@
         .menu{display:flex;flex-wrap:wrap;gap:6px;margin:20px 0;padding:10px 14px;background:rgba(15,23,42,.65);border-radius:14px;border:1px solid var(--border-subtle);position:sticky;top:8px;z-index:99;}
         .menu a{color:#cbd5e1;text-decoration:none;padding:8px 12px;border-radius:8px;font-size:13px;}
         .menu a:hover,.menu a.active{background:rgba(34,197,94,.12);color:#86efac;}
-        .tab-menu{display:flex;gap:4px;margin-bottom:12px;}
-        .tab-btn{padding:8px 16px;background:rgba(30,41,59,.8);border:none;border-radius:8px 8px 0 0;color:#94a3b8;cursor:pointer;font-size:14px;}
+        .tab-menu{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:12px;}
+        .tab-btn{padding:8px 14px;background:rgba(30,41,59,.8);border:none;border-radius:8px 8px 0 0;color:#94a3b8;cursor:pointer;font-size:13px;}
         .tab-btn.active{background:rgba(34,197,94,.15);color:#22c55e;font-weight:600;}
         .khoi-chinh{background:linear-gradient(145deg,rgba(30,41,59,.85),rgba(15,23,42,.9));border-radius:16px;padding:24px;border:1px solid rgba(34,197,94,.15);margin-bottom:24px;}
         .tab-content{display:none;}
@@ -47,38 +47,37 @@
 </nav>
 
     <div class="khoi-chinh">
-        <!-- TAB CHUYỂN ĐỔI -->
         <div class="tab-menu">
             <button class="tab-btn active" onclick="chuyenTab('tructiep')">🔴 Trực Tiếp</button>
             <button class="tab-btn" onclick="chuyenTab('lich')">📅 Lịch Sắp Đấu</button>
-            <button class="tab-btn" onclick="chuyenTab('ketqua')">✅ Kết Quả Đã Đấu</button>
+            <button class="tab-btn" onclick="chuyenTab('ketqua')">✅ Kết Quả</button>
         </div>
 
-        <!-- TAB 1: TRỰC TIẾP -->
+        <!-- TAB 1: TRỰC TIẾP → BẤM VÀO TRẬN → XEM CHI TIẾT NGAY -->
         <div id="tab-tructiep" class="tab-content active">
             <iframe src="https://goalapi.net/nhung/livescore?theme=dark&lang=vi&accent=3b3b3f" 
-            width="100%" height="650" frameborder="0" loading="lazy" scrolling="auto" 
+            width="100%" height="800" frameborder="0" loading="lazy" scrolling="auto" 
             style="border:0; border-radius:10px; overflow:hidden;" title="Trực Tiếp"></iframe>
         </div>
 
         <!-- TAB 2: LỊCH SẮP ĐẤU -->
         <div id="tab-lich" class="tab-content">
             <iframe src="https://goalapi.net/nhung/lich-thi-dau?theme=dark&lang=vi&accent=3b3b3f" 
-            width="100%" height="650" frameborder="0" loading="lazy" scrolling="auto" 
+            width="100%" height="800" frameborder="0" loading="lazy" scrolling="auto" 
             style="border:0; border-radius:10px; overflow:hidden;" title="Lịch Thi Đấu"></iframe>
         </div>
 
         <!-- TAB 3: KẾT QUẢ ĐÃ ĐẤU -->
         <div id="tab-ketqua" class="tab-content">
             <iframe src="https://goalapi.net/nhung/ket-qua?theme=dark&lang=vi&accent=3b3b3f" 
-            width="100%" height="650" frameborder="0" loading="lazy" scrolling="auto" 
+            width="100%" height="800" frameborder="0" loading="lazy" scrolling="auto" 
             style="border:0; border-radius:10px; overflow:hidden;" title="Kết Quả"></iframe>
         </div>
     </div>
 
     <div class="huongdan">
-        <p>💡 <strong>Giải thích:</strong> Tab "Trực Tiếp" chỉ hiện trận đang đá. Nếu chưa có trận lớn nào đang diễn ra → bấm tab <strong>Lịch Sắp Đấu</strong> hoặc <strong>Kết Quả Đã Đấu</strong> để xem 5 giải lớn châu Âu + Cúp C1!</p>
-        <p>✅ Tất cả dữ liệu cập nhật tự động mỗi 60 giây — Nguồn: GoalAPI, hoàn toàn miễn phí.</p>
+        <p>✅ <strong>Cách xem chi tiết trận:</strong> Trong danh sách Trực Tiếp → <strong>BẤM VÀO TÊN TRẬN</strong> → sẽ tự mở chi tiết ngay bên dưới! Trận đang đá → hiện diễn biến thời gian thực. Trận đã đá → hiện kết quả + thống kê đầy đủ.</p>
+        <p>📅 Tất cả trận đều có <strong>Ngày + Giờ</strong> hiển thị dưới tên giải.</p>
     </div>
 
     <div class="nguon-khac">
@@ -94,12 +93,9 @@
 </div>
 
 <script>
-// CHUYỂN TAB
 function chuyenTab(tenTab) {
-    // Tắt tất cả tab
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
     document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-    // Bật tab được chọn
     event.target.classList.add('active');
     document.getElementById('tab-' + tenTab).classList.add('active');
 }
