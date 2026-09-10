@@ -1,19 +1,9 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <script>(function(s){s.dataset.zone='11763479',s.src='https://nap5k.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
-    <script>(function(s){s.dataset.zone='11665696',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>⚽ LiveScore — Tỉ Số Trực Tiếp | Score Vision</title>
-<!-- Google tag -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-RTY3P63JJL"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-RTY3P63JJL');
-</script>
+    <title>⚽ LiveScore — Tỉ Số Trực Tiếp</title>
     <style>
         *{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;}
         :root{--bg-main:#030712; --text-primary:#f1f5f9; --accent-green:#22c55e; --accent-gold:#fef08a; --border-subtle:rgba(148,163,184,.15);}
@@ -45,17 +35,14 @@
         .chan-trang{margin-top:30px;text-align:center;padding:20px 0;border-top:1px solid var(--border-subtle);font-size:12px;color:#64748b;}
         .nut-tai{margin-top:10px;padding:10px 24px;background:linear-gradient(90deg,#22c55e,#16a34a);color:#fff;border:none;border-radius:10px;cursor:pointer;}
         .nguon-khac{margin-top:16px;padding:12px;background:rgba(59,130,246,.05);border:1px solid rgba(59,130,246,.2);border-radius:10px;font-size:13px;color:#93c5fd;}
-        .tab-chon{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;}
-        .tab-nut{padding:8px 14px;border-radius:8px;background:rgba(15,23,42,.6);color:#94a3b8;border:1px solid transparent;cursor:pointer;font-size:13px;}
-        .tab-nut.active{background:rgba(34,197,94,.12);color:#86efacac;border-color:rgba(34,197,94,.2);font-weight:600;}
-        .tab-nut:hover{color:#e2e8f0;}
+        .loi-box{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);border-radius:10px;padding:16px;color:#fca5a5;}
     </style>
 </head>
 <body>
 <div class="container">
     <div class="dau-trang">
         <h1>⚽ TỈ SỐ TRỰC TIẾP</h1>
-        <p>Cập nhật liên tục — Nguồn tin chính thống</p>
+        <p>Nguồn: Footballdata.io — Cập nhật tự động</p>
         <div class="capnhat" id="gioCapNhat">🔄 Đang tải...</div>
     </div>
 <nav class="menu">
@@ -70,23 +57,17 @@
     <a href="gop-y.html">💬 Góp Ý</a>
 </nav>
 
-<div class="tab-chon">
-    <button class="tab-nut" data-loai="rss">📰 Nguồn Báo</button>
-    <button class="tab-nut active" data-loai="footballdata">⚽ Footballdata.io</button>
-    <button class="tab-nut" data-loai="api-sports">🔌 API-Sports</button>
-</div>
-
 <div class="khoi-chinh">
     <div id="noiDung">
         <div class="rong">⏳ Đang tải dữ liệu trận đấu...</div>
     </div>
     <button class="nut-tai" onclick="taiDuLieu()">🔄 Tải Lại Tỉ Số</button>
     <div class="huongdan">
-        <p>📺 <strong>Xem trực tiếp:</strong> Khi trận đang diễn ra → nút kênh phát sóng sẽ hiện → bấm mở trang chính thức của đài → chọn kênh phát sóng trận đó.</p>
+        <p>📺 <strong>Xem trực tiếp:</strong> Khi trận đang diễn ra → nút kênh phát sóng sẽ hiện → bấm mở trang chính thức của đài.</p>
         <p>✅ Tất cả link đều từ đài và trang báo chính thức — KHÔNG nội dung cá độ.</p>
     </div>
     <div class="nguon-khac">
-        <strong>📌 Xem tỉ số chi tiết tại:</strong><br>
+        <strong>📌 Xem tỉ số trực tiếp tại:</strong><br>
         • VnExpress Bóng Đá → <a href="https://vnexpress.net/bong-da" target="_blank" style="color:#93c5fd;">vnexpress.net/bong-da</a><br>
         • 24h Bóng Đá → <a href="https://www.24h.com.vn/bong-da" target="_blank" style="color:#93c5fd;">24h.com.vn/bong-da</a><br>
         • Bóng Đá Plus → <a href="https://bongdaplus.vn" target="_blank" style="color:#93c5fd;">bongdaplus.vn</a><br>
@@ -94,55 +75,19 @@
     </div>
 </div>
 <div class="chan-trang">
-    <p>🔄 Tự cập nhật mỗi 5 phút | ✅ Nguồn: Footballdata.io + API-Sports + Báo VN</p>
+    <p>🔄 Tự cập nhật mỗi 5 phút | ✅ Nguồn duy nhất: Footballdata.io</p>
 </div>
 </div>
 
 <script>
 // ==================================================
-// 🔑 QUẢN LÝ API KEY — ĐÃ DÁN KEY CỦA BẠN SẴN
+// 🔑 KEY DUY NHẤT — FOOTBALLDATA.IO
 // ==================================================
-const DANH_SACH_API_KEY = {
-    // === FOOTBALLDATA.IO — KEY BẠN VỪA TẠO ===
-    "footballdata": [
-        "fd_ee24d385d089185441e49900cc111f5c402f147a211289f5"  // ✅ Đã dán sẵn
-        // Thêm key thứ 2, 3 vào đây nếu có
-    ],
-    // === API-SPORTS ===
-    "api-sports": [
-        "db3cb172848d850444676b821c1e9fd0",
-        // Thêm key thứ 2 vào đây nếu có
-    ]
-};
+const FD_API_KEY = "fd_ee24d385d089185441e49900cc111f5c402f147a211289f5";
+const FD_BASE = "https://footballdata.io/api/v1";
 
-let keySuDung = {
-    "footballdata": 0,
-    "api-sports": 0
-};
-let daBaoLoi = new Set();
-let nguonDuLieuDangChon = "footballdata"; // Mặc định dùng Footballdata.io
-
-// === CHUYỂN KEY KHÁC KHI HẾT ===
-function chuyenKey(tenNguon){
-    const ds = DANH_SACH_API_KEY[tenNguon];
-    if(!ds) return false;
-    daBaoLoi.add(`${tenNguon}-${keySuDung[tenNguon]}`);
-    for(let i=1;i<=ds.length;i++){
-        const viTri = (keySuDung[tenNguon] + i) % ds.length;
-        if(!daBaoLoi.has(`${tenNguon}-${viTri}`)){
-            keySuDung[tenNguon] = viTri;
-            console.log(`🔑 ${tenNguon}: Đã chuyển sang Key ${viTri+1}`);
-            return true;
-        }
-    }
-    return false;
-}
-
-// === LẤY KEY ĐANG DÙNG ===
-function layKeyHienTai(tenNguon){
-    const ds = DANH_SACH_API_KEY[tenNguon];
-    return ds ? ds[keySuDung[tenNguon]] : null;
-}
+// 🌐 PROXY ĐỂ BỎ CORS — Gọi API thông qua proxy cho phép CORS
+const PROXY = "https://api.allorigins.win/raw?url=";
 
 // ==================================================
 // ✅ BẢNG KÊNH PHÁT SÓNG CHÍNH THỐNG
@@ -179,44 +124,50 @@ function layKenhTheoGiai(tenGiai){
 }
 
 // ==================================================
-// ⚽ LẤY DỮ LIỆU TỪ FOOTBALLDATA.IO
+// ⚽ GỌI FOOTBALLDATA.IO LẤY TRẬN HÔM NAY — CÓ PROXY
 // ==================================================
-async function taiDuLieuTuFootballdata(){
+async function taiDuLieu(){
     const khung=document.getElementById("noiDung");
-    khung.innerHTML = `<div class="rong">⏳ Đang gọi Footballdata.io lấy dữ liệu...</div>`;
-    
-    const key = layKeyHienTai("footballdata");
+    khung.innerHTML = `<div class="rong">⏳ Đang tải dữ liệu trận đấu...</div>`;
+
     const homNay = new Date().toISOString().split('T')[0];
-    
+    const urlGoc = `${FD_BASE}/fixtures?date=${homNay}`;
+    const urlProxied = PROXY + encodeURIComponent(urlGoc);
+
     try{
-        const res = await fetch(`https://footballdata.io/api/v1/fixtures?date=${homNay}`, {
-            headers: { "Authorization": `Bearer ${key}` }
+        const res = await fetch(urlProxied, {
+            headers: { "Authorization": `Bearer ${FD_API_KEY}` }
         });
+
+        if(!res.ok) throw new Error(`HTTP ${res.status}`);
         const json = await res.json();
 
-        // ✅ Kiểm tra hết key → tự chuyển key khác
+        // ❌ Lỗi từ API
         if(!json.success && json.error){
-            const loi = (json.error || "").toString().toLowerCase();
-            if(loi.includes("quota") || loi.includes("limit") || loi.includes("exhausted") || loi.includes("balance") || loi.includes("Unauthorized")){
-                if(chuyenKey("footballdata")){
-                    console.log("🔑 Key hết hạn/sai → thử key khác...");
-                    return taiDuLieuTuFootballdata();
-                } else {
-                    khung.innerHTML = `<div class="rong">⚠️ Tất cả API key đều hết hạn hoặc sai. Vui lòng kiểm tra key!</div>`;
-                    return;
-                }
-            }
-            khung.innerHTML = `<div class="rong">❌ Lỗi: ${json.error}</div>`;
+            khung.innerHTML = `
+            <div class="rong loi-box">
+                <div style="font-size:48px;margin-bottom:12px;">⚠️</div>
+                <h3>Lỗi từ Footballdata.io</h3>
+                <p style="margin:12px 0;">${json.error}</p>
+                <p style="font-size:13px;opacity:0.8;">Kiểm tra lại Key hoặc gói miễn phí đã hết lượt gọi.<br>Gói miễn phí chỉ lấy 5 giải do hệ thống cấp trong 24h.</p>
+            </div>`;
             return;
         }
 
+        // 📅 Không có trận nào
         if(!json.data || !json.data.matches || !json.data.matches.length){
-            khung.innerHTML = `<div class="rong">📅 Hôm nay không có trận đấu nào (gói miễn phí chỉ lấy 5 giải do hệ thống cấp)</div>`;
+            khung.innerHTML = `
+            <div class="rong">
+                <div style="font-size:48px;margin-bottom:12px;">📅</div>
+                <h3>Hôm nay chưa có trận đấu nào</h3>
+                <p style="color:#94a3b8;font-size:13px;margin-top:12px;">Gói miễn phí Footballdata.io chỉ trả về 5 giải do hệ thống cấp.<br>Nếu không có trận hôm nay → sẽ hiển thị vào ngày có trận thuộc 5 giải đó.</p>
+            </div>`;
             return;
         }
 
-        // ✅ Hiển thị dữ liệu
-        let htmlRa = `<div class="khoi-giai"><div class="ten-giai">⚽ DỮ LIỆU TỪ FOOTBALLDATA.IO</div><div class="ds-tran">`;
+        // ✅ Hiển thị danh sách trận
+        let htmlRa = `<div class="khoi-giai"><div class="ten-giai">⚽ TỈ SỐ TRẬN ĐẤU — FOOTBALLDATA.IO</div><div class="ds-tran">`;
+
         json.data.matches.slice(0,15).forEach(tran => {
             const g = tran.fixture || tran;
             const t = g.status;
@@ -251,158 +202,20 @@ async function taiDuLieuTuFootballdata(){
                 ${nutXem}
             </div>`;
         });
+
         htmlRa += `</div></div>`;
         khung.innerHTML = htmlRa;
 
     }catch(err){
-        console.error("Lỗi gọi Footballdata.io:", err);
-        khung.innerHTML = `<div class="rong">❌ Lỗi kết nối: ${err.message}<br>📌 Gói miễn phí chỉ lấy dữ liệu trong 24h và 5 giải do hệ thống cấp</div>`;
+        khung.innerHTML = `
+        <div class="rong loi-box">
+            <div style="font-size:48px;margin-bottom:12px;">❌</div>
+            <h3>Lỗi kết nối API</h3>
+            <p style="margin:12px 0;">${err.message}</p>
+            <p style="font-size:13px;opacity:0.8;">Nếu vẫn báo lỗi → do gói miễn phí hết lượt gọi hoặc Key không hợp lệ.</p>
+        </div>`;
     }
-}
 
-// ==================================================
-// 📰 LẤY DỮ LIỆU TỪ RSS VNEXPRESS
-// ==================================================
-async function taiDuLieuTuRSS(){
-    const khung=document.getElementById("noiDung");
-    try{
-        const rssUrl = "https://vnexpress.net/rss/the-thao.rss";
-        const proxyUrl = "https://api.allorigins.win/raw?url=" + encodeURIComponent(rssUrl);
-        
-        const resp = await fetch(proxyUrl, {cache: "no-store"});
-        if(!resp.ok) throw new Error("Lỗi kết nối");
-        const text = await resp.text();
-        const parser = new DOMParser();
-        const xml = parser.parseFromString(text, "text/xml");
-        const items = xml.querySelectorAll("item");
-        if(items.length === 0) throw new Error("Không có dữ liệu");
-        
-        const tinBongDa = [];
-        items.forEach(item => {
-            const tieuDe = item.querySelector("title")?.textContent?.trim() || "";
-            const link = item.querySelector("link")?.textContent?.trim() || "";
-            const ngay = item.querySelector("pubDate")?.textContent?.trim() || "";
-            if(tieuDe.match(/\d+\s*-\s*\d+|trực tiếp|kết quả|tỉ số/i)){
-                tinBongDa.push({ tieuDe, link, ngay });
-            }
-        });
-        
-        if(tinBongDa.length > 0){
-            let htmlRa = `<div class="khoi-giai"><div class="ten-giai">🏆 TỈ SỐ & TIN BÓNG ĐÁ (Nguồn Báo)</div><div class="ds-tran">`;
-            tinBongDa.slice(0,15).forEach(tin => {
-                const coTiSo = tin.tieuDe.match(/\d+\s*-\s*\d+/);
-                const dangDa = tin.tieuDe.match(/trực tiếp|đang diễn ra/i);
-                const kenh = layKenhTheoGiai(tin.tieuDe);
-                let nutXem = "";
-                if(dangDa && kenh){
-                    nutXem = kenh.map(k=>`<a href="${k.link}" target="_blank" class="nut-xem">📺 ${k.ten}</a>`).join(" ");
-                }
-                htmlRa += `<div class="tran-item">
-                    <div class="doi-nha" style="font-size:13px;">${tin.tieuDe.length>30?tin.tieuDe.slice(0,27)+'...':tin.tieuDe}</div>
-                    <div class="ti-so-khoi">
-                        <div class="ti-so">${coTiSo?coTiSo[0]:"—"}</div>
-                        <div class="trangthai ${dangDa?'dangda':''}">${dangDa?'🔴 Đang đá':'✅ Đã cập nhật'}</div>
-                    </div>
-                    <div class="doi-khach" style="font-size:13px;">${tin.ngay.slice(0,16)}</div>
-                    ${nutXem}
-                </div>`;
-            });
-            htmlRa += `</div></div>`;
-            khung.innerHTML = htmlRa;
-        }else{
-            throw new Error("Không tìm thấy dữ liệu trận đấu");
-        }
-    }catch(err){
-        khung.innerHTML = `<div class="rong">📡 Không lấy được dữ liệu RSS. Chuyển sang tab Footballdata.io</div>`;
-    }
-}
-
-// ==================================================
-// 🔌 LẤY DỮ LIỆU TỪ API-SPORTS
-// ==================================================
-async function taiDuLieuTuAPISports(){
-    const khung=document.getElementById("noiDung");
-    khung.innerHTML = `<div class="rong">⏳ Đang gọi API-Sports...</div>`;
-    const key = layKeyHienTai("api-sports");
-    const homSau = new Date(); homSau.setDate(homSau.getDate()+2);
-    const formatNgay = d => d.toISOString().split('T')[0];
-    const ngayTu = formatNgay(new Date());
-    const ngayDen = formatNgay(homSau);
-
-    try{
-        const res = await fetch(`https://v3.api-sports.io/fixtures?league=39,140,78,135,2&from=${ngayTu}&to=${ngayDen}`, {
-            headers: { "x-apisports-key": key }
-        });
-        const json = await res.json();
-
-        if(json.errors && json.errors.length > 0){
-            const loi = json.errors.join(" ").toLowerCase();
-            if(loi.includes("exhausted") || loi.includes("quota") || loi.includes("limit")){
-                if(chuyenKey("api-sports")) return taiDuLieuTuAPISports();
-                khung.innerHTML = `<div class="rong">⚠️ Tất cả API-Sports key đều hết hạn</div>`;
-                return;
-            }
-            khung.innerHTML = `<div class="rong">❌ Lỗi: ${json.errors.join(', ')}</div>`;
-            return;
-        }
-
-        if(!json.response || !json.response.length){
-            khung.innerHTML = `<div class="rong">📅 Không có trận đấu trong 2 ngày tới</div>`;
-            return;
-        }
-
-        let htmlRa = `<div class="khoi-giai"><div class="ten-giai">🔌 DỮ LIỆU TỪ API-SPORTS</div><div class="ds-tran">`;
-        json.response.slice(0,15).forEach(tran => {
-            const gio = new Date(tran.fixture.date);
-            const gioLocal = gio.toLocaleTimeString("vi-VN", {hour:"2-digit", minute:"2-digit"});
-            const ngayLocal = gio.toLocaleDateString("vi-VN");
-            const trangThai = tran.fixture.status.short;
-            let tenTrangThai = "⏳ Sắp diễn ra", classTrangThai = "";
-            if(["1H","2H","HT"].includes(trangThai)){ tenTrangThai = "🔴 Đang trực tiếp"; classTrangThai = "dangda"; }
-            if(["FT","AET"].includes(trangThai)){ tenTrangThai = "✅ " + (tran.goals.home??"-") + "-" + (tran.goals.away??"-"); }
-            const kenh = layKenhTheoGiai(tran.league.name);
-            let nutXem = "";
-            if(["1H","2H","HT"].includes(trangThai) && kenh){
-                nutXem = kenh.map(k=>`<a href="${k.link}" target="_blank" class="nut-xem">📺 ${k.ten}</a>`).join(" ");
-            }
-            htmlRa += `<div class="tran-item">
-                <div class="doi-nha">${tran.teams.home.name}</div>
-                <div class="ti-so-khoi">
-                    <div class="ti-so">${tran.goals.home??"-"} - ${tran.goals.away??"-"}</div>
-                    <div class="trangthai ${classTrangThai}">${tenTrangThai}</div>
-                </div>
-                <div class="doi-khach">${tran.teams.away.name}</div>
-                <div style="font-size:11px;color:#64748b;margin-top:4px;width:100%;">🏆 ${tran.league.name} · 📅 ${ngayLocal} ⏰ ${gioLocal}</div>
-                ${nutXem}
-            </div>`;
-        });
-        htmlRa += `</div></div>`;
-        khung.innerHTML = htmlRa;
-    }catch(err){
-        if(chuyenKey("api-sports")) return taiDuLieuTuAPISports();
-        khung.innerHTML = `<div class="rong">❌ Lỗi kết nối API-Sports: ${err.message}</div>`;
-    }
-}
-
-// ==================================================
-// 🎯 CHUYỂN NGUỒN DỮ LIỆU
-// ==================================================
-document.querySelectorAll(".tab-nut").forEach(nut => {
-    nut.addEventListener("click", ()=>{
-        document.querySelectorAll(".tab-nut").forEach(n=>n.classList.remove("active"));
-        nut.classList.add("active");
-        nguonDuLieuDangChon = nut.dataset.loai;
-        taiDuLieu();
-    });
-});
-
-// ==================================================
-// 🚀 TẢI DỮ LIỆU THEO NGUỒN ĐÃ CHỌN
-// ==================================================
-function taiDuLieu(){
-    if(nguonDuLieuDangChon === "footballdata") taiDuLieuTuFootballdata();
-    else if(nguonDuLieuDangChon === "api-sports") taiDuLieuTuAPISports();
-    else taiDuLieuTuRSS();
     document.getElementById("gioCapNhat").textContent="🔄 Cập nhật lúc: "+gioHienTai();
 }
 
@@ -410,10 +223,7 @@ function taiDuLieu(){
 // 🔄 TỰ ĐỘNG LÀM MỚI MỖI 5 PHÚT
 // ==================================================
 taiDuLieu();
-setInterval(()=>{
-    taiDuLieu();
-    document.getElementById("gioCapNhat").textContent="🔄 Cập nhật lúc: "+gioHienTai();
-}, 300000);
+setInterval(taiDuLieu, 300000);
 </script>
 </body>
 </html>
