@@ -23,9 +23,6 @@
         .tab-content{display:none;}
         .tab-content.active{display:block;}
         iframe{width:100%;border-radius:10px;border:none;}
-        .sportscore-khoi{margin-top:16px;text-align:center;}
-        .sportscore-credit{font:400 12px/1.5 sans-serif;text-align:center;padding:6px 2px;color:#6b7280;margin-top:4px;}
-        .sportscore-credit a{color:#563EF1;text-decoration:none;font-weight:600;}
         .huongdan{background:rgba(59,130,246,.05);border:1px solid rgba(59,130,246,.1);border-radius:10px;padding:12px;margin-top:15px;font-size:13px;color:#93c5fd;}
         .chan-trang{margin-top:10px;text-align:center;padding:10px 0;border-top:1px solid var(--border-subtle);font-size:12px;color:#64748b;}
     </style>
@@ -34,7 +31,7 @@
 <div class="container">
     <div class="dau-trang">
         <h1>⚽ TỈ SỐ TRỰC TIẾP</h1>
-        <p>Nguồn: GoalAPI + SportScore — Cập nhật tự động mỗi 60 giây</p>
+        <p>Nguồn: GoalAPI + SportScore — Tự động cập nhật trận mới nhất</p>
     </div>
 
 <nav class="menu">
@@ -56,35 +53,27 @@
             <button class="tab-btn" onclick="chuyenTab('ketqua')">✅ Kết Quả</button>
         </div>
 
-        <!-- ====================================== -->
-        <!-- KHỐI 1: TRỰC TIẾP → 2 PHẦN TRONG CÙNG TAB -->
-        <!-- ====================================== -->
         <div id="tab-tructiep" class="tab-content active">
-            <!-- ✅ PHẦN 1: GIỮ NGUYÊN GoalAPI → DANH SÁCH TỈ SỐ -->
+            <!-- ✅ PHẦN 1: GoalAPI → Danh sách tỉ số -->
             <iframe src="https://goalapi.net/nhung/livescore?theme=dark&lang=vi&accent=3b3b3f" 
-            width="100%" height="900" frameborder="0" loading="lazy" scrolling="auto" 
+            width="100%" height="700" frameborder="0" loading="lazy" scrolling="auto" 
             title="Danh Sách Tỉ Số"></iframe>
 
-            <!-- ➡️ PHÂN CÁCH GIỮA 2 PHẦN -->
-            <div class="phan-giua">📋 Chi tiết trận mẫu — Nguồn: SportScore</div>
+            <!-- ➡️ PHÂN CÁCH -->
+            <div class="phan-giua">📋 Tỉ số trực tiếp — Nguồn: SportScore (tự động cập nhật)</div>
 
-            <!-- ✅ PHẦN 2: THÊM SportScore → CHI TIẾT TRẬN MẪU -->
-            <div class="sportscore-khoi">
-                <iframe src="https://sportscore.com/embed/match/football/south-united-vs-parikrma-fc/" 
-                width="100%" height="420" style="border:1px solid #e5e7ef;border-radius:8px;display:block" 
-                loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Chi Tiết Trận"></iframe>
-                <div class="sportscore-credit">Football live scores by <a href="https://sportscore.com/football/" target="_blank" rel="noopener">SportScore</a></div>
-            </div>
+            <!-- ✅ PHẦN 2: SportScore DANH SÁCH → TỰ ĐỘNG ĐỔI TRẬN MỚI NHẤT -->
+            <iframe src="https://sportscore.com/football/" 
+            width="100%" height="600" frameborder="0" loading="lazy" scrolling="auto" 
+            title="SportScore Tỉ Số"></iframe>
         </div>
 
-        <!-- KHỐI 2: LỊCH SẮP ĐẤU → GIỮ NGUYÊN -->
+        <!-- KHỐI LỊCH ĐẤU & KẾT QUẢ → GIỮ NGUYÊN GoalAPI -->
         <div id="tab-lich" class="tab-content">
             <iframe src="https://goalapi.net/nhung/lich-thi-dau?theme=dark&lang=vi&accent=3b3b3f" 
             width="100%" height="1500" frameborder="0" loading="lazy" scrolling="auto" 
             title="Lịch Thi Đấu"></iframe>
         </div>
-
-        <!-- KHỐI 3: KẾT QUẢ → GIỮ NGUYÊN -->
         <div id="tab-ketqua" class="tab-content">
             <iframe src="https://goalapi.net/nhung/ket-qua?theme=dark&lang=vi&accent=3b3b3f" 
             width="100%" height="1500" frameborder="0" loading="lazy" scrolling="auto" 
@@ -93,11 +82,11 @@
     </div>
 
     <div class="huongdan">
-        ✅ <strong>Cấu trúc mới:</strong> Phần trên = Danh sách tỉ số (GoalAPI) | Phần dưới = Chi tiết trận mẫu (SportScore). Bấm trận ở trên → cuộn xuống xem chi tiết.
+        ✅ <strong>Đã sửa:</strong> Phần dưới SportScore bây giờ hiển thị <strong>tất cả trận đấu</strong> → tự động cập nhật trận mới nhất, không còn cố định 1 trận nữa!
     </div>
 
 <div class="chan-trang">
-    <p>🔄 Tự cập nhật mỗi 60 giây | ✅ Nguồn: GoalAPI + SportScore</p>
+    <p>🔄 Tự cập nhật liên tục | ✅ Nguồn: GoalAPI + SportScore</p>
 </div>
 </div>
 
