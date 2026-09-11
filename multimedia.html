@@ -9,7 +9,6 @@
         body {background:#020617;color:#f8fafc;line-height:1.6;padding:24px 16px;max-width:1100px;margin:0 auto;}
         .breadcrumb {color:#94a3b8;font-size:14px;margin-bottom:16px;}
         .breadcrumb a {color:#38bdf8;text-decoration:none;}
-
         /* ============================== */
         /* === THANH MENU THÊM VÀO === */
         /* ============================== */
@@ -34,7 +33,6 @@
         .menu-btn.multimedia{background:linear-gradient(135deg,rgba(59,130,246,.15),rgba(79,70,229,.08));color:#a5b4fc;border-color:rgba(99,102,241,.20);font-weight:600;}
         .menu-btn.fifa{background:linear-gradient(135deg,rgba(16,185,129,.12),rgba(6,182,212,.06));color:#6ee7b7;border-color:rgba(16,185,129,.18);}
         .menu-btn.gopy{background:linear-gradient(135deg,rgba(99,102,241,.18),rgba(79,70,229,.10));color:#a5b4fc;border-color:rgba(99,102,241,.25);}
-
         /* === THANH TÌM KIẾM === */
         .khung-tim-chung {background:#0f172a;border:1px solid rgba(148,163,184,.2);border-radius:12px;padding:16px;margin-bottom:24px;}
         .khung-tim-chung h2 {font-size:15px;color:#94a3b8;margin-bottom:10px;}
@@ -47,7 +45,7 @@
         .ket-qua-tim .tieu-de {font-size:16px;font-weight:700;color:#22c55e;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center;}
         .nut-dong {background:transparent;border:none;color:#94a3b8;cursor:pointer;font-size:20px;font-weight:bold;}
         .luoi-tim {display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
-        /* === KHỐI PHÁT VIDEO === */
+        /* === KHỐI PHÁT VIDEO CHÍNH === */
         .media-top {margin-bottom:32px;}
         .media-main {background:#0f172a;border-radius:12px;overflow:hidden;border:1px solid rgba(148,163,184,.15);}
         .main-video-cover {width:100%;aspect-ratio:16/9;background:#1e293b;}
@@ -85,9 +83,8 @@
     </style>
 </head>
 <body>
-
     <!-- ====================================== -->
-    <!-- 🔝 THANH MENU CHÍNH + PHỤ → THÊM VÀO -->
+    <!-- 🔝 THANH MENU CHÍNH + PHỤ → GIỮ NGUYÊN -->
     <!-- ====================================== -->
     <nav class="menu">
         <a href="index.html" class="menu-btn">🏠 Trang chủ</a>
@@ -102,11 +99,9 @@
         <a href="bang-xep-hang-fifa.html" class="menu-btn fifa">🌍 BXH FIFA</a>
         <a href="gop-y.html" class="menu-btn gopy">💬 Góp Ý</a>
     </nav>
-
     <div class="breadcrumb">
         <a href="index.html">Trang chủ</a> » <a href="multimedia.html">MultiMedia</a> » Video Bóng Đá
     </div>
-
     <!-- 🔍 THANH TÌM KIẾM → GIỮ NGUYÊN -->
     <div class="khung-tim-chung">
         <h2>🔍 Tìm kiếm video</h2>
@@ -115,7 +110,6 @@
             <button onclick="timKiemChung()">Tìm</button>
         </div>
     </div>
-
     <!-- 📋 KẾT QUẢ TÌM KIẾM → GIỮ NGUYÊN -->
     <div class="ket-qua-tim" id="khoiKetQuaTim">
         <div class="tieu-de">
@@ -126,7 +120,6 @@
             <div class="trang-thai dang-tim">🔄 Đang tìm trên YouTube...</div>
         </div>
     </div>
-
     <!-- KHỐI PHÁT VIDEO CHÍNH → GIỮ NGUYÊN -->
     <div class="media-top">
         <div class="media-main">
@@ -139,7 +132,6 @@
             </div>
         </div>
     </div>
-
     <!-- 🏴 NGOẠI HẠNG ANH → GIỮ NGUYÊN -->
     <div class="section-wrap">
         <div class="section-head">
@@ -150,7 +142,6 @@
             <div class="trang-thai dang-tim">🔄 Đang tìm...</div>
         </div>
     </div>
-
     <!-- 🇪🇸 LA LIGA → GIỮ NGUYÊN -->
     <div class="section-wrap">
         <div class="section-head">
@@ -161,7 +152,6 @@
             <div class="trang-thai dang-tim">🔄 Đang tìm...</div>
         </div>
     </div>
-
     <!-- 🏆 CÚP C1 → GIỮ NGUYÊN -->
     <div class="section-wrap">
         <div class="section-head">
@@ -172,7 +162,6 @@
             <div class="trang-thai dang-tim">🔄 Đang tìm...</div>
         </div>
     </div>
-
     <!-- 🇻🇳 BÓNG ĐÁ VIỆT NAM → GIỮ NGUYÊN -->
     <div class="section-wrap">
         <div class="section-head">
@@ -183,10 +172,12 @@
             <div class="trang-thai dang-tim">🔄 Đang tìm...</div>
         </div>
     </div>
-
-    <!-- JAVASCRIPT → GIỮ NGUYÊN HOÀN TOÀN -->
+    <!-- JAVASCRIPT → CHỈ SỬA LẤY KEY TỪ SHEET, GIỮ NGUYÊN TOÀN BỘ LOGIC CÒN LẠI -->
     <script>
-        const YOUTUBE_API_KEY = "AIzaSyCHCSASos1XYkhB4hBSV4MIiADrm6nJSEE";
+        // === 🔑 LẤY KEY TỪ SHEET QUA LINK WEB APP — KHÔNG VIẾT KEY VÀO CODE ===
+        const LINK_WEB_APP = "https://script.google.com/macros/s/AKfycbzKGE_sRBCVdUwIsQOFV56_KTjHErvXCmDA7ZcFFOOe04Oe6s_iFKhBT0FY5Kz4zXVeaA/exec";
+        let YOUTUBE_API_KEY = "";
+
         const KHOI_DU_LIEU = {
             Anh: { tuKhoa: "Highlight Premier League full match highlights" },
             LaLiga: { tuKhoa: "Highlight La Liga full match highlights" },
@@ -194,11 +185,38 @@
             VN: { tuKhoa: "Highlight V.League 1 Đội tuyển Việt Nam trận đấu mới nhất" }
         };
         const DA_HIEN = {};
-        window.onload = function() {
+
+        // === LẤY KEY TRƯỚC KHI CHẠY ===
+        async function layKeyTuSheet() {
+            try {
+                const res = await fetch(LINK_WEB_APP);
+                YOUTUBE_API_KEY = await res.text();
+                YOUTUBE_API_KEY = YOUTUBE_API_KEY.trim();
+                if (YOUTUBE_API_KEY.startsWith("❌")) {
+                    console.error(YOUTUBE_API_KEY);
+                    alert(YOUTUBE_API_KEY);
+                    return false;
+                }
+                console.log("✅ Đã lấy Key thành công từ Sheet!");
+                return true;
+            } catch (e) {
+                console.error("❌ Lỗi lấy Key:", e);
+                alert("❌ Không lấy được Key từ Sheet");
+                return false;
+            }
+        }
+
+        // === CHỜ LẤY KEY XONG RỒI MỚI TẢI VIDEO ===
+        window.onload = async function() {
+            const layThanhCong = await layKeyTuSheet();
+            if (!layThanhCong) return;
+
             for (let tenKhoi in KHOI_DU_LIEU) {
                 taiKhoi(tenKhoi);
             }
         };
+
+        // === GIỮ NGUYÊN 100% HÀM GỐC ===
         async function taiKhoi(tenKhoi) {
             const tuKhoa = KHOI_DU_LIEU[tenKhoi].tuKhoa;
             const grid = document.getElementById("grid-" + tenKhoi);
@@ -225,6 +243,7 @@
                 grid.innerHTML = `<div class="trang-thai loi">⚠️ Lỗi kết nối API</div>`;
             }
         }
+
         async function timKiemChung() {
             const tuKhoa = document.getElementById("timChungInput").value.trim();
             if (!tuKhoa) return;
@@ -256,6 +275,7 @@
                 document.getElementById("luoiKetQuaTim").innerHTML = `<div class="trang-thai loi">⚠️ Lỗi tìm kiếm, vui lòng thử lại</div>`;
             }
         }
+
         function taoCardVideo(maVideo, anhBia, tenVideo, ngay, an) {
             return `
             <div class="video-card ${an}" onclick="phatVideo('${maVideo}', this)">
@@ -267,6 +287,7 @@
                 <p class="card-time">${ngay}</p>
             </div>`;
         }
+
         function dongKetQuaTim() {
             document.getElementById("khoiKetQuaTim").classList.remove("hien");
             document.getElementById("timChungInput").value = "";
@@ -274,6 +295,7 @@
             document.getElementById("ten-video").textContent = "Bấm vào bất kỳ video nào bên dưới để xem...";
             document.getElementById("thoi-luong").textContent = "--:--";
         }
+
         function hienThem(tenKhoi) {
             if (DA_HIEN[tenKhoi]) return;
             document.querySelectorAll("#grid-" + tenKhoi + " .an-video").forEach(c => c.classList.remove("an-video"));
@@ -281,12 +303,14 @@
             document.getElementById("nut" + tenKhoi).style.background = "#64748b";
             DA_HIEN[tenKhoi] = true;
         }
+
         function phatVideo(maVideo, theCard) {
             document.getElementById("video-chinh").src = `https://www.youtube.com/embed/${maVideo}?autoplay=1`;
             document.getElementById("ten-video").textContent = theCard.querySelector(".card-title").textContent;
             document.getElementById("thoi-luong").textContent = "▶ Đang phát";
             window.scrollTo({top: 0, behavior: "smooth"});
         }
+
         document.getElementById("timChungInput").addEventListener("keydown", e => {
             if (e.key === "Enter") timKiemChung();
         });
