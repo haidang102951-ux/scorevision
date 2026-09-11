@@ -116,6 +116,14 @@
             background:linear-gradient(135deg,rgba(34,197,94,.25),rgba(22,163,74,.12));
             color:#bbf7d0;border-color:rgba(34,197,94,.35);
         }
+        .menu-btn.fifa{
+            background:linear-gradient(135deg,rgba(59,130,246,.15),rgba(37,99,235,.08));
+            color:#93c5fd;border-color:rgba(59,130,246,.20);
+        }
+        .menu-btn.fifa:hover{
+            background:linear-gradient(135deg,rgba(59,130,246,.25),rgba(37,99,235,.12));
+            color:#c7d2fe;border-color:rgba(59,130,246,.35);
+        }
         .menu-btn.gopy{
             background:linear-gradient(135deg,rgba(99,102,241,.15),rgba(79,70,229,.08));
             color:#a5b4fc;border-color:rgba(99,102,241,.20);
@@ -164,7 +172,6 @@
             max-height:200px;
             overflow:hidden;
         }
-
         .widget-scroll{
             width:100%;
             height:176px;
@@ -174,32 +181,26 @@
             scrollbar-color:#64748b rgba(255,255,255,.04);
             padding-right:3px;
         }
-
         .widget-scroll::-webkit-scrollbar{
             width:7px;
         }
-
         .widget-scroll::-webkit-scrollbar-track{
             background:rgba(255,255,255,.04);
             border-radius:10px;
         }
-
         .widget-scroll::-webkit-scrollbar-thumb{
             background:#64748b;
             border-radius:10px;
         }
-
         .widget-scroll::-webkit-scrollbar-thumb:hover{
             background:#94a3b8;
         }
-
         .widget-scroll api-sports-widget[data-type="games"]{
             display:block !important;
             width:100% !important;
             height:100% !important;
             min-height:0 !important;
         }
-
         .section-head{
             display:flex;align-items:center;justify-content:space-between;
             margin:44px 0 16px;padding-bottom:8px;
@@ -348,10 +349,10 @@
             <a href="tin-nong.html" class="menu-btn">📰 Tin Nóng</a>
             <a href="ket-qua.html" class="menu-btn">🏆 Kết Quả</a>
             <a href="livescore.html" class="menu-btn livescore">⚽ LiveScore</a>
+            <a href="bang-xep-hang-fifa.html" class="menu-btn fifa">🌍 BXH FIFA</a>
             <a href="gop-y.html" class="menu-btn gopy">💬 Góp Ý</a>
         </nav>
 
-        <!-- KHỐI CHIA 2 CỘT: BÊN TRÁI PHÂN TÍCH · BÊN PHẢI TRỰC TIẾP -->
         <div class="khoi-2cot">
             <div class="banner-kep">
                 <h1>⚽ PHÂN TÍCH & DỰ ĐOÁN BÓNG ĐÁ</h1>
@@ -359,7 +360,6 @@
                 <a href="du-doan.html" class="banner-nut">👉 Xem Phân Tích Chi Tiết</a>
             </div>
             <div class="widget-ngoai">
-                <!-- Configuration -->
                 <api-sports-widget data-type="config"
                     data-key="db3cb172848d850444676b821c1e9fd0"
                     data-sport="football"
@@ -367,7 +367,6 @@
                     data-theme="dark"
                     data-show-errors="true">
                 </api-sports-widget>
-
                 <div class="widget-scroll">
                     <api-sports-widget data-type="games"></api-sports-widget>
                 </div>
@@ -376,10 +375,13 @@
 
         <div class="section-head"><h2 class="section-title">⚽ Kết Quả Trận Đấu Mới Nhất</h2><a href="ket-qua.html" class="xem-tat-ca">Xem tất cả →</a></div>
         <div id="ketqua-list"><div class="loading">Đang tải kết quả trận đấu...</div></div>
+
         <div class="section-head"><h2 class="section-title">🔮 Phân Tích & Dự Đoán Mới Nhất</h2><a href="du-doan.html" class="xem-tat-ca">Xem tất cả →</a></div>
         <div id="phan-tich-list"><div class="loading">Đang tải bài phân tích...</div></div>
+
         <div class="section-head"><h2 class="section-title">📰 Tin Nóng Mới Nhất</h2><a href="tin-nong.html" class="xem-tat-ca">Xem tất cả →</a></div>
         <div id="tin-list"><div class="loading">Đang tải tin tức...</div></div>
+
         <div class="section-head"><h2 class="section-title">📅 Trận Sắp Đấu</h2><a href="lich-dau.html" class="xem-tat-ca">Xem tất cả →</a></div>
         <div id="lich-list"><div class="loading">Đang tải lịch thi đấu...</div></div>
 
@@ -388,10 +390,12 @@
             <p>Thông tin được cập nhật liên tục, nhanh chóng và chính xác. Luôn theo dõi những diễn biến mới nhất trước mỗi trận đấu!</p>
             <a href="https://t.me/+LBCsBd-LjPI3ZDRl" target="_blank" class="nut-tel">✈️ THAM GIA NHÓM TELEGRAM</a>
         </div>
+
         <div class="disclaimer">
             <h4>⚠️ THÔNG BÁO CHUNG</h4>
             <p>Nội dung trên trang web chỉ phục vụ mục đích tham khảo, trao đổi thông tin về bóng đá. Nhận định đưa ra mang tính tham khảo, không phải là kết quả chắc chắn.</p>
         </div>
+
         <div class="chan-trang">
             <p><strong>Score Vision</strong> — Phân tích & Dự đoán Bóng Đá Hàng Ngày</p>
             <div class="lien-ket"><a href="#">Về chúng tôi</a> · <a href="#">Chính sách</a> · <a href="#">Liên hệ</a></div>
@@ -399,8 +403,8 @@
         </div>
     </div>
 
-
     <a href="#" class="len-dau" id="btnLenDau">↑</a>
+
     <script>
         const btnLenDau = document.getElementById("btnLenDau");
         window.addEventListener("scroll", ()=>{
@@ -465,7 +469,6 @@
             return text.replace(/<[^>]*>/g," ").replace(/\s+/g," ").trim().substring(0, doDai) + "…";
         }
 
-        // === PHẦN PHÂN TÍCH ===
         fetch(BASE_URL+GID_PHAN_TICH)
         .then(r=>{if(!r.ok)throw new Error("Lỗi kết nối");return r.text();})
         .then(csv=>{
@@ -522,7 +525,6 @@
         })
         .catch(e=>{document.getElementById("phan-tich-list").innerHTML=`<div class="empty">❌ Lỗi: ${e.message}</div>`;});
 
-        // === PHẦN KẾT QUẢ ===
         fetch(BASE_URL+GID_KET_QUA)
         .then(r=>{if(!r.ok)throw new Error("Lỗi kết nối");return r.text();})
         .then(csv=>{
@@ -556,7 +558,6 @@
         })
         .catch(e=>{document.getElementById("ketqua-list").innerHTML=`<div class="empty">❌ ${e.message}</div>`;});
 
-        // === PHẦN TIN NÓNG ===
         fetch(BASE_URL+GID_TIN_NONG)
         .then(r=>{if(!r.ok)throw new Error("Lỗi kết nối");return r.text();})
         .then(csv=>{
