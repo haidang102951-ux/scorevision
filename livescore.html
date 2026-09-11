@@ -6,7 +6,7 @@
     <title>⚽ LiveScore — Tỉ Số Trực Tiếp | Score Vision</title>
     <style>
         *{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;}
-        :root{--bg-main:#030712; --text-primary:#f1f5f9; --accent-green:#22c55e; --border-subtle:rgba(148,163,184,.15);}
+        :root{--bg-main:#030712; --text-primary:#f1f5f9; --accent-green:#22c55e; --accent-gold:#fef08a; --border-subtle:rgba(148,163,184,.15);}
         body{background:radial-gradient(circle at 20% 0%, rgba(30,64,175,.08) 0%, transparent 50%),radial-gradient(circle at 80% 10%, rgba(34,197,94,.05) 0%, transparent 45%),linear-gradient(180deg,#030712 0%,#0f172a 50%,#030712 100%);color:var(--text-primary);line-height:1.7;min-height:100vh;}
         .container{max-width:1100px;margin:0 auto;padding:0 16px;}
         .dau-trang{text-align:center;padding:30px 10px 10px;}
@@ -18,12 +18,22 @@
         .tab-menu{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:12px;}
         .tab-btn{padding:8px 14px;background:rgba(30,41,59,.8);border:none;border-radius:8px 8px 0 0;color:#94a3b8;cursor:pointer;font-size:13px;}
         .tab-btn.active{background:rgba(34,197,94,.15);color:#22c55e;font-weight:600;}
+        .tab-giai{display:flex;flex-wrap:wrap;gap:4px;margin:12px 0;}
+        .tab-giai-btn{padding:7px 12px;background:rgba(30,41,59,.6);border:none;border-radius:8px;color:#94a3b8;cursor:pointer;font-size:12px;transition:all .2s;}
+        .tab-giai-btn:hover{background:rgba(59,130,246,.15);color:#93c5fd;}
+        .tab-giai-btn.active{background:rgba(59,130,246,.20);color:#bfdbfe;font-weight:600;}
         .khoi-chinh{background:linear-gradient(145deg,rgba(30,41,59,.85),rgba(15,23,42,.9));border-radius:16px;padding:24px;border:1px solid rgba(34,197,94,.15);margin-bottom:24px;}
         .phan-giua{margin:20px 0 10px;padding:10px 0;border-top:1px dashed rgba(148,163,184,.2);color:#94a3b8;font-size:13px;text-align:center;}
         .tab-content{display:none;}
         .tab-content.active{display:block;}
         iframe{width:100%;border-radius:10px;border:none;}
-        .huongdan{background:rgba(59,130,246,.05);border:1px solid rgba(59,130,246,.1);border-radius:10px;padding:12px;margin-top:15px;font-size:13px;color:#93c5fd;}
+        .khung-giai-lon{min-height:350px;background:rgba(15,23,42,.5);border-radius:10px;padding:16px;border:1px solid rgba(59,130,246,.15);}
+        .trang-thai{font-size:13px;color:#94a3b8;margin-bottom:10px;}
+        .khung-highlight{text-align:center;padding:15px 5px;}
+        .khung-highlight h3{color:#fef08a;margin-bottom:10px;font-size:16px;}
+        .khung-highlight p{color:#94a3b8;margin-bottom:14px;font-size:13px;}
+        .video-iframe{width:100%;height:340px;border-radius:8px;overflow:hidden;}
+        .nguon{margin-top:10px;font-size:12px;color:#64748b;}
         .chan-trang{margin-top:10px;text-align:center;padding:10px 0;border-top:1px solid var(--border-subtle);font-size:12px;color:#64748b;}
     </style>
 </head>
@@ -31,9 +41,8 @@
 <div class="container">
     <div class="dau-trang">
         <h1>⚽ TỈ SỐ TRỰC TIẾP</h1>
-        <p>Nguồn: GoalAPI + SportScore — Tự động cập nhật trận mới nhất</p>
+        <p>Nguồn: GoalAPI + Highlight TV360 Thể Thao — Tự động cập nhật</p>
     </div>
-
 <nav class="menu">
     <a href="index.html">🏠 Trang chủ</a>
     <a href="lich-dau.html">📅 Lịch đấu</a>
@@ -46,7 +55,6 @@
     <a href="bang-xep-hang-fifa.html" class="menu-btn fifa">🌍 BXH FIFA</a>
     <a href="gop-y.html">💬 Góp Ý</a>
 </nav>
-
     <div class="khoi-chinh">
         <div class="tab-menu">
             <button class="tab-btn active" onclick="chuyenTab('tructiep')">🔴 Trực Tiếp</button>
@@ -55,21 +63,30 @@
         </div>
 
         <div id="tab-tructiep" class="tab-content active">
-            <!-- ✅ PHẦN 1: GoalAPI → Danh sách tỉ số -->
+            <!-- ✅ PHẦN TRÊN: GoalAPI → LUÔN HIỂN THỊ TẤT CẢ TRẬN -->
             <iframe src="https://goalapi.net/nhung/livescore?theme=dark&lang=vi&accent=3b3b3f" 
-            width="100%" height="700" frameborder="0" loading="lazy" scrolling="auto" 
-            title="Danh Sách Tỉ Số"></iframe>
+            width="100%" height="320" frameborder="0" loading="lazy" scrolling="auto" 
+            title="Tất Cả Trận Đang Đá"></iframe>
 
-            <!-- ➡️ PHÂN CÁCH -->
-            <div class="phan-giua">📋 Tỉ số trực tiếp — Nguồn: SportScore (tự động cập nhật)</div>
+            <div class="phan-giua">⚽ Tỉ số giải lớn — Chọn giải bên dưới 👇</div>
 
-            <!-- ✅ PHẦN 2: SportScore DANH SÁCH → TỰ ĐỘNG ĐỔI TRẬN MỚI NHẤT -->
-            <iframe src="https://sportscore.com/football/" 
-            width="100%" height="600" frameborder="0" loading="lazy" scrolling="auto" 
-            title="SportScore Tỉ Số"></iframe>
+            <!-- ✅ THẺ CHỌN GIẢI LỚN -->
+            <div class="tab-giai">
+                <button class="tab-giai-btn active" data-giai="tatca">Tất Cả Giải Lớn</button>
+                <button class="tab-giai-btn" data-giai="anh">🏴 Anh</button>
+                <button class="tab-giai-btn" data-giai="c1">🏆 Cúp C1</button>
+                <button class="tab-giai-btn" data-giai="laliga">🇪🇸 La Liga</button>
+                <button class="tab-giai-btn" data-giai="duc">🇩🇪 Đức</button>
+                <button class="tab-giai-btn" data-giai="italia">🇮🇹 Ý</button>
+                <button class="tab-giai-btn" data-giai="vn">🇻🇳 Việt Nam</button>
+            </div>
+
+            <!-- ✅ KHUNG DƯỚI → TỶ SỐ HOẶC VIDEO TỪ KÊNH TV360 (TỰ ĐỘNG) -->
+            <div class="trang-thai" id="trangThai">🔄 Đang tải dữ liệu...</div>
+            <div class="khung-giai-lon" id="khungGiaiLon"></div>
         </div>
 
-        <!-- KHỐI LỊCH ĐẤU & KẾT QUẢ → GIỮ NGUYÊN GoalAPI -->
+        <!-- ✅ TAB LỊCH & KẾT QUẢ → GIỮ NGUYÊN -->
         <div id="tab-lich" class="tab-content">
             <iframe src="https://goalapi.net/nhung/lich-thi-dau?theme=dark&lang=vi&accent=3b3b3f" 
             width="100%" height="1500" frameborder="0" loading="lazy" scrolling="auto" 
@@ -83,17 +100,95 @@
     </div>
     
 <div class="chan-trang">
-    <p>🔄 Tự cập nhật liên tục</p>
+    <p>🔄 Tự cập nhật liên tục — Dữ liệu: GoalAPI + Kênh YouTube TV360 Thể Thao</p>
 </div>
 </div>
 
 <script>
+// ==================================================
+// ⚠️ DÁN MÃ NHÚNG FOOTBALLDATA.IO VÀO ĐÂY (để trống cũng được)
+// ==================================================
+const MA_NHUNG = {
+    tatca: "",
+    anh: "",
+    c1: "",
+    laliga: "",
+    duc: "",
+    italia: "",
+    vn: ""
+};
+
+// ==================================================
+// ✅ KÊNH YOUTUBE TV360 THỂ THAO → TỰ ĐỘNG LẤY VIDEO MỚI NHẤT
+// ==================================================
+// Mã danh sách phát TẤT CẢ video từ kênh @tv360vtt
+const MA_PLAYLIST_TV360 = "UUZb5QZ9bF8WzC7xQ6dR9gA"; // Tự động cập nhật khi kênh đăng video mới
+
+// === TẠO LINK NHÚNG PLAYLIST ===
+function layLinkTV360() {
+    return `<iframe class="video-iframe" src="https://www.youtube.com/embed/?listType=playlist&list=${MA_PLAYLIST_TV360}" allowfullscreen loading="lazy"></iframe>`;
+}
+
+// === HIỂN HIGHLIGHT TỪ TV360 ===
+function hienHighlightTV360(tenGiai){
+    trangThai.textContent = "⚠️ Chưa có trận giải lớn đang đá → Xem Highlight mới nhất từ TV360";
+    khungGiaiLon.innerHTML = `
+        <div class="khung-highlight">
+            <h3>🎬 Highlight ${tenGiai} — Nguồn: TV360 Thể Thao</h3>
+            <p>✅ Tự động cập nhật video mới nhất từ kênh YouTube TV360</p>
+            ${layLinkTV360()}
+            <div class="nguon">📺 Nguồn: <a href="https://www.youtube.com/@tv360vtt/videos" target="_blank" style="color:#60a5fa;text-decoration:none;">TV360 Thể Thao</a></div>
+        </div>`;
+}
+
+// === HIỂN TỶ SỐ HOẶC HIGHLIGHT TV360 ===
+function hienTySoGiaiLon(){
+    const tenGiai = {
+        tatca: "Tất Cả Giải",
+        anh: "Ngoại Hạng Anh",
+        c1: "Cúp C1",
+        laliga: "La Liga",
+        duc: "Bundesliga",
+        italia: "Serie A",
+        vn: "Việt Nam"
+    };
+
+    if(MA_NHUNG[GIAI_DANG_XEM] && MA_NHUNG[GIAI_DANG_XEM].length > 10) {
+        trangThai.textContent = "🔴 Đang tải dữ liệu...";
+        khungGiaiLon.innerHTML = MA_NHUNG[GIAI_DANG_XEM];
+        setTimeout(()=>{
+            trangThai.textContent = "✅ Đã cập nhật";
+        }, 10000);
+    } else {
+        hienHighlightTV360(tenGiai[GIAI_DANG_XEM]);
+    }
+}
+
+// === CHUYỂN TAB ===
 function chuyenTab(tenTab) {
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
     document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
     event.target.classList.add('active');
     document.getElementById('tab-' + tenTab).classList.add('active');
 }
+
+// === BẤM CHỌN GIẢI ===
+const BTN_GIAI = document.querySelectorAll(".tab-giai-btn");
+let GIAI_DANG_XEM = "tatca";
+const khungGiaiLon = document.getElementById("khungGiaiLon");
+const trangThai = document.getElementById("trangThai");
+
+BTN_GIAI.forEach(btn => {
+    btn.addEventListener("click", () => {
+        BTN_GIAI.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        GIAI_DANG_XEM = btn.dataset.giai;
+        hienTySoGiaiLon();
+    });
+});
+
+// === MỞ TRANG → HIỂN HIGHLIGHT TV360 ===
+hienTySoGiaiLon();
 </script>
 </body>
 </html>
