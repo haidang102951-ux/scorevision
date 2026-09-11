@@ -116,6 +116,14 @@
             background:linear-gradient(135deg,rgba(34,197,94,.25),rgba(22,163,74,.12));
             color:#bbf7d0;border-color:rgba(34,197,94,.35);
         }
+        .menu-btn.multimedia{
+            background:linear-gradient(135deg,rgba(147,51,234,.15),rgba(124,58,237,.08));
+            color:#d8b4fe;border-color:rgba(147,51,234,.20);
+        }
+        .menu-btn.multimedia:hover{
+            background:linear-gradient(135deg,rgba(147,51,234,.25),rgba(124,58,237,.12));
+            color:#e9d5ff;border-color:rgba(147,51,234,.35);
+        }
         .menu-btn.fifa{
             background:linear-gradient(135deg,rgba(59,130,246,.15),rgba(37,99,235,.08));
             color:#93c5fd;border-color:rgba(59,130,246,.20);
@@ -349,10 +357,10 @@
             <a href="tin-nong.html" class="menu-btn">📰 Tin Nóng</a>
             <a href="ket-qua.html" class="menu-btn">🏆 Kết Quả</a>
             <a href="livescore.html" class="menu-btn livescore">⚽ LiveScore</a>
+            <a href="multimedia.html" class="menu-btn multimedia">🎬 MultiMedia</a>
             <a href="bang-xep-hang-fifa.html" class="menu-btn fifa">🌍 BXH FIFA</a>
             <a href="gop-y.html" class="menu-btn gopy">💬 Góp Ý</a>
         </nav>
-
         <div class="khoi-2cot">
             <div class="banner-kep">
                 <h1>⚽ PHÂN TÍCH & DỰ ĐOÁN BÓNG ĐÁ</h1>
@@ -372,39 +380,30 @@
                 </div>
             </div>
         </div>
-
         <div class="section-head"><h2 class="section-title">⚽ Kết Quả Trận Đấu Mới Nhất</h2><a href="ket-qua.html" class="xem-tat-ca">Xem tất cả →</a></div>
         <div id="ketqua-list"><div class="loading">Đang tải kết quả trận đấu...</div></div>
-
         <div class="section-head"><h2 class="section-title">🔮 Phân Tích & Dự Đoán Mới Nhất</h2><a href="du-doan.html" class="xem-tat-ca">Xem tất cả →</a></div>
         <div id="phan-tich-list"><div class="loading">Đang tải bài phân tích...</div></div>
-
         <div class="section-head"><h2 class="section-title">📰 Tin Nóng Mới Nhất</h2><a href="tin-nong.html" class="xem-tat-ca">Xem tất cả →</a></div>
         <div id="tin-list"><div class="loading">Đang tải tin tức...</div></div>
-
         <div class="section-head"><h2 class="section-title">📅 Trận Sắp Đấu</h2><a href="lich-dau.html" class="xem-tat-ca">Xem tất cả →</a></div>
         <div id="lich-list"><div class="loading">Đang tải lịch thi đấu...</div></div>
-
         <div class="box-thongtin">
             <h3>🤝 LUÔN CẬP NHẬT LIÊN TỤC</h3>
             <p>Thông tin được cập nhật liên tục, nhanh chóng và chính xác. Luôn theo dõi những diễn biến mới nhất trước mỗi trận đấu!</p>
             <a href="https://t.me/+LBCsBd-LjPI3ZDRl" target="_blank" class="nut-tel">✈️ THAM GIA NHÓM TELEGRAM</a>
         </div>
-
         <div class="disclaimer">
             <h4>⚠️ THÔNG BÁO CHUNG</h4>
             <p>Nội dung trên trang web chỉ phục vụ mục đích tham khảo, trao đổi thông tin về bóng đá. Nhận định đưa ra mang tính tham khảo, không khuyến khích cá cược dưới mọi hình thức.</p>
         </div>
-
         <div class="chan-trang">
             <p><strong>Score Vision</strong> — Phân tích & Dự đoán Bóng Đá Hàng Ngày</p>
             <div class="lien-ket"><a href="#">Về chúng tôi</a> · <a href="#">Chính sách</a> · <a href="#">Liên hệ</a></div>
             <p>© 2026 Score Vision. Tất cả quyền được bảo lưu.</p>
         </div>
     </div>
-
     <a href="#" class="len-dau" id="btnLenDau">↑</a>
-
     <script>
         const btnLenDau = document.getElementById("btnLenDau");
         window.addEventListener("scroll", ()=>{
@@ -415,13 +414,11 @@
             e.preventDefault();
             window.scrollTo({top:0,behavior:"smooth"});
         });
-
         const GID_PHAN_TICH = "1723464768";
         const GID_TIN_NONG = "840175350";
         const GID_LICH_DAU = "655851279";
         const GID_KET_QUA = "1819801064";
         const BASE_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRjGewmdAmJVjyi-0vSc22hhFPacMgGc-WmVE8PEM3jHfA7IvED3XbBp68Bwp16n1Dc2FFP9ETKTaSH/pub?output=csv&gid=";
-
         const ANH_GIAI = {
             "Ngoại Hạng Anh": "https://i.postimg.cc/brpj376y/Ngoai-hang-anh.png",
             "Premier League": "https://i.postimg.cc/brpj376y/Ngoai-hang-anh.png",
@@ -440,7 +437,6 @@
             "Asiad Cup": "https://i.postimg.cc/MHq8dC9C/Asia-Cup.png"
         };
         const ANH_MAC_DINH = "https://i.postimg.cc/Zn4hVGfJ/Cup-C1.png";
-
         function layAnhGiai(tenGiai){
             if(!tenGiai) return ANH_MAC_DINH;
             tenGiai = tenGiai.trim();
@@ -450,7 +446,6 @@
             }
             return ANH_MAC_DINH;
         }
-
         function parseCSV(text){
             const rows = [];let row=[],cell="",inQuote=false;
             for(let i=0;i<text.length;i++){
@@ -463,12 +458,10 @@
             if(cell||row.length>0){row.push(cell.trim());rows.push(row);}
             return rows;
         }
-
         function layTomTat(text, doDai=100){
             if(!text) return "Đang cập nhật...";
             return text.replace(/<[^>]*>/g," ").replace(/\s+/g," ").trim().substring(0, doDai) + "…";
         }
-
         fetch(BASE_URL+GID_PHAN_TICH)
         .then(r=>{if(!r.ok)throw new Error("Lỗi kết nối");return r.text();})
         .then(csv=>{
@@ -524,7 +517,6 @@
             box.innerHTML+=`</div>`;
         })
         .catch(e=>{document.getElementById("phan-tich-list").innerHTML=`<div class="empty">❌ Lỗi: ${e.message}</div>`;});
-
         fetch(BASE_URL+GID_KET_QUA)
         .then(r=>{if(!r.ok)throw new Error("Lỗi kết nối");return r.text();})
         .then(csv=>{
@@ -557,7 +549,6 @@
             box.innerHTML+=`</div>`;
         })
         .catch(e=>{document.getElementById("ketqua-list").innerHTML=`<div class="empty">❌ ${e.message}</div>`;});
-
         fetch(BASE_URL+GID_TIN_NONG)
         .then(r=>{if(!r.ok)throw new Error("Lỗi kết nối");return r.text();})
         .then(csv=>{
@@ -592,7 +583,6 @@
             box.innerHTML=html;
         })
         .catch(e=>{document.getElementById("tin-list").innerHTML=`<div class="empty">❌ ${e.message}</div>`;});
-
         // === PHẦN LỊCH ĐẤU ===
         fetch(BASE_URL+GID_LICH_DAU)
         .then(r=>{if(!r.ok)throw new Error("Lỗi kết nối");return r.text();})
