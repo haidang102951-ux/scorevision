@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="favicon.png">
+    <meta name="google-adsense-account" content="ca-pub-6588369693863083">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6588369693863083" crossorigin="anonymous"></script>
+    <meta name="monetag" content="9f18703360e44fe069c7f96a0278767f">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📊 Bảng Xếp Hạng | Score Vision</title>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RTY3P63JJL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-RTY3P63JJL');
+    </script>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;}
+        :root{
+            --bg-main:#030712;
+            --bg-surface:#0f172a;
+            --text-primary:#f1f5f9;
+            --text-secondary:#cbd5e1;
+            --text-muted:#64748b;
+            --accent-gold:#fef08a;
+            --border-subtle:rgba(148,163,184,.15);
+            --tran:all .3s cubic-bezier(.4,0,.2,1);
+        }
+        html{scroll-behavior:smooth;}
+        body{
+            background: radial-gradient(circle at 20% 0%, rgba(30,64,175,.08) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 10%, rgba(180,83,9,.05) 0%, transparent 45%),
+                        linear-gradient(180deg,#030712 0%,#0f172a 50%,#030712 100%);
+            color:var(--text-primary);
+            line-height:1.7;
+            min-height:100vh;
+        }
+        .container{max-width:860px;margin:0 auto;padding:0 16px;}
+        .dau-trang-wrapper{
+            position:relative;padding:32px 16px 16px;margin-bottom:8px;
+            border-radius:0 0 20px 20px;
+            overflow:hidden;
+        }
+        .dau-trang-wrapper::before{
+            content:"";position:absolute;inset:0;z-index:0;
+            background:linear-gradient(180deg,rgba(2,6,23,0.60) 0%,rgba(15,23,42,0.55) 100%), url('anh_nen.png');
+            background-size:cover;background-position:center top;background-repeat:no-repeat;
+        }
+        .dau-trang{display:flex;align-items:center;justify-content:center;gap:14px;position:relative;z-index:1;}
+        .logo{width:64px;height:64px;border-radius:16px;background:transparent;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,.20);overflow:hidden;border:1px solid rgba(255,255,255,0.1);}
+        .logo img{width:100%;height:100%;object-fit:contain;border-radius:12px;background:#fff;}
+        .ten-thuong-hieu{font-size:28px;font-weight:800;letter-spacing:-.3px;background:linear-gradient(90deg,#fef08a,#fde047);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+        .slogan-dau{text-align:center;color:var(--text-muted);font-size:14px;letter-spacing:.5px;margin:8px 0 0;position:relative;z-index:1;}
+        .menu{
+            display:flex;flex-wrap:wrap;gap:6px;margin-bottom:24px;
+            padding:10px 14px;background:rgba(15,23,42,.65);
+            border-radius:14px;border:1px solid var(--border-subtle);
+            position:sticky;top:8px;z-index:99;backdrop-filter:blur(12px);
+        }
+        .menu-btn{
+            background:transparent;color:var(--text-secondary);
+            padding:9px 13px;border-radius:10px;
+            text-align:center;text-decoration:none;font-size:13px;font-weight:500;
+            border:1px solid transparent;transition:var(--tran);white-space:nowrap;
+        }
+        .menu-btn:hover{background:rgba(254,240,138,.06);color:#fef08a;border-color:rgba(254,240,138,.12);transform:translateY(-1px);}
+        .menu-btn.active{background:linear-gradient(135deg,rgba(254,240,138,.15),rgba(253,224,71,.08));color:#fef08a;border-color:rgba(254,240,138,.20);font-weight:600;}
+        .menu-btn.livescore{background:linear-gradient(135deg,rgba(34,197,94,.15),rgba(22,163,74,.08));color:#86efac;border-color:rgba(34,197,94,.20);}
+        .menu-btn.livescore:hover{background:linear-gradient(135deg,rgba(34,197,94,.25),rgba(22,163,74,.12));color:#bbf7d0;border-color:rgba(34,197,94,.35);}
+        .section-head{margin:32px 0 16px;}
+        .section-title{font-size:18px;font-weight:700;color:#fef08a;display:flex;align-items:center;gap:8px;}
+        .widget-bxh{
+            background:linear-gradient(135deg,#1e293b70,#0f172a80);
+            border-radius:16px;
+            padding:14px;
+            border:1px solid rgba(59,130,246,.18);
+            box-shadow:0 4px 20px rgba(0,0,0,.25);
+        }
+        .chan-trang{margin-top:32px;padding:24px 0;border-top:1px solid var(--border-subtle);text-align:center;}
+        .chan-trang p{font-size:13px;color:#64748b;line-height:1.7;}
+        .len-dau{position:fixed;bottom:20px;right:20px;width:44px;height:44px;background:rgba(15,23,42,.85);color:#fef08a;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:20px;box-shadow:0 4px 16px rgba(0,0,0,.35);border:1px solid rgba(254,240,138,.15);opacity:0;visibility:hidden;transition:var(--tran);z-index:98;}
+        .len-dau.hien{opacity:1;visibility:visible;}
+        .len-dau:hover{transform:translateY(-3px);}
+        @media(max-width:768px){
+            .menu{justify-content:center;}
+            .menu-btn{padding:8px 11px;font-size:12px;}
+        }
+    </style>
+</head>
+<body>
+    <div class="dau-trang-wrapper">
+        <div class="container">
+            <div class="dau-trang">
+                <div class="logo">
+                    <img src="logo.png" alt="Score Vision" onerror="this.style.display='none'">
+                </div>
+                <div><div class="ten-thuong-hieu">Score Vision</div></div>
+            </div>
+            <p class="slogan-dau">📊 BẢNG XẾP HẠNG FIFA</p>
+        </div>
+    </div>
+    <div class="container">
+        <nav class="menu">
+            <a href="index.html" class="menu-btn">🏠 Trang chủ</a>
+            <a href="lich-dau.html" class="menu-btn">📅 Lịch đấu</a>
+            <a href="du-doan.html" class="menu-btn">🔮 Phân Tích & Dự Đoán</a>
+            <a href="bang-xep-hang.html" class="menu-btn active">📊 Bảng Xếp Hạng</a>
+            <a href="thong-ke.html" class="menu-btn">📈 Thống kê</a>
+            <a href="tin-nong.html" class="menu-btn">📰 Tin Nóng</a>
+            <a href="ket-qua.html" class="menu-btn">🏆 Kết Quả</a>
+            <a href="livescore.html" class="menu-btn livescore">⚽ LiveScore</a>
+            <a href="gop-y.html" class="menu-btn gopy">💬 Góp Ý</a>
+        </nav>
+
+        <div class="section-head"><h2 class="section-title">🏆 Bảng Xếp Hạng FIFA Đội Tuyển Quốc Gia</h2></div>
+        <div class="widget-bxh">
+<iframe src="https://goalapi.net/nhung/bxh-fifa?theme=dark&lang=vi"
+  id="goalapi-fifa" width="100%" height="600"
+  frameborder="0" loading="lazy" scrolling="auto"
+  style="border:0;border-radius:8px;overflow:hidden"
+  title="Bảng Xếp Hạng FIFA"></iframe>
+        </div>
+
+        <div class="chan-trang">
+            <p><strong>Score Vision</strong> — Bảng Xếp Hạng FIFA</p>
+            <p>© 2026 Score Vision. Tất cả quyền được bảo lưu.</p>
+        </div>
+    </div>
+    <a href="#" class="len-dau" id="btnLenDau">↑</a>
+    <script>
+        const btnLenDau = document.getElementById("btnLenDau");
+        window.addEventListener("scroll", ()=>{
+            if(window.scrollY > 400) btnLenDau.classList.add("hien");
+            else btnLenDau.classList.remove("hien");
+        });
+        btnLenDau.addEventListener("click", e=>{
+            e.preventDefault();
+            window.scrollTo({top:0,behavior:"smooth"});
+        });
+    </script>
+</body>
+</html>
