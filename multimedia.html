@@ -11,14 +11,21 @@
         .breadcrumb a {color:#38bdf8;text-decoration:none;}
 
         /* === THANH TÌM KIẾM === */
-        .khung-tim-chung {background:#0f172a;border:1px solid rgba(148,163,184,.2);border-radius:12px;padding:16px;margin-bottom:32px;}
+        .khung-tim-chung {background:#0f172a;border:1px solid rgba(148,163,184,.2);border-radius:12px;padding:16px;margin-bottom:24px;}
         .khung-tim-chung h2 {font-size:15px;color:#94a3b8;margin-bottom:10px;}
         .tim-chung {display:flex;gap:8px;}
         .tim-chung input {flex:1;padding:12px 14px;background:#1e293b;border:1px solid rgba(148,163,184,.3);border-radius:8px;color:#fff;font-size:15px;}
         .tim-chung button {padding:12px 20px;background:#22c55e;color:#000;border:none;border-radius:8px;font-weight:600;cursor:pointer;}
 
-        /* === KHỐI VIDEO CHÍNH === */
-        .media-top {margin-bottom:40px;}
+        /* === KHUNG KẾT QUẢ TÌM KIẾM === */
+        .ket-qua-tim {background:#0f172a;border:1px solid rgba(34,197,94,.3);border-radius:12px;padding:20px;margin-bottom:32px;display:none;}
+        .ket-qua-tim.hien {display:block;}
+        .ket-qua-tim .tieu-de {font-size:16px;font-weight:700;color:#22c55e;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center;}
+        .nut-dong {background:transparent;border:none;color:#94a3b8;cursor:pointer;font-size:18px;}
+        .luoi-tim {display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+
+        /* === KHỐI PHÁT VIDEO CHÍNH === */
+        .media-top {margin-bottom:32px;}
         .media-main {background:#0f172a;border-radius:12px;overflow:hidden;border:1px solid rgba(148,163,184,.15);}
         .main-video-cover {width:100%;aspect-ratio:16/9;background:#1e293b;}
         .main-video-cover iframe {width:100%;height:100%;border:none;}
@@ -26,37 +33,37 @@
         .main-time {background:#22c55e;color:#fff;font-size:12px;font-weight:600;padding:2px 8px;border-radius:4px;flex-shrink:0;}
         .main-title {font-size:14px;font-weight:600;line-height:1.5;color:#fef9c3;}
 
-        /* === LƯỚI VIDEO === */
+        /* === LƯỚI VIDEO THEO GIẢI === */
         .section-wrap {margin-bottom:40px;}
         .section-head {display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid rgba(148,163,184,.18);}
         .section-title {font-size:16px;font-weight:700;color:#f1f5f9;}
         .video-grid {display:grid;grid-template-columns:repeat(6,1fr);gap:12px;}
 
-        /* === CARD VIDEO - ẢNH BÌA TỪ YOUTUBE === */
-        .video-card {display:block;background:transparent;border-radius:8px;overflow:hidden;cursor:pointer;transition:.2s;position:relative;}
+        /* === CARD VIDEO === */
+        .video-card {display:block;background:transparent;border-radius:8px;overflow:hidden;cursor:pointer;transition:.2s;}
         .video-card:hover {transform:translateY(-2px);}
-        .card-thumb {width:100%;aspect-ratio:16/9;border-radius:6px;overflow:hidden;margin-bottom:6px;position:relative;background:#1e293b;}
-        .card-thumb img {width:100%;height:100%;object-fit:cover;} /* Ảnh bìa THẬT từ YouTube */
-        .card-thumb .play-corner {position:absolute;bottom:4px;left:4px;display:flex;align-items:center;gap:3px;background:rgba(0,0,0,.7);padding:2px 5px;border-radius:3px;}
+        .card-thumb {width:100%;aspect-ratio:16/9;border-radius:6px;overflow:hidden;margin-bottom:8px;position:relative;background:#1e293b;}
+        .card-thumb img {width:100%;height:100%;object-fit:cover;}
+        .card-thumb .play-corner {position:absolute;bottom:6px;left:6px;display:flex;align-items:center;gap:4px;background:rgba(0,0,0,.75);padding:3px 6px;border-radius:4px;}
         .play-corner .tri {width:0;height:0;border-top:5px solid transparent;border-bottom:5px solid transparent;border-left:7px solid #fff;}
-        .play-corner .t {color:#fff;font-size:10px;font-weight:600;}
-        .card-title {font-size:12px;color:#e2e8f0;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
-        .card-time {font-size:11px;color:#64748b;margin-top:2px;}
+        .play-corner .t {color:#fff;font-size:11px;font-weight:600;}
+        .card-title {font-size:13px;color:#e2e8f0;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+        .card-time {font-size:11px;color:#64748b;margin-top:4px;}
 
-        /* === NÚT + HIỆN THÊM === */
+        /* === NÚT HIỆN THÊM === */
         .nut-hien-them {display:flex;align-items:center;justify-content:center;width:36px;height:36px;background:#22c55e;color:#000;border-radius:50%;font-size:20px;font-weight:700;cursor:pointer;transition:.2s;}
         .nut-hien-them:hover {transform:scale(1.1);}
         .an-video {display:none;}
 
         /* === TRẠNG THÁI === */
-        .trang-thai {color:#94a3b8;font-size:13px;padding:20px 0;grid-column:1/-1;text-align:center;}
+        .trang-thai {color:#94a3b8;font-size:14px;padding:30px 0;grid-column:1/-1;text-align:center;}
         .dang-tim {color:#facc15;}
         .loi {color:#f87171;}
 
         /* === RESPONSIVE === */
-        @media (max-width:1024px) {.video-grid {grid-template-columns:repeat(3,1fr);}}
-        @media (max-width:768px) {.media-top {grid-template-columns:1fr;}.video-grid {grid-template-columns:repeat(2,1fr);}}
-        @media (max-width:480px) {.video-grid {grid-template-columns:1fr;}}
+        @media (max-width:1024px) {.video-grid {grid-template-columns:repeat(3,1fr);}.luoi-tim {grid-template-columns:repeat(3,1fr);}}
+        @media (max-width:768px) {.video-grid {grid-template-columns:repeat(2,1fr);}.luoi-tim {grid-template-columns:repeat(2,1fr);}}
+        @media (max-width:480px) {.video-grid {grid-template-columns:1fr;}.luoi-tim {grid-template-columns:1fr;}}
     </style>
 </head>
 <body>
@@ -65,12 +72,25 @@
         <a href="index.html">Trang chủ</a> » <a href="multimedia.html">MultiMedia</a> » Video Bóng Đá
     </div>
 
-    <!-- 🔍 THANH TÌM KIẾM CHUNG -->
+    <!-- 🔍 THANH TÌM KIẾM -->
     <div class="khung-tim-chung">
-        <h2>🔍 Tìm kiếm video bóng đá</h2>
+        <h2>🔍 Tìm kiếm video trên YouTube</h2>
         <div class="tim-chung">
-            <input type="text" id="timChungInput" placeholder="Nhập tên trận đấu, đội bóng...">
+            <input type="text" id="timChungInput" placeholder="Nhập tên trận đấu, đội bóng, giải đấu...">
             <button onclick="timKiemChung()">Tìm</button>
+        </div>
+    </div>
+
+    <!-- ====================================== -->
+    <!-- 📋 KẾT QUẢ TÌM KIẾM — HIỆN DANH SÁCH -->
+    <!-- ====================================== -->
+    <div class="ket-qua-tim" id="khoiKetQuaTim">
+        <div class="tieu-de">
+            <span>📋 Kết quả tìm kiếm: <b id="tuKhoaTim"></b></span>
+            <button class="nut-dong" onclick="dongKetQuaTim()">✕</button>
+        </div>
+        <div class="luoi-tim" id="luoiKetQuaTim">
+            <div class="trang-thai dang-tim">🔄 Đang tìm...</div>
         </div>
     </div>
 
@@ -82,7 +102,7 @@
             </div>
             <div class="main-info">
                 <span class="main-time" id="thoi-luong">--:--</span>
-                <h2 class="main-title" id="ten-video">Bấm vào video bên dưới để xem...</h2>
+                <h2 class="main-title" id="ten-video">Bấm vào bất kỳ video nào để xem...</h2>
             </div>
         </div>
     </div>
@@ -109,17 +129,6 @@
         </div>
     </div>
 
-    <!-- 🇩🇪 BUNDESLIGA -->
-    <div class="section-wrap">
-        <div class="section-head">
-            <h2 class="section-title">🇩🇪 HIGHLIGHT BUNDESLIGA - ĐỨC</h2>
-            <span class="nut-hien-them" onclick="hienThem('Bundesliga')" id="nutBundesliga">+</span>
-        </div>
-        <div class="video-grid" id="grid-Bundesliga">
-            <div class="trang-thai dang-tim">🔄 Đang tìm...</div>
-        </div>
-    </div>
-
     <!-- 🏆 CÚP C1 -->
     <div class="section-wrap">
         <div class="section-head">
@@ -131,46 +140,32 @@
         </div>
     </div>
 
-    <!-- 🇻🇳 V.LEAGUE -->
+    <!-- 🇻🇳 BÓNG ĐÁ VIỆT NAM -->
     <div class="section-wrap">
         <div class="section-head">
-            <h2 class="section-title">🇻🇳 HIGHLIGHT V.LEAGUE 1</h2>
-            <span class="nut-hien-them" onclick="hienThem('VLeague')" id="nutVLeague">+</span>
+            <h2 class="section-title">🇻🇳 HIGHLIGHT BÓNG ĐÁ VIỆT NAM</h2>
+            <span class="nut-hien-them" onclick="hienThem('VN')" id="nutVN">+</span>
         </div>
-        <div class="video-grid" id="grid-VLeague">
-            <div class="trang-thai dang-tim">🔄 Đang tìm...</div>
-        </div>
-    </div>
-
-    <!-- 🇻🇳 ĐỘI TUYỂN VIỆT NAM -->
-    <div class="section-wrap">
-        <div class="section-head">
-            <h2 class="section-title">🇻🇳 HIGHLIGHT ĐỘI TUYỂN VIỆT NAM</h2>
-            <span class="nut-hien-them" onclick="hienThem('DTVN')" id="nutDTVN">+</span>
-        </div>
-        <div class="video-grid" id="grid-DTVN">
+        <div class="video-grid" id="grid-VN">
             <div class="trang-thai dang-tim">🔄 Đang tìm...</div>
         </div>
     </div>
 
     <!-- ====================================== -->
-    <!-- JAVASCRIPT: LẤY ẢNH BÌA TỪ YOUTUBE -->
+    <!-- JAVASCRIPT: TÌM → HIỆN DANH SÁCH ĐÚNG TỪ KHÓA -->
     <!-- ====================================== -->
     <script>
         const YOUTUBE_API_KEY = "AIzaSyCHCSASos1XYkhB4hBSV4MIiADrm6nJSEE";
 
-        // === TỪ KHÓA CHÍNH XÁC HƠN ===
+        // === TỪ KHÓA TÌM MẶC ĐỊNH THEO GIẢI ===
         const KHOI_DU_LIEU = {
-            Anh: { tuKhoa: "Highlight Premier League 2026 full match highlights" },
-            LaLiga: { tuKhoa: "Highlight La Liga 2026 full match highlights" },
-            Bundesliga: { tuKhoa: "Highlight Bundesliga 2026 full match highlights" },
-            C1: { tuKhoa: "Highlight Champions League 2026 full match highlights" },
-            VLeague: { tuKhoa: "Highlight V.League 1 2026 full match" },
-            DTVN: { tuKhoa: "Highlight Đội tuyển Việt Nam trận đấu mới nhất" }
+            Anh: { tuKhoa: "Highlight Premier League full match highlights" },
+            LaLiga: { tuKhoa: "Highlight La Liga full match highlights" },
+            C1: { tuKhoa: "Highlight Champions League full match highlights" },
+            VN: { tuKhoa: "Highlight V.League 1 Đội tuyển Việt Nam trận đấu mới nhất" }
         };
 
-        const DA_HIEN = {}; // Đã hiện thêm chưa
-        const DANH_SACH_VIDEO = {}; // Lưu dữ liệu video
+        const DA_HIEN = {};
 
         // === TẢI DỮ LIỆU KHI MỞ TRANG ===
         window.onload = function() {
@@ -179,7 +174,7 @@
             }
         };
 
-        // === TẢI 12 VIDEO MỚI NHẤT ===
+        // === TẢI 12 VIDEO MỚI NHẤT THEO GIẢI ===
         async function taiKhoi(tenKhoi) {
             const tuKhoa = KHOI_DU_LIEU[tenKhoi].tuKhoa;
             const grid = document.getElementById("grid-" + tenKhoi);
@@ -195,35 +190,81 @@
                     return;
                 }
 
-                DANH_SACH_VIDEO[tenKhoi] = data.items;
-
-                // === HIỂN 6 VIDEO ĐẦU + ẢNH BÌA TỪ YOUTUBE ===
                 let html = "";
                 data.items.forEach((video, viTri) => {
                     const maVideo = video.id.videoId;
                     const tenVideo = video.snippet.title;
                     const ngay = new Date(video.snippet.publishedAt).toLocaleDateString("vi-VN");
-                    // ✅ LẤY ẢNH BÌA THẬT TỪ YOUTUBE
-                    const anhBia = video.snippet.thumbnails?.medium?.url || video.snippet.thumbnails?.default?.url || "";
+                    const anhBia = video.snippet.thumbnails?.medium?.url || "";
                     const an = viTri < 6 ? "" : "an-video";
 
-                    html += `
-                    <div class="video-card ${an}" onclick="phatVideo('${maVideo}', this)">
-                        <div class="card-thumb">
-                            <img src="${anhBia}" alt="Ảnh bìa">
-                            <div class="play-corner"><span class="tri"></span><span class="t">Xem</span></div>
-                        </div>
-                        <h4 class="card-title">${tenVideo}</h4>
-                        <p class="card-time">${ngay}</p>
-                    </div>`;
+                    html += taoCardVideo(maVideo, anhBia, tenVideo, ngay, an);
                 });
 
                 grid.innerHTML = html;
 
             } catch (loi) {
-                grid.innerHTML = `<div class="trang-thai loi">⚠️ Lỗi API</div>`;
-                console.error(loi);
+                grid.innerHTML = `<div class="trang-thai loi">⚠️ Lỗi kết nối API</div>`;
             }
+        }
+
+        // === 🔍 TÌM KIẾM → HIỆN DANH SÁCH VIDEO LIÊN QUAN ===
+        async function timKiemChung() {
+            const tuKhoa = document.getElementById("timChungInput").value.trim();
+            if (!tuKhoa) return;
+
+            // Mở khung kết quả + hiển thị từ khóa
+            document.getElementById("khoiKetQuaTim").classList.add("hien");
+            document.getElementById("tuKhoaTim").textContent = tuKhoa;
+            document.getElementById("luoiKetQuaTim").innerHTML = `<div class="trang-thai dang-tim">🔄 Đang tìm trên YouTube...</div>`;
+
+            try {
+                // Tìm 12 video LIÊN QUAN NHẤT theo từ khóa
+                const res = await fetch(
+                    `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(tuKhoa)}&type=video&key=${YOUTUBE_API_KEY}&maxResults=12&order=relevance`
+                );
+                const data = await res.json();
+
+                if (!data.items || data.items.length === 0) {
+                    document.getElementById("luoiKetQuaTim").innerHTML = `<div class="trang-thai loi">❌ Không tìm thấy video nào phù hợp</div>`;
+                    return;
+                }
+
+                // === HIỆN TOÀN BỘ DANH SÁCH VIDEO TÌM ĐƯỢC ===
+                let html = "";
+                data.items.forEach(video => {
+                    const maVideo = video.id.videoId;
+                    const tenVideo = video.snippet.title;
+                    const ngay = new Date(video.snippet.publishedAt).toLocaleDateString("vi-VN");
+                    const anhBia = video.snippet.thumbnails?.medium?.url || "";
+
+                    html += taoCardVideo(maVideo, anhBia, tenVideo, ngay, "");
+                });
+
+                document.getElementById("luoiKetQuaTim").innerHTML = html;
+
+            } catch (loi) {
+                document.getElementById("luoiKetQuaTim").innerHTML = `<div class="trang-thai loi">⚠️ Lỗi tìm kiếm, vui lòng thử lại</div>`;
+            }
+        }
+
+        // === TẠO THẺ VIDEO DÙNG CHUNG ===
+        function taoCardVideo(maVideo, anhBia, tenVideo, ngay, an) {
+            return `
+            <div class="video-card ${an}" onclick="phatVideo('${maVideo}', this)">
+                <div class="card-thumb">
+                    <img src="${anhBia}" alt="Ảnh bìa video">
+                    <div class="play-corner"><span class="tri"></span><span class="t">Xem</span></div>
+                </div>
+                <h4 class="card-title">${tenVideo}</h4>
+                <p class="card-time">${ngay}</p>
+            </div>`;
+        }
+
+        // === ĐÓNG KẾT QUẢ TÌM KIẾM ===
+        function dongKetQuaTim() {
+            document.getElementById("khoiKetQuaTim").classList.remove("hien");
+            document.getElementById("timChungInput").value = "";
         }
 
         // === HIỆN THÊM 6 VIDEO ===
@@ -235,7 +276,7 @@
             DA_HIEN[tenKhoi] = true;
         }
 
-        // === PHÁT VIDEO ===
+        // === PHÁT VIDEO KHI BẤM ===
         function phatVideo(maVideo, theCard) {
             document.getElementById("video-chinh").src = `https://www.youtube.com/embed/${maVideo}?autoplay=1`;
             document.getElementById("ten-video").textContent = theCard.querySelector(".card-title").textContent;
@@ -243,37 +284,7 @@
             window.scrollTo({top: 0, behavior: "smooth"});
         }
 
-        // === 🔍 TÌM KIẾM CHUNG ===
-        async function timKiemChung() {
-            const tuKhoa = document.getElementById("timChungInput").value.trim();
-            if (!tuKhoa) return;
-
-            document.getElementById("ten-video").innerHTML = `<span class="dang-tim">🔍 Đang tìm: ${tuKhoa}</span>`;
-            document.getElementById("video-chinh").src = "";
-
-            try {
-                const res = await fetch(
-                    `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(tuKhoa)}&type=video&key=${YOUTUBE_API_KEY}&maxResults=1&order=relevance`
-                );
-                const data = await res.json();
-
-                if (!data.items || data.items.length === 0) {
-                    document.getElementById("ten-video").innerHTML = `<span class="loi">❌ Không tìm thấy</span>`;
-                    return;
-                }
-
-                const maVideo = data.items[0].id.videoId;
-                document.getElementById("video-chinh").src = `https://www.youtube.com/embed/${maVideo}?autoplay=1`;
-                document.getElementById("ten-video").textContent = data.items[0].snippet.title;
-                document.getElementById("thoi-luong").textContent = "▶ Phát";
-                window.scrollTo({top: 0, behavior: "smooth"});
-
-            } catch (loi) {
-                document.getElementById("ten-video").innerHTML = `<span class="loi">⚠️ Lỗi tìm kiếm</span>`;
-            }
-        }
-
-        // Nhấn Enter tìm luôn
+        // === Nhấn Enter cũng tìm được ===
         document.getElementById("timChungInput").addEventListener("keydown", e => {
             if (e.key === "Enter") timKiemChung();
         });
