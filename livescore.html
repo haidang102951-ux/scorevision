@@ -6,12 +6,11 @@
     <title>⚽ LiveScore — Tỉ Số Trực Tiếp | Score Vision</title>
     <style>
         *{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;}
-        :root{--bg-main:#030712; --text-primary:#f1f5f9; --accent-green:#22c55e; --accent-gold:#fef08a; --border-subtle:rgba(148,163,184,.15);}
+        :root{--bg-main:#030712; --text-primary:#f1f5f9; --accent-green:#22c55e; --accent-red:#ef4444; --accent-gold:#fef08a; --border-subtle:rgba(148,163,184,.15);}
         body{background:radial-gradient(circle at 20% 0%, rgba(30,64,175,.08) 0%, transparent 50%),radial-gradient(circle at 80% 10%, rgba(34,197,94,.05) 0%, transparent 45%),linear-gradient(180deg,#030712 0%,#0f172a 50%,#030712 100%);color:var(--text-primary);line-height:1.7;min-height:100vh;}
         .container{max-width:1100px;margin:0 auto;padding:0 16px;}
         .dau-trang{text-align:center;padding:30px 10px 10px;}
         .dau-trang h1{font-size:26px;color:#22c55e;}
-        .dau-trang p{color:#94a3b8;font-size:14px;}
         .menu{display:flex;flex-wrap:wrap;gap:6px;margin:20px 0;padding:10px 14px;background:rgba(15,23,42,.65);border-radius:14px;border:1px solid var(--border-subtle);position:sticky;top:8px;z-index:99;}
         .menu a{color:#cbd5e1;text-decoration:none;padding:8px 12px;border-radius:8px;font-size:13px;}
         .menu a:hover,.menu a.active{background:rgba(34,197,94,.12);color:#86efac;}
@@ -28,19 +27,23 @@
         iframe{width:100%;border-radius:10px;border:none;}
         .khung-giai-lon{min-height:480px;background:rgba(15,23,42,.5);border-radius:10px;padding:16px;border:1px solid rgba(59,130,246,.15);}
         .trang-thai{font-size:13px;color:#94a3b8;margin-bottom:10px;}
-        .khung-highlight{text-align:center;padding:15px 5px;}
-        .khung-highlight h3{color:#fef08a;margin-bottom:10px;font-size:16px;}
-        .khung-highlight p{color:#94a3b8;margin-bottom:14px;font-size:13px;}
         .video-iframe{width:100%;height:340px;border-radius:8px;overflow:hidden;}
         .tatca-giai-lon > div{margin-bottom:16px;}
         .chan-trang{margin-top:10px;text-align:center;padding:10px 0;border-top:1px solid var(--border-subtle);font-size:12px;color:#64748b;}
+
+        /* === KHUNG TRỰC TIẾP TV360 === */
+        .khung-truc-tiep-tv{background:linear-gradient(135deg,rgba(239,68,68,.12),rgba(239,68,68,.05));border:2px solid rgba(239,68,68,.4);border-radius:12px;padding:16px;margin-bottom:20px;animation:nhapNhay 2s infinite;}
+        .trang-thai-truc-tiep{display:flex;align-items:center;gap:8px;margin-bottom:12px;}
+        .diem-truc-tiep{width:12px;height:12px;background:#ef4444;border-radius:50%;animation:nhapNhay 1s infinite;}
+        @keyframes nhapNhay{0%{opacity:1}50%{opacity:.3}100%{opacity:1}}
+        .khung-trong{text-align:center;padding:20px 10px;color:#6b7280;font-size:14px;}
     </style>
 </head>
 <body>
 <div class="container">
     <div class="dau-trang">
         <h1>⚽ TỈ SỐ TRỰC TIẾP</h1>
-        <p>Nguồn: GoalAPI + FootballData.io — Tự động cập nhật</p>
+        <p>Nguồn: GoalAPI + FootballData.io + TV360 Thể Thao</p>
     </div>
 <nav class="menu">
     <a href="index.html">🏠 Trang chủ</a>
@@ -66,6 +69,9 @@
             <iframe src="https://goalapi.net/nhung/livescore?theme=dark&lang=vi&accent=3b3b3f" 
             width="100%" height="320" frameborder="0" loading="lazy" scrolling="auto" 
             title="Tất Cả Trận Đang Đá"></iframe>
+
+            <!-- ✅ KHUNG TRỰC TIẾP TV360 → CHỈ HIỂN KHI CÓ TRỰC TIẾP -->
+            <div id="khungTV360"></div>
 
             <!-- ✅ MENU CHỌN GIẢI -->
             <div class="tab-giai">
@@ -97,110 +103,91 @@
     </div>
     
 <div class="chan-trang">
-    <p>🔄 Tự cập nhật liên tục</p>
+    <p>🔄 Tự cập nhật liên tục — Nguồn: TV360 Thể Thao & FootballData.io</p>
 </div>
 </div>
 
 <script>
 // ==================================================
-// ✅ ĐÃ THÊM: VÔ ĐỊCH AFC CHÂU Á
+// ✅ MÃ NHÚNG TỪ FOOTBALLDATA.IO
 // ==================================================
 const MA_NHUNG = {
     tatca: `
 <div class="tatca-giai-lon">
   <div><h4 style="color:#fef08a;margin:4px 0 8px 0;">🏴 Ngoại Hạng Anh</h4>
-  <iframe src="https://footballdata.io/widget/livescore?league=15&theme=dark&accent=2d2a2a&refresh=60" style="width:100%;max-width:100%;height:470px;border:0;border-radius:12px" loading="lazy" title="Ngoại Hạng Anh"></iframe></div>
-
+  <iframe src="https://footballdata.io/widget/livescore?league=15&theme=dark&accent=2d2a2a&refresh=60" style="width:100%;max-width:100%;height:470px;border:0;border-radius:12px" loading="lazy"></iframe></div>
   <div><h4 style="color:#fef08a;margin:16px 0 8px 0;">🏆 Cúp C1 Châu Âu</h4>
-  <iframe src="https://footballdata.io/widget/livescore?league=45&theme=dark&accent=2d2a2a&refresh=60" style="width:100%;max-width:100%;height:470px;border:0;border-radius:12px" loading="lazy" title="Cúp C1"></iframe></div>
-
+  <iframe src="https://footballdata.io/widget/livescore?league=45&theme=dark&accent=2d2a2a&refresh=60" style="width:100%;max-width:100%;height:470px;border:0;border-radius:12px" loading="lazy"></iframe></div>
   <div><h4 style="color:#fef08a;margin:16px 0 8px 0;">🇪🇸 La Liga</h4>
-  <iframe src="https://footballdata.io/widget/livescore?league=10&theme=dark&accent=2d2a2a&refresh=60" style="width:100%;max-width:100%;height:470px;border:0;border-radius:12px" loading="lazy" title="La Liga"></iframe></div>
-
+  <iframe src="https://footballdata.io/widget/livescore?league=10&theme=dark&accent=2d2a2a&refresh=60" style="width:100%;max-width:100%;height:470px;border:0;border-radius:12px" loading="lazy"></iframe></div>
   <div><h4 style="color:#fef08a;margin:16px 0 8px 0;">🇩🇪 Bundesliga</h4>
-  <iframe src="https://footballdata.io/widget/livescore?league=22&theme=dark&accent=2d2a2a&refresh=60" style="width:100%;max-width:100%;height:470px;border:0;border-radius:12px" loading="lazy" title="Bundesliga"></iframe></div>
-
+  <iframe src="https://footballdata.io/widget/livescore?league=22&theme=dark&accent=2d2a2a&refresh=60" style="width:100%;max-width:100%;height:470px;border:0;border-radius:12px" loading="lazy"></iframe></div>
   <div><h4 style="color:#fef08a;margin:16px 0 8px 0;">🇮🇹 Serie A</h4>
-  <iframe src="https://footballdata.io/widget/livescore?league=14&theme=dark&accent=2d2a2a&refresh=60" style="width:100%;max-width:100%;height:470px;border:0;border-radius:12px" loading="lazy" title="Serie A"></iframe></div>
-
+  <iframe src="https://footballdata.io/widget/livescore?league=14&theme=dark&accent=2d2a2a&refresh=60" style="width:100%;max-width:100%;height:470px;border:0;border-radius:12px" loading="lazy"></iframe></div>
   <div><h4 style="color:#fef08a;margin:16px 0 8px 0;">🇫🇷 Ligue 1 Pháp</h4>
-  <iframe src="https://footballdata.io/widget/livescore?league=164&theme=dark&accent=2d2a2a&refresh=60" style="width:100%;max-width:100%;height:470px;border:0;border-radius:12px" loading="lazy" title="Ligue 1"></iframe></div>
-
+  <iframe src="https://footballdata.io/widget/livescore?league=164&theme=dark&accent=2d2a2a&refresh=60" style="width:100%;max-width:100%;height:470px;border:0;border-radius:12px" loading="lazy"></iframe></div>
   <div><h4 style="color:#fef08a;margin:16px 0 8px 0;">🇪🇸 Siêu Cúp Tây Ban Nha</h4>
-  <iframe src="https://footballdata.io/widget/livescore?league=13&theme=dark&accent=2d2a2a&refresh=60" style="width:100%;max-width:100%;height:470px;border:0;border-radius:12px" loading="lazy" title="Siêu Cúp Tây Ban Nha"></iframe></div>
-
+  <iframe src="https://footballdata.io/widget/livescore?league=13&theme=dark&accent=2d2a2a&refresh=60" style="width:100%;max-width:100%;height:470px;border:0;border-radius:12px" loading="lazy"></iframe></div>
   <div><h4 style="color:#fef08a;margin:16px 0 8px 0;">🏆 Euro League</h4>
-  <iframe src="https://footballdata.io/widget/livescore?league=46&theme=dark&accent=2d2a2a&refresh=60" style="width:100%;max-width:100%;height:470px;border:0;border-radius:12px" loading="lazy" title="Euro League"></iframe></div>
-
+  <iframe src="https://footballdata.io/widget/livescore?league=46&theme=dark&accent=2d2a2a&refresh=60" style="width:100%;max-width:100%;height:470px;border:0;border-radius:12px" loading="lazy"></iframe></div>
   <div><h4 style="color:#fef08a;margin:16px 0 8px 0;">🏴 Cúp FA Anh</h4>
-  <iframe src="https://footballdata.io/widget/livescore?league=20&theme=dark&accent=2d2a2a&refresh=60" style="width:100%;max-width:100%;height:470px;border:0;border-radius:12px" loading="lazy" title="Cúp FA Anh"></iframe></div>
-
+  <iframe src="https://footballdata.io/widget/livescore?league=20&theme=dark&accent=2d2a2a&refresh=60" style="width:100%;max-width:100%;height:470px;border:0;border-radius:12px" loading="lazy"></iframe></div>
   <div><h4 style="color:#fef08a;margin:16px 0 8px 0;">🏴 Cúp Liên Đoàn Anh</h4>
-  <iframe src="https://footballdata.io/widget/livescore?league=21&theme=dark&accent=2d2a2a&refresh=60" style="width:100%;max-width:100%;height:470px;border:0;border-radius:12px" loading="lazy" title="Cúp Liên Đoàn Anh"></iframe></div>
-
+  <iframe src="https://footballdata.io/widget/livescore?league=21&theme=dark&accent=2d2a2a&refresh=60" style="width:100%;max-width:100%;height:470px;border:0;border-radius:12px" loading="lazy"></iframe></div>
   <div><h4 style="color:#fef08a;margin:16px 0 8px 0;">🌍 Giải Vô Địch Quốc Tế</h4>
-  <iframe src="https://footballdata.io/widget/livescore?league=50&theme=dark&accent=2d2a2a&refresh=60" style="width:100%;max-width:100%;height:470px;border:0;border-radius:12px" loading="lazy" title="Giải Vô Địch Quốc Tế"></iframe></div>
-
+  <iframe src="https://footballdata.io/widget/livescore?league=50&theme=dark&accent=2d2a2a&refresh=60" style="width:100%;max-width:100%;height:470px;border:0;border-radius:12px" loading="lazy"></iframe></div>
   <div><h4 style="color:#fef08a;margin:16px 0 8px 0;">🏆 Vô Địch AFC Châu Á</h4>
-  <iframe src="https://footballdata.io/widget/livescore?league=153&theme=dark&accent=2d2a2a&refresh=60" style="width:100%;max-width:100%;height:470px;border:0;border-radius:12px" loading="lazy" title="Vô Địch AFC Châu Á"></iframe></div>
+  <iframe src="https://footballdata.io/widget/livescore?league=153&theme=dark&accent=2d2a2a&refresh=60" style="width:100%;max-width:100%;height:470px;border:0;border-radius:12px" loading="lazy"></iframe></div>
 </div>`,
-
-    anh: `<iframe src="https://footballdata.io/widget/livescore?league=15&theme=dark&accent=2d2a2a&refresh=60" style="width:100%;max-width:100%;height:470px;border:0;border-radius:12px" loading="lazy" title="Ngoại Hạng Anh"></iframe>`,
-
-    c1: `<iframe src="https://footballdata.io/widget/livescore?league=45&theme=dark&accent=2d2a2a&refresh=60" style="width:100%;max-width:100%;height:470px;border:0;border-radius:12px" loading="lazy" title="Cúp C1"></iframe>`,
-
-    laliga: `<iframe src="https://footballdata.io/widget/livescore?league=10&theme=dark&accent=2d2a2a&refresh=60" style="width:100%;max-width:100%;height:470px;border:0;border-radius:12px" loading="lazy" title="La Liga"></iframe>`,
-
-    bundesliga: `<iframe src="https://footballdata.io/widget/livescore?league=22&theme=dark&accent=2d2a2a&refresh=60" style="width:100%;max-width:100%;height:470px;border:0;border-radius:12px" loading="lazy" title="Bundesliga"></iframe>`,
-
-    italia: `<iframe src="https://footballdata.io/widget/livescore?league=14&theme=dark&accent=2d2a2a&refresh=60" style="width:100%;max-width:100%;height:470px;border:0;border-radius:12px" loading="lazy" title="Serie A"></iframe>`,
-
-    vn: `<iframe src="https://footballdata.io/widget/livescore?league=164&theme=dark&accent=2d2a2a&refresh=60" style="width:100%;max-width:100%;height:470px;border:0;border-radius:12px" loading="lazy" title="Việt Nam"></iframe>`
+    anh: `<iframe src="https://footballdata.io/widget/livescore?league=15&theme=dark&accent=2d2a2a&refresh=60" style="width:100%;max-width:100%;height:470px;border:0;border-radius:12px" loading="lazy"></iframe>`,
+    c1: `<iframe src="https://footballdata.io/widget/livescore?league=45&theme=dark&accent=2d2a2a&refresh=60" style="width:100%;max-width:100%;height:470px;border:0;border-radius:12px" loading="lazy"></iframe>`,
+    laliga: `<iframe src="https://footballdata.io/widget/livescore?league=10&theme=dark&accent=2d2a2a&refresh=60" style="width:100%;max-width:100%;height:470px;border:0;border-radius:12px" loading="lazy"></iframe>`,
+    bundesliga: `<iframe src="https://footballdata.io/widget/livescore?league=22&theme=dark&accent=2d2a2a&refresh=60" style="width:100%;max-width:100%;height:470px;border:0;border-radius:12px" loading="lazy"></iframe>`,
+    italia: `<iframe src="https://footballdata.io/widget/livescore?league=14&theme=dark&accent=2d2a2a&refresh=60" style="width:100%;max-width:100%;height:470px;border:0;border-radius:12px" loading="lazy"></iframe>`,
+    vn: `<iframe src="https://footballdata.io/widget/livescore?league=164&theme=dark&accent=2d2a2a&refresh=60" style="width:100%;max-width:100%;height:470px;border:0;border-radius:12px" loading="lazy"></iframe>`
 };
 
 // ==================================================
-// ✅ KÊNH YOUTUBE TV360 → HIỂN KHI KHÔNG CÓ TRẬN
+// ✅ KÊNH YOUTUBE TV360 THỂ THAO
 // ==================================================
-const MA_PLAYLIST_TV360 = "UUZb5QZ9bF8WzC7xQ6dR9gA";
+const KHUNG_TV360 = document.getElementById("khungTV360");
 
-function layLinkTV360() {
-    return `<div style="text-align:center;padding:30px 10px;color:#94a3b8;">
-        <h3 style="color:#fef08a;margin-bottom:10px;">🎬 Chưa có trận đang diễn ra</h3>
-        <p>Xem highlight mới nhất từ TV360 Thể Thao</p>
-        <iframe class="video-iframe" src="https://www.youtube.com/embed/?listType=playlist&list=${MA_PLAYLIST_TV360}" allowfullscreen loading="lazy"></iframe>
-    </div>`;
+// === KIỂM TRA TRỰC TIẾP TV360 ===
+function kiemTraTrucTiepTV360(){
+  // Nhúng kênh TV360 → YouTube TỰ HIỂN TRỰC TIẾP khi có, ẨN khi không có
+  KHUNG_TV360.innerHTML = `
+  <div class="khung-truc-tiep-tv">
+    <div class="trang-thai-truc-tiep">
+      <span class="diem-truc-tiep"></span>
+      <span style="color:#ef4444;font-weight:600;">🔴 TRỰC TIẾP — TV360 Thể Thao</span>
+    </div>
+    <iframe class="video-iframe" 
+      src="https://www.youtube.com/embed/live_stream?channel=UCzFbV2hP3sY9LbP8q9x7wXg" 
+      allowfullscreen allow="autoplay; fullscreen" loading="lazy"
+      title="Xem Trực Tiếp TV360"></iframe>
+  </div>`;
 }
 
-// === HIỂN TỶ SỐ HOẶC HIGHLIGHT ===
+// === HIỂN TỶ SỐ GIẢI ===
 function hienTySoGiaiLon(){
-    const tenGiai = {
-        tatca: "Tất Cả Giải Lớn",
-        anh: "Ngoại Hạng Anh",
-        c1: "Cúp C1",
-        laliga: "La Liga",
-        bundesliga: "Bundesliga",
-        italia: "Serie A",
-        vn: "Việt Nam"
-    };
+  const tenGiai = {
+    tatca: "Tất Cả Giải Lớn", anh: "Ngoại Hạng Anh", c1: "Cúp C1",
+    laliga: "La Liga", bundesliga: "Bundesliga", italia: "Serie A", vn: "Việt Nam"
+  };
 
-    if(MA_NHUNG[GIAI_DANG_XEM]) {
-        trangThai.textContent = "🔄 Đang tải dữ liệu " + tenGiai[GIAI_DANG_XEM] + "...";
-        khungGiaiLon.innerHTML = MA_NHUNG[GIAI_DANG_XEM];
-        setTimeout(()=>{
-            trangThai.textContent = "✅ Đã cập nhật — " + tenGiai[GIAI_DANG_XEM];
-        }, 8000);
-    } else {
-        khungGiaiLon.innerHTML = layLinkTV360();
-        trangThai.textContent = "⚠️ Chưa có trận đang đá → Xem Highlight";
-    }
+  if(MA_NHUNG[GIAI_DANG_XEM]) {
+    trangThai.textContent = "🔄 Đang tải " + tenGiai[GIAI_DANG_XEM] + "...";
+    khungGiaiLon.innerHTML = MA_NHUNG[GIAI_DANG_XEM];
+    setTimeout(()=>{ trangThai.textContent = "✅ Đã cập nhật — " + tenGiai[GIAI_DANG_XEM]; }, 8000);
+  }
 }
 
 // === CHUYỂN TAB ===
 function chuyenTab(tenTab) {
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-    event.target.classList.add('active');
-    document.getElementById('tab-' + tenTab).classList.add('active');
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  event.target.classList.add('active');
+  document.getElementById('tab-' + tenTab).classList.add('active');
 }
 
 // === BẤM CHỌN GIẢI ===
@@ -210,16 +197,20 @@ const khungGiaiLon = document.getElementById("khungGiaiLon");
 const trangThai = document.getElementById("trangThai");
 
 BTN_GIAI.forEach(btn => {
-    btn.addEventListener("click", () => {
-        BTN_GIAI.forEach(b => b.classList.remove("active"));
-        btn.classList.add("active");
-        GIAI_DANG_XEM = btn.dataset.giai;
-        hienTySoGiaiLon();
-    });
+  btn.addEventListener("click", () => {
+    BTN_GIAI.forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    GIAI_DANG_XEM = btn.dataset.giai;
+    hienTySoGiaiLon();
+  });
 });
 
-// === MỞ TRANG → HIỂN TẤT CẢ GIẢI ===
+// === MỞ TRANG → KIỂM TRA TRỰC TIẾP NGAY ===
+kiemTraTrucTiepTV360();
 hienTySoGiaiLon();
+
+// === TỰ KIỂM TRA MỖI 5 PHÚT ===
+setInterval(kiemTraTrucTiepTV360, 300000);
 </script>
 </body>
 </html>
