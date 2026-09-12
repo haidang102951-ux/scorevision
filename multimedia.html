@@ -41,12 +41,13 @@
         .nut-dong {background:transparent;border:none;color:#94a3b8;cursor:pointer;font-size:20px;font-weight:bold;}
         .luoi-tim {display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
         .media-top {margin-bottom:32px;}
-        .media-main {background:#0f172a;border-radius:12px;overflow:hidden;border:1px solid rgba(148,163,184,.15);}
-        .main-video-cover {width:100%;aspect-ratio:16/9;background:#1e293b;}
+        .media-main {background:linear-gradient(135deg,rgba(34,197,94,.08),rgba(59,130,246,.05));border-radius:12px;overflow:hidden;border:2px solid rgba(34,197,94,.25);box-shadow:0 4px 20px rgba(34,197,94,.1);}
+        .main-video-cover {width:100%;aspect-ratio:16/9;background:#1e293b;position:relative;cursor:pointer;}
         .main-video-cover iframe {width:100%;height:100%;border:none;}
+        .main-video-cover .label-moi-nhat {position:absolute;top:10px;left:10px;background:#22c55e;color:#000;font-size:12px;font-weight:700;padding:4px 10px;border-radius:6px;z-index:2;}
         .main-info {padding:16px 18px;display:flex;align-items:center;gap:10px;}
         .main-time {background:#22c55e;color:#fff;font-size:12px;font-weight:600;padding:2px 8px;border-radius:4px;flex-shrink:0;}
-        .main-title {font-size:14px;font-weight:600;line-height:1.5;color:#fef9c3;}
+        .main-title {font-size:15px;font-weight:700;line-height:1.5;color:#fef9c3;}
         .section-wrap {margin-bottom:40px;}
         .section-head {display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid rgba(148,163,184,.18);}
         .section-title {font-size:16px;font-weight:700;color:#f1f5f9;}
@@ -65,6 +66,7 @@
         .an-video {display:none;}
         .trang-thai {color:#94a3b8;font-size:14px;padding:40px 0;grid-column:1/-1;text-align:center;}
         .dang-tim {color:#facc15;}
+        .co-du-lieu {color:#22c55e;}
         .loi {color:#f87171;}
         @media (max-width:1024px) {.video-grid {grid-template-columns:repeat(3,1fr);}.luoi-tim {grid-template-columns:repeat(3,1fr);}}
         @media (max-width:768px) {.video-grid {grid-template-columns:repeat(2,1fr);}.luoi-tim {grid-template-columns:repeat(2,1fr);}}
@@ -104,17 +106,21 @@
             <div class="trang-thai dang-tim">🔄 Đang tìm trên YouTube...</div>
         </div>
     </div>
+
+    <!-- ✅ KHỐI VIDEO NỔI BẬT MỚI NHẤT -->
     <div class="media-top">
         <div class="media-main">
-            <div class="main-video-cover">
-                <iframe id="video-chinh" src="" title="Video chính" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <div class="main-video-cover" id="khoiVideoMoiNhat" onclick="phatVideoChinh()">
+                <span class="label-moi-nhat">🔥 MỚI NHẤT</span>
+                <iframe id="video-chinh" src="" title="Video nổi bật mới nhất" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
             <div class="main-info">
                 <span class="main-time" id="thoi-luong">--:--</span>
-                <h2 class="main-title" id="ten-video">Bấm vào bất kỳ video nào bên dưới để xem...</h2>
+                <h2 class="main-title" id="ten-video">🔄 Đang tải video nổi bật mới nhất...</h2>
             </div>
         </div>
     </div>
+
     <div class="section-wrap">
         <div class="section-head">
             <h2 class="section-title">🏴 HIGHLIGHT NGOẠI HẠNG ANH</h2>
@@ -153,35 +159,40 @@
     </div>
 
     <script>
-        // === 🔑 LẤY KEY TỪ SHEET ===
-        const LINK_WEB_APP = "https://script.google.com/macros/s/AKfycbzKGE_sRBCVdUwIsQOFV56_KTjHErvXCmDA7ZcFFOOe04Oe6s_iFKhBT0FY5Kz4zXVeaA/exec";
-        let YOUTUBE_API_KEY = "";
+        // ==================================================
+        // 🔑 GỌI QUA SCRIPT — KHÔNG LỘ KEY RA HTML
+        // ==================================================
+        const LINK_SCRIPT = "https://script.google.com/macros/s/AKfycbwpTrCytrlvpzXNVCS4R-PGyVxPCnIIC91-OBbr57SJcq0LWYSQA8EzvgYktENNsDxFsg/exec";
 
-        // === ⚙️ 2 GIỜ = 7200000ms ===
-        const THOI_GIAN_CAP_NHAT = 2 * 60 * 60 * 1000;
+        // ⏱️ CẤU HÌNH THEO YÊU CẦU:
+        const THOI_GIAN_QUET_LAI = 3 * 60 * 60 * 1000;  // ✅ 3 giờ quét lại 1 lần
+        const SO_NGAY_GAN_NHAT = 3;                      // ✅ Tìm video trong 3 ngày gần nhất
 
-        // === ⚽ DANH SÁCH GIẢI ===
+        // ⚽ DANH SÁCH TỪ KHÓA TÌM VIDEO THEO GIẢI
         const KHOI_DU_LIEU = {
-            Anh: { tuKhoa: "Premier League highlights 2026" },
-            LaLiga: { tuKhoa: "La Liga highlights 2026" },
-            C1: { tuKhoa: "Champions League highlights 2026" },
-            VN: { tuKhoa: "Vietnam football highlights 2026" }
+            Anh:    { tuKhoa: "Premier League highlights" },
+            LaLiga: { tuKhoa: "La Liga highlights" },
+            C1:     { tuKhoa: "Champions League highlights" },
+            VN:     { tuKhoa: "Vietnam football highlights" }
         };
         const DA_HIEN = {};
+        let VIDEO_MOI_NHAT = null; // ✅ Lưu video mới nhất
 
-        // === 💾 LƯU / LẤY DỮ LIỆU ===
+        // 📅 TÍNH NGÀY X NGÀY TRƯỚC → ĐỊNH DẠNG ISO CHO YOUTUBE API
+        function layNgayXNgayTruoc(soNgay) {
+            const d = new Date();
+            d.setDate(d.getDate() - soNgay);
+            return d.toISOString();
+        }
+
+        // 💾 LƯU / LẤY DỮ LIỆU CŨ
         function layDuLieuLocal(maGiai) {
             try {
                 const luu = localStorage.getItem(`video_${maGiai}`);
                 if (!luu) return null;
-                const duLieu = JSON.parse(luu);
-                if (Date.now() - duLieu.thoiGian < THOI_GIAN_CAP_NHAT) {
-                    return duLieu;
-                }
-                return null;
+                return JSON.parse(luu);
             } catch (e) { return null; }
         }
-
         function luuDuLieuLocal(maGiai, danhSachVideo) {
             localStorage.setItem(`video_${maGiai}`, JSON.stringify({
                 thoiGian: Date.now(),
@@ -189,79 +200,118 @@
             }));
         }
 
-        // === 🔑 LẤY KEY ===
-        async function layKeyTuSheet() {
+        // 📡 GỌI SCRIPT → TÌM VIDEO TRONG 3 NGÀY GẦN NHẤT
+        async function goiYouTubeAPI(tuKhoa, maxResults=12, order="date") {
+            const ngay3NgayTruoc = layNgayXNgayTruoc(SO_NGAY_GAN_NHAT);
+            const url = `${LINK_SCRIPT}?q=${encodeURIComponent(tuKhoa)}&maxResults=${maxResults}&order=${order}&publishedAfter=${encodeURIComponent(ngay3NgayTruoc)}`;
+            const res = await fetch(url);
+            const data = await res.json();
+            if (data.error) throw new Error(data.error);
+            return data;
+        }
+
+        // 🔥 TÌM VIDEO MỚI NHẤT TRONG TẤT CẢ GIẢI → HIỂN THỊ KHỐI LỚN
+        async function taiVideoMoiNhat() {
+            const tuKhoa = "football highlights yesterday today";
             try {
-                const res = await fetch(LINK_WEB_APP);
-                YOUTUBE_API_KEY = await res.text();
-                YOUTUBE_API_KEY = YOUTUBE_API_KEY.trim();
-                if (!YOUTUBE_API_KEY || YOUTUBE_API_KEY.startsWith("❌")) {
-                    alert("❌ Không lấy được Key từ Sheet");
-                    return false;
+                const data = await goiYouTubeAPI(tuKhoa, 1, "date");
+                if (data.items && data.items.length > 0) {
+                    VIDEO_MOI_NHAT = data.items[0];
+                    capNhatKhoiVideoChinh(VIDEO_MOI_NHAT);
+                } else {
+                    document.getElementById("ten-video").textContent = "Bấm vào bất kỳ video nào bên dưới để xem...";
+                    document.getElementById("thoi-luong").textContent = "--:--";
                 }
-                return true;
-            } catch (e) {
-                alert("❌ Lỗi kết nối lấy Key");
-                return false;
+            } catch {
+                document.getElementById("ten-video").textContent = "Bấm vào bất kỳ video nào bên dưới để xem...";
+                document.getElementById("thoi-luong").textContent = "--:--";
             }
         }
 
-        // === 🚀 VÀO TRANG → HIỆN VIDEO NGAY ===
-        window.onload = async function() {
-            const layThanhCong = await layKeyTuSheet();
-            if (!layThanhCong) return;
+        // ✅ CẬP NHẬT KHỐI VIDEO CHÍNH = VIDEO MỚI NHẤT
+        function capNhatKhoiVideoChinh(video) {
+            const maVideo = video.id.videoId;
+            document.getElementById("video-chinh").src = `https://www.youtube.com/embed/${maVideo}`;
+            document.getElementById("ten-video").textContent = video.snippet.title;
+            document.getElementById("thoi-luong").textContent = "🔥 Mới nhất";
+        }
 
-            // TẤT CẢ GIẢI → TẢI VIDEO NGAY
+        // ▶ PHÁT VIDEO KHI BẤM KHỐI CHÍNH
+        function phatVideoChinh() {
+            if (!VIDEO_MOI_NHAT) return;
+            const maVideo = VIDEO_MOI_NHAT.id.videoId;
+            document.getElementById("video-chinh").src = `https://www.youtube.com/embed/${maVideo}?autoplay=1`;
+        }
+
+        // 🚀 VÀO TRANG → TẢI VIDEO MỚI NHẤT + TẤT CẢ KHỐI
+        window.onload = async function() {
+            await taiVideoMoiNhat(); // ✅ Tải video mới nhất trước
             for (let tenKhoi in KHOI_DU_LIEU) {
                 taiKhoi(tenKhoi);
             }
         };
 
-        // === 📥 TẢI VIDEO → CÓ LƯU THÌ LẤY LƯU, HẾT HẠN MỚI GỌI MỚI ===
+        // 📥 TẢI VIDEO → QUÉT MỚI SAU 3 GIỜ, KHÔNG CÓ MỚI → DÙNG CŨ
         async function taiKhoi(tenKhoi) {
             const tuKhoa = KHOI_DU_LIEU[tenKhoi].tuKhoa;
             const grid = document.getElementById("grid-" + tenKhoi);
             const btn = document.getElementById("nut" + tenKhoi);
 
-            // ✅ CÓ LƯU CHƯA ĐẾN 2 GIỜ → HIỆN LƯU NGAY, KHÔNG GỌI API
+            // ✅ LẤY DỮ LIỆU CŨ
             const duLieuCu = layDuLieuLocal(tenKhoi);
-            if (duLieuCu) {
+            const daDenThoiGianQuet = !duLieuCu || (Date.now() - duLieuCu.thoiGian) > THOI_GIAN_QUET_LAI;
+
+            // ✅ CHƯA ĐẾN 3 GIỜ → DÙNG CŨ, KHÔNG GỌI API
+            if (!daDenThoiGianQuet) {
                 hienThiVideo(tenKhoi, duLieuCu.danhSach);
                 btn.textContent = "✓";
-                btn.style.background = "#64748b";
+                btn.style.background = "#22c55e";
                 return;
             }
 
-            // ⏳ HẾT HẠN → GỌI API LẤY MỚI
-            grid.innerHTML = `<div class="trang-thai dang-tim">🔄 Đang tải video mới...</div>`;
+            // ⏳ ĐẾN 3 GIỜ → QUÉT MỚI
+            grid.innerHTML = `<div class="trang-thai dang-tim">🔄 Kiểm tra video mới...</div>`;
             btn.textContent = "⏳";
 
             try {
-                const res = await fetch(
-                    `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(tuKhoa)}&type=video&key=${YOUTUBE_API_KEY}&maxResults=12&order=date&videoDuration=any`
-                );
-                if (!res.ok) throw new Error("API lỗi: " + res.status);
-                const data = await res.json();
+                const data = await goiYouTubeAPI(tuKhoa, 12, "date");
 
+                // ✅ KHÔNG CÓ VIDEO MỚI → DÙNG DỮ LIỆU CŨ
                 if (!data.items || data.items.length === 0) {
-                    grid.innerHTML = `<div class="trang-thai loi">❌ Không tìm thấy video</div>`;
+                    if (duLieuCu && duLieuCu.danhSach && duLieuCu.danhSach.length > 0) {
+                        hienThiVideo(tenKhoi, duLieuCu.danhSach);
+                        grid.insertAdjacentHTML("afterbegin", `<div style="grid-column:1/-1;text-align:center;color:#94a3b8;font-size:13px;padding:4px 0;">ℹ️ Chưa có video mới — hiển thị video gần nhất</div>`);
+                        btn.textContent = "✓";
+                        btn.style.background = "#64748b";
+                        return;
+                    }
+                    // Hoàn toàn không có dữ liệu
+                    grid.innerHTML = `<div class="trang-thai loi">❌ Chưa có video nào</div>`;
                     btn.textContent = "+";
                     return;
                 }
 
-                // ✅ LƯU LẠI → 2 GIỜ SAU MỚI LẤY MỚI
+                // ✅ CÓ VIDEO MỚI → LƯU & HIỂN THỊ
                 luuDuLieuLocal(tenKhoi, data.items);
                 hienThiVideo(tenKhoi, data.items);
                 btn.textContent = "✓";
-                btn.style.background = "#64748b";
+                btn.style.background = "#22c55e";
 
             } catch (loi) {
-                grid.innerHTML = `<div class="trang-thai loi">⚠️ Lỗi kết nối API</div>`;
-                btn.textContent = "+";
+                // ❌ LỖI → DÙNG DỮ LIỆU CŨ NẾU CÓ
+                if (duLieuCu && duLieuCu.danhSach && duLieuCu.danhSach.length > 0) {
+                    hienThiVideo(tenKhoi, duLieuCu.danhSach);
+                    grid.insertAdjacentHTML("afterbegin", `<div style="grid-column:1/-1;text-align:center;color:#f87171;font-size:13px;padding:4px 0;">⚠️ Lỗi kết nối — hiển thị video gần nhất</div>`);
+                    btn.textContent = "✓";
+                    btn.style.background = "#64748b";
+                } else {
+                    grid.innerHTML = `<div class="trang-thai loi">⚠️ Không tải được video</div>`;
+                    btn.textContent = "+";
+                }
             }
         }
 
-        // === 🖼️ HIỂN THỊ VIDEO ===
+        // 🖼️ HIỂN THỊ DANH SÁCH VIDEO
         function hienThiVideo(tenKhoi, danhSach) {
             const grid = document.getElementById("grid-" + tenKhoi);
             let html = "";
@@ -276,28 +326,20 @@
             grid.innerHTML = html;
         }
 
-        // === 🔍 TÌM KIẾM → GỌI API NGAY ===
+        // 🔍 TÌM KIẾM TỪ KHÓA NGAY LẬP TỨC
         async function timKiemChung() {
             const tuKhoa = document.getElementById("timChungInput").value.trim();
             if (!tuKhoa) return;
-
             document.getElementById("khoiKetQuaTim").classList.add("hien");
             document.getElementById("tuKhoaTim").textContent = tuKhoa;
             document.getElementById("luoiKetQuaTim").innerHTML = `<div class="trang-thai dang-tim">🔄 Đang tìm trên YouTube...</div>`;
 
-            const tuKhoaTim = tuKhoa + " football highlights";
-
             try {
-                const res = await fetch(
-                    `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(tuKhoaTim)}&type=video&key=${YOUTUBE_API_KEY}&maxResults=12&order=relevance&videoDuration=any`
-                );
-                const data = await res.json();
-
+                const data = await goiYouTubeAPI(tuKhoa + " football highlights", 12, "relevance");
                 if (!data.items || data.items.length === 0) {
-                    document.getElementById("luoiKetQuaTim").innerHTML = `<div class="trang-thai loi">❌ Không tìm thấy video nào phù hợp</div>`;
+                    document.getElementById("luoiKetQuaTim").innerHTML = `<div class="trang-thai loi">❌ Không tìm thấy video phù hợp</div>`;
                     return;
                 }
-
                 let html = "";
                 data.items.forEach(video => {
                     const maVideo = video.id.videoId;
@@ -306,21 +348,19 @@
                     const anhBia = video.snippet.thumbnails?.medium?.url || "";
                     html += taoCardVideo(maVideo, anhBia, tenVideo, ngay, "");
                 });
-
                 document.getElementById("luoiKetQuaTim").innerHTML = html;
                 document.getElementById("video-chinh").src = "";
                 document.getElementById("ten-video").textContent = "✅ Có " + data.items.length + " video → Bấm vào xem";
                 document.getElementById("thoi-luong").textContent = "Chọn xem";
-
             } catch (loi) {
-                document.getElementById("luoiKetQuaTim").innerHTML = `<div class="trang-thai loi">⚠️ Lỗi tìm kiếm, thử lại sau</div>`;
+                document.getElementById("luoiKetQuaTim").innerHTML = `<div class="trang-thai loi">⚠️ ${loi.message}</div>`;
             }
         }
 
-        // === 🎬 TẠO CARD VIDEO ===
+        // 🎬 TẠO THẺ VIDEO
         function taoCardVideo(maVideo, anhBia, tenVideo, ngay, an) {
             return `
-            <div class="video-card ${an}" onclick="phatVideo('${maVideo}', this)">
+            <div class="video-card ${an}" onclick="phatVideoTuList('${maVideo}', this)">
                 <div class="card-thumb">
                     <img src="${anhBia}" alt="Ảnh bìa video" loading="lazy">
                     <div class="play-corner"><span class="tri"></span><span class="t">Xem</span></div>
@@ -330,7 +370,15 @@
             </div>`;
         }
 
-        // === ❌ ĐÓNG KẾT QUẢ TÌM KIẾM ===
+        // ▶ PHÁT VIDEO KHI BẤM TRONG DANH SÁCH
+        function phatVideoTuList(maVideo, theCard) {
+            document.getElementById("video-chinh").src = `https://www.youtube.com/embed/${maVideo}?autoplay=1`;
+            document.getElementById("ten-video").textContent = theCard.querySelector(".card-title").textContent;
+            document.getElementById("thoi-luong").textContent = "▶ Đang phát";
+            VIDEO_MOI_NHAT = {id:{videoId:maVideo}, snippet:{title:theCard.querySelector(".card-title").textContent}};
+        }
+
+        // ❌ ĐÓNG KẾT QUẢ TÌM KIẾM
         function dongKetQuaTim() {
             document.getElementById("khoiKetQuaTim").classList.remove("hien");
             document.getElementById("timChungInput").value = "";
@@ -339,7 +387,7 @@
             document.getElementById("thoi-luong").textContent = "--:--";
         }
 
-        // === ➕ HIỂN THÊM ===
+        // ➕ HIỆN THÊM 6 VIDEO NỮA
         function hienThem(tenKhoi) {
             if (DA_HIEN[tenKhoi]) return;
             document.querySelectorAll("#grid-" + tenKhoi + " .an-video").forEach(c => c.classList.remove("an-video"));
@@ -348,15 +396,7 @@
             DA_HIEN[tenKhoi] = true;
         }
 
-        // === ▶ PHÁT VIDEO ===
-        function phatVideo(maVideo, theCard) {
-            document.getElementById("video-chinh").src = `https://www.youtube.com/embed/${maVideo}?autoplay=1`;
-            document.getElementById("ten-video").textContent = theCard.querySelector(".card-title").textContent;
-            document.getElementById("thoi-luong").textContent = "▶ Đang phát";
-            window.scrollTo({ top: 0, behavior: "smooth" });
-        }
-
-        // === ⌨️ Enter tìm kiếm ===
+        // ⌨️ NHẤN ENTER ĐỂ TÌM
         document.getElementById("timChungInput").addEventListener("keydown", e => {
             if (e.key === "Enter") timKiemChung();
         });
