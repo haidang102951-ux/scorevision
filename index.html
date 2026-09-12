@@ -194,6 +194,60 @@
             .phan-tich-track{animation:none;overflow-x:auto}
         }
 
+
+        /* === INTRO 2 CỘT + FOOTBALLDATA WIDGET === */
+        .intro{
+            display:grid;
+            grid-template-columns:minmax(0,1fr) minmax(360px,460px);
+            gap:24px;
+            align-items:center;
+            padding:24px;
+            overflow:hidden;
+        }
+        .intro-copy{min-width:0}
+        .intro-copy .eyebrow{margin-bottom:10px}
+        .intro-copy h1{margin-bottom:10px}
+        .intro-copy p{max-width:760px}
+        .intro-widget{
+            width:100%;
+            max-width:460px;
+            height:470px;
+            min-height:470px;
+            justify-self:end;
+            overflow:hidden;
+            border:1px solid rgba(148,163,184,.18);
+            border-radius:14px;
+            background:#080d18;
+            box-shadow:0 10px 30px rgba(0,0,0,.22);
+        }
+        .intro-widget iframe{
+            display:block;
+            width:100%;
+            max-width:460px;
+            height:470px;
+            border:0;
+            border-radius:12px;
+        }
+        @media(max-width:900px){
+            .intro{
+                grid-template-columns:1fr;
+                gap:18px;
+            }
+            .intro-widget{
+                width:100%;
+                max-width:460px;
+                justify-self:center;
+            }
+        }
+        @media(max-width:520px){
+            .intro{padding:16px}
+            .intro-widget,
+            .intro-widget iframe{
+                height:470px;
+                min-height:470px;
+            }
+        }
+
         @media(max-width:900px){.hero-grid{grid-template-columns:1fr}.brand-row{align-items:flex-start}.live-indicator{display:none}}
         @media(max-width:680px){.container{width:min(var(--max),calc(100% - 20px))}.site-header{padding-top:20px}.brand-name{font-size:25px}.brand-sub{font-size:10px;letter-spacing:1px}.logo{width:54px;height:54px}.intro{padding:19px}.intro h1{font-size:21px}.hero{padding:21px}.hero h2{font-size:21px}.grid-2{grid-template-columns:1fr}.ketqua-match{grid-template-columns:1fr}.ketqua-team{text-align:center!important}.ketqua-score{justify-self:center}.section{margin-top:30px}.card-anh-wrapper{height:145px}.anh-bia-giai{height:140px}}
     </style>
@@ -232,11 +286,18 @@
 
 <main class="container">
     <section class="intro" aria-labelledby="intro-title">
-        <div class="eyebrow">SCORE VISION · FOOTBALL HUB</div>
-        <h1 id="intro-title">Score Vision – <span>Lịch đấu, Kết quả & Phân tích bóng đá</span></h1>
-        <p>Score Vision là nền tảng theo dõi bóng đá giúp bạn cập nhật <strong>lịch thi đấu, kết quả bóng đá, bảng xếp hạng, thống kê và LiveScore</strong> cùng các bài phân tích, dự đoán trước trận. Dữ liệu được lấy từ các nguồn mà hệ thống đang kết nối và cập nhật liên tục.</p>
-        <div class="pills">
-            <span class="pill">📅 Lịch thi đấu</span><span class="pill">🏆 Kết quả</span><span class="pill">📊 Bảng xếp hạng</span><span class="pill">⚽ LiveScore</span><span class="pill">🔮 Phân tích & dự đoán</span>
+        <div class="intro-copy">
+            <div class="eyebrow">SCORE VISION · FOOTBALL HUB</div>
+            <h1 id="intro-title">Score Vision – <span>Lịch đấu, Kết quả & Phân tích bóng đá</span></h1>
+            <p>Score Vision là nền tảng theo dõi bóng đá giúp bạn cập nhật <strong>lịch thi đấu, kết quả bóng đá, bảng xếp hạng, thống kê và LiveScore</strong> cùng các bài phân tích, dự đoán trước trận. Dữ liệu được lấy từ các nguồn mà hệ thống đang kết nối và cập nhật liên tục.</p>
+        </div>
+
+        <div class="intro-widget" aria-label="Lịch thi đấu bóng đá">
+            <iframe
+                src="https://footballdata.io/widget/fixtures?league=15&theme=dark&accent=222326&type=upcoming"
+                loading="lazy"
+                title="Football fixtures widget">
+            </iframe>
         </div>
     </section>
 
