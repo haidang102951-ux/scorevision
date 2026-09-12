@@ -9,9 +9,6 @@
         body {background:#020617;color:#f8fafc;line-height:1.6;padding:24px 16px;max-width:1100px;margin:0 auto;}
         .breadcrumb {color:#94a3b8;font-size:14px;margin-bottom:16px;}
         .breadcrumb a {color:#38bdf8;text-decoration:none;}
-        /* ============================== */
-        /* === THANH MENU THÊM VÀO === */
-        /* ============================== */
         .menu{
             display:flex;flex-wrap:wrap;gap:6px;margin-bottom:32px;
             padding:10px 14px;background:rgba(15,23,42,.65);
@@ -33,19 +30,16 @@
         .menu-btn.multimedia{background:linear-gradient(135deg,rgba(59,130,246,.15),rgba(79,70,229,.08));color:#a5b4fc;border-color:rgba(99,102,241,.20);font-weight:600;}
         .menu-btn.fifa{background:linear-gradient(135deg,rgba(16,185,129,.12),rgba(6,182,212,.06));color:#6ee7b7;border-color:rgba(16,185,129,.18);}
         .menu-btn.gopy{background:linear-gradient(135deg,rgba(99,102,241,.18),rgba(79,70,229,.10));color:#a5b4fc;border-color:rgba(99,102,241,.25);}
-        /* === THANH TÌM KIẾM === */
         .khung-tim-chung {background:#0f172a;border:1px solid rgba(148,163,184,.2);border-radius:12px;padding:16px;margin-bottom:24px;}
         .khung-tim-chung h2 {font-size:15px;color:#94a3b8;margin-bottom:10px;}
         .tim-chung {display:flex;gap:8px;}
         .tim-chung input {flex:1;padding:12px 14px;background:#1e293b;border:1px solid rgba(148,163,184,.3);border-radius:8px;color:#fff;font-size:15px;}
         .tim-chung button {padding:12px 20px;background:#22c55e;color:#000;border:none;border-radius:8px;font-weight:600;cursor:pointer;}
-        /* === KHUNG KẾT QUẢ TÌM KIẾM — DÀNH RIÊNG === */
         .ket-qua-tim {background:#0f172a;border:1px solid rgba(34,197,94,.4);border-radius:12px;padding:20px;margin-bottom:32px;display:none;}
         .ket-qua-tim.hien {display:block;}
         .ket-qua-tim .tieu-de {font-size:16px;font-weight:700;color:#22c55e;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center;}
         .nut-dong {background:transparent;border:none;color:#94a3b8;cursor:pointer;font-size:20px;font-weight:bold;}
         .luoi-tim {display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
-        /* === KHỐI PHÁT VIDEO CHÍNH === */
         .media-top {margin-bottom:32px;}
         .media-main {background:#0f172a;border-radius:12px;overflow:hidden;border:1px solid rgba(148,163,184,.15);}
         .main-video-cover {width:100%;aspect-ratio:16/9;background:#1e293b;}
@@ -53,12 +47,10 @@
         .main-info {padding:16px 18px;display:flex;align-items:center;gap:10px;}
         .main-time {background:#22c55e;color:#fff;font-size:12px;font-weight:600;padding:2px 8px;border-radius:4px;flex-shrink:0;}
         .main-title {font-size:14px;font-weight:600;line-height:1.5;color:#fef9c3;}
-        /* === LƯỚI VIDEO THEO GIẢI === */
         .section-wrap {margin-bottom:40px;}
         .section-head {display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid rgba(148,163,184,.18);}
         .section-title {font-size:16px;font-weight:700;color:#f1f5f9;}
         .video-grid {display:grid;grid-template-columns:repeat(6,1fr);gap:12px;}
-        /* === CARD VIDEO === */
         .video-card {display:block;background:transparent;border-radius:8px;overflow:hidden;cursor:pointer;transition:.2s;}
         .video-card:hover {transform:translateY(-3px);}
         .card-thumb {width:100%;aspect-ratio:16/9;border-radius:6px;overflow:hidden;margin-bottom:8px;position:relative;background:#1e293b;}
@@ -68,24 +60,18 @@
         .play-corner .t {color:#fff;font-size:11px;font-weight:600;}
         .card-title {font-size:13px;color:#e2e8f0;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
         .card-time {font-size:11px;color:#64748b;margin-top:4px;}
-        /* === NÚT HIỆN THÊM === */
         .nut-hien-them {display:flex;align-items:center;justify-content:center;width:36px;height:36px;background:#22c55e;color:#000;border-radius:50%;font-size:20px;font-weight:700;cursor:pointer;transition:.2s;}
         .nut-hien-them:hover {transform:scale(1.1);}
         .an-video {display:none;}
-        /* === TRẠNG THÁI === */
         .trang-thai {color:#94a3b8;font-size:14px;padding:40px 0;grid-column:1/-1;text-align:center;}
         .dang-tim {color:#facc15;}
         .loi {color:#f87171;}
-        /* === RESPONSIVE === */
         @media (max-width:1024px) {.video-grid {grid-template-columns:repeat(3,1fr);}.luoi-tim {grid-template-columns:repeat(3,1fr);}}
         @media (max-width:768px) {.video-grid {grid-template-columns:repeat(2,1fr);}.luoi-tim {grid-template-columns:repeat(2,1fr);}}
         @media (max-width:480px) {.video-grid {grid-template-columns:1fr;}.luoi-tim {grid-template-columns:1fr;}}
     </style>
 </head>
 <body>
-    <!-- ====================================== -->
-    <!-- 🔝 THANH MENU CHÍNH + PHỤ → GIỮ NGUYÊN -->
-    <!-- ====================================== -->
     <nav class="menu">
         <a href="index.html" class="menu-btn">🏠 Trang chủ</a>
         <a href="lich-dau.html" class="menu-btn">📅 Lịch đấu</a>
@@ -102,7 +88,6 @@
     <div class="breadcrumb">
         <a href="index.html">Trang chủ</a> » <a href="multimedia.html">MultiMedia</a> » Video Bóng Đá
     </div>
-    <!-- 🔍 THANH TÌM KIẾM → GIỮ NGUYÊN -->
     <div class="khung-tim-chung">
         <h2>🔍 Tìm kiếm video</h2>
         <div class="tim-chung">
@@ -110,7 +95,6 @@
             <button onclick="timKiemChung()">Tìm</button>
         </div>
     </div>
-    <!-- 📋 KẾT QUẢ TÌM KIẾM → GIỮ NGUYÊN -->
     <div class="ket-qua-tim" id="khoiKetQuaTim">
         <div class="tieu-de">
             <span>📋 Kết quả tìm kiếm: <b id="tuKhoaTim"></b></span>
@@ -120,7 +104,6 @@
             <div class="trang-thai dang-tim">🔄 Đang tìm trên YouTube...</div>
         </div>
     </div>
-    <!-- KHỐI PHÁT VIDEO CHÍNH → GIỮ NGUYÊN -->
     <div class="media-top">
         <div class="media-main">
             <div class="main-video-cover">
@@ -132,59 +115,52 @@
             </div>
         </div>
     </div>
-    <!-- 🏴 NGOẠI HẠNG ANH → GIỮ NGUYÊN -->
     <div class="section-wrap">
         <div class="section-head">
             <h2 class="section-title">🏴 HIGHLIGHT NGOẠI HẠNG ANH</h2>
             <span class="nut-hien-them" onclick="hienThem('Anh')" id="nutAnh">+</span>
         </div>
         <div class="video-grid" id="grid-Anh">
-            <div class="trang-thai">👆 Bấm + để xem video</div>
+            <div class="trang-thai dang-tim">🔄 Đang tải video...</div>
         </div>
     </div>
-    <!-- 🇪🇸 LA LIGA → GIỮ NGUYÊN -->
     <div class="section-wrap">
         <div class="section-head">
             <h2 class="section-title">🇪🇸 HIGHLIGHT LA LIGA - TÂY BAN NHA</h2>
             <span class="nut-hien-them" onclick="hienThem('LaLiga')" id="nutLaLiga">+</span>
         </div>
         <div class="video-grid" id="grid-LaLiga">
-            <div class="trang-thai">👆 Bấm + để xem video</div>
+            <div class="trang-thai dang-tim">🔄 Đang tải video...</div>
         </div>
     </div>
-    <!-- 🏆 CÚP C1 → GIỮ NGUYÊN -->
     <div class="section-wrap">
         <div class="section-head">
             <h2 class="section-title">🏆 HIGHLIGHT CHAMPIONS LEAGUE - CÚP C1</h2>
             <span class="nut-hien-them" onclick="hienThem('C1')" id="nutC1">+</span>
         </div>
         <div class="video-grid" id="grid-C1">
-            <div class="trang-thai">👆 Bấm + để xem video</div>
+            <div class="trang-thai dang-tim">🔄 Đang tải video...</div>
         </div>
     </div>
-    <!-- 🇻🇳 BÓNG ĐÁ VIỆT NAM → GIỮ NGUYÊN -->
     <div class="section-wrap">
         <div class="section-head">
             <h2 class="section-title">🇻🇳 HIGHLIGHT BÓNG ĐÁ VIỆT NAM</h2>
             <span class="nut-hien-them" onclick="hienThem('VN')" id="nutVN">+</span>
         </div>
         <div class="video-grid" id="grid-VN">
-            <div class="trang-thai">👆 Bấm + để xem video</div>
+            <div class="trang-thai dang-tim">🔄 Đang tải video...</div>
         </div>
     </div>
 
-    <!-- ====================================== -->
-    <!-- ✅ CHỈ THAY PHẦN SCRIPT BÊN DƯỚI NÀY -->
-    <!-- ====================================== -->
     <script>
-        // === 🔑 LẤY KEY TỪ SHEET QUA LINK WEB APP ===
+        // === 🔑 LẤY KEY TỪ SHEET ===
         const LINK_WEB_APP = "https://script.google.com/macros/s/AKfycbzKGE_sRBCVdUwIsQOFV56_KTjHErvXCmDA7ZcFFOOe04Oe6s_iFKhBT0FY5Kz4zXVeaA/exec";
         let YOUTUBE_API_KEY = "";
 
-        // === ⚙️ CẤU HÌNH: 2 GIỜ LẤY MỚI 1 LẦN ===
-        const THOI_GIAN_CAP_NHAT = 2 * 60 * 60 * 1000; // 2 giờ
+        // === ⚙️ 2 GIỜ = 7200000ms ===
+        const THOI_GIAN_CAP_NHAT = 2 * 60 * 60 * 1000;
 
-        // === ⚽ DANH SÁCH GIẢI — ĐỔI TỪ KHÓA SANG TIẾNG ANH ===
+        // === ⚽ DANH SÁCH GIẢI ===
         const KHOI_DU_LIEU = {
             Anh: { tuKhoa: "Premier League highlights 2026" },
             LaLiga: { tuKhoa: "La Liga highlights 2026" },
@@ -193,7 +169,7 @@
         };
         const DA_HIEN = {};
 
-        // === 💾 LƯU / LẤY DỮ LIỆU TỪ TRÌNH DUYỆT ===
+        // === 💾 LƯU / LẤY DỮ LIỆU ===
         function layDuLieuLocal(maGiai) {
             try {
                 const luu = localStorage.getItem(`video_${maGiai}`);
@@ -213,7 +189,7 @@
             }));
         }
 
-        // === 🔑 LẤY KEY TỪ SHEET ===
+        // === 🔑 LẤY KEY ===
         async function layKeyTuSheet() {
             try {
                 const res = await fetch(LINK_WEB_APP);
@@ -230,29 +206,24 @@
             }
         }
 
-        // === 🚀 MỞ TRANG → KHÔNG TẢI GÌ, CHỜ BẤM + ===
+        // === 🚀 VÀO TRANG → HIỆN VIDEO NGAY ===
         window.onload = async function() {
             const layThanhCong = await layKeyTuSheet();
             if (!layThanhCong) return;
 
-            // Hiển thị dữ liệu cũ nếu còn hạn
+            // TẤT CẢ GIẢI → TẢI VIDEO NGAY
             for (let tenKhoi in KHOI_DU_LIEU) {
-                const duLieuCu = layDuLieuLocal(tenKhoi);
-                if (duLieuCu) {
-                    hienThiVideo(tenKhoi, duLieuCu.danhSach);
-                    document.getElementById("nut" + tenKhoi).textContent = "✓";
-                    document.getElementById("nut" + tenKhoi).style.background = "#64748b";
-                }
+                taiKhoi(tenKhoi);
             }
         };
 
-        // === 📥 BẤM + → TẢI VIDEO (CHỈ GỌI API KHI HẾT 2 GIỜ) ===
+        // === 📥 TẢI VIDEO → CÓ LƯU THÌ LẤY LƯU, HẾT HẠN MỚI GỌI MỚI ===
         async function taiKhoi(tenKhoi) {
             const tuKhoa = KHOI_DU_LIEU[tenKhoi].tuKhoa;
             const grid = document.getElementById("grid-" + tenKhoi);
             const btn = document.getElementById("nut" + tenKhoi);
 
-            // Còn dữ liệu cũ → hiển thị ngay, không gọi API
+            // ✅ CÓ LƯU CHƯA ĐẾN 2 GIỜ → HIỆN LƯU NGAY, KHÔNG GỌI API
             const duLieuCu = layDuLieuLocal(tenKhoi);
             if (duLieuCu) {
                 hienThiVideo(tenKhoi, duLieuCu.danhSach);
@@ -261,8 +232,8 @@
                 return;
             }
 
-            // Hết hạn → gọi API mới
-            grid.innerHTML = `<div class="trang-thai dang-tim">🔄 Đang tìm video...</div>`;
+            // ⏳ HẾT HẠN → GỌI API LẤY MỚI
+            grid.innerHTML = `<div class="trang-thai dang-tim">🔄 Đang tải video mới...</div>`;
             btn.textContent = "⏳";
 
             try {
@@ -278,7 +249,7 @@
                     return;
                 }
 
-                // Lưu lại → 2 giờ sau mới gọi lại
+                // ✅ LƯU LẠI → 2 GIỜ SAU MỚI LẤY MỚI
                 luuDuLieuLocal(tenKhoi, data.items);
                 hienThiVideo(tenKhoi, data.items);
                 btn.textContent = "✓";
@@ -305,7 +276,7 @@
             grid.innerHTML = html;
         }
 
-        // === 🔍 THANH TÌM KIẾM → GÕ LÀ GỌI API NGAY ===
+        // === 🔍 TÌM KIẾM → GỌI API NGAY ===
         async function timKiemChung() {
             const tuKhoa = document.getElementById("timChungInput").value.trim();
             if (!tuKhoa) return;
@@ -368,9 +339,13 @@
             document.getElementById("thoi-luong").textContent = "--:--";
         }
 
-        // === ➕ HIỂN THÊM / TẢI VIDEO ===
+        // === ➕ HIỂN THÊM ===
         function hienThem(tenKhoi) {
-            taiKhoi(tenKhoi);
+            if (DA_HIEN[tenKhoi]) return;
+            document.querySelectorAll("#grid-" + tenKhoi + " .an-video").forEach(c => c.classList.remove("an-video"));
+            document.getElementById("nut" + tenKhoi).textContent = "✓";
+            document.getElementById("nut" + tenKhoi).style.background = "#64748b";
+            DA_HIEN[tenKhoi] = true;
         }
 
         // === ▶ PHÁT VIDEO ===
