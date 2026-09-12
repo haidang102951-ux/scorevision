@@ -10,10 +10,6 @@
   </url>
 
   <url>
-    <loc>https://scorevision.io.vn/ket-qua.html</loc>
-  </url>
-
-  <url>
     <loc>https://scorevision.io.vn/du-doan.html</loc>
   </url>
 
@@ -22,15 +18,7 @@
   </url>
 
   <url>
-    <loc>https://scorevision.io.vn/bang-xep-hang-fifa.html</loc>
-  </url>
-
-  <url>
     <loc>https://scorevision.io.vn/thong-ke.html</loc>
-  </url>
-
-  <url>
-    <loc>https://scorevision.io.vn/livescore.html</loc>
   </url>
 
   <url>
@@ -38,7 +26,23 @@
   </url>
 
   <url>
+    <loc>https://scorevision.io.vn/ket-qua.html</loc>
+  </url>
+
+  <url>
+    <loc>https://scorevision.io.vn/livescore.html</loc>
+  </url>
+
+  <url>
     <loc>https://scorevision.io.vn/multimedia.html</loc>
+  </url>
+
+  <url>
+    <loc>https://scorevision.io.vn/bang-xep-hang-fifa.html</loc>
+  </url>
+
+  <url>
+    <loc>https://scorevision.io.vn/gop-y.html</loc>
   </url>
 
   <url>
@@ -47,10 +51,6 @@
 
   <url>
     <loc>https://scorevision.io.vn/lien-he.html</loc>
-  </url>
-
-  <url>
-    <loc>https://scorevision.io.vn/gop-y.html</loc>
   </url>
 
 </urlset>
