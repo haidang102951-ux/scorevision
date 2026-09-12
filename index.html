@@ -93,10 +93,14 @@
         .menu{
             display:flex;gap:5px;align-items:center;padding:8px;
             overflow-x:auto;scrollbar-width:none;
+            cursor:grab;user-select:none;-webkit-user-select:none;
+            scroll-behavior:smooth;
             background:rgba(9,16,31,.88);backdrop-filter:blur(16px);
             border:1px solid rgba(148,163,184,.14);border-radius:15px;box-shadow:0 10px 28px rgba(0,0,0,.22)
         }
         .menu::-webkit-scrollbar{display:none}
+        .menu.dragging{cursor:grabbing;scroll-behavior:auto}
+        .menu.dragging .menu-btn{cursor:grabbing}
         .menu-btn{
             flex:0 0 auto;text-decoration:none;color:#b9c5d6;font-size:13px;font-weight:650;
             padding:9px 12px;border:1px solid transparent;border-radius:10px;transition:var(--ease);white-space:nowrap
@@ -271,14 +275,13 @@
         .intro{position:relative;isolation:isolate;overflow:hidden}
         .intro:before{
             content:"";position:absolute;z-index:0;pointer-events:none;
-            left:0;top:0;bottom:0;width:66%;
+            inset:0;
             background:
-              linear-gradient(90deg,rgba(8,15,29,.12) 0%,rgba(8,15,29,.42) 45%,rgba(8,15,29,.96) 100%),
-              url("https://images.unsplash.com/photo-1553778263-73a05d5f7c8f?auto=format&fit=crop&w=1400&q=85") center/cover no-repeat;
-            opacity:.78;
+              linear-gradient(90deg,rgba(3,9,20,.18) 0%,rgba(3,9,20,.42) 34%,rgba(3,9,20,.78) 64%,rgba(3,9,20,.94) 100%),
+              linear-gradient(180deg,rgba(3,9,20,.18) 0%,rgba(3,9,20,.54) 100%),
+              url("https://images.pexels.com/photos/200986/pexels-photo-200986.jpeg?auto=compress&cs=tinysrgb&w=1920") center 50%/cover no-repeat;
+            opacity:.88;
             border-radius:inherit;
-            mask-image:linear-gradient(90deg,#000 0%,#000 72%,transparent 100%);
-            -webkit-mask-image:linear-gradient(90deg,#000 0%,#000 72%,transparent 100%);
         }
         .intro:after{
             content:"";position:absolute;z-index:1;pointer-events:none;
@@ -305,7 +308,7 @@
         }
         .hero > *{position:relative;z-index:2}
         @media(max-width:680px){
-            .intro:before{width:100%;opacity:.34;mask-image:none;-webkit-mask-image:none}
+            .intro:before{inset:0;opacity:.46}
             .hero:before{inset:0;opacity:.34}
         }
 
@@ -1014,6 +1017,57 @@
             doiKey();
         }
     }
+
+    // Kéo ngang thanh menu bằng chuột (desktop) hoặc vuốt trên mobile.
+    (function(){
+        const menu = document.querySelector('.menu');
+        if(!menu) return;
+
+        let isDown = false;
+        let startX = 0;
+        let startScroll = 0;
+        let moved = false;
+
+        menu.addEventListener('pointerdown', function(e){
+            // Chỉ bắt kéo chuột trái; touch/pen vẫn hoạt động bình thường.
+            if(e.pointerType === 'mouse' && e.button !== 0) return;
+            isDown = true;
+            moved = false;
+            startX = e.clientX;
+            startScroll = menu.scrollLeft;
+            menu.classList.add('dragging');
+            menu.setPointerCapture?.(e.pointerId);
+        });
+
+        menu.addEventListener('pointermove', function(e){
+            if(!isDown) return;
+            const dx = e.clientX - startX;
+            if(Math.abs(dx) > 5) moved = true;
+            menu.scrollLeft = startScroll - dx;
+        });
+
+        function endDrag(e){
+            if(!isDown) return;
+            isDown = false;
+            menu.classList.remove('dragging');
+            try{ menu.releasePointerCapture?.(e.pointerId); }catch(_){}
+        }
+
+        menu.addEventListener('pointerup', endDrag);
+        menu.addEventListener('pointercancel', endDrag);
+        menu.addEventListener('mouseleave', function(e){
+            if(e.pointerType === 'mouse') endDrag(e);
+        });
+
+        // Nếu vừa kéo thì không kích hoạt nhầm link.
+        menu.addEventListener('click', function(e){
+            if(moved){
+                e.preventDefault();
+                e.stopPropagation();
+                moved = false;
+            }
+        }, true);
+    })();
 
     function batDau(){
         setInterval(kiemTraLoi, 2000);
