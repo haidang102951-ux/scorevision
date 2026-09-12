@@ -94,6 +94,8 @@
             display:flex;gap:5px;align-items:center;padding:8px;
             overflow-x:auto;scrollbar-width:none;
             cursor:grab;user-select:none;-webkit-user-select:none;
+            touch-action:pan-y;
+            overscroll-behavior-x:contain;
             scroll-behavior:smooth;
             background:rgba(9,16,31,.88);backdrop-filter:blur(16px);
             border:1px solid rgba(148,163,184,.14);border-radius:15px;box-shadow:0 10px 28px rgba(0,0,0,.22)
@@ -290,6 +292,7 @@
             filter:blur(3px);opacity:.35;
         }
         .intro-copy{position:relative;z-index:2}
+        .intro-widget{position:relative;z-index:3}
 
         .hero{isolation:isolate;position:relative;overflow:hidden}
         .hero:before{
@@ -1027,28 +1030,38 @@
         let startX = 0;
         let startScroll = 0;
         let moved = false;
+        let raf = 0;
+        let pendingX = 0;
+        const DRAG_SPEED = 1.45;
 
         menu.addEventListener('pointerdown', function(e){
-            // Chỉ bắt kéo chuột trái; touch/pen vẫn hoạt động bình thường.
             if(e.pointerType === 'mouse' && e.button !== 0) return;
             isDown = true;
             moved = false;
             startX = e.clientX;
             startScroll = menu.scrollLeft;
+            pendingX = e.clientX;
             menu.classList.add('dragging');
             menu.setPointerCapture?.(e.pointerId);
         });
 
         menu.addEventListener('pointermove', function(e){
             if(!isDown) return;
+            pendingX = e.clientX;
             const dx = e.clientX - startX;
-            if(Math.abs(dx) > 5) moved = true;
-            menu.scrollLeft = startScroll - dx;
+            if(Math.abs(dx) > 4) moved = true;
+            if(!raf){
+                raf = requestAnimationFrame(function(){
+                    menu.scrollLeft = startScroll - ((pendingX - startX) * DRAG_SPEED);
+                    raf = 0;
+                });
+            }
         });
 
         function endDrag(e){
             if(!isDown) return;
             isDown = false;
+            if(raf){ cancelAnimationFrame(raf); raf = 0; }
             menu.classList.remove('dragging');
             try{ menu.releasePointerCapture?.(e.pointerId); }catch(_){}
         }
