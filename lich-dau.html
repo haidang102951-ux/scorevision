@@ -459,18 +459,84 @@ function normalizeTeamName(name){
 }
 
 const TEAM_ALIASES={
+    // Anh
     "man united":"manchester united",
     "manchester united fc":"manchester united",
+    "manchester city fc":"manchester city",
     "newcastle united fc":"newcastle united",
     "tottenham hotspur fc":"tottenham hotspur",
     "brighton hove albion":"brighton hove albion",
+    "brighton hove albion fc":"brighton hove albion",
+    "wolverhampton wanderers fc":"wolverhampton wanderers",
+    "west ham united fc":"west ham united",
+    "nottingham forest fc":"nottingham forest",
+    "crystal palace fc":"crystal palace",
+    "aston villa fc":"aston villa",
+    "leeds united fc":"leeds united",
+    "brentford fc":"brentford",
+    "chelsea fc":"chelsea",
+    "arsenal fc":"arsenal",
+    "everton fc":"everton",
+    "fulham fc":"fulham",
+    "bournemouth afc":"bournemouth",
+    "afc bournemouth":"bournemouth",
+    "burnley fc":"burnley",
+    "sunderland afc":"sunderland",
+    "sunderland fc":"sunderland",
+    "liverpool fc":"liverpool",
+    "leicester city fc":"leicester city",
+    "ipswich town fc":"ipswich town",
+    "southampton fc":"southampton",
+    "west bromwich albion fc":"west bromwich albion",
+    // Tây Ban Nha
+    "club atletico de madrid":"atletico madrid",
+    "atletico madrid":"atletico madrid",
+    "fc barcelona":"barcelona",
+    "real madrid cf":"real madrid",
+    "real madrid fc":"real madrid",
+    "athletic club bilbao":"athletic bilbao",
+    "athletic club":"athletic bilbao",
+    "sevilla fc":"sevilla",
+    "real betis balompie":"real betis",
+    "villarreal cf":"villarreal",
+    "real sociedad de futbol":"real sociedad",
+    // Ý
     "internazionale milano":"inter",
     "fc internazionale milano":"inter",
-    "galatasaray sk":"galatasaray",
+    "inter milan":"inter",
+    "ac milan":"milan",
+    "juventus fc":"juventus",
+    "as roma":"roma",
+    "ss lazio":"lazio",
+    "ssc napoli":"napoli",
+    "atalanta bc":"atalanta",
+    "acf fiorentina":"fiorentina",
+    // Đức
     "fc bayern munchen":"bayern munich",
+    "bayern munich":"bayern munich",
+    "borussia dortmund":"borussia dortmund",
     "borussia monchengladbach":"borussia monchengladbach",
+    "bayer 04 leverkusen":"bayer leverkusen",
+    "rb leipzig":"rb leipzig",
+    "eintracht frankfurt":"eintracht frankfurt",
+    // Pháp
+    "paris saint germain":"paris saint germain",
+    "psg":"paris saint germain",
+    "olympique lyonnais":"lyon",
+    "olympique de marseille":"marseille",
+    "as monaco fc":"monaco",
+    "lille osc":"lille",
+    // Bồ Đào Nha / Hà Lan / Thổ Nhĩ Kỳ
     "sporting clube de portugal":"sporting cp",
-    "club atletico de madrid":"atletico madrid"
+    "sporting cp":"sporting cp",
+    "sl benfica":"benfica",
+    "fc porto":"porto",
+    "ajax amsterdam":"ajax",
+    "psv eindhoven":"psv",
+    "feyenoord rotterdam":"feyenoord",
+    "galatasaray sk":"galatasaray",
+    "fenerbahce sk":"fenerbahce",
+    "besiktas jk":"besiktas"
 };
 
 function canonicalTeamKey(name){
@@ -520,6 +586,9 @@ function findLogo(teamName){
         cache[key]=url; saveLogoCache(cache); return url;
     }
 
+    if(!wikiLogoCache) wikiLogoCache=readJsonCache(WIKI_CACHE_KEY);
+    if(wikiLogoCache[key]) return wikiLogoCache[key];
+
     let bestUrl=null,bestScore=0;
     for(const [candidate,url] of logoIndex){
         const score=logoScore(key,candidate);
@@ -536,11 +605,123 @@ function loadLogoDatabase(){
     if(logoLoadPromise)return logoLoadPromise;
     logoLoadPromise=fetch(LOGO_DATA_URL,{cache:"force-cache"})
         .then(r=>{if(!r.ok)throw new Error("Logo database unavailable");return r.json();})
-        .then(list=>{logoIndex=buildLogoIndex(list); hienThiDuLieu(); return logoIndex;})
-        .catch(()=>{logoIndex=new Map(); return logoIndex;});
+        .then(list=>{logoIndex=buildLogoIndex(list); hienThiDuLieu(); setTimeout(loadWikidataFallbacks, 0); return logoIndex;})
+        .catch(()=>{logoIndex=new Map(); setTimeout(loadWikidataFallbacks, 0); return logoIndex;});
     return logoLoadPromise;
 }
 
+
+/* =========================================================
+   FALLBACK LOGO THÔNG MINH — WIKIDATA / WIKIMEDIA COMMONS
+   Chỉ chạy với đội chưa tìm thấy trong kho logo chính.
+   Không dùng API-Football, không cần API key.
+   Kết quả được cache ở localStorage để lần sau gần như không gọi lại.
+   ========================================================= */
+const WIKI_CACHE_KEY = "scorevision_team_logos_wikidata_v1";
+const WIKI_MISS_KEY = "scorevision_team_logos_wikidata_miss_v1";
+let wikiLogoCache = null;
+let wikiMissCache = null;
+
+function readJsonCache(key){
+    try{return JSON.parse(localStorage.getItem(key)||"{}");}catch(e){return {};}
+}
+function writeJsonCache(key,obj){
+    try{localStorage.setItem(key,JSON.stringify(obj));}catch(e){}
+}
+
+function isLikelyNationalTeam(name){
+    const k=canonicalTeamKey(name).replace(/\bu\s*23\b/g," ").replace(/\bu23\b/g," ").replace(/\s+/g," ").trim();
+    const countries=new Set([
+        "bangladesh","indonesia","singapore","pakistan","thailand","vietnam","philippines","malaysia","myanmar","brunei","timor leste","laos","cambodia","hong kong","japan","china","uzbekistan","qatar","kuwait","south korea","korea republic","iran","iraq","jordan","saudi arabia","united arab emirates","oman","india","australia","new zealand","england","scotland","wales","ireland","republic of ireland","france","germany","italy","spain","portugal","netherlands","belgium","switzerland","croatia","serbia","brazil","argentina","mexico","united states","canada","colombia","chile","uruguay","ecuador","peru","morocco","egypt","nigeria","ghana","senegal","south africa"
+    ]);
+    return countries.has(k);
+}
+
+function wikiSearchName(name){
+    let clean=String(name||"").trim();
+    clean=clean.replace(/^u\s*[-]?\s*23\s+/i,"").replace(/^u23\s+/i,"").trim();
+    if(isLikelyNationalTeam(clean)) return clean + " national football team";
+    return clean;
+}
+
+async function fetchWikidataLogo(teamName){
+    const query=wikiSearchName(teamName);
+    if(!query)return null;
+    try{
+        const searchUrl="https://www.wikidata.org/w/api.php?action=wbsearchentities&search="+encodeURIComponent(query)+"&language=en&uselang=en&format=json&limit=8&origin=*";
+        const sr=await fetch(searchUrl,{cache:"force-cache"});
+        if(!sr.ok)return null;
+        const sj=await sr.json();
+        const candidates=Array.isArray(sj.search)?sj.search:[];
+        const wanted=normalizeTeamName(query.replace(/\s+national football team$/i,""));
+        let entity=candidates.find(x=>normalizeTeamName(x.label)===wanted);
+        if(!entity) entity=candidates.find(x=>/football|soccer|club|team/i.test(String(x.description||"")));
+        if(!entity) entity=candidates[0];
+        if(!entity?.id)return null;
+
+        const entUrl="https://www.wikidata.org/w/api.php?action=wbgetentities&ids="+encodeURIComponent(entity.id)+"&props=claims&format=json&origin=*";
+        const er=await fetch(entUrl,{cache:"force-cache"});
+        if(!er.ok)return null;
+        const ej=await er.json();
+        const claims=ej?.entities?.[entity.id]?.claims;
+        const p18=claims?.P18?.[0]?.mainsnak?.datavalue?.value;
+        if(!p18)return null;
+        return "https://commons.wikimedia.org/wiki/Special:Redirect/file/"+encodeURIComponent(p18)+"?width=256";
+    }catch(e){return null;}
+}
+
+async function fetchCommonsLogo(teamName){
+    const q=wikiSearchName(teamName)+" (football) logo OR crest OR badge";
+    try{
+        const url="https://commons.wikimedia.org/w/api.php?action=query&generator=search&gsrsearch="+encodeURIComponent(q)+"&gsrnamespace=6&gsrlimit=8&prop=imageinfo&iiprop=url&iiurlwidth=256&format=json&origin=*";
+        const r=await fetch(url,{cache:"force-cache"});
+        if(!r.ok)return null;
+        const j=await r.json();
+        const pages=Object.values(j?.query?.pages||{});
+        const good=pages.find(p=>/logo|crest|badge|emblem|escudo/i.test(String(p.title||""))) || pages[0];
+        return good?.imageinfo?.[0]?.thumburl || good?.imageinfo?.[0]?.url || null;
+    }catch(e){return null;}
+}
+
+async function fetchWikipediaLogo(teamName){
+    const clean=wikiSearchName(teamName);
+    try{
+        const url="https://en.wikipedia.org/w/api.php?action=query&generator=search&gsrsearch="+encodeURIComponent(clean+" football")+"&gsrnamespace=0&gsrlimit=5&prop=pageimages&piprop=thumbnail&pithumbsize=256&format=json&origin=*";
+        const r=await fetch(url,{cache:"force-cache"});
+        if(!r.ok)return null;
+        const j=await r.json();
+        const pages=Object.values(j?.query?.pages||{});
+        const exact=pages.find(p=>normalizeTeamName(p.title).includes(normalizeTeamName(clean))) || pages[0];
+        return exact?.thumbnail?.source || null;
+    }catch(e){return null;}
+}
+
+async function findExternalLogo(teamName){
+    return await fetchWikidataLogo(teamName)
+        || await fetchCommonsLogo(teamName)
+        || await fetchWikipediaLogo(teamName);
+}
+
+async function loadWikidataFallbacks(){
+    wikiLogoCache=readJsonCache(WIKI_CACHE_KEY);
+    wikiMissCache=readJsonCache(WIKI_MISS_KEY);
+
+    const names=[...new Set(duLieuGoc.flatMap(x=>[x.nha,x.khach]).filter(Boolean))];
+    const missing=names.filter(name=>!findLogo(name) && !wikiLogoCache[canonicalTeamKey(name)] && !wikiMissCache[canonicalTeamKey(name)]);
+    if(!missing.length)return;
+
+    /* Chạy theo lô vừa phải để bổ sung thêm nhiều CLB/đội tuyển nhưng không làm nặng trang. */
+    const batch=missing.slice(0,32);
+    await Promise.all(batch.map(async name=>{
+        const key=canonicalTeamKey(name);
+        const url=await findExternalLogo(name);
+        if(url) wikiLogoCache[key]=url;
+        else wikiMissCache[key]=1;
+    }));
+    writeJsonCache(WIKI_CACHE_KEY,wikiLogoCache);
+    writeJsonCache(WIKI_MISS_KEY,wikiMissCache);
+    hienThiDuLieu();
+}
 function safeText(v){
     return String(v??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
 }
