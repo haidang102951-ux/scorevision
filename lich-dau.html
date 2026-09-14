@@ -2,53 +2,409 @@
 <html lang="vi">
 <head>
     <script>(function(s){s.dataset.zone='11763479',s.src='https://nap5k.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
+
+<script>
+/* Menu ngang: mobile dùng native scroll, PC hỗ trợ kéo bằng chuột */
+(function(){
+    const menu=document.querySelector('.menu');
+    if(!menu)return;
+
+    let dragging=false,moved=false,startX=0,startScroll=0;
+
+    menu.addEventListener('mousedown',function(e){
+        if(e.button!==0)return;
+        dragging=true;
+        moved=false;
+        startX=e.clientX;
+        startScroll=menu.scrollLeft;
+        menu.classList.add('dragging');
+    });
+
+    window.addEventListener('mousemove',function(e){
+        if(!dragging)return;
+        const dx=e.clientX-startX;
+        if(Math.abs(dx)>5){
+            moved=true;
+            e.preventDefault();
+        }
+        menu.scrollLeft=startScroll-dx;
+    },{passive:false});
+
+    function stop(){
+        if(!dragging)return;
+        dragging=false;
+        menu.classList.remove('dragging');
+    }
+
+    window.addEventListener('mouseup',stop);
+    window.addEventListener('blur',stop);
+
+    menu.addEventListener('wheel',function(e){
+        if(Math.abs(e.deltaY)<=Math.abs(e.deltaX))return;
+        const max=menu.scrollWidth-menu.clientWidth;
+        if(max<=0)return;
+        const next=menu.scrollLeft+e.deltaY;
+        if(next>0&&next<max){
+            e.preventDefault();
+            menu.scrollLeft=next;
+        }
+    },{passive:false});
+
+    menu.addEventListener('click',function(e){
+        if(moved){
+            e.preventDefault();
+            e.stopPropagation();
+            moved=false;
+        }
+    },true);
+})();
+</script>
     <script>(function(s){s.dataset.zone='11665696',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lịch Thi Đấu | Score Vision</title>
     <style>
-        *{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;}
-        body{background:#020617;color:#f8fafc;line-height:1.7;padding:16px;max-width:850px;margin:0 auto;}
-        .menu{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;position:sticky;top:0;background:#020617f0;padding:10px 0;z-index:99;backdrop-filter:blur(8px);}
-        .menu-btn{background:linear-gradient(135deg,#1e293b,#0f172a);color:#e2e8f0;padding:10px 14px;border-radius:12px;text-align:center;text-decoration:none;font-size:13px;font-weight:700;display:inline-flex;align-items:center;gap:4px;border:1px solid #334155;transition:all .25s;}
-        .menu-btn:hover{transform:translateY(-2px);border-color:#fef08a;box-shadow:0 4px 12px rgba(254,240,138,.15);}
-        .menu-btn.active{background:linear-gradient(135deg,#f97316,#ef4444);color:white;border-color:#f97316;box-shadow:0 4px 14px rgba(249,115,22,.35);}
-        .loc-giai{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;padding-bottom:8px;border-bottom:1px solid #1e293b;}
-        .loc-btn{background:#1e293b;color:#cbd5e1;padding:8px 12px;border-radius:8px;border:none;font-size:12px;font-weight:600;cursor:pointer;transition:all .2s;}
-        .loc-btn:hover{background:#334155;color:#fff;}
-        .loc-btn.active{background:linear-gradient(135deg,#f97316,#ef4444);color:#fff;box-shadow:0 2px 8px rgba(249,115,22,.3);}
-        h2{text-align:center;font-size:22px;color:#fef08a;margin-bottom:20px;}
-        .lich-item{background:linear-gradient(145deg,#1e293b,#0f172a);border-radius:16px;padding:20px;margin-bottom:16px;border:2px solid #1e293b;border-left:4px solid #f97316;transition:all .3s;}
-        .lich-item:hover{border-color:#fef08a;transform:translateY(-2px);box-shadow:0 6px 16px rgba(254,240,138,.12);}
-        .lich-giai{font-size:14px;color:#94a3b8;margin-bottom:14px;display:flex;align-items:center;gap:6px;}
-        .lich-doi{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;padding:0 8px;}
-        .lich-doi-nha{font-size:18px;font-weight:800;color:#fef08a;}
-        .lich-vs{font-size:14px;color:#f97316;font-weight:900;padding:4px 10px;background:rgba(249,115,22,.12);border-radius:12px;}
-        .lich-doi-khach{font-size:18px;font-weight:800;color:#fef08a;}
-        .lich-san{font-size:13px;color:#9ca3af;margin-bottom:14px;padding-left:8px;}
-        .lich-duong-ke{border-bottom:1px dashed #334155;margin:10px 0;}
-        .lich-thoi-gian{display:flex;align-items:center;justify-content:space-between;padding:0 8px;}
-        .lich-ngay{font-size:14px;color:#e2e8f0;font-weight:600;display:flex;align-items:center;gap:6px;}
-        .lich-trang-thai{font-size:13px;font-weight:700;padding:4px 12px;border-radius:12px;background:rgba(249,115,22,.15);color:#fdba74;}
-        .empty{text-align:center;color:#64748b;padding:60px 20px;}
-        .loading{text-align:center;color:#fef08a;padding:40px;animation:nhapnhay 1.5s infinite;}
-        @keyframes nhapnhay{0%,100%{opacity:1;}50%{opacity:.4;}}
+        *{margin:0;padding:0;box-sizing:border-box;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;}
+        :root{
+            --text:#f8fafc;
+            --muted:#94a3b8;
+            --gold:#facc15;
+            --gold2:#fde68a;
+            --line:rgba(148,163,184,.14);
+        }
+        html{scroll-behavior:smooth}
+        body{
+            background:
+              radial-gradient(900px 450px at 10% -5%,rgba(37,99,235,.16),transparent 60%),
+              radial-gradient(700px 400px at 95% 8%,rgba(250,204,21,.08),transparent 60%),
+              linear-gradient(180deg,#040713 0%,#07101f 55%,#040713 100%);
+            color:var(--text);
+            line-height:1.65;
+            min-height:100vh;
+            padding:0;
+            max-width:none;
+            margin:0;
+        }
+        a{color:inherit}
+
+        /* =========================
+           HEADER GIỐNG TRANG CHỦ
+           ========================= */
+        .container{width:min(1100px,calc(100% - 28px));margin:auto}
+        .site-header{
+            position:relative;
+            overflow:hidden;
+            padding:30px 0 22px;
+            min-height:138px;
+            border-bottom:1px solid rgba(255,255,255,.08);
+            background:
+              linear-gradient(90deg,rgba(3,7,18,.94) 0%,rgba(3,7,18,.78) 28%,rgba(3,7,18,.46) 58%,rgba(3,7,18,.72) 100%),
+              linear-gradient(180deg,rgba(3,7,18,.20),rgba(3,7,18,.72)),
+              url("https://images.pexels.com/photos/200986/pexels-photo-200986.jpeg?auto=compress&cs=tinysrgb&w=1920")
+              center 48%/cover no-repeat;
+        }
+        .site-header:before{
+            content:"";
+            position:absolute;
+            inset:0;
+            background:
+              radial-gradient(circle at 78% 48%,rgba(250,204,21,.13),transparent 24%),
+              linear-gradient(90deg,transparent 55%,rgba(0,0,0,.18));
+            pointer-events:none;
+        }
+        .site-header:after{
+            content:"";
+            position:absolute;
+            left:0;right:0;bottom:0;height:2px;
+            background:linear-gradient(90deg,transparent 4%,rgba(250,204,21,.9) 32%,rgba(96,165,250,.8) 68%,transparent 96%);
+            opacity:.8;
+        }
+        .site-header .container{position:relative;z-index:2}
+        .brand-row{display:flex;align-items:center;justify-content:space-between;gap:18px}
+        .brand-row:after{
+            content:"⚽";
+            position:absolute;
+            right:4%;
+            top:50%;
+            transform:translateY(-50%) rotate(-10deg);
+            font-size:74px;
+            opacity:.10;
+            filter:blur(.2px);
+            pointer-events:none;
+        }
+        .brand{display:flex;align-items:center;gap:14px}
+        .logo{
+            width:62px;height:62px;
+            border-radius:17px;
+            display:grid;place-items:center;
+            overflow:hidden;
+            border:1px solid rgba(255,255,255,.12);
+            background:#fff;
+            box-shadow:0 8px 25px rgba(0,0,0,.28);
+        }
+        .logo img{width:100%;height:100%;object-fit:contain}
+        .brand-name{
+            font-size:31px;
+            font-weight:850;
+            letter-spacing:-.8px;
+            background:linear-gradient(90deg,#fff7b2,#facc15);
+            -webkit-background-clip:text;
+            background-clip:text;
+            color:transparent;
+            text-shadow:0 3px 18px rgba(0,0,0,.55);
+        }
+        .brand-sub{
+            font-size:12px;
+            color:#cbd5e1;
+            letter-spacing:1.5px;
+            margin-top:2px;
+            text-shadow:0 1px 8px rgba(0,0,0,.55);
+        }
+
+        /* =========================
+           MENU GIỐNG TRANG CHỦ
+           ========================= */
+        .menu-wrap{
+            position:sticky;
+            top:8px;
+            z-index:100;
+            margin-top:18px;
+        }
+        .menu{
+            display:flex;
+            align-items:center;
+            gap:5px;
+            padding:7px;
+            width:100%;
+            box-sizing:border-box;
+            overflow-x:auto;
+            overflow-y:hidden;
+            -webkit-overflow-scrolling:touch;
+            touch-action:pan-x;
+            overscroll-behavior-x:contain;
+            scroll-behavior:auto;
+            scrollbar-width:none;
+            cursor:grab;
+            user-select:none;
+            -webkit-user-select:none;
+            -webkit-user-drag:none;
+            background:rgba(9,16,31,.97);
+            border:1px solid rgba(148,163,184,.14);
+            border-radius:15px;
+            box-shadow:0 6px 18px rgba(0,0,0,.16);
+        }
+        .menu::-webkit-scrollbar{display:none}
+        .menu.dragging{cursor:grabbing}
+        .menu.dragging .menu-btn{cursor:grabbing}
+        .menu-btn{
+            flex:0 0 auto;
+            text-decoration:none;
+            color:#b9c5d6;
+            font-size:13px;
+            font-weight:650;
+            padding:9px 12px;
+            border:1px solid transparent;
+            border-radius:10px;
+            white-space:nowrap;
+            transition:color .12s ease,background-color .12s ease,border-color .12s ease;
+        }
+        .menu-btn:hover{
+            color:#fff;
+            background:rgba(255,255,255,.045);
+            border-color:var(--line);
+        }
+        .menu-btn.active{
+            color:#111827;
+            background:linear-gradient(135deg,#fde68a,#facc15);
+            box-shadow:0 5px 18px rgba(250,204,21,.13);
+        }
+        .menu-btn.livescore{
+            color:#bbf7d0;
+            background:rgba(34,197,94,.08);
+            border-color:rgba(74,222,128,.16);
+        }
+        .menu-btn.multimedia{
+            color:#e9d5ff;
+            background:rgba(168,85,247,.08);
+            border-color:rgba(192,132,252,.15);
+        }
+        .menu-btn.fifa{
+            color:#bfdbfe;
+            background:rgba(59,130,246,.08);
+            border-color:rgba(96,165,250,.15);
+        }
+        .menu-btn.gopy{
+            color:#c7d2fe;
+            background:rgba(99,102,241,.08);
+            border-color:rgba(129,140,248,.15);
+        }
+
+        /* =========================
+           NỘI DUNG LỊCH ĐẤU
+           ========================= */
+        main{width:min(850px,calc(100% - 28px));margin:0 auto;padding-bottom:30px}
+        h2{
+            text-align:center;
+            font-size:22px;
+            color:#fef08a;
+            margin:20px 0;
+        }
+        .loc-giai{
+            display:flex;
+            flex-wrap:wrap;
+            gap:8px;
+            margin-bottom:20px;
+            padding-bottom:8px;
+            border-bottom:1px solid #1e293b;
+        }
+        .loc-btn{
+            background:#1e293b;
+            color:#cbd5e1;
+            padding:8px 12px;
+            border-radius:8px;
+            border:none;
+            font-size:12px;
+            font-weight:600;
+            cursor:pointer;
+            transition:all .2s;
+        }
+        .loc-btn:hover{background:#334155;color:#fff}
+        .loc-btn.active{
+            background:linear-gradient(135deg,#facc15,#fde68a);
+            color:#111827;
+            box-shadow:0 2px 8px rgba(250,204,21,.25);
+        }
+        .lich-item{
+            background:linear-gradient(145deg,#1e293b,#0f172a);
+            border-radius:16px;
+            padding:20px;
+            margin-bottom:16px;
+            border:2px solid #1e293b;
+            border-left:4px solid #facc15;
+            transition:all .3s;
+        }
+        .lich-item:hover{
+            border-color:#fef08a;
+            transform:translateY(-2px);
+            box-shadow:0 6px 16px rgba(254,240,138,.12);
+        }
+        .lich-giai{
+            font-size:14px;
+            color:#94a3b8;
+            margin-bottom:14px;
+            display:flex;
+            align-items:center;
+            gap:6px;
+        }
+        .lich-doi{
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            margin-bottom:10px;
+            padding:0 8px;
+            gap:10px;
+        }
+        .lich-doi-nha,.lich-doi-khach{
+            font-size:18px;
+            font-weight:800;
+            color:#fef08a;
+        }
+        .lich-vs{
+            font-size:14px;
+            color:#facc15;
+            font-weight:900;
+            padding:4px 10px;
+            background:rgba(250,204,21,.12);
+            border-radius:12px;
+        }
+        .lich-san{
+            font-size:13px;
+            color:#9ca3af;
+            margin-bottom:14px;
+            padding-left:8px;
+        }
+        .lich-duong-ke{border-bottom:1px dashed #334155;margin:10px 0}
+        .lich-thoi-gian{
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            padding:0 8px;
+            gap:10px;
+        }
+        .lich-ngay{
+            font-size:14px;
+            color:#e2e8f0;
+            font-weight:600;
+            display:flex;
+            align-items:center;
+            gap:6px;
+        }
+        .lich-trang-thai{
+            font-size:13px;
+            font-weight:700;
+            padding:4px 12px;
+            border-radius:12px;
+            background:rgba(250,204,21,.12);
+            color:#fde68a;
+        }
+        .empty{text-align:center;color:#64748b;padding:60px 20px}
+        .loading{text-align:center;color:#fef08a;padding:40px;animation:nhapnhay 1.5s infinite}
+        @keyframes nhapnhay{0%,100%{opacity:1}50%{opacity:.4}}
+
+        @media(max-width:900px){
+            .brand-row{align-items:flex-start}
+        }
+        @media(max-width:680px){
+            .container{width:min(1100px,calc(100% - 20px))}
+            main{width:calc(100% - 20px)}
+            .brand-row:after{display:none}
+            .site-header{
+                padding:24px 0 18px;
+                min-height:118px;
+                background-position:center;
+            }
+            .brand-name{font-size:25px}
+            .brand-sub{font-size:10px;letter-spacing:1px}
+            .logo{width:54px;height:54px}
+            h2{font-size:21px;margin:18px 0}
+            .lich-doi{padding:0 4px}
+            .lich-doi-nha,.lich-doi-khach{font-size:16px}
+            .lich-thoi-gian{padding:0 4px}
+        }
     </style>
 </head>
-<body>
-<nav class="menu">
-    <a href="index.html" class="menu-btn">🏠 Trang chủ</a>
-    <a href="lich-dau.html" class="menu-btn active">📅 Lịch đấu</a>
-    <a href="du-doan.html" class="menu-btn">🔮 Phân Tích</a>
-    <a href="bang-xep-hang.html" class="menu-btn">📊 Bảng xếp hạng</a>
-    <a href="thong-ke.html" class="menu-btn">📈 Thống kê</a>
-    <a href="tin-nong.html" class="menu-btn">📰 Tin Nóng</a>
-    <a href="ket-qua.html" class="menu-btn">⚽ Kết Quả</a>
-    <a href="livescore.html" class="menu-btn livescore active">⚽ LiveScore</a>
-    <a href="multimedia.html" class="menu-btn multimedia">🎬 MultiMedia</a>
-    <a href="bang-xep-hang-fifa.html" class="menu-btn fifa">🌍 BXH FIFA</a>
-    <a href="gop-y.html" class="menu-btn gopy">💬 Góp Ý</a>
-</nav>
+<body id="top">
+<header class="site-header">
+    <div class="container">
+        <div class="brand-row">
+            <div class="brand">
+                <div class="logo"><img src="logo.png" alt="Score Vision" onerror="this.style.display='none'"></div>
+                <div>
+                    <div class="brand-name">Score Vision</div>
+                    <div class="brand-sub">PHÂN TÍCH · DỮ LIỆU · BÓNG ĐÁ</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="container menu-wrap">
+    <nav class="menu" aria-label="Điều hướng chính">
+        <a href="index.html" class="menu-btn">🏠 Trang chủ</a>
+        <a href="lich-dau.html" class="menu-btn active">📅 Lịch đấu</a>
+        <a href="du-doan.html" class="menu-btn">🔮 Phân Tích & Dự Đoán</a>
+        <a href="bang-xep-hang.html" class="menu-btn">📊 Bảng xếp hạng</a>
+        <a href="thong-ke.html" class="menu-btn">📈 Thống kê</a>
+        <a href="tin-nong.html" class="menu-btn">📰 Tin Nóng</a>
+        <a href="ket-qua.html" class="menu-btn">🏆 Kết Quả</a>
+        <a href="livescore.html" class="menu-btn livescore">⚽ LiveScore</a>
+        <a href="multimedia.html" class="menu-btn multimedia">🎬 MultiMedia</a>
+        <a href="bang-xep-hang-fifa.html" class="menu-btn fifa">🌍 BXH FIFA</a>
+        <a href="gop-y.html" class="menu-btn gopy">💬 Góp Ý</a>
+    </nav>
+</div>
+
+<main>
 <h2>📅 Lịch Thi Đấu Sắp Tới</h2>
 <div class="loc-giai">
     <button class="loc-btn active" data-giai="TatCa">Tất Cả</button>
@@ -68,6 +424,7 @@
     <button class="loc-btn" data-giai="U23 ASIAD 2026">🏅 U23 ASIAD 2026</button>
 </div>
 <div id="list-lich"><div class="loading">Đang tải lịch đấu...</div></div>
+</main>
 <script>
 // ✅ LINK ĐÚNG NHẤT — TỪ XUẤT BẢN TRÊN WEB CỦA BẠN
 const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRjGewmdAmJVjyi-0vSc22hhFPacMgGc-WmVE8PEM3jHfA7IvED3XbBp68Bwp16n1Dc2FFP9ETKTaSH/pub?gid=655851279&single=true&output=csv";
