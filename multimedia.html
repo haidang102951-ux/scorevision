@@ -68,6 +68,7 @@
         .dang-tim {color:#facc15;}
         .co-du-lieu {color:#22c55e;}
         .loi {color:#f87171;}
+        .kenh-tag {display:inline-block;font-size:10px;background:rgba(59,130,246,.2);color:#93c5fd;padding:1px 6px;border-radius:4px;margin-left:6px;}
         @media (max-width:1024px) {.video-grid {grid-template-columns:repeat(3,1fr);}.luoi-tim {grid-template-columns:repeat(3,1fr);}}
         @media (max-width:768px) {.video-grid {grid-template-columns:repeat(2,1fr);}.luoi-tim {grid-template-columns:repeat(2,1fr);}}
         @media (max-width:480px) {.video-grid {grid-template-columns:1fr;}.luoi-tim {grid-template-columns:1fr;}}
@@ -106,7 +107,8 @@
             <div class="trang-thai dang-tim">🔄 Đang tìm trên YouTube...</div>
         </div>
     </div>
-    <!-- ✅ KHỐI VIDEO NỔI BẬT MỚI NHẤT -->
+
+    <!-- ✅ KHỐI VIDEO NỔI BẬT MỚI NHẤT → LUÔN CÓ DỮ LIỆU -->
     <div class="media-top">
         <div class="media-main">
             <div class="main-video-cover" id="khoiVideoMoiNhat" onclick="phatVideoChinh()">
@@ -119,6 +121,7 @@
             </div>
         </div>
     </div>
+
     <div class="section-wrap">
         <div class="section-head">
             <h2 class="section-title">🏴 HIGHLIGHT NGOẠI HẠNG ANH</h2>
@@ -155,26 +158,24 @@
             <div class="trang-thai dang-tim">🔄 Đang tải video...</div>
         </div>
     </div>
+
     <script>
         // ==================================================
         // 🔑 GỌI QUA SCRIPT — KHÔNG LỘ KEY RA HTML
         // ==================================================
         const LINK_SCRIPT = "https://script.google.com/macros/s/AKfycbwpTrCytrlvpzXNVCS4R-PGyVxPCnIIC91-OBbr57SJcq0LWYSQA8EzvgYktENNsDxFsg/exec";
 
-        // ⏱️ CẤU HÌNH: 3 giờ quét lại, tìm trong 3 ngày gần nhất
-        const THOI_GIAN_QUET_LAI = 3 * 60 * 60 * 1000;
-        const SO_NGAY_GAN_NHAT = 3;
+        // ⏱️ === ĐÃ SỬA: TÌM TRONG 7 NGÀY → ĐỦ DỮ LIỆU ===
+        const THOI_GIAN_QUET_LAI = 3 * 60 * 60 * 1000; // 3 giờ quét lại
+        const SO_NGAY_GAN_NHAT = 7; // ✅ Tăng lên 7 ngày → chắc chắn có kết quả
 
-        // ✅ === TỪ KHÓA CÓ TÊN KÊNH LỚN → ƯU TIÊN TV360, KPLUS SPORT ===
+        // ✅ === TỪ KHÓA ƯU TIÊN KÊNH UY TÍN ===
         const KHOI_DU_LIEU = {
             Anh:    { tuKhoa: "Premier League highlights TV360 KPLUS Sport Sky Sports Premier League Official" },
             LaLiga: { tuKhoa: "LaLiga highlights TV360 KPLUS Sport LaLiga Official" },
             C1:     { tuKhoa: "Champions League highlights TV360 KPLUS Sport UEFA Official" },
-            VN:     { tuKhoa: "Đội tuyển Việt Nam bóng đá highlights TV360 VTV KPLUS Sport" }
+            VN:     { tuKhoa: "Đội tuyển Việt Nam bóng đá highlights TV360 VTV KPLUS Sport VTC Bóng Đá" }
         };
-
-        // ✅ === DANH SÁCH TÊN KÊNH UY TÍN → TỰ ĐỘNG THÊM VÀO TÌM KIẾM ===
-        const TEN_KENH_UY_TIN = " TV360 KPLUS Sport VTV VTC Bóng Đá Official ";
 
         const DA_HIEN = {};
         let VIDEO_MOI_NHAT = null;
@@ -202,20 +203,25 @@
         }
 
         // 📡 GỌI SCRIPT → TÌM VIDEO
-        async function goiYouTubeAPI(tuKhoa, maxResults=12, order="date") {
-            const ngay3NgayTruoc = layNgayXNgayTruoc(SO_NGAY_GAN_NHAT);
-            const url = `${LINK_SCRIPT}?q=${encodeURIComponent(tuKhoa)}&maxResults=${maxResults}&order=${order}&publishedAfter=${encodeURIComponent(ngay3NgayTruoc)}`;
+        async function goiYouTubeAPI(tuKhoa, maxResults=12, order="date", boLocNgay=false) {
+            let url = `${LINK_SCRIPT}?q=${encodeURIComponent(tuKhoa)}&maxResults=${maxResults}&order=${order}`;
+            // ✅ Chỉ thêm lọc ngày khi cần, không ép buộc mọi lúc
+            if (!boLocNgay) {
+                const ngayTruoc = layNgayXNgayTruoc(SO_NGAY_GAN_NHAT);
+                url += `&publishedAfter=${encodeURIComponent(ngayTruoc)}`;
+            }
             const res = await fetch(url);
             const data = await res.json();
             if (data.error) throw new Error(data.error);
             return data;
         }
 
-        // 🔥 VIDEO NỔI BẬT — ƯU TIÊN KÊNH LỚN
+        // 🔥 VIDEO NỔI BẬT MỚI NHẤT → KHÔNG LỌC NGÀY → LUÔN CÓ DỮ LIỆU
         async function taiVideoMoiNhat() {
-            const tuKhoa = "bóng đá highlights " + TEN_KENH_UY_TIN + " Premier League LaLiga Champions League";
+            const tuKhoa = "bóng đá highlights Premier League LaLiga Champions League TV360 KPLUS Sport VTV";
             try {
-                const data = await goiYouTubeAPI(tuKhoa, 1, "date");
+                // ✅ Bỏ lọc ngày cho khối nổi bật → chắc chắn có video
+                const data = await goiYouTubeAPI(tuKhoa, 1, "date", true);
                 if (data.items && data.items.length > 0) {
                     VIDEO_MOI_NHAT = data.items[0];
                     capNhatKhoiVideoChinh(VIDEO_MOI_NHAT);
@@ -233,7 +239,8 @@
         function capNhatKhoiVideoChinh(video) {
             const maVideo = video.id.videoId;
             document.getElementById("video-chinh").src = `https://www.youtube.com/embed/${maVideo}`;
-            document.getElementById("ten-video").textContent = video.snippet.title;
+            document.getElementById("ten-video").innerHTML = 
+                `<span>${video.snippet.title}</span><span class="kenh-tag">${video.snippet.channelTitle}</span>`;
             document.getElementById("thoi-luong").textContent = "🔥 Mới nhất";
         }
 
@@ -252,7 +259,7 @@
             }
         };
 
-        // 📥 TẢI VIDEO THEO KHỐI
+        // 📥 TẢI VIDEO THEO KHỐI → NẾU KHÔNG CÓ THÌ BỎ LỌC NGÀY
         async function taiKhoi(tenKhoi) {
             let tuKhoa = KHOI_DU_LIEU[tenKhoi].tuKhoa;
             const grid = document.getElementById("grid-" + tenKhoi);
@@ -272,7 +279,16 @@
             btn.textContent = "⏳";
 
             try {
-                const data = await goiYouTubeAPI(tuKhoa, 12, "date");
+                // ✅ Thử tìm có lọc 7 ngày trước
+                let data = await goiYouTubeAPI(tuKhoa, 12, "date", false);
+                let boLocNgay = false;
+
+                // ✅ Nếu không có → BỎ LỌC NGÀY HOÀN TOÀN → chắc chắn có kết quả
+                if (!data.items || data.items.length === 0) {
+                    data = await goiYouTubeAPI(tuKhoa, 12, "date", true);
+                    boLocNgay = true;
+                }
+
                 if (!data.items || data.items.length === 0) {
                     if (duLieuCu && duLieuCu.danhSach && duLieuCu.danhSach.length > 0) {
                         hienThiVideo(tenKhoi, duLieuCu.danhSach);
@@ -285,10 +301,14 @@
                     btn.textContent = "+";
                     return;
                 }
+
                 luuDuLieuLocal(tenKhoi, data.items);
                 hienThiVideo(tenKhoi, data.items);
                 btn.textContent = "✓";
-                btn.style.background = "#22c55e";
+                btn.style.background = boLocNgay ? "#f59e0b" : "#22c55e";
+                if (boLocNgay) {
+                    grid.insertAdjacentHTML("afterbegin", `<div style="grid-column:1/-1;text-align:center;color:#facc15;font-size:12px;padding:4px 0;">⚠️ Hiển thị video mới nhất (không giới hạn ngày)</div>`);
+                }
             } catch (loi) {
                 if (duLieuCu && duLieuCu.danhSach && duLieuCu.danhSach.length > 0) {
                     hienThiVideo(tenKhoi, duLieuCu.danhSach);
@@ -309,10 +329,11 @@
             danhSach.forEach((video, viTri) => {
                 const maVideo = video.id.videoId;
                 const tenVideo = video.snippet.title;
+                const tenKenh = video.snippet.channelTitle;
                 const ngay = new Date(video.snippet.publishedAt).toLocaleDateString("vi-VN");
                 const anhBia = video.snippet.thumbnails?.medium?.url || "";
                 const an = viTri < 6 ? "" : "an-video";
-                html += taoCardVideo(maVideo, anhBia, tenVideo, ngay, an);
+                html += taoCardVideo(maVideo, anhBia, tenVideo, tenKenh, ngay, an);
             });
             grid.innerHTML = html;
         }
@@ -321,14 +342,15 @@
         async function timKiemChung() {
             let tuKhoa = document.getElementById("timChungInput").value.trim();
             if (!tuKhoa) return;
-            // ✅ TỰ ĐỘNG THÊM TÊN KÊNH UY TÍN → Ưu tiên video từ TV360, KPLUS Sport
-            tuKhoa = tuKhoa + " " + TEN_KENH_UY_TIN + " highlights bóng đá";
+            // ✅ Tự động kèm tên kênh uy tín
+            tuKhoa = tuKhoa + " TV360 KPLUS Sport VTV VTC Bóng Đá highlights";
             document.getElementById("khoiKetQuaTim").classList.add("hien");
             document.getElementById("tuKhoaTim").textContent = tuKhoa;
             document.getElementById("luoiKetQuaTim").innerHTML = `<div class="trang-thai dang-tim">🔄 Đang tìm trên YouTube...</div>`;
 
             try {
-                const data = await goiYouTubeAPI(tuKhoa, 12, "relevance");
+                // ✅ Tìm không giới hạn ngày → luôn có kết quả
+                const data = await goiYouTubeAPI(tuKhoa, 12, "relevance", true);
                 if (!data.items || data.items.length === 0) {
                     document.getElementById("luoiKetQuaTim").innerHTML = `<div class="trang-thai loi">❌ Không tìm thấy video phù hợp</div>`;
                     return;
@@ -337,21 +359,22 @@
                 data.items.forEach(video => {
                     const maVideo = video.id.videoId;
                     const tenVideo = video.snippet.title;
+                    const tenKenh = video.snippet.channelTitle;
                     const ngay = new Date(video.snippet.publishedAt).toLocaleDateString("vi-VN");
                     const anhBia = video.snippet.thumbnails?.medium?.url || "";
-                    html += taoCardVideo(maVideo, anhBia, tenVideo, ngay, "");
+                    html += taoCardVideo(maVideo, anhBia, tenVideo, tenKenh, ngay, "");
                 });
                 document.getElementById("luoiKetQuaTim").innerHTML = html;
                 document.getElementById("video-chinh").src = "";
-                document.getElementById("ten-video").textContent = "✅ Có " + data.items.length + " video → Bấm vào xem";
+                document.getElementById("ten-video").innerHTML = `<span>✅ Có ${data.items.length} video</span>`;
                 document.getElementById("thoi-luong").textContent = "Chọn xem";
             } catch (loi) {
                 document.getElementById("luoiKetQuaTim").innerHTML = `<div class="trang-thai loi">⚠️ ${loi.message}</div>`;
             }
         }
 
-        // 🎬 TẠO THẺ VIDEO
-        function taoCardVideo(maVideo, anhBia, tenVideo, ngay, an) {
+        // 🎬 TẠO THẺ VIDEO → HIỂN THỊ TÊN KÊNH
+        function taoCardVideo(maVideo, anhBia, tenVideo, tenKenh, ngay, an) {
             return `
             <div class="video-card ${an}" onclick="phatVideoTuList('${maVideo}', this)">
                 <div class="card-thumb">
@@ -359,18 +382,24 @@
                     <div class="play-corner"><span class="tri"></span><span class="t">Xem</span></div>
                 </div>
                 <h4 class="card-title">${tenVideo}</h4>
-                <p class="card-time">${ngay}</p>
+                <p class="card-time">${tenKenh} · ${ngay}</p>
             </div>`;
         }
 
-        // ▶ PHÁT VIDEO KHI BẤM TRONG DANH SÁCH → ✅ TỰ CUỘN LÊN KHỐI PHÁT
+        // ▶ PHÁT VIDEO KHI BẤM TRONG DANH SÁCH → TỰ CUỘN LÊN
         function phatVideoTuList(maVideo, theCard) {
             document.getElementById("video-chinh").src = `https://www.youtube.com/embed/${maVideo}?autoplay=1`;
-            document.getElementById("ten-video").textContent = theCard.querySelector(".card-title").textContent;
+            document.getElementById("ten-video").innerHTML = 
+                `<span>${theCard.querySelector(".card-title").textContent}</span><span class="kenh-tag">${theCard.querySelector(".card-time").textContent?.split("·")[0] || "YouTube"}</span>`;
             document.getElementById("thoi-luong").textContent = "▶ Đang phát";
-            VIDEO_MOI_NHAT = {id:{videoId:maVideo}, snippet:{title:theCard.querySelector(".card-title").textContent}};
-
-            // ✅ === TỰ CUỘN MƯỢT MÀ LÊN KHỐI PHÁT VIDEO ===
+            VIDEO_MOI_NHAT = {
+                id:{videoId:maVideo}, 
+                snippet:{
+                    title: theCard.querySelector(".card-title").textContent,
+                    channelTitle: theCard.querySelector(".card-time").textContent?.split("·")[0] || "YouTube"
+                }
+            };
+            // ✅ Tự cuộn lên khối phát
             document.getElementById("khoiVideoMoiNhat").scrollIntoView({ behavior: "smooth", block: "center" });
         }
 
