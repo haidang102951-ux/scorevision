@@ -369,287 +369,538 @@
 <div id="list-lich"><div class="loading">Đang tải lịch đấu...</div></div>
 </main>
 <script>
-// ✅ LINK ĐÚNG NHẤT — TỪ XUẤT BẢN TRÊN WEB CỦA BẠN
+/* =========================================================
+   SCORE VISION — LỊCH ĐẤU
+   LOGO/CỜ ENGINE V10
+   - Không đụng API bóng đá/API key hiện tại.
+   - Sheet chỉ cần 8 cột hiện có.
+   - Đội tuyển quốc gia => cờ ISO, tuyệt đối không lấy logo CLB.
+   - CLB => dataset football-teams-flags + fallback GitHub SVG.
+   - Match tên thông minh: viết tắt, FC/AFC/CF/SC, dấu, tên cũ/phổ biến.
+   - Chỉ tải database logo 1 lần; cache URL logo đã tìm thấy.
+   ========================================================= */
+
 const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRjGewmdAmJVjyi-0vSc22hhFPacMgGc-WmVE8PEM3jHfA7IvED3XbBp68Bwp16n1Dc2FFP9ETKTaSH/pub?gid=655851279&single=true&output=csv";
+
+const LOGO_DATA_URL = "https://cdn.jsdelivr.net/gh/hixcoder/football-teams-flags@main/football_teams.json";
+const LOGO_CACHE_KEY = "scorevision_team_logos_v10";
+const LOGO_DB_CACHE_KEY = "scorevision_logo_db_v10";
+
+/* Repo SVG dự phòng. Đây là file tĩnh, KHÔNG phải API bóng đá. */
+const FALLBACK_LOGO_REPO = "https://raw.githubusercontent.com/JoseArroyave/football-logos/refs/heads/main/logos";
 
 let duLieuGoc = [];
 let giaiDangChon = "TatCa";
+let logoIndex = null;
+let logoRows = [];
+let logoLoadPromise = null;
 
+/* ========================= CSV ========================= */
 function parseCSV(text){
-    const rows=[], lines=text.split("\n");
-    for(let l of lines){
-        if(!l.trim())continue;
-        let p=[],c="",q=0;
-        for(let ch of l){
-            if(ch==='"')q=!q;
-            else if(ch==','&&!q){p.push(c.trim());c="";}
-            else c+=ch;
+    const rows=[];
+    let row=[], cell="", quoted=false;
+    text=String(text||"").replace(/^\uFEFF/,"");
+    for(let i=0;i<text.length;i++){
+        const ch=text[i];
+        const next=text[i+1];
+        if(ch==='"'){
+            if(quoted && next==='"'){ cell+='"'; i++; }
+            else quoted=!quoted;
+        }else if(ch===',' && !quoted){
+            row.push(cell.trim()); cell="";
+        }else if((ch==='\n'||ch==='\r') && !quoted){
+            if(ch==='\r' && next==='\n') i++;
+            row.push(cell.trim());
+            if(row.some(v=>v!=="")) rows.push(row);
+            row=[]; cell="";
+        }else{
+            cell+=ch;
         }
-        p.push(c.trim());rows.push(p);
+    }
+    if(cell!=="" || row.length){
+        row.push(cell.trim());
+        if(row.some(v=>v!=="")) rows.push(row);
     }
     return rows;
 }
 
-fetch(CSV_URL)
-.then(r=>{
-    if(!r.ok) throw new Error("Không đọc được sheet! Kiểm tra Xuất bản trên web");
-    return r.text();
-})
-.then(csv=>{
-    const rows=parseCSV(csv);
-    if(rows.length<2){
-        document.getElementById("list-lich").innerHTML=`<div class="empty">Chưa có dữ liệu!</div>`;
-        return;
+async function loadFixtures(){
+    const box=document.getElementById("list-lich");
+    try{
+        const r=await fetch(CSV_URL,{cache:"no-store"});
+        if(!r.ok) throw new Error("Không đọc được Google Sheet");
+        const csv=await r.text();
+        const rows=parseCSV(csv);
+        if(rows.length<2){
+            box.innerHTML='<div class="empty">📭 Chưa có dữ liệu lịch đấu!</div>';
+            return;
+        }
+
+        const header=rows[0].map(h=>String(h||"").trim().toLowerCase());
+        const idx={
+            loai:header.indexOf("loai_muc"),
+            stt:header.indexOf("thu_tu"),
+            nha:header.indexOf("doi_nha"),
+            khach:header.indexOf("doi_khach"),
+            ngaygio:header.indexOf("ngay_gio"),
+            giai:header.indexOf("giai_dau"),
+            trangthai:header.indexOf("trang_thai"),
+            san:header.indexOf("san_dau")
+        };
+
+        if([idx.loai,idx.stt,idx.nha,idx.khach,idx.ngaygio,idx.giai,idx.trangthai].includes(-1)){
+            box.innerHTML='<div class="empty">❌ Thiếu cột trong Google Sheet. Cần: loai_muc, thu_tu, doi_nha, doi_khach, ngay_gio, giai_dau, trang_thai.</div>';
+            return;
+        }
+
+        duLieuGoc=[];
+        for(let i=1;i<rows.length;i++){
+            const r=rows[i];
+            if(String(r[idx.loai]||"").trim().toLowerCase()!=="lich_dau") continue;
+            const nha=String(r[idx.nha]||"").trim();
+            const khach=String(r[idx.khach]||"").trim();
+            if(!nha||!khach) continue;
+            duLieuGoc.push({
+                st:Number(String(r[idx.stt]||"").replace(/[^0-9.-]/g,""))||999999,
+                nha,khach,
+                ngaygio:String(r[idx.ngaygio]||"").trim(),
+                giai:String(r[idx.giai]||"").trim(),
+                trangthai:String(r[idx.trangthai]||"").trim(),
+                sandau:idx.san>=0?String(r[idx.san]||"").trim():""
+            });
+        }
+
+        duLieuGoc.sort((a,b)=>a.st-b.st);
+        capNhatThongKe();
+        hienThiDuLieu();
+
+        /* Logo tải sau lịch, không làm chậm việc hiện trận đấu. */
+        loadLogoDatabase();
+    }catch(err){
+        box.innerHTML=`<div class="empty">❌ ${safeText(err.message||"Lỗi tải dữ liệu")}<br>Hãy kiểm tra Google Sheet đã được <b>Xuất bản trên web</b>.</div>`;
     }
-    const header=rows[0].map(h=>h.trim().toLowerCase());
-    const idx_loai = header.indexOf("loai_muc");
-    const idx_thutu = header.indexOf("thu_tu");
-    const idx_nha = header.indexOf("doi_nha");
-    const idx_khach = header.indexOf("doi_khach");
-    const idx_ngaygio = header.indexOf("ngay_gio");
-    const idx_giai = header.indexOf("giai_dau");
-    const idx_trangthai = header.indexOf("trang_thai");
-    const idx_sandau = header.indexOf("san_dau");
+}
 
-    if([idx_loai,idx_thutu,idx_nha,idx_khach,idx_ngaygio,idx_giai,idx_trangthai].includes(-1)){
-        document.getElementById("list-lich").innerHTML=`<div class="empty">❌ Thiếu cột! Kiểm tra tiêu đề cột trong sheet</div>`;
-        return;
-    }
-
-    for(let i=1;i<rows.length;i++){
-        const r=rows[i];
-        if(r[idx_loai]!=="lich_dau")continue;
-        const nha = (r[idx_nha]||"").trim();
-        const khach = (r[idx_khach]||"").trim();
-        if(!nha || !khach) continue;
-        duLieuGoc.push({
-            st:Number(r[idx_thutu])||999,
-            nha:nha,
-            khach:khach,
-            ngaygio:(r[idx_ngaygio]||"").trim(),
-            giai:(r[idx_giai]||"").trim(),
-            trangthai:(r[idx_trangthai]||"").trim(),
-            sandau:idx_sandau>=0 ? (r[idx_sandau]||"").trim() : ""
-        });
-    }
-
-    duLieuGoc.sort((a,b)=>a.st-b.st);
-    capNhatThongKe();
-    hienThiDuLieu();
-    /* Tải kho logo sau khi lịch đã hiện, không chặn nội dung chính. */
-    setTimeout(loadLogoDatabase, 0);
-})
-.catch(err=>{
-    document.getElementById("list-lich").innerHTML=`<div class="empty">❌ Lỗi: ${err.message}<br>Kiểm tra: Tệp → Xuất bản trên web → Nhấn Xuất bản</div>`;
-});
-
-const LOGO_DATA_URL = "https://cdn.jsdelivr.net/gh/hixcoder/football-teams-flags@main/football_teams.json";
-const COUNTRY_DATA_URL = "https://raw.githubusercontent.com/hampusborgos/country-flags/main/countries.json";
-const LOGO_CACHE_KEY = "scorevision_team_logos_v4";
-let logoIndex = null;
-let teamCountryIndex = null;
-let countryCodeIndex = null;
-let logoLoadPromise = null;
+/* ========================= NAME ENGINE ========================= */
+function stripVietnamese(s){
+    return String(s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"");
+}
 
 function normalizeTeamName(name){
-    return String(name||"")
-        .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
-        .toLowerCase()
+    return stripVietnamese(name)
+        .replace(/[’'`]/g,"")
         .replace(/&/g," and ")
-        .replace(/\b(fc|cf|afc|sc|ac|club|football|futebol|de|the)\b/g, " ")
-        .replace(/[^a-z0-9\s]/g, " ")
-        .replace(/\s+/g, " ")
+        .toLowerCase()
+        .replace(/\b(fc|f\.c\.?|afc|a\.f\.c\.?|cf|c\.f\.?|sc|s\.c\.?|ac|a\.c\.?|ssc|ss|bc|jk|sk|fk|bv|kv|club|football club|football|futebol|de futbol|de football|calcio|sportiva|sociedade esportiva|the)\b/g," ")
+        .replace(/\b(19|20)\d{2}\b/g," ")
+        .replace(/[^a-z0-9\s]/g," ")
+        .replace(/\s+/g," ")
         .trim();
 }
 
+function compactKey(name){return normalizeTeamName(name).replace(/\s+/g,"");}
+
 const TEAM_ALIASES={
-    "man united":"manchester united","manchester united fc":"manchester united","manchester city fc":"manchester city",
-    "newcastle united fc":"newcastle united","tottenham hotspur fc":"tottenham hotspur","brighton hove albion":"brighton hove albion",
-    "brighton hove albion fc":"brighton hove albion","wolverhampton wanderers fc":"wolverhampton wanderers","west ham united fc":"west ham united",
-    "nottingham forest fc":"nottingham forest","crystal palace fc":"crystal palace","aston villa fc":"aston villa","leeds united fc":"leeds united",
-    "brentford fc":"brentford","chelsea fc":"chelsea","arsenal fc":"arsenal","everton fc":"everton","fulham fc":"fulham",
-    "bournemouth afc":"bournemouth","afc bournemouth":"bournemouth","burnley fc":"burnley","sunderland afc":"sunderland","sunderland fc":"sunderland",
-    "liverpool fc":"liverpool","leicester city fc":"leicester city","ipswich town fc":"ipswich town","southampton fc":"southampton",
-    "west bromwich albion fc":"west bromwich albion","club atletico de madrid":"atletico madrid","atletico madrid":"atletico madrid",
-    "fc barcelona":"barcelona","real madrid cf":"real madrid","real madrid fc":"real madrid","athletic club bilbao":"athletic bilbao",
-    "athletic club":"athletic bilbao","sevilla fc":"sevilla","real betis balompie":"real betis","villarreal cf":"villarreal",
-    "real sociedad de futbol":"real sociedad","internazionale milano":"inter","fc internazionale milano":"inter","inter milan":"inter",
-    "ac milan":"milan","juventus fc":"juventus","as roma":"roma","ss lazio":"lazio","ssc napoli":"napoli","atalanta bc":"atalanta",
-    "acf fiorentina":"fiorentina","fc bayern munchen":"bayern munich","bayern munich":"bayern munich","borussia dortmund":"borussia dortmund",
-    "borussia monchengladbach":"borussia monchengladbach","bayer 04 leverkusen":"bayer leverkusen","rb leipzig":"rb leipzig",
-    "eintracht frankfurt":"eintracht frankfurt","paris saint germain":"paris saint germain","psg":"paris saint germain",
-    "olympique lyonnais":"lyon","olympique de marseille":"marseille","as monaco fc":"monaco","lille osc":"lille",
-    "sporting clube de portugal":"sporting cp","sporting cp":"sporting cp","sl benfica":"benfica","fc porto":"porto","ajax amsterdam":"ajax",
-    "psv eindhoven":"psv","feyenoord rotterdam":"feyenoord","galatasaray sk":"galatasaray","fenerbahce sk":"fenerbahce","besiktas jk":"besiktas",
-    "tottenham":"tottenham hotspur","newcastle":"newcastle united"
+    /* England */
+    "man utd":"manchester united","man united":"manchester united","manchester utd":"manchester united","manchester united":"manchester united",
+    "man city":"manchester city","manchester city":"manchester city",
+    "newcastle":"newcastle united","newcastle united":"newcastle united",
+    "spurs":"tottenham hotspur","tottenham":"tottenham hotspur","tottenham hotspur":"tottenham hotspur",
+    "brighton":"brighton hove albion","brighton hove":"brighton hove albion","brighton hove albion":"brighton hove albion",
+    "wolves":"wolverhampton wanderers","wolverhampton":"wolverhampton wanderers","wolverhampton wanderers":"wolverhampton wanderers",
+    "west ham":"west ham united","west ham united":"west ham united",
+    "forest":"nottingham forest","nottingham forest":"nottingham forest",
+    "palace":"crystal palace","crystal palace":"crystal palace",
+    "villa":"aston villa","aston villa":"aston villa",
+    "leeds":"leeds united","leeds united":"leeds united",
+    "brentford":"brentford","chelsea":"chelsea","arsenal":"arsenal","everton":"everton","fulham":"fulham",
+    "bournemouth":"bournemouth","burnley":"burnley","sunderland":"sunderland","liverpool":"liverpool",
+    "leicester":"leicester city","leicester city":"leicester city","ipswich":"ipswich town","ipswich town":"ipswich town",
+    "southampton":"southampton","west brom":"west bromwich albion","west bromwich":"west bromwich albion","west bromwich albion":"west bromwich albion",
+    "sheffield united":"sheffield united","sheffield utd":"sheffield united","sheffield Wednesday":"sheffield wednesday",
+    "everton":"everton",
+
+    /* Spain */
+    "atletico":"atletico madrid","atletico madrid":"atletico madrid","athletic bilbao":"athletic club","athletic club":"athletic club",
+    "barca":"barcelona","barcelona":"barcelona","real madrid":"real madrid","sevilla":"sevilla","betis":"real betis","real betis":"real betis",
+    "villarreal":"villarreal","sociedad":"real sociedad","real sociedad":"real sociedad","rayo":"rayo vallecano","rayo vallecano":"rayo vallecano",
+    "espanyol":"espanyol","deportivo":"deportivo la coruna","deportivo la coruna":"deportivo la coruna","alaves":"alaves","alaves":"alaves",
+    "valencia":"valencia","elche":"elche","getafe":"getafe","mallorca":"mallorca","osasuna":"osasuna","celta vigo":"celta vigo",
+
+    /* Italy */
+    "inter":"inter milan","internazionale":"inter milan","inter milan":"inter milan","milan":"milan","ac milan":"milan",
+    "juve":"juventus","juventus":"juventus","roma":"roma","lazio":"lazio","napoli":"napoli","atalanta":"atalanta","fiorentina":"fiorentina",
+    "como":"como","como 1907":"como","parma":"parma","parma calcio":"parma","udinese":"udinese","monza":"monza","sassuolo":"sassuolo",
+    "torino":"torino","bologna":"bologna","genoa":"genoa","lecce":"lecce","cagliari":"cagliari","verona":"hellas verona","hellas verona":"hellas verona",
+    "venezia":"venezia","empoli":"empoli","cremonese":"cremonese","pisa":"pisa",
+
+    /* Germany */
+    "bayern":"bayern munich","bayern munich":"bayern munich","bayern munchen":"bayern munich","dortmund":"borussia dortmund","borussia dortmund":"borussia dortmund",
+    "gladbach":"borussia monchengladbach","borussia monchengladbach":"borussia monchengladbach","leverkusen":"bayer leverkusen","bayer leverkusen":"bayer leverkusen",
+    "leipzig":"rb leipzig","rb leipzig":"rb leipzig","frankfurt":"eintracht frankfurt","eintracht frankfurt":"eintracht frankfurt",
+    "koln":"fc koln","cologne":"fc koln","fc koln":"fc koln","1 fc koln":"fc koln",
+    "mainz":"mainz 05","mainz 05":"mainz 05","union":"union berlin","union berlin":"union berlin","1 fc union berlin":"union berlin",
+    "hamburg":"hamburger sv","hamburger sv":"hamburger sv","st pauli":"st pauli","freiburg":"sc freiburg","werder bremen":"werder bremen",
+    "wolfsburg":"wolfsburg","hoffenheim":"hoffenheim","augsburg":"augsburg","heidenheim":"heidenheim","bochum":"bochum",
+
+    /* France */
+    "psg":"paris saint germain","paris sg":"paris saint germain","paris saint germain":"paris saint germain","lyon":"lyon","marseille":"marseille",
+    "monaco":"monaco","lille":"lille","nice":"nice","lens":"lens","rennes":"rennes","nantes":"nantes","strasbourg":"strasbourg",
+
+    /* Portugal / Netherlands / Turkey */
+    "sporting":"sporting cp","sporting cp":"sporting cp","sporting lisbon":"sporting cp","benfica":"benfica","porto":"porto","braga":"braga",
+    "ajax":"ajax","psv":"psv","psv eindhoven":"psv","feyenoord":"feyenoord","az":"az alkmaar","twente":"twente",
+    "galatasaray":"galatasaray","fenerbahce":"fenerbahce","besiktas":"besiktas","trabzonspor":"trabzonspor",
+
+    /* Brazil */
+    "flamengo":"flamengo","palmeiras":"palmeiras","corinthians":"corinthians","santos":"santos","sao paulo":"sao paulo","vasco":"vasco da gama",
+    "botafogo":"botafogo","fluminense":"fluminense","gremio":"gremio","internacional":"internacional",
 };
 
 function canonicalTeamKey(name){
-    const key=normalizeTeamName(name);
-    return TEAM_ALIASES[key] || key;
+    const raw=normalizeTeamName(name);
+    return TEAM_ALIASES[raw] || raw;
 }
 
-function getLogoCache(){try{return JSON.parse(localStorage.getItem(LOGO_CACHE_KEY)||"{}");}catch(e){return {};}}
-function saveLogoCache(cache){try{localStorage.setItem(LOGO_CACHE_KEY,JSON.stringify(cache));}catch(e){}}
-
-function buildLogoIndex(list){
-    const map=new Map(), countries=new Map();
-    const rows=Array.isArray(list) ? list : (Array.isArray(list?.teams) ? list.teams : (Array.isArray(list?.data) ? list.data : []));
-    rows.forEach(t=>{
-        const key=canonicalTeamKey(t.name);
-        if(!key)return;
-        if(t.country) countries.set(key,String(t.country).trim());
-        if(t.logoUrl && !map.has(key)) map.set(key,t.logoUrl);
-    });
-    teamCountryIndex=countries;
-    return map;
-}
-
-function buildCountryIndex(data){
-    const map=new Map();
-    Object.entries(data||{}).forEach(([code,name])=>map.set(normalizeTeamName(name),code.toLowerCase()));
-    // Tên thường gặp trong dữ liệu lịch đấu / tiếng Việt.
+function teamSearchForms(name){
+    const raw=normalizeTeamName(name);
+    const canonical=canonicalTeamKey(name);
+    const forms=new Set([raw,canonical,compactKey(raw),compactKey(canonical)]);
+    /* Common provider/API abbreviations. */
     const aliases={
-        "vietnam":"vn","viet nam":"vn","thailand":"th","thai lan":"th","south korea":"kr","korea republic":"kr",
-        "north korea":"kp","korea dpr":"kp","china":"cn","china pr":"cn","laos":"la","timor leste":"tl",
-        "brunei":"bn","russia":"ru","turkey":"tr","turkiye":"tr","czechia":"cz","iran":"ir","uae":"ae",
-        "united arab emirates":"ae","usa":"us","united states":"us","ivory coast":"ci","cote divoire":"ci",
-        "cape verde":"cv","eswatini":"sz","palestine":"ps","macau":"mo","hong kong":"hk","kosovo":"xk",
-        "england":"gb-eng","scotland":"gb-sct","wales":"gb-wls","northern ireland":"gb-nir","ireland":"ie"
+        "manchester united":"manchester united","manchester city":"manchester city","newcastle united":"newcastle united",
+        "tottenham hotspur":"tottenham hotspur","brighton hove albion":"brighton hove albion","wolverhampton wanderers":"wolverhampton wanderers",
+        "nottingham forest":"nottingham forest","crystal palace":"crystal palace","aston villa":"aston villa","west ham united":"west ham united",
+        "atletico madrid":"atletico madrid","athletic club":"athletic club","real betis":"real betis","real sociedad":"real sociedad",
+        "rayo vallecano":"rayo vallecano","deportivo la coruna":"deportivo la coruna","inter milan":"inter","milan":"ac milan",
+        "bayern munich":"bayern munich","borussia dortmund":"borussia dortmund","borussia monchengladbach":"borussia monchengladbach",
+        "bayer leverkusen":"bayer leverkusen","eintracht frankfurt":"eintracht frankfurt","paris saint germain":"paris saint germain",
+        "sporting cp":"sporting","ajax":"ajax","psv":"psv"
     };
-    Object.entries(aliases).forEach(([n,c])=>map.set(normalizeTeamName(n),c));
-    return map;
+    if(aliases[canonical]) forms.add(normalizeTeamName(aliases[canonical]));
+    return [...forms].filter(Boolean);
 }
+
+/* ========================= NATIONAL TEAMS ========================= */
+const NATIONAL_CODES={
+    "afghanistan":"af","albania":"al","algeria":"dz","andorra":"ad","angola":"ao","antigua and barbuda":"ag","argentina":"ar","armenia":"am","australia":"au","austria":"at","azerbaijan":"az",
+    "bahamas":"bs","bahrain":"bh","bangladesh":"bd","barbados":"bb","belarus":"by","belgium":"be","belize":"bz","benin":"bj","bhutan":"bt","bolivia":"bo","bosnia and herzegovina":"ba","botswana":"bw","brazil":"br","brunei":"bn","bulgaria":"bg","burkina faso":"bf","burundi":"bi",
+    "cambodia":"kh","cameroon":"cm","canada":"ca","cape verde":"cv","central african republic":"cf","chad":"td","chile":"cl","china":"cn","colombia":"co","comoros":"km","congo":"cg","costa rica":"cr","croatia":"hr","cuba":"cu","curacao":"cw","cyprus":"cy","czechia":"cz","czech republic":"cz",
+    "denmark":"dk","djibouti":"dj","dominica":"dm","dominican republic":"do","ecuador":"ec","egypt":"eg","el salvador":"sv","england":"gb-eng","equatorial guinea":"gq","eritrea":"er","estonia":"ee","eswatini":"sz","ethiopia":"et",
+    "fiji":"fj","finland":"fi","france":"fr","gabon":"ga","gambia":"gm","georgia":"ge","germany":"de","ghana":"gh","greece":"gr","grenada":"gd","guatemala":"gt","guinea":"gn","guinea bissau":"gw","guyana":"gy","haiti":"ht","honduras":"hn","hong kong":"hk","hungary":"hu",
+    "iceland":"is","india":"in","indonesia":"id","iran":"ir","iraq":"iq","ireland":"ie","israel":"il","italy":"it","ivory coast":"ci","cote divoire":"ci","jamaica":"jm","japan":"jp","jordan":"jo","kazakhstan":"kz","kenya":"ke","kuwait":"kw","kyrgyzstan":"kg",
+    "laos":"la","latvia":"lv","lebanon":"lb","lesotho":"ls","liberia":"lr","libya":"ly","liechtenstein":"li","lithuania":"lt","luxembourg":"lu","macau":"mo","madagascar":"mg","malawi":"mw","malaysia":"my","maldives":"mv","mali":"ml","malta":"mt","mauritania":"mr","mauritius":"mu","mexico":"mx","moldova":"md","mongolia":"mn","montenegro":"me","morocco":"ma","mozambique":"mz","myanmar":"mm",
+    "namibia":"na","nepal":"np","netherlands":"nl","new zealand":"nz","nicaragua":"ni","niger":"ne","nigeria":"ng","north korea":"kp","norway":"no","oman":"om","pakistan":"pk","palestine":"ps","panama":"pa","papua new guinea":"pg","paraguay":"py","peru":"pe","philippines":"ph","poland":"pl","portugal":"pt","qatar":"qa","romania":"ro","russia":"ru","rwanda":"rw",
+    "saudi arabia":"sa","scotland":"gb-sct","senegal":"sn","serbia":"rs","seychelles":"sc","sierra leone":"sl","singapore":"sg","slovakia":"sk","slovenia":"si","solomon islands":"sb","somalia":"so","south africa":"za","south korea":"kr","south sudan":"ss","spain":"es","sri lanka":"lk","sudan":"sd","suriname":"sr","sweden":"se","switzerland":"ch","syria":"sy",
+    "taiwan":"tw","tajikistan":"tj","tanzania":"tz","thailand":"th","timor leste":"tl","togo":"tg","tonga":"to","trinidad and tobago":"tt","tunisia":"tn","turkey":"tr","turkiye":"tr","turkmenistan":"tm","uganda":"ug","ukraine":"ua","united arab emirates":"ae","united states":"us","usa":"us","uruguay":"uy","uzbekistan":"uz","vanuatu":"vu","venezuela":"ve","vietnam":"vn","wales":"gb-wls","yemen":"ye","zambia":"zm","zimbabwe":"zw","kosovo":"xk"
+};
+
+const NATIONAL_ALIASES={
+    "viet nam":"vietnam","viet nam national team":"vietnam","vietnam":"vietnam",
+    "thailand":"thailand","thai lan":"thailand","thai":"thailand",
+    "han quoc":"south korea","korea republic":"south korea","republic of korea":"south korea","korea republic of":"south korea","south korea":"south korea",
+    "trieu tien":"north korea","dpr korea":"north korea","north korea":"north korea",
+    "trung quoc":"china","china pr":"china","china":"china","hong kong trung quoc":"hong kong","hong kong china":"hong kong","hong kong":"hong kong",
+    "uae":"united arab emirates","united arab emirates":"united arab emirates","anh":"england","england":"england","phap":"france","france":"france","duc":"germany","germany":"germany",
+    "y":"italy","italy":"italy","tay ban nha":"spain","spain":"spain","nhat ban":"japan","nhat":"japan","japan":"japan",
+    "myanmar":"myanmar","malaysia":"malaysia","indonesia":"indonesia","singapore":"singapore","bangladesh":"bangladesh","pakistan":"pakistan","philippines":"philippines",
+    "campuchia":"cambodia","cambodia":"cambodia","lao":"laos","laos":"laos","qatar":"qatar","kuwait":"kuwait","uzbekistan":"uzbekistan",
+    "iran":"iran","iraq":"iraq","jordan":"jordan","saudi arabia":"saudi arabia","australia":"australia","new zealand":"new zealand",
+    "usa":"united states","united states":"united states","mexico":"mexico","canada":"canada","brazil":"brazil","argentina":"argentina","colombia":"colombia",
+    "morocco":"morocco","egypt":"egypt","senegal":"senegal","ghana":"ghana","nigeria":"nigeria","south africa":"south africa",
+    "turkey":"turkey","turkiye":"turkey","switzerland":"switzerland","austria":"austria","poland":"poland","croatia":"croatia","serbia":"serbia",
+    "scotland":"scotland","wales":"wales","georgia":"georgia","ukraine":"ukraine","czechia":"czechia","czech republic":"czech republic",
+    "romania":"romania","bulgaria":"bulgaria","greece":"greece","albania":"albania","slovakia":"slovakia","slovenia":"slovenia"
+};
 
 function stripAgePrefix(name){
-    return String(name||"").replace(/^u\s*[-]?\s*23\s+/i,"").replace(/^u23\s+/i,"").trim();
+    return String(name||"")
+        .replace(/^u\s*[-]?\s*(23|20|19|17)\s+/i,"")
+        .replace(/\s+(u\s*[-]?\s*(23|20|19|17))$/i,"")
+        .trim();
 }
-function nationalKey(name){return normalizeTeamName(stripAgePrefix(name));}
+
+function nationalKey(name){
+    let k=normalizeTeamName(stripAgePrefix(name));
+    k=k.replace(/\b(national team|men|mens|senior|olympic)\b/g," ").replace(/\s+/g," ").trim();
+    return NATIONAL_ALIASES[k] || k;
+}
+
 function nationalFlagUrl(name){
-    if(!countryCodeIndex)return null;
-    const k=nationalKey(name);
-    const code=countryCodeIndex.get(k);
+    const code=NATIONAL_CODES[nationalKey(name)];
     return code ? `https://flagcdn.io/${code}.svg` : null;
 }
+
 function isNationalTeam(name){return !!nationalFlagUrl(name);}
 
+/* ========================= LEAGUE COUNTRY ========================= */
 const LEAGUE_COUNTRY={
-    "ngoai hang anh":"england","premier league":"england","english premier league":"england",
-    "championship":"england","la liga":"spain","primera division":"spain","tbn":"spain","tây ban nha":"spain",
-    "serie a":"italy","serie b":"italy","italy":"italy","bundesliga":"germany","germany":"germany",
-    "ligue 1":"france","ligue 2":"france","france":"france","brasileirao":"brazil","brazil":"brazil",
-    "eredivisie":"netherlands","ha lan":"netherlands","hà lan":"netherlands","liga portugal":"portugal","portugal":"portugal",
-    "super lig":"turkey","turkiye":"turkey","scottish premiership":"scotland","jupiler pro league":"belgium",
-    "mls":"united states","liga mx":"mexico","primera division argentina":"argentina","argentina":"argentina",
-    "j1 league":"japan","japan":"japan","k league":"south korea","south korea":"south korea",
-    "a league":"australia","australia":"australia","saudi pro league":"saudi arabia","uae pro league":"united arab emirates",
-    "fifa asean cup":"indonesia","asean cup":"indonesia"
+    "ngoai hang anh":"england","premier league":"england","english premier league":"england","championship":"england","hang nhi anh":"england",
+    "la liga":"spain","primera division":"spain","tbn":"spain","tay ban nha":"spain",
+    "serie a":"italy","serie b":"italy","bundesliga":"germany","germany":"germany","ligue 1":"france","ligue 2":"france","france":"france",
+    "vdqg brazil":"brazil","brasileirao":"brazil","brazil":"brazil","eredivisie":"netherlands","ha lan":"netherlands","hà lan":"netherlands",
+    "primeira liga":"portugal","liga portugal":"portugal","portugal":"portugal","super lig":"turkey","turkiye":"turkey","turkey":"turkey",
+    "scottish premiership":"scotland","jupiler pro league":"belgium","mls":"united states","liga mx":"mexico","primera division argentina":"argentina",
+    "argentina":"argentina","j1 league":"japan","japan":"japan","k league":"south korea","south korea":"south korea","a league":"australia","australia":"australia",
+    "saudi pro league":"saudi arabia","uae pro league":"united arab emirates","fifa asean cup":"","asean cup":"","u23 asiad 2026":""
 };
 function leagueCountry(league){
     const k=normalizeTeamName(league);
-    if(LEAGUE_COUNTRY[k])return LEAGUE_COUNTRY[k];
-    for(const [needle,country] of Object.entries(LEAGUE_COUNTRY)) if(k.includes(needle)) return country;
+    if(LEAGUE_COUNTRY[k]) return LEAGUE_COUNTRY[k];
+    for(const [needle,country] of Object.entries(LEAGUE_COUNTRY)) if(country && k.includes(needle)) return country;
     return "";
 }
-function countrySlug(country){return normalizeTeamName(country).replace(/\s+/g,"-");}
-function logoSlug(name){
-    const k=canonicalTeamKey(name);
-    const special={
-        "bournemouth":"bournemouth","newcastle united":"newcastle","tottenham hotspur":"tottenham","manchester united":"manchester-united",
-        "manchester city":"manchester-city","brighton hove albion":"brighton","wolverhampton wanderers":"wolverhampton-wanderers",
-        "west ham united":"west-ham-united","nottingham forest":"nottingham-forest","crystal palace":"crystal-palace",
-        "aston villa":"aston-villa","leeds united":"leeds-united","brentford":"brentford","chelsea":"chelsea","arsenal":"arsenal",
-        "liverpool":"liverpool","everton":"everton","fulham":"fulham","sunderland":"sunderland","burnley":"burnley",
-        "leicester city":"leicester-city","ipswich town":"ipswich-town","southampton":"southampton","barcelona":"barcelona","real madrid":"real-madrid",
-        "atletico madrid":"atletico-madrid","athletic bilbao":"athletic-bilbao","sevilla":"sevilla","real betis":"real-betis","villarreal":"villarreal",
-        "real sociedad":"real-sociedad","inter":"inter","milan":"ac-milan","juventus":"juventus","roma":"roma","lazio":"lazio","napoli":"napoli",
-        "atalanta":"atalanta","fiorentina":"fiorentina","bayern munich":"bayern-munich","borussia dortmund":"borussia-dortmund",
-        "borussia monchengladbach":"borussia-monchengladbach","bayer leverkusen":"bayer-leverkusen","rb leipzig":"rb-leipzig",
-        "eintracht frankfurt":"eintracht-frankfurt","paris saint germain":"psg","lyon":"lyon","marseille":"marseille","monaco":"monaco",
-        "lille":"lille","sporting cp":"sporting","benfica":"benfica","porto":"porto","ajax":"ajax","psv":"psv","feyenoord":"feyenoord",
-        "galatasaray":"galatasaray","fenerbahce":"fenerbahce","besiktas":"besiktas"
-    };
-    return special[k] || k.replace(/\s+/g,"-");
+
+/* ========================= LOGO INDEX ========================= */
+function getLogoCache(){try{return JSON.parse(localStorage.getItem(LOGO_CACHE_KEY)||"{}");}catch(e){return {};}}
+function saveLogoCache(c){try{localStorage.setItem(LOGO_CACHE_KEY,JSON.stringify(c));}catch(e){}}
+
+function buildLogoIndex(list){
+    const map=new Map();
+    const rows=Array.isArray(list)?list:(Array.isArray(list?.teams)?list.teams:(Array.isArray(list?.data)?list.data:[]));
+    logoRows=[];
+
+    for(const t of rows){
+        const original=String(t?.name||"").trim();
+        const url=String(t?.logoUrl||t?.logo_url||t?.url||"").trim();
+        const country=String(t?.country||"").trim();
+        if(!original||!url) continue;
+        const forms=teamSearchForms(original);
+        const row={name:original,country,url,forms};
+        logoRows.push(row);
+        for(const key of forms){ if(!map.has(key)) map.set(key,row); }
+    }
+    return map;
 }
 
-function exactLogoFromDatabase(teamName){
-    const key=canonicalTeamKey(teamName);
-    if(!logoIndex||!key)return null;
-    const cache=getLogoCache();
-    if(cache[key])return cache[key];
-    const url=logoIndex.get(key);
-    if(url){cache[key]=url;saveLogoCache(cache);return url;}
+function countryMatches(row, expected){
+    if(!expected) return true;
+    const c=normalizeTeamName(row.country||"");
+    const e=normalizeTeamName(expected);
+    if(!c) return true;
+    return c===e || c.includes(e) || e.includes(c);
+}
+
+function tokenSimilarity(a,b){
+    const A=new Set(normalizeTeamName(a).split(" ").filter(x=>x.length>1));
+    const B=new Set(normalizeTeamName(b).split(" ").filter(x=>x.length>1));
+    if(!A.size||!B.size) return 0;
+    let hit=0; for(const x of A) if(B.has(x)) hit++;
+    return hit/Math.max(A.size,B.size);
+}
+
+function stringSimilarity(a,b){
+    const A=compactKey(a), B=compactKey(b);
+    if(!A||!B) return 0;
+    if(A===B) return 1;
+    const min=Math.min(A.length,B.length), max=Math.max(A.length,B.length);
+    let p=0; while(p<min && A[p]===B[p]) p++;
+    const prefix=p/max;
+    const lev=levenshteinRatio(A,B);
+    return prefix*.25+lev*.75;
+}
+
+function levenshteinRatio(a,b){
+    if(a===b) return 1;
+    if(!a||!b) return 0;
+    let prev=new Array(b.length+1);
+    for(let j=0;j<=b.length;j++) prev[j]=j;
+    for(let i=1;i<=a.length;i++){
+        const cur=[i];
+        for(let j=1;j<=b.length;j++) cur[j]=Math.min(cur[j-1]+1,prev[j]+1,prev[j-1]+(a[i-1]===b[j-1]?0:1));
+        prev=cur;
+    }
+    return 1-prev[b.length]/Math.max(a.length,b.length);
+}
+
+function bestLogoRow(teamName,league){
+    if(!logoRows.length) return null;
+    const expected=leagueCountry(league);
+    const forms=teamSearchForms(teamName);
+
+    /* 1. exact key */
+    for(const f of forms){
+        const row=logoIndex?.get(f);
+        if(row && countryMatches(row,expected)) return row;
+    }
+
+    /* 2. exact name after normalization */
+    const target=normalizeTeamName(teamName);
+    for(const row of logoRows){
+        if(normalizeTeamName(row.name)===target && countryMatches(row,expected)) return row;
+    }
+
+    /* 3. controlled fuzzy — ưu tiên cùng quốc gia của giải */
+    let best=null, bestScore=0;
+    for(const row of logoRows){
+        if(expected && row.country && !countryMatches(row,expected)) continue;
+        const token=tokenSimilarity(teamName,row.name);
+        const str=stringSimilarity(teamName,row.name);
+        let score=token*.58+str*.42;
+        if(canonicalTeamKey(teamName)===canonicalTeamKey(row.name)) score+=.30;
+        if(score>bestScore){bestScore=score;best=row;}
+    }
+    if(best && bestScore>=.74) return best;
+
+    /* 4. Nếu không biết quốc gia, thử toàn bộ dataset với ngưỡng cao hơn. */
+    if(expected){
+        best=null;bestScore=0;
+        for(const row of logoRows){
+            const token=tokenSimilarity(teamName,row.name);
+            const str=stringSimilarity(teamName,row.name);
+            const score=token*.55+str*.45;
+            if(score>bestScore){bestScore=score;best=row;}
+        }
+        if(best && bestScore>=.86) return best;
+    }
     return null;
 }
-function directFootballLogo(teamName,league){
-    const country=teamCountryIndex?.get(canonicalTeamKey(teamName)) || leagueCountry(league);
-    if(!country || isNationalTeam(teamName))return null;
-    const url=`https://football-logos.cc/logos/${encodeURIComponent(countrySlug(country))}/256x256/${encodeURIComponent(logoSlug(teamName))}.png`;
-    return url;
-}
-function findLogoCandidates(teamName,league){
-    if(isNationalTeam(teamName)){
-        const flag=nationalFlagUrl(teamName);
-        return flag ? [flag] : [];
+
+/* ========================= STATIC FALLBACK ========================= */
+const COUNTRY_FOLDER={
+    england:"england",spain:"spain",italy:"italy",germany:"germany",france:"france",portugal:"portugal",netherlands:"netherlands",
+    turkey:"turkey",belgium:"belgium",scotland:"scotland",brazil:"brazil",argentina:"argentina",mexico:"mexico",usa:"usa",
+    japan:"japan","south korea":"south-korea",australia:"australia","saudi arabia":"saudi-arabia","united arab emirates":"uae",
+    austria:"austria",switzerland:"switzerland",greece:"greece",poland:"poland",czechia:"czechia",denmark:"denmark",
+    norway:"norway",sweden:"sweden",ireland:"ireland",romania:"romania",croatia:"croatia",serbia:"serbia"
+};
+
+const STATIC_LOGOS={
+    "union berlin":["Germany/Union Berlin.svg","Germany/1. FC Union Berlin.svg"],
+    "mainz 05":["Germany/Mainz 05.svg","Germany/1. FSV Mainz 05.svg"],
+    "fc koln":["Germany/1. FC Köln.svg","Germany/FC Köln.svg","Germany/1. FC Koln.svg"],
+    "hamburger sv":["Germany/Hamburger SV.svg"],
+    "borussia monchengladbach":["Germany/Borussia Mönchengladbach.svg","Germany/Borussia Monchengladbach.svg"],
+    "parma":["Italy/Parma.svg","Italy/Parma Calcio.svg"],
+    "udinese":["Italy/Udinese.svg","Italy/Udinese Calcio.svg"],
+    "sassuolo":["Italy/Sassuolo.svg","Italy/US Sassuolo.svg"],
+    "rayo vallecano":["Spain/Rayo Vallecano.svg","Spain/Rayo Vallecano de Madrid.svg"],
+    "espanyol":["Spain/Espanyol.svg","Spain/RCD Espanyol.svg"],
+    "deportivo la coruna":["Spain/Deportivo La Coruña.svg","Spain/Deportivo.svg"],
+    "brighton hove albion":["England/Brighton.svg","England/Brighton & Hove Albion.svg"],
+    "ipswich town":["England/Ipswich Town.svg"],
+    "newcastle united":["England/Newcastle United.svg"],
+    "tottenham hotspur":["England/Tottenham Hotspur.svg","England/Tottenham.svg"],
+    "everton":["England/Everton.svg"],
+    "arsenal":["England/Arsenal.svg"],
+    "liverpool":["England/Liverpool.svg"],
+    "manchester united":["England/Manchester United.svg"],
+    "manchester city":["England/Manchester City.svg"],
+    "chelsea":["England/Chelsea.svg"],
+    "real madrid":["Spain/Real Madrid.svg"],
+    "barcelona":["Spain/Barcelona.svg","Spain/FC Barcelona.svg"],
+    "atletico madrid":["Spain/Atletico Madrid.svg","Spain/Atlético Madrid.svg"],
+    "sevilla":["Spain/Sevilla.svg","Spain/Sevilla FC.svg"],
+    "inter milan":["Italy/Inter Milan.svg","Italy/Inter.svg","Italy/Internazionale.svg"],
+    "milan":["Italy/AC Milan.svg","Italy/Milan.svg"],
+    "juventus":["Italy/Juventus.svg"],
+    "roma":["Italy/Roma.svg","Italy/AS Roma.svg"],
+    "bayern munich":["Germany/Bayern Munich.svg","Germany/Bayern München.svg"],
+    "borussia dortmund":["Germany/Borussia Dortmund.svg"],
+    "bayer leverkusen":["Germany/Bayer Leverkusen.svg","Germany/Bayer 04 Leverkusen.svg"],
+    "rb leipzig":["Germany/RB Leipzig.svg"],
+    "paris saint germain":["France/Paris Saint-Germain.svg","France/PSG.svg"],
+    "lyon":["France/Lyon.svg","France/Olympique Lyonnais.svg"],
+    "marseille":["France/Marseille.svg","France/Olympique de Marseille.svg"]
+};
+
+function titleCaseWords(s){return String(s||"").split(" ").filter(Boolean).map(w=>w.charAt(0).toUpperCase()+w.slice(1)).join(" ");}
+
+function githubFallbackCandidates(teamName,league){
+    const key=canonicalTeamKey(teamName);
+    const explicit=STATIC_LOGOS[key]||[];
+    const country=leagueCountry(league);
+    const folder=COUNTRY_FOLDER[country];
+    const base=[];
+    if(folder){
+        const raw=stripVietnamese(teamName).replace(/[\\/:*?"<>|]/g," ").replace(/\s+/g," ").trim();
+        const can=titleCaseWords(canonicalTeamKey(teamName));
+        const variants=[raw,titleCaseWords(raw),can,titleCaseWords(normalizeTeamName(teamName))];
+        for(const v of variants){if(v && !base.includes(`${folder}/${v}.svg`)) base.push(`${folder}/${v}.svg`);}
     }
-    const out=[];
-    // Ưu tiên URL trực tiếp của football-logos.cc cho các giải đã xác định quốc gia.
-    // Nếu URL đó không tồn tại, mới thử logo từ JSON hàng nghìn đội.
-    const direct=directFootballLogo(teamName,league);
-    const exact=exactLogoFromDatabase(teamName);
-    if(direct)out.push(direct);
-    if(exact && !out.includes(exact))out.push(exact);
-    return out;
+    return [...explicit,...base].slice(0,6).map(p=>`${FALLBACK_LOGO_REPO}/${p.split("/").map(encodeURIComponent).join("/")}`);
 }
-function findLogo(teamName,league){return findLogoCandidates(teamName,league)[0]||null;}
+
+/* ========================= RESOLVE ========================= */
+function resolveLogoCandidates(teamName,league){
+    /* National teams luôn thắng tuyệt đối. Không được phép lấy logo CLB. */
+    const flag=nationalFlagUrl(teamName);
+    if(flag) return [flag];
+
+    const cache=getLogoCache();
+    const key=canonicalTeamKey(teamName);
+    if(cache[key]) return [cache[key],...githubFallbackCandidates(teamName,league)];
+
+    const row=bestLogoRow(teamName,league);
+    const urls=[];
+    if(row?.url) urls.push(row.url);
+    for(const u of githubFallbackCandidates(teamName,league)) if(!urls.includes(u)) urls.push(u);
+    return urls;
+}
 
 function loadLogoDatabase(){
-    if(logoLoadPromise)return logoLoadPromise;
-    logoLoadPromise=Promise.all([
-        fetch(LOGO_DATA_URL,{cache:"force-cache"}).then(r=>r.ok?r.json():[]).catch(()=>[]),
-        fetch(COUNTRY_DATA_URL,{cache:"force-cache"}).then(r=>r.ok?r.json():{}).catch(()=>{})
-    ]).then(([logos,countries])=>{
-        logoIndex=buildLogoIndex(logos);
-        countryCodeIndex=buildCountryIndex(countries);
-        hienThiDuLieu();
-        return logoIndex;
-    });
+    if(logoLoadPromise) return logoLoadPromise;
+    logoLoadPromise=fetch(LOGO_DATA_URL,{cache:"force-cache"})
+        .then(r=>r.ok?r.json():[])
+        .catch(()=>[])
+        .then(data=>{
+            logoIndex=buildLogoIndex(data);
+            hienThiDuLieu();
+            return logoIndex;
+        });
     return logoLoadPromise;
 }
 
+/* ========================= RENDER ========================= */
 function safeText(v){
-
-    return String(v??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
+    return String(v??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[m]));
 }
 
 function logoFallback(img){
     const box=document.createElement("div");
     box.className="team-logo-fallback";
-    box.setAttribute("aria-label","Không có logo");
+    box.setAttribute("aria-label","Không tìm thấy logo");
     box.textContent="⚽";
-    if(img && img.parentNode) img.parentNode.replaceChild(box,img);
+    if(img?.parentNode) img.parentNode.replaceChild(box,img);
 }
 
-
-function nationalFallback(name){
-    const k=nationalKey(name);
-    const flags={
-        "bangladesh":"🇧🇩","indonesia":"🇮🇩","singapore":"🇸🇬","pakistan":"🇵🇰",
-        "thailand":"🇹🇭","vietnam":"🇻🇳","philippines":"🇵🇭","malaysia":"🇲🇾",
-        "myanmar":"🇲🇲","brunei":"🇧🇳","timor leste":"🇹🇱","laos":"🇱🇦",
-        "cambodia":"🇰🇭","hong kong":"🇭🇰","japan":"🇯🇵","china":"🇨🇳"
-    };
-    return flags[k] || "⚽";
+function rememberWorkingLogo(teamName,url){
+    if(!url || /flagcdn\.io/.test(url)) return;
+    const c=getLogoCache();
+    c[canonicalTeamKey(teamName)]=url;
+    saveLogoCache(c);
 }
 
 function teamHtml(name,side,league){
     const safe=safeText(name);
-    const candidates=findLogoCandidates(name,league);
-    const sideClass=side==='away' ? 'team-away' : 'team-home';
+    const candidates=resolveLogoCandidates(name,league);
+    const sideClass=side==='away'?'team-away':'team-home';
     const logo=candidates.length
-        ? `<img class="team-logo" src="${safeText(candidates[0])}" data-logo-candidates="${safeText(JSON.stringify(candidates))}" data-logo-index="0" alt="Logo ${safe}" loading="lazy" decoding="async" referrerpolicy="no-referrer">`
-        : `<div class="team-logo-fallback" aria-label="Logo mặc định">${nationalFallback(name)}</div>`;
+        ? `<img class="team-logo" src="${safeText(candidates[0])}" data-team="${safeText(name)}" data-logo-candidates="${safeText(JSON.stringify(candidates))}" data-logo-index="0" alt="Logo ${safe}" loading="lazy" decoding="async" referrerpolicy="no-referrer">`
+        : `<div class="team-logo-fallback" aria-label="Logo mặc định">⚽</div>`;
     return `<div class="team ${sideClass}">${logo}<div class="team-name">${safe}</div></div>`;
+}
+
+function attachLogoHandlers(box){
+    box.querySelectorAll("img.team-logo").forEach(img=>{
+        img.addEventListener("load",()=>{
+            img.classList.remove("loading");
+            const src=img.currentSrc||img.src||"";
+            if(src && !/flagcdn\.io/.test(src)) rememberWorkingLogo(img.dataset.team,src);
+        },{once:false});
+        img.addEventListener("error",()=>{
+            let list=[];
+            try{list=JSON.parse(img.getAttribute("data-logo-candidates")||"[]");}catch(e){}
+            let idx=Number(img.getAttribute("data-logo-index")||0)+1;
+            if(idx<list.length){
+                img.setAttribute("data-logo-index",String(idx));
+                img.classList.add("loading");
+                img.src=list[idx];
+                return;
+            }
+            logoFallback(img);
+        });
+    });
 }
 
 function capNhatThongKe(){
@@ -658,134 +909,84 @@ function capNhatThongKe(){
     const leaguesEl=document.getElementById("stat-leagues");
     if(!total||!todayEl||!leaguesEl)return;
     total.textContent=duLieuGoc.length;
-    const today=new Date();
-    const yyyy=today.getFullYear(), mm=String(today.getMonth()+1).padStart(2,"0"), dd=String(today.getDate()).padStart(2,"0");
-    const todayKey=`${yyyy}-${mm}-${dd}`;
-    const todayAlt=`${dd}/${mm}/${yyyy}`;
-    todayEl.textContent=duLieuGoc.filter(x=>{
-        const v=String(x.ngaygio||"");
-        return v.includes(todayKey)||v.includes(todayAlt)||v.includes(`${dd}/${mm}`);
-    }).length;
+    const now=new Date();
+    const y=now.getFullYear(),m=String(now.getMonth()+1).padStart(2,"0"),d=String(now.getDate()).padStart(2,"0");
+    const k1=`${y}-${m}-${d}`, k2=`${d}/${m}/${y}`, k3=`${d}/${m}`;
+    todayEl.textContent=duLieuGoc.filter(x=>{const v=x.ngaygio||"";return v.includes(k1)||v.includes(k2)||v.includes(k3);}).length;
     leaguesEl.textContent=new Set(duLieuGoc.map(x=>x.giai).filter(Boolean)).size;
 }
 
 function hienThiDuLieu(){
-    let dataLoc=duLieuGoc;
-    if(giaiDangChon!=="TatCa") dataLoc=duLieuGoc.filter(d=>d.giai.includes(giaiDangChon)||giaiDangChon.includes(d.giai));
     const box=document.getElementById("list-lich");
-    if(!dataLoc.length){box.innerHTML=`<div class="empty">📭 Chưa có lịch đấu cho giải này!</div>`;return;}
-    box.innerHTML=dataLoc.map(x=>{
+    if(!box)return;
+    let data=duLieuGoc;
+    if(giaiDangChon!=="TatCa") data=duLieuGoc.filter(x=>x.giai.includes(giaiDangChon)||giaiDangChon.includes(x.giai));
+    if(!data.length){box.innerHTML='<div class="empty">📭 Chưa có lịch đấu cho giải này!</div>';return;}
+
+    box.innerHTML=data.map(x=>{
         const safeLeague=safeText(x.giai||"Lịch đấu");
         const safeDate=safeText(x.ngaygio||"");
         const safeStatus=safeText(x.trangthai||"Sắp diễn ra");
         const safeVenue=safeText(x.sandau||"");
+        const parts=String(x.ngaygio||"").trim().split(/\s+/);
         return `<article class="lich-item">
             <div class="lich-giai"><span class="lich-giai-ten">🏆 ${safeLeague}</span><span class="lich-status-top">SẮP ĐẤU</span></div>
             <div class="lich-doi">
-                ${teamHtml(x.nha,'home',x.giai)}
-                <div class="lich-vs-wrap"><span class="lich-vs">VS</span><div class="lich-time">${safeDate.split(/\s+/)[0]||"--:--"}</div><div class="lich-date">${safeDate.split(/\s+/).slice(1).join(" ")||""}</div></div>
-                ${teamHtml(x.khach,'away',x.giai)}
+                ${teamHtml(x.nha,"home",x.giai)}
+                <div class="lich-vs-wrap"><span class="lich-vs">VS</span><div class="lich-time">${safeText(parts[0]||"--:--")}</div><div class="lich-date">${safeText(parts.slice(1).join(" "))}</div></div>
+                ${teamHtml(x.khach,"away",x.giai)}
             </div>
-            ${safeVenue ? `<div class="lich-san">🏟️ ${safeVenue}</div>` : ""}
+            ${safeVenue?`<div class="lich-san">🏟️ ${safeVenue}</div>`:""}
             <div class="lich-duong-ke"></div>
             <div class="lich-thoi-gian"><span class="lich-ngay">📅 ${safeDate}</span><span class="lich-trang-thai">${safeStatus}</span></div>
         </article>`;
     }).join("");
 
-    box.querySelectorAll("img.team-logo").forEach(img=>{
-        img.addEventListener("error",()=>{
-            try{
-                const list=JSON.parse(img.getAttribute("data-logo-candidates")||"[]");
-                let idx=Number(img.getAttribute("data-logo-index")||0)+1;
-                if(idx<list.length){
-                    img.setAttribute("data-logo-index",String(idx));
-                    img.src=list[idx];
-                    return;
-                }
-            }catch(e){}
-            logoFallback(img);
-        });
-    });
+    attachLogoHandlers(box);
 }
 
-
-/* =========================================================
-   CUỘN NGANG MƯỢT
-   - Điện thoại/tablet: giữ nguyên native touch scrolling.
-   - Máy tính: kéo ngang bằng chuột + lăn chuột để cuộn ngang.
-   Không dùng pointermove/requestAnimationFrame trên touch để tránh giật.
-   ========================================================= */
-(function(){
-    function enableHorizontalDrag(selector){
-        document.querySelectorAll(selector).forEach(scroller=>{
-            let dragging=false;
-            let moved=false;
-            let startX=0;
-            let startScroll=0;
-
-            scroller.addEventListener('mousedown',function(e){
-                if(e.button!==0) return;
-                dragging=true;
-                moved=false;
-                startX=e.clientX;
-                startScroll=scroller.scrollLeft;
-                scroller.classList.add('dragging');
-            });
-
-            window.addEventListener('mousemove',function(e){
-                if(!dragging) return;
-                const dx=e.clientX-startX;
-                if(Math.abs(dx)>5){
-                    moved=true;
-                    e.preventDefault();
-                }
-                scroller.scrollLeft=startScroll-dx;
-            },{passive:false});
-
-            function stop(){
-                if(!dragging) return;
-                dragging=false;
-                scroller.classList.remove('dragging');
-            }
-
-            window.addEventListener('mouseup',stop);
-            window.addEventListener('blur',stop);
-
-            scroller.addEventListener('wheel',function(e){
-                if(Math.abs(e.deltaY)<=Math.abs(e.deltaX)) return;
-                const max=scroller.scrollWidth-scroller.clientWidth;
-                if(max<=0) return;
-                const current=scroller.scrollLeft;
-                const next=Math.max(0,Math.min(max,current+e.deltaY));
-                if(next!==current){
-                    e.preventDefault();
-                    scroller.scrollLeft=next;
-                }
-            },{passive:false});
-
-            scroller.addEventListener('click',function(e){
-                if(moved){
-                    e.preventDefault();
-                    e.stopPropagation();
-                    moved=false;
-                }
-            },true);
-        });
-    }
-
-    enableHorizontalDrag('.menu');
-    enableHorizontalDrag('.loc-giai');
-})();
-
+/* ========================= FILTER ========================= */
 document.querySelectorAll(".loc-btn").forEach(btn=>{
-    btn.addEventListener("click", ()=>{
+    btn.addEventListener("click",()=>{
         document.querySelectorAll(".loc-btn").forEach(b=>b.classList.remove("active"));
         btn.classList.add("active");
-        giaiDangChon = btn.dataset.giai;
+        giaiDangChon=btn.dataset.giai||"TatCa";
         hienThiDuLieu();
     });
 });
+
+/* ========================= CUỘN NGANG ========================= */
+(function(){
+    function enableHorizontalDrag(selector){
+        document.querySelectorAll(selector).forEach(scroller=>{
+            let dragging=false,startX=0,startScroll=0;
+            scroller.addEventListener("mousedown",e=>{
+                if(e.button!==0)return;
+                dragging=true;startX=e.clientX;startScroll=scroller.scrollLeft;scroller.classList.add("dragging");
+            });
+            window.addEventListener("mousemove",e=>{
+                if(!dragging)return;
+                const dx=e.clientX-startX;
+                if(Math.abs(dx)>4)e.preventDefault();
+                scroller.scrollLeft=startScroll-dx;
+            },{passive:false});
+            const stop=()=>{dragging=false;scroller.classList.remove("dragging");};
+            window.addEventListener("mouseup",stop);window.addEventListener("blur",stop);
+            scroller.addEventListener("wheel",e=>{
+                if(Math.abs(e.deltaY)<=Math.abs(e.deltaX))return;
+                const max=scroller.scrollWidth-scroller.clientWidth;
+                if(max<=0)return;
+                const next=Math.max(0,Math.min(max,scroller.scrollLeft+e.deltaY));
+                if(next!==scroller.scrollLeft){e.preventDefault();scroller.scrollLeft=next;}
+            },{passive:false});
+        });
+    }
+    enableHorizontalDrag(".menu,.loc-giai");
+})();
+
+/* Khởi động */
+loadFixtures();
 </script>
-<script>(function(s){s.dataset.zone='11665696',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
+
 </body>
 </html>
