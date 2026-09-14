@@ -617,7 +617,7 @@ function loadLogoDatabase(){
    Không dùng API-Football, không cần API key.
    Kết quả được cache ở localStorage để lần sau gần như không gọi lại.
    ========================================================= */
-const WIKI_CACHE_KEY = "scorevision_team_logos_wikidata_v1";
+const WIKI_CACHE_KEY = "scorevision_team_logos_wikidata_v2";
 const WIKI_MISS_KEY = "scorevision_team_logos_wikidata_miss_v1";
 let wikiLogoCache = null;
 let wikiMissCache = null;
@@ -637,11 +637,93 @@ function isLikelyNationalTeam(name){
     return countries.has(k);
 }
 
+const NATIONAL_WIKI_TITLES={
+    "bangladesh":"Bangladesh national football team",
+    "indonesia":"Indonesia national football team",
+    "singapore":"Singapore national football team",
+    "pakistan":"Pakistan national football team",
+    "thailand":"Thailand national football team",
+    "vietnam":"Vietnam national football team",
+    "philippines":"Philippines national football team",
+    "malaysia":"Malaysia national football team",
+    "myanmar":"Myanmar national football team",
+    "brunei":"Brunei national football team",
+    "timor leste":"Timor-Leste national football team",
+    "laos":"Laos national football team",
+    "cambodia":"Cambodia national football team",
+    "hong kong":"Hong Kong national football team",
+    "japan":"Japan national football team",
+    "china":"China national football team",
+    "uzbekistan":"Uzbekistan national football team",
+    "qatar":"Qatar national football team",
+    "kuwait":"Kuwait national football team",
+    "south korea":"South Korea national football team",
+    "korea republic":"South Korea national football team",
+    "iran":"Iran national football team",
+    "iraq":"Iraq national football team",
+    "jordan":"Jordan national football team",
+    "saudi arabia":"Saudi Arabia national football team",
+    "united arab emirates":"United Arab Emirates national football team",
+    "oman":"Oman national football team",
+    "india":"India national football team",
+    "australia":"Australia national soccer team",
+    "new zealand":"New Zealand national football team",
+    "england":"England national football team",
+    "scotland":"Scotland national football team",
+    "wales":"Wales national football team",
+    "france":"France national football team",
+    "germany":"Germany national football team",
+    "italy":"Italy national football team",
+    "spain":"Spain national football team",
+    "portugal":"Portugal national football team",
+    "netherlands":"Netherlands national football team",
+    "belgium":"Belgium national football team",
+    "switzerland":"Switzerland national football team",
+    "croatia":"Croatia national football team",
+    "serbia":"Serbia national football team",
+    "brazil":"Brazil national football team",
+    "argentina":"Argentina national football team",
+    "mexico":"Mexico national football team",
+    "united states":"United States men's national soccer team",
+    "canada":"Canada men's national soccer team",
+    "colombia":"Colombia national football team",
+    "chile":"Chile national football team",
+    "uruguay":"Uruguay national football team",
+    "ecuador":"Ecuador national football team",
+    "peru":"Peru national football team",
+    "morocco":"Morocco national football team",
+    "egypt":"Egypt national football team",
+    "nigeria":"Nigeria national football team",
+    "ghana":"Ghana national football team",
+    "senegal":"Senegal national football team",
+    "south africa":"South Africa national football team"
+};
+
+function nationalKey(name){
+    return canonicalTeamKey(String(name||"").replace(/^u\s*[-]?\s*23\s+/i,"").replace(/^u23\s+/i,"").trim());
+}
+
 function wikiSearchName(name){
     let clean=String(name||"").trim();
     clean=clean.replace(/^u\s*[-]?\s*23\s+/i,"").replace(/^u23\s+/i,"").trim();
+    const nk=nationalKey(clean);
+    if(NATIONAL_WIKI_TITLES[nk]) return NATIONAL_WIKI_TITLES[nk];
     if(isLikelyNationalTeam(clean)) return clean + " national football team";
     return clean;
+}
+
+async function fetchWikipediaNationalLogo(teamName){
+    const key=nationalKey(teamName);
+    const title=NATIONAL_WIKI_TITLES[key];
+    if(!title) return null;
+    try{
+        const url="https://en.wikipedia.org/api/rest_v1/page/summary/"+encodeURIComponent(title);
+        const r=await fetch(url,{cache:"force-cache"});
+        if(!r.ok)return null;
+        const j=await r.json();
+        // Wikipedia's national-team article thumbnail is normally the current team crest.
+        return j?.thumbnail?.source || j?.originalimage?.source || null;
+    }catch(e){return null;}
 }
 
 async function fetchWikidataLogo(teamName){
@@ -697,6 +779,11 @@ async function fetchWikipediaLogo(teamName){
 }
 
 async function findExternalLogo(teamName){
+    // Đội tuyển quốc gia: ưu tiên trang Wikipedia chính xác của đội tuyển,
+    // không dùng Wikidata/Commons search vì dễ trả về logo của liên đoàn hoặc ảnh lịch sử.
+    if(isLikelyNationalTeam(teamName)){
+        return await fetchWikipediaNationalLogo(teamName);
+    }
     return await fetchWikidataLogo(teamName)
         || await fetchCommonsLogo(teamName)
         || await fetchWikipediaLogo(teamName);
@@ -736,7 +823,7 @@ function logoFallback(img){
 
 
 function nationalFallback(name){
-    const k=canonicalTeamKey(name);
+    const k=nationalKey(name);
     const flags={
         "bangladesh":"🇧🇩","indonesia":"🇮🇩","singapore":"🇸🇬","pakistan":"🇵🇰",
         "thailand":"🇹🇭","vietnam":"🇻🇳","philippines":"🇵🇭","malaysia":"🇲🇾",
