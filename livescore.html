@@ -31,13 +31,14 @@
         .video-iframe{width:100%;height:340px;border-radius:8px;overflow:hidden;}
         .tatca-giai-lon > div{margin-bottom:16px;}
         .chan-trang{margin-top:10px;text-align:center;padding:10px 0;border-top:1px solid var(--border-subtle);font-size:12px;color:#64748b;}
-
         /* === KHUNG TRỰC TIẾP TV360 === */
         .khung-truc-tiep-tv{background:linear-gradient(135deg,rgba(239,68,68,.12),rgba(239,68,68,.05));border:2px solid rgba(239,68,68,.4);border-radius:12px;padding:16px;margin-bottom:20px;animation:nhapNhay 2s infinite;}
         .trang-thai-truc-tiep{display:flex;align-items:center;gap:8px;margin-bottom:12px;}
         .diem-truc-tiep{width:12px;height:12px;background:#ef4444;border-radius:50%;animation:nhapNhay 1s infinite;}
         @keyframes nhapNhay{0%{opacity:1}50%{opacity:.3}100%{opacity:1}}
         .khung-trong{text-align:center;padding:20px 10px;color:#6b7280;font-size:14px;}
+        /* === ẨN KHUNG KHI KHÔNG CÓ TRỰC TIẾP === */
+        .an-khung{display:none !important;}
     </style>
 </head>
 <body>
@@ -65,16 +66,13 @@
             <button class="tab-btn" onclick="chuyenTab('lich')">📅 Lịch Sắp Đấu</button>
             <button class="tab-btn" onclick="chuyenTab('ketqua')">✅ Kết Quả</button>
         </div>
-
         <div id="tab-tructiep" class="tab-content active">
             <!-- ✅ PHẦN TRÊN: GoalAPI -->
             <iframe src="https://goalapi.net/nhung/livescore?theme=dark&lang=vi&accent=3b3b3f" 
             width="100%" height="320" frameborder="0" loading="lazy" scrolling="auto" 
             title="Tất Cả Trận Đang Đá"></iframe>
-
             <!-- ✅ KHUNG TRỰC TIẾP TV360 → CHỈ HIỂN KHI CÓ TRỰC TIẾP -->
-            <div id="khungTV360"></div>
-
+            <div id="khungTV360" class="an-khung"></div>
             <!-- ✅ MENU CHỌN GIẢI -->
             <div class="tab-giai">
                 <button class="tab-giai-btn active" data-giai="tatca">Tất Cả Giải Lớn</button>
@@ -85,12 +83,10 @@
                 <button class="tab-giai-btn" data-giai="italia">🇮🇹 Ý</button>
                 <button class="tab-giai-btn" data-giai="vn">🇻🇳 Việt Nam</button>
             </div>
-
             <!-- ✅ KHUNG HIỂN THỊ MÃ NHÚNG -->
             <div class="trang-thai" id="trangThai">🔄 Đang tải dữ liệu...</div>
             <div class="khung-giai-lon" id="khungGiaiLon"></div>
         </div>
-
         <!-- ✅ TAB LỊCH & KẾT QUẢ -->
         <div id="tab-lich" class="tab-content">
             <iframe src="https://goalapi.net/nhung/lich-thi-dau?theme=dark&lang=vi&accent=3b3b3f" 
@@ -108,7 +104,6 @@
     <p>🔄 Tự cập nhật liên tục</p>
 </div>
 </div>
-
 <script>
 // ==================================================
 // ✅ MÃ NHÚNG TỪ FOOTBALLDATA.IO
@@ -148,42 +143,55 @@ const MA_NHUNG = {
     italia: `<iframe src="https://footballdata.io/widget/livescore?league=14&theme=dark&accent=2d2a2a&refresh=60" style="width:100%;max-width:100%;height:470px;border:0;border-radius:12px" loading="lazy"></iframe>`,
     vn: `<iframe src="https://footballdata.io/widget/livescore?league=164&theme=dark&accent=2d2a2a&refresh=60" style="width:100%;max-width:100%;height:470px;border:0;border-radius:12px" loading="lazy"></iframe>`
 };
-
 // ==================================================
-// ✅ KÊNH YOUTUBE TV360 THỂ THAO
+// ✅ KIỂM TRA TRỰC TIẾP TV360 → HIỂN/ẨN TỰ ĐỘNG
 // ==================================================
 const KHUNG_TV360 = document.getElementById("khungTV360");
+const CHANNEL_ID = "UCzFbV2hP3sY9LbP8q9x7wXg"; // TV360 Thể Thao
 
-// === KIỂM TRA TRỰC TIẾP TV360 ===
-function kiemTraTrucTiepTV360(){
-  // Nhúng kênh TV360 → YouTube TỰ HIỂN TRỰC TIẾP khi có, ẨN khi không có
-  KHUNG_TV360.innerHTML = `
-  <div class="khung-truc-tiep-tv">
-    <div class="trang-thai-truc-tiep">
-      <span class="diem-truc-tiep"></span>
-      <span style="color:#ef4444;font-weight:600;">🔴 TRỰC TIẾP — TV360 Thể Thao</span>
-    </div>
-    <iframe class="video-iframe" 
-      src="https://www.youtube.com/embed/live_stream?channel=UCzFbV2hP3sY9LbP8q9x7wXg" 
-      allowfullscreen allow="autoplay; fullscreen" loading="lazy"
-      title="Xem Trực Tiếp TV360"></iframe>
-  </div>`;
+async function kiemTraTrucTiepTV360(){
+  try {
+    // Kiểm tra kênh có đang phát trực tiếp không
+    const kiemTra = await fetch(`https://www.youtube.com/embed/live_stream?channel=${CHANNEL_ID}`);
+    const coTrucTiep = kiemTra.status !== 404;
+
+    if(coTrucTiep) {
+      // ✅ ĐANG PHÁT → HIỂN KHUNG
+      KHUNG_TV360.classList.remove("an-khung");
+      KHUNG_TV360.innerHTML = `
+      <div class="khung-truc-tiep-tv">
+        <div class="trang-thai-truc-tiep">
+          <span class="diem-truc-tiep"></span>
+          <span style="color:#ef4444;font-weight:600;">🔴 TRỰC TIẾP — TV360 Thể Thao</span>
+        </div>
+        <iframe class="video-iframe" 
+          src="https://www.youtube.com/embed/live_stream?channel=${CHANNEL_ID}&autoplay=1" 
+          allowfullscreen allow="autoplay; fullscreen" loading="lazy"
+          title="Xem Trực Tiếp TV360"></iframe>
+      </div>`;
+    } else {
+      // ❌ KHÔNG PHÁT → ẨN KHUNG
+      KHUNG_TV360.classList.add("an-khung");
+      KHUNG_TV360.innerHTML = "";
+    }
+  } catch(err) {
+    // Lỗi mạng → ẨN cho gọn
+    KHUNG_TV360.classList.add("an-khung");
+    KHUNG_TV360.innerHTML = "";
+  }
 }
-
 // === HIỂN TỶ SỐ GIẢI ===
 function hienTySoGiaiLon(){
   const tenGiai = {
     tatca: "Tất Cả Giải Lớn", anh: "Ngoại Hạng Anh", c1: "Cúp C1",
     laliga: "La Liga", bundesliga: "Bundesliga", italia: "Serie A", vn: "Việt Nam"
   };
-
   if(MA_NHUNG[GIAI_DANG_XEM]) {
     trangThai.textContent = "🔄 Đang tải " + tenGiai[GIAI_DANG_XEM] + "...";
     khungGiaiLon.innerHTML = MA_NHUNG[GIAI_DANG_XEM];
     setTimeout(()=>{ trangThai.textContent = "✅ Đã cập nhật — " + tenGiai[GIAI_DANG_XEM]; }, 8000);
   }
 }
-
 // === CHUYỂN TAB ===
 function chuyenTab(tenTab) {
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -191,13 +199,11 @@ function chuyenTab(tenTab) {
   event.target.classList.add('active');
   document.getElementById('tab-' + tenTab).classList.add('active');
 }
-
 // === BẤM CHỌN GIẢI ===
 const BTN_GIAI = document.querySelectorAll(".tab-giai-btn");
 let GIAI_DANG_XEM = "tatca";
 const khungGiaiLon = document.getElementById("khungGiaiLon");
 const trangThai = document.getElementById("trangThai");
-
 BTN_GIAI.forEach(btn => {
   btn.addEventListener("click", () => {
     BTN_GIAI.forEach(b => b.classList.remove("active"));
@@ -206,11 +212,9 @@ BTN_GIAI.forEach(btn => {
     hienTySoGiaiLon();
   });
 });
-
-// === MỞ TRANG → KIỂM TRA TRỰC TIẾP NGAY ===
+// === MỞ TRANG → KIỂM TRA NGAY ===
 kiemTraTrucTiepTV360();
 hienTySoGiaiLon();
-
 // === TỰ KIỂM TRA MỖI 5 PHÚT ===
 setInterval(kiemTraTrucTiepTV360, 300000);
 </script>
