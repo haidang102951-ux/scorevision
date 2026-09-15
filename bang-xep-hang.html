@@ -580,6 +580,11 @@ function hienThiDuLieu() {
 
     let html = `
 
+    <div class="summary-row" id="bxhSummary">
+      <div class="summary-chip">Đội <strong>${dataLoc.length}</strong></div>
+      <div class="summary-chip">BXH <strong>${giaiDangChon === "TatCa" ? "Tất cả giải" : giaiDangChon}</strong></div>
+    </div>
+
     <div class="bang-wrap">
 
         <table>
@@ -702,6 +707,7 @@ function hienThiDuLieu() {
 
 
     box.innerHTML = html;
+    if(window.renderScoreVisionLogos) window.renderScoreVisionLogos();
 }
 
 
@@ -777,10 +783,10 @@ document
 </style>
 
 <script>
-/* Logo database: no API call, only the public static team dataset. */
+/* Lightweight logo loader: no MutationObserver, no repeated full-page scans. */
 (function(){
   const DATA_URL="https://cdn.jsdelivr.net/gh/hixcoder/football-teams-flags@main/football_teams.json";
-  const CACHE_KEY="scorevision_team_logos_v6";
+  const CACHE_KEY="scorevision_team_logos_v7";
   const aliases={
     "man utd":"Manchester United","man united":"Manchester United",
     "man city":"Manchester City","spurs":"Tottenham Hotspur",
@@ -793,16 +799,17 @@ document
     "parma":"Parma","udinese":"Udinese","sassuolo":"Sassuolo",
     "torino":"Torino","como":"Como","monza":"Monza"
   };
-  let index=null;
+  let index=null, keys=[];
 
   function norm(s){
     return String(s||"").toLowerCase()
-      .normalize("NFD").replace(/[\\u0300-\\u036f]/g,"")
+      .normalize("NFD").replace(/[\u0300-\u036f]/g,"")
       .replace(/&/g,"and")
       .replace(/[^a-z0-9]+/g," ")
-      .replace(/\\b(fc|afc|cf|sc|ac|ssc|bc|jk|sk|fk|club|football|the)\\b/g," ")
-      .replace(/\\s+/g," ").trim();
+      .replace(/\b(fc|afc|cf|sc|ac|ssc|bc|jk|sk|fk|club|football|the)\b/g," ")
+      .replace(/\s+/g," ").trim();
   }
+
   function build(rows){
     const out={};
     (rows||[]).forEach(x=>{
@@ -810,77 +817,65 @@ document
       const k=norm(x.name);
       if(k&&!out[k])out[k]=x.logoUrl;
     });
-    index=out;
+    index=out; keys=Object.keys(out);
     try{localStorage.setItem(CACHE_KEY,JSON.stringify(out));}catch(e){}
   }
+
   function find(name){
     if(!index)return "";
     const raw=norm(name);
     const key=norm(aliases[raw]||name);
     if(index[key])return index[key];
-    const keys=Object.keys(index);
+
+    const a=new Set(key.split(" "));
     let best="",score=0;
     for(const k of keys){
-      if(k===key)return index[k];
-      const a=new Set(key.split(" ")),b=new Set(k.split(" "));
-      const inter=[...a].filter(v=>b.has(v)).length;
-      const union=new Set([...a,...b]).size;
+      const b=new Set(k.split(" "));
+      let inter=0;
+      a.forEach(v=>{if(b.has(v))inter++;});
+      const union=a.size+b.size-inter;
       const s=union?inter/union:0;
-      if(s>score){score=s;best=k}
+      if(s>score){score=s;best=k;}
     }
     return score>=.82?index[best]:"";
   }
-  function render(){
+
+  window.renderScoreVisionLogos=function(){
+    if(!index)return;
     document.querySelectorAll(".team-logo[data-team]").forEach(img=>{
+      if(img.dataset.logoDone==="1")return;
+      img.dataset.logoDone="1";
       const url=find(img.dataset.team);
-      if(url){img.src=url;img.addEventListener("error",()=>{img.style.visibility="hidden"},{once:true});}
-      else img.style.visibility="hidden";
+      if(url){
+        img.src=url;
+        img.addEventListener("error",()=>{
+          img.style.visibility="hidden";
+        },{once:true});
+      }else{
+        img.style.visibility="hidden";
+      }
     });
-  }
+  };
+
   async function load(){
+    let cached=null;
+    try{cached=JSON.parse(localStorage.getItem(CACHE_KEY)||"null");}catch(e){}
+    if(cached && typeof cached==="object"){
+      index=cached; keys=Object.keys(cached);
+      window.renderScoreVisionLogos();
+    }
     try{
-      let cached=null;
-      try{cached=JSON.parse(localStorage.getItem(CACHE_KEY)||"null");}catch(e){}
-      if(cached){index=cached;render();}
       const r=await fetch(DATA_URL,{cache:"force-cache"});
       if(!r.ok)throw new Error("logo database");
-      build(await r.json());render();
-    }catch(e){render();}
+      build(await r.json());
+      window.renderScoreVisionLogos();
+    }catch(e){}
   }
-  const observer=new MutationObserver(()=>render());
-  observer.observe(document.body,{childList:true,subtree:true});
   load();
 })();
 </script>
 
 
-<script>
-(function(){
-  const box=document.getElementById("bxh-list");
-  if(!box)return;
-  const observer=new MutationObserver(()=>{
-    const rows=box.querySelectorAll("tbody tr");
-    const old=document.getElementById("bxhSummary");
-    if(old)old.remove();
-    if(!rows.length)return;
-    const wrap=document.createElement("div");
-    wrap.id="bxhSummary";
-    wrap.className="summary-row";
-    const make=(label,value)=>{
-      const d=document.createElement("div");
-      d.className="summary-chip";
-      d.innerHTML=label+" <strong style='color:#f8fafc'>"+value+"</strong>";
-      return d;
-    };
-    wrap.appendChild(make("Đội",rows.length));
-    const table=box.querySelector("table");
-    const title=table?table.querySelector("th:nth-child(2)")?.textContent:"";
-    wrap.appendChild(make("BXH","Đang cập nhật"));
-    box.insertBefore(wrap,box.firstChild);
-  });
-  observer.observe(box,{childList:true,subtree:true});
-})();
-</script>
 
 </body>
 </html>
