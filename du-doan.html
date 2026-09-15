@@ -197,8 +197,19 @@ main{width:min(900px,calc(100% - 24px));margin:0 auto;padding-bottom:48px}
 .widget-title{font-size:13px;font-weight:900;color:#f8fafc;letter-spacing:.2px}
 .widget-subtitle{font-size:9px;color:#64748b;margin-top:2px}
 .widget-badge{flex:0 0 auto;padding:5px 8px;border-radius:999px;font-size:9px;font-weight:850;color:#ddd6fe;background:rgba(124,58,237,.15);border:1px solid rgba(139,92,246,.24)}
-.widget-frame-wrap{width:100%;background:#fff;min-height:1000px;overflow:hidden}
-.widget-frame-wrap iframe{display:block;width:100%;height:1000px;border:0;background:#fff}
+.widget-frame-wrap{width:100%;background:#020617;min-height:1000px;overflow:hidden;position:relative}
+.widget-frame-wrap iframe{display:block;width:100%;height:1000px;border:0;background:#020617;filter:invert(1) hue-rotate(180deg);}
+/* CafeScore là iframe khác domain nên không thể ẩn tab bằng JS/CSS bên trong iframe.
+   Lớp che này chỉ che phần market tabs phía sau, giữ lại 1X2 và hàng bộ lọc TẤT CẢ. */
+.cafe-market-mask{
+  position:absolute;z-index:5;top:0;left:74px;right:0;height:56px;
+  background:#020617;pointer-events:auto;
+}
+.cafe-market-mask::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(90deg,#020617 0%,#020617 92%,rgba(2,6,23,.98) 100%);
+}
+.cafe-mask-note{display:none}
 .widget-credit{display:none}
 
 
@@ -289,8 +300,9 @@ main{width:min(900px,calc(100% - 24px));margin:0 auto;padding-bottom:48px}
 }
 @media(max-width:700px){
   .widget-head{padding:12px 13px}
-  .widget-frame-wrap{min-height:900px;overflow-x:auto;-webkit-overflow-scrolling:touch}
-  .widget-frame-wrap iframe{min-width:100%;height:1000px}
+  .widget-frame-wrap{min-height:900px;overflow:hidden;-webkit-overflow-scrolling:touch}
+  .widget-frame-wrap iframe{min-width:100%;height:1000px;filter:invert(1) hue-rotate(180deg)}
+  .cafe-market-mask{left:68px;height:56px}
 }
 </style>
 </head>
@@ -418,7 +430,7 @@ function capNhatThongKe(){
 }
 
 /* === TAB CÁC TRẬN ĐẤU KHÁC — LAZY LOAD WIDGET === */
-const CAFE_WIDGET_SRC = "https://cafescore.com/widget/iframe/prediction?device=desktop&locale=vi-vn&timezone=Asia/Ho_Chi_Minh&tabOdds=1x2";
+const CAFE_WIDGET_SRC = "https://cafescore.com/widget/iframe/prediction?device=desktop&locale=en-us&timezone=UTC&tabOdds=1x2";
 let cafeWidgetLoaded = false;
 
 function capNhatTabDangChon(giai){
@@ -449,6 +461,10 @@ function hienWidgetTranKhac(){
     iframe.allowFullscreen=true;
     iframe.setAttribute("frameborder","0");
     wrap.appendChild(iframe);
+    const mask=document.createElement("div");
+    mask.className="cafe-market-mask";
+    mask.setAttribute("aria-hidden","true");
+    wrap.appendChild(mask);
     cafeWidgetLoaded=true;
   }
 
