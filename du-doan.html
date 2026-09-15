@@ -171,6 +171,36 @@ main{width:min(900px,calc(100% - 24px));margin:0 auto;padding-bottom:48px}
 }
 .nut-giai:hover{color:#fff;background:#334155}
 .nut-giai.dang-chon{color:#111827;background:linear-gradient(135deg,#fde68a,#facc15);border-color:#facc15;box-shadow:0 4px 12px rgba(250,204,21,.18)}
+.nut-giai.widget-tab{
+  color:#ddd6fe;background:linear-gradient(135deg,rgba(76,29,149,.42),rgba(49,46,129,.5));
+  border-color:rgba(139,92,246,.32);
+}
+.nut-giai.widget-tab:hover{color:#fff;background:linear-gradient(135deg,rgba(109,40,217,.55),rgba(67,56,202,.62));border-color:rgba(167,139,250,.55)}
+.nut-giai.widget-tab.dang-chon{
+  color:#fff;background:linear-gradient(135deg,#7c3aed,#6366f1);
+  border-color:#8b5cf6;box-shadow:0 4px 14px rgba(139,92,246,.28)
+}
+
+/* ================= OTHER MATCHES WIDGET ================= */
+.widget-panel{
+  display:none;position:relative;overflow:hidden;
+  background:linear-gradient(145deg,rgba(30,41,59,.98),rgba(7,15,29,.99));
+  border:1px solid rgba(139,92,246,.30);border-radius:18px;
+  box-shadow:0 13px 32px rgba(0,0,0,.22);
+}
+.widget-panel.show{display:block}
+.widget-head{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:14px 16px;border-bottom:1px solid rgba(148,163,184,.10);
+  background:linear-gradient(90deg,rgba(124,58,237,.12),rgba(59,130,246,.04));
+}
+.widget-title{font-size:13px;font-weight:900;color:#f8fafc;letter-spacing:.2px}
+.widget-subtitle{font-size:9px;color:#64748b;margin-top:2px}
+.widget-badge{flex:0 0 auto;padding:5px 8px;border-radius:999px;font-size:9px;font-weight:850;color:#ddd6fe;background:rgba(124,58,237,.15);border:1px solid rgba(139,92,246,.24)}
+.widget-frame-wrap{width:100%;background:#fff;min-height:1000px;overflow:hidden}
+.widget-frame-wrap iframe{display:block;width:100%;height:1000px;border:0;background:#fff}
+.widget-credit{display:none}
+
 
 /* ================= MATCH CARDS ================= */
 .tran-card{
@@ -257,6 +287,11 @@ main{width:min(900px,calc(100% - 24px));margin:0 auto;padding-bottom:48px}
   html{scroll-behavior:auto}
   *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
 }
+@media(max-width:700px){
+  .widget-head{padding:12px 13px}
+  .widget-frame-wrap{min-height:900px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .widget-frame-wrap iframe{min-width:100%;height:1000px}
+}
 </style>
 </head>
 
@@ -317,6 +352,18 @@ main{width:min(900px,calc(100% - 24px));margin:0 auto;padding-bottom:48px}
     <div class="loading" style="width:100%;padding:18px">Đang tải danh sách giải...</div>
   </div>
 
+  <section class="widget-panel" id="widgetPanel" aria-label="Các trận đấu khác">
+    <div class="widget-head">
+      <div>
+        <div class="widget-title">⚽ Các Trận Đấu Khác</div>
+        <div class="widget-subtitle">Dữ liệu trận đấu từ widget bên ngoài</div>
+      </div>
+      <div class="widget-badge">WIDGET</div>
+    </div>
+    <div class="widget-frame-wrap" id="widgetFrameWrap"></div>
+    <p class="widget-credit"><a href="https://cafescore.com/" rel="dofollow">Live Football Cafescore</a></p>
+  </section>
+
   <div id="pt-container">
     <div class="loading">Đang tải phân tích từ Sheet...</div>
   </div>
@@ -370,8 +417,54 @@ function capNhatThongKe(){
   if(c)c.textContent="Đã cập nhật";
 }
 
+/* === TAB CÁC TRẬN ĐẤU KHÁC — LAZY LOAD WIDGET === */
+const CAFE_WIDGET_SRC = "https://cafescore.com/widget/iframe/prediction?device=desktop&locale=vi-vn&timezone=Asia/Ho_Chi_Minh&tabOdds=1x2";
+let cafeWidgetLoaded = false;
+
+function capNhatTabDangChon(giai){
+  document.querySelectorAll(".nut-giai").forEach(nut=>{
+    nut.classList.toggle("dang-chon", !nut.dataset.widget && nut.dataset.giai===giai);
+    if(nut.dataset.widget) nut.classList.remove("dang-chon");
+  });
+}
+
+function hienWidgetTranKhac(){
+  const panel=document.getElementById("widgetPanel");
+  const container=document.getElementById("pt-container");
+  if(!panel||!container)return;
+
+  container.style.display="none";
+  panel.classList.add("show");
+
+  document.querySelectorAll(".nut-giai").forEach(nut=>{
+    nut.classList.toggle("dang-chon", !!nut.dataset.widget);
+  });
+
+  if(!cafeWidgetLoaded){
+    const wrap=document.getElementById("widgetFrameWrap");
+    const iframe=document.createElement("iframe");
+    iframe.src=CAFE_WIDGET_SRC;
+    iframe.title="Các trận đấu khác - CafeScore";
+    iframe.loading="lazy";
+    iframe.allowFullscreen=true;
+    iframe.setAttribute("frameborder","0");
+    wrap.appendChild(iframe);
+    cafeWidgetLoaded=true;
+  }
+
+  panel.scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+function dongWidget(){
+  const panel=document.getElementById("widgetPanel");
+  const container=document.getElementById("pt-container");
+  if(panel)panel.classList.remove("show");
+  if(container)container.style.display="block";
+}
+
 /* === HIỂN THỊ DANH SÁCH TRẬN === */
 function hienDanhSach(giai){
+  dongWidget();
   const container=document.getElementById("pt-container");
   if(!tatCaDuLieu[giai]||tatCaDuLieu[giai].length===0){
     container.innerHTML='<div class="empty">❌ Chưa có dữ liệu trên Sheet — Điền dữ liệu vào hàng 2 trở đi!</div>';
@@ -477,12 +570,17 @@ fetch(BASE_URL)
   }
 
   nutContainer.innerHTML=dsGiai.map(g=>
-    `<button class="nut-giai" type="button" data-giai="${xuLyNoiDung(g)}">${xuLyNoiDung(g)}</button>`
-  ).join("");
+    `<button class="nut-giai" type="button" data-giai="${xuLyNoiDung(g)}">🏆 ${xuLyNoiDung(g)}</button>`
+  ).join("") +
+    `<button class="nut-giai widget-tab" type="button" data-widget="1">⚽ Các Trận Đấu Khác</button>`;
 
-  document.querySelectorAll(".nut-giai").forEach(nut=>
-    nut.addEventListener("click",()=>hienDanhSach(nut.dataset.giai))
-  );
+  document.querySelectorAll(".nut-giai").forEach(nut=>{
+    if(nut.dataset.widget){
+      nut.addEventListener("click",hienWidgetTranKhac);
+    }else{
+      nut.addEventListener("click",()=>hienDanhSach(nut.dataset.giai));
+    }
+  });
 
   capNhatThongKe();
   hienDanhSach(dsGiai[0]);
