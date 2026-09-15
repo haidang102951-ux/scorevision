@@ -5,75 +5,567 @@
     <script>(function(s){s.dataset.zone='11665696',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#050b16">
     <title>Tin Nóng & Cập Nhật | Score Vision</title>
+
     <style>
-        *{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;}
-        body{background:#020617;color:#f8fafc;line-height:1.7;padding:16px;max-width:780px;margin:0 auto;}
-        
-        .menu{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px;position:sticky;top:0;background:#020617f0;padding:10px 0;z-index:99;backdrop-filter:blur(8px);}
-        .menu-btn{background:linear-gradient(135deg,#1e293b,#0f172a);color:#e2e8f0;padding:10px 12px;border-radius:12px;text-align:center;text-decoration:none;font-size:13px;font-weight:700;display:inline-flex;align-items:center;gap:4px;border:1px solid #334155;transition:all .25s;}
-        .menu-btn:hover{transform:translateY(-3px);border-color:#fef08a;box-shadow:0 6px 16px rgba(254,240,138,.15);}
-        .menu-btn.active{background:linear-gradient(135deg,#f97316,#ef4444);color:white;border-color:#f97316;box-shadow:0 4px 14px rgba(249,115,22,.35);}
-        
-        .tin-item{background:linear-gradient(145deg,#1e293b,#0f172a);border-radius:18px;padding:0;margin-bottom:16px;border:2px solid #1e293b;cursor:pointer;transition:all .3s;overflow:hidden;}
-        .tin-item:hover{border-color:#f97316;transform:translateY(-2px);box-shadow:0 8px 20px rgba(249,115,22,.15);}
-        .tin-hot{border-color:#ef4444;box-shadow:0 0 15px rgba(239,68,68,.15);}
-        
-        .tin-anh-bia{width:100%;height:180px;object-fit:cover;background:#1a1c35;border-bottom:1px solid rgba(254,240,138,.15);}
-        .tin-noi-dung{padding:18px;}
-        .tin-tieu-de{font-size:17px;font-weight:800;color:#fef08a;margin-bottom:6px;line-height:1.4;}
-        .tin-ngay{display:inline-block;background:rgba(239,68,68,.15);color:#fca5a5;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;margin-bottom:12px;}
-        .tin-hint{font-size:13px;color:#94a3b8;font-style:italic;}
-        
-        .tin-full{display:none;margin-top:14px;padding-top:14px;border-top:1px dashed #334155;}
-        .tin-full.show{display:block;}
-        .tin-noi-dung-chi-tiet{font-size:15px;color:#f1f5f9;line-height:1.8;white-space:pre-wrap;}
-        
-        .empty{text-align:center;color:#64748b;padding:60px 20px;}
-        .loading{text-align:center;color:#fef08a;padding:40px;animation:nhapnhay 1.5s infinite;}
-        @keyframes nhapnhay{0%,100%{opacity:1;}50%{opacity:.4;}}
+        :root{
+            --sv-bg:#030711;
+            --sv-panel:#07101e;
+            --sv-panel2:#0f1b2d;
+            --sv-text:#f8fafc;
+            --sv-muted:#94a3b8;
+            --sv-soft:#64748b;
+            --sv-gold:#facc15;
+            --sv-gold-light:#fde68a;
+            --sv-red:#ef4444;
+            --sv-blue:#60a5fa;
+            --sv-border:rgba(148,163,184,.14);
+            --sv-radius:16px;
+            --sv-shadow:0 10px 28px rgba(0,0,0,.23);
+        }
+
+        *{margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth}
+
+        body{
+            font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+            color:var(--sv-text);
+            line-height:1.65;
+            min-height:100vh;
+            overflow-x:hidden;
+            background:
+                radial-gradient(900px 480px at 8% -10%,rgba(37,99,235,.18),transparent 62%),
+                radial-gradient(760px 420px at 94% 0%,rgba(250,204,21,.10),transparent 60%),
+                linear-gradient(180deg,#030711 0%,#07101e 46%,#030711 100%);
+        }
+
+        button{font:inherit}
+
+        .wrap{
+            width:min(1120px,calc(100% - 24px));
+            margin:auto;
+        }
+
+        /* HEADER */
+        .site-header{
+            position:relative;
+            isolation:isolate;
+            overflow:hidden;
+            min-height:152px;
+            padding:28px 0 24px;
+            border-bottom:1px solid rgba(255,255,255,.08);
+            background:
+                linear-gradient(90deg,rgba(2,6,17,.97),rgba(2,6,17,.80) 34%,rgba(2,6,17,.45) 67%,rgba(2,6,17,.80)),
+                linear-gradient(180deg,rgba(2,6,17,.18),rgba(2,6,17,.88)),
+                url("https://images.pexels.com/photos/200986/pexels-photo-200986.jpeg?auto=compress&cs=tinysrgb&w=1920") center/cover no-repeat;
+        }
+
+        .site-header:before{
+            content:"";
+            position:absolute;
+            inset:0;
+            z-index:-1;
+            background:radial-gradient(circle at 76% 48%,rgba(250,204,21,.15),transparent 23%);
+        }
+
+        .site-header:after{
+            content:"";
+            position:absolute;
+            left:4%;
+            right:4%;
+            bottom:0;
+            height:2px;
+            background:linear-gradient(90deg,transparent,#facc15 32%,#60a5fa 68%,transparent);
+        }
+
+        .brand-row{display:flex;align-items:center}
+        .brand{display:flex;align-items:center;gap:15px}
+
+        .brand-logo{
+            width:64px;
+            height:64px;
+            flex:0 0 64px;
+            border-radius:17px;
+            background:#fff;
+            display:grid;
+            place-items:center;
+            overflow:hidden;
+            border:1px solid rgba(255,255,255,.16);
+            box-shadow:0 10px 28px rgba(0,0,0,.30);
+        }
+
+        .brand-logo img{width:100%;height:100%;object-fit:contain}
+
+        .brand-title{
+            font-size:32px;
+            font-weight:900;
+            letter-spacing:-.8px;
+            background:linear-gradient(90deg,#fff,#fde68a,#facc15);
+            -webkit-background-clip:text;
+            background-clip:text;
+            color:transparent;
+        }
+
+        .brand-sub{
+            font-size:11px;
+            color:#cbd5e1;
+            letter-spacing:1.7px;
+        }
+
+        /* MENU - native touch scroll */
+        .menu-shell{
+            position:sticky;
+            top:8px;
+            z-index:100;
+            margin:16px auto 0;
+        }
+
+        .menu{
+            display:flex;
+            align-items:center;
+            gap:5px;
+            width:100%;
+            padding:7px;
+            overflow-x:auto;
+            overflow-y:hidden;
+            -webkit-overflow-scrolling:touch;
+            touch-action:pan-x;
+            overscroll-behavior-x:contain;
+            scroll-behavior:auto;
+            scrollbar-width:none;
+            background:rgba(7,14,28,.96);
+            border:1px solid rgba(148,163,184,.14);
+            border-radius:15px;
+            box-shadow:0 8px 24px rgba(0,0,0,.22);
+            user-select:none;
+            cursor:grab;
+        }
+
+        .menu::-webkit-scrollbar{display:none}
+        .menu.dragging{cursor:grabbing}
+
+        .menu-btn{
+            flex:0 0 auto;
+            white-space:nowrap;
+            text-decoration:none;
+            padding:9px 12px;
+            border-radius:10px;
+            border:1px solid transparent;
+            color:#b8c4d5;
+            font-size:12px;
+            font-weight:750;
+            transition:background-color .12s ease,color .12s ease,border-color .12s ease;
+        }
+
+        .menu-btn:hover{
+            color:#fff;
+            background:rgba(255,255,255,.045);
+            border-color:rgba(148,163,184,.12);
+        }
+
+        .menu-btn.active{
+            color:#111827;
+            background:linear-gradient(135deg,#fde68a,#facc15);
+            border-color:#facc15;
+            box-shadow:0 5px 18px rgba(250,204,21,.15);
+        }
+
+        .menu-btn.livescore{color:#bbf7d0;background:rgba(34,197,94,.07)}
+        .menu-btn.multimedia{color:#e9d5ff;background:rgba(168,85,247,.07)}
+        .menu-btn.fifa{color:#bfdbfe;background:rgba(59,130,246,.07)}
+        .menu-btn.gopy{color:#c7d2fe;background:rgba(99,102,241,.07)}
+
+        main{
+            width:min(1100px,calc(100% - 24px));
+            margin:auto;
+            padding-bottom:48px;
+        }
+
+        /* HERO */
+        .hero{
+            position:relative;
+            overflow:hidden;
+            min-height:142px;
+            margin:20px 0 18px;
+            border-radius:20px;
+            border:1px solid rgba(250,204,21,.17);
+            background:
+                linear-gradient(90deg,rgba(3,7,18,.97),rgba(3,7,18,.70),rgba(3,7,18,.91)),
+                url("https://images.pexels.com/photos/114296/pexels-photo-114296.jpeg?auto=compress&cs=tinysrgb&w=1600") center/cover no-repeat;
+            box-shadow:0 13px 34px rgba(0,0,0,.22);
+        }
+
+        .hero:after{
+            content:"";
+            position:absolute;
+            inset:0;
+            background:radial-gradient(circle at 83% 50%,rgba(250,204,21,.16),transparent 27%);
+            pointer-events:none;
+        }
+
+        .hero-inner{
+            position:relative;
+            z-index:2;
+            padding:24px;
+        }
+
+        .kicker{
+            font-size:10px;
+            font-weight:850;
+            letter-spacing:1.6px;
+            color:#fde68a;
+            text-transform:uppercase;
+        }
+
+        .hero h1{
+            font-size:28px;
+            line-height:1.2;
+            margin-top:4px;
+            font-weight:900;
+            letter-spacing:-.6px;
+        }
+
+        .hero p{
+            font-size:12px;
+            color:#cbd5e1;
+            margin-top:7px;
+        }
+
+        /* NEWS SUMMARY */
+        .news-bar{
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            gap:10px;
+            margin:0 1px 11px;
+        }
+
+        .news-title{
+            font-size:11px;
+            color:#94a3b8;
+            font-weight:850;
+            text-transform:uppercase;
+            letter-spacing:.7px;
+        }
+
+        .news-count{
+            display:inline-flex;
+            align-items:center;
+            gap:6px;
+            padding:6px 9px;
+            border-radius:999px;
+            background:rgba(239,68,68,.09);
+            border:1px solid rgba(239,68,68,.18);
+            color:#fca5a5;
+            font-size:10px;
+            font-weight:800;
+        }
+
+        /* NEWS CARD */
+        .tin-item{
+            position:relative;
+            background:linear-gradient(145deg,rgba(30,41,59,.97),rgba(8,16,30,.99));
+            border-radius:18px;
+            padding:0;
+            margin-bottom:14px;
+            border:1px solid rgba(148,163,184,.13);
+            cursor:pointer;
+            overflow:hidden;
+            box-shadow:0 8px 22px rgba(0,0,0,.18);
+            transition:transform .16s ease,border-color .16s ease,box-shadow .16s ease;
+        }
+
+        .tin-item:hover{
+            border-color:rgba(250,204,21,.40);
+            transform:translateY(-2px);
+            box-shadow:0 12px 28px rgba(0,0,0,.28);
+        }
+
+        .tin-hot{
+            border-color:rgba(239,68,68,.42);
+            box-shadow:0 0 0 1px rgba(239,68,68,.08),0 10px 26px rgba(239,68,68,.10);
+        }
+
+        .tin-hot:hover{border-color:rgba(239,68,68,.65)}
+
+        .tin-anh-wrap{
+            position:relative;
+            width:100%;
+            height:230px;
+            overflow:hidden;
+            background:#0b1220;
+        }
+
+        .tin-anh-bia{
+            width:100%;
+            height:100%;
+            object-fit:cover;
+            display:block;
+            background:#0b1220;
+        }
+
+        .tin-anh-wrap:after{
+            content:"";
+            position:absolute;
+            inset:auto 0 0;
+            height:45%;
+            background:linear-gradient(180deg,transparent,rgba(2,6,17,.72));
+            pointer-events:none;
+        }
+
+        .tin-hot-badge{
+            position:absolute;
+            top:12px;
+            left:12px;
+            z-index:2;
+            display:inline-flex;
+            align-items:center;
+            gap:5px;
+            padding:6px 9px;
+            border-radius:999px;
+            background:rgba(127,29,29,.88);
+            border:1px solid rgba(254,202,202,.20);
+            color:#fee2e2;
+            font-size:10px;
+            font-weight:900;
+            box-shadow:0 6px 16px rgba(0,0,0,.25);
+        }
+
+        .tin-noi-dung{padding:16px 17px 17px}
+
+        .tin-tieu-de{
+            font-size:18px;
+            font-weight:850;
+            color:#fef08a;
+            margin-bottom:7px;
+            line-height:1.4;
+            letter-spacing:-.15px;
+        }
+
+        .tin-hot .tin-tieu-de{color:#fde68a}
+
+        .tin-meta{
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            gap:10px;
+            flex-wrap:wrap;
+            margin-bottom:10px;
+        }
+
+        .tin-ngay{
+            display:inline-flex;
+            align-items:center;
+            background:rgba(239,68,68,.12);
+            border:1px solid rgba(239,68,68,.16);
+            color:#fca5a5;
+            padding:4px 9px;
+            border-radius:999px;
+            font-size:11px;
+            font-weight:700;
+        }
+
+        .tin-hint{
+            font-size:11px;
+            color:#94a3b8;
+            font-style:italic;
+        }
+
+        .tin-full{
+            display:none;
+            margin-top:14px;
+            padding-top:14px;
+            border-top:1px dashed rgba(148,163,184,.22);
+        }
+
+        .tin-full.show{display:block}
+
+        .tin-noi-dung-chi-tiet{
+            font-size:15px;
+            color:#e2e8f0;
+            line-height:1.85;
+            white-space:pre-wrap;
+        }
+
+        .tin-full.show + *{display:none}
+
+        .empty{
+            text-align:center;
+            color:#64748b;
+            padding:60px 20px;
+            border:1px dashed rgba(148,163,184,.12);
+            border-radius:15px;
+            background:rgba(15,23,42,.35);
+        }
+
+        .loading{
+            text-align:center;
+            color:#fde68a;
+            padding:46px 20px;
+            border:1px dashed rgba(250,204,21,.15);
+            border-radius:15px;
+            background:rgba(15,23,42,.35);
+            animation:nhapnhay 1.5s ease-in-out infinite;
+        }
+
+        @keyframes nhapnhay{
+            0%,100%{opacity:1}
+            50%{opacity:.42}
+        }
+
+        @media(max-width:700px){
+            .wrap,main{width:calc(100% - 18px)}
+            .site-header{min-height:122px;padding:22px 0 18px}
+            .brand-logo{width:52px;height:52px;flex-basis:52px;border-radius:14px}
+            .brand-title{font-size:25px}
+            .brand-sub{font-size:9px;letter-spacing:1.15px}
+            .menu-shell{margin-top:10px}
+            .menu{padding:6px;border-radius:13px}
+            .menu-btn{padding:8px 10px;font-size:11px}
+            .hero{min-height:124px;margin-top:14px;border-radius:17px}
+            .hero-inner{padding:19px}
+            .hero h1{font-size:22px}
+            .hero p{font-size:11px}
+            .tin-anh-wrap{height:190px}
+            .tin-noi-dung{padding:14px}
+            .tin-tieu-de{font-size:16px}
+            .tin-noi-dung-chi-tiet{font-size:14px}
+            .tin-hint{font-size:10px}
+        }
+
+        @media(prefers-reduced-motion:reduce){
+            html{scroll-behavior:auto}
+            *,*::before,*::after{
+                animation-duration:.01ms!important;
+                transition-duration:.01ms!important;
+            }
+        }
     </style>
 </head>
+
 <body>
-<nav class="menu">
-    <a href="index.html" class="menu-btn">🏠 Trang chủ</a>
-    <a href="lich-dau.html" class="menu-btn">📅 Lịch đấu</a>
-    <a href="du-doan.html" class="menu-btn">🔮 Phân Tích & Dự Đoán</a>
-    <a href="bang-xep-hang.html" class="menu-btn">📊 Bảng xếp hạng</a>
-    <a href="thong-ke.html" class="menu-btn">📈 Thống kê</a>
-    <a href="tin-nong.html" class="menu-btn active">📰 Tin Nóng</a>
-    <a href="ket-qua.html" class="menu-btn">⚽ Kết Quả</a>
-    <a href="livescore.html" class="menu-btn">⚽ LiveScore</a>
-    <a href="multimedia.html" class="menu-btn multimedia">🎬 MultiMedia</a>
-    <a href="bang-xep-hang-fifa.html" class="menu-btn fifa">🌍 BXH FIFA</a>
-    <a href="gop-y.html" class="menu-btn">💬 Góp Ý</a>
-</nav>
-<h2 style="font-size:22px;color:#fef08a;margin-bottom:20px;">📰 Tin Nóng & Cập Nhật Mới</h2>
-<div id="list-tin"><div class="loading">Đang tải tin tức...</div></div>
+
+<header class="site-header">
+    <div class="wrap">
+        <div class="brand-row">
+            <div class="brand">
+                <div class="brand-logo">
+                    <img src="logo.png" alt="Score Vision"
+                         onerror="this.style.display='none';this.parentElement.innerHTML='<span style=&quot;font-size:30px&quot;>⚽</span>'">
+                </div>
+                <div>
+                    <div class="brand-title">Score Vision</div>
+                    <div class="brand-sub">PHÂN TÍCH · DỮ LIỆU · BÓNG ĐÁ</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="wrap menu-shell">
+    <nav class="menu" id="mainMenu" aria-label="Điều hướng chính">
+        <a href="index.html" class="menu-btn">🏠 Trang chủ</a>
+        <a href="lich-dau.html" class="menu-btn">📅 Lịch đấu</a>
+        <a href="du-doan.html" class="menu-btn">🔮 Phân Tích &amp; Dự Đoán</a>
+        <a href="bang-xep-hang.html" class="menu-btn">📊 Bảng Xếp Hạng</a>
+        <a href="thong-ke.html" class="menu-btn">📈 Thống kê</a>
+        <a href="tin-nong.html" class="menu-btn active">📰 Tin Nóng</a>
+        <a href="ket-qua.html" class="menu-btn">🏆 Kết Quả</a>
+        <a href="livescore.html" class="menu-btn livescore">⚽ LiveScore</a>
+        <a href="multimedia.html" class="menu-btn multimedia">🎬 MultiMedia</a>
+        <a href="bang-xep-hang-fifa.html" class="menu-btn fifa">🌍 BXH FIFA</a>
+        <a href="gop-y.html" class="menu-btn gopy">💬 Góp Ý</a>
+    </nav>
+</div>
+
+<main>
+    <section class="hero">
+        <div class="hero-inner">
+            <div class="kicker">SCORE VISION · BREAKING NEWS CENTER</div>
+            <h1>📰 Tin Nóng &amp; Cập Nhật Mới</h1>
+            <p>Tin bóng đá mới nhất được cập nhật trực tiếp từ hệ thống Score Vision.</p>
+        </div>
+    </section>
+
+    <div class="news-bar">
+        <div class="news-title">Tin tức mới nhất</div>
+        <div class="news-count" id="newsCount">● Đang tải...</div>
+    </div>
+
+    <div id="list-tin">
+        <div class="loading">Đang tải tin tức...</div>
+    </div>
+</main>
 
 <script>
-// ✅ LINK ĐÚNG TỪ "XUẤT BẢN LÊN WEB"
+/* =========================================================
+   GOOGLE SHEET — GIỮ NGUYÊN NGUỒN DỮ LIỆU GỐC
+========================================================= */
 const BASE_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRjGewmdAmJVjyi-0vSc22hhFPacMgGc-WmVE8PEM3jHfA7IvED3XbBp68Bwp16n1Dc2FFP9ETKTaSH/pub?gid=840175350&single=true&output=csv";
 
 const ANH_MAC_DINH = "https://images.unsplash.com/photo-1574629810360-7ef513a43c33?w=800&h=400&fit=crop&q=80";
 
-// === Đọc CSV đúng định dạng ===
 function parseCSV(text){
-    const rows = []; let row = [], cell = "", inQuote = false;
+    const rows = [];
+    let row = [], cell = "", inQuote = false;
+
     for(let i=0; i<text.length; i++){
-        let ch = text[i], next = text[i+1]||"";
-        if(ch === '"'){ if(inQuote && next === '"'){ cell += '"'; i++; } else inQuote = !inQuote; }
-        else if(ch === ',' && !inQuote){ row.push(cell.trim()); cell = ""; }
-        else if((ch === '\n' || ch === '\r') && !inQuote){
-            if(cell || row.length > 0){ row.push(cell.trim()); rows.push(row); row = []; cell = ""; }
+        const ch = text[i];
+        const next = text[i+1] || "";
+
+        if(ch === '"'){
+            if(inQuote && next === '"'){
+                cell += '"';
+                i++;
+            }else{
+                inQuote = !inQuote;
+            }
+        }else if(ch === ',' && !inQuote){
+            row.push(cell.trim());
+            cell = "";
+        }else if((ch === '\n' || ch === '\r') && !inQuote){
+            if(cell !== "" || row.length > 0){
+                row.push(cell.trim());
+                rows.push(row);
+                row = [];
+                cell = "";
+            }
+        }else{
+            cell += ch;
         }
-        else cell += ch;
     }
-    if(cell || row.length > 0){ row.push(cell.trim()); rows.push(row); }
+
+    if(cell !== "" || row.length > 0){
+        row.push(cell.trim());
+        rows.push(row);
+    }
+
     return rows;
 }
 
-function xuLyNoiDung(t){ return t?t.replace(/\r\n/g,"<br>").replace(/\r/g,"<br>").replace(/\n/g,"<br>"):"Chưa có nội dung"; }
+function escapeHTML(value){
+    return String(value ?? "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+}
+
+function xuLyNoiDung(t){
+    if(!t) return "Chưa có nội dung";
+    return escapeHTML(t)
+        .replace(/\r\n/g,"<br>")
+        .replace(/\r/g,"<br>")
+        .replace(/\n/g,"<br>");
+}
+
+function capNhatSoTin(count){
+    const el = document.getElementById("newsCount");
+    if(!el) return;
+    el.textContent = `● ${count} tin`;
+}
 
 fetch(BASE_URL)
 .then(r=>{
@@ -81,69 +573,165 @@ fetch(BASE_URL)
     return r.text();
 })
 .then(csv=>{
-    const rows=parseCSV(csv);
-    console.log("Số hàng đọc được:", rows.length); // Kiểm tra dữ liệu
-    if(rows.length<2){
-        document.getElementById("list-tin").innerHTML=`<div class="empty">Chưa có dữ liệu trên Sheet!</div>`;
+    const rows = parseCSV(csv);
+    console.log("Số hàng đọc được:", rows.length);
+
+    if(rows.length < 2){
+        document.getElementById("newsCount").textContent = "● 0 tin";
+        document.getElementById("list-tin").innerHTML =
+            `<div class="empty">Chưa có dữ liệu trên Sheet!</div>`;
         return;
     }
 
-    // === BỎ KIỂM TRA loai_muc = tin_nong ===
-    // Đọc THẲNG dữ liệu từ hàng 2 trở đi
-    // Cột A=Tiêu đề(0), Cột C=Ngày(2), Cột K=Ảnh bìa(10), Cột M=Nội dung(12)
+    /*
+      GIỮ NGUYÊN CẤU TRÚC GỐC:
+      Cột A = Tiêu đề
+      Cột C = Ngày
+      Cột K = Ảnh bìa
+      Cột M = Nội dung
+    */
     const DANH_SACH = [];
+
     for(let i=1; i<rows.length; i++){
         const r = rows[i];
-        if(!r || r.length < 13) continue; // Bỏ hàng không đủ cột
+
+        if(!r || r.length < 13) continue;
+
+        const anh = (r[10] || "").trim();
 
         DANH_SACH.push({
-            tieu_de: r[0]?.trim() || "Không có tiêu đề",
-            ngay: r[2]?.trim() || "",
-            anh_bia: r[10]?.trim()?.startsWith("http") ? r[10].trim() : ANH_MAC_DINH,
-            noi_dung: r[12]?.trim() || "Chưa có nội dung"
+            tieu_de: (r[0] || "").trim() || "Không có tiêu đề",
+            ngay: (r[2] || "").trim(),
+            anh_bia: anh.startsWith("http") ? anh : ANH_MAC_DINH,
+            noi_dung: (r[12] || "").trim() || "Chưa có nội dung"
         });
     }
 
     if(!DANH_SACH.length){
-        document.getElementById("list-tin").innerHTML=`<div class="empty">Không đọc được dữ liệu! Kiểm tra cấu trúc cột trên Sheet.</div>`;
+        document.getElementById("newsCount").textContent = "● 0 tin";
+        document.getElementById("list-tin").innerHTML =
+            `<div class="empty">Không đọc được dữ liệu! Kiểm tra cấu trúc cột trên Sheet.</div>`;
         return;
     }
 
-    // === HIỂN THỊ: Ảnh Cột K ở đầu + Nội dung Cột M bên dưới ===
+    capNhatSoTin(DANH_SACH.length);
+
     const box = document.getElementById("list-tin");
-    box.innerHTML = "";
-    DANH_SACH.forEach((x, idx) => {
+
+    /*
+      Chỉ render 1 lần — tránh innerHTML += trong vòng lặp
+      để giảm lag khi Sheet có nhiều tin.
+    */
+    box.innerHTML = DANH_SACH.map((x, idx)=>{
         const id_tin = "tin-" + idx;
-        box.innerHTML += `
-        <div class="tin-item ${idx===0?'tin-hot':''}" id="${id_tin}">
-            <img src="${x.anh_bia}" alt="${x.tieu_de}" class="tin-anh-bia" loading="lazy">
+        const hot = idx === 0;
+
+        return `
+        <article class="tin-item ${hot ? "tin-hot" : ""}" id="${id_tin}">
+            <div class="tin-anh-wrap">
+                <img
+                    src="${escapeHTML(x.anh_bia)}"
+                    alt="${escapeHTML(x.tieu_de)}"
+                    class="tin-anh-bia"
+                    loading="${idx < 2 ? "eager" : "lazy"}"
+                    decoding="async"
+                    referrerpolicy="no-referrer"
+                >
+                ${hot ? `<span class="tin-hot-badge">🔥 TIN NÓNG</span>` : ""}
+            </div>
+
             <div class="tin-noi-dung">
-                <h3 class="tin-tieu-de">${idx===0?'🔥 ':''}${x.tieu_de}</h3>
-                ${x.ngay?`<span class="tin-ngay">📅 ${x.ngay}</span>`:""}
-                <p class="tin-hint">👉 Bấm vào xem nội dung chi tiết ↓</p>
+                <h3 class="tin-tieu-de">${hot ? "🔥 " : ""}${escapeHTML(x.tieu_de)}</h3>
+
+                <div class="tin-meta">
+                    ${x.ngay ? `<span class="tin-ngay">📅 ${escapeHTML(x.ngay)}</span>` : ""}
+                    <span class="tin-hint">👉 Bấm để xem nội dung chi tiết ↓</span>
+                </div>
+
                 <div class="tin-full" id="${id_tin}-full">
                     <div class="tin-noi-dung-chi-tiet">${xuLyNoiDung(x.noi_dung)}</div>
                 </div>
             </div>
-        </div>`;
-    });
+        </article>`;
+    }).join("");
 
-    // === Bấm xem / thu gọn ===
-    DANH_SACH.forEach((_, idx) => {
-        const item = document.getElementById("tin-" + idx);
-        const full = document.getElementById("tin-" + idx + "-full");
-        if(item && full){
-            item.addEventListener("click", () => {
-                full.classList.toggle("show");
-                const hint = item.querySelector(".tin-hint");
-                hint.textContent = full.classList.contains("show") ? "↑ Thu gọn lại ↑" : "👉 Bấm vào xem nội dung chi tiết ↓";
-            });
-        }
+    /* Gắn sự kiện sau khi render xong */
+    box.querySelectorAll(".tin-item").forEach(item=>{
+        item.addEventListener("click", ()=>{
+            const full = item.querySelector(".tin-full");
+            const hint = item.querySelector(".tin-hint");
+
+            if(!full || !hint) return;
+
+            const isOpen = full.classList.toggle("show");
+
+            hint.textContent = isOpen
+                ? "↑ Thu gọn lại ↑"
+                : "👉 Bấm để xem nội dung chi tiết ↓";
+        });
     });
 })
 .catch(err=>{
-    document.getElementById("list-tin").innerHTML=`<div class="empty">❌ Lỗi: ${err.message}</div>`;
+    document.getElementById("newsCount").textContent = "● Lỗi";
+    document.getElementById("list-tin").innerHTML =
+        `<div class="empty">❌ Lỗi: ${escapeHTML(err.message)}</div>`;
 });
 </script>
+
+<script>
+/* =========================================================
+   UNIFIED SMOOTH DRAG
+   Mobile: native touch scrolling
+   Desktop: lightweight mouse drag
+========================================================= */
+(function(){
+    function dragScroll(el){
+        if(!el) return;
+
+        let down = false;
+        let startX = 0;
+        let startScroll = 0;
+        let moved = false;
+
+        el.addEventListener("mousedown", e=>{
+            if(e.button !== 0) return;
+
+            down = true;
+            moved = false;
+            startX = e.pageX;
+            startScroll = el.scrollLeft;
+            el.classList.add("dragging");
+        });
+
+        window.addEventListener("mousemove", e=>{
+            if(!down) return;
+
+            const dx = e.pageX - startX;
+
+            if(Math.abs(dx) > 5) moved = true;
+
+            el.scrollLeft = startScroll - dx;
+        });
+
+        window.addEventListener("mouseup", ()=>{
+            down = false;
+            el.classList.remove("dragging");
+        });
+
+        el.addEventListener("click", e=>{
+            if(moved){
+                e.preventDefault();
+                e.stopPropagation();
+                moved = false;
+            }
+        }, true);
+
+        el.addEventListener("dragstart", e=>e.preventDefault());
+    }
+
+    dragScroll(document.getElementById("mainMenu"));
+})();
+</script>
+
 </body>
 </html>
