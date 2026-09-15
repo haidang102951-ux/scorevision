@@ -102,7 +102,17 @@ function ssExtractMatches(payload){if(Array.isArray(payload?.matches))return pay
 function ssCandidateTeams(o){const home=ssGet(o,['home.name','home_team.name','homeTeam.name','teams.home.name','match.home_team.name','match.home.name','home']);const away=ssGet(o,['away.name','away_team.name','awayTeam.name','teams.away.name','match.away_team.name','match.away.name','away']);return {home:ssFirstName(home),away:ssFirstName(away)}}
 function ssCandidateDate(o){return ssGet(o,['start_time','startTime','kickoff','date','datetime','start_at','match.start_time','match.startTime','match.date','fixture.date'])}
 function ssCandidateSlug(o){return ssGet(o,['slug','match.slug','fixture.slug','urlSlug'])||''}
-async function ssFetchMatches(){if(sportScoreMatchesCache&&Date.now()-sportScoreMatchesAt<SPORT_SCORE_CACHE_MS)return sportScoreMatchesCache;const r=await fetch(`${SPORT_SCORE_BASE}/matches/?sport=football&limit=50&src=scorevision.io.vn`,{cache:'no-store'});if(!r.ok)throw new Error('SportScore không phản hồi');const j=await r.json();sportScoreMatchesCache=ssExtractMatches(j);sportScoreMatchesAt=Date.now();return sportScoreMatchesCache}
+async function ssFetchTeamFixtures(teamSlug){
+ const r=await fetch(`${SPORT_SCORE_BASE}/team/?sport=football&slug=${encodeURIComponent(teamSlug)}&limit=30&src=scorevision.io.vn`,{cache:'no-store'});
+ if(!r.ok)throw new Error('SportScore không phản hồi danh sách trận của đội');
+ const j=await r.json();
+ return ssExtractMatches(j);
+}
+async function ssFetchDirect(slug){
+ const r=await fetch(`${SPORT_SCORE_BASE}/match/?sport=football&slug=${encodeURIComponent(slug)}&src=scorevision.io.vn`,{cache:'no-store'});
+ if(!r.ok)throw new Error('Không tải được chi tiết trận từ SportScore');
+ return await r.json();
+}
 function ssFindMatch(list,x){const targetDate=ssTargetDate(x.ngay);let best=null,bestScore=-1;for(const o of list){const t=ssCandidateTeams(o);if(!t.home||!t.away)continue;const sameTeams=(ssNamesMatch(t.home,x.nha)&&ssNamesMatch(t.away,x.khach))||(ssNamesMatch(t.home,x.khach)&&ssNamesMatch(t.away,x.nha));if(!sameTeams)continue;const date=ssDateOnly(ssCandidateDate(o));let score=10;if(date===targetDate)score+=20;else if(targetDate)score-=15;if(ssNamesMatch(t.home,x.nha))score+=2;if(score>bestScore){bestScore=score;best=o}}return bestScore>=15?best:null}
 function ssRecursiveArrays(obj,out=[]){if(!obj||typeof obj!=='object')return out;if(Array.isArray(obj)){for(const x of obj)ssRecursiveArrays(x,out);return out}for(const [k,v] of Object.entries(obj)){if(Array.isArray(v)){out.push({key:k,value:v});for(const x of v)ssRecursiveArrays(x,out)}else if(v&&typeof v==='object')ssRecursiveArrays(v,out)}return out}
 function ssEventMinute(ev){return ssGet(ev,['minute','min','time.minute','clock.minute','event_time.minute','periodTime'])??ssGet(ev,['time'])??''}
@@ -127,13 +137,31 @@ async function loadDetails(i,btn,panel){
  btn.disabled=true;btn.textContent='⏳ Đang lấy dữ liệu...';panel.classList.add('open');panel.innerHTML='<div class="detail-empty">Đang tìm trận trên SportScore...</div>';
  const x=tatCaDuLieu[i];
  try{
-   const list=await ssFetchMatches();
-   let candidate=ssFindMatch(list,x);
-   if(!candidate)throw new Error('Không tìm thấy trận này trên SportScore trong danh sách trận gần đây.');
-   let slug=ssCandidateSlug(candidate);
-   if(!slug){const t=ssCandidateTeams(candidate);slug=`${ssSlug(t.home)}-vs-${ssSlug(t.away)}`}
-   const r=await fetch(`${SPORT_SCORE_BASE}/match/?sport=football&slug=${encodeURIComponent(slug)}&src=scorevision.io.vn`,{cache:'no-store'});if(!r.ok)throw new Error('Không tải được chi tiết trận từ SportScore');
-   const j=await r.json();const raw=j.match||j.data||j;const d=ssNormalizeDetail(raw,candidate,x);panel.innerHTML=renderDetails(d);btn.textContent='🔽 Thu gọn diễn biến'
+   const homeSlug=ssSlug(ssTeamKey(x.nha));
+   const awaySlug=ssSlug(ssTeamKey(x.khach));
+   const directSlugs=[`${homeSlug}-vs-${awaySlug}`,`${awaySlug}-vs-${homeSlug}`];
+   let candidate=null,raw=null;
+   for(const slug of directSlugs){
+     try{
+       const j=await ssFetchDirect(slug);
+       const rr=j.match||j.data||j;
+       const teams=ssCandidateTeams(rr);
+       if(teams.home&&teams.away&&((ssNamesMatch(teams.home,x.nha)&&ssNamesMatch(teams.away,x.khach))||(ssNamesMatch(teams.home,x.khach)&&ssNamesMatch(teams.away,x.nha)))){
+         candidate=rr;raw=rr;break;
+       }
+     }catch(_e){}
+   }
+   if(!candidate){
+     const list=await ssFetchTeamFixtures(homeSlug);
+     candidate=ssFindMatch(list,x);
+     if(candidate){
+       const ct=ssCandidateTeams(candidate);
+       const slug=ssCandidateSlug(candidate)||`${ssSlug(ssTeamKey(ct.home))}-vs-${ssSlug(ssTeamKey(ct.away))}`;
+       const j=await ssFetchDirect(slug);raw=j.match||j.data||j;
+     }
+   }
+   if(!candidate)throw new Error('Không tìm thấy trận này trên SportScore.');
+   const d=ssNormalizeDetail(raw,candidate,x);panel.innerHTML=renderDetails(d);btn.textContent='🔽 Thu gọn diễn biến'
  }catch(e){panel.innerHTML='<div class="detail-empty">❌ '+esc(e.message)+'</div>';btn.textContent='⚽ Thử lại'}finally{btn.disabled=false}
 }
 document.addEventListener('click',e=>{const btn=e.target.closest('.details-btn');if(!btn)return;const i=Number(btn.dataset.detailIndex);const panel=document.getElementById('details-'+i);loadDetails(i,btn,panel)});
