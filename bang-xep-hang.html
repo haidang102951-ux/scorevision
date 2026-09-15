@@ -1,368 +1,295 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <script>(function(s){s.dataset.zone='11763479',s.src='https://nap5k.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
-    <script>(function(s){s.dataset.zone='11665696',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bảng Xếp Hạng | Score Vision</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#050b16">
+<title>Bảng Xếp Hạng | Score Vision</title>
+<script>(function(s){s.dataset.zone='11763479',s.src='https://nap5k.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
+<script>(function(s){s.dataset.zone='11665696',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-        }
+<style>
+:root{
+  --sv-bg:#030711;--sv-panel:#07101e;--sv-panel-2:#0f1b2d;
+  --sv-text:#f8fafc;--sv-muted:#94a3b8;--sv-soft:#64748b;
+  --sv-gold:#facc15;--sv-gold-light:#fde68a;--sv-blue:#60a5fa;
+  --sv-border:rgba(148,163,184,.14);--sv-radius:16px;
+  --sv-shadow:0 10px 28px rgba(0,0,0,.23);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  color:#f8fafc;line-height:1.65;min-height:100vh;overflow-x:hidden;
+  background:
+    radial-gradient(900px 480px at 8% -10%,rgba(37,99,235,.18),transparent 62%),
+    radial-gradient(760px 420px at 94% 0%,rgba(250,204,21,.10),transparent 60%),
+    linear-gradient(180deg,#030711 0%,#07101e 46%,#030711 100%);
+}
+button{font:inherit}
+.wrap{width:min(1120px,calc(100% - 24px));margin:auto}
 
-        body {
-            background: #020617;
-            color: #f8fafc;
-            line-height: 1.7;
-            padding: 16px;
-            max-width: 860px;
-            margin: 0 auto;
-        }
+/* HEADER — đồng bộ với Lịch đấu / Phân tích */
+.site-header{
+  position:relative;isolation:isolate;overflow:hidden;
+  min-height:152px;padding:28px 0 24px;
+  border-bottom:1px solid rgba(255,255,255,.08);
+  background:
+    linear-gradient(90deg,rgba(2,6,17,.97),rgba(2,6,17,.80) 34%,rgba(2,6,17,.45) 67%,rgba(2,6,17,.80)),
+    linear-gradient(180deg,rgba(2,6,17,.18),rgba(2,6,17,.88)),
+    url("https://images.pexels.com/photos/200986/pexels-photo-200986.jpeg?auto=compress&cs=tinysrgb&w=1920") center/cover no-repeat;
+}
+.site-header:before{
+  content:"";position:absolute;inset:0;z-index:-1;
+  background:radial-gradient(circle at 76% 48%,rgba(250,204,21,.15),transparent 23%);
+}
+.site-header:after{
+  content:"";position:absolute;left:4%;right:4%;bottom:0;height:2px;
+  background:linear-gradient(90deg,transparent,#facc15 32%,#60a5fa 68%,transparent);
+}
+.brand-row{display:flex;align-items:center}
+.brand{display:flex;align-items:center;gap:15px}
+.brand-logo{
+  width:64px;height:64px;flex:0 0 64px;border-radius:17px;background:#fff;
+  display:grid;place-items:center;overflow:hidden;
+  border:1px solid rgba(255,255,255,.16);box-shadow:0 10px 28px rgba(0,0,0,.30)
+}
+.brand-logo img{width:100%;height:100%;object-fit:contain}
+.brand-title{
+  font-size:32px;font-weight:900;letter-spacing:-.8px;
+  background:linear-gradient(90deg,#fff,#fde68a,#facc15);
+  -webkit-background-clip:text;background-clip:text;color:transparent
+}
+.brand-sub{font-size:11px;color:#cbd5e1;letter-spacing:1.7px}
 
-        .menu {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 24px;
-            position: sticky;
-            top: 0;
-            background: #020617f0;
-            padding: 10px 0;
-            z-index: 99;
-            backdrop-filter: blur(8px);
-        }
+/* MENU — mobile native scroll, desktop mouse drag */
+.menu-shell{position:sticky;top:8px;z-index:100;margin:16px auto 0}
+.menu{
+  display:flex;align-items:center;gap:5px;width:100%;padding:7px;
+  overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;
+  touch-action:pan-x;overscroll-behavior-x:contain;scroll-behavior:auto;
+  scrollbar-width:none;background:rgba(7,14,28,.96);
+  border:1px solid rgba(148,163,184,.14);border-radius:15px;
+  box-shadow:0 8px 24px rgba(0,0,0,.22);user-select:none;cursor:grab
+}
+.menu::-webkit-scrollbar{display:none}
+.menu.dragging{cursor:grabbing}
+.menu-btn{
+  flex:0 0 auto;white-space:nowrap;text-decoration:none;padding:9px 12px;
+  border-radius:10px;border:1px solid transparent;color:#b8c4d5;
+  font-size:12px;font-weight:750;
+  transition:background-color .12s ease,color .12s ease,border-color .12s ease
+}
+.menu-btn:hover{color:#fff;background:rgba(255,255,255,.045);border-color:rgba(148,163,184,.12)}
+.menu-btn.active{
+  color:#111827;background:linear-gradient(135deg,#fde68a,#facc15);
+  border-color:#facc15;box-shadow:0 5px 18px rgba(250,204,21,.15)
+}
+.menu-btn.livescore{color:#bbf7d0;background:rgba(34,197,94,.07)}
+.menu-btn.multimedia{color:#e9d5ff;background:rgba(168,85,247,.07)}
+.menu-btn.fifa{color:#bfdbfe;background:rgba(59,130,246,.07)}
+.menu-btn.gopy{color:#c7d2fe;background:rgba(99,102,241,.07)}
 
-        .menu-btn {
-            background: linear-gradient(135deg, #1e293b, #0f172a);
-            color: #e2e8f0;
-            padding: 10px 14px;
-            border-radius: 12px;
-            text-align: center;
-            text-decoration: none;
-            font-size: 13px;
-            font-weight: 700;
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            border: 1px solid #334155;
-            transition: all .25s;
-        }
+main{width:min(1100px,calc(100% - 24px));margin:auto;padding-bottom:48px}
 
-        .menu-btn:hover {
-            transform: translateY(-2px);
-            border-color: #fef08a;
-            box-shadow: 0 4px 12px rgba(254,240,138,.15);
-        }
+/* HERO */
+.hero{
+  position:relative;overflow:hidden;min-height:142px;margin:20px 0 16px;
+  border-radius:20px;border:1px solid rgba(250,204,21,.17);
+  background:
+    linear-gradient(90deg,rgba(3,7,18,.97),rgba(3,7,18,.70),rgba(3,7,18,.91)),
+    url("https://images.pexels.com/photos/114296/pexels-photo-114296.jpeg?auto=compress&cs=tinysrgb&w=1600") center/cover no-repeat;
+  box-shadow:0 13px 34px rgba(0,0,0,.22)
+}
+.hero:after{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(circle at 83% 50%,rgba(250,204,21,.16),transparent 27%);
+  pointer-events:none
+}
+.hero-inner{position:relative;z-index:2;padding:24px}
+.kicker{font-size:10px;font-weight:850;letter-spacing:1.6px;color:#fde68a;text-transform:uppercase}
+.hero h1{font-size:28px;line-height:1.2;margin-top:4px;font-weight:900;letter-spacing:-.6px}
+.hero p{font-size:12px;color:#cbd5e1;margin-top:7px}
 
-        .menu-btn.active {
-            background: linear-gradient(135deg, #fef08a, #fde047);
-            color: #713f12;
-            border-color: #fef08a;
-            box-shadow: 0 4px 14px rgba(253,224,71,.20);
-        }
+/* FILTER */
+.filter-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:4px 1px 7px}
+.filter-title{font-size:11px;color:#94a3b8;font-weight:850;text-transform:uppercase;letter-spacing:.7px}
+.filter-hint{font-size:9px;color:#64748b}
+.loc-giai{
+  display:flex;align-items:center;gap:7px;overflow-x:auto;overflow-y:hidden;
+  padding:3px 2px 10px;margin-bottom:14px;
+  -webkit-overflow-scrolling:touch;touch-action:pan-x;overscroll-behavior-x:contain;
+  scroll-behavior:auto;scrollbar-width:none;cursor:grab;user-select:none
+}
+.loc-giai::-webkit-scrollbar{display:none}
+.loc-giai.dragging{cursor:grabbing}
+.loc-btn{
+  flex:0 0 auto;white-space:nowrap;background:rgba(30,41,59,.95);color:#cbd5e1;
+  padding:8px 12px;border-radius:9px;border:1px solid rgba(148,163,184,.10);
+  font-size:10px;font-weight:800;cursor:pointer;
+  transition:background-color .12s ease,color .12s ease,border-color .12s ease,box-shadow .12s ease
+}
+.loc-btn:hover{background:#334155;color:#fff}
+.loc-btn.active{
+  background:linear-gradient(135deg,#fde68a,#facc15);color:#111827;
+  border-color:#facc15;box-shadow:0 4px 12px rgba(250,204,21,.18)
+}
 
-        h2 {
-            text-align: center;
-            font-size: 22px;
-            color: #fef08a;
-            margin-bottom: 20px;
-        }
+/* SHARED SCORE VISION DESIGN SYSTEM */
+.section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin:0 1px 9px}
+.section-head .eyebrow{font-size:10px;font-weight:900;letter-spacing:1px;text-transform:uppercase;color:var(--sv-soft)}
+.section-head .section-note{font-size:10px;color:var(--sv-soft);white-space:nowrap}
+.summary-row{display:flex;gap:7px;flex-wrap:wrap;margin:0 0 10px}
+.summary-chip{padding:7px 10px;border-radius:10px;background:rgba(30,41,59,.72);border:1px solid var(--sv-border);font-size:10px;color:var(--sv-muted)}
+.summary-chip strong{color:var(--sv-text)}
 
-        .loc-giai {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 20px;
-            padding-bottom: 8px;
-            border-bottom: 1px solid #1e293b;
-        }
+/* TABLE */
+.bang-wrap{
+  width:100%;overflow-x:auto;overflow-y:hidden;
+  -webkit-overflow-scrolling:touch;touch-action:pan-x;
+  overscroll-behavior-x:contain;scroll-behavior:auto;scrollbar-width:thin;
+  border-radius:17px;border:1px solid rgba(148,163,184,.14);
+  background:linear-gradient(145deg,rgba(30,41,59,.97),rgba(8,16,30,.99));
+  box-shadow:var(--sv-shadow);position:relative
+}
+.bang-wrap::-webkit-scrollbar{height:5px}
+.bang-wrap::-webkit-scrollbar-thumb{background:rgba(148,163,184,.25);border-radius:99px}
+.bang-wrap.dragging{cursor:grabbing}
+.table-scroll-label{display:none;align-items:center;justify-content:center;gap:6px;padding:8px 10px;color:#64748b;font-size:9px;letter-spacing:.2px}
+.table-scroll-label span{display:inline-flex;align-items:center;gap:5px;padding:5px 9px;border:1px solid rgba(148,163,184,.10);border-radius:999px;background:rgba(15,27,45,.72)}
+.table-scroll-label b{color:#cbd5e1}
+.bang-wrap table{
+  display:table!important;width:100%;min-width:820px;border-collapse:collapse;
+  border-spacing:0;table-layout:fixed
+}
+.bang-wrap thead{display:table-header-group!important}
+.bang-wrap tbody{display:table-row-group!important}
+.bang-wrap tr{display:table-row!important}
+.bang-wrap th,.bang-wrap td{display:table-cell!important;vertical-align:middle}
+.bang-wrap th:nth-child(1),.bang-wrap td:nth-child(1){width:48px}
+.bang-wrap th:nth-child(2),.bang-wrap td:nth-child(2){width:235px}
+.bang-wrap th:nth-child(3),.bang-wrap td:nth-child(3){width:62px}
+.bang-wrap th:nth-child(4),.bang-wrap td:nth-child(4),
+.bang-wrap th:nth-child(5),.bang-wrap td:nth-child(5),
+.bang-wrap th:nth-child(6),.bang-wrap td:nth-child(6){width:48px}
+.bang-wrap th:nth-child(7),.bang-wrap td:nth-child(7),
+.bang-wrap th:nth-child(8),.bang-wrap td:nth-child(8){width:88px}
+.bang-wrap th:nth-child(9),.bang-wrap td:nth-child(9){width:82px}
+.bang-wrap th:nth-child(10),.bang-wrap td:nth-child(10){width:70px}
+.bang-wrap th{
+  position:sticky;top:0;z-index:3;
+  background:linear-gradient(135deg,#fde68a,#facc15);color:#111827;
+  padding:12px 6px;text-align:center!important;font-size:11px;font-weight:900;
+  white-space:nowrap;border-bottom:1px solid rgba(0,0,0,.12)
+}
+.bang-wrap td{
+  padding:10px 6px;text-align:center!important;border-bottom:1px solid rgba(148,163,184,.10);
+  font-size:13px;white-space:nowrap
+}
+.bang-wrap tbody tr{transition:background-color .12s ease}
+.bang-wrap tbody tr:hover{background:rgba(250,204,21,.055)}
+.bang-wrap tbody tr:last-child td{border-bottom:none}
+.hang-1{background:rgba(250,204,21,.10);border-left:3px solid #facc15}
+.hang-2{background:rgba(203,213,225,.07);border-left:3px solid #cbd5e1}
+.hang-3{background:rgba(245,158,11,.07);border-left:3px solid #f59e0b}
+.vi-tri{font-weight:900;font-size:14px}
+.doi-ten{text-align:left!important;padding-left:13px!important;font-weight:750;white-space:normal!important;color:#f8fafc}
+.tong-diem{font-weight:900;color:#fde68a;font-size:14px}
+.thang{color:#22c55e;font-weight:700}.hoa{color:#94a3b8;font-weight:700}.thua{color:#f87171;font-weight:700}
+.hieu-so{color:#93c5fd;font-weight:750}
+.empty{text-align:center;color:#64748b;padding:58px 20px;border:1px dashed rgba(148,163,184,.12);border-radius:15px}
+.loading{text-align:center;color:#fde68a;padding:40px;animation:blink 1.5s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.42}}
+.ghi-chu{
+  margin-top:11px;padding:10px 13px;background:rgba(250,204,21,.045);
+  border-radius:10px;border-left:3px solid #facc15;font-size:11px;color:#cbd5e1;line-height:1.65
+}
+@media(max-width:700px){
+  .table-scroll-label{display:flex}
+  .wrap,main{width:calc(100% - 18px)}
+  .site-header{min-height:122px;padding:22px 0 18px}
+  .brand-logo{width:52px;height:52px;flex-basis:52px;border-radius:14px}
+  .brand-title{font-size:25px}.brand-sub{font-size:9px;letter-spacing:1.15px}
+  .menu-shell{margin-top:10px}.menu{padding:6px;border-radius:13px}.menu-btn{padding:8px 10px;font-size:11px}
+  .hero{min-height:124px;margin-top:14px;border-radius:17px}.hero-inner{padding:19px}
+  .hero h1{font-size:22px}.hero p{font-size:11px}
+  .filter-hint{display:none}.loc-giai{margin-bottom:12px}
+  .bang-wrap table{min-width:820px}.bang-wrap th,.bang-wrap td{font-size:11px;padding:9px 5px}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+}
+</style>
 
-        .loc-btn {
-            background: #1e293b;
-            color: #cbd5e1;
-            padding: 8px 12px;
-            border-radius: 8px;
-            border: none;
-            font-size: 12px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all .2s;
-        }
-
-        .loc-btn:hover {
-            background: #334155;
-            color: #fff;
-        }
-
-        .loc-btn.active {
-            background: linear-gradient(135deg, #fef08a, #fde047);
-            color: #713f12;
-        }
-
-        /* ================================
-           KHUNG BẢNG
-        ================================= */
-
-        .bang-wrap {
-            width: 100%;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-            border-radius: 16px;
-            border: 2px solid #1e293b;
-            background: linear-gradient(145deg, #1e293b, #0f172a);
-            box-shadow: 0 6px 20px rgba(0,0,0,.30);
-        }
-
-        /* ÉP TABLE LUÔN LÀ TABLE */
-        .bang-wrap table {
-            display: table !important;
-            width: 100%;
-            min-width: 760px;
-            border-collapse: collapse;
-            border-spacing: 0;
-            table-layout: fixed;
-        }
-
-        .bang-wrap thead {
-            display: table-header-group !important;
-        }
-
-        .bang-wrap tbody {
-            display: table-row-group !important;
-        }
-
-        .bang-wrap tr {
-            display: table-row !important;
-        }
-
-        .bang-wrap th,
-        .bang-wrap td {
-            display: table-cell !important;
-            vertical-align: middle;
-        }
-
-        /* Độ rộng từng cột */
-        .bang-wrap th:nth-child(1),
-        .bang-wrap td:nth-child(1) {
-            width: 45px;
-        }
-
-        .bang-wrap th:nth-child(2),
-        .bang-wrap td:nth-child(2) {
-            width: 190px;
-        }
-
-        .bang-wrap th:nth-child(3),
-        .bang-wrap td:nth-child(3) {
-            width: 65px;
-        }
-
-        .bang-wrap th:nth-child(4),
-        .bang-wrap td:nth-child(4),
-        .bang-wrap th:nth-child(5),
-        .bang-wrap td:nth-child(5),
-        .bang-wrap th:nth-child(6),
-        .bang-wrap td:nth-child(6) {
-            width: 50px;
-        }
-
-        .bang-wrap th:nth-child(7),
-        .bang-wrap td:nth-child(7),
-        .bang-wrap th:nth-child(8),
-        .bang-wrap td:nth-child(8) {
-            width: 90px;
-        }
-
-        .bang-wrap th:nth-child(9),
-        .bang-wrap td:nth-child(9) {
-            width: 80px;
-        }
-
-        .bang-wrap th:nth-child(10),
-        .bang-wrap td:nth-child(10) {
-            width: 70px;
-        }
-
-        .bang-wrap th {
-            background: linear-gradient(135deg, #fef08a, #fde047);
-            color: #713f12;
-            padding: 12px 6px;
-            text-align: center !important;
-            font-size: 13px;
-            font-weight: 800;
-            white-space: nowrap;
-            border: none;
-        }
-
-        .bang-wrap td {
-            padding: 10px 6px;
-            text-align: center !important;
-            border-bottom: 1px solid #334155;
-            font-size: 14px;
-            white-space: nowrap;
-        }
-
-        .bang-wrap tbody tr:hover {
-            background: rgba(254,240,138,.06);
-        }
-
-        .bang-wrap tbody tr:last-child td {
-            border-bottom: none;
-        }
-
-        .hang-1 {
-            background: rgba(250,204,21,.12);
-            border-left: 3px solid #facc15;
-        }
-
-        .hang-2 {
-            background: rgba(215,223,233,.08);
-            border-left: 3px solid #cbd5e1;
-        }
-
-        .hang-3 {
-            background: rgba(180,83,9,.08);
-            border-left: 3px solid #f59e0b;
-        }
-
-        .vi-tri {
-            font-weight: 800;
-            font-size: 15px;
-        }
-
-        .doi-ten {
-            text-align: left !important;
-            padding-left: 12px !important;
-            font-weight: 600;
-            white-space: normal !important;
-        }
-
-        .tong-diem {
-            font-weight: 800;
-            color: #fef08a;
-            font-size: 15px;
-        }
-
-        .thang {
-            color: #22c55e;
-            font-weight: 600;
-        }
-
-        .hoa {
-            color: #94a3b8;
-            font-weight: 600;
-        }
-
-        .thua {
-            color: #f87171;
-            font-weight: 600;
-        }
-
-        .hieu-so {
-            color: #93c5fd;
-            font-weight: 600;
-        }
-
-        .empty {
-            text-align: center;
-            color: #64748b;
-            padding: 60px 20px;
-        }
-
-        .loading {
-            text-align: center;
-            color: #fef08a;
-            padding: 40px;
-            animation: nhapnhay 1.5s infinite;
-        }
-
-        @keyframes nhapnhay {
-            0%,100% {
-                opacity: 1;
-            }
-
-            50% {
-                opacity: .4;
-            }
-        }
-
-        .ghi-chu {
-            margin-top: 12px;
-            padding: 10px 14px;
-            background: rgba(254,240,138,.05);
-            border-radius: 10px;
-            border-left: 3px solid #fef08a;
-            font-size: 12px;
-            color: #d4d4d8;
-            line-height: 1.6;
-        }
-
-        /* MOBILE */
-        @media (max-width: 600px) {
-            body {
-                padding: 10px;
-            }
-
-            .bang-wrap table {
-                min-width: 760px;
-            }
-
-            .bang-wrap th,
-            .bang-wrap td {
-                font-size: 12px;
-                padding: 9px 5px;
-            }
-        }
-    </style>
 </head>
-
 <body>
+<header class="site-header">
+  <div class="wrap">
+    <div class="brand-row">
+      <div class="brand">
+        <div class="brand-logo">
+          <img src="logo.png" alt="Score Vision" onerror="this.style.display='none';this.parentElement.innerHTML='<span style="font-size:30px">⚽</span>'">
+        </div>
+        <div>
+          <div class="brand-title">Score Vision</div>
+          <div class="brand-sub">PHÂN TÍCH · DỮ LIỆU · BÓNG ĐÁ</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
 
-<nav class="menu">
-    <a href="index.html" class="menu-btn">🏠 Trang chủ</a>
-    <a href="lich-dau.html" class="menu-btn">📅 Lịch đấu</a>
-    <a href="du-doan.html" class="menu-btn">🔮 Phân Tích</a>
-    <a href="bang-xep-hang.html" class="menu-btn active">📊 Bảng xếp hạng</a>
-    <a href="thong-ke.html" class="menu-btn">📈 Thống kê</a>
-    <a href="tin-nong.html" class="menu-btn">📰 Tin Nóng</a>
-    <a href="ket-qua.html" class="menu-btn">⚽ Kết Quả</a>
-    <a href="livescore.html" class="menu-btn">⚽ LiveScore</a>
-    <a href="multimedia.html" class="menu-btn multimedia">🎬 MultiMedia</a>
-    <a href="bang-xep-hang-fifa.html" class="menu-btn fifa">🌍 BXH FIFA</a>
-    <a href="gop-y.html" class="menu-btn">💬 Góp Ý</a>
+<div class="wrap menu-shell">
+<nav class="menu" id="mainMenu" aria-label="Điều hướng chính">
+  <a href="index.html" class="menu-btn">🏠 Trang chủ</a>
+  <a href="lich-dau.html" class="menu-btn">📅 Lịch đấu</a>
+  <a href="du-doan.html" class="menu-btn">🔮 Phân Tích &amp; Dự Đoán</a>
+  <a href="bang-xep-hang.html" class="menu-btn active">📊 Bảng Xếp Hạng</a>
+  <a href="thong-ke.html" class="menu-btn">📈 Thống kê</a>
+  <a href="tin-nong.html" class="menu-btn">📰 Tin Nóng</a>
+  <a href="ket-qua.html" class="menu-btn">🏆 Kết Quả</a>
+  <a href="livescore.html" class="menu-btn livescore">⚽ LiveScore</a>
+  <a href="multimedia.html" class="menu-btn multimedia">🎬 MultiMedia</a>
+  <a href="bang-xep-hang-fifa.html" class="menu-btn fifa">🌍 BXH FIFA</a>
+  <a href="gop-y.html" class="menu-btn gopy">💬 Góp Ý</a>
 </nav>
-
-<h2>📊 Bảng Xếp Hạng Giải Đấu</h2>
-
-<div class="loc-giai">
-    <button class="loc-btn active" data-giai="TatCa">Tất Cả</button>
-    <button class="loc-btn" data-giai="Ngoại Hạng Anh">🏴 Ngoại Hạng Anh</button>
-    <button class="loc-btn" data-giai="Bundesliga">🇩🇪 Bundesliga</button>
-    <button class="loc-btn" data-giai="Ligue 1">🇫🇷 Ligue 1</button>
-    <button class="loc-btn" data-giai="Serie A">🇮🇹 Serie A</button>
-    <button class="loc-btn" data-giai="La Liga">🇪🇸 La Liga</button>
-    <button class="loc-btn" data-giai="Cúp C1 Châu Âu">🏆 Cúp C1 Châu Âu</button>
 </div>
 
-<div id="bxh-list">
-    <div class="loading">Đang tải bảng xếp hạng...</div>
+<main>
+<section class="hero">
+  <div class="hero-inner">
+    <div class="kicker">SCORE VISION · STANDINGS CENTER</div>
+    <h1>📊 Bảng Xếp Hạng</h1>
+    <p>Cập nhật thứ hạng, thành tích và điểm số của các đội bóng theo từng giải đấu.</p>
+  </div>
+</section>
+
+<div class="filter-bar">
+  <div class="filter-title">Chọn giải đấu</div>
+  <div class="filter-hint">← Vuốt để xem thêm →</div>
 </div>
+
+<div class="loc-giai" id="leagueTabs">
+  <button class="loc-btn active" data-giai="TatCa">Tất Cả</button>
+  <button class="loc-btn" data-giai="Ngoại Hạng Anh">🏴 Ngoại Hạng Anh</button>
+  <button class="loc-btn" data-giai="Bundesliga">🇩🇪 Bundesliga</button>
+  <button class="loc-btn" data-giai="Ligue 1">🇫🇷 Ligue 1</button>
+  <button class="loc-btn" data-giai="Serie A">🇮🇹 Serie A</button>
+  <button class="loc-btn" data-giai="La Liga">🇪🇸 La Liga</button>
+  <button class="loc-btn" data-giai="Cúp C1 Châu Âu">🏆 Cúp C1 Châu Âu</button>
+</div>
+
+<div id="bxh-list"><div class="loading">Đang tải bảng xếp hạng...</div></div>
+<div class="table-scroll-label" aria-hidden="true"><span>↔ <b>Vuốt ngang bảng</b> để xem đầy đủ thống kê</span></div>
 
 <div class="ghi-chu">
-    💡 <strong>Giải thích màu sắc:</strong>
-    🟡 Đầu bảng |
-    ⚪ Thứ 2 |
-    🟠 Thứ 3
-    — Sắp xếp theo: Điểm → Hiệu số → Số bàn thắng
+  💡 <strong>Giải thích:</strong> 🟡 Đầu bảng · ⚪ Thứ 2 · 🟠 Thứ 3
+  — Sắp xếp theo: <strong>Điểm → Hiệu số → Số bàn thắng</strong>
 </div>
+</main>
 
 <script>
-
 const CSV_URL =
 "https://docs.google.com/spreadsheets/d/e/2PACX-1vRjGewmdAmJVjyi-0vSc22hhFPacMgGc-WmVE8PEM3jHfA7IvED3XbBp68Bwp16n1Dc2FFP9ETKTaSH/pub?gid=0&single=true&output=csv";
 
@@ -721,7 +648,10 @@ function hienThiDuLieu() {
                 </td>
 
                 <td class="doi-ten">
-                    ${x.doi}
+                    <span class="team-cell">
+                      <img class="team-logo" src="" alt="" data-team="${String(x.doi).replace(/"/g,'&quot;')}" loading="lazy" referrerpolicy="no-referrer">
+                      <span>${x.doi}</span>
+                    </span>
                 </td>
 
                 <td>
@@ -802,7 +732,154 @@ document
         hienThiDuLieu();
     });
 });
+</script>
 
+<script>
+/* Unified smooth drag:
+   Touch/mobile remains 100% native. Mouse drag is desktop-only. */
+(function(){
+  function dragScroll(el){
+    if(!el)return;
+    let down=false,startX=0,startScroll=0,moved=false;
+    el.addEventListener("mousedown",e=>{
+      if(e.button!==0)return;
+      down=true;moved=false;startX=e.pageX;startScroll=el.scrollLeft;
+      el.classList.add("dragging");
+    });
+    window.addEventListener("mousemove",e=>{
+      if(!down)return;
+      const dx=e.pageX-startX;
+      if(Math.abs(dx)>5)moved=true;
+      el.scrollLeft=startScroll-dx;
+    });
+    window.addEventListener("mouseup",()=>{
+      down=false;el.classList.remove("dragging");
+    });
+    el.addEventListener("click",e=>{
+      if(moved){e.preventDefault();e.stopPropagation();moved=false;}
+    },true);
+    el.addEventListener("dragstart",e=>e.preventDefault());
+  }
+  dragScroll(document.getElementById("mainMenu"));
+  dragScroll(document.getElementById("leagueTabs"));
+  dragScroll(document.getElementById("bxh-list"));
+})();
+</script>
+
+<style>
+.team-cell{display:flex;align-items:center;gap:9px;min-width:0}
+.team-logo{
+  width:28px;height:28px;flex:0 0 28px;object-fit:contain;border-radius:50%;
+  background:rgba(255,255,255,.96);padding:2px;
+  border:1px solid rgba(148,163,184,.13)
+}
+.team-cell>span:last-child{overflow:hidden;text-overflow:ellipsis}
+</style>
+
+<script>
+/* Logo database: no API call, only the public static team dataset. */
+(function(){
+  const DATA_URL="https://cdn.jsdelivr.net/gh/hixcoder/football-teams-flags@main/football_teams.json";
+  const CACHE_KEY="scorevision_team_logos_v6";
+  const aliases={
+    "man utd":"Manchester United","man united":"Manchester United",
+    "man city":"Manchester City","spurs":"Tottenham Hotspur",
+    "inter":"Inter Milan","psg":"Paris Saint-Germain",
+    "bayern":"Bayern Munich","dortmund":"Borussia Dortmund",
+    "gladbach":"Borussia Mönchengladbach","koln":"1. FC Köln",
+    "mainz":"Mainz 05","union berlin":"Union Berlin",
+    "rayo":"Rayo Vallecano","espanyol":"Espanyol",
+    "deportivo":"Deportivo La Coruña","alaves":"Deportivo Alavés",
+    "parma":"Parma","udinese":"Udinese","sassuolo":"Sassuolo",
+    "torino":"Torino","como":"Como","monza":"Monza"
+  };
+  let index=null;
+
+  function norm(s){
+    return String(s||"").toLowerCase()
+      .normalize("NFD").replace(/[\\u0300-\\u036f]/g,"")
+      .replace(/&/g,"and")
+      .replace(/[^a-z0-9]+/g," ")
+      .replace(/\\b(fc|afc|cf|sc|ac|ssc|bc|jk|sk|fk|club|football|the)\\b/g," ")
+      .replace(/\\s+/g," ").trim();
+  }
+  function build(rows){
+    const out={};
+    (rows||[]).forEach(x=>{
+      if(!x||!x.name||!x.logoUrl)return;
+      const k=norm(x.name);
+      if(k&&!out[k])out[k]=x.logoUrl;
+    });
+    index=out;
+    try{localStorage.setItem(CACHE_KEY,JSON.stringify(out));}catch(e){}
+  }
+  function find(name){
+    if(!index)return "";
+    const raw=norm(name);
+    const key=norm(aliases[raw]||name);
+    if(index[key])return index[key];
+    const keys=Object.keys(index);
+    let best="",score=0;
+    for(const k of keys){
+      if(k===key)return index[k];
+      const a=new Set(key.split(" ")),b=new Set(k.split(" "));
+      const inter=[...a].filter(v=>b.has(v)).length;
+      const union=new Set([...a,...b]).size;
+      const s=union?inter/union:0;
+      if(s>score){score=s;best=k}
+    }
+    return score>=.82?index[best]:"";
+  }
+  function render(){
+    document.querySelectorAll(".team-logo[data-team]").forEach(img=>{
+      const url=find(img.dataset.team);
+      if(url){img.src=url;img.addEventListener("error",()=>{img.style.visibility="hidden"},{once:true});}
+      else img.style.visibility="hidden";
+    });
+  }
+  async function load(){
+    try{
+      let cached=null;
+      try{cached=JSON.parse(localStorage.getItem(CACHE_KEY)||"null");}catch(e){}
+      if(cached){index=cached;render();}
+      const r=await fetch(DATA_URL,{cache:"force-cache"});
+      if(!r.ok)throw new Error("logo database");
+      build(await r.json());render();
+    }catch(e){render();}
+  }
+  const observer=new MutationObserver(()=>render());
+  observer.observe(document.body,{childList:true,subtree:true});
+  load();
+})();
+</script>
+
+
+<script>
+(function(){
+  const box=document.getElementById("bxh-list");
+  if(!box)return;
+  const observer=new MutationObserver(()=>{
+    const rows=box.querySelectorAll("tbody tr");
+    const old=document.getElementById("bxhSummary");
+    if(old)old.remove();
+    if(!rows.length)return;
+    const wrap=document.createElement("div");
+    wrap.id="bxhSummary";
+    wrap.className="summary-row";
+    const make=(label,value)=>{
+      const d=document.createElement("div");
+      d.className="summary-chip";
+      d.innerHTML=label+" <strong style='color:#f8fafc'>"+value+"</strong>";
+      return d;
+    };
+    wrap.appendChild(make("Đội",rows.length));
+    const table=box.querySelector("table");
+    const title=table?table.querySelector("th:nth-child(2)")?.textContent:"";
+    wrap.appendChild(make("BXH","Đang cập nhật"));
+    box.insertBefore(wrap,box.firstChild);
+  });
+  observer.observe(box,{childList:true,subtree:true});
+})();
 </script>
 
 </body>
