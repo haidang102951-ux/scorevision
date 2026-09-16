@@ -1040,6 +1040,77 @@
     filters.forEach(b=>b.addEventListener("click",()=>{filters.forEach(x=>x.classList.remove("active"));b.classList.add("active");filter=b.dataset.svFilter;render()}));
     refresh.addEventListener("click",load);load();setInterval(load,60000);
 })();
+    // Kéo ngang menu: mobile dùng native scrolling, desktop dùng chuột.
+    (function(){
+        const menu = document.querySelector('.menu');
+        if(!menu) return;
+
+        let dragging = false;
+        let moved = false;
+        let startX = 0;
+        let startScroll = 0;
+
+        // DESKTOP: kéo bằng chuột.
+        // MOBILE: không bắt touch/pointer để trình duyệt xử lý native scrolling mượt hơn.
+        menu.addEventListener('mousedown', function(e){
+            if(e.button !== 0) return;
+
+            dragging = true;
+            moved = false;
+            startX = e.clientX;
+            startScroll = menu.scrollLeft;
+            menu.classList.add('dragging');
+        });
+
+        window.addEventListener('mousemove', function(e){
+            if(!dragging) return;
+
+            const dx = e.clientX - startX;
+
+            if(Math.abs(dx) > 5){
+                moved = true;
+                e.preventDefault();
+            }
+
+            menu.scrollLeft = startScroll - dx;
+        }, {passive:false});
+
+        function stopDragging(){
+            if(!dragging) return;
+            dragging = false;
+            menu.classList.remove('dragging');
+        }
+
+        window.addEventListener('mouseup', stopDragging);
+        window.addEventListener('blur', stopDragging);
+
+        // PC: lăn chuột dọc trên menu sẽ chuyển thành cuộn ngang.
+        menu.addEventListener('wheel', function(e){
+            if(Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
+
+            const maxScroll = menu.scrollWidth - menu.clientWidth;
+            if(maxScroll <= 0) return;
+
+            const current = menu.scrollLeft;
+            const next = current + e.deltaY;
+
+            if(next > 0 && next < maxScroll){
+                e.preventDefault();
+                menu.scrollLeft = next;
+            }
+        }, {passive:false});
+
+        // Nếu vừa kéo bằng chuột thì không kích hoạt nhầm link.
+        menu.addEventListener('click', function(e){
+            if(moved){
+                e.preventDefault();
+                e.stopPropagation();
+                moved = false;
+            }
+        }, true);
+    })();
+
+
 </script>
 
 <script>
