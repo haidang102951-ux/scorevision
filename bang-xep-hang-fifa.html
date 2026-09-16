@@ -61,26 +61,156 @@ a{text-decoration:none;color:inherit}
 .len-dau.hien{opacity:1;visibility:visible}.len-dau:hover{transform:translateY(-3px);background:#111827}
 @media(max-width:768px){.container{padding:0 12px}.dau-trang-wrapper{padding:23px 12px 17px}.logo{width:54px;height:54px;flex-basis:54px;border-radius:14px}.ten-thuong-hieu{font-size:25px}.slogan-dau{font-size:11px;letter-spacing:.8px}.menu{margin:10px 0 18px;padding:7px 8px;border-radius:13px}.menu-btn{padding:8px 11px;font-size:12px}.page-hero{padding:20px 17px;border-radius:17px}.page-hero:after{right:10px;font-size:58px}.hero-title{font-size:21px;padding-right:40px}.hero-desc{font-size:13px}.section-head{margin-top:17px}.section-title{font-size:16px}.widget-bxh{padding:5px;border-radius:15px}.widget-inner{border-radius:11px;min-height:600px}.info-strip{grid-template-columns:1fr}.len-dau{right:14px;bottom:14px;width:42px;height:42px}}
 @media(max-width:430px){.dau-trang{gap:10px}.logo{width:48px;height:48px;flex-basis:48px}.ten-thuong-hieu{font-size:23px}.slogan-dau{font-size:10px}.page-hero{padding:18px 15px}.hero-title{font-size:20px}}
+
+
+/* === NỀN TẢNG CHUNG LẤY TRỰC TIẾP TỪ INDEX SCORE VISION === */
+body{
+    background:
+      radial-gradient(900px 450px at 10% -5%,rgba(37,99,235,.16),transparent 60%),
+      radial-gradient(700px 400px at 95% 8%,rgba(250,204,21,.08),transparent 60%),
+      linear-gradient(180deg,#040713 0%,#07101f 55%,#040713 100%);
+}
+.container{width:min(1160px,calc(100% - 28px));max-width:none;margin:auto;padding:0}
+.site-header{
+    position:relative;overflow:hidden;padding:30px 0 22px;min-height:138px;
+    border-bottom:1px solid rgba(255,255,255,.08);
+    background:
+      linear-gradient(90deg,rgba(3,7,18,.94) 0%,rgba(3,7,18,.78) 28%,rgba(3,7,18,.46) 58%,rgba(3,7,18,.72) 100%),
+      linear-gradient(180deg,rgba(3,7,18,.20),rgba(3,7,18,.72)),
+      url("https://images.pexels.com/photos/200986/pexels-photo-200986.jpeg?auto=compress&cs=tinysrgb&w=1920")
+      center 48%/cover no-repeat;
+}
+.site-header:before{
+    content:"";position:absolute;inset:0;
+    background:
+      radial-gradient(circle at 78% 48%,rgba(250,204,21,.13),transparent 24%),
+      linear-gradient(90deg,transparent 55%,rgba(0,0,0,.18));
+    pointer-events:none;
+}
+.site-header:after{
+    content:"";position:absolute;left:0;right:0;bottom:0;height:2px;
+    background:linear-gradient(90deg,transparent 4%,rgba(250,204,21,.9) 32%,rgba(96,165,250,.8) 68%,transparent 96%);
+    opacity:.8;
+}
+.site-header .container{position:relative;z-index:2}
+.brand-row{display:flex;align-items:center;justify-content:space-between;gap:18px}
+.brand-row:after{
+    content:"⚽";position:absolute;right:4%;top:50%;transform:translateY(-50%) rotate(-10deg);
+    font-size:74px;opacity:.10;pointer-events:none;
+}
+.brand{display:flex;align-items:center;gap:14px}
+.logo{
+    width:62px;height:62px;border-radius:17px;display:grid;place-items:center;
+    overflow:hidden;border:1px solid rgba(255,255,255,.12);background:#fff;
+    box-shadow:0 8px 25px rgba(0,0,0,.28)
+}
+.logo img{width:100%;height:100%;object-fit:contain}
+.brand-name{
+    font-size:31px;font-weight:850;letter-spacing:-.8px;
+    background:linear-gradient(90deg,#fff7b2,#facc15);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    text-shadow:0 3px 18px rgba(0,0,0,.55)
+}
+.brand-sub{
+    font-size:12px;color:#cbd5e1;letter-spacing:1.5px;margin-top:2px;
+    text-shadow:0 1px 8px rgba(0,0,0,.55)
+}
+.menu-wrap{
+    position:sticky;top:8px;z-index:100;margin-top:18px
+}
+.menu{
+    display:flex;align-items:center;gap:5px;padding:7px;width:100%;
+    box-sizing:border-box;overflow-x:auto;overflow-y:hidden;scroll-behavior:auto;
+    -webkit-overflow-scrolling:touch;touch-action:pan-x;overscroll-behavior-x:contain;
+    scrollbar-width:none;cursor:grab;user-select:none;-webkit-user-select:none;
+    -webkit-user-drag:none;background:rgba(9,16,31,.97);
+    border:1px solid rgba(148,163,184,.14);border-radius:15px;
+    box-shadow:0 6px 18px rgba(0,0,0,.16);margin:0
+}
+.menu::-webkit-scrollbar{display:none}
+.menu.dragging,.menu.dragging .menu-btn{cursor:grabbing}
+.menu-btn{
+    flex:0 0 auto;text-decoration:none;color:#b9c5d6;font-size:13px;font-weight:650;
+    padding:9px 12px;border:1px solid transparent;border-radius:10px;white-space:nowrap;
+    transition:color .12s ease,background-color .12s ease,border-color .12s ease
+}
+.menu-btn:hover{color:#fff;background:rgba(255,255,255,.045);border-color:rgba(148,163,184,.13)}
+.menu-btn.active{
+    color:#111827;background:linear-gradient(135deg,#fde68a,#facc15);
+    box-shadow:0 5px 18px rgba(250,204,21,.13)
+}
+.menu-btn.livescore{color:#bbf7d0;background:rgba(34,197,94,.08);border-color:rgba(74,222,128,.16)}
+.menu-btn.multimedia{color:#e9d5ff;background:rgba(168,85,247,.08);border-color:rgba(192,132,252,.15)}
+.menu-btn.fifa{color:#bfdbfe;background:rgba(59,130,246,.08);border-color:rgba(96,165,250,.15)}
+.menu-btn.gopy{color:#c7d2fe;background:rgba(99,102,241,.08);border-color:rgba(129,140,248,.15)}
+
+/* Nội dung BXH dùng cùng card/section language với index */
+.page-hero{
+    margin-top:22px;
+    border:1px solid rgba(250,204,21,.12);
+    background:linear-gradient(135deg,rgba(17,24,39,.92),rgba(10,18,34,.72));
+    box-shadow:0 14px 40px rgba(0,0,0,.24);
+}
+.eyebrow{color:#facc15}
+.section-head{border-bottom:1px solid rgba(148,163,184,.13)}
+.section-title{font-weight:800}
+.section-title .mark{background:linear-gradient(180deg,#60a5fa,#2563eb)}
+.widget-bxh{
+    border:1px solid rgba(148,163,184,.13);
+    background:linear-gradient(145deg,rgba(20,30,50,.92),rgba(7,14,27,.90));
+    box-shadow:0 14px 40px rgba(0,0,0,.24)
+}
+.chan-trang{border-top:1px solid rgba(148,163,184,.13)}
+
+@media(max-width:680px){
+    .container{width:min(1160px,calc(100% - 20px));padding:0}
+    .site-header{padding:24px 0 18px;min-height:118px;background-position:center}
+    .brand-row:after{display:none}
+    .brand-name{font-size:25px}
+    .brand-sub{font-size:10px;letter-spacing:1px}
+    .logo{width:54px;height:54px}
+    .menu-wrap{margin-top:10px}
+    .menu{border-radius:13px}
+    .menu-btn{padding:8px 11px;font-size:12px}
+}
+@media(max-width:430px){
+    .logo{width:48px;height:48px}
+    .brand-name{font-size:23px}
+    .brand-sub{font-size:9px}
+}
+
 </style>
 </head>
 <body>
-<header class="dau-trang-wrapper">
-<div class="container"><div class="dau-trang"><div class="logo"><img src="logo.png" alt="Score Vision" onerror="this.style.display='none'"></div><div class="ten-thuong-hieu">Score Vision</div></div><p class="slogan-dau">🌍 FIFA WORLD RANKING · BẢNG XẾP HẠNG ĐỘI TUYỂN QUỐC GIA</p></div>
+<header class="site-header">
+    <div class="container">
+        <div class="brand-row">
+            <div class="brand">
+                <div class="logo">
+                    <img src="logo.png" alt="Score Vision" onerror="this.style.display='none'">
+                </div>
+                <div>
+                    <div class="brand-name">Score Vision</div>
+                    <div class="brand-sub">PHÂN TÍCH · DỮ LIỆU · BÓNG ĐÁ</div>
+                </div>
+            </div>
+        </div>
+    </div>
 </header>
 
 <div class="container">
-<nav class="menu" id="scoreMenu">
-<a href="index.html" class="menu-btn">🏠 Trang chủ</a>
-<a href="lich-dau.html" class="menu-btn">📅 Lịch đấu</a>
-<a href="du-doan.html" class="menu-btn">🔮 Phân Tích & Dự Đoán</a>
-<a href="bang-xep-hang.html" class="menu-btn">📊 Bảng Xếp Hạng</a>
-<a href="thong-ke.html" class="menu-btn">📈 Thống kê</a>
-<a href="tin-nong.html" class="menu-btn">📰 Tin Nóng</a>
-<a href="ket-qua.html" class="menu-btn">🏆 Kết Quả</a>
-<a href="livescore.html" class="menu-btn livescore">⚽ LiveScore</a>
-<a href="multimedia.html" class="menu-btn multimedia">🎬 MultiMedia</a>
-<a href="bxh-fifa.html" class="menu-btn fifa active">🌍 BXH FIFA</a>
-<a href="gop-y.html" class="menu-btn gopy">💬 Góp Ý</a>
+<nav class="menu" id="scoreMenu" aria-label="Điều hướng chính">
+    <a href="index.html" class="menu-btn">🏠 Trang chủ</a>
+    <a href="lich-dau.html" class="menu-btn">📅 Lịch đấu</a>
+    <a href="du-doan.html" class="menu-btn">🔮 Phân Tích & Dự Đoán</a>
+    <a href="bang-xep-hang.html" class="menu-btn">📊 Bảng xếp hạng</a>
+    <a href="thong-ke.html" class="menu-btn">📈 Thống kê</a>
+    <a href="tin-nong.html" class="menu-btn">📰 Tin Nóng</a>
+    <a href="ket-qua.html" class="menu-btn">🏆 Kết Quả</a>
+    <a href="livescore.html" class="menu-btn livescore">⚽ LiveScore</a>
+    <a href="multimedia.html" class="menu-btn multimedia">🎬 MultiMedia</a>
+    <a href="bang-xep-hang-fifa.html" class="menu-btn fifa active">🌍 BXH FIFA</a>
+    <a href="gop-y.html" class="menu-btn gopy">💬 Góp Ý</a>
 </nav>
 
 <section class="page-hero">
@@ -96,11 +226,6 @@ a{text-decoration:none;color:inherit}
 <iframe src="https://goalapi.net/nhung/bxh-fifa?theme=dark&lang=vi" id="goalapi-fifa" width="100%" height="600" frameborder="0" loading="lazy" scrolling="auto" title="Bảng Xếp Hạng FIFA"></iframe>
 </div></div>
 
-<div class="info-strip">
-<div class="info-card"><strong>🌍 Đội tuyển quốc gia</strong><span>Tra cứu thứ hạng các đội tuyển trong bảng FIFA World Ranking.</span></div>
-<div class="info-card"><strong>📱 Tối ưu di động</strong><span>Khung BXH được giữ độc lập để widget bên trong hoạt động ổn định trên màn hình nhỏ.</span></div>
-<div class="info-card"><strong>⚡ Score Vision</strong><span>Giao diện được đồng bộ với các chuyên mục khác trên Score Vision.</span></div>
-</div>
 
 <footer class="chan-trang"><p><strong>Score Vision</strong> — FIFA World Ranking</p><p>© 2026 Score Vision. Tất cả quyền được bảo lưu.</p></footer>
 </div>
