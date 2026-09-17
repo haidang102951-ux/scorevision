@@ -916,38 +916,7 @@
             <button class="tab-btn" onclick="chuyenTab('ketqua')">✅ Kết Quả</button>
         </div>
         <div id="tab-tructiep" class="tab-content active">
-            <!-- =========================================================
-                 SCOREVISION LIVE SCORE — SPORTScore
-                 ========================================================= -->
-            <section class="sv-live-panel" id="svLivePanel">
-                <div class="sv-live-head">
-                    <div>
-                        <div class="sv-live-kicker">SCORE VISION · LIVE CENTER</div>
-                        <h2>🔴 LiveScore</h2>
-                        <p>Theo dõi tỷ số trực tiếp các trận đang thi đấu.</p>
-                    </div>
-                    <div class="sv-live-status" id="svLiveStatus">🔄 Đang tải...</div>
-                </div>
-                <div class="sv-live-tools">
-                    <button class="sv-live-filter active" data-sv-filter="live">🔴 Đang đá</button>
-                    <button class="sv-live-filter" data-sv-filter="all">⚽ Tất cả</button>
-                    <button class="sv-live-filter" data-sv-filter="finished">✅ Vừa kết thúc</button>
-                    <button class="sv-live-refresh" id="svLiveRefresh">↻ Cập nhật</button>
-                </div>
-                <div class="sv-live-meta">
-                    <span id="svLiveCount">0 trận</span><span>•</span>
-                    <span>Tự cập nhật mỗi 60 giây</span>
-                </div>
-                <div class="sv-live-list" id="svLiveList">
-                    <div class="sv-live-loading"><span class="sv-spinner"></span>Đang lấy tỷ số trực tiếp...</div>
-                </div>
-                <div class="sv-live-source">
-                    Dữ liệu từ
-                    <a href="https://sportscore.com/" target="_blank" rel="dofollow noopener">Powered by SportScore</a>
-                </div>
-            </section>
-
-            <!-- ✅ PHẦN TRÊN: GoalAPI -->
+<!-- ✅ PHẦN TRÊN: GoalAPI -->
             <iframe src="https://goalapi.net/nhung/livescore?theme=dark&lang=vi&accent=3b3b3f" 
             width="100%" height="320" frameborder="0" loading="lazy" scrolling="auto" 
             title="Tất Cả Trận Đang Đá"></iframe>
@@ -985,62 +954,7 @@
 </div>
 </div>
 <script>
-/* === SCOREVISION SPORTScore LIVE — direct browser fetch, no API key === */
-(function(){
-    const API="https://sportscore.com/api/widget/matches/?sport=football&limit=50&src=scorevision.io.vn";
-    const list=document.getElementById("svLiveList"), status=document.getElementById("svLiveStatus");
-    const count=document.getElementById("svLiveCount"), refresh=document.getElementById("svLiveRefresh");
-    const filters=document.querySelectorAll(".sv-live-filter");
-    let matches=[], filter="live";
-
-    const esc=v=>String(v??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
-    const pick=(o,keys,fb="")=>{for(const k of keys){let v=o;for(const p of k.split(".")){if(v==null)break;v=v[p]}if(v!==undefined&&v!==null&&v!=="")return v}return fb};
-    const team=(m,s)=>pick(m,s==="home"?["homeTeam","home","home_team","teams.home","participants.home"]:["awayTeam","away","away_team","teams.away","participants.away"],{});
-    const name=t=>pick(t,["name","shortName","title","teamName"],"Đội bóng");
-    const logo=t=>pick(t,["logo","logoUrl","image","imageUrl","avatar","crest"],"");
-    const statusText=m=>String(pick(m,["status.type","status.name","status.label","status.short","state","status"],"")).toLowerCase();
-    const live=m=>{let s=statusText(m);if(/finished|ended|complete|completed|ft|postponed|cancelled|canceled/.test(s))return false;if(/live|inprogress|in_progress|playing|1h|2h|ht|halftime|extra|pen/.test(s))return true;let n=Number(pick(m,["status.minute","minute","clock.minute"],NaN));return Number.isFinite(n)&&n>0};
-    const finished=m=>/finished|ended|complete|completed|ft|after|aet|penalties/.test(statusText(m));
-    function score(m,s){let x=pick(m,["score","scores"],{}),v=pick(x,s==="home"?["home","homeScore","current.home","display.home"]:["away","awayScore","current.away","display.away"],null);if(v&&typeof v==="object")v=pick(v,["current","display","normaltime","period1"],"-");return v??"-"}
-    function league(m){let x=pick(m,["tournament","competition","league"],{});return typeof x==="string"?x:pick(x,["name","title","shortName"],"Bóng đá")}
-    function start(m){return pick(m,["startTime","startTimestamp","startDate","date","kickoff","kickOff"],"")}
-    function clock(m){let n=pick(m,["status.minute","minute","clock.minute"],"");return n!==""?String(n).replace(/'/g,"")+"'":finished(m)?"Kết thúc":"Đang đá"}
-    function time(m){let n=Number(start(m));if(Number.isFinite(n)&&n>1000000000){let d=new Date(n<1e12?n*1000:n);if(!isNaN(d))return d.toLocaleTimeString("vi-VN",{hour:"2-digit",minute:"2-digit",hour12:false})}return String(start(m)||"")}
-    function slug(m){return pick(m,["slug","matchSlug","urlSlug"],"")}
-
-    function render(){
-        let a=matches.filter(m=>filter==="live"?live(m):filter==="finished"?finished(m):true);
-        a.sort((x,y)=>(live(x)?0:finished(x)?2:1)-(live(y)?0:finished(y)?2:1));
-        count.textContent=a.length+" trận";
-        if(!a.length){list.innerHTML='<div class="sv-live-empty">'+(filter==="live"?"⚽ Hiện chưa có trận nào đang thi đấu.":"Không có trận phù hợp.")+"</div>";return}
-        list.innerHTML=a.map(m=>{
-            let h=team(m,"home"),a=team(m,"away"),hn=name(h),an=name(a),hs=score(m,"home"),as=score(m,"away"),iv=live(m),fin=finished(m);
-            let href=slug(m)?`https://sportscore.com/football/match/${encodeURIComponent(slug(m))}/`:"#";
-            return `<a class="sv-live-card" href="${esc(href)}" target="_blank" rel="noopener noreferrer">
-              <div class="sv-live-card-top"><span class="sv-live-league">${esc(league(m))}</span><span class="sv-live-badge ${fin?"finished":""}">${iv?"🔴 LIVE":fin?"✓ Kết thúc":"🕐 Sắp đá"}</span></div>
-              <div class="sv-live-main">
-                <div class="sv-live-team">${logo(h)?`<img src="${esc(logo(h))}" alt="" loading="lazy">`:""}<span class="sv-live-team-name">${esc(hn)}</span></div>
-                <div class="sv-live-score">${esc(hs)} - ${esc(as)}<span class="sv-live-clock ${!iv?"upcoming":""}">${esc(iv?clock(m):fin?"FT":time(m))}</span></div>
-                <div class="sv-live-team away"><span class="sv-live-team-name">${esc(an)}</span>${logo(a)?`<img src="${esc(logo(a))}" alt="" loading="lazy">`:""}</div>
-              </div>
-            </a>`
-        }).join("")
-    }
-    async function load(){
-        status.textContent="🔄 Đang cập nhật...";
-        try{
-            let r=await fetch(API,{cache:"no-store"});if(!r.ok)throw Error("HTTP "+r.status);
-            let j=await r.json();matches=Array.isArray(j.matches)?j.matches:Array.isArray(j.data)?j.data:Array.isArray(j.results)?j.results:[];
-            status.textContent="🔴 "+matches.filter(live).length+" trận đang đá";render()
-        }catch(e){
-            console.error(e);status.textContent="⚠️ Không tải được";
-            list.innerHTML='<div class="sv-live-error">⚠️ Không lấy được LiveScore lúc này.<br><small>Tự thử lại sau 60 giây.</small></div>';count.textContent="0 trận"
-        }
-    }
-    filters.forEach(b=>b.addEventListener("click",()=>{filters.forEach(x=>x.classList.remove("active"));b.classList.add("active");filter=b.dataset.svFilter;render()}));
-    refresh.addEventListener("click",load);load();setInterval(load,60000);
-})();
-    // Kéo ngang menu: mobile dùng native scrolling, desktop dùng chuột.
+// Kéo ngang menu: mobile dùng native scrolling, desktop dùng chuột.
     (function(){
         const menu = document.querySelector('.menu');
         if(!menu) return;
