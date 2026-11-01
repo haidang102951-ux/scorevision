@@ -1,24 +1,15 @@
-const CACHE_NAME = 'scorevision-v3';
-const ASSETS = [
+const CACHE_NAME = 'scorevision-v4';
+const STATIC_ASSETS = [
     './',
-    './index.html',
-    './tai-app.html',
-    './lich-dau.html',
-    './du-doan.html',
-    './bang-xep-hang.html',
-    './thong-ke.html',
-    './tin-nong.html',
-    './ket-qua.html',
-    './livescore.html',
-    './gop-y.html',
-    './manifest.json',
-    'https://cdn-icons-png.flaticon.com/512/1041/1041916.png'
+    './favicon.png',
+    './logo.png',
+    './manifest.json'
 ];
 
 self.addEventListener('install', e => {
     e.waitUntil(
         caches.open(CACHE_NAME).then(cache => {
-            return cache.addAll(ASSETS);
+            return cache.addAll(STATIC_ASSETS);
         }).then(() => self.skipWaiting())
     );
 });
@@ -33,15 +24,47 @@ self.addEventListener('activate', e => {
     );
 });
 
+// Network-First for HTML & Live Data; Stale-While-Revalidate for Static Assets
 self.addEventListener('fetch', e => {
-    e.respondWith(
-        caches.match(e.request).then(r => {
-            return r || fetch(e.request).then(res => {
-                return caches.open(CACHE_NAME).then(cache => {
-                    cache.put(e.request, res.clone());
+    const url = new URL(e.request.url);
+
+    // Bỏ qua không cache quảng cáo và analytics
+    if (url.hostname.includes('googlesyndication') || 
+        url.hostname.includes('google-analytics') || 
+        url.hostname.includes('googletagmanager') ||
+        url.hostname.includes('n6wxm.com')) {
+        return;
+    }
+
+    // Network-First cho HTML pages và Google Sheets CSV data
+    if (e.request.mode === 'navigate' || 
+        url.pathname.endsWith('.html') || 
+        url.hostname.includes('docs.google.com')) {
+        e.respondWith(
+            fetch(e.request)
+                .then(res => {
+                    if (res && res.status === 200) {
+                        const copy = res.clone();
+                        caches.open(CACHE_NAME).then(cache => cache.put(e.request, copy));
+                    }
                     return res;
-                });
-            });
+                })
+                .catch(() => caches.match(e.request))
+        );
+        return;
+    }
+
+    // Stale-While-Revalidate cho static assets
+    e.respondWith(
+        caches.match(e.request).then(cached => {
+            const networkFetch = fetch(e.request).then(res => {
+                if (res && res.status === 200) {
+                    const copy = res.clone();
+                    caches.open(CACHE_NAME).then(cache => cache.put(e.request, copy));
+                }
+                return res;
+            }).catch(() => cached);
+            return cached || networkFetch;
         })
     );
 });
