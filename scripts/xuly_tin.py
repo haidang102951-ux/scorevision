@@ -1,90 +1,145 @@
-import os, requests, re
+import os, requests, re, html, json, csv, io
 from bs4 import BeautifulSoup
-from google import genai
 from datetime import datetime
 
-SHEET_ID = os.environ["SHEET_ID"]
-GOOGLE_API_KEY = os.environ["GOOGLE_API_KEY"]
-GEMINI_API_KEY = os.environ["GEMINI_API_KEY"]
-PEXELS_API_KEY = os.environ["PEXELS_API_KEY"]
+SHEET_ID = os.environ.get("SHEET_ID", "1-EcewgzQ1P9pyk6lp3ADV69kwWccuQuY72TK77OPmYk")
+GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY", "")
+GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
 
-client = genai.Client(api_key=GEMINI_API_KEY)
+HEADERS = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+    'Accept-Language': 'vi-VN,vi;q=0.9,en-US;q=0.8,en;q=0.7'
+}
 
-def go_ai(prompt):
-    try:
-        resp = client.models.generate_content(model="gemini-2.0-flash", contents=prompt)
-        return resp.text.strip()
-    except Exception as e:
-        print(f"⚠️ Lỗi AI: {e}")
+REAL_PERSON_FALLBACKS = [
+    {
+        'keys': ['ronaldo', 'cr7', 'al nassr'],
+        'img': 'https://upload.wikimedia.org/wikipedia/commons/8/8c/Cristiano_Ronaldo_2018.jpg'
+    },
+    {
+        'keys': ['messi', 'inter miami', 'argentina'],
+        'img': 'https://upload.wikimedia.org/wikipedia/commons/b/b4/Lionel-Messi-Argentina-2022-FIFA-World-Cup_%28cropped%29.jpg'
+    },
+    {
+        'keys': ['mourinho'],
+        'img': 'https://upload.wikimedia.org/wikipedia/commons/e/ec/Jos%C3%A9_Mourinho_2019.jpg'
+    },
+    {
+        'keys': ['mbappe', 'mbappé'],
+        'img': 'https://upload.wikimedia.org/wikipedia/commons/5/57/2019-07-17_SG_Dynamo_Dresden_vs._Paris_Saint-Germain_by_Sandro_Halank%E2%80%93129_%28cropped%29.jpg'
+    },
+    {
+        'keys': ['việt nam', 'v-league', 'asian cup', 'thầy kim', 'u.23', 'u23', 'hagl'],
+        'img': 'https://upload.wikimedia.org/wikipedia/commons/4/41/Vietnam_national_football_team_at_2019_AFC_Asian_Cup.jpg'
+    },
+    {
+        'keys': ['chelsea'],
+        'img': 'https://upload.wikimedia.org/wikipedia/en/c/cc/Chelsea_FC.svg'
+    },
+    {
+        'keys': ['man united', 'man utd', 'mu'],
+        'img': 'https://upload.wikimedia.org/wikipedia/en/7/7a/Manchester_United_FC_crest.svg'
+    }
+]
+
+def decode_html(s):
+    if not s: return ""
+    s = html.unescape(html.unescape(s))
+    return re.sub(r'<[^>]*>', '', s).strip()
+
+def get_real_og_image(link):
+    if not link or not link.startswith("http"):
         return ""
-
-def sheet_req(method, path, data=None):
-    url = f"https://sheets.googleapis.com/v4/spreadsheets/{SHEET_ID}{path}"
-    url += "&key=" + GOOGLE_API_KEY if "?" in path else "?key=" + GOOGLE_API_KEY
     try:
-        r = requests.get(url, timeout=15) if method == "GET" else requests.post(url, json=data, timeout=15)
-        return r.json() if r.ok else None
-    except Exception as e:
-        print(f"⚠️ Lỗi Sheet: {e}")
-        return None
+        r = requests.get(link, headers=HEADERS, timeout=8)
+        if not r.ok:
+            return ""
+        m = re.search(r'<meta[^>]+property=[\"\']og:image[\"\'][^>]+content=[\"\']([^\"\']+)[\"\']', r.text, re.IGNORECASE)
+        if not m:
+            m = re.search(r'<meta[^>]+content=[\"\']([^\"\']+)[\"\'][^>]+property=[\"\']og:image[\"\']', r.text, re.IGNORECASE)
+        if not m:
+            m = re.search(r'<meta[^>]+name=[\"\']twitter:image[\"\'][^>]+content=[\"\']([^\"\']+)[\"\']', r.text, re.IGNORECASE)
+        if m:
+            img = m.group(1).strip()
+            if img.startswith("//"):
+                img = "https:" + img
+            if img.startswith("http"):
+                return img
+    except Exception:
+        pass
+    return ""
 
-def get_records(tab="Nguồn Tin"):
-    d = sheet_req("GET", f"/values/{tab}")
-    if not d or "values" not in d: return []
-    rows = d["values"]
-    if len(rows) < 2: return []
-    headers = [str(h).strip() for h in rows[0]]
-    return [dict(zip(headers, row)) for row in rows[1:]]
+def get_fallback_person_img(title):
+    t = title.lower()
+    for item in REAL_PERSON_FALLBACKS:
+        for k in item['keys']:
+            if k in t:
+                return item['img']
+    return "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=900&q=80"
 
-def update_cell(tab, row, col, val):
-    sheet_req("PUT", f"/values/{tab}!{chr(64+col)}{row}:{chr(64+col)}{row}?valueInputOption=RAW", {"values": [[val]]})
+print("🔄 Bat dau dong bo tin tuc va trich xuat anh that...")
+SHEET_CSV_URL = f"https://docs.google.com/spreadsheets/d/e/2PACX-1vRjGewmdAmJVjyi-0vSc22hhFPacMgGc-WmVE8PEM3jHfA7IvED3XbBp68Bwp16n1Dc2FFP9ETKTaSH/pub?gid=840175350&single=true&output=csv"
 
-def get_image(kw):
-    default = "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800"
-    if not PEXELS_API_KEY or not kw: return default
-    try:
-        r = requests.get(f"https://api.pexels.com/v1/search?query=football+{kw}&per_page=1", headers={"Authorization": PEXELS_API_KEY}, timeout=10)
-        return r.json()["photos"][0]["src"]["large"] if r.ok and r.json().get("photos") else default
-    except: return default
+try:
+    r = requests.get(SHEET_CSV_URL, timeout=12)
+    rows = list(csv.reader(io.StringIO(r.text)))
+    print(f"Doc duoc {len(rows)-1} bai tu Google Sheet")
+except Exception as e:
+    print(f"Loi doc Sheet CSV: {e}")
+    rows = []
 
-print("🔄 Bắt đầu xử lý...")
-rows = get_records("Nguồn Tin")
-print(f"✅ Đọc được {len(rows)} dòng")
-
-for idx, row in enumerate(rows, start=2):
-    if str(row.get("Trạng thái", "")).strip() != "Chờ xử lý": continue
-    link, title, src = row.get("Link bài viết",""), row.get("Tiêu đề",""), row.get("Nguồn","")
-    print(f"🔄 Xử lý: {title[:40]}...")
-    try:
-        html = requests.get(link, timeout=15, headers={"User-Agent":"Mozilla/5.0"}).text
-        soup = BeautifulSoup(html, "html.parser")
-        paras = [p.get_text(strip=True) for p in soup.find_all("p") if len(p.get_text(strip=True))>40][:12]
-        content = "\n\n".join(paras)
-        if len(content) < 150:
-            update_cell("Nguồn Tin", idx, 7, "❌ Nội dung quá ngắn")
+articles = []
+if len(rows) > 1:
+    for idx, row in enumerate(rows[1:], 1):
+        if not row or len(row) < 2:
             continue
+        raw_title = row[0] if len(row) > 0 else ""
+        title = decode_html(raw_title)
+        if not title:
+            continue
+        
+        link = row[1].strip() if len(row) > 1 else ""
+        date = decode_html(row[2]) if len(row) > 2 else ""
+        source = decode_html(row[3]) if len(row) > 3 else "Score Vision"
+        sheet_img = row[10].strip() if len(row) > 10 else ""
+        content = decode_html(row[12]) if len(row) > 12 else ""
+        
+        final_img = ""
+        if sheet_img.startswith("http"):
+            final_img = sheet_img
+        
+        if not final_img and link:
+            safe_t = title.encode('ascii', 'backslashreplace').decode('ascii')[:40]
+            print(f"[{idx}/{len(rows)-1}] Trich xuat anh that cho: {safe_t}...")
+            final_img = get_real_og_image(link)
+        
+        if not final_img:
+            final_img = get_fallback_person_img(title)
+            print(f"   -> Fallback: {final_img[:50]}")
+        else:
+            print(f"   -> REAL Image: {final_img[:65]}")
 
-        kw = go_ai(f"Trả về 3-5 TỪ KHÓA TIẾNG ANH bóng đá. CHỈ từ khóa.\nTIÊU ĐỀ: {title}\nNỘI DUNG: {content[:500]}")
-        img = get_image(kw)
-        update_cell("Nguồn Tin", idx, 10, kw)
-        update_cell("Nguồn Tin", idx, 11, img)
-        update_cell("Nguồn Tin", idx, 12, "Pexels")
+        lead = content
+        if not lead or len(lead) < 20:
+            lead = f"Bản tin thể thao cập nhật nóng nhất từ {source}. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc."
+        elif len(lead) > 130:
+            lead = lead[:130] + "…"
 
-        bai_moi = go_ai(f"""Viết lại bài bóng đá, đổi cách diễn đạt, không dịch nguyên văn.
-Ghi nguồn cuối: Nguồn: {src} — {link}
-TIÊU ĐỀ: {title}
-NỘI DUNG: {content}""")
+        articles.append({
+            "id": idx,
+            "title": title,
+            "link": link,
+            "date": date,
+            "source": source,
+            "image": final_img,
+            "lead": lead,
+            "content": content
+        })
 
-        os.makedirs("output", exist_ok=True)
-        safe_title = re.sub(r'[^\w\s-]', '', title[:40]).strip()
-        fn = f"output/{datetime.now().strftime('%Y-%m-%d')}-{safe_title}.md"
-        with open(fn, "w", encoding="utf-8") as f: f.write(bai_moi)
+    os.makedirs("data", exist_ok=True)
+    with open("data/news.json", "w", encoding="utf-8") as f:
+        json.dump(articles, f, ensure_ascii=False, indent=2)
+    print(f"✅ Hoan tat! Da ghi {len(articles)} bai vao data/news.json")
 
-        update_cell("Nguồn Tin", idx, 7, "✅ Đã xử lý")
-        update_cell("Nguồn Tin", idx, 8, fn)
-        print(f"✅ Xong → {fn}")
-    except Exception as e:
-        update_cell("Nguồn Tin", idx, 7, f"❌ Lỗi: {str(e)[:40]}")
-        print(f"❌ Lỗi dòng {idx}: {e}")
-
-print("🏁 Hoàn thành!")
+print("🏁 Hoan tat xu ly!")

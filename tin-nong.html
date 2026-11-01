@@ -1204,79 +1204,108 @@ window.toggleDetails = function(elemId) {
     }
 };
 
-// Khởi chạy tải dữ liệu từ Google Sheet
-fetch(SHEET_CSV_URL)
-    .then(res => {
-        if (!res.ok) throw new Error(`HTTP Error: ${res.status}`);
-        return res.text();
-    })
-    .then(csvText => {
-        const rows = parseCSV(csvText);
-        if (rows.length < 2) {
-            document.getElementById("newsGrid").innerHTML = `
-                <div class="state-box" style="grid-column: 1 / -1;">
-                    <div class="state-title">Chưa có bài viết mới trên hệ thống</div>
-                    <div class="state-desc">Vui lòng quay lại sau ít phút.</div>
-                </div>`;
-            return;
-        }
-
-        ALL_NEWS = [];
-        for (let i = 1; i < rows.length; i++) {
-            const r = rows[i];
-            if (!r || r.length < 2) continue;
-
-            const rawTitle = r[0] || "";
-            const title = decodeHTMLEntities(rawTitle);
-            if (!title) continue;
-
-            const link = (r[1] || "").trim();
-            const date = formatDate(decodeHTMLEntities(r[2] || ""));
-            const source = decodeHTMLEntities(r[3] || "Score Vision");
-            const rawImg = (r[10] || "").trim();
-            const content = decodeHTMLEntities(r[12] || "");
-
-            // Khớp ngữ cảnh ảnh & thẻ danh mục
-            const topic = matchTopic(title, source, i);
-            const finalImg = (rawImg && rawImg.startsWith("http")) ? rawImg : topic.img;
-
-            // Đoạn trích dẫn tóm tắt
-            let lead = content;
-            if (!lead || lead.length < 20) {
-                lead = `Cập nhật diễn biến nóng nhất từ nguồn ${source}. Theo dõi nhận định và phân tích chi tiết trận cầu tâm điểm.`;
-            } else if (lead.length > 130) {
-                lead = lead.substring(0, 130) + "…";
+// Hàm nạp dự phòng từ Google Sheet nếu file JSON chưa sẵn sàng
+function napTuGoogleSheet() {
+    fetch(SHEET_CSV_URL)
+        .then(res => {
+            if (!res.ok) throw new Error(`HTTP Error: ${res.status}`);
+            return res.text();
+        })
+        .then(csvText => {
+            const rows = parseCSV(csvText);
+            if (rows.length < 2) {
+                document.getElementById("newsGrid").innerHTML = `
+                    <div class="state-box" style="grid-column: 1 / -1;">
+                        <div class="state-title">Chưa có bài viết mới trên hệ thống</div>
+                        <div class="state-desc">Vui lòng quay lại sau ít phút.</div>
+                    </div>`;
+                return;
             }
 
-            ALL_NEWS.push({
-                index: i,
-                title: title,
-                link: link,
-                date: date,
-                source: source,
-                img: finalImg,
+            ALL_NEWS = [];
+            for (let i = 1; i < rows.length; i++) {
+                const r = rows[i];
+                if (!r || r.length < 2) continue;
+
+                const rawTitle = r[0] || "";
+                const title = decodeHTMLEntities(rawTitle);
+                if (!title) continue;
+
+                const link = (r[1] || "").trim();
+                const date = formatDate(decodeHTMLEntities(r[2] || ""));
+                const source = decodeHTMLEntities(r[3] || "Score Vision");
+                const rawImg = (r[10] || "").trim();
+                const content = decodeHTMLEntities(r[12] || "");
+
+                // Khớp ngữ cảnh ảnh & thẻ danh mục
+                const topic = matchTopic(title, source, i);
+                const finalImg = (rawImg && rawImg.startsWith("http")) ? rawImg : topic.img;
+
+                let lead = content;
+                if (!lead || lead.length < 20) {
+                    lead = `Cập nhật diễn biến nóng nhất từ nguồn ${source}. Theo dõi nhận định và phân tích chi tiết trận cầu tâm điểm.`;
+                } else if (lead.length > 130) {
+                    lead = lead.substring(0, 130) + "…";
+                }
+
+                ALL_NEWS.push({
+                    index: i,
+                    title: title,
+                    link: link,
+                    date: date,
+                    source: source,
+                    img: finalImg,
+                    catTag: topic.tag,
+                    catColor: topic.color,
+                    lead: lead,
+                    content: content
+                });
+            }
+
+            const statEl = document.getElementById("statCount");
+            if (statEl) statEl.innerHTML = `● <strong>${ALL_NEWS.length}</strong> bài viết nóng`;
+            renderNews();
+        })
+        .catch(err => {
+            console.error("Lỗi nạp tin nóng:", err);
+            document.getElementById("newsGrid").innerHTML = `
+                <div class="state-box" style="grid-column: 1 / -1;">
+                    <div style="font-size:36px;margin-bottom:12px;">⚠️</div>
+                    <div class="state-title">Không thể tải dữ liệu thời sự</div>
+                    <div class="state-desc">${err.message}. Vui lòng thử tải lại trang hoặc kiểm tra kết nối mạng.</div>
+                </div>`;
+        });
+}
+
+// Ưu tiên số 1: Nạp data/news.json chứa 100% ảnh thật từ báo gốc (Thanh Niên, Tuổi Trẻ, VnExpress...)
+fetch("data/news.json?v=" + Date.now())
+    .then(r => {
+        if (!r.ok) throw new Error("Fallback to Sheet");
+        return r.json();
+    })
+    .then(jsonData => {
+        if (!jsonData || !jsonData.length) throw new Error("Empty json");
+        ALL_NEWS = jsonData.map((item, idx) => {
+            const topic = matchTopic(item.title, item.source, idx);
+            return {
+                index: item.id || idx + 1,
+                title: item.title,
+                link: item.link,
+                date: formatDate(item.date),
+                source: item.source || "Score Vision",
+                img: item.image,
                 catTag: topic.tag,
                 catColor: topic.color,
-                lead: lead,
-                content: content
-            });
-        }
-
-        // Cập nhật chip số lượng
+                lead: item.lead,
+                content: item.content
+            };
+        });
         const statEl = document.getElementById("statCount");
-        if (statEl) statEl.innerHTML = `● <strong>${ALL_NEWS.length}</strong> bài viết nóng`;
-
-        // Render lần đầu
+        if (statEl) statEl.innerHTML = `● <strong>${ALL_NEWS.length}</strong> bài viết nóng (Ảnh báo chí chính hãng)`;
         renderNews();
     })
-    .catch(err => {
-        console.error("Lỗi nạp tin nóng:", err);
-        document.getElementById("newsGrid").innerHTML = `
-            <div class="state-box" style="grid-column: 1 / -1;">
-                <div style="font-size:36px;margin-bottom:12px;">⚠️</div>
-                <div class="state-title">Không thể tải dữ liệu thời sự</div>
-                <div class="state-desc">${err.message}. Vui lòng thử tải lại trang hoặc kiểm tra kết nối mạng.</div>
-            </div>`;
+    .catch(() => {
+        napTuGoogleSheet();
     });
 
 // Gắn sự kiện bộ lọc chuyên mục

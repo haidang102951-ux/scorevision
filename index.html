@@ -1597,40 +1597,14 @@
     .catch(e => { document.getElementById("ketqua-list").innerHTML = `<div style="text-align:center;padding:20px;color:var(--text-dim);">Đang cập nhật...</div>`; });
 
     // ==========================================
-    // 3. TẢI VÀ RENDER TIN TỨC BÓNG ĐÁ (ẢNH ĐÚNG SỰ VIỆC)
+    // 3. TẢI VÀ RENDER TIN TỨC BÓNG ĐÁ (ẢNH BÁO CHÍ CHÍNH THỐNG)
     // ==========================================
-    fetch(BASE_URL + GID_TIN_NONG)
-    .then(r => { if(!r.ok) throw new Error("Lỗi kết nối"); return r.text(); })
-    .then(csv => {
-        const rows = parseCSV(csv);
+    function renderTinCards(data) {
         const box = document.getElementById("tin-list");
-        if (rows.length < 2) { box.innerHTML = `<div style="text-align:center;padding:24px;color:var(--text-dim);">Chưa có tin tức mới</div>`; return; }
-
-        const data = [];
-        for (let i = 1; i < rows.length; i++) {
-            const r = rows[i];
-            if (!r || r.length < 13) continue;
-            const tieude = cleanText(r[0] || "");
-            const ngaydang = cleanText(r[2] || "");
-            const anh_bia = (r[10] || "").trim();
-            const noidung = cleanText(r[12] || "");
-            if (!tieude) continue;
-
-            // Lấy ảnh đúng sự việc / nhân vật từ tiêu đề nếu anh_bia rỗng
-            const anhChuan = (anh_bia && anh_bia.startsWith("http")) ? anh_bia : layAnhTheoSuViec(tieude, i);
-
-            // Cắt tóm tắt gây tò mò
-            let tomtat = noidung;
-            if (tomtat.length > 95) tomtat = tomtat.substring(0, 95) + "…";
-
-            data.push({
-                tieude,
-                ngay: ngaydang.split(" ")[0] || "Mới nhất",
-                anh: anhChuan,
-                tomtat: tomtat || "Xem thông tin chi tiết bài viết nóng nhất..."
-            });
+        if (!data || !data.length) { 
+            box.innerHTML = `<div style="text-align:center;padding:24px;color:var(--text-dim);">Chưa có bài tin nào.</div>`; 
+            return; 
         }
-        if (!data.length) { box.innerHTML = `<div style="text-align:center;padding:24px;color:var(--text-dim);">Chưa có bài tin nào.</div>`; return; }
 
         const baiNoiBat = data[0];
         const listTinMoi = data.slice(1, 5);
@@ -1638,7 +1612,7 @@
         const subCards = listTinMoi.map(x => `
             <a href="tin-nong.html" class="card-news-sub">
                 <div class="news-sub-thumb">
-                    <img src="${x.anh}" alt="${x.tieude}" loading="lazy">
+                    <img src="${x.anh}" alt="${x.tieude}" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&q=80';">
                 </div>
                 <div class="news-sub-body">
                     <span class="news-date">📅 ${x.ngay}</span>
@@ -1650,7 +1624,7 @@
         box.innerHTML = `
             <div class="news-layout">
                 <a href="tin-nong.html" class="card-news-hero">
-                    <img src="${baiNoiBat.anh}" alt="${baiNoiBat.tieude}">
+                    <img src="${baiNoiBat.anh}" alt="${baiNoiBat.tieude}" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&q=80';">
                     <div class="news-hero-content">
                         <span class="badge-hot">🔥 TIN TÂM ĐIỂM · ${baiNoiBat.ngay}</span>
                         <h3>${baiNoiBat.tieude}</h3>
@@ -1661,8 +1635,67 @@
                     ${subCards}
                 </div>
             </div>`;
+    }
+
+    // Ưu tiên nạp data/news.json (chứa 100% ảnh thật từ báo chí gốc)
+    fetch("data/news.json?v=" + Date.now())
+    .then(r => {
+        if (!r.ok) throw new Error("Fallback sang Sheet");
+        return r.json();
     })
-    .catch(e => { document.getElementById("tin-list").innerHTML = `<div style="text-align:center;padding:20px;color:var(--text-dim);">Đang cập nhật...</div>`; });
+    .then(jsonData => {
+        if (!jsonData || !jsonData.length) throw new Error("Empty json");
+        const data = jsonData.map(x => {
+            let tomtat = x.lead || x.content || "";
+            if (tomtat.length > 95) tomtat = tomtat.substring(0, 95) + "…";
+            return {
+                tieude: x.title,
+                ngay: (x.date || "Mới nhất").split(" ")[0],
+                anh: x.image,
+                tomtat: tomtat || "Xem thông tin chi tiết bài viết nóng nhất..."
+            };
+        });
+        renderTinCards(data);
+    })
+    .catch(() => {
+        // Fallback sang Google Sheet CSV nếu JSON chưa sẵn sàng
+        fetch(BASE_URL + GID_TIN_NONG)
+        .then(r => { if(!r.ok) throw new Error("Lỗi kết nối"); return r.text(); })
+        .then(csv => {
+            const rows = parseCSV(csv);
+            if (rows.length < 2) { 
+                document.getElementById("tin-list").innerHTML = `<div style="text-align:center;padding:24px;color:var(--text-dim);">Chưa có tin tức mới</div>`; 
+                return; 
+            }
+
+            const data = [];
+            for (let i = 1; i < rows.length; i++) {
+                const r = rows[i];
+                if (!r || r.length < 13) continue;
+                const tieude = cleanText(r[0] || "");
+                const ngaydang = cleanText(r[2] || "");
+                const anh_bia = (r[10] || "").trim();
+                const noidung = cleanText(r[12] || "");
+                if (!tieude) continue;
+
+                const anhChuan = (anh_bia && anh_bia.startsWith("http")) ? anh_bia : layAnhTheoSuViec(tieude, i);
+
+                let tomtat = noidung;
+                if (tomtat.length > 95) tomtat = tomtat.substring(0, 95) + "…";
+
+                data.push({
+                    tieude,
+                    ngay: ngaydang.split(" ")[0] || "Mới nhất",
+                    anh: anhChuan,
+                    tomtat: tomtat || "Xem thông tin chi tiết bài viết nóng nhất..."
+                });
+            }
+            renderTinCards(data);
+        })
+        .catch(e => { 
+            document.getElementById("tin-list").innerHTML = `<div style="text-align:center;padding:20px;color:var(--text-dim);">Đang cập nhật...</div>`; 
+        });
+    });
 
     // ==========================================
     // 4. TẢI VÀ RENDER GÓC THỐNG KÊ (3D TACTICAL PITCH + DEEP LINKING)

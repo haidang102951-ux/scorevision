@@ -30,13 +30,12 @@ jobs:
           PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
         run: python scripts/xuly_tin.py
 
-      - name: Tự động Commit & Push bài viết mới
+      - name: Tự động Commit & Push dữ liệu tin tức và bài viết mới
         run: |
+          git config --global user.name "Score Vision Bot"
+          git config --global user.email "bot@scorevision.io.vn"
+          git add data/
           if [ -d "output" ]; then
-            git config --global user.name "Score Vision Bot"
-            git config --global user.email "bot@scorevision.io.vn"
             git add output/
-            git diff --staged --quiet || (git commit -m "auto(news): cập nhật bài viết mới từ AI [skip ci]" && git push)
-          else
-            echo "Chưa có bài viết mới trong thư mục output."
           fi
+          git diff --staged --quiet || (git commit -m "auto(news): cập nhật tin tức và ảnh thật từ báo chí [skip ci]" && git push)
