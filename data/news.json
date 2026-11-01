@@ -1,6 +1,16 @@
 [
   {
     "id": 1,
+    "title": "Mbappe kiếm phạt đền tranh cãi trong trận thắng của Real",
+    "link": "https://vnexpress.net/mbappe-kiem-phat-den-tranh-cai-trong-tran-thang-cua-real-5139453.html",
+    "date": "Mon, 02 Nov 2026 00:15:48 +0700",
+    "source": "VnExpress",
+    "image": "https://vcdn1-thethao.vnecdn.net/2026/11/02/mbappe-racing-1793553126-7970-1793553133.jpg?w=1200&h=675&q=100&dpr=1&fit=crop&s=amBPfcnR_9bHRjPUo4rSTA",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ VnExpress. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "content": ""
+  },
+  {
+    "id": 2,
     "title": "Báo Ả Rập đưa tin sốc Asian Cup 2027 hoãn đến năm 2028, đội tuyển Việt Nam hồi hộp",
     "link": "https://thanhnien.vn/bao-a-rap-dua-tin-soc-asian-cup-2027-hoan-den-nam-2028-doi-tuyen-viet-nam-hoi-hop-185261101084718124.htm",
     "date": "Sun, 01 Nov 26 08:57:00 +0700",
@@ -10,7 +20,17 @@
     "content": ""
   },
   {
-    "id": 2,
+    "id": 3,
+    "title": "Alonso đồng ý, Chelsea sẵn sàng hoàn tất thương vụ ngôi sao 111 triệu Euro - Thể Thao 247",
+    "link": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNMWUxMXNVX2s1WERKV1RnQ2VxUHpmRUVpQjBmYWRNXzhCczA5ZzEtaDNDaHBtN1NfUEx6a1RNamI2aV80Tkp6LVBjLVpkTXBsWUE2OUl2VzVNRkdnRlJEQ2wtU1haZzRRVGhBMGZhelJjdmR2REplMnVncWZhZU1XUEg5LXItWE44ZlBzdDlqUVRvTE04dGpfMEhpaHg5R05PeUVsVm1pdDEyeVY3RE1ubU4tbjVqUTVXVTc0?oc=5",
+    "date": "Sun, 01 Nov 2026 06:43:00 GMT",
+    "source": "Google News VN",
+    "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ Google News VN. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "content": ""
+  },
+  {
+    "id": 4,
     "title": "Tin đồn Ronaldo được gọi lại đội tuyển Bồ Đào Nha gây bức xúc, bất ngờ bị tước 7 bàn thắng",
     "link": "https://thanhnien.vn/tin-don-ronaldo-duoc-goi-lai-doi-tuyen-bo-dao-nha-gay-buc-xuc-bat-ngo-bi-tuoc-7-ban-thang-185261101101735306.htm",
     "date": "Sun, 01 Nov 26 10:31:00 +0700",
@@ -20,7 +40,97 @@
     "content": ""
   },
   {
-    "id": 3,
+    "id": 5,
+    "title": "Hàng công đẳng cấp của U.23 Việt Nam",
+    "link": "https://thanhnien.vn/hang-cong-dang-cap-cua-u23-viet-nam-18526110118033684.htm",
+    "date": "Mon, 02 Nov 26 00:16:00 +0700",
+    "source": "Thanh Nien",
+    "image": "https://images2.thanhnien.vn/zoom/1200_630/528068263637045248/2026/11/1/le-phat-17935306627341989646197-0-0-536-1024-crop-1793537679029228208943.jpg",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ Thanh Nien. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "content": ""
+  },
+  {
+    "id": 6,
+    "title": "Cuộc chiến vị trí nhạy cảm nhất đội tuyển Việt Nam: Không ai chắc suất số 1",
+    "link": "https://thanhnien.vn/cuoc-chien-vi-tri-nhay-cam-nhat-doi-tuyen-viet-nam-khong-ai-chac-suat-so-1-185261101190532898.htm",
+    "date": "Mon, 02 Nov 26 00:00:00 +0700",
+    "source": "Thanh Nien",
+    "image": "https://images2.thanhnien.vn/zoom/1200_630/528068263637045248/2026/11/1/thu-mon-le-giang-patrik-da-co-nhieu-pha-cuu-thua-dang-chu-y-17877544807621681376488-85-0-1425-2560-crop-1793534662531832561364.jpg",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ Thanh Nien. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "content": ""
+  },
+  {
+    "id": 7,
+    "title": "9 hạ tầng phát trực tiếp U.23 Việt Nam đấu giải tứ hùng Gia Lai, khán giả thoải mái chọn lựa",
+    "link": "https://thanhnien.vn/9-ha-tang-phat-truc-tiep-u23-viet-nam-dau-giai-tu-hung-gia-lai-khan-gia-thoai-mai-chon-lua-185261101175144205.htm",
+    "date": "Mon, 02 Nov 26 00:00:00 +0700",
+    "source": "Thanh Nien",
+    "image": "https://images2.thanhnien.vn/zoom/1200_630/528068263637045248/2026/11/1/u23vn2doclaptn1-11-26-17935301826661536743384-0-0-399-639-crop-1793530255523854489381.png",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ Thanh Nien. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "content": ""
+  },
+  {
+    "id": 8,
+    "title": "Bảng xếp hạng V-League sau vòng 6: Nam Định lên nhất bảng",
+    "link": "https://tuoitre.vn/bang-xep-hang-v-league-sau-vong-6-nam-dinh-len-nhat-bang-100261101220756827.htm",
+    "date": "11/1/2026 10:28:00 PM",
+    "source": "Tuoi Tre",
+    "image": "https://cdn2.tuoitre.vn/zoom/1200_630/471584752817336320/2026/11/1/tuan-hai-nam-dinh-1792238902599349208031-184-0-1524-2560-crop-1793545533841878488483.jpg",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ Tuoi Tre. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "content": ""
+  },
+  {
+    "id": 9,
+    "title": "Billiards: 'Song tấu' Việt Nam đánh bại cao thủ Thổ Nhĩ Kỳ tại PBA",
+    "link": "https://thanhnien.vn/billiards-song-tau-viet-nam-danh-bai-cao-thu-tho-nhi-ky-tai-pba-185261101220539194.htm",
+    "date": "Sun, 01 Nov 26 22:08:00 +0700",
+    "source": "Thanh Nien",
+    "image": "https://images2.thanhnien.vn/zoom/1200_630/528068263637045248/2026/11/1/a75q0925-2-17935451440261030248427-192-0-1532-2560-crop-1793545318104292890264.jpeg",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ Thanh Nien. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "content": ""
+  },
+  {
+    "id": 10,
+    "title": "Đánh bại Trường Sơn, kỳ thủ 15 tuổi vô địch cờ chớp Việt Nam",
+    "link": "https://tuoitre.vn/danh-bai-truong-son-ky-thu-15-tuoi-vo-dich-co-chop-viet-nam-100261101215026139.htm",
+    "date": "11/1/2026 9:59:00 PM",
+    "source": "Tuoi Tre",
+    "image": "https://cdn2.tuoitre.vn/zoom/1200_630/471584752817336320/2026/11/1/27823-1793548644311680217998-110-0-1115-1920-crop-179354866707281902569.png",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ Tuoi Tre. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "content": ""
+  },
+  {
+    "id": 11,
+    "title": "Ứng viên vô địch CLB Hưng Yên bất ngờ thua trận",
+    "link": "https://tuoitre.vn/ung-vien-vo-dich-clb-hung-yen-bat-ngo-thua-tran-100261101212256297.htm",
+    "date": "11/1/2026 9:36:00 PM",
+    "source": "Tuoi Tre",
+    "image": "https://cdn2.tuoitre.vn/zoom/1200_630/471584752817336320/2026/11/1/17935301844104284159376153925538g4286850439376625323e83988085aac81e55b3e3be3f108fec4-17935431736551212082668-55-0-1011-1826-crop-179354320088538511337.jpg",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ Tuoi Tre. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "content": ""
+  },
+  {
+    "id": 12,
+    "title": "HLV Đức Tuấn quả quyết CLB Đà Nẵng thắng may mắn, HLV Arthur bất ngờ… phản bác",
+    "link": "https://thanhnien.vn/hlv-duc-tuan-qua-quyet-clb-da-nang-thang-may-man-hlv-arthur-bat-ngo-phan-bac-185261101204357021.htm",
+    "date": "Sun, 01 Nov 26 20:49:00 +0700",
+    "source": "Thanh Nien",
+    "image": "https://images2.thanhnien.vn/zoom/1200_630/528068263637045248/2026/11/1/arthur-catp-0-1-da-nang-clb-17935402636281830204112-0-0-736-1406-crop-17935406226521134010980.jpg",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ Thanh Nien. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "content": ""
+  },
+  {
+    "id": 13,
+    "title": "2 siêu phẩm giúp Đại học Văn Hiến gây bất ngờ trước Thái Nguyên",
+    "link": "https://tuoitre.vn/2-sieu-pham-giup-dai-hoc-van-hien-gay-bat-ngo-truoc-thai-nguyen-100261101200305664.htm",
+    "date": "11/1/2026 8:38:00 PM",
+    "source": "Tuoi Tre",
+    "image": "https://cdn2.tuoitre.vn/zoom/1200_630/471584752817336320/2026/11/1/1793537936171206439905005415609187032952438697956692413c39d043b97eb44c52db1c9492ed2-17935379599041466346752-0-0-1072-2048-crop-17935380971891595398245.jpg",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ Tuoi Tre. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "content": ""
+  },
+  {
+    "id": 14,
     "title": "Trung Quốc tung 'đòn trừng phạt' đầu tiên cho La Liga vì vụ Mbappe",
     "link": "https://tuoitre.vn/trung-quoc-tung-don-trung-phat-dau-tien-cho-la-liga-vi-vu-mbappe-100261101172241891.htm",
     "date": "11/1/2026 5:27:00 PM",
@@ -30,7 +140,47 @@
     "content": ""
   },
   {
-    "id": 4,
+    "id": 15,
+    "title": "Link xem trực tiếp Liverpool vs Arsenal tại Premier League",
+    "link": "https://laodong.vn/bong-da-quoc-te/link-xem-truc-tiep-liverpool-vs-arsenal-tai-premier-league-1792934.ldo",
+    "date": "Sunday, 01 November 2026 23:00:00 +07:00",
+    "source": "Lao Dong",
+    "image": "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=900&q=80",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ Lao Dong. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "content": ""
+  },
+  {
+    "id": 16,
+    "title": "Defeat for London City against Man City - but is Europe a real possibility?",
+    "link": "https://www.bbc.co.uk/sport/football/articles/cj93z2nk2694o?at_medium=RSS&at_campaign=rss",
+    "date": "Sun, 01 Nov 2026 15:49:47 GMT",
+    "source": "BBC Sport",
+    "image": "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/340f/live/54e51be0-d61e-11f1-93e1-3b657b665bcf.jpg",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ BBC Sport. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "content": ""
+  },
+  {
+    "id": 17,
+    "title": "Hardie clinches fifth gold as Scots win European Championship",
+    "link": "https://www.bbc.co.uk/sport/articles/cwp8grl5xypjo?at_medium=RSS&at_campaign=rss",
+    "date": "Sun, 01 Nov 2026 15:31:11 GMT",
+    "source": "BBC Sport",
+    "image": "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/ca96/live/573e7730-d608-11f1-a790-6f04ef4f8c74.jpg",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ BBC Sport. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "content": ""
+  },
+  {
+    "id": 18,
+    "title": "CA TP HCM lỡ đỉnh bảng sau trận cầu đen đủi ở V-League",
+    "link": "https://vnexpress.net/ca-tp-hcm-lo-dinh-bang-sau-tran-cau-den-dui-o-v-league-5139421.html",
+    "date": "Sun, 01 Nov 2026 20:45:28 +0700",
+    "source": "VnExpress",
+    "image": "https://vcdn1-thethao.vnecdn.net/2026/11/01/wm1-wm1-17935386860611115540748962-6859-5711-1793539153.jpg?w=1200&h=675&q=100&dpr=1&fit=crop&s=jjjDTp_F0LQuXxY-npypOQ",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ VnExpress. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "content": ""
+  },
+  {
+    "id": 19,
     "title": "Bóng chuyền Việt Nam ngày 1.11: Tình hình sức khỏe của Kim Thanh sau chấn thương",
     "link": "https://laodong.vn/bong-chuyen/bong-chuyen-viet-nam-ngay-111-tinh-hinh-suc-khoe-cua-kim-thanh-sau-chan-thuong-1792972.ldo",
     "date": "Sunday, 01 November 2026 19:30:46 +07:00",
@@ -40,67 +190,7 @@
     "content": ""
   },
   {
-    "id": 5,
-    "title": "Đội tuyển bóng ném nữ Việt Nam đặt mục tiêu vô địch Đông Nam Á",
-    "link": "https://laodong.vn/the-thao/doi-tuyen-bong-nem-nu-viet-nam-dat-muc-tieu-vo-dich-dong-nam-a-1792936.ldo",
-    "date": "Sunday, 01 November 2026 17:41:52 +07:00",
-    "source": "Lao Dong",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/4/41/Vietnam_national_football_team_at_2019_AFC_Asian_Cup.jpg",
-    "lead": "Bản tin thể thao cập nhật nóng nhất từ Lao Dong. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
-    "content": ""
-  },
-  {
-    "id": 6,
-    "title": "Cầu thủ gốc Việt vinh dự được Messi chọn vào top 3 'tiềm năng nhất làng bóng đá'",
-    "link": "https://tuoitre.vn/cau-thu-goc-viet-vinh-du-duoc-messi-chon-vao-top-3-tiem-nang-nhat-lang-bong-da-100261101184430343.htm",
-    "date": "11/1/2026 7:01:00 PM",
-    "source": "Tuoi Tre",
-    "image": "https://cdn2.tuoitre.vn/zoom/1200_630/471584752817336320/2026/11/1/edit-maza-qbv-1-17930746068691007161790-0-326-641-1549-crop-1793535746725938368970.jpeg",
-    "lead": "Bản tin thể thao cập nhật nóng nhất từ Tuoi Tre. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
-    "content": ""
-  },
-  {
-    "id": 7,
-    "title": "Former European champion and two-time Olympian Mageean dies aged 34",
-    "link": "https://www.bbc.co.uk/sport/athletics/articles/cn81px29032o?at_medium=RSS&at_campaign=rss",
-    "date": "Sun, 01 Nov 2026 10:45:42 GMT",
-    "source": "BBC Sport",
-    "image": "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/f48f/live/df92a5c0-d5db-11f1-a25d-8f13519027da.jpg",
-    "lead": "Bản tin thể thao cập nhật nóng nhất từ BBC Sport. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
-    "content": ""
-  },
-  {
-    "id": 8,
-    "title": "Hai cầu thủ U23 Việt Nam dẫn đầu danh sách nội binh ghi bàn tại V.League",
-    "link": "https://laodong.vn/bong-da/hai-cau-thu-u23-viet-nam-dan-dau-danh-sach-noi-binh-ghi-ban-tai-vleague-1792947.ldo",
-    "date": "Sunday, 01 November 2026 16:59:53 +07:00",
-    "source": "Lao Dong",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/4/41/Vietnam_national_football_team_at_2019_AFC_Asian_Cup.jpg",
-    "lead": "Bản tin thể thao cập nhật nóng nhất từ Lao Dong. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
-    "content": ""
-  },
-  {
-    "id": 9,
-    "title": "Xuất hiện kỳ thủ đánh bại Lê Tuấn Minh để giành HCV tại giải cờ nhanh Việt Nam",
-    "link": "https://tuoitre.vn/xuat-hien-ky-thu-danh-bai-le-tuan-minh-de-gianh-hcv-tai-giai-co-nhanh-viet-nam-100261101145601423.htm",
-    "date": "11/1/2026 3:51:00 PM",
-    "source": "Tuoi Tre",
-    "image": "https://cdn2.tuoitre.vn/zoom/1200_630/471584752817336320/2026/11/1/le-tuan-minh-1793523392934845613970-102-0-1049-1809-crop-1793523430266281791886.png",
-    "lead": "Bản tin thể thao cập nhật nóng nhất từ Tuoi Tre. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
-    "content": ""
-  },
-  {
-    "id": 10,
-    "title": "Đội tuyển futsal Việt Nam sang Kyrgyzstan và Nga tập huấn",
-    "link": "https://laodong.vn/the-thao/doi-tuyen-futsal-viet-nam-sang-kyrgyzstan-va-nga-tap-huan-1792864.ldo",
-    "date": "Sunday, 01 November 2026 14:46:30 +07:00",
-    "source": "Lao Dong",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/4/41/Vietnam_national_football_team_at_2019_AFC_Asian_Cup.jpg",
-    "lead": "Bản tin thể thao cập nhật nóng nhất từ Lao Dong. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
-    "content": ""
-  },
-  {
-    "id": 11,
+    "id": 20,
     "title": "Việt Nam hoang mang với Asian Cup 2027: Hoãn hay không hoãn?",
     "link": "https://tuoitre.vn/viet-nam-hoang-mang-voi-asian-cup-2027-hoan-hay-khong-hoan-100261031222319711.htm",
     "date": "11/1/2026 8:29:00 AM",
@@ -110,143 +200,53 @@
     "content": ""
   },
   {
-    "id": 12,
-    "title": "Ba đơn vị truyền thông đàm phán gần xong gói bản quyền World Cup U.17 có U.17 Việt Nam",
-    "link": "https://thanhnien.vn/ba-don-vi-truyen-thong-dam-phan-gan-xong-goi-ban-quyen-world-cup-u17-co-u17-viet-nam-185261029022026947.htm",
-    "date": "Sun, 01 Nov 26 00:00:00 +0700",
-    "source": "Thanh Nien",
-    "image": "https://images2.thanhnien.vn/zoom/1200_630/528068263637045248/2026/10/28/u17vn5vff28-10-26-1793215079761754839900-26-0-420-631-crop-17932151562441384780482.png",
-    "lead": "Bản tin thể thao cập nhật nóng nhất từ Thanh Nien. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
-    "content": ""
-  },
-  {
-    "id": 13,
-    "title": "Nhận định trận Lazio vs Cagliari tại Serie A",
-    "link": "https://laodong.vn/bong-da-quoc-te/nhan-dinh-tran-lazio-vs-cagliari-tai-serie-a-1792912.ldo",
-    "date": "Sunday, 01 November 2026 16:55:32 +07:00",
-    "source": "Lao Dong",
-    "image": "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=900&q=80",
-    "lead": "Bản tin thể thao cập nhật nóng nhất từ Lao Dong. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
-    "content": ""
-  },
-  {
-    "id": 14,
-    "title": "Nhận định bóng đá Athletic Bilbao vs Real Sociedad tại La Liga",
-    "link": "https://laodong.vn/bong-da-quoc-te/nhan-dinh-bong-da-athletic-bilbao-vs-real-sociedad-tai-la-liga-1792865.ldo",
-    "date": "Sunday, 01 November 2026 16:38:26 +07:00",
-    "source": "Lao Dong",
-    "image": "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=900&q=80",
-    "lead": "Bản tin thể thao cập nhật nóng nhất từ Lao Dong. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
-    "content": ""
-  },
-  {
-    "id": 15,
-    "title": "Link xem trực tiếp Racing de Santander vs Real Madrid tại La Liga",
-    "link": "https://laodong.vn/bong-da-quoc-te/link-xem-truc-tiep-racing-de-santander-vs-real-madrid-tai-la-liga-1792942.ldo",
-    "date": "Sunday, 01 November 2026 16:37:04 +07:00",
-    "source": "Lao Dong",
-    "image": "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=900&q=80",
-    "lead": "Bản tin thể thao cập nhật nóng nhất từ Lao Dong. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
-    "content": ""
-  },
-  {
-    "id": 16,
-    "title": "Nhận định Pakhtakor Tashkent vs Al-Nassr tại AFC Champions League",
-    "link": "https://laodong.vn/bong-da-quoc-te/nhan-dinh-pakhtakor-tashkent-vs-al-nassr-tai-afc-champions-league-1792906.ldo",
-    "date": "Sunday, 01 November 2026 16:12:07 +07:00",
-    "source": "Lao Dong",
-    "image": "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=900&q=80",
-    "lead": "Bản tin thể thao cập nhật nóng nhất từ Lao Dong. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
-    "content": ""
-  },
-  {
-    "id": 17,
-    "title": "Nhận định trận Juventus vs Napoli tại Serie A",
-    "link": "https://laodong.vn/bong-da-quoc-te/nhan-dinh-tran-juventus-vs-napoli-tai-serie-a-1792878.ldo",
-    "date": "Sunday, 01 November 2026 16:09:57 +07:00",
-    "source": "Lao Dong",
-    "image": "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=900&q=80",
-    "lead": "Bản tin thể thao cập nhật nóng nhất từ Lao Dong. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
-    "content": ""
-  },
-  {
-    "id": 18,
-    "title": "Trần Quyết Chiến, Bao Phương Vinh tranh tài hấp dẫn tại World Cup billiards Hàn Quốc",
-    "link": "https://thanhnien.vn/tran-quyet-chien-bao-phuong-vinh-tranh-tai-hap-dan-tai-world-cup-billiards-han-quoc-185261101143640117.htm",
-    "date": "Sun, 01 Nov 26 15:17:00 +0700",
-    "source": "Thanh Nien",
-    "image": "https://images2.thanhnien.vn/zoom/1200_630/528068263637045248/2026/11/1/tqc-1133-1793518102518795624878-0-0-1341-2560-crop-1793518382979651600618.jpg",
-    "lead": "Bản tin thể thao cập nhật nóng nhất từ Thanh Nien. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
-    "content": ""
-  },
-  {
-    "id": 19,
-    "title": "14 xạ thủ bắn súng Việt Nam thi đấu tìm suất Olympic 2028",
-    "link": "https://laodong.vn/the-thao/14-xa-thu-ban-sung-viet-nam-thi-dau-tim-suat-olympic-2028-1792810.ldo",
-    "date": "Sunday, 01 November 2026 13:01:25 +07:00",
-    "source": "Lao Dong",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/4/41/Vietnam_national_football_team_at_2019_AFC_Asian_Cup.jpg",
-    "lead": "Bản tin thể thao cập nhật nóng nhất từ Lao Dong. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
-    "content": ""
-  },
-  {
-    "id": 20,
-    "title": "Đội tuyển Việt Nam sẽ xuất hiện tân binh chạy cánh phải cực hay, thầy Việt ‘đỏ’ mách nước thầy Kim…",
-    "link": "https://thanhnien.vn/doi-tuyen-viet-nam-se-xuat-hien-tan-binh-chay-canh-phai-cuc-hay-thay-viet-do-mach-nuoc-thay-kim-185261101100624265.htm",
-    "date": "Sun, 01 Nov 26 11:00:00 +0700",
-    "source": "Thanh Nien",
-    "image": "https://images2.thanhnien.vn/zoom/1200_630/528068263637045248/2026/11/1/179350209890961044188892096127526104418889209612752dcca212f5ae0d31f46fa8815b9936a56-17935021691551238897467-228-0-1828-2560-crop-17935022883981086148457.jpg",
-    "lead": "Bản tin thể thao cập nhật nóng nhất từ Thanh Nien. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
-    "content": ""
-  },
-  {
     "id": 21,
-    "title": "Đội tuyển lặn Việt Nam thi đấu bứt phá giành 92 huy chương vàng, xếp nhất Đông Nam Á",
-    "link": "https://laodong.vn/the-thao/doi-tuyen-lan-viet-nam-thi-dau-but-pha-gianh-92-huy-chuong-vang-xep-nhat-dong-nam-a-1792648.ldo",
-    "date": "Sunday, 01 November 2026 08:58:39 +07:00",
-    "source": "Lao Dong",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/4/41/Vietnam_national_football_team_at_2019_AFC_Asian_Cup.jpg",
-    "lead": "Bản tin thể thao cập nhật nóng nhất từ Lao Dong. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "title": "Nghe siêu sao số 1 làng cầu lông hát 'hay như ca sĩ' trong lễ cưới của chính mình",
+    "link": "https://tuoitre.vn/nghe-sieu-sao-so-1-lang-cau-long-hat-hay-nhu-ca-si-trong-le-cuoi-cua-chinh-minh-100261101205351992.htm",
+    "date": "11/1/2026 8:57:00 PM",
+    "source": "Tuoi Tre",
+    "image": "https://cdn2.tuoitre.vn/zoom/1200_630/471584752817336320/2026/11/1/shi-yuqi-2-17869772656751091236122-0-0-1340-2560-crop-1793540984268328428743.png",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ Tuoi Tre. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
     "content": ""
   },
   {
     "id": 22,
-    "title": "Billiards: Nguyễn Quốc Nguyện tung sê-ri bất ngờ, thắng thuyết phục nhà vô địch PBA",
-    "link": "https://thanhnien.vn/billiards-nguyen-quoc-nguyen-tung-se-ri-bat-ngo-thang-thuyet-phuc-nha-vo-dich-pba-185261031215217332.htm",
-    "date": "Sat, 31 Oct 26 22:02:00 +0700",
-    "source": "Thanh Nien",
-    "image": "https://images2.thanhnien.vn/zoom/1200_630/528068263637045248/2026/10/31/npn-pba-1793457856380202456302-32-0-1104-2048-crop-1793457942480852132506.jpg",
-    "lead": "Bản tin thể thao cập nhật nóng nhất từ Thanh Nien. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "title": "Cầu thủ gốc Việt vinh dự được Messi chọn vào top 3 'tiềm năng nhất làng bóng đá'",
+    "link": "https://tuoitre.vn/cau-thu-goc-viet-vinh-du-duoc-messi-chon-vao-top-3-tiem-nang-nhat-lang-bong-da-100261101184430343.htm",
+    "date": "11/1/2026 7:01:00 PM",
+    "source": "Tuoi Tre",
+    "image": "https://cdn2.tuoitre.vn/zoom/1200_630/471584752817336320/2026/11/1/edit-maza-qbv-1-17930746068691007161790-0-326-641-1549-crop-1793535746725938368970.jpeg",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ Tuoi Tre. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
     "content": ""
   },
   {
     "id": 23,
-    "title": "Mourinho: 'Quả Bóng Vàng năm nào cũng có, còn Mbappe là độc nhất'",
-    "link": "https://vnexpress.net/mourinho-qua-bong-vang-nam-nao-cung-co-con-mbappe-la-doc-nhat-5139267.html",
-    "date": "Sun, 01 Nov 2026 12:00:00 +0700",
-    "source": "VnExpress",
-    "image": "https://vcdn1-thethao.vnecdn.net/2026/11/01/a-nh-ma-n-hi-nh-lu-c-179349016-1385-2040-1793490198.png?w=1200&h=675&q=100&dpr=1&fit=crop&s=a7xyOc94Ub8X04gCFxX5rw",
-    "lead": "Bản tin thể thao cập nhật nóng nhất từ VnExpress. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "title": "Mùa chuyển nhượng bùng nổ của dàn sao châu Á - Znews",
+    "link": "https://news.google.com/rss/articles/CBMihAFBVV95cUxNbnR5Rk1MQ1NyVVVPeTZJSG4yXzE3S3h4RHBnRnR4UnBIZkZ5OXBFQ0RmaVRJbmZLV3pDMVVYRFI2YUJiWEEyR3hCWmZncHNlMU00bllHLTVCdFJpS3pzaDl4ZDZOMlpzeHpaS1BvYXBXMlhfS2Fybi1DQ3Y3dXZORm9DS08?oc=5",
+    "date": "Sun, 01 Nov 2026 10:08:59 GMT",
+    "source": "Google News VN",
+    "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ Google News VN. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
     "content": ""
   },
   {
     "id": 24,
-    "title": "HLV Popov bị sa thải sau mạch trận tồi tệ của Thể Công",
-    "link": "https://vnexpress.net/hlv-popov-bi-sa-thai-sau-mach-tran-toi-te-cua-the-cong-5139208.html",
-    "date": "Sat, 31 Oct 2026 21:36:13 +0700",
-    "source": "VnExpress",
-    "image": "https://vcdn1-thethao.vnecdn.net/2026/10/31/250a2206-jpg-1793457146-1984-1793457262.jpg?w=1200&h=675&q=100&dpr=1&fit=crop&s=yqVAZcw-b67nbyge1FFcog",
-    "lead": "Bản tin thể thao cập nhật nóng nhất từ VnExpress. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "title": "Arsenal, Liverpool and Man Utd phone £50m midfielder over stunning transfer - Liverpool FC",
+    "link": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxPaUVNM1ppR0hNQnZTdEwwQnFaTHhPeW1OcWp0bFJPR3NPYkZKbUdsMUpkVnFtTmw5TlZKWDBkYzJ4R1FXRmpWc1JrTm9aT09DTzZqUndpQTVZdEpNLU5JSWNUUTRpV1Axd3dHTS05LUpyaHExQ2VlUEZFQ2stM1NBLXdrcW1rdGJvMHlhRjlFWm43YVk5aEp3SkVOcnZRcmpzdG5LaUJtS3hQUQ?oc=5",
+    "date": "Sun, 01 Nov 2026 17:13:08 GMT",
+    "source": "Google News EN",
+    "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ Google News EN. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
     "content": ""
   },
   {
     "id": 25,
-    "title": "Bảng xếp hạng mới nhất V-League: Nam Định leo tốp 1, CLB TP.Đồng Nai vẫn dưới đáy, Thể Công Viettel thứ 12",
-    "link": "https://thanhnien.vn/bang-xep-hang-moi-nhat-v-league-nam-dinh-leo-top-1-clb-tpdong-nai-van-duoi-day-the-cong-viettel-thu-12-185261031202055205.htm",
-    "date": "Sat, 31 Oct 26 20:27:00 +0700",
-    "source": "Thanh Nien",
-    "image": "https://images2.thanhnien.vn/zoom/1200_630/528068263637045248/2026/10/31/caico-cesar-clb-nam-dinh-1793452303571881329372-334-0-1674-2560-crop-17934526072881682224285.jpg",
-    "lead": "Bản tin thể thao cập nhật nóng nhất từ Thanh Nien. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "title": "Solskjaer: I 'wouldn't say no' to replacing Michael Carrick as Man Utd manager - FootballTransfers.com",
+    "link": "https://news.google.com/rss/articles/CBMi8wFBVV95cUxPdHVOeTBoR0laRW5ocmJ5SGlmRTNuNUNEN2FYSFh1MlBRNmVOM25FRzZ1YzBvVkVhWkphWkt5R3gxdFNGMDFWR2c4MVJpM1ZPNUlCTld1OUx0TTRRWGFSdFc1N3lVLXlYZUp1MFJfc0FOT21meDJSTUFsX1ZYTHkwVDFPakNlX3gxeE9tOFpBZS1nbDB2VTdhX0tYbkNScnNLOGFBbHFDNlVaZ0h0czhtaFg0Ny1PLVZyS3MtRVhEMDNnRUtVSUtKNWd6RUJfc3M3NEFvZzJ0cFhQVFpzVTlsb3A4RzR4R0F5VUFRNUs0Y0Rvb1k?oc=5",
+    "date": "Sun, 01 Nov 2026 17:01:00 GMT",
+    "source": "Google News EN",
+    "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ Google News EN. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
     "content": ""
   }
 ]
