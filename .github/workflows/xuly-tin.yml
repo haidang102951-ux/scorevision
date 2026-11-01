@@ -32,7 +32,11 @@ jobs:
 
       - name: Tự động Commit & Push bài viết mới
         run: |
-          git config --global user.name "Score Vision Bot"
-          git config --global user.email "bot@scorevision.io.vn"
-          git add -A output/
-          git diff --quiet && git diff --staged --quiet || (git commit -m "auto(news): cập nhật bài viết mới từ AI [skip ci]" && git push)
+          if [ -d "output" ]; then
+            git config --global user.name "Score Vision Bot"
+            git config --global user.email "bot@scorevision.io.vn"
+            git add output/
+            git diff --staged --quiet || (git commit -m "auto(news): cập nhật bài viết mới từ AI [skip ci]" && git push)
+          else
+            echo "Chưa có bài viết mới trong thư mục output."
+          fi
