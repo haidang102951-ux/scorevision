@@ -3,27 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google-adsense-account" content="ca-pub-6588369693863083">
-    <meta name="monetag" content="9f18703360e44fe069c7f96a0278767f">
-    <meta name="description" content="Score Vision cập nhật lịch thi đấu, kết quả bóng đá, bảng xếp hạng, thống kê, LiveScore và phân tích dự đoán bóng đá mỗi ngày.">
-    <meta name="robots" content="index,follow,max-image-preview:large">
-    <meta name="theme-color" content="#070b14">
-    <link rel="canonical" href="https://scorevision.io.vn/">
+    <title>Score Vision ⚽ Lịch Đấu, Kết Quả, BXH & Phân Tích Bóng Đá</title>
+    <meta name="description" content="Score Vision cập nhật lịch thi đấu, kết quả bóng đá, bảng xếp hạng, thống kê, LiveScore và phân tích dự đoán bóng đá mỗi ngày chuẩn xác, chuyên sâu.">
     <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="apple-touch-icon" href="favicon.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#facc15">
 
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="Score Vision">
-    <meta property="og:title" content="Score Vision – Lịch đấu, Kết quả, BXH & Phân tích bóng đá">
-    <meta property="og:description" content="Theo dõi lịch thi đấu, kết quả, bảng xếp hạng, thống kê, LiveScore và phân tích bóng đá trên Score Vision.">
-    <meta property="og:url" content="https://scorevision.io.vn/">
-    <meta property="og:image" content="https://scorevision.io.vn/logo.png">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Score Vision – Lịch đấu, Kết quả, BXH & Phân tích bóng đá">
-    <meta name="twitter:description" content="Lịch đấu, kết quả, BXH, LiveScore và phân tích bóng đá cập nhật liên tục.">
-
+    <!-- Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6588369693863083" crossorigin="anonymous"></script>
+
+    <!-- API Sports Widgets -->
     <script type="module" src="https://widgets.api-sports.io/3.1.0/widgets.js"></script>
+
+    <!-- Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-RTY3P63JJL"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -32,448 +24,1151 @@
         gtag('config', 'G-RTY3P63JJL');
     </script>
 
-    <title>Score Vision ⚽ Lịch Đấu, Kết Quả, BXH & Phân Tích Bóng Đá</title>
-
     <style>
-        *{margin:0;padding:0;box-sizing:border-box}
-        :root{
-            --bg:#050816;--surface:#0b1220;--surface2:#111a2d;--card:rgba(15,23,42,.78);
-            --line:rgba(148,163,184,.13);--text:#f8fafc;--muted:#94a3b8;
-            --gold:#facc15;--gold2:#fde68a;--blue:#60a5fa;--green:#4ade80;
-            --orange:#fb923c;--purple:#c084fc;--max:1160px;
-            --shadow:0 14px 40px rgba(0,0,0,.24);--ease:.25s ease;
-        }
-        html{scroll-behavior:smooth}
-        body{
-            font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
-            color:var(--text);line-height:1.65;min-height:100vh;
-            background:
-              radial-gradient(900px 450px at 10% -5%,rgba(37,99,235,.16),transparent 60%),
-              radial-gradient(700px 400px at 95% 8%,rgba(250,204,21,.08),transparent 60%),
-              linear-gradient(180deg,#040713 0%,#07101f 55%,#040713 100%);
-        }
-        a{color:inherit}
-        .container{width:min(var(--max),calc(100% - 28px));margin:auto}
-        .site-header{
-            position:relative;overflow:hidden;padding:30px 0 22px;min-height:138px;
-            border-bottom:1px solid rgba(255,255,255,.08);
-            background:
-              linear-gradient(90deg,rgba(3,7,18,.94) 0%,rgba(3,7,18,.78) 28%,rgba(3,7,18,.46) 58%,rgba(3,7,18,.72) 100%),
-              linear-gradient(180deg,rgba(3,7,18,.20),rgba(3,7,18,.72)),
-              url("https://images.pexels.com/photos/200986/pexels-photo-200986.jpeg?auto=compress&cs=tinysrgb&w=1920")
-              center 48%/cover no-repeat;
-        }
-        .site-header:before{
-            content:"";position:absolute;inset:0;
-            background:
-              radial-gradient(circle at 78% 48%,rgba(250,204,21,.13),transparent 24%),
-              linear-gradient(90deg,transparent 55%,rgba(0,0,0,.18));
-            pointer-events:none;
-        }
-        .site-header:after{
-            content:"";position:absolute;left:0;right:0;bottom:0;height:2px;
-            background:linear-gradient(90deg,transparent 4%,rgba(250,204,21,.9) 32%,rgba(96,165,250,.8) 68%,transparent 96%);
-            opacity:.8;
-        }
-        .site-header .container{position:relative;z-index:2}
-        .brand-row{display:flex;align-items:center;justify-content:space-between;gap:18px}
-        .brand-row:after{
-            content:"⚽";position:absolute;right:4%;top:50%;transform:translateY(-50%) rotate(-10deg);
-            font-size:74px;opacity:.10;filter:blur(.2px);pointer-events:none;
-        }
-        .brand{display:flex;align-items:center;gap:14px}
-        .logo{width:62px;height:62px;border-radius:17px;display:grid;place-items:center;overflow:hidden;border:1px solid rgba(255,255,255,.12);background:#fff;box-shadow:0 8px 25px rgba(0,0,0,.28)}
-        .logo img{width:100%;height:100%;object-fit:contain}
-        .brand-name{font-size:31px;font-weight:850;letter-spacing:-.8px;background:linear-gradient(90deg,#fff7b2,#facc15);-webkit-background-clip:text;background-clip:text;color:transparent}
-        .brand-sub{font-size:12px;color:#cbd5e1;letter-spacing:1.5px;margin-top:2px;text-shadow:0 1px 8px rgba(0,0,0,.55)}
-        .brand-name{text-shadow:0 3px 18px rgba(0,0,0,.55)}
-        .live-indicator{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid rgba(74,222,128,.18);background:rgba(34,197,94,.07);border-radius:999px;color:#bbf7d0;font-size:12px;font-weight:700;white-space:nowrap}
-        .live-dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 0 5px rgba(74,222,128,.09)}
-        .menu-wrap{position:sticky;top:8px;z-index:100;margin-top:18px}
-        .menu{
-            display:flex;
-            align-items:center;
-            gap:5px;
-            padding:7px;
-            width:100%;
-            box-sizing:border-box;
-            overflow-x:auto;
-            overflow-y:hidden;
-            scroll-behavior:auto;
-            -webkit-overflow-scrolling:touch;
-            touch-action:pan-x;
-            overscroll-behavior-x:contain;
-            scrollbar-width:none;
-            cursor:grab;
-            user-select:none;
-            -webkit-user-select:none;
-            -webkit-user-drag:none;
-            background:rgba(9,16,31,.97);
-            border:1px solid rgba(148,163,184,.14);
-            border-radius:15px;
-            box-shadow:0 6px 18px rgba(0,0,0,.16);
-        }
-        .menu::-webkit-scrollbar{display:none}
-        .menu.dragging{cursor:grabbing}
-        .menu.dragging .menu-btn{cursor:grabbing}
-        .menu-btn{
-            flex:0 0 auto;
-            text-decoration:none;
-            color:#b9c5d6;
-            font-size:13px;
-            font-weight:650;
-            padding:9px 12px;
-            border:1px solid transparent;
-            border-radius:10px;
-            white-space:nowrap;
-            transition:
-                color .12s ease,
-                background-color .12s ease,
-                border-color .12s ease;
-        }
-        .menu-btn:hover{
-            color:#fff;
-            background:rgba(255,255,255,.045);
-            border-color:var(--line);
-        }
-        .menu-btn.active{color:#111827;background:linear-gradient(135deg,#fde68a,#facc15);box-shadow:0 5px 18px rgba(250,204,21,.13)}
-        .menu-btn.livescore{color:#bbf7d0;background:rgba(34,197,94,.08);border-color:rgba(74,222,128,.16)}
-        .menu-btn.multimedia{color:#e9d5ff;background:rgba(168,85,247,.08);border-color:rgba(192,132,252,.15)}
-        .menu-btn.fifa{color:#bfdbfe;background:rgba(59,130,246,.08);border-color:rgba(96,165,250,.15)}
-        .menu-btn.gopy{color:#c7d2fe;background:rgba(99,102,241,.08);border-color:rgba(129,140,248,.15)}
-        main{padding-bottom:30px}
-        .intro{
-            margin-top:22px;padding:24px 26px;border-radius:20px;
-            border:1px solid rgba(250,204,21,.12);
-            background:linear-gradient(135deg,rgba(17,24,39,.92),rgba(10,18,34,.72));
-            box-shadow:var(--shadow)
-        }
-        .eyebrow{font-size:11px;letter-spacing:1.8px;text-transform:uppercase;color:#facc15;font-weight:800;margin-bottom:7px}
-        .intro h1{font-size:26px;line-height:1.25;letter-spacing:-.5px;margin-bottom:9px}
-        .intro h1 span{color:var(--gold2)}
-        .intro p{max-width:900px;color:#b8c4d5;font-size:14px}
-        .pills{display:flex;flex-wrap:wrap;gap:7px;margin-top:15px}
-        .pill{font-size:11px;color:#dbeafe;padding:6px 9px;border-radius:999px;background:rgba(59,130,246,.08);border:1px solid rgba(96,165,250,.12)}
-        .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:18px;margin-top:18px}
-        .hero,.widget-box{
-            min-height:220px;border-radius:20px;border:1px solid var(--line);
-            background:linear-gradient(145deg,rgba(20,30,50,.92),rgba(7,14,27,.9));box-shadow:var(--shadow);overflow:hidden
-        }
-        .hero{padding:28px;display:flex;flex-direction:column;justify-content:center;position:relative}
-        .hero:after{content:"⚽";position:absolute;right:24px;bottom:-18px;font-size:120px;opacity:.035;transform:rotate(-12deg)}
-        .hero-kicker{display:inline-flex;width:max-content;padding:5px 9px;border-radius:7px;background:rgba(250,204,21,.09);border:1px solid rgba(250,204,21,.13);color:#fde68a;font-size:11px;font-weight:800;margin-bottom:10px}
-        .hero h2{font-size:25px;line-height:1.2;max-width:600px;margin-bottom:10px}
-        .hero p{color:#b6c2d4;font-size:14px;max-width:620px;margin-bottom:18px}
-        .hero-btn{display:inline-flex;align-items:center;justify-content:center;width:max-content;text-decoration:none;font-weight:800;font-size:13px;padding:11px 17px;border-radius:11px;background:linear-gradient(135deg,#fde68a,#facc15);color:#172033;box-shadow:0 8px 24px rgba(250,204,21,.12)}
-        .widget-box{padding:10px}
-        .widget-head{display:flex;align-items:center;justify-content:space-between;padding:4px 7px 8px}
-        .widget-title{font-size:12px;font-weight:800;color:#e2e8f0}
-        .widget-badge{font-size:10px;color:#86efac;background:rgba(34,197,94,.07);padding:4px 7px;border-radius:999px}
-        .widget-scroll{height:178px;overflow-y:auto;overflow-x:hidden;padding-right:3px;scrollbar-width:thin;scrollbar-color:#475569 rgba(255,255,255,.04)}
-        .widget-scroll::-webkit-scrollbar{width:6px}.widget-scroll::-webkit-scrollbar-thumb{background:#475569;border-radius:9px}
-        .widget-scroll api-sports-widget[data-type="games"]{display:block!important;width:100%!important;height:100%!important;min-height:0!important}
-        .section{margin-top:38px}
-        .section-head{display:flex;align-items:end;justify-content:space-between;gap:14px;margin-bottom:13px;padding-bottom:10px;border-bottom:1px solid var(--line)}
-        .section-title{font-size:18px;font-weight:800;letter-spacing:-.2px;display:flex;align-items:center;gap:8px}
-        .section-title:before{content:"";width:4px;height:20px;border-radius:99px;background:linear-gradient(#fde68a,#f59e0b);box-shadow:0 0 14px rgba(250,204,21,.18)}
-        .xem-tat-ca{font-size:12px;color:#93c5fd;text-decoration:none;font-weight:700;white-space:nowrap}
-        .xem-tat-ca:hover{color:#fde68a}
-        .grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
-        .card-ketqua,.card-phantich,.card-tin,.card-khong-anh{
-            display:block;text-decoration:none;color:inherit;border:1px solid var(--line);
-            background:linear-gradient(145deg,rgba(18,28,47,.9),rgba(8,15,28,.86));
-            border-radius:16px;box-shadow:0 8px 25px rgba(0,0,0,.16);transition:var(--ease);overflow:hidden
-        }
-        .card-ketqua:hover,.card-phantich:hover,.card-tin:hover,.card-khong-anh:hover{transform:translateY(-3px);border-color:rgba(250,204,21,.22);box-shadow:0 14px 32px rgba(0,0,0,.25)}
-        .card-ketqua{padding:17px;border-top:2px solid rgba(251,146,60,.7)}
-        .ketqua-header{display:flex;justify-content:space-between;gap:10px;margin-bottom:12px;padding-bottom:9px;border-bottom:1px solid var(--line)}
-        .ketqua-league{font-size:12px;font-weight:800;color:#fdba74}.ketqua-date{font-size:11px;color:#64748b}
-        .ketqua-match{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px}.ketqua-team{font-size:14px;font-weight:650;color:#dbe4ef}.ketqua-team-home{text-align:right}.ketqua-team-away{text-align:left}
-        .ketqua-score{min-width:82px;text-align:center;padding:8px 12px;border-radius:11px;background:rgba(249,115,22,.07);border:1px solid rgba(249,115,22,.16)}.ketqua-score-num{font-size:20px;font-weight:850}
-        .ketqua-status{text-align:center;margin-top:11px;padding-top:9px;border-top:1px solid var(--line)}.status-finished{display:inline-flex;color:#86efac;font-size:11px;font-weight:800;padding:4px 9px;border-radius:999px;background:rgba(34,197,94,.07)}
-        .card-phantich{position:relative}.anh-bia-giai{display:block;width:100%;height:150px;object-fit:cover;background:#111827}.card-body-phantich{padding:16px}
-        .pt-giai{font-size:11px;color:#fde68a;font-weight:800;margin-bottom:5px}.pt-tran{font-size:16px;font-weight:800;margin-bottom:5px}.pt-ngay{font-size:11px;color:#64748b;margin-bottom:9px}.pt-tomtat{font-size:13px;color:#b7c3d4;line-height:1.55;margin-bottom:5px}.pt-xemchitiet,.hint{font-size:12px;color:#60a5fa;font-weight:750;margin-top:8px}
-        .card-tin{margin-bottom:14px}.card-anh-wrapper{height:170px;overflow:hidden;position:relative}.card-img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease}.card-tin:hover .card-img{transform:scale(1.045)}.card-anh-overlay{position:absolute;inset:auto 0 0;height:70px;background:linear-gradient(transparent,rgba(0,0,0,.72))}.card-body{padding:15px}.card-label{display:inline-block;font-size:10px;font-weight:800;padding:4px 8px;border-radius:999px;margin-bottom:8px}.label-hot{color:#fef08a;background:rgba(250,204,21,.08);border:1px solid rgba(250,204,21,.12)}.label-tin{color:#86efac;background:rgba(34,197,94,.07);border:1px solid rgba(34,197,94,.12)}.label-lich{color:#fca5a5;background:rgba(239,68,68,.07);border:1px solid rgba(239,68,68,.12)}.card-tin h3,.card-khong-anh h3{font-size:14px;line-height:1.5;margin-bottom:6px}.card-tin p,.card-khong-anh p{font-size:13px;color:#94a3b8;line-height:1.55}
-        .card-khong-anh{padding:17px}
-
-        /* === GÓC THỐNG KÊ === */
-        .goc-thong-ke{
-            border:1px solid rgba(239,68,68,.18);border-radius:18px;overflow:hidden;
-            background:linear-gradient(145deg,rgba(20,28,45,.96),rgba(7,13,25,.94));
-            box-shadow:0 10px 32px rgba(0,0,0,.2)
-        }
-        .goc-thong-ke-head{
-            display:flex;align-items:center;justify-content:space-between;gap:12px;
-            padding:12px 15px;background:linear-gradient(90deg,rgba(185,28,28,.26),rgba(127,29,29,.08));
-            border-bottom:1px solid rgba(239,68,68,.14)
-        }
-        .goc-thong-ke-label{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:900;letter-spacing:.6px;color:#fecaca}
-        .goc-thong-ke-label:before{content:"";width:7px;height:7px;border-radius:50%;background:#ef4444;box-shadow:0 0 0 5px rgba(239,68,68,.1)}
-        .goc-thong-ke-meta{font-size:10px;color:#94a3b8;font-weight:700}
-        .goc-thong-ke-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(300px,.65fr);gap:15px;padding:15px}
-        .tk-feature{position:relative;min-height:430px;border:1px solid var(--line);border-radius:15px;overflow:hidden;background:linear-gradient(180deg,#0b1527,#060c18);text-decoration:none}
-        .tk-feature::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(2,8,18,.05) 0%,rgba(2,8,18,.04) 48%,rgba(2,8,18,.88) 100%)}
-        .tk-pitch-stage{position:absolute;left:0;right:0;top:0;height:285px;overflow:hidden;background:radial-gradient(circle at 50% 8%,rgba(148,163,184,.18),transparent 32%),linear-gradient(180deg,#17263d,#0b1526 78%)}
-        .tk-stadium-lights{position:absolute;inset:0;background:radial-gradient(circle at 10% 8%,rgba(255,255,255,.75) 0 2px,transparent 3px),radial-gradient(circle at 90% 8%,rgba(255,255,255,.75) 0 2px,transparent 3px),linear-gradient(180deg,transparent 0 65%,rgba(34,197,94,.08) 100%);opacity:.7}
-        .tk-pitch{position:absolute;left:8%;right:8%;top:92px;height:195px;background:linear-gradient(90deg,#3c8d35 0 10%,#479d3e 10% 20%,#3c8d35 20% 30%,#479d3e 30% 40%,#3c8d35 40% 50%,#479d3e 50% 60%,#3c8d35 60% 70%,#479d3e 70% 80%,#3c8d35 80% 90%,#479d3e 90%);border:3px solid rgba(232,255,224,.9);box-shadow:0 18px 30px rgba(0,0,0,.4),0 0 35px rgba(34,197,94,.13);transform:perspective(560px) rotateX(55deg);transform-origin:50% 100%;border-radius:2px}
-        .tk-pitch:before{content:"";position:absolute;left:50%;top:0;bottom:0;width:2px;background:rgba(255,255,255,.85);transform:translateX(-50%);box-shadow:0 0 0 1px rgba(255,255,255,.08)}
-        .tk-pitch:after{content:"";position:absolute;left:50%;top:50%;width:42px;height:42px;border:2px solid rgba(255,255,255,.82);border-radius:50%;transform:translate(-50%,-50%);box-shadow:inset 0 0 0 12px transparent}
-        .tk-box{position:absolute;top:25%;width:17%;height:50%;border:2px solid rgba(255,255,255,.82)}
-        .tk-box.left{left:-1px;border-left:0}.tk-box.right{right:-1px;border-right:0}
-        .tk-small-box{position:absolute;top:37%;width:7%;height:26%;border:2px solid rgba(255,255,255,.82)}
-        .tk-small-box.left{left:-1px;border-left:0}.tk-small-box.right{right:-1px;border-right:0}
-        .tk-center-dot{position:absolute;left:50%;top:50%;width:6px;height:6px;border-radius:50%;background:#fff;transform:translate(-50%,-50%)}
-        .tk-pitch-time{position:absolute;z-index:2;top:16px;left:50%;transform:translateX(-50%);padding:7px 12px;border-radius:7px;background:#ef3340;color:#fff;font-size:15px;font-weight:950;box-shadow:0 7px 18px rgba(239,51,64,.24);white-space:nowrap}
-        .tk-pitch-teams{position:absolute;z-index:2;top:52px;left:5%;right:5%;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;color:#fff;font-size:18px;font-weight:950;text-shadow:0 2px 5px #000}
-        .tk-pitch-teams .home{text-align:right}.tk-pitch-teams .away{text-align:left}.tk-pitch-teams .vs{color:#ef3340;font-size:16px}
-        .tk-feature-body{position:absolute;z-index:3;left:0;right:0;bottom:0;padding:16px 18px 17px}
-        .tk-kicker{display:inline-flex;width:max-content;max-width:100%;padding:5px 8px;border-radius:7px;background:rgba(239,68,68,.13);border:1px solid rgba(239,68,68,.18);color:#fca5a5;font-size:10px;font-weight:900;margin-bottom:8px}
-        .tk-match{font-size:18px;line-height:1.35;font-weight:900;color:#fff;margin-bottom:7px}
-        .tk-stat{font-size:13px;font-weight:850;color:#fde68a;margin-bottom:7px}
-        .tk-note{font-size:12px;line-height:1.5;color:#c0cad8;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-        .tk-list{display:flex;flex-direction:column;gap:9px;max-height:300px;overflow:auto;padding-right:2px;scrollbar-width:thin;scrollbar-color:#475569 rgba(255,255,255,.04)}
-        .tk-list::-webkit-scrollbar{width:5px}.tk-list::-webkit-scrollbar-thumb{background:#475569;border-radius:8px}
-        .tk-item{display:block;text-decoration:none;color:inherit;padding:12px 13px;border:1px solid var(--line);border-radius:12px;background:rgba(15,23,42,.72);transition:var(--ease)}
-        .tk-item:hover{transform:translateX(3px);border-color:rgba(239,68,68,.24);background:rgba(30,41,59,.78)}
-        .tk-item-top{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:5px}
-        .tk-item-league{font-size:10px;color:#fca5a5;font-weight:850;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-        .tk-item-order{font-size:9px;color:#64748b}
-        .tk-item-match{font-size:12px;font-weight:800;line-height:1.4;margin-bottom:4px}
-        .tk-item-stat{font-size:11px;color:#fde68a;font-weight:750;line-height:1.4}
-        .tk-item-note{font-size:10px;color:#7f8da2;margin-top:4px;line-height:1.45;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-        .tk-more{margin-top:2px;text-align:center;font-size:11px;color:#93c5fd;font-weight:800}
-        @media(max-width:820px){.goc-thong-ke-grid{grid-template-columns:1fr}.tk-list{max-height:none}.tk-feature{min-height:390px}.tk-pitch-stage{height:255px}.tk-pitch{top:88px;height:170px}.tk-pitch-teams{font-size:16px}.tk-feature-body{padding-top:12px}}
-        @media(max-width:520px){.goc-thong-ke-head{padding:11px 12px}.goc-thong-ke-grid{padding:10px}.tk-feature{min-height:360px}.tk-pitch-stage{height:225px}.tk-pitch{left:4%;right:4%;top:82px;height:150px}.tk-pitch-teams{top:49px;font-size:13px;gap:7px}.tk-pitch-time{top:12px;font-size:13px}.tk-match{font-size:16px}.tk-feature-body{padding:13px}}
-
-        .box-thongtin{margin-top:38px;padding:22px;border-radius:18px;border:1px solid rgba(34,197,94,.12);background:linear-gradient(135deg,rgba(22,101,52,.08),rgba(30,64,175,.05))}
-        .box-thongtin h3{font-size:15px;color:#86efac;margin-bottom:6px}.box-thongtin p{font-size:13px;color:#b9c5d5;margin-bottom:13px}.nut-tel{display:inline-flex;align-items:center;text-decoration:none;padding:10px 15px;border-radius:10px;background:linear-gradient(135deg,#22c55e,#16a34a);font-size:12px;font-weight:800;color:#fff}
-        .disclaimer{margin-top:16px;padding:16px 18px;border-left:3px solid #f59e0b;border-radius:12px;background:rgba(245,158,11,.035)}.disclaimer h4{font-size:12px;color:#fcd34d;margin-bottom:5px}.disclaimer p{font-size:12px;color:#a8a29e}
-        .footer{margin-top:42px;padding:25px 0;border-top:1px solid var(--line);text-align:center}.footer p{font-size:12px;color:#64748b}.footer-nav{display:flex;flex-wrap:wrap;justify-content:center;gap:7px 17px;margin:11px 0}.footer-nav a{font-size:12px;color:#8fa0b5;text-decoration:none}.footer-nav a:hover{color:#fde68a}
-        .loading{padding:35px 15px;text-align:center;color:#fde68a;font-size:13px}.empty{padding:30px;text-align:center;color:#64748b;border:1px dashed var(--line);border-radius:14px}
-        .noscript{margin-top:18px;padding:15px;border-radius:12px;background:#0b1220;border:1px solid var(--line);color:#aeb9ca;font-size:13px}
-        .len-dau{position:fixed;right:18px;bottom:18px;width:42px;height:42px;display:grid;place-items:center;border-radius:50%;text-decoration:none;color:#fde68a;background:rgba(8,15,28,.9);border:1px solid rgba(250,204,21,.18);box-shadow:0 8px 24px rgba(0,0,0,.3);opacity:0;visibility:hidden;transition:var(--ease);z-index:99}.len-dau.hien{opacity:1;visibility:visible}.len-dau:hover{transform:translateY(-2px)}
-
-        /* === BĂNG CHUYỀN PHÂN TÍCH & DỰ ĐOÁN === */
-        #phan-tich-list{position:relative;overflow:hidden;border-radius:18px}
-        #phan-tich-list:before,#phan-tich-list:after{
-            content:"";position:absolute;top:0;bottom:0;width:72px;z-index:3;pointer-events:none
-        }
-        #phan-tich-list:before{left:0;background:linear-gradient(90deg,var(--bg),transparent)}
-        #phan-tich-list:after{right:0;background:linear-gradient(270deg,var(--bg),transparent)}
-        .phan-tich-marquee{overflow:hidden;width:100%;padding:2px 0 10px}
-        .phan-tich-track{
-            display:flex;width:max-content;gap:16px;
-            animation:scoreVisionMarquee 38s linear infinite;
-            will-change:transform
-        }
-        .phan-tich-track:hover{animation-play-state:paused}
-        .phan-tich-track .card-phantich{
-            flex:0 0 340px;width:340px
-        }
-        @keyframes scoreVisionMarquee{
-            from{transform:translateX(0)}
-            to{transform:translateX(calc(-50% - 8px))}
-        }
-        .phan-tich-marquee .card-phantich{height:100%}
-        .phan-tich-marquee .anh-bia-giai{height:155px}
-        .phan-tich-marquee .card-body-phantich{min-height:205px}
-        .phan-tich-marquee .pt-tran{
-            display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden
-        }
-        .phan-tich-marquee .pt-tomtat{
-            display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden
-        }
-        .phan-tich-hint{
-            display:flex;align-items:center;justify-content:space-between;
-            margin-top:5px;color:#64748b;font-size:11px
-        }
-        .phan-tich-hint span:last-child{color:#93c5fd}
-        @media(max-width:680px){
-            #phan-tich-list:before,#phan-tich-list:after{width:35px}
-            .phan-tich-track{gap:12px;animation-duration:30s}
-            .phan-tich-track .card-phantich{flex-basis:285px;width:285px}
-            .phan-tich-marquee .anh-bia-giai{height:135px}
-            .phan-tich-marquee .card-body-phantich{padding:14px;min-height:190px}
-        }
-        @media(prefers-reduced-motion:reduce){
-            .phan-tich-track{animation:none;overflow-x:auto}
+        /* ==========================================================================
+           SCORE VISION ULTRA-LUXURY DESIGN SYSTEM (OBSIDIAN ARENA & ELECTRIC GOLD)
+           ========================================================================== */
+        *, *::before, *::after {
+            margin: 0; padding: 0; box-sizing: border-box;
         }
 
-
-
-        /* === HÌNH NỀN BÓNG ĐÁ — KHÔNG CHỮ, KHÔNG CẦU THỦ NỔI TIẾNG === */
-        .intro{position:relative;isolation:isolate;overflow:hidden}
-        .intro:before{
-            content:"";position:absolute;z-index:0;pointer-events:none;
-            inset:0;
-            background:
-              linear-gradient(90deg,rgba(3,9,20,.18) 0%,rgba(3,9,20,.42) 34%,rgba(3,9,20,.78) 64%,rgba(3,9,20,.94) 100%),
-              linear-gradient(180deg,rgba(3,9,20,.18) 0%,rgba(3,9,20,.54) 100%),
-              url("https://images.pexels.com/photos/200986/pexels-photo-200986.jpeg?auto=compress&cs=tinysrgb&w=1920") center 50%/cover no-repeat;
-            opacity:.88;
-            border-radius:inherit;
-        }
-        .intro:after{
-            content:"";position:absolute;z-index:1;pointer-events:none;
-            width:180px;height:180px;right:39%;bottom:-75px;border-radius:50%;
-            background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.22),rgba(255,255,255,.04) 42%,transparent 67%);
-            filter:blur(3px);opacity:.35;
-        }
-        .intro-copy{position:relative;z-index:2}
-        .intro-widget{position:relative;z-index:3}
-
-        .hero{isolation:isolate;position:relative;overflow:hidden}
-        .hero:before{
-            content:"";position:absolute;z-index:0;pointer-events:none;
-            inset:0 0 0 25%;
-            background:
-              linear-gradient(90deg,rgba(8,15,28,1) 0%,rgba(8,15,28,.90) 25%,rgba(8,15,28,.42) 65%,rgba(8,15,28,.10) 100%),
-              url("https://images.unsplash.com/photo-1518091043644-c1d4457512c6?auto=format&fit=crop&w=1200&q=85") center/cover no-repeat;
-            opacity:.82;border-radius:inherit;
-        }
-        .hero:after{
-            content:"";position:absolute;z-index:1;pointer-events:none;right:25px;bottom:-55px;
-            width:180px;height:180px;border-radius:50%;
-            background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.20),rgba(255,255,255,.04) 43%,transparent 68%);
-            filter:blur(2px);opacity:.28;
-        }
-        .hero > *{position:relative;z-index:2}
-        @media(max-width:680px){
-            .intro:before{inset:0;opacity:.46}
-            .hero:before{inset:0;opacity:.34}
+        :root {
+            --bg-base: #030712;
+            --bg-card: rgba(15, 23, 42, 0.72);
+            --bg-card-hover: rgba(30, 41, 59, 0.85);
+            --bg-surface: #0b1329;
+            --border-card: rgba(255, 255, 255, 0.08);
+            --border-glow: rgba(250, 204, 21, 0.45);
+            --border-cyan: rgba(56, 189, 248, 0.4);
+            
+            --gold-primary: #facc15;
+            --gold-light: #fef08a;
+            --gold-deep: #ca8a04;
+            --cyan-accent: #38bdf8;
+            --emerald-live: #10b981;
+            --rose-live: #f43f5e;
+            
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --text-dim: #64748b;
+            
+            --radius-sm: 8px;
+            --radius-md: 14px;
+            --radius-lg: 20px;
+            --radius-full: 9999px;
+            
+            --shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.35);
+            --shadow-hover: 0 20px 40px -15px rgba(0, 0, 0, 0.7), 0 0 25px rgba(250, 204, 21, 0.12);
+            --max-w: 1200px;
+            --transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* === INTRO 2 CỘT + FOOTBALLDATA WIDGET === */
-        .intro{
-            display:grid;
-            grid-template-columns:minmax(0,1fr) minmax(360px,460px);
-            gap:24px;
-            align-items:center;
-            padding:24px;
-            overflow:hidden;
-        }
-        .intro-copy{min-width:0}
-        .intro-copy .eyebrow{margin-bottom:10px}
-        .intro-copy h1{margin-bottom:10px}
-        .intro-copy p{max-width:760px}
-        .intro-widget{
-            width:100%;
-            max-width:460px;
-            height:470px;
-            min-height:470px;
-            justify-self:end;
-            overflow:hidden;
-            border:1px solid rgba(148,163,184,.18);
-            border-radius:14px;
-            background:#080d18;
-            box-shadow:0 10px 30px rgba(0,0,0,.22);
-        }
-        .intro-widget iframe{
-            display:block;
-            width:100%;
-            max-width:460px;
-            height:470px;
-            border:0;
-            border-radius:12px;
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            color: var(--text-main);
+            background-color: var(--bg-base);
+            background-image: 
+                radial-gradient(1000px 500px at 15% -5%, rgba(37, 99, 235, 0.14), transparent 60%),
+                radial-gradient(800px 450px at 85% 10%, rgba(250, 204, 21, 0.07), transparent 60%),
+                linear-gradient(180deg, #020617 0%, #070e1e 50%, #020617 100%);
+            min-height: 100vh;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* === KẾT QUẢ: 2 CỘT, MỖI CỘT 3 TRẬN === */
-        .ketqua-columns{
-            display:grid;
-            grid-template-columns:repeat(2,minmax(0,1fr));
-            gap:14px;
-        }
-        .ketqua-column{
-            display:flex;
-            flex-direction:column;
-            gap:10px;
-            min-width:0;
-        }
-        .card-ketqua.compact{
-            padding:12px 13px;
-            border-top:2px solid rgba(251,146,60,.65);
-            border-radius:13px;
-        }
-        .card-ketqua.compact .ketqua-header{
-            margin-bottom:8px;
-            padding-bottom:7px;
-        }
-        .card-ketqua.compact .ketqua-league{
-            font-size:10px;
-            white-space:nowrap;
-            overflow:hidden;
-            text-overflow:ellipsis;
-        }
-        .card-ketqua.compact .ketqua-date{
-            font-size:9px;
-            white-space:nowrap;
-        }
-        .card-ketqua.compact .ketqua-match{
-            grid-template-columns:minmax(0,1fr) 60px minmax(0,1fr);
-            gap:7px;
-        }
-        .card-ketqua.compact .ketqua-team{
-            font-size:12px;
-            line-height:1.25;
-            display:-webkit-box;
-            -webkit-line-clamp:2;
-            -webkit-box-orient:vertical;
-            overflow:hidden;
-        }
-        .card-ketqua.compact .ketqua-score{
-            min-width:0;
-            padding:6px 5px;
-            border-radius:9px;
-        }
-        .card-ketqua.compact .ketqua-score-num{
-            font-size:17px;
-        }
-        .card-ketqua.compact .ketqua-status{
-            margin-top:7px;
-            padding-top:6px;
-        }
-        .card-ketqua.compact .status-finished{
-            font-size:9px;
-            padding:3px 7px;
-        }
-        @media(max-width:680px){
-            .ketqua-columns{grid-template-columns:1fr}
-            .ketqua-column{gap:9px}
+        a { text-decoration: none; color: inherit; }
+
+        .container {
+            width: min(var(--max-w), calc(100% - 32px));
+            margin-inline: auto;
         }
 
-        @media(max-width:900px){
-            .intro{
-                grid-template-columns:1fr;
-                gap:18px;
+        /* ===== HEADER & BRAND HERO ===== */
+        .site-header {
+            position: relative;
+            padding: 32px 0 24px;
+            border-bottom: 1px solid var(--border-card);
+            background: linear-gradient(180deg, rgba(3, 7, 18, 0.95) 0%, rgba(11, 19, 41, 0.75) 100%);
+            backdrop-filter: blur(20px);
+        }
+        .site-header::after {
+            content: "";
+            position: absolute;
+            left: 0; right: 0; bottom: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(250, 204, 21, 0.6), rgba(56, 189, 248, 0.4), transparent);
+        }
+
+        .brand-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .logo-box {
+            width: 58px;
+            height: 58px;
+            flex-shrink: 0;
+            border-radius: var(--radius-md);
+            padding: 2px;
+            background: linear-gradient(135deg, var(--gold-light), var(--gold-deep), #3b82f6);
+            box-shadow: 0 0 24px rgba(250, 204, 21, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            animation: logoGlow 4s infinite alternate;
+        }
+        .logo-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: calc(var(--radius-md) - 2px);
+        }
+        @keyframes logoGlow {
+            0% { box-shadow: 0 0 16px rgba(250, 204, 21, 0.2); }
+            100% { box-shadow: 0 0 30px rgba(250, 204, 21, 0.45), 0 0 10px rgba(56, 189, 248, 0.3); }
+        }
+
+        .brand-name {
+            font-size: 32px;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+            background: linear-gradient(90deg, #ffffff 0%, var(--gold-light) 45%, var(--gold-primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.15;
+            text-shadow: 0 2px 15px rgba(250, 204, 21, 0.2);
+        }
+        .brand-sub {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2.2px;
+            color: var(--cyan-accent);
+            text-transform: uppercase;
+            margin-top: 3px;
+        }
+
+        /* ===== NAVIGATION (FLOATING GLASS PILL) ===== */
+        .menu-wrap {
+            margin: 16px auto 28px;
+            position: sticky;
+            top: 12px;
+            z-index: 100;
+        }
+        .menu {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            background: rgba(11, 19, 41, 0.88);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-full);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+            overflow-x: auto;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+        }
+        .menu::-webkit-scrollbar { display: none; }
+
+        .menu-btn {
+            white-space: nowrap;
+            font-size: 13.5px;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: var(--radius-full);
+            color: var(--text-muted);
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .menu-btn:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-1px);
+        }
+        .menu-btn.active {
+            color: #000000;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold-primary) 100%);
+            box-shadow: 0 4px 15px rgba(250, 204, 21, 0.35);
+        }
+        .menu-btn.livescore {
+            border: 1px solid rgba(244, 63, 94, 0.35);
+            color: #fda4af;
+        }
+        .menu-btn.livescore::before {
+            content: "";
+            width: 7px;
+            height: 7px;
+            background: var(--rose-live);
+            border-radius: 50%;
+            display: inline-block;
+            animation: livePulse 1.4s infinite;
+        }
+
+        /* ===== SECTION HEADINGS ===== */
+        .section {
+            margin-bottom: 44px;
+        }
+        .section-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            position: relative;
+        }
+        .section-head::after {
+            content: "";
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 60px;
+            height: 2px;
+            background: var(--gold-primary);
+            box-shadow: 0 0 10px var(--gold-primary);
+        }
+        .section-title {
+            font-size: 21px;
+            font-weight: 800;
+            letter-spacing: -0.3px;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .xem-tat-ca {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--gold-primary);
+            padding: 5px 12px;
+            border-radius: var(--radius-full);
+            background: rgba(250, 204, 21, 0.08);
+            border: 1px solid rgba(250, 204, 21, 0.2);
+            transition: var(--transition);
+        }
+        .xem-tat-ca:hover {
+            background: var(--gold-primary);
+            color: #000;
+            box-shadow: 0 4px 12px rgba(250, 204, 21, 0.3);
+            transform: translateX(2px);
+        }
+
+        /* ===== HERO INTRO & LIVE WIDGETS ===== */
+        .intro {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 24px;
+            margin-bottom: 36px;
+        }
+        .intro-copy {
+            background: var(--bg-card);
+            border: 1px solid var(--border-card);
+            border-radius: var(--radius-lg);
+            padding: 28px 32px;
+            backdrop-filter: blur(16px);
+            box-shadow: var(--shadow-subtle);
+            position: relative;
+            overflow: hidden;
+        }
+        .intro-copy::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, var(--gold-primary), var(--cyan-accent));
+        }
+        .eyebrow {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1.8px;
+            color: var(--gold-primary);
+            background: rgba(250, 204, 21, 0.1);
+            padding: 4px 10px;
+            border-radius: var(--radius-full);
+            margin-bottom: 14px;
+            border: 1px solid rgba(250, 204, 21, 0.25);
+        }
+        .intro-copy h1 {
+            font-size: 26px;
+            font-weight: 850;
+            line-height: 1.3;
+            margin-bottom: 14px;
+            color: #ffffff;
+        }
+        .intro-copy h1 span {
+            color: var(--gold-light);
+        }
+        .intro-copy p {
+            font-size: 14.5px;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+        .intro-widget {
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: 1px solid var(--border-card);
+            background: var(--bg-card);
+            box-shadow: var(--shadow-subtle);
+            min-height: 220px;
+        }
+        .intro-widget iframe {
+            width: 100%;
+            height: 100%;
+            min-height: 220px;
+            border: none;
+            display: block;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+        .hero {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(30, 41, 59, 0.7) 100%);
+            border: 1px solid var(--border-card);
+            border-radius: var(--radius-lg);
+            padding: 30px;
+            backdrop-filter: blur(16px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-shadow: var(--shadow-subtle);
+        }
+        .hero-kicker {
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: var(--cyan-accent);
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        .hero h2 {
+            font-size: 22px;
+            font-weight: 800;
+            line-height: 1.4;
+            color: #fff;
+            margin-bottom: 12px;
+        }
+        .hero p {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 22px;
+            line-height: 1.65;
+        }
+        .hero-btn {
+            align-self: flex-start;
+            font-size: 14px;
+            font-weight: 700;
+            color: #000;
+            background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold-primary) 100%);
+            padding: 10px 22px;
+            border-radius: var(--radius-full);
+            box-shadow: 0 4px 20px rgba(250, 204, 21, 0.3);
+            transition: var(--transition);
+        }
+        .hero-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(250, 204, 21, 0.45);
+        }
+
+        .widget-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-card);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-subtle);
+            backdrop-filter: blur(16px);
+        }
+        .widget-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 18px;
+            border-bottom: 1px solid var(--border-card);
+            background: rgba(3, 7, 18, 0.6);
+        }
+        .widget-title {
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            color: #fff;
+        }
+        .widget-badge {
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: #fff;
+            background: var(--rose-live);
+            padding: 3px 8px;
+            border-radius: var(--radius-full);
+            animation: livePulse 1.5s infinite;
+        }
+        .widget-scroll {
+            max-height: 340px;
+            overflow-y: auto;
+            padding: 8px;
+        }
+
+        /* ===== THẺ PHÂN TÍCH & DỰ ĐOÁN (MARQUEE 60FPS) ===== */
+        .phan-tich-marquee {
+            overflow: hidden;
+            position: relative;
+            padding: 6px 0;
+            mask-image: linear-gradient(90deg, transparent 0%, black 3%, black 97%, transparent 100%);
+            -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 3%, black 97%, transparent 100%);
+        }
+        .phan-tich-track {
+            display: flex;
+            gap: 20px;
+            width: max-content;
+            animation: marqueeScroll 45s linear infinite;
+        }
+        .phan-tich-marquee:hover .phan-tich-track {
+            animation-play-state: paused;
+        }
+        @keyframes marqueeScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .card-phantich {
+            width: 360px;
+            flex-shrink: 0;
+            background: var(--bg-card);
+            border: 1px solid var(--border-card);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            box-shadow: var(--shadow-subtle);
+            backdrop-filter: blur(12px);
+        }
+        .card-phantich:hover {
+            transform: translateY(-5px);
+            border-color: var(--border-glow);
+            box-shadow: var(--shadow-hover);
+        }
+        .pt-banner-wrap {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16/9;
+            overflow: hidden;
+            background: #0b1329;
+        }
+        .pt-banner-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .card-phantich:hover .pt-banner-wrap img {
+            transform: scale(1.06);
+        }
+        .pt-league-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 11px;
+            font-weight: 800;
+            color: #000;
+            background: linear-gradient(135deg, var(--gold-light), var(--gold-primary));
+            padding: 3px 10px;
+            border-radius: var(--radius-full);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            letter-spacing: 0.3px;
+        }
+        .card-body-phantich {
+            padding: 16px 18px 18px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            gap: 8px;
+        }
+        .pt-match {
+            font-size: 16px;
+            font-weight: 800;
+            color: #ffffff;
+            line-height: 1.35;
+        }
+        .pt-date {
+            font-size: 12px;
+            color: var(--cyan-accent);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .pt-snippet {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.5;
+            background: rgba(2, 6, 23, 0.45);
+            padding: 8px 10px;
+            border-radius: var(--radius-sm);
+            border-left: 2px solid var(--border-card);
+            margin: 4px 0;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .pt-prediction {
+            font-size: 12.5px;
+            font-weight: 700;
+            color: var(--gold-light);
+            background: rgba(250, 204, 21, 0.1);
+            border: 1px solid rgba(250, 204, 21, 0.25);
+            padding: 6px 10px;
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .pt-cta {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--gold-primary);
+            margin-top: auto;
+            padding-top: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 4px;
+            transition: var(--transition);
+        }
+        .card-phantich:hover .pt-cta {
+            transform: translateX(4px);
+            color: #fff;
+        }
+
+        /* ===== THẺ KẾT QUẢ BÓNG ĐÁ (DIGITAL SCOREBOARD) ===== */
+        .ketqua-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+        .ketqua-column {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+        .card-ketqua {
+            background: var(--bg-card);
+            border: 1px solid var(--border-card);
+            border-radius: var(--radius-md);
+            padding: 14px 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            transition: var(--transition);
+            box-shadow: var(--shadow-subtle);
+            backdrop-filter: blur(12px);
+            position: relative;
+            overflow: hidden;
+        }
+        .card-ketqua::before {
+            content: "";
+            position: absolute;
+            left: 0; top: 0; bottom: 0; width: 3px;
+            background: var(--gold-primary);
+            opacity: 0.6;
+            transition: var(--transition);
+        }
+        .card-ketqua:hover {
+            transform: translateY(-3px);
+            border-color: var(--border-glow);
+            box-shadow: var(--shadow-hover);
+        }
+        .card-ketqua:hover::before {
+            opacity: 1;
+            box-shadow: 0 0 10px var(--gold-primary);
+        }
+        .ketqua-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 12px;
+        }
+        .ketqua-league {
+            font-weight: 800;
+            color: var(--gold-light);
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+        }
+        .ketqua-date {
+            font-weight: 600;
+            color: var(--text-dim);
+        }
+        .ketqua-match {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            gap: 12px;
+            padding: 4px 0;
+        }
+        .ketqua-team {
+            font-size: 14.5px;
+            font-weight: 750;
+            color: #ffffff;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .ketqua-team-home { text-align: right; }
+        .ketqua-team-away { text-align: left; }
+        .ketqua-score-box {
+            background: rgba(2, 6, 23, 0.85);
+            border: 1px solid rgba(250, 204, 21, 0.35);
+            padding: 4px 14px;
+            border-radius: var(--radius-sm);
+            box-shadow: inset 0 2px 6px rgba(0,0,0,0.6);
+        }
+        .ketqua-score-num {
+            font-size: 18px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            color: var(--gold-primary);
+            text-shadow: 0 0 10px rgba(250, 204, 21, 0.4);
+        }
+        .ketqua-footer {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--emerald-live);
+        }
+
+        /* ===== THẺ TIN TỨC (CINEMATIC NEWS GRID) ===== */
+        .news-layout {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 20px;
+        }
+        .card-news-hero {
+            position: relative;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            border: 1px solid var(--border-card);
+            background: var(--bg-card);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            box-shadow: var(--shadow-subtle);
+            transition: var(--transition);
+            min-height: 380px;
+        }
+        .card-news-hero img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .card-news-hero:hover img {
+            transform: scale(1.05);
+        }
+        .card-news-hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(3, 7, 18, 0.1) 0%, rgba(3, 7, 18, 0.6) 50%, rgba(3, 7, 18, 0.96) 100%);
+        }
+        .news-hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .badge-hot {
+            align-self: flex-start;
+            font-size: 11px;
+            font-weight: 850;
+            letter-spacing: 0.8px;
+            color: #000;
+            background: linear-gradient(135deg, #f97316, var(--gold-primary));
+            padding: 4px 10px;
+            border-radius: var(--radius-full);
+            box-shadow: 0 4px 12px rgba(249, 115, 22, 0.4);
+        }
+        .news-hero-content h3 {
+            font-size: 20px;
+            font-weight: 850;
+            color: #ffffff;
+            line-height: 1.35;
+        }
+        .news-hero-content p {
+            font-size: 13.5px;
+            color: #cbd5e1;
+            line-height: 1.55;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .news-sub-list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+        .card-news-sub {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 14px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-card);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            padding: 10px;
+            box-shadow: var(--shadow-subtle);
+            transition: var(--transition);
+        }
+        .card-news-sub:hover {
+            transform: translateY(-3px);
+            border-color: var(--border-glow);
+            box-shadow: var(--shadow-hover);
+        }
+        .news-sub-thumb {
+            width: 100%;
+            aspect-ratio: 16/10;
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            background: #0b1329;
+        }
+        .news-sub-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        .card-news-sub:hover .news-sub-thumb img {
+            transform: scale(1.08);
+        }
+        .news-sub-body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 6px;
+        }
+        .news-date {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--cyan-accent);
+        }
+        .news-sub-body h4 {
+            font-size: 14px;
+            font-weight: 750;
+            color: #fff;
+            line-height: 1.35;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* ===== GÓC THỐNG KÊ (3D TACTICAL PITCH ARENA) ===== */
+        .goc-thong-ke {
+            background: var(--bg-card);
+            border: 1px solid var(--border-card);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            backdrop-filter: blur(16px);
+            box-shadow: var(--shadow-subtle);
+        }
+        .goc-thong-ke-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .goc-thong-ke-label {
+            font-size: 13px;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            color: var(--gold-primary);
+        }
+        .goc-thong-ke-meta {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--text-dim);
+            letter-spacing: 0.5px;
+        }
+        .goc-thong-ke-grid {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 22px;
+        }
+        .tk-feature {
+            background: linear-gradient(180deg, rgba(3, 7, 18, 0.8) 0%, rgba(15, 23, 42, 0.7) 100%);
+            border: 1px solid var(--border-card);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: var(--transition);
+        }
+        .tk-feature:hover {
+            border-color: var(--border-glow);
+            box-shadow: var(--shadow-hover);
+        }
+        /* 3D Night Tactical Pitch */
+        .tk-pitch-stage {
+            height: 180px;
+            background: 
+                radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.25), transparent 70%),
+                linear-gradient(180deg, #052619 0%, #02120c 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid rgba(16, 185, 129, 0.25);
+        }
+        .tk-pitch-stage::before {
+            content: "";
+            position: absolute;
+            inset: 15px;
+            border: 1.5px solid rgba(52, 211, 153, 0.35);
+            border-radius: 4px;
+        }
+        .tk-pitch-stage::after {
+            content: "";
+            position: absolute;
+            left: 50%; top: 15px; bottom: 15px;
+            width: 1px;
+            background: rgba(52, 211, 153, 0.35);
+        }
+        .tk-pitch-time {
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: #000;
+            background: var(--gold-primary);
+            padding: 3px 12px;
+            border-radius: var(--radius-full);
+            z-index: 2;
+            margin-bottom: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+        .tk-pitch-teams {
+            font-size: 18px;
+            font-weight: 900;
+            color: #ffffff;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+        }
+        .tk-pitch-teams .vs {
+            font-size: 12px;
+            font-weight: 900;
+            color: var(--rose-live);
+            background: rgba(0,0,0,0.6);
+            padding: 2px 8px;
+            border-radius: var(--radius-full);
+            border: 1px solid rgba(244, 63, 94, 0.4);
+        }
+        .tk-feature-body {
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .tk-stat {
+            font-size: 17px;
+            font-weight: 850;
+            color: var(--gold-light);
+            background: rgba(250, 204, 21, 0.1);
+            border: 1px solid rgba(250, 204, 21, 0.25);
+            padding: 8px 12px;
+            border-radius: var(--radius-sm);
+        }
+        .tk-note {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.55;
+        }
+
+        .tk-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .tk-item {
+            background: rgba(3, 7, 18, 0.6);
+            border: 1px solid var(--border-card);
+            border-radius: var(--radius-md);
+            padding: 12px 16px;
+            transition: var(--transition);
+        }
+        .tk-item:hover {
+            transform: translateX(4px);
+            border-color: var(--border-glow);
+        }
+        .tk-item-top {
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            font-weight: 800;
+            color: var(--gold-primary);
+            margin-bottom: 4px;
+        }
+        .tk-item-match {
+            font-size: 14px;
+            font-weight: 750;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+        .tk-item-stat {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--cyan-accent);
+        }
+
+        /* ===== THẺ LỊCH THI ĐẤU (FIXTURE COUNTDOWN CARDS) ===== */
+        .lich-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+        .card-lich {
+            background: var(--bg-card);
+            border: 1px solid var(--border-card);
+            border-radius: var(--radius-md);
+            padding: 18px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            transition: var(--transition);
+            box-shadow: var(--shadow-subtle);
+            backdrop-filter: blur(12px);
+        }
+        .card-lich:hover {
+            transform: translateY(-3px);
+            border-color: var(--border-glow);
+            box-shadow: var(--shadow-hover);
+        }
+        .lich-left {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .lich-badge-time {
+            align-self: flex-start;
+            font-size: 11.5px;
+            font-weight: 800;
+            color: #000;
+            background: linear-gradient(135deg, var(--gold-light), var(--gold-primary));
+            padding: 3px 10px;
+            border-radius: var(--radius-full);
+            letter-spacing: 0.3px;
+        }
+        .lich-match-title {
+            font-size: 15.5px;
+            font-weight: 800;
+            color: #fff;
+        }
+        .lich-league-sub {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-dim);
+        }
+        .lich-action {
+            font-size: 12px;
+            font-weight: 750;
+            color: var(--gold-primary);
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            transition: var(--transition);
+        }
+        .card-lich:hover .lich-action {
+            transform: translateX(4px);
+            color: #fff;
+        }
+
+        /* ===== BANNER CỘNG ĐỒNG TELEGRAM VIP ===== */
+        .box-thongtin {
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.4) 0%, rgba(15, 23, 42, 0.8) 100%);
+            border: 1px solid rgba(56, 189, 248, 0.35);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            text-align: center;
+            margin-bottom: 36px;
+            backdrop-filter: blur(16px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+        .box-thongtin::before {
+            content: "";
+            position: absolute;
+            top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(56, 189, 248, 0.08), transparent 60%);
+            pointer-events: none;
+        }
+        .box-thongtin h3 {
+            font-size: 22px;
+            font-weight: 900;
+            color: #fff;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+        .box-thongtin p {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 22px;
+        }
+        .nut-tel {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14.5px;
+            font-weight: 800;
+            color: #000;
+            background: linear-gradient(135deg, #38bdf8 0%, #0284c7 50%, var(--gold-primary) 100%);
+            padding: 12px 28px;
+            border-radius: var(--radius-full);
+            box-shadow: 0 4px 25px rgba(56, 189, 248, 0.35);
+            transition: var(--transition);
+        }
+        .nut-tel:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(56, 189, 248, 0.5);
+            color: #fff;
+        }
+
+        /* ===== FOOTER & DISCLAIMER ===== */
+        .disclaimer {
+            background: rgba(3, 7, 18, 0.6);
+            border: 1px solid rgba(250, 204, 21, 0.2);
+            border-radius: var(--radius-md);
+            padding: 18px 22px;
+            margin-bottom: 40px;
+        }
+        .disclaimer h4 {
+            font-size: 12px;
+            font-weight: 850;
+            color: var(--gold-primary);
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
+        .disclaimer p {
+            font-size: 12px;
+            color: var(--text-dim);
+            line-height: 1.6;
+        }
+
+        .footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 36px 0 48px;
+            text-align: center;
+        }
+        .footer p {
+            font-size: 13.5px;
+            color: var(--text-muted);
+            margin-bottom: 14px;
+        }
+        .footer-nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        .footer-nav a {
+            font-size: 13px;
+            color: var(--text-dim);
+            transition: var(--transition);
+        }
+        .footer-nav a:hover {
+            color: var(--gold-primary);
+        }
+
+        .len-dau {
+            position: fixed;
+            right: 20px;
+            bottom: 24px;
+            width: 44px;
+            height: 44px;
+            background: rgba(15, 23, 42, 0.85);
+            border: 1px solid var(--border-glow);
+            color: var(--gold-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 900;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition);
+            z-index: 99;
+        }
+        .len-dau.hien {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .len-dau:hover {
+            background: var(--gold-primary);
+            color: #000;
+            transform: translateY(-3px);
+        }
+
+        /* ===== RESPONSIVE BREAKPOINTS ===== */
+        @media (max-width: 900px) {
+            .intro, .hero-grid, .news-layout, .goc-thong-ke-grid, .ketqua-columns, .lich-grid {
+                grid-template-columns: 1fr;
             }
-            .intro-widget{
-                width:100%;
-                max-width:460px;
-                justify-self:center;
-            }
+            .brand-name { font-size: 26px; }
+            .card-news-hero { min-height: 280px; }
         }
-        @media(max-width:520px){
-            .intro{padding:16px}
-            .intro-widget,
-            .intro-widget iframe{
-                height:470px;
-                min-height:470px;
-            }
+        @media (max-width: 600px) {
+            .brand-row { flex-direction: column; align-items: flex-start; }
+            .container { width: calc(100% - 20px); }
+            .card-phantich { width: 290px; }
+            .pt-match { font-size: 14.5px; }
         }
-
-        @media(max-width:900px){.hero-grid{grid-template-columns:1fr}.brand-row{align-items:flex-start}.live-indicator{display:none}}
-        @media(max-width:680px){.container{width:min(var(--max),calc(100% - 20px))}.brand-row:after{display:none}.site-header{padding:24px 0 18px;min-height:118px;background-position:center}.brand-name{font-size:25px}.brand-sub{font-size:10px;letter-spacing:1px}.logo{width:54px;height:54px}.intro{padding:19px}.intro h1{font-size:21px}.hero{padding:21px}.hero h2{font-size:21px}.grid-2{grid-template-columns:1fr}.ketqua-match{grid-template-columns:1fr}.ketqua-team{text-align:center!important}.ketqua-score{justify-self:center}.section{margin-top:30px}.card-anh-wrapper{height:145px}.anh-bia-giai{height:140px}}
     </style>
 </head>
 <body id="top">
+
 <header class="site-header">
     <div class="container">
         <div class="brand-row">
             <div class="brand">
-                <div class="logo"><img src="logo.png" alt="Score Vision" onerror="this.style.display='none'"></div>
+                <div class="logo-box">
+                    <img src="logo.png" alt="Score Vision" onerror="this.src='favicon.png'">
+                </div>
                 <div>
                     <div class="brand-name">Score Vision</div>
-                    <div class="brand-sub">PHÂN TÍCH · DỮ LIỆU · BÓNG ĐÁ</div>
+                    <div class="brand-sub">CHUYÊN SÂU · DỮ LIỆU · PHÂN TÍCH BÓNG ĐÁ</div>
                 </div>
             </div>
         </div>
@@ -482,26 +1177,26 @@
 
 <div class="container menu-wrap">
     <nav class="menu" aria-label="Điều hướng chính">
-        <a href="index.html" class="menu-btn active">🏠 Trang chủ</a>
-        <a href="lich-dau.html" class="menu-btn">📅 Lịch đấu</a>
-        <a href="du-doan.html" class="menu-btn">🔮 Phân Tích & Dự Đoán</a>
-        <a href="bang-xep-hang.html" class="menu-btn">📊 Bảng xếp hạng</a>
-        <a href="thong-ke.html" class="menu-btn">📈 Thống kê</a>
-        <a href="tin-nong.html" class="menu-btn">📰 Tin Nóng</a>
-        <a href="ket-qua.html" class="menu-btn">🏆 Kết Quả</a>
-        <a href="livescore.html" class="menu-btn livescore">⚽ LiveScore</a>
-        <a href="multimedia.html" class="menu-btn multimedia">🎬 MultiMedia</a>
-        <a href="bang-xep-hang-fifa.html" class="menu-btn fifa">🌍 BXH FIFA</a>
-        <a href="gop-y.html" class="menu-btn gopy">💬 Góp Ý</a>
+        <a href="index.html" class="menu-btn active">Trang chủ</a>
+        <a href="lich-dau.html" class="menu-btn">Lịch đấu</a>
+        <a href="du-doan.html" class="menu-btn">Phân Tích & Dự Đoán</a>
+        <a href="bang-xep-hang.html" class="menu-btn">Bảng xếp hạng</a>
+        <a href="thong-ke.html" class="menu-btn">Thống kê</a>
+        <a href="tin-nong.html" class="menu-btn">Tin Nóng</a>
+        <a href="ket-qua.html" class="menu-btn">Kết Quả</a>
+        <a href="livescore.html" class="menu-btn livescore">LiveScore</a>
+        <a href="multimedia.html" class="menu-btn">MultiMedia</a>
+        <a href="bang-xep-hang-fifa.html" class="menu-btn">BXH FIFA</a>
+        <a href="gop-y.html" class="menu-btn">Góp Ý</a>
     </nav>
 </div>
 
 <main class="container">
     <section class="intro" aria-labelledby="intro-title">
         <div class="intro-copy">
-            <div class="eyebrow">SCORE VISION · FOOTBALL HUB</div>
-            <h1 id="intro-title">Score Vision – <span>Lịch đấu, Kết quả & Phân tích bóng đá</span></h1>
-            <p>Score Vision là nền tảng theo dõi bóng đá giúp bạn cập nhật <strong>lịch thi đấu, kết quả bóng đá, bảng xếp hạng, thống kê và LiveScore</strong> cùng các bài phân tích, dự đoán trước trận. Dữ liệu được lấy từ các nguồn mà hệ thống đang kết nối và cập nhật liên tục.</p>
+            <span class="eyebrow">SCORE VISION · INTELLIGENCE HUB</span>
+            <h1 id="intro-title">Score Vision – <span>Lịch Đấu, Kết Quả & Phân Tích Chuyên Sâu</span></h1>
+            <p>Nền tảng số liệu bóng đá chuyên nghiệp: cập nhật <strong>lịch thi đấu, kết quả trận đấu, bảng xếp hạng, thống kê phong độ và LiveScore</strong> theo thời gian thực cùng mô hình dự đoán phân tích chiến thuật độc quyền.</p>
         </div>
 
         <div class="intro-widget" aria-label="Lịch thi đấu bóng đá">
@@ -515,63 +1210,106 @@
 
     <section class="hero-grid" aria-label="Điểm nổi bật">
         <div class="hero">
-            <span class="hero-kicker">PHÂN TÍCH & DỰ ĐOÁN</span>
-            <h2>Dữ liệu bóng đá được trình bày rõ ràng, nhanh và dễ theo dõi.</h2>
-            <p>Phong độ, lịch sử đối đầu, thống kê và thông tin trận đấu được tổng hợp để bạn có thêm góc nhìn trước mỗi cuộc đối đầu.</p>
+            <span class="hero-kicker">DATA & AI PREDICTIONS</span>
+            <h2>Dữ liệu số hóa chính xác, cập nhật liên tục trước mỗi giờ bóng lăn.</h2>
+            <p>Phong độ đối đầu, biến động lực lượng và góc nhìn chuyên môn đa chiều giúp bạn có nhận định khách quan, toàn diện nhất trước giờ xung trận.</p>
             <a href="du-doan.html" class="hero-btn">Xem phân tích mới nhất →</a>
         </div>
         <div class="widget-box">
-            <div class="widget-head"><span class="widget-title">⚽ TRẬN ĐẤU ĐANG ĐƯỢC CẬP NHẬT</span><span class="widget-badge">LIVE DATA</span></div>
+            <div class="widget-head">
+                <span class="widget-title">TRẬN ĐẤU ĐANG CẬP NHẬT</span>
+                <span class="widget-badge">LIVE MATCHES</span>
+            </div>
             <api-sports-widget data-type="config" data-key="db3cb172848d850444676b821c1e9fd0" data-sport="football" data-lang="en" data-theme="dark" data-show-errors="true"></api-sports-widget>
-            <div class="widget-scroll"><api-sports-widget data-type="games"></api-sports-widget></div>
+            <div class="widget-scroll">
+                <api-sports-widget data-type="games"></api-sports-widget>
+            </div>
         </div>
     </section>
 
+    <!-- SECTION: KẾT QUẢ BÓNG ĐÁ -->
     <section class="section">
-        <div class="section-head"><h2 class="section-title">⚽ Kết quả bóng đá mới nhất</h2><a href="ket-qua.html" class="xem-tat-ca">Xem tất cả →</a></div>
-        <div id="ketqua-list"><div class="loading">Đang tải kết quả trận đấu...</div></div>
+        <div class="section-head">
+            <h2 class="section-title">Kết quả bóng đá mới nhất</h2>
+            <a href="ket-qua.html" class="xem-tat-ca">Xem tất cả →</a>
+        </div>
+        <div id="ketqua-list">
+            <div class="loading" style="padding: 24px; text-align: center; color: var(--text-dim);">Đang tải kết quả trận đấu...</div>
+        </div>
     </section>
 
+    <!-- SECTION: PHÂN TÍCH & DỰ ĐOÁN -->
     <section class="section">
-        <div class="section-head"><h2 class="section-title">🔮 Phân tích & dự đoán mới nhất</h2><a href="du-doan.html" class="xem-tat-ca">Xem tất cả →</a></div>
-        <div id="phan-tich-list"><div class="loading">Đang tải bài phân tích...</div></div>
+        <div class="section-head">
+            <h2 class="section-title">Phân tích & nhận định chuyên sâu</h2>
+            <a href="du-doan.html" class="xem-tat-ca">Xem tất cả →</a>
+        </div>
+        <div id="phan-tich-list">
+            <div class="loading" style="padding: 24px; text-align: center; color: var(--text-dim);">Đang tải bài phân tích...</div>
+        </div>
     </section>
 
+    <!-- SECTION: TIN TỨC BÓNG ĐÁ -->
     <section class="section">
-        <div class="section-head"><h2 class="section-title">📰 Tin bóng đá mới nhất</h2><a href="tin-nong.html" class="xem-tat-ca">Xem tất cả →</a></div>
-        <div id="tin-list"><div class="loading">Đang tải tin tức...</div></div>
+        <div class="section-head">
+            <h2 class="section-title">Tin bóng đá nóng nhất</h2>
+            <a href="tin-nong.html" class="xem-tat-ca">Xem tất cả →</a>
+        </div>
+        <div id="tin-list">
+            <div class="loading" style="padding: 24px; text-align: center; color: var(--text-dim);">Đang tải tin tức...</div>
+        </div>
     </section>
 
-
+    <!-- SECTION: GÓC THỐNG KÊ -->
     <section class="section">
-        <div class="section-head"><h2 class="section-title">📊 Góc Thống Kê</h2><a href="thong-ke.html" class="xem-tat-ca">Xem tất cả →</a></div>
-        <div id="thongke-home"><div class="loading">Đang tải dữ liệu thống kê...</div></div>
+        <div class="section-head">
+            <h2 class="section-title">Góc dữ liệu & thống kê</h2>
+            <a href="thong-ke.html" class="xem-tat-ca">Xem tất cả →</a>
+        </div>
+        <div id="thongke-home">
+            <div class="loading" style="padding: 24px; text-align: center; color: var(--text-dim);">Đang tải dữ liệu thống kê...</div>
+        </div>
     </section>
 
+    <!-- SECTION: LỊCH THI ĐẤU SẮP TỚI -->
     <section class="section">
-        <div class="section-head"><h2 class="section-title">📅 Lịch thi đấu sắp tới</h2><a href="lich-dau.html" class="xem-tat-ca">Xem tất cả →</a></div>
-        <div id="lich-list"><div class="loading">Đang tải lịch thi đấu...</div></div>
+        <div class="section-head">
+            <h2 class="section-title">Lịch thi đấu tâm điểm</h2>
+            <a href="lich-dau.html" class="xem-tat-ca">Xem tất cả →</a>
+        </div>
+        <div id="lich-list">
+            <div class="loading" style="padding: 24px; text-align: center; color: var(--text-dim);">Đang tải lịch thi đấu...</div>
+        </div>
     </section>
 
     <noscript class="noscript">Score Vision cần JavaScript để hiển thị dữ liệu cập nhật từ Google Sheets và LiveScore.</noscript>
 
+    <!-- TELEGRAM VIP COMMUNITY BANNER -->
     <section class="box-thongtin">
-        <h3>🤝 LUÔN CẬP NHẬT LIÊN TỤC</h3>
-        <p>Thông tin được cập nhật liên tục, nhanh chóng và thuận tiện theo dõi trước mỗi trận đấu.</p>
-        <a href="https://t.me/+LBCsBd-LjPI3ZDRl" target="_blank" rel="noopener noreferrer" class="nut-tel">✈️ THAM GIA NHÓM TELEGRAM</a>
+        <h3>THAM GIA CỘNG ĐỒNG SCORE VISION VIP</h3>
+        <p>Nhận thông báo lịch thi đấu, phân tích phong độ và dữ liệu bóng đá độc quyền trước giờ bóng lăn.</p>
+        <a href="https://t.me/+LBCsBd-LjPI3ZDRl" target="_blank" rel="noopener noreferrer" class="nut-tel">THAM GIA NHÓM TELEGRAM CHÍNH THỨC →</a>
     </section>
 
+    <!-- DISCLAIMER -->
     <section class="disclaimer">
-        <h4>⚠️ THÔNG BÁO CHUNG</h4>
-        <p>Nội dung trên trang web chỉ phục vụ mục đích tham khảo và trao đổi thông tin về bóng đá. Nhận định đưa ra mang tính tham khảo, không phải là kết quả chắc chắn.</p>
+        <h4>THÔNG BÁO MIỄN TRỪ TRÁCH NHIỆM</h4>
+        <p>Toàn bộ nội dung và phân tích trên Score Vision chỉ phục vụ mục đích thông tin và trao đổi thể thao khách quan. Các dự đoán đưa ra mang tính chất tham khảo, không đảm bảo kết quả chính xác 100%.</p>
     </section>
 
     <footer class="footer">
-        <p><strong>Score Vision</strong> — Phân tích & Dự đoán Bóng Đá Hàng Ngày</p>
+        <p><strong>Score Vision</strong> — Nền tảng phân tích & dữ liệu bóng đá hàng đầu</p>
         <div class="footer-nav">
-            <a href="lich-dau.html">Lịch thi đấu</a><a href="bang-xep-hang.html">Bảng xếp hạng</a><a href="thong-ke.html">Thống kê</a><a href="livescore.html">LiveScore</a><a href="multimedia.html">MultiMedia</a><a href="bang-xep-hang-fifa.html">BXH FIFA</a><a href="du-doan.html">Phân tích & dự đoán</a><a href="gop-y.html">Góp ý</a>
+            <a href="lich-dau.html">Lịch thi đấu</a>
+            <a href="bang-xep-hang.html">Bảng xếp hạng</a>
+            <a href="thong-ke.html">Thống kê</a>
+            <a href="livescore.html">LiveScore</a>
+            <a href="multimedia.html">MultiMedia</a>
+            <a href="bang-xep-hang-fifa.html">BXH FIFA</a>
+            <a href="du-doan.html">Phân tích & dự đoán</a>
+            <a href="gop-y.html">Góp ý</a>
         </div>
-        <p>© 2026 Score Vision. Tất cả quyền được bảo lưu.</p>
+        <p>© 2026 Score Vision. Toàn bộ bản quyền được bảo lưu.</p>
     </footer>
 </main>
 
@@ -588,374 +1326,439 @@
 
 <a href="#top" class="len-dau" id="btnLenDau" aria-label="Lên đầu trang">↑</a>
 
-    <script>
-        const btnLenDau = document.getElementById("btnLenDau");
-        window.addEventListener("scroll", ()=>{
-            if(window.scrollY > 400) btnLenDau.classList.add("hien");
-            else btnLenDau.classList.remove("hien");
-        });
-        btnLenDau.addEventListener("click", e=>{
-            e.preventDefault();
-            window.scrollTo({top:0,behavior:"smooth"});
-        });
-
-        const GID_PHAN_TICH = "1723464768";
-        const GID_TIN_NONG = "840175350";
-        const GID_LICH_DAU = "655851279";
-        const GID_KET_QUA = "1819801064";
-        const GID_THONG_KE = "575449196";
-        const BASE_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRjGewmdAmJVjyi-0vSc22hhFPacMgGc-WmVE8PEM3jHfA7IvED3XbBp68Bwp16n1Dc2FFP9ETKTaSH/pub?output=csv&gid=";
-
-        const ANH_GIAI = {
-            "Ngoại Hạng Anh": "https://i.postimg.cc/brpj376y/Ngoai-hang-anh.png",
-            "Premier League": "https://i.postimg.cc/brpj376y/Ngoai-hang-anh.png",
-            "La Liga": "https://i.postimg.cc/8cRzCdYh/La-Liga.png",
-            "Bundesliga": "https://i.postimg.cc/0jPqcTVh/Bungdesliga.png",
-            "Serie A": "https://i.postimg.cc/MHq8dCsx/Seri-A.png",
-            "Cúp C1": "https://i.postimg.cc/Zn4hVGfJ/Cup-C1.png",
-            "Champions League": "https://i.postimg.cc/Zn4hVGfJ/Cup-C1.png",
-            "U17 World Cup": "https://i.postimg.cc/DZqTQvcv/U17-World-Cup.png",
-            "Asean Cup": "https://i.postimg.cc/90CjJ6Lv/c8490329-1b17-4b26-9722-99c00670b7df-(1).png",
-            "FIFA Asean Cup": "https://i.postimg.cc/90CjJ6Lv/c8490329-1b17-4b26-9722-99c00670b7df-(1).png",
-            "ASEAN U20": "https://i.postimg.cc/90CjJ6Lv/c8490329-1b17-4b26-9722-99c00670b7df-(1).png",
-            "AFC ASEAN U20": "https://i.postimg.cc/90CjJ6Lv/c8490329-1b17-4b26-9722-99c00670b7df-(1).png",
-            "U23 ASIAD": "https://i.postimg.cc/MHq8dC9C/Asia-Cup.png",
-            "ASIAD": "https://i.postimg.cc/MHq8dC9C/Asia-Cup.png",
-            "Asiad Cup": "https://i.postimg.cc/MHq8dC9C/Asia-Cup.png"
-        };
-        const ANH_MAC_DINH = "https://i.postimg.cc/Zn4hVGfJ/Cup-C1.png";
-
-        function layAnhGiai(tenGiai){
-            if(!tenGiai) return ANH_MAC_DINH;
-            tenGiai = tenGiai.trim();
-            if(ANH_GIAI[tenGiai]) return ANH_GIAI[tenGiai];
-            for(let tenKhoa in ANH_GIAI){
-                if(tenGiai.includes(tenKhoa)) return ANH_GIAI[tenKhoa];
-            }
-            return ANH_MAC_DINH;
-        }
-
-        function parseCSV(text){
-            const rows = [];let row=[],cell="",inQuote=false;
-            for(let i=0;i<text.length;i++){
-                let ch=text[i],next=text[i+1]||"";
-                if(ch==='"'){if(inQuote&&next==='"'){cell+='"';i++;}else inQuote=!inQuote;}
-                else if(ch===","&&!inQuote){row.push(cell.trim());cell="";}
-                else if((ch==="\n"||ch==="\r")&&!inQuote){if(cell||row.length>0){row.push(cell.trim());rows.push(row);row=[];cell="";}}
-                else cell+=ch;
-            }
-            if(cell||row.length>0){row.push(cell.trim());rows.push(row);}
-            return rows;
-        }
-
-        function layTomTat(text, doDai=100){
-            if(!text) return "Đang cập nhật...";
-            return text.replace(/<[^>]*>/g," ").replace(/\s+/g," ").trim().substring(0, doDai) + "…";
-        }
-
-        // === PHẦN PHÂN TÍCH ===
-        fetch(BASE_URL+GID_PHAN_TICH)
-        .then(r=>{if(!r.ok)throw new Error("Lỗi kết nối");return r.text();})
-        .then(csv=>{
-            const rows=parseCSV(csv);
-            if(rows.length<2){document.getElementById("phan-tich-list").innerHTML=`<div class="empty">⚠️ Sheet chưa có dữ liệu!</div>`;return;}
-            const h=rows[0].map(h=>h.trim().toLowerCase());
-            const idx={
-                loai: h.indexOf("loai_du_lieu"),
-                thuTu: h.indexOf("thu_tu"),
-                giai: h.indexOf("ten_giai"),
-                tran: h.indexOf("ten_tran"),
-                ngay: h.indexOf("ngay_gio"),
-                pt: h.indexOf("phan_tich"),
-                doan: h.indexOf("du_doan")
-            };
-            if(idx.loai===-1||idx.giai===-1||idx.tran===-1){
-                document.getElementById("phan-tich-list").innerHTML=`<div class="empty">❌ Tên cột không khớp!</div>`;return;
-            }
-            let data=[];
-            for(let i=1;i<rows.length;i++){
-                const r=rows[i];
-                const loai=(r[idx.loai]||"").trim();
-                if(loai!=="Trận đấu") continue;
-                const tenGiai=(r[idx.giai]||"").trim();
-                data.push({
-                    st:Number(r[idx.thuTu])||0,
-                    giai:tenGiai,
-                    anhBia:layAnhGiai(tenGiai),
-                    tran:(r[idx.tran]||"").trim(),
-                    ngay:(r[idx.ngay]||"").trim(),
-                    pt:layTomTat((r[idx.pt]||"").trim(),90),
-                    doan:layTomTat((r[idx.doan]||"").trim(),60)
-                });
-            }
-            data.sort((a,b)=>b.st - a.st);
-            const box=document.getElementById("phan-tich-list");
-            if(!data.length){box.innerHTML=`<div class="empty">⚠️ Không tìm thấy dữ liệu!</div>`;return;}
-            // Băng chuyền hiển thị các bài phân tích mới nhất.
-            // Dữ liệu vẫn lấy nguyên từ Google Sheets; chỉ thay đổi cách trình bày.
-            const items = data.slice(0,6);
-            const renderCard = x => `
-                <a href="du-doan.html" class="card-phantich">
-                    <img src="${x.anhBia}" alt="${x.giai}" class="anh-bia-giai" loading="lazy" onerror="this.src='${ANH_MAC_DINH}'">
-                    <div class="card-body-phantich">
-                        <div class="pt-giai">🏆 ${x.giai}</div>
-                        <div class="pt-tran">⚽ ${x.tran}</div>
-                        <div class="pt-ngay">📅 ${x.ngay} · #${x.st}</div>
-                        <div class="pt-tomtat">📝 ${x.pt}</div>
-                        <div class="pt-tomtat">✅ Dự đoán: ${x.doan}</div>
-                        <div class="pt-xemchitiet">👉 Nhấp vào xem chi tiết đầy đủ →</div>
-                    </div>
-                </a>`;
-
-            const cards = items.map(renderCard).join("");
-            // Nhân đôi track để tạo vòng lặp liên tục, không bị khoảng trống.
-            box.innerHTML = `
-                <div class="phan-tich-marquee" aria-label="Các bài phân tích và dự đoán mới nhất">
-                    <div class="phan-tich-track">
-                        ${cards}
-                        ${cards}
-                    </div>
-                </div>
-                <div class="phan-tich-hint">
-                    <span>← Các bài phân tích mới nhất</span>
-                    <span>Di chuột để tạm dừng</span>
-                </div>
-            `;
-        })
-        .catch(e=>{document.getElementById("phan-tich-list").innerHTML=`<div class="empty">❌ Lỗi: ${e.message}</div>`;});
-
-        // === PHẦN KẾT QUẢ ===
-        fetch(BASE_URL+GID_KET_QUA)
-        .then(r=>{if(!r.ok)throw new Error("Lỗi kết nối");return r.text();})
-        .then(csv=>{
-            const rows=parseCSV(csv);
-            if(rows.length<2){document.getElementById("ketqua-list").innerHTML=`<div class="empty">Chưa có dữ liệu Kết Quả!</div>`;return;}
-            const h=rows[0].map(h=>h.trim().toLowerCase());
-            const i_loai=h.indexOf("loai_muc"),i_st=h.indexOf("thu_tu"),i_tran=h.indexOf("tran_dau"),i_tyso=h.indexOf("ty_so"),i_giai=h.indexOf("giai_dau"),i_ngay=h.indexOf("ngay_gio");
-            if([i_loai,i_st,i_tran,i_tyso].includes(-1)){document.getElementById("ketqua-list").innerHTML=`<div class="empty">❌ Kiểm tra cột Sheet Kết Quả!</div>`;return;}
-            const data=[];
-            for(let i=1;i<rows.length;i++){
-                const r=rows[i];if((r[i_loai]||"").trim()!=="ket_qua") continue;
-                const tran=(r[i_tran]||"").trim();if(tran.includes("Không có trận")) continue;
-                const phan=tran.split(" vs ");if(phan.length<2) continue;
-                data.push({
-                    st:Number(r[i_st])||0,
-                    nha:phan[0].trim(),
-                    khach:phan[1].trim(),
-                    tyso:(r[i_tyso]||"-").trim(),
-                    ngay:(r[i_ngay]||"").trim(),
-                    giai:(r[i_giai]||"Bóng Đá").trim()
-                });
-            }
-            data.sort((a,b)=>b.st - a.st);
-            const box=document.getElementById("ketqua-list");
-            if(!data.length){box.innerHTML=`<div class="empty">Chưa có kết quả trận đấu!</div>`;return;}
-            // Hiển thị 6 kết quả mới nhất, chia đều thành 2 cột, mỗi cột 3 trận.
-            const latest = data.slice(0,6);
-            const renderCompactResult = x => `
-                <a href="ket-qua.html" class="card-ketqua compact">
-                    <div class="ketqua-header">
-                        <span class="ketqua-league">🏆 ${x.giai}</span>
-                        <span class="ketqua-date">${x.ngay} · #${x.st}</span>
-                    </div>
-                    <div class="ketqua-match">
-                        <span class="ketqua-team ketqua-team-home">${x.nha}</span>
-                        <div class="ketqua-score">
-                            <span class="ketqua-score-num">${x.tyso}</span>
-                        </div>
-                        <span class="ketqua-team ketqua-team-away">${x.khach}</span>
-                    </div>
-                    <div class="ketqua-status">
-                        <span class="status-finished">✓ Đã kết thúc</span>
-                    </div>
-                </a>`;
-
-            const left = latest.slice(0,3).map(renderCompactResult).join("");
-            const right = latest.slice(3,6).map(renderCompactResult).join("");
-
-            box.innerHTML = `
-                <div class="ketqua-columns">
-                    <div class="ketqua-column">${left}</div>
-                    <div class="ketqua-column">${right}</div>
-                </div>
-            `;
-        })
-        .catch(e=>{document.getElementById("ketqua-list").innerHTML=`<div class="empty">❌ ${e.message}</div>`;});
-
-        // === PHẦN TIN NÓNG ===
-        fetch(BASE_URL+GID_TIN_NONG)
-        .then(r=>{if(!r.ok)throw new Error("Lỗi kết nối");return r.text();})
-        .then(csv=>{
-            const rows=parseCSV(csv);
-            if(rows.length<2){document.getElementById("tin-list").innerHTML=`<div class="empty">Chưa có dữ liệu Tin Nóng!</div>`;return;}
-            const data=[];
-            for(let i=1;i<rows.length;i++){
-                const r=rows[i];if(!r||r.length<13) continue;
-                const tieude=(r[0]||"").trim(),ngaydang=(r[2]||"").trim(),anh_bia=(r[10]||"").trim(),noidung=(r[12]||"").trim();
-                if(!tieude) continue;
-                const tomtat=noidung.replace(/<[^>]*>/g," ").replace(/\s+/g," ").trim().substring(0,80);
-                data.push({tieude,ngay:ngaydang,anh:anh_bia||ANH_MAC_DINH,tomtat});
-            }
-            const box=document.getElementById("tin-list");
-            if(!data.length){box.innerHTML=`<div class="empty">Chưa có bài tin nào!</div>`;return;}
-            const baiNoiBat=data[0],listTinMoi=data.slice(1,6);
-            const cotTrai=listTinMoi.slice(0,3),cotPhai=listTinMoi.slice(3,5);
-            const ngayNB=baiNoiBat.ngay.split(" ")[0];
-            let html="";
-            html+=`<a href="tin-nong.html" class="card-tin" style="margin-bottom:16px;display:block;"><div class="card-anh-wrapper"><img src="${baiNoiBat.anh}" alt="${baiNoiBat.tieude}" class="card-img" loading="lazy" onerror="this.src='${ANH_MAC_DINH}'"></div><div class="card-body"><span class="card-label label-hot">🔥 NỔI BẬT — ${ngayNB}</span><h3>${baiNoiBat.tieude}</h3><p>${baiNoiBat.tomtat}…</p><div class="hint">Xem chi tiết →</div></div></a>`;
-            html+=`<div class="grid-2"><div>`;
-            cotTrai.forEach(x=>{
-                const ngay=x.ngay.split(" ")[0];
-                html+=`<a href="tin-nong.html" class="card-tin" style="margin-bottom:16px;display:block;"><div class="card-anh-wrapper"><img src="${x.anh}" alt="${x.tieude}" class="card-img" loading="lazy" onerror="this.src='${ANH_MAC_DINH}'"></div><div class="card-body"><span class="card-label label-tin">📰 ${ngay}</span><h3>${x.tieude}</h3><p>${x.tomtat}…</p><div class="hint">Xem chi tiết →</div></div></a>`;
-            });
-            html+=`</div><div>`;
-            cotPhai.forEach(x=>{
-                const ngay=x.ngay.split(" ")[0];
-                html+=`<a href="tin-nong.html" class="card-tin" style="margin-bottom:16px;display:block;"><div class="card-anh-wrapper"><img src="${x.anh}" alt="${x.tieude}" class="card-img" loading="lazy" onerror="this.src='${ANH_MAC_DINH}'"></div><div class="card-body"><span class="card-label label-tin">📰 ${ngay}</span><h3>${x.tieude}</h3><p>${x.tomtat}…</p><div class="hint">Xem chi tiết →</div></div></a>`;
-            });
-            html+=`</div></div>`;
-            box.innerHTML=html;
-        })
-        .catch(e=>{document.getElementById("tin-list").innerHTML=`<div class="empty">❌ ${e.message}</div>`;});
-
-
-        // === GÓC THỐNG KÊ ===
-        fetch(BASE_URL+GID_THONG_KE)
-        .then(r=>{if(!r.ok)throw new Error("Lỗi kết nối");return r.text();})
-        .then(csv=>{
-            const rows=parseCSV(csv);
-            const box=document.getElementById("thongke-home");
-            if(rows.length<2){box.innerHTML=`<div class="empty">Chưa có dữ liệu thống kê!</div>`;return;}
-
-            // Sheet Thống Kê hiện dùng 6 cột: Loại | Thứ tự | Chỉ tiêu | Đơn vị | Số liệu | Ghi chú.
-            const h=rows[0].map(x=>(x||"").trim().toLowerCase());
-            const idx={
-                loai:h.indexOf("loại")>-1?h.indexOf("loại"):h.indexOf("loai"),
-                st:h.indexOf("thứ tự")>-1?h.indexOf("thứ tự"):h.indexOf("thu tu"),
-                chi:h.indexOf("chỉ tiêu")>-1?h.indexOf("chỉ tiêu"):h.indexOf("chi tieu"),
-                donvi:h.indexOf("đơn vị")>-1?h.indexOf("đơn vị"):h.indexOf("don vi"),
-                solieu:h.indexOf("số liệu")>-1?h.indexOf("số liệu"):h.indexOf("so lieu"),
-                ghichu:h.indexOf("ghi chú")>-1?h.indexOf("ghi chú"):h.indexOf("ghi chu")
-            };
-            if([idx.loai,idx.st,idx.chi,idx.donvi,idx.solieu,idx.ghichu].includes(-1)){
-                box.innerHTML=`<div class="empty">❌ Không nhận diện được các cột của Sheet Thống Kê!</div>`;return;
-            }
-
-            const data=[];
-            for(let i=1;i<rows.length;i++){
-                const r=rows[i]||[];
-                const loai=(r[idx.loai]||"").trim();
-                const chi=(r[idx.chi]||"").trim();
-                const donvi=(r[idx.donvi]||"").trim();
-                const solieu=(r[idx.solieu]||"").trim();
-                const ghichu=(r[idx.ghichu]||"").trim();
-                if(!loai && !chi && !donvi && !solieu) continue;
-                data.push({
-                    loai,st:Number(r[idx.st])||0,chi,donvi,solieu,ghichu,
-                    anh:layAnhGiai(chi)
-                });
-            }
-            // Giữ đúng thứ tự ưu tiên của Sheet: Sắp đấu trước, sau đó Đã đấu; trong mỗi nhóm giữ Thứ tự tăng dần.
-            data.sort((a,b)=>{
-                const aSap=/sắp\s*đấu/i.test(a.loai), bSap=/sắp\s*đấu/i.test(b.loai);
-                if(aSap!==bSap) return aSap ? -1 : 1;
-                return a.st-b.st;
-            });
-            if(!data.length){box.innerHTML=`<div class="empty">Chưa có dữ liệu thống kê!</div>`;return;}
-
-            const featured=data[0];
-            const rest=data.slice(1,6);
-            const safe=x=>String(x||"").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
-            const featuredStat=safe(featured.solieu||"Đang cập nhật số liệu");
-            const featuredNote=safe(featured.ghichu||"Đang cập nhật ghi chú thống kê.");
-            const matchText=String(featured.donvi||"").replace(/\s+/g," ").trim();
-            const parts=matchText.split(/\s+gặp\s+|\s+vs\s+|\s+v\s+/i);
-            const home=safe((parts[0]||matchText).trim());
-            const away=safe((parts[1]||"").trim());
-            const timeMatch=String(featured.chi||"").match(/(\d{1,2}:\d{2})[^0-9]*(\d{1,2}\/\d{1,2})/);
-            const pitchTime=timeMatch ? `${timeMatch[1]} ${timeMatch[2]}` : "SẮP ĐẤU";
-
-            let html=`
-                <div class="goc-thong-ke">
-                    <div class="goc-thong-ke-head">
-                        <div class="goc-thong-ke-label">GÓC THỐNG KÊ</div>
-                        <div class="goc-thong-ke-meta">DỮ LIỆU TỪ SHEET THỐNG KÊ</div>
-                    </div>
-                    <div class="goc-thong-ke-grid">
-                        <a href="thong-ke.html" class="tk-feature">
-                            <div class="tk-pitch-stage">
-                                <div class="tk-stadium-lights"></div>
-                                <div class="tk-pitch">
-                                    <span class="tk-box left"></span><span class="tk-box right"></span>
-                                    <span class="tk-small-box left"></span><span class="tk-small-box right"></span>
-                                    <span class="tk-center-dot"></span>
-                                </div>
-                                <div class="tk-pitch-time">${safe(pitchTime)}</div>
-                                <div class="tk-pitch-teams"><span class="home">${home}</span><span class="vs">VS</span><span class="away">${away}</span></div>
-                            </div>
-                            <div class="tk-feature-body">
-                                <span class="tk-kicker">📊 ${safe(featured.loai||"THỐNG KÊ")} · #${featured.st}</span>
-                                <div class="tk-match">${safe(featured.donvi||featured.chi)}</div>
-                                <div class="tk-stat">${featuredStat}</div>
-                                <div class="tk-note">${featuredNote}</div>
-                            </div>
-                        </a>
-                        <div class="tk-list">
-            `;
-            rest.forEach(x=>{
-                html+=`<a href="thong-ke.html" class="tk-item">
-                    <div class="tk-item-top"><span class="tk-item-league">${safe(x.chi)}</span><span class="tk-item-order">#${x.st}</span></div>
-                    <div class="tk-item-match">${safe(x.donvi)}</div>
-                    <div class="tk-item-stat">${safe(x.solieu)}</div>
-                    ${x.ghichu?`<div class="tk-item-note">${safe(x.ghichu)}</div>`:""}
-                </a>`;
-            });
-            html+=`
-                        </div>
-                    </div>
-                </div>
-            `;
-            box.innerHTML=html;
-        })
-        .catch(e=>{document.getElementById("thongke-home").innerHTML=`<div class="empty">❌ ${e.message}</div>`;});
-
-        // === PHẦN LỊCH ĐẤU ===
-        fetch(BASE_URL+GID_LICH_DAU)
-        .then(r=>{if(!r.ok)throw new Error("Lỗi kết nối");return r.text();})
-        .then(csv=>{
-            const rows=parseCSV(csv);
-            if(rows.length<2){document.getElementById("lich-list").innerHTML=`<div class="empty">Chưa có dữ liệu Lịch Đấu!</div>`;return;}
-            const h=rows[0].map(h=>h.trim().toLowerCase());
-            const i_loai=h.indexOf("loai_muc"),i_st=h.indexOf("thu_tu"),i_nha=h.indexOf("doi_nha"),i_khach=h.indexOf("doi_khach"),i_ngay=h.indexOf("ngay_gio"),i_giai=h.indexOf("giai_dau");
-            if([i_loai,i_st,i_nha,i_khach,i_ngay].includes(-1)){document.getElementById("lich-list").innerHTML=`<div class="empty">❌ Kiểm tra cột Sheet Lịch Đấu!</div>`;return;}
-            const data=[];
-            for(let i=1;i<rows.length;i++){
-                const r=rows[i];if((r[i_loai]||"").trim()!=="lich_dau") continue;
-                const nha=r[i_nha]||"",khach=r[i_khach]||"";if(!nha||!khach) continue;
-                data.push({
-                    st:Number(r[i_st])||0,
-                    tieude:nha+" vs "+khach,
-                    ngay:r[i_ngay]||"",
-                    tomtat:(r[i_giai]||"")
-                });
-            }
-            data.sort((a,b)=>b.st - a.st);
-            const box=document.getElementById("lich-list");
-            if(!data.length){box.innerHTML=`<div class="empty">Chưa có lịch đấu!</div>`;return;}
-            box.innerHTML=`<div class="grid-2">`;
-            data.slice(0,2).forEach(x=>{
-                box.innerHTML+=`<a href="lich-dau.html" class="card-khong-anh"><span class="card-label label-lich">📅 ${x.ngay} · #${x.st}</span><h3>${x.tieude}</h3><p>${x.tomtat}</p><div class="hint">Xem chi tiết →</div></a>`;
-            });
-            box.innerHTML+=`</div>`;
-        })
-        .catch(e=>{document.getElementById("lich-list").innerHTML=`<div class="empty">❌ ${e.message}</div>`;});
-    </script>
-    <script>(function(s){s.dataset.zone='11665696',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
-
+<!-- ==========================================================================
+     CORE DATA INTEGRATION (GOOGLE SHEETS & API ENGINE)
+     ========================================================================== -->
 <script>
-/* === API-SPORTS: TỰ ĐỘNG ĐỔI KEY KHI KEY HIỆN TẠI LỖI/HẾT QUOTA ===
-   Giữ nguyên widget gốc; chỉ thay data-key và khởi động lại widget.
-*/
+    const btnLenDau = document.getElementById("btnLenDau");
+    window.addEventListener("scroll", ()=>{
+        if(window.scrollY > 400) btnLenDau.classList.add("hien");
+        else btnLenDau.classList.remove("hien");
+    });
+    btnLenDau.addEventListener("click", e=>{
+        e.preventDefault();
+        window.scrollTo({top:0,behavior:"smooth"});
+    });
+
+    const GID_PHAN_TICH = "1723464768";
+    const GID_TIN_NONG = "840175350";
+    const GID_LICH_DAU = "655851279";
+    const GID_KET_QUA = "1819801064";
+    const GID_THONG_KE = "575449196";
+    const BASE_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRjGewmdAmJVjyi-0vSc22hhFPacMgGc-WmVE8PEM3jHfA7IvED3XbBp68Bwp16n1Dc2FFP9ETKTaSH/pub?output=csv&gid=";
+
+    // BỘ BANNER ĐẲNG CẤP CHUYÊN BIỆT THEO GIẢI ĐẤU (KHÔNG DÙNG ẢNH ĐƠN ĐIỆU)
+    const BANNERS_GIAI = {
+        "ngoai hang anh": "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=800&q=80",
+        "premier league": "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=800&q=80",
+        "la liga": "https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=800&q=80",
+        "bundesliga": "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&q=80",
+        "serie a": "https://images.unsplash.com/photo-1518091043644-c1d4457512c6?w=800&q=80",
+        "cúp c1": "https://images.unsplash.com/photo-1489944440615-453fc2b6a9a9?w=800&q=80",
+        "champions league": "https://images.unsplash.com/photo-1489944440615-453fc2b6a9a9?w=800&q=80",
+        "u23": "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=800&q=80",
+        "asiad": "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=800&q=80",
+        "asian cup": "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=800&q=80",
+        "asean": "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=800&q=80",
+        "world cup": "https://images.unsplash.com/photo-1511886929837-354d827aae26?w=800&q=80"
+    };
+
+    const BANNERS_POOL = [
+        "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=800&q=80",
+        "https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=800&q=80",
+        "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&q=80",
+        "https://images.unsplash.com/photo-1489944440615-453fc2b6a9a9?w=800&q=80",
+        "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=800&q=80",
+        "https://images.unsplash.com/photo-1511886929837-354d827aae26?w=800&q=80"
+    ];
+
+    function layAnhBiaGiai(tenGiai, index = 0) {
+        if (!tenGiai) return BANNERS_POOL[index % BANNERS_POOL.length];
+        const lower = tenGiai.toLowerCase().trim();
+        for (let key in BANNERS_GIAI) {
+            if (lower.includes(key)) return BANNERS_GIAI[key];
+        }
+        return BANNERS_POOL[index % BANNERS_POOL.length];
+    }
+
+    // Bộ lọc làm sạch dữ liệu (loại bỏ ký tự lạ, tiếng Trung, vs vs)
+    function cleanText(text) {
+        if (!text) return "";
+        return text
+            .replace(/[\u4e00-\u9fff]/g, "") // Diệt sạch tiếng Trung
+            .replace(/\bvs\s+vs\b/gi, "vs")   // Sửa lỗi lặp vs vs
+            .replace(/<[^>]*>/g, " ")        // Bỏ html
+            .replace(/\s+/g, " ")
+            .trim();
+    }
+
+    function parseCSV(text) {
+        const rows = []; let row = [], cell = "", inQuote = false;
+        for (let i = 0; i < text.length; i++) {
+            let ch = text[i], next = text[i+1] || "";
+            if (ch === '"') {
+                if (inQuote && next === '"') { cell += '"'; i++; }
+                else inQuote = !inQuote;
+            } else if (ch === ',' && !inQuote) {
+                row.push(cell.trim()); cell = "";
+            } else if ((ch === "\n" || ch === "\r") && !inQuote) {
+                if (cell || row.length > 0) { row.push(cell.trim()); rows.push(row); row = []; cell = ""; }
+            } else cell += ch;
+        }
+        if (cell || row.length > 0) { row.push(cell.trim()); rows.push(row); }
+        return rows;
+    }
+
+    function layTomTat(text, doDai = 100) {
+        if (!text) return "Đang cập nhật phân tích...";
+        const clean = cleanText(text);
+        return clean.length > doDai ? clean.substring(0, doDai) + "…" : clean;
+    }
+
+    // ==========================================
+    // 1. TẢI VÀ RENDER PHÂN TÍCH & DỰ ĐOÁN
+    // ==========================================
+    fetch(BASE_URL + GID_PHAN_TICH)
+    .then(r => { if(!r.ok) throw new Error("Lỗi kết nối"); return r.text(); })
+    .then(csv => {
+        const rows = parseCSV(csv);
+        const box = document.getElementById("phan-tich-list");
+        if (rows.length < 2) { box.innerHTML = `<div style="text-align:center;padding:24px;color:var(--text-dim);">Chưa có dữ liệu phân tích</div>`; return; }
+
+        const h = rows[0].map(x => x.trim().toLowerCase());
+        const idx = {
+            loai: h.indexOf("loai_du_lieu"),
+            thuTu: h.indexOf("thu_tu"),
+            giai: h.indexOf("ten_giai"),
+            tran: h.indexOf("ten_tran"),
+            ngay: h.indexOf("ngay_gio"),
+            pt: h.indexOf("phan_tich"),
+            doan: h.indexOf("du_doan")
+        };
+        if (idx.loai === -1 || idx.giai === -1 || idx.tran === -1) {
+            box.innerHTML = `<div style="text-align:center;padding:24px;color:var(--text-dim);">Dữ liệu đang được đồng bộ hóa...</div>`; return;
+        }
+
+        let data = [];
+        for (let i = 1; i < rows.length; i++) {
+            const r = rows[i];
+            if ((r[idx.loai] || "").trim() !== "Trận đấu") continue;
+            const tenGiai = cleanText(r[idx.giai] || "");
+            const tenTran = cleanText(r[idx.tran] || "");
+            data.push({
+                st: Number(r[idx.thuTu]) || 0,
+                giai: tenGiai,
+                tran: tenTran,
+                ngay: cleanText(r[idx.ngay] || ""),
+                pt: layTomTat(r[idx.pt] || "", 95),
+                doan: cleanText(r[idx.doan] || "Chờ cập nhật")
+            });
+        }
+        data.sort((a, b) => b.st - a.st);
+        if (!data.length) { box.innerHTML = `<div style="text-align:center;padding:24px;color:var(--text-dim);">Không có bài phân tích nào.</div>`; return; }
+
+        const items = data.slice(0, 6);
+        const renderCard = (x, i) => `
+            <a href="du-doan.html" class="card-phantich">
+                <div class="pt-banner-wrap">
+                    <img src="${layAnhBiaGiai(x.giai, i)}" alt="${x.tran}" loading="lazy">
+                    <span class="pt-league-badge">${x.giai || "Bóng Đá"}</span>
+                </div>
+                <div class="card-body-phantich">
+                    <div class="pt-match">${x.tran}</div>
+                    <div class="pt-date">📅 ${x.ngay}</div>
+                    <div class="pt-snippet">${x.pt}</div>
+                    <div class="pt-prediction">⚡ ${x.doan}</div>
+                    <div class="pt-cta">Xem phân tích chi tiết →</div>
+                </div>
+            </a>`;
+
+        const cards = items.map((x, i) => renderCard(x, i)).join("");
+        box.innerHTML = `
+            <div class="phan-tich-marquee" aria-label="Băng chuyền bài phân tích">
+                <div class="phan-tich-track">
+                    ${cards}
+                    ${cards}
+                </div>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--text-dim);margin-top:8px;">
+                <span>← Trượt ngang để xem tiếp</span>
+                <span>Di chuột để tạm dừng</span>
+            </div>`;
+    })
+    .catch(e => { document.getElementById("phan-tich-list").innerHTML = `<div style="text-align:center;padding:20px;color:var(--text-dim);">Đang cập nhật...</div>`; });
+
+    // ==========================================
+    // 2. TẢI VÀ RENDER KẾT QUẢ BÓNG ĐÁ
+    // ==========================================
+    fetch(BASE_URL + GID_KET_QUA)
+    .then(r => { if(!r.ok) throw new Error("Lỗi kết nối"); return r.text(); })
+    .then(csv => {
+        const rows = parseCSV(csv);
+        const box = document.getElementById("ketqua-list");
+        if (rows.length < 2) { box.innerHTML = `<div style="text-align:center;padding:24px;color:var(--text-dim);">Chưa có kết quả mới</div>`; return; }
+
+        const h = rows[0].map(x => x.trim().toLowerCase());
+        const i_loai = h.indexOf("loai_muc"), i_st = h.indexOf("thu_tu"), i_tran = h.indexOf("tran_dau"), i_tyso = h.indexOf("ty_so"), i_giai = h.indexOf("giai_dau"), i_ngay = h.indexOf("ngay_gio");
+        if ([i_loai, i_st, i_tran, i_tyso].includes(-1)) { box.innerHTML = `<div style="text-align:center;padding:24px;color:var(--text-dim);">Đang cập nhật...</div>`; return; }
+
+        const data = [];
+        for (let i = 1; i < rows.length; i++) {
+            const r = rows[i];
+            if ((r[i_loai] || "").trim() !== "ket_qua") continue;
+            const tran = cleanText(r[i_tran] || "");
+            if (tran.includes("Không có trận")) continue;
+            const phan = tran.split(/\s+vs\s+/i);
+            if (phan.length < 2) continue;
+            data.push({
+                st: Number(r[i_st]) || 0,
+                nha: phan[0].trim(),
+                khach: phan[1].trim(),
+                tyso: cleanText(r[i_tyso] || "-"),
+                ngay: cleanText(r[i_ngay] || ""),
+                giai: cleanText(r[i_giai] || "Bóng Đá")
+            });
+        }
+        data.sort((a, b) => b.st - a.st);
+        if (!data.length) { box.innerHTML = `<div style="text-align:center;padding:24px;color:var(--text-dim);">Chưa có kết quả trận đấu mới nhất.</div>`; return; }
+
+        const latest = data.slice(0, 6);
+        const renderScoreCard = x => `
+            <a href="ket-qua.html" class="card-ketqua">
+                <div class="ketqua-header">
+                    <span class="ketqua-league">🏆 ${x.giai}</span>
+                    <span class="ketqua-date">${x.ngay}</span>
+                </div>
+                <div class="ketqua-match">
+                    <span class="ketqua-team ketqua-team-home">${x.nha}</span>
+                    <div class="ketqua-score-box">
+                        <span class="ketqua-score-num">${x.tyso}</span>
+                    </div>
+                    <span class="ketqua-team ketqua-team-away">${x.khach}</span>
+                </div>
+                <div class="ketqua-footer">
+                    <span>✓ Đã kết thúc</span>
+                </div>
+            </a>`;
+
+        const left = latest.slice(0, 3).map(renderScoreCard).join("");
+        const right = latest.slice(3, 6).map(renderScoreCard).join("");
+        box.innerHTML = `
+            <div class="ketqua-columns">
+                <div class="ketqua-column">${left}</div>
+                <div class="ketqua-column">${right}</div>
+            </div>`;
+    })
+    .catch(e => { document.getElementById("ketqua-list").innerHTML = `<div style="text-align:center;padding:20px;color:var(--text-dim);">Đang cập nhật...</div>`; });
+
+    // ==========================================
+    // 3. TẢI VÀ RENDER TIN TỨC BÓNG ĐÁ
+    // ==========================================
+    fetch(BASE_URL + GID_TIN_NONG)
+    .then(r => { if(!r.ok) throw new Error("Lỗi kết nối"); return r.text(); })
+    .then(csv => {
+        const rows = parseCSV(csv);
+        const box = document.getElementById("tin-list");
+        if (rows.length < 2) { box.innerHTML = `<div style="text-align:center;padding:24px;color:var(--text-dim);">Chưa có tin tức mới</div>`; return; }
+
+        const data = [];
+        for (let i = 1; i < rows.length; i++) {
+            const r = rows[i];
+            if (!r || r.length < 13) continue;
+            const tieude = cleanText(r[0] || "");
+            const ngaydang = cleanText(r[2] || "");
+            const anh_bia = (r[10] || "").trim();
+            const noidung = cleanText(r[12] || "");
+            if (!tieude) continue;
+            data.push({
+                tieude,
+                ngay: ngaydang.split(" ")[0] || "Mới nhất",
+                anh: anh_bia && anh_bia.startsWith("http") ? anh_bia : BANNERS_POOL[i % BANNERS_POOL.length],
+                tomtat: layTomTat(noidung, 110)
+            });
+        }
+        if (!data.length) { box.innerHTML = `<div style="text-align:center;padding:24px;color:var(--text-dim);">Chưa có bài tin nào.</div>`; return; }
+
+        const baiNoiBat = data[0];
+        const listTinMoi = data.slice(1, 5);
+
+        const subCards = listTinMoi.map(x => `
+            <a href="tin-nong.html" class="card-news-sub">
+                <div class="news-sub-thumb">
+                    <img src="${x.anh}" alt="${x.tieude}" loading="lazy">
+                </div>
+                <div class="news-sub-body">
+                    <span class="news-date">📅 ${x.ngay}</span>
+                    <h4>${x.tieude}</h4>
+                </div>
+            </a>
+        `).join("");
+
+        box.innerHTML = `
+            <div class="news-layout">
+                <a href="tin-nong.html" class="card-news-hero">
+                    <img src="${baiNoiBat.anh}" alt="${baiNoiBat.tieude}">
+                    <div class="news-hero-content">
+                        <span class="badge-hot">🔥 TIN TÂM ĐIỂM · ${baiNoiBat.ngay}</span>
+                        <h3>${baiNoiBat.tieude}</h3>
+                        <p>${baiNoiBat.tomtat}</p>
+                    </div>
+                </a>
+                <div class="news-sub-list">
+                    ${subCards}
+                </div>
+            </div>`;
+    })
+    .catch(e => { document.getElementById("tin-list").innerHTML = `<div style="text-align:center;padding:20px;color:var(--text-dim);">Đang cập nhật...</div>`; });
+
+    // ==========================================
+    // 4. TẢI VÀ RENDER GÓC THỐNG KÊ (3D TACTICAL PITCH)
+    // ==========================================
+    fetch(BASE_URL + GID_THONG_KE)
+    .then(r => { if(!r.ok) throw new Error("Lỗi kết nối"); return r.text(); })
+    .then(csv => {
+        const rows = parseCSV(csv);
+        const box = document.getElementById("thongke-home");
+        if (rows.length < 2) { box.innerHTML = `<div style="text-align:center;padding:24px;color:var(--text-dim);">Chưa có dữ liệu thống kê</div>`; return; }
+
+        const h = rows[0].map(x => (x || "").trim().toLowerCase());
+        const idx = {
+            loai: h.indexOf("loại") > -1 ? h.indexOf("loại") : h.indexOf("loai"),
+            st: h.indexOf("thứ tự") > -1 ? h.indexOf("thứ tự") : h.indexOf("thu tu"),
+            chi: h.indexOf("chỉ tiêu") > -1 ? h.indexOf("chỉ tiêu") : h.indexOf("chi tieu"),
+            donvi: h.indexOf("đơn vị") > -1 ? h.indexOf("đơn vị") : h.indexOf("don vi"),
+            solieu: h.indexOf("số liệu") > -1 ? h.indexOf("số liệu") : h.indexOf("so lieu"),
+            ghichu: h.indexOf("ghi chú") > -1 ? h.indexOf("ghi chú") : h.indexOf("ghi chu")
+        };
+        if ([idx.loai, idx.st, idx.chi, idx.donvi, idx.solieu, idx.ghichu].includes(-1)) {
+            box.innerHTML = `<div style="text-align:center;padding:24px;color:var(--text-dim);">Đang đồng bộ dữ liệu thống kê...</div>`; return;
+        }
+
+        const data = [];
+        for (let i = 1; i < rows.length; i++) {
+            const r = rows[i] || [];
+            const loai = cleanText(r[idx.loai] || "");
+            const chi = cleanText(r[idx.chi] || "");
+            const donvi = cleanText(r[idx.donvi] || "");
+            const solieu = cleanText(r[idx.solieu] || "");
+            const ghichu = cleanText(r[idx.ghichu] || "");
+            if (!loai && !chi && !donvi && !solieu) continue;
+            data.push({ loai, st: Number(r[idx.st]) || 0, chi, donvi, solieu, ghichu });
+        }
+        data.sort((a, b) => {
+            const aSap = /sắp\s*đấu/i.test(a.loai), bSap = /sắp\s*đấu/i.test(b.loai);
+            if (aSap !== bSap) return aSap ? -1 : 1;
+            return a.st - b.st;
+        });
+        if (!data.length) { box.innerHTML = `<div style="text-align:center;padding:24px;color:var(--text-dim);">Chưa có thống kê mới.</div>`; return; }
+
+        const featured = data[0];
+        const rest = data.slice(1, 5);
+
+        const matchText = (featured.donvi || "").trim();
+        const parts = matchText.split(/\s+gặp\s+|\s+vs\s+|\s+v\s+/i);
+        const home = (parts[0] || matchText).trim();
+        const away = (parts[1] || "").trim();
+        const timeMatch = String(featured.chi || "").match(/(\d{1,2}:\d{2})[^0-9]*(\d{1,2}\/\d{1,2})/);
+        const pitchTime = timeMatch ? `${timeMatch[1]} · ${timeMatch[2]}` : "SẮP DIỄN RA";
+
+        let restHtml = rest.map(x => `
+            <a href="thong-ke.html" class="tk-item">
+                <div class="tk-item-top">
+                    <span>🏆 ${x.chi}</span>
+                    <span>#${x.st}</span>
+                </div>
+                <div class="tk-item-match">${x.donvi}</div>
+                <div class="tk-item-stat">⚡ ${x.solieu}</div>
+                ${x.ghichu ? `<div style="font-size:11.5px;color:var(--text-muted);margin-top:2px;">${x.ghichu}</div>` : ""}
+            </a>
+        `).join("");
+
+        box.innerHTML = `
+            <div class="goc-thong-ke">
+                <div class="goc-thong-ke-head">
+                    <div class="goc-thong-ke-label">CHỈ SỐ & PHONG ĐỘ ĐỐI ĐẦU</div>
+                    <div class="goc-thong-ke-meta">LIVE TACTICAL ANALYSIS</div>
+                </div>
+                <div class="goc-thong-ke-grid">
+                    <a href="thong-ke.html" class="tk-feature">
+                        <div class="tk-pitch-stage">
+                            <div class="tk-pitch-time">${pitchTime}</div>
+                            <div class="tk-pitch-teams">
+                                <span>${home}</span>
+                                <span class="vs">VS</span>
+                                <span>${away}</span>
+                            </div>
+                        </div>
+                        <div class="tk-feature-body">
+                            <div style="font-size:12px;font-weight:700;color:var(--gold-primary);text-transform:uppercase;">📊 ${featured.loai} · #${featured.st}</div>
+                            <div style="font-size:15px;font-weight:800;color:#fff;">${featured.donvi || featured.chi}</div>
+                            <div class="tk-stat">⚡ ${featured.solieu || "Đang phân tích số liệu"}</div>
+                            <div class="tk-note">${featured.ghichu}</div>
+                        </div>
+                    </a>
+                    <div class="tk-list">
+                        ${restHtml}
+                    </div>
+                </div>
+            </div>`;
+    })
+    .catch(e => { document.getElementById("thongke-home").innerHTML = `<div style="text-align:center;padding:20px;color:var(--text-dim);">Đang cập nhật...</div>`; });
+
+    // ==========================================
+    // 5. TẢI VÀ RENDER LỊCH THI ĐẤU
+    // ==========================================
+    fetch(BASE_URL + GID_LICH_DAU)
+    .then(r => { if(!r.ok) throw new Error("Lỗi kết nối"); return r.text(); })
+    .then(csv => {
+        const rows = parseCSV(csv);
+        const box = document.getElementById("lich-list");
+        if (rows.length < 2) { box.innerHTML = `<div style="text-align:center;padding:24px;color:var(--text-dim);">Chưa có lịch đấu mới</div>`; return; }
+
+        const h = rows[0].map(x => x.trim().toLowerCase());
+        const i_loai = h.indexOf("loai_muc"), i_st = h.indexOf("thu_tu"), i_nha = h.indexOf("doi_nha"), i_khach = h.indexOf("doi_khach"), i_ngay = h.indexOf("ngay_gio"), i_giai = h.indexOf("giai_dau");
+        if ([i_loai, i_st, i_nha, i_khach, i_ngay].includes(-1)) { box.innerHTML = `<div style="text-align:center;padding:24px;color:var(--text-dim);">Đang cập nhật...</div>`; return; }
+
+        const data = [];
+        for (let i = 1; i < rows.length; i++) {
+            const r = rows[i];
+            if ((r[i_loai] || "").trim() !== "lich_dau") continue;
+            const nha = cleanText(r[i_nha] || "");
+            const khach = cleanText(r[i_khach] || "");
+            if (!nha || !khach) continue;
+            data.push({
+                st: Number(r[i_st]) || 0,
+                tieude: nha + " vs " + khach,
+                ngay: cleanText(r[i_ngay] || ""),
+                giai: cleanText(r[i_giai] || "Bóng Đá Quốc Tế")
+            });
+        }
+        data.sort((a, b) => b.st - a.st);
+        if (!data.length) { box.innerHTML = `<div style="text-align:center;padding:24px;color:var(--text-dim);">Chưa có lịch thi đấu sắp tới.</div>`; return; }
+
+        const cards = data.slice(0, 4).map(x => `
+            <a href="lich-dau.html" class="card-lich">
+                <div class="lich-left">
+                    <span class="lich-badge-time">⏰ ${x.ngay}</span>
+                    <div class="lich-match-title">${x.tieude}</div>
+                    <div class="lich-league-sub">🏆 ${x.giai}</div>
+                </div>
+                <div class="lich-action">
+                    <span>Soi Kèo →</span>
+                </div>
+            </a>
+        `).join("");
+
+        box.innerHTML = `<div class="lich-grid">${cards}</div>`;
+    })
+    .catch(e => { document.getElementById("lich-list").innerHTML = `<div style="text-align:center;padding:20px;color:var(--text-dim);">Đang cập nhật...</div>`; });
+</script>
+
+<!-- API-SPORTS: TỰ ĐỘNG ĐỔI KEY KHI KEY HIỆN TẠI LỖI/HẾT QUOTA -->
+<script>
+(function(s){s.dataset.zone='11665696',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))
+</script>
+<script>
 (function(){
     const DANH_SACH_KEY = [
         "db3cb172848d850444676b821c1e9fd0",
@@ -1012,123 +1815,53 @@
 
     function doiKey(){
         if(dangDoiKey) return;
-        if(Date.now() - lanDoiCuoi < 4000) return;
-        if(keyHienTai >= DANH_SACH_KEY.length - 1) return;
+        const now = Date.now();
+        if(now - lanDoiCuoi < 10000) return;
+        if(DANH_SACH_KEY.length <= 1) return;
 
         dangDoiKey = true;
-        lanDoiCuoi = Date.now();
-
-        keyHienTai++;
+        lanDoiCuoi = now;
+        keyHienTai = (keyHienTai + 1) % DANH_SACH_KEY.length;
         const keyMoi = DANH_SACH_KEY[keyHienTai];
-        const config = layWidget("config");
 
-        if(!config){
-            dangDoiKey = false;
-            return;
+        const config = layWidget("config");
+        if(config){
+            config.setAttribute("data-key", keyMoi);
         }
 
-        config.setAttribute("data-key", keyMoi);
-        console.log("API-Sports: chuyển sang Key " + (keyHienTai + 1));
-
-        setTimeout(function(){
+        setTimeout(() => {
             khoiDongLaiWidget();
-            setTimeout(function(){ dangDoiKey = false; }, 2500);
-        }, 100);
+            setTimeout(() => { dangDoiKey = false; }, 3000);
+        }, 300);
     }
 
-    function kiemTraLoi(){
-        if(dangDoiKey) return;
-
-        const config = layWidget("config");
+    function kiemTraWidget(){
         const games = layWidget("games");
-
-        const text = (vanBanWidget(config) + " " + vanBanWidget(games)).trim();
-
+        if(!games) return;
+        const text = vanBanWidget(games);
         if(coPhaiLoiKey(text)){
             doiKey();
         }
     }
 
-    // Kéo ngang menu: mobile dùng native scrolling, desktop dùng chuột.
-    (function(){
-        const menu = document.querySelector('.menu');
-        if(!menu) return;
+    const observer = new MutationObserver(() => {
+        kiemTraWidget();
+    });
 
-        let dragging = false;
-        let moved = false;
-        let startX = 0;
-        let startScroll = 0;
-
-        // DESKTOP: kéo bằng chuột.
-        // MOBILE: không bắt touch/pointer để trình duyệt xử lý native scrolling mượt hơn.
-        menu.addEventListener('mousedown', function(e){
-            if(e.button !== 0) return;
-
-            dragging = true;
-            moved = false;
-            startX = e.clientX;
-            startScroll = menu.scrollLeft;
-            menu.classList.add('dragging');
-        });
-
-        window.addEventListener('mousemove', function(e){
-            if(!dragging) return;
-
-            const dx = e.clientX - startX;
-
-            if(Math.abs(dx) > 5){
-                moved = true;
-                e.preventDefault();
-            }
-
-            menu.scrollLeft = startScroll - dx;
-        }, {passive:false});
-
-        function stopDragging(){
-            if(!dragging) return;
-            dragging = false;
-            menu.classList.remove('dragging');
+    window.addEventListener("DOMContentLoaded", () => {
+        const games = layWidget("games");
+        if(games){
+            observer.observe(games, {
+                childList: true,
+                subtree: true,
+                characterData: true
+            });
+            setTimeout(kiemTraWidget, 2500);
+            setTimeout(kiemTraWidget, 6000);
         }
+    });
 
-        window.addEventListener('mouseup', stopDragging);
-        window.addEventListener('blur', stopDragging);
-
-        // PC: lăn chuột dọc trên menu sẽ chuyển thành cuộn ngang.
-        menu.addEventListener('wheel', function(e){
-            if(Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
-
-            const maxScroll = menu.scrollWidth - menu.clientWidth;
-            if(maxScroll <= 0) return;
-
-            const current = menu.scrollLeft;
-            const next = current + e.deltaY;
-
-            if(next > 0 && next < maxScroll){
-                e.preventDefault();
-                menu.scrollLeft = next;
-            }
-        }, {passive:false});
-
-        // Nếu vừa kéo bằng chuột thì không kích hoạt nhầm link.
-        menu.addEventListener('click', function(e){
-            if(moved){
-                e.preventDefault();
-                e.stopPropagation();
-                moved = false;
-            }
-        }, true);
-    })();
-
-    function batDau(){
-        setInterval(kiemTraLoi, 2000);
-        setTimeout(kiemTraLoi, 1500);
-    }
-
-    if(document.readyState === "loading"){
-        document.addEventListener("DOMContentLoaded", batDau, {once:true});
-    }else{
-        batDau();
-    }
+    setInterval(kiemTraWidget, 15000);
 })();
 </script>
 
