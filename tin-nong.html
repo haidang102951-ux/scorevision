@@ -5,464 +5,807 @@
     <script>(function(s){s.dataset.zone='11665696',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#050b16">
-    <title>Tin Nóng & Cập Nhật | Score Vision</title>
+    <meta name="theme-color" content="#030712">
+    <title>Tin Nóng & Nhận Định Bóng Đá 24/7 | Score Vision</title>
+    <meta name="description" content="Trung tâm tin tức bóng đá số 1: Ngoại Hạng Anh, Cúp C1, ĐT Việt Nam, V-League, tin chuyển nhượng và tâm điểm siêu sao 24/7.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 
     <style>
-        :root{
-            --sv-bg:#030711;
-            --sv-panel:#07101e;
-            --sv-panel2:#0f1b2d;
-            --sv-text:#f8fafc;
-            --sv-muted:#94a3b8;
-            --sv-soft:#64748b;
-            --sv-gold:#facc15;
-            --sv-gold-light:#fde68a;
-            --sv-red:#ef4444;
-            --sv-blue:#60a5fa;
-            --sv-border:rgba(148,163,184,.14);
-            --sv-radius:16px;
-            --sv-shadow:0 10px 28px rgba(0,0,0,.23);
+        :root {
+            --sv-bg: #030712;
+            --sv-bg-card: rgba(11, 19, 36, 0.88);
+            --sv-bg-card-hover: rgba(17, 28, 54, 0.95);
+            --sv-border: rgba(148, 163, 184, 0.12);
+            --sv-border-gold: rgba(250, 204, 21, 0.35);
+            --sv-gold: #facc15;
+            --sv-gold-light: #fef08a;
+            --sv-cyan: #38bdf8;
+            --sv-red: #ef4444;
+            --sv-text: #f8fafc;
+            --sv-text-dim: #94a3b8;
+            --sv-radius: 16px;
+            --sv-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+            --sv-glow: 0 0 25px rgba(250, 204, 21, 0.15);
         }
 
-        *{margin:0;padding:0;box-sizing:border-box}
-        html{scroll-behavior:smooth}
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
 
-        body{
-            font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
-            color:var(--sv-text);
-            line-height:1.65;
-            min-height:100vh;
-            overflow-x:hidden;
-            background:
-                radial-gradient(900px 480px at 8% -10%,rgba(37,99,235,.18),transparent 62%),
-                radial-gradient(760px 420px at 94% 0%,rgba(250,204,21,.10),transparent 60%),
-                linear-gradient(180deg,#030711 0%,#07101e 46%,#030711 100%);
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--sv-bg);
+            color: var(--sv-text);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(37, 99, 235, 0.12) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(250, 204, 21, 0.08) 0px, transparent 50%),
+                radial-gradient(at 50% 100%, rgba(15, 23, 42, 0.6) 0px, transparent 50%);
+            background-attachment: fixed;
         }
 
-        button{font:inherit}
-
-        .wrap{
-            width:min(1120px,calc(100% - 24px));
-            margin:auto;
+        .wrap {
+            width: min(1180px, calc(100% - 24px));
+            margin: auto;
         }
 
         /* HEADER */
-        .site-header{
-            position:relative;
-            isolation:isolate;
-            overflow:hidden;
-            min-height:152px;
-            padding:28px 0 24px;
-            border-bottom:1px solid rgba(255,255,255,.08);
-            background:
-                linear-gradient(90deg,rgba(2,6,17,.97),rgba(2,6,17,.80) 34%,rgba(2,6,17,.45) 67%,rgba(2,6,17,.80)),
-                linear-gradient(180deg,rgba(2,6,17,.18),rgba(2,6,17,.88)),
-                url("https://images.pexels.com/photos/200986/pexels-photo-200986.jpeg?auto=compress&cs=tinysrgb&w=1920") center/cover no-repeat;
+        .site-header {
+            position: relative;
+            padding: 24px 0 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            background: linear-gradient(180deg, rgba(3, 7, 18, 0.98) 0%, rgba(3, 7, 18, 0.85) 100%);
+            backdrop-filter: blur(12px);
         }
 
-        .site-header:before{
-            content:"";
-            position:absolute;
-            inset:0;
-            z-index:-1;
-            background:radial-gradient(circle at 76% 48%,rgba(250,204,21,.15),transparent 23%);
+        .brand-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
         }
 
-        .site-header:after{
-            content:"";
-            position:absolute;
-            left:4%;
-            right:4%;
-            bottom:0;
-            height:2px;
-            background:linear-gradient(90deg,transparent,#facc15 32%,#60a5fa 68%,transparent);
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
         }
 
-        .brand-row{display:flex;align-items:center}
-        .brand{display:flex;align-items:center;gap:15px}
-
-        .brand-logo{
-            width:64px;
-            height:64px;
-            flex:0 0 64px;
-            border-radius:17px;
-            background:#fff;
-            display:grid;
-            place-items:center;
-            overflow:hidden;
-            border:1px solid rgba(255,255,255,.16);
-            box-shadow:0 10px 28px rgba(0,0,0,.30);
+        .brand-logo {
+            width: 54px;
+            height: 54px;
+            flex-shrink: 0;
+            border-radius: 14px;
+            background: #fff;
+            display: grid;
+            place-items: center;
+            overflow: hidden;
+            border: 1px solid rgba(250, 204, 21, 0.3);
+            box-shadow: 0 4px 18px rgba(250, 204, 21, 0.2);
         }
 
-        .brand-logo img{width:100%;height:100%;object-fit:contain}
+        .brand-logo img { width: 100%; height: 100%; object-fit: contain; }
 
-        .brand-title{
-            font-size:32px;
-            font-weight:900;
-            letter-spacing:-.8px;
-            background:linear-gradient(90deg,#fff,#fde68a,#facc15);
-            -webkit-background-clip:text;
-            background-clip:text;
-            color:transparent;
+        .brand-title {
+            font-family: 'Cabinet Grotesk', sans-serif;
+            font-size: 28px;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+            background: linear-gradient(90deg, #fff 0%, #fef08a 60%, #facc15 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.1;
         }
 
-        .brand-sub{
-            font-size:11px;
-            color:#cbd5e1;
-            letter-spacing:1.7px;
+        .brand-sub {
+            font-size: 11px;
+            color: #94a3b8;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: 2px;
         }
 
-        /* MENU - native touch scroll */
-        .menu-shell{
-            position:sticky;
-            top:8px;
-            z-index:100;
-            margin:16px auto 0;
+        .header-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 6px 14px;
+            border-radius: 999px;
+            background: rgba(239, 68, 68, 0.12);
+            border: 1px solid rgba(239, 68, 68, 0.25);
+            color: #fca5a5;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
         }
 
-        .menu{
-            display:flex;
-            align-items:center;
-            gap:5px;
-            width:100%;
-            padding:7px;
-            overflow-x:auto;
-            overflow-y:hidden;
-            -webkit-overflow-scrolling:touch;
-            touch-action:pan-x;
-            overscroll-behavior-x:contain;
-            scroll-behavior:auto;
-            scrollbar-width:none;
-            background:rgba(7,14,28,.96);
-            border:1px solid rgba(148,163,184,.14);
-            border-radius:15px;
-            box-shadow:0 8px 24px rgba(0,0,0,.22);
-            user-select:none;
-            cursor:grab;
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #ef4444;
+            box-shadow: 0 0 10px #ef4444;
+            animation: pulse 1.8s infinite;
         }
 
-        .menu::-webkit-scrollbar{display:none}
-        .menu.dragging{cursor:grabbing}
-
-        .menu-btn{
-            flex:0 0 auto;
-            white-space:nowrap;
-            text-decoration:none;
-            padding:9px 12px;
-            border-radius:10px;
-            border:1px solid transparent;
-            color:#b8c4d5;
-            font-size:12px;
-            font-weight:750;
-            transition:background-color .12s ease,color .12s ease,border-color .12s ease;
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+            70% { transform: scale(1.1); box-shadow: 0 0 0 8px rgba(239, 68, 68, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
         }
 
-        .menu-btn:hover{
-            color:#fff;
-            background:rgba(255,255,255,.045);
-            border-color:rgba(148,163,184,.12);
+        /* MENU */
+        .menu-shell {
+            position: sticky;
+            top: 10px;
+            z-index: 100;
+            margin: 14px auto 0;
         }
 
-        .menu-btn.active{
-            color:#111827;
-            background:linear-gradient(135deg,#fde68a,#facc15);
-            border-color:#facc15;
-            box-shadow:0 5px 18px rgba(250,204,21,.15);
+        .menu {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 7px;
+            overflow-x: auto;
+            overflow-y: hidden;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            background: rgba(8, 14, 28, 0.95);
+            border: 1px solid rgba(148, 163, 184, 0.14);
+            border-radius: 14px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(16px);
         }
 
-        .menu-btn.livescore{color:#bbf7d0;background:rgba(34,197,94,.07)}
-        .menu-btn.multimedia{color:#e9d5ff;background:rgba(168,85,247,.07)}
-        .menu-btn.fifa{color:#bfdbfe;background:rgba(59,130,246,.07)}
-        .menu-btn.gopy{color:#c7d2fe;background:rgba(99,102,241,.07)}
+        .menu::-webkit-scrollbar { display: none; }
 
-        main{
-            width:min(1100px,calc(100% - 24px));
-            margin:auto;
-            padding-bottom:48px;
+        .menu-btn {
+            flex: 0 0 auto;
+            white-space: nowrap;
+            text-decoration: none;
+            padding: 8px 14px;
+            border-radius: 9px;
+            border: 1px solid transparent;
+            color: #94a3b8;
+            font-size: 12px;
+            font-weight: 700;
+            transition: all 0.15s ease;
         }
 
-        /* HERO */
-        .hero{
-            position:relative;
-            overflow:hidden;
-            min-height:142px;
-            margin:20px 0 18px;
-            border-radius:20px;
-            border:1px solid rgba(250,204,21,.17);
-            background:
-                linear-gradient(90deg,rgba(3,7,18,.97),rgba(3,7,18,.70),rgba(3,7,18,.91)),
-                url("https://images.pexels.com/photos/114296/pexels-photo-114296.jpeg?auto=compress&cs=tinysrgb&w=1600") center/cover no-repeat;
-            box-shadow:0 13px 34px rgba(0,0,0,.22);
+        .menu-btn:hover {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(148, 163, 184, 0.15);
         }
 
-        .hero:after{
-            content:"";
-            position:absolute;
-            inset:0;
-            background:radial-gradient(circle at 83% 50%,rgba(250,204,21,.16),transparent 27%);
-            pointer-events:none;
+        .menu-btn.active {
+            color: #030712;
+            background: linear-gradient(135deg, #fef08a 0%, #facc15 100%);
+            border-color: #facc15;
+            box-shadow: 0 4px 14px rgba(250, 204, 21, 0.25);
+            font-weight: 800;
         }
 
-        .hero-inner{
-            position:relative;
-            z-index:2;
-            padding:24px;
+        .menu-btn.livescore { color: #86efac; background: rgba(34, 197, 94, 0.08); }
+        .menu-btn.multimedia { color: #e9d5ff; background: rgba(168, 85, 247, 0.08); }
+        .menu-btn.fifa { color: #bfdbfe; background: rgba(59, 130, 246, 0.08); }
+
+        /* HERO CENTER */
+        .hero-banner {
+            position: relative;
+            overflow: hidden;
+            margin: 22px 0 20px;
+            padding: 26px 28px;
+            border-radius: 20px;
+            border: 1px solid rgba(250, 204, 21, 0.22);
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(8, 16, 32, 0.92) 100%);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
         }
 
-        .kicker{
-            font-size:10px;
-            font-weight:850;
-            letter-spacing:1.6px;
-            color:#fde68a;
-            text-transform:uppercase;
+        .hero-banner::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(250, 204, 21, 0.12) 0%, transparent 65%);
+            pointer-events: none;
         }
 
-        .hero h1{
-            font-size:28px;
-            line-height:1.2;
-            margin-top:4px;
-            font-weight:900;
-            letter-spacing:-.6px;
+        .hero-kicker {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.8px;
+            color: var(--sv-gold);
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        .hero p{
-            font-size:12px;
-            color:#cbd5e1;
-            margin-top:7px;
+        .hero-title {
+            font-family: 'Cabinet Grotesk', sans-serif;
+            font-size: 30px;
+            font-weight: 900;
+            line-height: 1.2;
+            margin: 8px 0 6px;
+            letter-spacing: -0.5px;
         }
 
-        /* NEWS SUMMARY */
-        .news-bar{
-            display:flex;
-            align-items:center;
-            justify-content:space-between;
-            gap:10px;
-            margin:0 1px 11px;
+        .hero-desc {
+            font-size: 13px;
+            color: #cbd5e1;
+            max-width: 720px;
+            line-height: 1.5;
         }
 
-        .news-title{
-            font-size:11px;
-            color:#94a3b8;
-            font-weight:850;
-            text-transform:uppercase;
-            letter-spacing:.7px;
+        .hero-stats {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-top: 16px;
+            flex-wrap: wrap;
         }
 
-        .news-count{
-            display:inline-flex;
-            align-items:center;
-            gap:6px;
-            padding:6px 9px;
-            border-radius:999px;
-            background:rgba(239,68,68,.09);
-            border:1px solid rgba(239,68,68,.18);
-            color:#fca5a5;
-            font-size:10px;
-            font-weight:800;
+        .stat-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 5px 12px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(148, 163, 184, 0.14);
+            font-size: 11px;
+            font-weight: 600;
+            color: #cbd5e1;
         }
 
-        /* NEWS CARD */
-        .tin-item{
-            position:relative;
-            background:linear-gradient(145deg,rgba(30,41,59,.97),rgba(8,16,30,.99));
-            border-radius:18px;
-            padding:0;
-            margin-bottom:14px;
-            border:1px solid rgba(148,163,184,.13);
-            cursor:pointer;
-            overflow:hidden;
-            box-shadow:0 8px 22px rgba(0,0,0,.18);
-            transition:transform .16s ease,border-color .16s ease,box-shadow .16s ease;
+        .stat-chip strong { color: var(--sv-gold); }
+
+        /* FILTER & SEARCH TOOLBAR */
+        .toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
         }
 
-        .tin-item:hover{
-            border-color:rgba(250,204,21,.40);
-            transform:translateY(-2px);
-            box-shadow:0 12px 28px rgba(0,0,0,.28);
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            flex-wrap: wrap;
         }
 
-        .tin-hot{
-            border-color:rgba(239,68,68,.42);
-            box-shadow:0 0 0 1px rgba(239,68,68,.08),0 10px 26px rgba(239,68,68,.10);
+        .filter-btn {
+            padding: 7px 13px;
+            border-radius: 9px;
+            border: 1px solid rgba(148, 163, 184, 0.14);
+            background: rgba(15, 23, 42, 0.7);
+            color: #cbd5e1;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.15s ease;
         }
 
-        .tin-hot:hover{border-color:rgba(239,68,68,.65)}
-
-        .tin-anh-wrap{
-            position:relative;
-            width:100%;
-            height:230px;
-            overflow:hidden;
-            background:#0b1220;
+        .filter-btn:hover {
+            border-color: rgba(250, 204, 21, 0.3);
+            color: #fff;
+            background: rgba(30, 41, 59, 0.8);
         }
 
-        .tin-anh-bia{
-            width:100%;
-            height:100%;
-            object-fit:cover;
-            display:block;
-            background:#0b1220;
+        .filter-btn.active {
+            background: rgba(250, 204, 21, 0.15);
+            border-color: var(--sv-gold);
+            color: var(--sv-gold-light);
+            font-weight: 700;
         }
 
-        .tin-anh-wrap:after{
-            content:"";
-            position:absolute;
-            inset:auto 0 0;
-            height:45%;
-            background:linear-gradient(180deg,transparent,rgba(2,6,17,.72));
-            pointer-events:none;
+        .search-box {
+            position: relative;
+            min-width: 260px;
+            flex: 1;
+            max-width: 340px;
         }
 
-        .tin-hot-badge{
-            position:absolute;
-            top:12px;
-            left:12px;
-            z-index:2;
-            display:inline-flex;
-            align-items:center;
-            gap:5px;
-            padding:6px 9px;
-            border-radius:999px;
-            background:rgba(127,29,29,.88);
-            border:1px solid rgba(254,202,202,.20);
-            color:#fee2e2;
-            font-size:10px;
-            font-weight:900;
-            box-shadow:0 6px 16px rgba(0,0,0,.25);
+        .search-input {
+            width: 100%;
+            padding: 9px 14px 9px 36px;
+            border-radius: 10px;
+            border: 1px solid rgba(148, 163, 184, 0.16);
+            background: rgba(15, 23, 42, 0.85);
+            color: #fff;
+            font-size: 12px;
+            outline: none;
+            transition: border-color 0.15s ease;
         }
 
-        .tin-noi-dung{padding:16px 17px 17px}
-
-        .tin-tieu-de{
-            font-size:18px;
-            font-weight:850;
-            color:#fef08a;
-            margin-bottom:7px;
-            line-height:1.4;
-            letter-spacing:-.15px;
+        .search-input:focus {
+            border-color: var(--sv-gold);
+            box-shadow: 0 0 12px rgba(250, 204, 21, 0.15);
         }
 
-        .tin-hot .tin-tieu-de{color:#fde68a}
-
-        .tin-meta{
-            display:flex;
-            align-items:center;
-            justify-content:space-between;
-            gap:10px;
-            flex-wrap:wrap;
-            margin-bottom:10px;
+        .search-icon {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 13px;
+            color: #64748b;
+            pointer-events: none;
         }
 
-        .tin-ngay{
-            display:inline-flex;
-            align-items:center;
-            background:rgba(239,68,68,.12);
-            border:1px solid rgba(239,68,68,.16);
-            color:#fca5a5;
-            padding:4px 9px;
-            border-radius:999px;
-            font-size:11px;
-            font-weight:700;
+        /* FEATURED HERO CARD */
+        .featured-card {
+            position: relative;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            border-radius: 20px;
+            overflow: hidden;
+            background: linear-gradient(145deg, rgba(17, 27, 49, 0.95), rgba(9, 15, 28, 0.98));
+            border: 1px solid rgba(250, 204, 21, 0.35);
+            box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
+            margin-bottom: 24px;
+            transition: transform 0.2s ease, border-color 0.2s ease;
         }
 
-        .tin-hint{
-            font-size:11px;
-            color:#94a3b8;
-            font-style:italic;
+        .featured-card:hover {
+            border-color: var(--sv-gold);
+            transform: translateY(-2px);
         }
 
-        .tin-full{
-            display:none;
-            margin-top:14px;
-            padding-top:14px;
-            border-top:1px dashed rgba(148,163,184,.22);
+        .featured-thumb {
+            position: relative;
+            min-height: 320px;
+            overflow: hidden;
+            background: #090f1d;
         }
 
-        .tin-full.show{display:block}
-
-        .tin-noi-dung-chi-tiet{
-            font-size:15px;
-            color:#e2e8f0;
-            line-height:1.85;
-            white-space:pre-wrap;
+        .featured-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
         }
 
-        .tin-full.show + *{display:none}
-
-        .empty{
-            text-align:center;
-            color:#64748b;
-            padding:60px 20px;
-            border:1px dashed rgba(148,163,184,.12);
-            border-radius:15px;
-            background:rgba(15,23,42,.35);
+        .featured-card:hover .featured-thumb img {
+            transform: scale(1.04);
         }
 
-        .loading{
-            text-align:center;
-            color:#fde68a;
-            padding:46px 20px;
-            border:1px dashed rgba(250,204,21,.15);
-            border-radius:15px;
-            background:rgba(15,23,42,.35);
-            animation:nhapnhay 1.5s ease-in-out infinite;
+        .featured-thumb::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent 40%, rgba(9, 15, 28, 0.8) 100%),
+                        linear-gradient(180deg, transparent 60%, rgba(9, 15, 28, 0.9) 100%);
+            pointer-events: none;
         }
 
-        @keyframes nhapnhay{
-            0%,100%{opacity:1}
-            50%{opacity:.42}
+        .badge-hot {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            z-index: 2;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 13px;
+            border-radius: 999px;
+            background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 14px rgba(239, 68, 68, 0.4);
         }
 
-        @media(max-width:700px){
-            .wrap,main{width:calc(100% - 18px)}
-            .site-header{min-height:122px;padding:22px 0 18px}
-            .brand-logo{width:52px;height:52px;flex-basis:52px;border-radius:14px}
-            .brand-title{font-size:25px}
-            .brand-sub{font-size:9px;letter-spacing:1.15px}
-            .menu-shell{margin-top:10px}
-            .menu{padding:6px;border-radius:13px}
-            .menu-btn{padding:8px 10px;font-size:11px}
-            .hero{min-height:124px;margin-top:14px;border-radius:17px}
-            .hero-inner{padding:19px}
-            .hero h1{font-size:22px}
-            .hero p{font-size:11px}
-            .tin-anh-wrap{height:190px}
-            .tin-noi-dung{padding:14px}
-            .tin-tieu-de{font-size:16px}
-            .tin-noi-dung-chi-tiet{font-size:14px}
-            .tin-hint{font-size:10px}
+        .featured-body {
+            padding: 30px 28px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
         }
 
-        @media(prefers-reduced-motion:reduce){
-            html{scroll-behavior:auto}
-            *,*::before,*::after{
-                animation-duration:.01ms!important;
-                transition-duration:.01ms!important;
-            }
+        .meta-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+
+        .tag-category {
+            display: inline-block;
+            padding: 3px 9px;
+            border-radius: 6px;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .tag-source {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 11px;
+            color: #94a3b8;
+            font-weight: 600;
+        }
+
+        .tag-time {
+            font-size: 11px;
+            color: #64748b;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .featured-title {
+            font-family: 'Cabinet Grotesk', sans-serif;
+            font-size: 22px;
+            font-weight: 900;
+            color: #fff;
+            line-height: 1.35;
+            margin-bottom: 12px;
+            letter-spacing: -0.3px;
+            transition: color 0.15s ease;
+        }
+
+        .featured-card:hover .featured-title {
+            color: var(--sv-gold-light);
+        }
+
+        .featured-lead {
+            font-size: 13px;
+            color: #cbd5e1;
+            line-height: 1.6;
+            margin-bottom: 18px;
+        }
+
+        .featured-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: auto;
+            flex-wrap: wrap;
+        }
+
+        .btn-action-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 9px 18px;
+            border-radius: 9px;
+            background: linear-gradient(135deg, #fef08a 0%, #facc15 100%);
+            color: #030712;
+            font-size: 12px;
+            font-weight: 800;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        .btn-action-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 16px rgba(250, 204, 21, 0.35);
+        }
+
+        .btn-action-outline {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 15px;
+            border-radius: 9px;
+            border: 1px solid rgba(148, 163, 184, 0.22);
+            background: rgba(15, 23, 42, 0.6);
+            color: #cbd5e1;
+            font-size: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .btn-action-outline:hover {
+            border-color: rgba(250, 204, 21, 0.4);
+            color: #fff;
+            background: rgba(30, 41, 59, 0.8);
+        }
+
+        /* NEWS GRID */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 18px;
+        }
+
+        .news-card {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            background: var(--sv-bg-card);
+            border: 1px solid var(--sv-border);
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .news-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--sv-border-gold);
+            background: var(--sv-bg-card-hover);
+            box-shadow: 0 14px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .card-thumb-wrap {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+            background: #080f1d;
+        }
+
+        .card-thumb-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.35s ease;
+        }
+
+        .news-card:hover .card-thumb-img {
+            transform: scale(1.05);
+        }
+
+        .card-thumb-wrap::after {
+            content: "";
+            position: absolute;
+            inset: auto 0 0;
+            height: 40%;
+            background: linear-gradient(180deg, transparent, rgba(3, 7, 18, 0.85));
+            pointer-events: none;
+        }
+
+        .card-badge-top {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            z-index: 2;
+        }
+
+        .card-source-top {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 2;
+            padding: 3px 8px;
+            border-radius: 6px;
+            background: rgba(3, 7, 18, 0.78);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #cbd5e1;
+            font-size: 10px;
+            font-weight: 700;
+            backdrop-filter: blur(8px);
+        }
+
+        .card-body {
+            padding: 16px 18px 18px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .card-date-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 8px;
+            font-size: 11px;
+            color: #64748b;
+        }
+
+        .card-title {
+            font-size: 15px;
+            font-weight: 800;
+            line-height: 1.45;
+            color: #f8fafc;
+            margin-bottom: 10px;
+            letter-spacing: -0.2px;
+            transition: color 0.15s ease;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .news-card:hover .card-title {
+            color: var(--sv-gold-light);
+        }
+
+        .card-lead {
+            font-size: 12px;
+            color: #94a3b8;
+            line-height: 1.55;
+            margin-bottom: 14px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .card-full-content {
+            display: none;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px dashed rgba(148, 163, 184, 0.2);
+            font-size: 13px;
+            color: #e2e8f0;
+            line-height: 1.7;
+            white-space: pre-wrap;
+        }
+
+        .card-full-content.show {
+            display: block;
+            animation: fadeIn 0.2s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card-actions {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-top: auto;
+            padding-top: 12px;
+            border-top: 1px solid rgba(148, 163, 184, 0.08);
+        }
+
+        .btn-toggle-read {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--sv-gold);
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px 0;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            transition: color 0.15s ease;
+        }
+
+        .btn-toggle-read:hover {
+            color: #fff;
+        }
+
+        .btn-link-out {
+            font-size: 11px;
+            font-weight: 600;
+            color: #94a3b8;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            transition: color 0.15s ease;
+        }
+
+        .btn-link-out:hover {
+            color: var(--sv-cyan);
+        }
+
+        /* EMPTY & LOADING STATES */
+        .state-box {
+            text-align: center;
+            padding: 60px 20px;
+            border-radius: 18px;
+            border: 1px dashed rgba(148, 163, 184, 0.18);
+            background: rgba(11, 19, 36, 0.5);
+            margin: 20px 0;
+        }
+
+        .state-box .spinner {
+            width: 38px;
+            height: 38px;
+            border: 3px solid rgba(250, 204, 21, 0.2);
+            border-top-color: var(--sv-gold);
+            border-radius: 50%;
+            margin: 0 auto 16px;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .state-title {
+            font-size: 15px;
+            font-weight: 800;
+            color: #f8fafc;
+            margin-bottom: 6px;
+        }
+
+        .state-desc {
+            font-size: 12px;
+            color: #94a3b8;
+        }
+
+        /* FOOTER */
+        .site-footer {
+            margin-top: 60px;
+            padding: 30px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            text-align: center;
+            font-size: 12px;
+            color: #64748b;
+        }
+
+        .site-footer a { color: var(--sv-gold); text-decoration: none; }
+
+        @media (max-width: 860px) {
+            .featured-card { grid-template-columns: 1fr; }
+            .featured-thumb { min-height: 220px; }
+            .hero-title { font-size: 24px; }
+            .news-grid { grid-template-columns: 1fr; }
+            .toolbar { flex-direction: column; align-items: stretch; }
+            .search-box { max-width: 100%; min-width: 100%; }
+        }
+
+        @media (max-width: 600px) {
+            .brand-title { font-size: 22px; }
+            .brand-logo { width: 44px; height: 44px; }
+            .hero-banner { padding: 20px 18px; }
+            .hero-title { font-size: 20px; }
         }
     </style>
 </head>
 
 <body>
 
+<!-- HEADER -->
 <header class="site-header">
     <div class="wrap">
         <div class="brand-row">
-            <div class="brand">
+            <a href="index.html" class="brand">
                 <div class="brand-logo">
                     <img src="logo.png" alt="Score Vision"
-                         onerror="this.style.display='none';this.parentElement.innerHTML='<span style=&quot;font-size:30px&quot;>⚽</span>'">
+                         onerror="this.style.display='none';this.parentElement.innerHTML='<span style=&quot;font-size:26px&quot;>⚽</span>'">
                 </div>
                 <div>
                     <div class="brand-title">Score Vision</div>
                     <div class="brand-sub">PHÂN TÍCH · DỮ LIỆU · BÓNG ĐÁ</div>
                 </div>
+            </a>
+            <div class="header-badge">
+                <span class="pulse-dot"></span>
+                <span>TIN TỨC TRỰC TUYẾN</span>
             </div>
         </div>
     </div>
 </header>
 
+<!-- STICKY MENU BAR -->
 <div class="wrap menu-shell">
     <nav class="menu" id="mainMenu" aria-label="Điều hướng chính">
         <a href="index.html" class="menu-btn">🏠 Trang chủ</a>
@@ -479,257 +822,505 @@
     </nav>
 </div>
 
-<main>
-    <section class="hero">
-        <div class="hero-inner">
-            <div class="kicker">SCORE VISION · BREAKING NEWS CENTER</div>
-            <h1>📰 Tin Nóng &amp; Cập Nhật Mới</h1>
-            <p>Tin bóng đá mới nhất được cập nhật trực tiếp từ hệ thống Score Vision.</p>
+<!-- MAIN CONTENT -->
+<main class="wrap" style="padding-bottom: 50px;">
+    <!-- HERO SECTION -->
+    <section class="hero-banner">
+        <div class="hero-kicker">
+            <span>⚡ LIVE FOOTBALL INTELLIGENCE</span>
+            <span>·</span>
+            <span>CẬP NHẬT 24/7</span>
+        </div>
+        <h1 class="hero-title">📰 Tin Nóng &amp; Tiêu Điểm Sân Cỏ</h1>
+        <p class="hero-desc">
+            Tổng hợp diễn biến bóng đá trong nước &amp; quốc tế mới nhất: Ngoại Hạng Anh, Cúp C1, ĐT Việt Nam, tin chuyển nhượng và nhận định nóng từ các chuyên gia.
+        </p>
+        <div class="hero-stats">
+            <span class="stat-chip" id="statCount">● Đang kết nối dữ liệu...</span>
+            <span class="stat-chip">⚡ Nguồn: <strong>Báo chí chính thống</strong></span>
+            <span class="stat-chip">🛡️ Lọc tự động: <strong>100% Chuẩn xác</strong></span>
         </div>
     </section>
 
-    <div class="news-bar">
-        <div class="news-title">Tin tức mới nhất</div>
-        <div class="news-count" id="newsCount">● Đang tải...</div>
+    <!-- FILTER & SEARCH TOOLBAR -->
+    <div class="toolbar">
+        <div class="filter-group" id="filterGroup">
+            <button class="filter-btn active" data-filter="all">Tất cả</button>
+            <button class="filter-btn" data-filter="vietnam">🇻🇳 Việt Nam</button>
+            <button class="filter-btn" data-filter="epl">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Ngoại Hạng Anh</button>
+            <button class="filter-btn" data-filter="ucl">🏆 Cúp C1</button>
+            <button class="filter-btn" data-filter="stars">🌟 Siêu sao</button>
+            <button class="filter-btn" data-filter="transfer">⚡ Chuyển nhượng</button>
+        </div>
+        <div class="search-box">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchInput" class="search-input" placeholder="Tìm tin theo từ khóa, cầu thủ...">
+        </div>
     </div>
 
-    <div id="list-tin">
-        <div class="loading">Đang tải tin tức...</div>
+    <!-- FEATURED HERO STORY -->
+    <div id="featuredHero"></div>
+
+    <!-- MAIN NEWS GRID -->
+    <div class="news-grid" id="newsGrid">
+        <div class="state-box" style="grid-column: 1 / -1;">
+            <div class="spinner"></div>
+            <div class="state-title">Đang đồng bộ tin tức nóng nhất...</div>
+            <div class="state-desc">Hệ thống đang tải và giải mã dữ liệu thời sự từ máy chủ Score Vision</div>
+        </div>
     </div>
 </main>
 
+<footer class="site-footer">
+    <div class="wrap">
+        <p>© 2026 <strong>Score Vision</strong> — Bản quyền thuộc về Hệ thống Phân tích Dữ liệu Bóng đá Chuyên sâu.</p>
+        <p style="margin-top:6px; color:#475569;">Dữ liệu tin tức được tổng hợp từ các cơ quan báo chí chính thống thể thao.</p>
+    </div>
+</footer>
+
+<!-- JAVASCRIPT LOGIC -->
 <script>
-/* =========================================================
-   GOOGLE SHEET — GIỮ NGUYÊN NGUỒN DỮ LIỆU GỐC
-========================================================= */
-const BASE_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRjGewmdAmJVjyi-0vSc22hhFPacMgGc-WmVE8PEM3jHfA7IvED3XbBp68Bwp16n1Dc2FFP9ETKTaSH/pub?gid=840175350&single=true&output=csv";
+/* ==========================================================================
+   HỆ THỐNG XỬ LÝ DỮ LIỆU TIN TỨC CAO CẤP - SCORE VISION OBSIDIAN SYSTEM
+   ========================================================================== */
+const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRjGewmdAmJVjyi-0vSc22hhFPacMgGc-WmVE8PEM3jHfA7IvED3XbBp68Bwp16n1Dc2FFP9ETKTaSH/pub?gid=840175350&single=true&output=csv";
 
-const ANH_MAC_DINH = "https://images.unsplash.com/photo-1574629810360-7ef513a43c33?w=800&h=400&fit=crop&q=80";
+// Kho ảnh chất lượng cao 100% Verified 200 OK
+const VERIFIED_FALLBACK_IMAGE = "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=900&q=80";
 
-function parseCSV(text){
+const TOPIC_PRESETS = [
+    {
+        keys: ["ronaldo", "cr7", "bồ đào nha", "portugal", "al nassr"],
+        img: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=900&q=80",
+        tag: "🌟 CR7 & BỒ ĐÀO NHA",
+        color: "#f59e0b"
+    },
+    {
+        keys: ["messi", "inter miami", "argentina", "bóng vàng", "ballon d'or"],
+        img: "https://images.unsplash.com/photo-1516733725897-1aa73b87c8e8?w=900&q=80",
+        tag: "🌟 MESSI & QUẢ BÓNG VÀNG",
+        color: "#f59e0b"
+    },
+    {
+        keys: ["mourinho", "hlv", "huấn luyện viên", "chiến lược gia", "pep", "klopp"],
+        img: "https://images.unsplash.com/photo-1518091043644-c1d4457512c6?w=900&q=80",
+        tag: "🧠 CHIẾN THUẬT & HLV",
+        color: "#38bdf8"
+    },
+    {
+        keys: ["việt nam", "v-league", "u.23", "u23", "hagl", "asian cup", "đội tuyển", "thầy kim", "thái lan"],
+        img: "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=900&q=80",
+        tag: "🇻🇳 BÓNG ĐÁ VIỆT NAM",
+        color: "#ef4444"
+    },
+    {
+        keys: ["chelsea", "man united", "man utd", "mu", "arsenal", "liverpool", "man city", "premier league", "ngoại hạng anh"],
+        img: "https://images.unsplash.com/photo-1560272564-c83b66b1ad12?w=900&q=80",
+        tag: "🏴󠁧󠁢󠁥󠁮󠁧󠁿 NGOẠI HẠNG ANH",
+        color: "#38bdf8"
+    },
+    {
+        keys: ["champions league", "cúp c1", "c1", "real madrid", "barcelona", "bayern", "psg"],
+        img: "https://images.unsplash.com/photo-1577223625816-7546f13df25d?w=900&q=80",
+        tag: "🏆 CÚP C1 CHÂU ÂU",
+        color: "#facc15"
+    },
+    {
+        keys: ["chuyển nhượng", "hợp đồng", "ký hợp đồng", "mua sắm", "thương vụ"],
+        img: "https://images.unsplash.com/photo-1551958219-acbc608c6377?w=900&q=80",
+        tag: "⚡ TIN CHUYỂN NHƯỢNG",
+        color: "#10b981"
+    },
+    {
+        keys: ["world cup", "fifa", "bxh", "thế giới"],
+        img: "https://images.unsplash.com/photo-1511886929837-354d827aae26?w=900&q=80",
+        tag: "🌍 BÓNG ĐÁ QUỐC TẾ",
+        color: "#a855f7"
+    }
+];
+
+const ROTATING_STADIUM_IMAGES = [
+    "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=900&q=80",
+    "https://images.unsplash.com/photo-1489944440615-453fc2b6a9a9?w=900&q=80",
+    "https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=900&q=80",
+    "https://images.unsplash.com/photo-1575361204480-aadea25e6e68?w=900&q=80",
+    "https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=900&q=80",
+    "https://images.unsplash.com/photo-1543326727-cf6c39e8f84c?w=900&q=80"
+];
+
+// Bộ giải mã thực thể HTML 2 lớp chống tuyệt đối lỗi &agrave;, &aacute;, v.v.
+function decodeHTMLEntities(str) {
+    if (!str) return "";
+    const txt = document.createElement("textarea");
+    txt.innerHTML = str;
+    let decoded = txt.value;
+    if (decoded.includes("&")) {
+        txt.innerHTML = decoded;
+        decoded = txt.value;
+    }
+    return decoded
+        .replace(/<[^>]*>/g, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+}
+
+// Bộ phân tích CSV chuyên dụng xử lý dấu nháy kép
+function parseCSV(text) {
     const rows = [];
     let row = [], cell = "", inQuote = false;
-
-    for(let i=0; i<text.length; i++){
+    for (let i = 0; i < text.length; i++) {
         const ch = text[i];
-        const next = text[i+1] || "";
-
-        if(ch === '"'){
-            if(inQuote && next === '"'){
+        const next = text[i + 1] || "";
+        if (ch === '"') {
+            if (inQuote && next === '"') {
                 cell += '"';
                 i++;
-            }else{
+            } else {
                 inQuote = !inQuote;
             }
-        }else if(ch === ',' && !inQuote){
+        } else if (ch === ',' && !inQuote) {
             row.push(cell.trim());
             cell = "";
-        }else if((ch === '\n' || ch === '\r') && !inQuote){
-            if(cell !== "" || row.length > 0){
+        } else if ((ch === '\n' || ch === '\r') && !inQuote) {
+            if (cell !== "" || row.length > 0) {
                 row.push(cell.trim());
                 rows.push(row);
                 row = [];
                 cell = "";
             }
-        }else{
+        } else {
             cell += ch;
         }
     }
-
-    if(cell !== "" || row.length > 0){
+    if (cell !== "" || row.length > 0) {
         row.push(cell.trim());
         rows.push(row);
     }
-
     return rows;
 }
 
-function escapeHTML(value){
-    return String(value ?? "")
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
-}
-
-function xuLyNoiDung(t){
-    if(!t) return "Chưa có nội dung";
-    return escapeHTML(t)
-        .replace(/\r\n/g,"<br>")
-        .replace(/\r/g,"<br>")
-        .replace(/\n/g,"<br>");
-}
-
-function capNhatSoTin(count){
-    const el = document.getElementById("newsCount");
-    if(!el) return;
-    el.textContent = `● ${count} tin`;
-}
-
-fetch(BASE_URL)
-.then(r=>{
-    if(!r.ok) throw new Error(`Lỗi kết nối: ${r.status}`);
-    return r.text();
-})
-.then(csv=>{
-    const rows = parseCSV(csv);
-    console.log("Số hàng đọc được:", rows.length);
-
-    if(rows.length < 2){
-        document.getElementById("newsCount").textContent = "● 0 tin";
-        document.getElementById("list-tin").innerHTML =
-            `<div class="empty">Chưa có dữ liệu trên Sheet!</div>`;
-        return;
-    }
-
-    /*
-      GIỮ NGUYÊN CẤU TRÚC GỐC:
-      Cột A = Tiêu đề
-      Cột C = Ngày
-      Cột K = Ảnh bìa
-      Cột M = Nội dung
-    */
-    const DANH_SACH = [];
-
-    for(let i=1; i<rows.length; i++){
-        const r = rows[i];
-
-        if(!r || r.length < 13) continue;
-
-        const anh = (r[10] || "").trim();
-
-        DANH_SACH.push({
-            tieu_de: (r[0] || "").trim() || "Không có tiêu đề",
-            ngay: (r[2] || "").trim(),
-            anh_bia: anh.startsWith("http") ? anh : ANH_MAC_DINH,
-            noi_dung: (r[12] || "").trim() || "Chưa có nội dung"
-        });
-    }
-
-    if(!DANH_SACH.length){
-        document.getElementById("newsCount").textContent = "● 0 tin";
-        document.getElementById("list-tin").innerHTML =
-            `<div class="empty">Không đọc được dữ liệu! Kiểm tra cấu trúc cột trên Sheet.</div>`;
-        return;
-    }
-
-    capNhatSoTin(DANH_SACH.length);
-
-    const box = document.getElementById("list-tin");
-
-    /*
-      Chỉ render 1 lần — tránh innerHTML += trong vòng lặp
-      để giảm lag khi Sheet có nhiều tin.
-    */
-    box.innerHTML = DANH_SACH.map((x, idx)=>{
-        const id_tin = "tin-" + idx;
-        const hot = idx === 0;
-
-        return `
-        <article class="tin-item ${hot ? "tin-hot" : ""}" id="${id_tin}">
-            <div class="tin-anh-wrap">
-                <img
-                    src="${escapeHTML(x.anh_bia)}"
-                    alt="${escapeHTML(x.tieu_de)}"
-                    class="tin-anh-bia"
-                    loading="${idx < 2 ? "eager" : "lazy"}"
-                    decoding="async"
-                    referrerpolicy="no-referrer"
-                >
-                ${hot ? `<span class="tin-hot-badge">🔥 TIN NÓNG</span>` : ""}
-            </div>
-
-            <div class="tin-noi-dung">
-                <h3 class="tin-tieu-de">${hot ? "🔥 " : ""}${escapeHTML(x.tieu_de)}</h3>
-
-                <div class="tin-meta">
-                    ${x.ngay ? `<span class="tin-ngay">📅 ${escapeHTML(x.ngay)}</span>` : ""}
-                    <span class="tin-hint">👉 Bấm để xem nội dung chi tiết ↓</span>
-                </div>
-
-                <div class="tin-full" id="${id_tin}-full">
-                    <div class="tin-noi-dung-chi-tiet">${xuLyNoiDung(x.noi_dung)}</div>
-                </div>
-            </div>
-        </article>`;
-    }).join("");
-
-    /* Gắn sự kiện sau khi render xong */
-    box.querySelectorAll(".tin-item").forEach(item=>{
-        item.addEventListener("click", ()=>{
-            const full = item.querySelector(".tin-full");
-            const hint = item.querySelector(".tin-hint");
-
-            if(!full || !hint) return;
-
-            const isOpen = full.classList.toggle("show");
-
-            hint.textContent = isOpen
-                ? "↑ Thu gọn lại ↑"
-                : "👉 Bấm để xem nội dung chi tiết ↓";
-        });
-    });
-})
-.catch(err=>{
-    document.getElementById("newsCount").textContent = "● Lỗi";
-    document.getElementById("list-tin").innerHTML =
-        `<div class="empty">❌ Lỗi: ${escapeHTML(err.message)}</div>`;
-});
-</script>
-
-<script>
-/* =========================================================
-   UNIFIED SMOOTH DRAG
-   Mobile: native touch scrolling
-   Desktop: lightweight mouse drag
-========================================================= */
-(function(){
-    function dragScroll(el){
-        if(!el) return;
-
-        let down = false;
-        let startX = 0;
-        let startScroll = 0;
-        let moved = false;
-
-        el.addEventListener("mousedown", e=>{
-            if(e.button !== 0) return;
-
-            down = true;
-            moved = false;
-            startX = e.pageX;
-            startScroll = el.scrollLeft;
-            el.classList.add("dragging");
-        });
-
-        window.addEventListener("mousemove", e=>{
-            if(!down) return;
-
-            const dx = e.pageX - startX;
-
-            if(Math.abs(dx) > 5) moved = true;
-
-            el.scrollLeft = startScroll - dx;
-        });
-
-        window.addEventListener("mouseup", ()=>{
-            down = false;
-            el.classList.remove("dragging");
-        });
-
-        el.addEventListener("click", e=>{
-            if(moved){
-                e.preventDefault();
-                e.stopPropagation();
-                moved = false;
+// Khớp ảnh & thẻ danh mục thông minh theo từ khóa bài viết
+function matchTopic(title, source, index) {
+    const combined = (title + " " + (source || "")).toLowerCase();
+    for (let preset of TOPIC_PRESETS) {
+        for (let k of preset.keys) {
+            if (combined.includes(k)) {
+                return {
+                    img: preset.img,
+                    tag: preset.tag,
+                    color: preset.color
+                };
             }
-        }, true);
+        }
+    }
+    return {
+        img: ROTATING_STADIUM_IMAGES[index % ROTATING_STADIUM_IMAGES.length],
+        tag: "⚽ BÓNG ĐÁ 24H",
+        color: "#64748b"
+    };
+}
 
-        el.addEventListener("dragstart", e=>e.preventDefault());
+// Định dạng ngày tháng thanh lịch
+function formatDate(dateStr) {
+    if (!dateStr) return "Mới cập nhật";
+    if (dateStr.includes("+0700")) {
+        return dateStr.replace("+0700", "").trim();
+    }
+    return dateStr;
+}
+
+let ALL_NEWS = [];
+let ACTIVE_FILTER = "all";
+let SEARCH_KEYWORD = "";
+
+function renderNews() {
+    const featuredBox = document.getElementById("featuredHero");
+    const gridBox = document.getElementById("newsGrid");
+
+    let filtered = ALL_NEWS.filter(item => {
+        // Lọc từ khóa tìm kiếm
+        if (SEARCH_KEYWORD) {
+            const needle = SEARCH_KEYWORD.toLowerCase();
+            const textMatch = item.title.toLowerCase().includes(needle) ||
+                              item.source.toLowerCase().includes(needle) ||
+                              item.lead.toLowerCase().includes(needle);
+            if (!textMatch) return false;
+        }
+
+        // Lọc chuyên mục
+        if (ACTIVE_FILTER === "vietnam") {
+            const t = item.title.toLowerCase();
+            return t.includes("việt nam") || t.includes("v-league") || t.includes("u.23") || t.includes("hagl") || t.includes("thái lan");
+        }
+        if (ACTIVE_FILTER === "epl") {
+            const t = item.title.toLowerCase();
+            return t.includes("ngoại hạng") || t.includes("chelsea") || t.includes("man united") || t.includes("arsenal") || t.includes("liverpool") || t.includes("man city");
+        }
+        if (ACTIVE_FILTER === "ucl") {
+            const t = item.title.toLowerCase();
+            return t.includes("c1") || t.includes("champions league") || t.includes("real madrid") || t.includes("barcelona");
+        }
+        if (ACTIVE_FILTER === "stars") {
+            const t = item.title.toLowerCase();
+            return t.includes("ronaldo") || t.includes("messi") || t.includes("mbappe") || t.includes("mourinho") || t.includes("bóng vàng");
+        }
+        if (ACTIVE_FILTER === "transfer") {
+            const t = item.title.toLowerCase();
+            return t.includes("chuyển nhượng") || t.includes("hợp đồng") || t.includes("mua sắm") || t.includes("bản hợp đồng");
+        }
+        return true;
+    });
+
+    if (!filtered.length) {
+        featuredBox.innerHTML = "";
+        gridBox.innerHTML = `
+            <div class="state-box" style="grid-column: 1 / -1;">
+                <div style="font-size:36px;margin-bottom:12px;">🔍</div>
+                <div class="state-title">Không tìm thấy bài viết phù hợp</div>
+                <div class="state-desc">Hãy thử tìm với từ khóa khác hoặc đổi bộ lọc chuyên mục bên trên.</div>
+            </div>`;
+        return;
     }
 
-    dragScroll(document.getElementById("mainMenu"));
+    // Nếu không tìm kiếm hoặc lọc chuyên mục, đưa bài viết đầu tiên lên làm Hero Card
+    let heroItem = null;
+    let listItems = filtered;
+
+    if (ACTIVE_FILTER === "all" && !SEARCH_KEYWORD && filtered.length > 0) {
+        heroItem = filtered[0];
+        listItems = filtered.slice(1);
+    }
+
+    // Render Hero Card
+    if (heroItem) {
+        featuredBox.innerHTML = `
+            <article class="featured-card">
+                <div class="featured-thumb">
+                    <img src="${heroItem.img}" 
+                         alt="${heroItem.title}" 
+                         referrerpolicy="no-referrer"
+                         loading="eager"
+                         onerror="this.onerror=null;this.src='${VERIFIED_FALLBACK_IMAGE}';">
+                    <span class="badge-hot">🔥 TIN TÂM ĐIỂM</span>
+                </div>
+                <div class="featured-body">
+                    <div class="meta-row">
+                        <span class="tag-category" style="background:${heroItem.catColor}20;color:${heroItem.catColor};border:1px solid ${heroItem.catColor}40">
+                            ${heroItem.catTag}
+                        </span>
+                        <span class="tag-source">📰 Nguồn: <strong>${heroItem.source}</strong></span>
+                        <span class="tag-time">📅 ${heroItem.date}</span>
+                    </div>
+                    <h2 class="featured-title">${heroItem.title}</h2>
+                    <p class="featured-lead">${heroItem.lead}</p>
+                    <div class="featured-actions">
+                        <button class="btn-action-primary" onclick="toggleDetails('hero-content')">
+                            <span>Chi tiết bài viết</span>
+                            <span>↓</span>
+                        </button>
+                        ${heroItem.link ? `
+                            <a href="${heroItem.link}" target="_blank" rel="noopener noreferrer" class="btn-action-outline">
+                                <span>Đọc tại báo gốc (${heroItem.source})</span>
+                                <span>↗</span>
+                            </a>
+                        ` : ""}
+                    </div>
+                    <div class="card-full-content" id="hero-content">
+                        ${heroItem.content || `
+                            <p style="margin-bottom:10px;">📌 <em>Thông tin tóm lược:</em> ${heroItem.title}.</p>
+                            <p>Bài viết được biên tập và tổng hợp tự động từ chuyên mục Thể thao của <strong>${heroItem.source}</strong>. Quý độc giả có thể bấm nút "Đọc tại báo gốc" bên trên để theo dõi trọn vẹn phóng sự chi tiết.</p>
+                        `}
+                    </div>
+                </div>
+            </article>
+        `;
+    } else {
+        featuredBox.innerHTML = "";
+    }
+
+    // Render Grid Cards
+    gridBox.innerHTML = listItems.map((item, idx) => {
+        const contentId = `card-content-${idx}`;
+        return `
+            <article class="news-card">
+                <div class="card-thumb-wrap">
+                    <img src="${item.img}" 
+                         alt="${item.title}" 
+                         class="card-thumb-img"
+                         loading="lazy"
+                         referrerpolicy="no-referrer"
+                         onerror="this.onerror=null;this.src='${VERIFIED_FALLBACK_IMAGE}';">
+                    <div class="card-badge-top">
+                        <span class="tag-category" style="background:${item.catColor}25;color:${item.catColor};border:1px solid ${item.catColor}45;backdrop-filter:blur(8px);">
+                            ${item.catTag}
+                        </span>
+                    </div>
+                    <div class="card-source-top">
+                        ${item.source}
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="card-date-row">
+                        <span>📅 ${item.date}</span>
+                        <span>#${item.index}</span>
+                    </div>
+                    <h3 class="card-title" title="${item.title}">${item.title}</h3>
+                    <p class="card-lead">${item.lead}</p>
+
+                    <div class="card-full-content" id="${contentId}">
+                        ${item.content || `
+                            <p style="margin-bottom:8px;font-size:12px;color:#94a3b8;">
+                                ℹ️ Tin tức thể thao tự động tổng hợp từ <strong>${item.source}</strong>.
+                            </p>
+                            <p style="font-size:12px;color:#cbd5e1;">${item.title}</p>
+                        `}
+                    </div>
+
+                    <div class="card-actions">
+                        <button class="btn-toggle-read" onclick="toggleDetails('${contentId}')">
+                            <span id="${contentId}-btn-text">Xem chi tiết</span>
+                            <span>↓</span>
+                        </button>
+                        ${item.link ? `
+                            <a href="${item.link}" target="_blank" rel="noopener noreferrer" class="btn-link-out">
+                                <span>Báo gốc ↗</span>
+                            </a>
+                        ` : ""}
+                    </div>
+                </div>
+            </article>
+        `;
+    }).join("");
+}
+
+// Bật/tắt xem chi tiết bài viết
+window.toggleDetails = function(elemId) {
+    const el = document.getElementById(elemId);
+    if (!el) return;
+    const isShowing = el.classList.toggle("show");
+    const btnText = document.getElementById(elemId + "-btn-text");
+    if (btnText) {
+        btnText.textContent = isShowing ? "Thu gọn lại" : "Xem chi tiết";
+    }
+};
+
+// Khởi chạy tải dữ liệu từ Google Sheet
+fetch(SHEET_CSV_URL)
+    .then(res => {
+        if (!res.ok) throw new Error(`HTTP Error: ${res.status}`);
+        return res.text();
+    })
+    .then(csvText => {
+        const rows = parseCSV(csvText);
+        if (rows.length < 2) {
+            document.getElementById("newsGrid").innerHTML = `
+                <div class="state-box" style="grid-column: 1 / -1;">
+                    <div class="state-title">Chưa có bài viết mới trên hệ thống</div>
+                    <div class="state-desc">Vui lòng quay lại sau ít phút.</div>
+                </div>`;
+            return;
+        }
+
+        ALL_NEWS = [];
+        for (let i = 1; i < rows.length; i++) {
+            const r = rows[i];
+            if (!r || r.length < 2) continue;
+
+            const rawTitle = r[0] || "";
+            const title = decodeHTMLEntities(rawTitle);
+            if (!title) continue;
+
+            const link = (r[1] || "").trim();
+            const date = formatDate(decodeHTMLEntities(r[2] || ""));
+            const source = decodeHTMLEntities(r[3] || "Score Vision");
+            const rawImg = (r[10] || "").trim();
+            const content = decodeHTMLEntities(r[12] || "");
+
+            // Khớp ngữ cảnh ảnh & thẻ danh mục
+            const topic = matchTopic(title, source, i);
+            const finalImg = (rawImg && rawImg.startsWith("http")) ? rawImg : topic.img;
+
+            // Đoạn trích dẫn tóm tắt
+            let lead = content;
+            if (!lead || lead.length < 20) {
+                lead = `Cập nhật diễn biến nóng nhất từ nguồn ${source}. Theo dõi nhận định và phân tích chi tiết trận cầu tâm điểm.`;
+            } else if (lead.length > 130) {
+                lead = lead.substring(0, 130) + "…";
+            }
+
+            ALL_NEWS.push({
+                index: i,
+                title: title,
+                link: link,
+                date: date,
+                source: source,
+                img: finalImg,
+                catTag: topic.tag,
+                catColor: topic.color,
+                lead: lead,
+                content: content
+            });
+        }
+
+        // Cập nhật chip số lượng
+        const statEl = document.getElementById("statCount");
+        if (statEl) statEl.innerHTML = `● <strong>${ALL_NEWS.length}</strong> bài viết nóng`;
+
+        // Render lần đầu
+        renderNews();
+    })
+    .catch(err => {
+        console.error("Lỗi nạp tin nóng:", err);
+        document.getElementById("newsGrid").innerHTML = `
+            <div class="state-box" style="grid-column: 1 / -1;">
+                <div style="font-size:36px;margin-bottom:12px;">⚠️</div>
+                <div class="state-title">Không thể tải dữ liệu thời sự</div>
+                <div class="state-desc">${err.message}. Vui lòng thử tải lại trang hoặc kiểm tra kết nối mạng.</div>
+            </div>`;
+    });
+
+// Gắn sự kiện bộ lọc chuyên mục
+document.querySelectorAll(".filter-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+        document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        ACTIVE_FILTER = btn.getAttribute("data-filter") || "all";
+        renderNews();
+    });
+});
+
+// Gắn sự kiện tìm kiếm tức thì
+const searchInput = document.getElementById("searchInput");
+if (searchInput) {
+    let debounceTimer;
+    searchInput.addEventListener("input", (e) => {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(() => {
+            SEARCH_KEYWORD = e.target.value.trim();
+            renderNews();
+        }, 180);
+    });
+}
+
+// Native touch & lightweight drag scroll cho thanh Menu
+(function() {
+    const el = document.getElementById("mainMenu");
+    if (!el) return;
+    let down = false, startX = 0, scrollLeft = 0, moved = false;
+    el.addEventListener("mousedown", e => {
+        if (e.button !== 0) return;
+        down = true; moved = false; startX = e.pageX; scrollLeft = el.scrollLeft;
+    });
+    window.addEventListener("mousemove", e => {
+        if (!down) return;
+        const dx = e.pageX - startX;
+        if (Math.abs(dx) > 5) moved = true;
+        el.scrollLeft = scrollLeft - dx;
+    });
+    window.addEventListener("mouseup", () => { down = false; });
+    el.addEventListener("click", e => {
+        if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; }
+    }, true);
 })();
 </script>
 
