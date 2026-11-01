@@ -34,8 +34,8 @@
 
         :root {
             --bg-base: #030712;
-            --bg-card: rgba(15, 23, 42, 0.72);
-            --bg-card-hover: rgba(30, 41, 59, 0.85);
+            --bg-card: rgba(15, 23, 42, 0.75);
+            --bg-card-hover: rgba(30, 41, 59, 0.88);
             --bg-surface: #0b1329;
             --border-card: rgba(255, 255, 255, 0.08);
             --border-glow: rgba(250, 204, 21, 0.45);
@@ -88,7 +88,7 @@
         /* ===== HEADER & BRAND HERO ===== */
         .site-header {
             position: relative;
-            padding: 32px 0 24px;
+            padding: 30px 0 22px;
             border-bottom: 1px solid var(--border-card);
             background: linear-gradient(180deg, rgba(3, 7, 18, 0.95) 0%, rgba(11, 19, 41, 0.75) 100%);
             backdrop-filter: blur(20px);
@@ -113,8 +113,8 @@
             gap: 16px;
         }
         .logo-box {
-            width: 58px;
-            height: 58px;
+            width: 56px;
+            height: 56px;
             flex-shrink: 0;
             border-radius: var(--radius-md);
             padding: 2px;
@@ -124,17 +124,12 @@
             align-items: center;
             justify-content: center;
             overflow: hidden;
-            animation: logoGlow 4s infinite alternate;
         }
         .logo-box img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             border-radius: calc(var(--radius-md) - 2px);
-        }
-        @keyframes logoGlow {
-            0% { box-shadow: 0 0 16px rgba(250, 204, 21, 0.2); }
-            100% { box-shadow: 0 0 30px rgba(250, 204, 21, 0.45), 0 0 10px rgba(56, 189, 248, 0.3); }
         }
 
         .brand-name {
@@ -145,7 +140,6 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             line-height: 1.15;
-            text-shadow: 0 2px 15px rgba(250, 204, 21, 0.2);
         }
         .brand-sub {
             font-size: 11px;
@@ -168,7 +162,7 @@
             align-items: center;
             gap: 8px;
             padding: 8px 12px;
-            background: rgba(11, 19, 41, 0.88);
+            background: rgba(11, 19, 41, 0.9);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: var(--radius-full);
             backdrop-filter: blur(20px);
@@ -217,9 +211,7 @@
         }
 
         /* ===== SECTION HEADINGS ===== */
-        .section {
-            margin-bottom: 44px;
-        }
+        .section { margin-bottom: 44px; }
         .section-head {
             display: flex;
             align-items: center;
@@ -232,10 +224,8 @@
         .section-head::after {
             content: "";
             position: absolute;
-            bottom: -1px;
-            left: 0;
-            width: 60px;
-            height: 2px;
+            bottom: -1px; left: 0;
+            width: 60px; height: 2px;
             background: var(--gold-primary);
             box-shadow: 0 0 10px var(--gold-primary);
         }
@@ -307,14 +297,9 @@
             margin-bottom: 14px;
             color: #ffffff;
         }
-        .intro-copy h1 span {
-            color: var(--gold-light);
-        }
-        .intro-copy p {
-            font-size: 14.5px;
-            color: var(--text-muted);
-            line-height: 1.7;
-        }
+        .intro-copy h1 span { color: var(--gold-light); }
+        .intro-copy p { font-size: 14.5px; color: var(--text-muted); line-height: 1.7; }
+
         .intro-widget {
             border-radius: var(--radius-lg);
             overflow: hidden;
@@ -401,12 +386,7 @@
             border-bottom: 1px solid var(--border-card);
             background: rgba(3, 7, 18, 0.6);
         }
-        .widget-title {
-            font-size: 13px;
-            font-weight: 800;
-            letter-spacing: 0.5px;
-            color: #fff;
-        }
+        .widget-title { font-size: 13px; font-weight: 800; color: #fff; }
         .widget-badge {
             font-size: 10px;
             font-weight: 800;
@@ -417,146 +397,181 @@
             border-radius: var(--radius-full);
             animation: livePulse 1.5s infinite;
         }
-        .widget-scroll {
-            max-height: 340px;
-            overflow-y: auto;
-            padding: 8px;
-        }
+        .widget-scroll { max-height: 340px; overflow-y: auto; padding: 8px; }
 
-        /* ===== THẺ PHÂN TÍCH & DỰ ĐOÁN (MARQUEE 60FPS) ===== */
+        /* ===== THẺ PHÂN TÍCH & DỰ ĐOÁN (DYNAMIC MATCHUP & CURIOSITY HOOK) ===== */
         .phan-tich-marquee {
             overflow: hidden;
             position: relative;
-            padding: 6px 0;
-            mask-image: linear-gradient(90deg, transparent 0%, black 3%, black 97%, transparent 100%);
-            -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 3%, black 97%, transparent 100%);
+            padding: 8px 0 16px;
+            mask-image: linear-gradient(90deg, transparent 0%, black 2%, black 98%, transparent 100%);
+            -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 2%, black 98%, transparent 100%);
         }
         .phan-tich-track {
             display: flex;
-            gap: 20px;
+            gap: 22px;
             width: max-content;
             animation: marqueeScroll 45s linear infinite;
         }
-        .phan-tich-marquee:hover .phan-tich-track {
-            animation-play-state: paused;
-        }
+        .phan-tich-marquee:hover .phan-tich-track { animation-play-state: paused; }
         @keyframes marqueeScroll {
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
         }
 
         .card-phantich {
-            width: 360px;
+            width: 370px;
             flex-shrink: 0;
             background: var(--bg-card);
             border: 1px solid var(--border-card);
-            border-radius: var(--radius-md);
+            border-radius: var(--radius-lg);
             overflow: hidden;
             transition: var(--transition);
             display: flex;
             flex-direction: column;
             box-shadow: var(--shadow-subtle);
-            backdrop-filter: blur(12px);
+            backdrop-filter: blur(14px);
+            position: relative;
         }
         .card-phantich:hover {
             transform: translateY(-5px);
             border-color: var(--border-glow);
             box-shadow: var(--shadow-hover);
         }
-        .pt-banner-wrap {
+
+        /* MATCHUP STAGE HEADER (LOGO 2 ĐỘI THẬT) */
+        .pt-matchup-stage {
+            background: radial-gradient(circle at 50% 10%, rgba(37, 99, 235, 0.28), transparent 70%),
+                        linear-gradient(180deg, #070d1e 0%, #030712 100%);
+            padding: 16px 14px 14px;
+            border-bottom: 1px solid var(--border-card);
             position: relative;
-            width: 100%;
-            aspect-ratio: 16/9;
             overflow: hidden;
-            background: #0b1329;
         }
-        .pt-banner-wrap img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        .card-phantich:hover .pt-banner-wrap img {
-            transform: scale(1.06);
-        }
-        .pt-league-badge {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            font-size: 11px;
+        .pt-league-tag {
+            display: inline-block;
+            font-size: 10.5px;
             font-weight: 800;
             color: #000;
             background: linear-gradient(135deg, var(--gold-light), var(--gold-primary));
-            padding: 3px 10px;
+            padding: 2px 9px;
             border-radius: var(--radius-full);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            margin-bottom: 10px;
             letter-spacing: 0.3px;
         }
-        .card-body-phantich {
-            padding: 16px 18px 18px;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
+        .pt-teams-row {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
             gap: 8px;
         }
-        .pt-match {
-            font-size: 16px;
+        .pt-team-col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 6px;
+        }
+        .pt-team-crest {
+            width: 44px;
+            height: 44px;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.6));
+            transition: transform 0.3s ease;
+        }
+        .card-phantich:hover .pt-team-crest {
+            transform: scale(1.1);
+        }
+        .pt-team-name {
+            font-size: 13.5px;
             font-weight: 800;
             color: #ffffff;
-            line-height: 1.35;
+            line-height: 1.25;
+            max-width: 120px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
-        .pt-date {
-            font-size: 12px;
-            color: var(--cyan-accent);
-            font-weight: 600;
+        .pt-vs-col {
             display: flex;
+            flex-direction: column;
             align-items: center;
             gap: 4px;
         }
-        .pt-snippet {
+        .pt-vs-badge {
+            font-size: 13px;
+            font-weight: 900;
+            color: var(--gold-primary);
+            background: rgba(250, 204, 21, 0.12);
+            border: 1px solid rgba(250, 204, 21, 0.3);
+            padding: 3px 8px;
+            border-radius: var(--radius-full);
+            letter-spacing: 1px;
+        }
+        .pt-match-clock {
+            font-size: 10.5px;
+            font-weight: 600;
+            color: var(--cyan-accent);
+            white-space: nowrap;
+        }
+
+        .card-body-phantich {
+            padding: 14px 16px 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            flex-grow: 1;
+        }
+        .pt-teaser-hook {
             font-size: 13px;
             color: var(--text-muted);
             line-height: 1.5;
-            background: rgba(2, 6, 23, 0.45);
-            padding: 8px 10px;
-            border-radius: var(--radius-sm);
-            border-left: 2px solid var(--border-card);
-            margin: 4px 0;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
-        .pt-prediction {
-            font-size: 12.5px;
-            font-weight: 700;
-            color: var(--gold-light);
-            background: rgba(250, 204, 21, 0.1);
-            border: 1px solid rgba(250, 204, 21, 0.25);
-            padding: 6px 10px;
+
+        /* CURIOSITY LOCK BOX (KHÓA DỰ ĐOÁN GÂY TÒ MÒ) */
+        .pt-lock-banner {
+            background: linear-gradient(135deg, rgba(2, 6, 23, 0.9) 0%, rgba(15, 23, 42, 0.95) 100%);
+            border: 1px dashed rgba(250, 204, 21, 0.4);
             border-radius: var(--radius-sm);
+            padding: 10px 12px;
             display: flex;
             align-items: center;
-            gap: 6px;
-        }
-        .pt-cta {
-            font-size: 12px;
-            font-weight: 700;
-            color: var(--gold-primary);
-            margin-top: auto;
-            padding-top: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            gap: 4px;
+            justify-content: space-between;
+            gap: 8px;
             transition: var(--transition);
         }
-        .card-phantich:hover .pt-cta {
-            transform: translateX(4px);
-            color: #fff;
+        .card-phantich:hover .pt-lock-banner {
+            border-style: solid;
+            border-color: var(--gold-primary);
+            background: rgba(250, 204, 21, 0.08);
+        }
+        .pt-lock-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .pt-lock-icon { font-size: 14px; }
+        .pt-lock-text {
+            font-size: 12px;
+            font-weight: 750;
+            color: var(--gold-light);
+        }
+        .pt-lock-btn {
+            font-size: 11px;
+            font-weight: 800;
+            color: #000;
+            background: var(--gold-primary);
+            padding: 4px 8px;
+            border-radius: var(--radius-full);
+            white-space: nowrap;
+            box-shadow: 0 2px 8px rgba(250, 204, 21, 0.35);
         }
 
-        /* ===== THẺ KẾT QUẢ BÓNG ĐÁ (DIGITAL SCOREBOARD) ===== */
+        /* ===== THẺ KẾT QUẢ BÓNG ĐÁ ===== */
         .ketqua-columns {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -587,17 +602,14 @@
             left: 0; top: 0; bottom: 0; width: 3px;
             background: var(--gold-primary);
             opacity: 0.6;
-            transition: var(--transition);
         }
         .card-ketqua:hover {
             transform: translateY(-3px);
             border-color: var(--border-glow);
             box-shadow: var(--shadow-hover);
         }
-        .card-ketqua:hover::before {
-            opacity: 1;
-            box-shadow: 0 0 10px var(--gold-primary);
-        }
+        .card-ketqua:hover::before { opacity: 1; }
+
         .ketqua-header {
             display: flex;
             align-items: center;
@@ -608,12 +620,8 @@
             font-weight: 800;
             color: var(--gold-light);
             text-transform: uppercase;
-            letter-spacing: 0.4px;
         }
-        .ketqua-date {
-            font-weight: 600;
-            color: var(--text-dim);
-        }
+        .ketqua-date { font-weight: 600; color: var(--text-dim); }
         .ketqua-match {
             display: grid;
             grid-template-columns: 1fr auto 1fr;
@@ -636,14 +644,12 @@
             border: 1px solid rgba(250, 204, 21, 0.35);
             padding: 4px 14px;
             border-radius: var(--radius-sm);
-            box-shadow: inset 0 2px 6px rgba(0,0,0,0.6);
         }
         .ketqua-score-num {
             font-size: 18px;
             font-weight: 900;
             letter-spacing: 2px;
             color: var(--gold-primary);
-            text-shadow: 0 0 10px rgba(250, 204, 21, 0.4);
         }
         .ketqua-footer {
             display: flex;
@@ -654,7 +660,7 @@
             color: var(--emerald-live);
         }
 
-        /* ===== THẺ TIN TỨC (CINEMATIC NEWS GRID) ===== */
+        /* ===== THẺ TIN TỨC ===== */
         .news-layout {
             display: grid;
             grid-template-columns: 1.1fr 0.9fr;
@@ -681,9 +687,7 @@
             object-fit: cover;
             transition: transform 0.5s ease;
         }
-        .card-news-hero:hover img {
-            transform: scale(1.05);
-        }
+        .card-news-hero:hover img { transform: scale(1.05); }
         .card-news-hero::after {
             content: "";
             position: absolute;
@@ -707,7 +711,6 @@
             background: linear-gradient(135deg, #f97316, var(--gold-primary));
             padding: 4px 10px;
             border-radius: var(--radius-full);
-            box-shadow: 0 4px 12px rgba(249, 115, 22, 0.4);
         }
         .news-hero-content h3 {
             font-size: 20px;
@@ -759,20 +762,14 @@
             object-fit: cover;
             transition: transform 0.4s ease;
         }
-        .card-news-sub:hover .news-sub-thumb img {
-            transform: scale(1.08);
-        }
+        .card-news-sub:hover .news-sub-thumb img { transform: scale(1.08); }
         .news-sub-body {
             display: flex;
             flex-direction: column;
             justify-content: center;
             gap: 6px;
         }
-        .news-date {
-            font-size: 11px;
-            font-weight: 700;
-            color: var(--cyan-accent);
-        }
+        .news-date { font-size: 11px; font-weight: 700; color: var(--cyan-accent); }
         .news-sub-body h4 {
             font-size: 14px;
             font-weight: 750;
@@ -784,7 +781,7 @@
             overflow: hidden;
         }
 
-        /* ===== GÓC THỐNG KÊ (3D TACTICAL PITCH ARENA) ===== */
+        /* ===== GÓC THỐNG KÊ (TACTICAL PITCH ARENA) ===== */
         .goc-thong-ke {
             background: var(--bg-card);
             border: 1px solid var(--border-card);
@@ -807,12 +804,7 @@
             letter-spacing: 1.5px;
             color: var(--gold-primary);
         }
-        .goc-thong-ke-meta {
-            font-size: 11px;
-            font-weight: 700;
-            color: var(--text-dim);
-            letter-spacing: 0.5px;
-        }
+        .goc-thong-ke-meta { font-size: 11px; font-weight: 700; color: var(--text-dim); }
         .goc-thong-ke-grid {
             display: grid;
             grid-template-columns: 1.15fr 0.85fr;
@@ -831,9 +823,8 @@
             border-color: var(--border-glow);
             box-shadow: var(--shadow-hover);
         }
-        /* 3D Night Tactical Pitch */
         .tk-pitch-stage {
-            height: 180px;
+            height: 160px;
             background: 
                 radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.25), transparent 70%),
                 linear-gradient(180deg, #052619 0%, #02120c 100%);
@@ -848,28 +839,26 @@
         .tk-pitch-stage::before {
             content: "";
             position: absolute;
-            inset: 15px;
+            inset: 12px;
             border: 1.5px solid rgba(52, 211, 153, 0.35);
             border-radius: 4px;
         }
         .tk-pitch-stage::after {
             content: "";
             position: absolute;
-            left: 50%; top: 15px; bottom: 15px;
+            left: 50%; top: 12px; bottom: 12px;
             width: 1px;
             background: rgba(52, 211, 153, 0.35);
         }
         .tk-pitch-time {
             font-size: 11px;
             font-weight: 800;
-            letter-spacing: 1px;
             color: #000;
             background: var(--gold-primary);
             padding: 3px 12px;
             border-radius: var(--radius-full);
             z-index: 2;
             margin-bottom: 8px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
         }
         .tk-pitch-teams {
             font-size: 18px;
@@ -879,7 +868,6 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
         }
         .tk-pitch-teams .vs {
             font-size: 12px;
@@ -891,31 +879,44 @@
             border: 1px solid rgba(244, 63, 94, 0.4);
         }
         .tk-feature-body {
-            padding: 18px;
+            padding: 16px 18px;
             display: flex;
             flex-direction: column;
             gap: 8px;
         }
-        .tk-stat {
-            font-size: 17px;
-            font-weight: 850;
-            color: var(--gold-light);
-            background: rgba(250, 204, 21, 0.1);
-            border: 1px solid rgba(250, 204, 21, 0.25);
-            padding: 8px 12px;
-            border-radius: var(--radius-sm);
+        .tk-stat-badge {
+            font-size: 12px;
+            font-weight: 800;
+            color: var(--gold-primary);
+            text-transform: uppercase;
         }
-        .tk-note {
+        .tk-stat-match { font-size: 16px; font-weight: 800; color: #fff; }
+        .tk-stat-teaser {
             font-size: 13px;
             color: var(--text-muted);
-            line-height: 1.55;
+            line-height: 1.5;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .tk-cta-btn {
+            margin-top: 8px;
+            align-self: flex-start;
+            font-size: 12px;
+            font-weight: 750;
+            color: #000;
+            background: linear-gradient(135deg, var(--gold-light), var(--gold-primary));
+            padding: 6px 14px;
+            border-radius: var(--radius-full);
+            transition: var(--transition);
+        }
+        .tk-feature:hover .tk-cta-btn {
+            transform: translateX(3px);
+            box-shadow: 0 4px 15px rgba(250, 204, 21, 0.4);
         }
 
-        .tk-list {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
+        .tk-list { display: flex; flex-direction: column; gap: 10px; }
         .tk-item {
             background: rgba(3, 7, 18, 0.6);
             border: 1px solid var(--border-card);
@@ -935,19 +936,10 @@
             color: var(--gold-primary);
             margin-bottom: 4px;
         }
-        .tk-item-match {
-            font-size: 14px;
-            font-weight: 750;
-            color: #fff;
-            margin-bottom: 4px;
-        }
-        .tk-item-stat {
-            font-size: 13px;
-            font-weight: 700;
-            color: var(--cyan-accent);
-        }
+        .tk-item-match { font-size: 14px; font-weight: 750; color: #fff; margin-bottom: 4px; }
+        .tk-item-stat { font-size: 12.5px; font-weight: 600; color: var(--cyan-accent); }
 
-        /* ===== THẺ LỊCH THI ĐẤU (FIXTURE COUNTDOWN CARDS) ===== */
+        /* ===== THẺ LỊCH THI ĐẤU ===== */
         .lich-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -957,7 +949,7 @@
             background: var(--bg-card);
             border: 1px solid var(--border-card);
             border-radius: var(--radius-md);
-            padding: 18px 20px;
+            padding: 16px 20px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -971,11 +963,7 @@
             border-color: var(--border-glow);
             box-shadow: var(--shadow-hover);
         }
-        .lich-left {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
+        .lich-left { display: flex; flex-direction: column; gap: 6px; }
         .lich-badge-time {
             align-self: flex-start;
             font-size: 11.5px;
@@ -984,31 +972,14 @@
             background: linear-gradient(135deg, var(--gold-light), var(--gold-primary));
             padding: 3px 10px;
             border-radius: var(--radius-full);
-            letter-spacing: 0.3px;
         }
-        .lich-match-title {
-            font-size: 15.5px;
-            font-weight: 800;
-            color: #fff;
-        }
-        .lich-league-sub {
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--text-dim);
-        }
+        .lich-match-title { font-size: 15.5px; font-weight: 800; color: #fff; }
+        .lich-league-sub { font-size: 12px; font-weight: 600; color: var(--text-dim); }
         .lich-action {
             font-size: 12px;
             font-weight: 750;
             color: var(--gold-primary);
             white-space: nowrap;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            transition: var(--transition);
-        }
-        .card-lich:hover .lich-action {
-            transform: translateX(4px);
-            color: #fff;
         }
 
         /* ===== BANNER CỘNG ĐỒNG TELEGRAM VIP ===== */
@@ -1024,25 +995,8 @@
             position: relative;
             overflow: hidden;
         }
-        .box-thongtin::before {
-            content: "";
-            position: absolute;
-            top: -50%; left: -50%; width: 200%; height: 200%;
-            background: radial-gradient(circle, rgba(56, 189, 248, 0.08), transparent 60%);
-            pointer-events: none;
-        }
-        .box-thongtin h3 {
-            font-size: 22px;
-            font-weight: 900;
-            color: #fff;
-            margin-bottom: 8px;
-            letter-spacing: 0.5px;
-        }
-        .box-thongtin p {
-            font-size: 14px;
-            color: var(--text-muted);
-            margin-bottom: 22px;
-        }
+        .box-thongtin h3 { font-size: 22px; font-weight: 900; color: #fff; margin-bottom: 8px; }
+        .box-thongtin p { font-size: 14px; color: var(--text-muted); margin-bottom: 22px; }
         .nut-tel {
             display: inline-flex;
             align-items: center;
@@ -1070,29 +1024,15 @@
             padding: 18px 22px;
             margin-bottom: 40px;
         }
-        .disclaimer h4 {
-            font-size: 12px;
-            font-weight: 850;
-            color: var(--gold-primary);
-            letter-spacing: 1px;
-            margin-bottom: 6px;
-        }
-        .disclaimer p {
-            font-size: 12px;
-            color: var(--text-dim);
-            line-height: 1.6;
-        }
+        .disclaimer h4 { font-size: 12px; font-weight: 850; color: var(--gold-primary); margin-bottom: 6px; }
+        .disclaimer p { font-size: 12px; color: var(--text-dim); line-height: 1.6; }
 
         .footer {
             border-top: 1px solid rgba(255, 255, 255, 0.08);
             padding: 36px 0 48px;
             text-align: center;
         }
-        .footer p {
-            font-size: 13.5px;
-            color: var(--text-muted);
-            margin-bottom: 14px;
-        }
+        .footer p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 14px; }
         .footer-nav {
             display: flex;
             flex-wrap: wrap;
@@ -1100,21 +1040,13 @@
             gap: 16px;
             margin-bottom: 16px;
         }
-        .footer-nav a {
-            font-size: 13px;
-            color: var(--text-dim);
-            transition: var(--transition);
-        }
-        .footer-nav a:hover {
-            color: var(--gold-primary);
-        }
+        .footer-nav a { font-size: 13px; color: var(--text-dim); transition: var(--transition); }
+        .footer-nav a:hover { color: var(--gold-primary); }
 
         .len-dau {
             position: fixed;
-            right: 20px;
-            bottom: 24px;
-            width: 44px;
-            height: 44px;
+            right: 20px; bottom: 24px;
+            width: 44px; height: 44px;
             background: rgba(15, 23, 42, 0.85);
             border: 1px solid var(--border-glow);
             color: var(--gold-primary);
@@ -1131,29 +1063,18 @@
             transition: var(--transition);
             z-index: 99;
         }
-        .len-dau.hien {
-            opacity: 1;
-            pointer-events: auto;
-        }
-        .len-dau:hover {
-            background: var(--gold-primary);
-            color: #000;
-            transform: translateY(-3px);
-        }
+        .len-dau.hien { opacity: 1; pointer-events: auto; }
+        .len-dau:hover { background: var(--gold-primary); color: #000; transform: translateY(-3px); }
 
-        /* ===== RESPONSIVE BREAKPOINTS ===== */
         @media (max-width: 900px) {
-            .intro, .hero-grid, .news-layout, .goc-thong-ke-grid, .ketqua-columns, .lich-grid {
-                grid-template-columns: 1fr;
-            }
+            .intro, .hero-grid, .news-layout, .goc-thong-ke-grid, .ketqua-columns, .lich-grid { grid-template-columns: 1fr; }
             .brand-name { font-size: 26px; }
             .card-news-hero { min-height: 280px; }
         }
         @media (max-width: 600px) {
             .brand-row { flex-direction: column; align-items: flex-start; }
             .container { width: calc(100% - 20px); }
-            .card-phantich { width: 290px; }
-            .pt-match { font-size: 14.5px; }
+            .card-phantich { width: 310px; }
         }
     </style>
 </head>
@@ -1238,7 +1159,7 @@
         </div>
     </section>
 
-    <!-- SECTION: PHÂN TÍCH & DỰ ĐOÁN -->
+    <!-- SECTION: PHÂN TÍCH & DỰ ĐOÁN (CURIOSITY HOOK & REAL TEAM CRESTS) -->
     <section class="section">
         <div class="section-head">
             <h2 class="section-title">Phân tích & nhận định chuyên sâu</h2>
@@ -1260,7 +1181,7 @@
         </div>
     </section>
 
-    <!-- SECTION: GÓC THỐNG KÊ -->
+    <!-- SECTION: GÓC THỐNG KÊ (3D TACTICAL PITCH) -->
     <section class="section">
         <div class="section-head">
             <h2 class="section-title">Góc dữ liệu & thống kê</h2>
@@ -1347,20 +1268,110 @@
     const GID_THONG_KE = "575449196";
     const BASE_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRjGewmdAmJVjyi-0vSc22hhFPacMgGc-WmVE8PEM3jHfA7IvED3XbBp68Bwp16n1Dc2FFP9ETKTaSH/pub?output=csv&gid=";
 
-    // BỘ BANNER ĐẲNG CẤP CHUYÊN BIỆT THEO GIẢI ĐẤU (KHÔNG DÙNG ẢNH ĐƠN ĐIỆU)
-    const BANNERS_GIAI = {
-        "ngoai hang anh": "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=800&q=80",
+    // ==========================================
+    // KHO HUY HIỆU / LOGO CÂU LẠC BỘ & ĐỘI TUYỂN CHUẨN XÁC
+    // ==========================================
+    const TEAM_LOGOS = {
+        // Ngoại Hạng Anh
+        "man utd": "https://crests.football-data.org/66.png",
+        "manchester united": "https://crests.football-data.org/66.png",
+        "man city": "https://crests.football-data.org/65.png",
+        "manchester city": "https://crests.football-data.org/65.png",
+        "arsenal": "https://crests.football-data.org/57.png",
+        "chelsea": "https://crests.football-data.org/61.png",
+        "liverpool": "https://crests.football-data.org/64.png",
+        "tottenham": "https://crests.football-data.org/73.png",
+        "spurs": "https://crests.football-data.org/73.png",
+        "aston villa": "https://crests.football-data.org/58.png",
+        "fulham": "https://crests.football-data.org/63.png",
+        "newcastle": "https://crests.football-data.org/67.png",
+        "west ham": "https://crests.football-data.org/563.png",
+        "brighton": "https://crests.football-data.org/397.png",
+        "everton": "https://crests.football-data.org/62.png",
+
+        // La Liga
+        "real madrid": "https://crests.football-data.org/86.png",
+        "barcelona": "https://crests.football-data.org/81.png",
+        "barca": "https://crests.football-data.org/81.png",
+        "atletico": "https://crests.football-data.org/78.png",
+        "sevilla": "https://crests.football-data.org/559.png",
+        "getafe": "https://crests.football-data.org/82.png",
+        "valencia": "https://crests.football-data.org/95.png",
+        "villarreal": "https://crests.football-data.org/94.png",
+        "sociedad": "https://crests.football-data.org/92.png",
+        "athletic": "https://crests.football-data.org/77.png",
+        "levante": "https://crests.football-data.org/88.png",
+
+        // Serie A
+        "inter": "https://crests.football-data.org/108.png",
+        "inter milan": "https://crests.football-data.org/108.png",
+        "milan": "https://crests.football-data.org/98.png",
+        "ac milan": "https://crests.football-data.org/98.png",
+        "juventus": "https://crests.football-data.org/109.png",
+        "napoli": "https://crests.football-data.org/113.png",
+        "roma": "https://crests.football-data.org/100.png",
+        "lazio": "https://crests.football-data.org/110.png",
+        "atalanta": "https://crests.football-data.org/102.png",
+        "bologna": "https://crests.football-data.org/103.png",
+        "como": "https://crests.football-data.org/898.png",
+        "venezia": "https://crests.football-data.org/454.png",
+        "frosinone": "https://crests.football-data.org/470.png",
+        "torino": "https://crests.football-data.org/586.png",
+
+        // Bundesliga & Ligue 1
+        "bayern": "https://crests.football-data.org/5.png",
+        "dortmund": "https://crests.football-data.org/4.png",
+        "leverkusen": "https://crests.football-data.org/3.png",
+        "psg": "https://crests.football-data.org/524.png",
+        "monaco": "https://crests.football-data.org/548.png",
+        "strasbourg": "https://crests.football-data.org/576.png",
+        "auxerre": "https://crests.football-data.org/519.png",
+
+        // Đội tuyển & Quốc Gia
+        "việt nam": "https://flagcdn.com/w80/vn.png",
+        "vietnam": "https://flagcdn.com/w80/vn.png",
+        "hàn quốc": "https://flagcdn.com/w80/kr.png",
+        "korea": "https://flagcdn.com/w80/kr.png",
+        "nhật bản": "https://flagcdn.com/w80/jp.png",
+        "japan": "https://flagcdn.com/w80/jp.png",
+        "qatar": "https://flagcdn.com/w80/qa.png",
+        "kuwait": "https://flagcdn.com/w80/kw.png",
+        "uzbekistan": "https://flagcdn.com/w80/uz.png",
+        "philippines": "https://flagcdn.com/w80/ph.png",
+        "thái lan": "https://flagcdn.com/w80/th.png",
+        "malaysia": "https://flagcdn.com/w80/my.png",
+        "indonesia": "https://flagcdn.com/w80/id.png",
+        "singapore": "https://flagcdn.com/w80/sg.png",
+        "bangladesh": "https://flagcdn.com/w80/bd.png",
+        "bồ đào nha": "https://flagcdn.com/w80/pt.png",
+        "portugal": "https://flagcdn.com/w80/pt.png",
+        "anh": "https://flagcdn.com/w80/gb-eng.png",
+        "pháp": "https://flagcdn.com/w80/fr.png",
+        "đức": "https://flagcdn.com/w80/de.png",
+        "tây ban nha": "https://flagcdn.com/w80/es.png"
+    };
+
+    const LOGO_MAC_DINH = "https://crests.football-data.org/86.png";
+
+    function layLogoDoi(tenDoi) {
+        if (!tenDoi) return LOGO_MAC_DINH;
+        const lower = tenDoi.toLowerCase().trim();
+        for (let key in TEAM_LOGOS) {
+            if (lower.includes(key)) return TEAM_LOGOS[key];
+        }
+        return "https://crests.football-data.org/66.png"; // Fallback badge
+    }
+
+    // Kho ảnh thời sự theo đúng ngữ cảnh sự việc
+    const TOPIC_IMAGES = {
+        "ronaldo": "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=800&q=80",
+        "mourinho": "https://images.unsplash.com/photo-1518091043644-c1d4457512c6?w=800&q=80",
+        "asian cup": "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=800&q=80",
+        "việt nam": "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=800&q=80",
+        "v-league": "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=800&q=80",
         "premier league": "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=800&q=80",
         "la liga": "https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=800&q=80",
-        "bundesliga": "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&q=80",
-        "serie a": "https://images.unsplash.com/photo-1518091043644-c1d4457512c6?w=800&q=80",
-        "cúp c1": "https://images.unsplash.com/photo-1489944440615-453fc2b6a9a9?w=800&q=80",
-        "champions league": "https://images.unsplash.com/photo-1489944440615-453fc2b6a9a9?w=800&q=80",
-        "u23": "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=800&q=80",
-        "asiad": "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=800&q=80",
-        "asian cup": "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=800&q=80",
-        "asean": "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=800&q=80",
-        "world cup": "https://images.unsplash.com/photo-1511886929837-354d827aae26?w=800&q=80"
+        "c1": "https://images.unsplash.com/photo-1489944440615-453fc2b6a9a9?w=800&q=80"
     };
 
     const BANNERS_POOL = [
@@ -1372,11 +1383,11 @@
         "https://images.unsplash.com/photo-1511886929837-354d827aae26?w=800&q=80"
     ];
 
-    function layAnhBiaGiai(tenGiai, index = 0) {
-        if (!tenGiai) return BANNERS_POOL[index % BANNERS_POOL.length];
-        const lower = tenGiai.toLowerCase().trim();
-        for (let key in BANNERS_GIAI) {
-            if (lower.includes(key)) return BANNERS_GIAI[key];
+    function layAnhTheoSuViec(title, index = 0) {
+        if (!title) return BANNERS_POOL[index % BANNERS_POOL.length];
+        const lower = title.toLowerCase();
+        for (let key in TOPIC_IMAGES) {
+            if (lower.includes(key)) return TOPIC_IMAGES[key];
         }
         return BANNERS_POOL[index % BANNERS_POOL.length];
     }
@@ -1384,7 +1395,7 @@
     // Bộ lọc làm sạch dữ liệu (loại bỏ ký tự lạ, tiếng Trung, vs vs)
     function cleanText(text) {
         if (!text) return "";
-        return text
+        return String(text)
             .replace(/[\u4e00-\u9fff]/g, "") // Diệt sạch tiếng Trung
             .replace(/\bvs\s+vs\b/gi, "vs")   // Sửa lỗi lặp vs vs
             .replace(/<[^>]*>/g, " ")        // Bỏ html
@@ -1409,14 +1420,8 @@
         return rows;
     }
 
-    function layTomTat(text, doDai = 100) {
-        if (!text) return "Đang cập nhật phân tích...";
-        const clean = cleanText(text);
-        return clean.length > doDai ? clean.substring(0, doDai) + "…" : clean;
-    }
-
     // ==========================================
-    // 1. TẢI VÀ RENDER PHÂN TÍCH & DỰ ĐOÁN
+    // 1. TẢI VÀ RENDER PHÂN TÍCH & DỰ ĐOÁN (CURIOSITY HOOK + LOGO ĐỘI THẬT + DEEP LINKING)
     // ==========================================
     fetch(BASE_URL + GID_PHAN_TICH)
     .then(r => { if(!r.ok) throw new Error("Lỗi kết nối"); return r.text(); })
@@ -1445,35 +1450,65 @@
             if ((r[idx.loai] || "").trim() !== "Trận đấu") continue;
             const tenGiai = cleanText(r[idx.giai] || "");
             const tenTran = cleanText(r[idx.tran] || "");
+            const phanTichTho = cleanText(r[idx.pt] || "");
+            
+            // Tách tên Đội Nhà & Đội Khách
+            const phanDoi = tenTran.split(/\s+vs\s+|\s+gặp\s+/i);
+            const doiNha = phanDoi[0] ? phanDoi[0].trim() : tenTran;
+            const doiKhach = phanDoi[1] ? phanDoi[1].trim() : "Đối thủ";
+
+            // Tạo Hook gây tò mò ngắn gọn (tối đa 75 ký tự, không lộ hết bài)
+            let teaser = phanTichTho.split(".")[0] || "Nhận định chiến thuật & phong độ chi tiết";
+            if (teaser.length > 75) teaser = teaser.substring(0, 75) + "…";
+
             data.push({
                 st: Number(r[idx.thuTu]) || 0,
                 giai: tenGiai,
                 tran: tenTran,
+                doiNha: doiNha,
+                doiKhach: doiKhach,
+                logoNha: layLogoDoi(doiNha),
+                logoKhach: layLogoDoi(doiKhach),
                 ngay: cleanText(r[idx.ngay] || ""),
-                pt: layTomTat(r[idx.pt] || "", 95),
-                doan: cleanText(r[idx.doan] || "Chờ cập nhật")
+                teaser: teaser
             });
         }
         data.sort((a, b) => b.st - a.st);
         if (!data.length) { box.innerHTML = `<div style="text-align:center;padding:24px;color:var(--text-dim);">Không có bài phân tích nào.</div>`; return; }
 
         const items = data.slice(0, 6);
-        const renderCard = (x, i) => `
-            <a href="du-doan.html" class="card-phantich">
-                <div class="pt-banner-wrap">
-                    <img src="${layAnhBiaGiai(x.giai, i)}" alt="${x.tran}" loading="lazy">
-                    <span class="pt-league-badge">${x.giai || "Bóng Đá"}</span>
+        const renderCard = x => `
+            <a href="du-doan.html?giai=${encodeURIComponent(x.giai)}&st=${x.st}&tran=${encodeURIComponent(x.tran)}" class="card-phantich">
+                <div class="pt-matchup-stage">
+                    <span class="pt-league-tag">${x.giai || "Bóng Đá"}</span>
+                    <div class="pt-teams-row">
+                        <div class="pt-team-col">
+                            <img src="${x.logoNha}" alt="${x.doiNha}" class="pt-team-crest" loading="lazy">
+                            <span class="pt-team-name">${x.doiNha}</span>
+                        </div>
+                        <div class="pt-vs-col">
+                            <span class="pt-vs-badge">VS</span>
+                            <span class="pt-match-clock">⏰ ${x.ngay}</span>
+                        </div>
+                        <div class="pt-team-col">
+                            <img src="${x.logoKhach}" alt="${x.doiKhach}" class="pt-team-crest" loading="lazy">
+                            <span class="pt-team-name">${x.doiKhach}</span>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-body-phantich">
-                    <div class="pt-match">${x.tran}</div>
-                    <div class="pt-date">📅 ${x.ngay}</div>
-                    <div class="pt-snippet">${x.pt}</div>
-                    <div class="pt-prediction">⚡ ${x.doan}</div>
-                    <div class="pt-cta">Xem phân tích chi tiết →</div>
+                    <div class="pt-teaser-hook">💡 ${x.teaser}</div>
+                    <div class="pt-lock-banner">
+                        <div class="pt-lock-info">
+                            <span class="pt-lock-icon">🔒</span>
+                            <span class="pt-lock-text">Kịch bản Tỉ số & Dự đoán phạt góc</span>
+                        </div>
+                        <span class="pt-lock-btn">Xem chi tiết →</span>
+                    </div>
                 </div>
             </a>`;
 
-        const cards = items.map((x, i) => renderCard(x, i)).join("");
+        const cards = items.map(renderCard).join("");
         box.innerHTML = `
             <div class="phan-tich-marquee" aria-label="Băng chuyền bài phân tích">
                 <div class="phan-tich-track">
@@ -1552,7 +1587,7 @@
     .catch(e => { document.getElementById("ketqua-list").innerHTML = `<div style="text-align:center;padding:20px;color:var(--text-dim);">Đang cập nhật...</div>`; });
 
     // ==========================================
-    // 3. TẢI VÀ RENDER TIN TỨC BÓNG ĐÁ
+    // 3. TẢI VÀ RENDER TIN TỨC BÓNG ĐÁ (ẢNH ĐÚNG SỰ VIỆC)
     // ==========================================
     fetch(BASE_URL + GID_TIN_NONG)
     .then(r => { if(!r.ok) throw new Error("Lỗi kết nối"); return r.text(); })
@@ -1570,11 +1605,19 @@
             const anh_bia = (r[10] || "").trim();
             const noidung = cleanText(r[12] || "");
             if (!tieude) continue;
+
+            // Lấy ảnh đúng sự việc / nhân vật từ tiêu đề nếu anh_bia rỗng
+            const anhChuan = (anh_bia && anh_bia.startsWith("http")) ? anh_bia : layAnhTheoSuViec(tieude, i);
+
+            // Cắt tóm tắt gây tò mò
+            let tomtat = noidung;
+            if (tomtat.length > 95) tomtat = tomtat.substring(0, 95) + "…";
+
             data.push({
                 tieude,
                 ngay: ngaydang.split(" ")[0] || "Mới nhất",
-                anh: anh_bia && anh_bia.startsWith("http") ? anh_bia : BANNERS_POOL[i % BANNERS_POOL.length],
-                tomtat: layTomTat(noidung, 110)
+                anh: anhChuan,
+                tomtat: tomtat || "Xem thông tin chi tiết bài viết nóng nhất..."
             });
         }
         if (!data.length) { box.innerHTML = `<div style="text-align:center;padding:24px;color:var(--text-dim);">Chưa có bài tin nào.</div>`; return; }
@@ -1612,7 +1655,7 @@
     .catch(e => { document.getElementById("tin-list").innerHTML = `<div style="text-align:center;padding:20px;color:var(--text-dim);">Đang cập nhật...</div>`; });
 
     // ==========================================
-    // 4. TẢI VÀ RENDER GÓC THỐNG KÊ (3D TACTICAL PITCH)
+    // 4. TẢI VÀ RENDER GÓC THỐNG KÊ (3D TACTICAL PITCH + DEEP LINKING)
     // ==========================================
     fetch(BASE_URL + GID_THONG_KE)
     .then(r => { if(!r.ok) throw new Error("Lỗi kết nối"); return r.text(); })
@@ -1643,7 +1686,19 @@
             const solieu = cleanText(r[idx.solieu] || "");
             const ghichu = cleanText(r[idx.ghichu] || "");
             if (!loai && !chi && !donvi && !solieu) continue;
-            data.push({ loai, st: Number(r[idx.st]) || 0, chi, donvi, solieu, ghichu });
+
+            // Cắt ngắn nhận định gây tò mò
+            let shortNote = ghichu.split(".")[0] || "Đang phân tích dữ liệu phong độ hai đội...";
+            if (shortNote.length > 85) shortNote = shortNote.substring(0, 85) + "…";
+
+            data.push({
+                loai,
+                st: Number(r[idx.st]) || 0,
+                chi,
+                donvi,
+                solieu,
+                shortNote
+            });
         }
         data.sort((a, b) => {
             const aSap = /sắp\s*đấu/i.test(a.loai), bSap = /sắp\s*đấu/i.test(b.loai);
@@ -1663,14 +1718,13 @@
         const pitchTime = timeMatch ? `${timeMatch[1]} · ${timeMatch[2]}` : "SẮP DIỄN RA";
 
         let restHtml = rest.map(x => `
-            <a href="thong-ke.html" class="tk-item">
+            <a href="thong-ke.html?st=${x.st}" class="tk-item">
                 <div class="tk-item-top">
                     <span>🏆 ${x.chi}</span>
                     <span>#${x.st}</span>
                 </div>
                 <div class="tk-item-match">${x.donvi}</div>
-                <div class="tk-item-stat">⚡ ${x.solieu}</div>
-                ${x.ghichu ? `<div style="font-size:11.5px;color:var(--text-muted);margin-top:2px;">${x.ghichu}</div>` : ""}
+                <div class="tk-item-stat">⚡ Bấm mở khóa chỉ số chi tiết →</div>
             </a>
         `).join("");
 
@@ -1681,7 +1735,7 @@
                     <div class="goc-thong-ke-meta">LIVE TACTICAL ANALYSIS</div>
                 </div>
                 <div class="goc-thong-ke-grid">
-                    <a href="thong-ke.html" class="tk-feature">
+                    <a href="thong-ke.html?st=${featured.st}" class="tk-feature">
                         <div class="tk-pitch-stage">
                             <div class="tk-pitch-time">${pitchTime}</div>
                             <div class="tk-pitch-teams">
@@ -1691,10 +1745,10 @@
                             </div>
                         </div>
                         <div class="tk-feature-body">
-                            <div style="font-size:12px;font-weight:700;color:var(--gold-primary);text-transform:uppercase;">📊 ${featured.loai} · #${featured.st}</div>
-                            <div style="font-size:15px;font-weight:800;color:#fff;">${featured.donvi || featured.chi}</div>
-                            <div class="tk-stat">⚡ ${featured.solieu || "Đang phân tích số liệu"}</div>
-                            <div class="tk-note">${featured.ghichu}</div>
+                            <div class="tk-stat-badge">📊 ${featured.loai} · #${featured.st}</div>
+                            <div class="tk-stat-match">${featured.donvi || featured.chi}</div>
+                            <div class="tk-stat-teaser">💡 ${featured.shortNote}</div>
+                            <div class="tk-cta-btn">Xem báo cáo phong độ chi tiết →</div>
                         </div>
                     </a>
                     <div class="tk-list">

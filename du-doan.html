@@ -599,7 +599,35 @@ fetch(BASE_URL)
   });
 
   capNhatThongKe();
-  hienDanhSach(dsGiai[0]);
+  
+  // Tự động nhảy đúng trận phân tích chi tiết khi chuyển từ trang chủ
+  const urlParams = new URLSearchParams(window.location.search);
+  const targetGiai = urlParams.get('giai');
+  const targetSt = urlParams.get('st');
+  const targetTran = urlParams.get('tran');
+  let daChuyenTran = false;
+
+  if (targetGiai) {
+    const matchedGiai = dsGiai.find(g => g.toLowerCase() === targetGiai.toLowerCase() || g.toLowerCase().includes(targetGiai.toLowerCase()));
+    if (matchedGiai && tatCaDuLieu[matchedGiai]) {
+      const ds = tatCaDuLieu[matchedGiai];
+      const idx = ds.findIndex(x => 
+        (targetSt && String(x.thu_tu) === String(targetSt)) ||
+        (targetTran && x.ten_tran.toLowerCase().includes(targetTran.toLowerCase()))
+      );
+      if (idx !== -1) {
+        hienChiTiet(matchedGiai, idx);
+        daChuyenTran = true;
+      } else {
+        hienDanhSach(matchedGiai);
+        daChuyenTran = true;
+      }
+    }
+  }
+
+  if (!daChuyenTran) {
+    hienDanhSach(dsGiai[0]);
+  }
 })
 .catch(err=>{
   document.getElementById("pt-container").innerHTML='<div class="empty">❌ Lỗi: Kiểm tra Xuất bản → Bất kỳ ai có link</div>';

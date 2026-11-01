@@ -249,7 +249,7 @@ fetch(CSV_URL)
         }
 
         box.innerHTML += `
-        <div class="tran-card">
+        <div class="tran-card" id="tk-${t.thuTu || t.st || ''}">
             <span class="tran-loai ${classLoai}">${textLoai}</span>
             <div class="tran-giai">🏆 ${tenGiai}</div>
             <div class="tran-doi">⚽ ${t.donVi}</div>
@@ -260,6 +260,20 @@ fetch(CSV_URL)
             <div class="tran-phantich">💡 ${t.ghiChu || "Chưa có phân tích."}</div>
         </div>`;
     });
+
+    // Cuộn mượt đến đúng thẻ thống kê khi mở từ trang chủ
+    const urlParams = new URLSearchParams(window.location.search);
+    const targetSt = urlParams.get('st');
+    if (targetSt) {
+        setTimeout(() => {
+            const el = document.getElementById("tk-" + targetSt);
+            if (el) {
+                el.scrollIntoView({ behavior: "smooth", block: "center" });
+                el.style.outline = "2px solid #facc15";
+                el.style.boxShadow = "0 0 30px rgba(250, 204, 21, 0.5)";
+            }
+        }, 350);
+    }
 
 }).catch(err => {
     console.error("Lỗi:", err);
