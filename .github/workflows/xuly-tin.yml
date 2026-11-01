@@ -1,25 +1,38 @@
-name: Xử lý tin nóng
+name: Xử lý tin nóng bóng đá AI
 on:
   schedule:
     - cron: '*/30 * * * *'
   workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   process:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Cài thư viện
+
+      - name: Cài đặt thư viện
         run: |
           python -m pip install --upgrade pip
           pip install -U google-genai beautifulsoup4 requests
-      - name: Chạy xử lý tin
+
+      - name: Chạy xử lý tin AI
         env:
           SHEET_ID: ${{ secrets.SHEET_ID }}
           GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
         run: python scripts/xuly_tin.py
+
+      - name: Tự động Commit & Push bài viết mới
+        run: |
+          git config --global user.name "Score Vision Bot"
+          git config --global user.email "bot@scorevision.io.vn"
+          git add -A output/
+          git diff --quiet && git diff --staged --quiet || (git commit -m "auto(news): cập nhật bài viết mới từ AI [skip ci]" && git push)
