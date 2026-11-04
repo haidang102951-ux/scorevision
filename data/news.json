@@ -1,6 +1,26 @@
 [
   {
     "id": 1,
+    "title": "Haaland bất ngờ soán ngôi Ronaldo và Messi: Sức hút thương mại khó cưỡng",
+    "link": "https://thanhnien.vn/haaland-bat-ngo-soan-ngoi-ronaldo-va-messi-suc-hut-thuong-mai-kho-cuong-185261104084324408.htm",
+    "date": "Thu, 05 Nov 26 00:00:00 +0700",
+    "source": "Thanh Nien",
+    "image": "https://images2.thanhnien.vn/zoom/1200_630/528068263637045248/2026/11/4/erling-haaland-la-ngoi-sao-bong-da-duy-nhat-gop-mat-trong-top-10-bxh-nay-1793756359535211591836-74-0-1488-2700-crop-1793756498338581154397.jpg",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ Thanh Nien. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "content": ""
+  },
+  {
+    "id": 2,
+    "title": "CLB của Thái Lan thắng chấn động ở Champions League châu Á",
+    "link": "https://vnexpress.net/clb-cua-thai-lan-thang-chan-dong-o-champions-league-chau-a-5140435.html",
+    "date": "Wed, 04 Nov 2026 01:09:09 +0700",
+    "source": "VnExpress",
+    "image": "https://vcdn1-thethao.vnecdn.net/2026/11/03/screenshot-at-1793721741-7375-1793721758.png?w=1200&h=675&q=100&dpr=1&fit=crop&s=0bbnDYfb_R27LCWLDdr3tg",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ VnExpress. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "content": ""
+  },
+  {
+    "id": 3,
     "title": "HLV Polking bất ngờ cảm ơn ông Kim Sang-sik, thủ môn Sanga tiết lộ điều tuyệt hay về CLB CAHN",
     "link": "https://thanhnien.vn/hlv-polking-bat-ngo-cam-on-ong-kim-sang-sik-thu-mon-sanga-tiet-lo-dieu-tuyet-hay-ve-clb-cahn-185261103211732603.htm",
     "date": "Tue, 03 Nov 26 22:14:00 +0700",
@@ -10,7 +30,17 @@
     "content": ""
   },
   {
-    "id": 2,
+    "id": 4,
+    "title": "Tin nóng bóng đá 4.11: Lamine Yamal phá vỡ kỷ lục của Mbappe",
+    "link": "https://laodong.vn/video-the-thao/tin-nong-bong-da-411-lamine-yamal-pha-vo-ky-luc-cua-mbappe-1794707.ldo",
+    "date": "Wednesday, 04 November 2026 18:30:00 +07:00",
+    "source": "Lao Dong",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/5/57/2019-07-17_SG_Dynamo_Dresden_vs._Paris_Saint-Germain_by_Sandro_Halank%E2%80%93129_%28cropped%29.jpg",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ Lao Dong. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "content": ""
+  },
+  {
+    "id": 5,
     "title": "Sao trẻ gốc Nhật của New Zealand, đối thủ của U.17 Việt Nam tại World Cup có gì đặc biệt?",
     "link": "https://thanhnien.vn/sao-tre-goc-nhat-cua-new-zealand-doi-thu-cua-u17-viet-nam-tai-world-cup-co-gi-dac-biet-185261104112052861.htm",
     "date": "Wed, 04 Nov 26 11:29:00 +0700",
@@ -20,117 +50,7 @@
     "content": ""
   },
   {
-    "id": 3,
-    "title": "3 ngôi sao Việt kiều đối đầu U23 Thái Lan",
-    "link": "https://tuoitre.vn/3-ngoi-sao-viet-kieu-doi-dau-u23-thai-lan-100261104151142339.htm",
-    "date": "11/4/2026 3:40:00 PM",
-    "source": "Tuoi Tre",
-    "image": "https://cdn2.tuoitre.vn/zoom/1200_630/471584752817336320/2026/11/4/tempimageeozqsd-1793780016471475129162-0-0-715-1366-crop-17937802247031795760121.jpg",
-    "lead": "Bản tin thể thao cập nhật nóng nhất từ Tuoi Tre. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
-    "content": ""
-  },
-  {
-    "id": 4,
-    "title": "Asian Cup 2027 lùi gần 1 năm: Tuyển Việt Nam lợi hay hại?",
-    "link": "https://tuoitre.vn/asian-cup-2027-lui-gan-1-nam-tuyen-viet-nam-loi-hay-hai-100261104103735313.htm",
-    "date": "11/4/2026 2:32:00 PM",
-    "source": "Tuoi Tre",
-    "image": "https://cdn2.tuoitre.vn/zoom/1200_630/471584752817336320/2026/11/4/xuan-son-va-dinh-bac-17870649774281541492203-0-0-1340-2560-crop-179377358608668406901.jpg",
-    "lead": "Bản tin thể thao cập nhật nóng nhất từ Tuoi Tre. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
-    "content": ""
-  },
-  {
-    "id": 5,
-    "title": "CLB của Thái Lan thắng chấn động ở Champions League châu Á",
-    "link": "https://vnexpress.net/clb-cua-thai-lan-thang-chan-dong-o-champions-league-chau-a-5140435.html",
-    "date": "Wed, 04 Nov 2026 01:09:09 +0700",
-    "source": "VnExpress",
-    "image": "https://i1-thethao.vnecdn.net/2026/11/03/screenshot-at-1793721741-7375-1793721758.png?w=1200&h=675&q=100&dpr=1&fit=crop&s=0bbnDYfb_R27LCWLDdr3tg",
-    "lead": "Bản tin thể thao cập nhật nóng nhất từ VnExpress. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
-    "content": ""
-  },
-  {
     "id": 6,
-    "title": "U23 Thái Lan mang ngôi sao Asiad sang đấu U23 Việt Nam",
-    "link": "https://tuoitre.vn/u23-thai-lan-mang-ngoi-sao-asiad-sang-dau-u23-viet-nam-100261104110633392.htm",
-    "date": "11/4/2026 11:17:00 AM",
-    "source": "Tuoi Tre",
-    "image": "https://cdn2.tuoitre.vn/zoom/1200_630/471584752817336320/2026/11/4/paripan-wongsa-u23-thai-lan-an-mung-17937635831701538206105-143-287-978-1882-crop-17937637156911807178802-57-193-638-1302-crop-17937659752191626872189.jpg",
-    "lead": "Bản tin thể thao cập nhật nóng nhất từ Tuoi Tre. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
-    "content": ""
-  },
-  {
-    "id": 7,
-    "title": "Lịch thi đấu U.17 Việt Nam mới nhất, phát trực tiếp trọn vẹn World Cup U.17 trên TV360",
-    "link": "https://thanhnien.vn/lich-thi-dau-u17-viet-nam-moi-nhat-phat-truc-tiep-tron-ven-world-cup-u17-tren-tv360-185261022172154409.htm",
-    "date": "Wed, 04 Nov 26 00:00:00 +0700",
-    "source": "Thanh Nien",
-    "image": "https://images2.thanhnien.vn/zoom/1200_630/528068263637045248/2026/10/22/u17-17926641854872106784250-0-0-671-1280-crop-1792664274772549113911.jpg",
-    "lead": "Bản tin thể thao cập nhật nóng nhất từ Thanh Nien. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
-    "content": ""
-  },
-  {
-    "id": 8,
-    "title": "Việt Nam chính thức có bản quyền phát sóng FIFA U17 World Cup 2026",
-    "link": "https://tuoitre.vn/viet-nam-chinh-thuc-co-ban-quyen-phat-song-fifa-u17-world-cup-2026-10026102216400975.htm",
-    "date": "11/3/2026 5:17:00 PM",
-    "source": "Tuoi Tre",
-    "image": "https://cdn2.tuoitre.vn/zoom/1200_630/471584752817336320/2026/10/22/u17-viet-nam-1-1778720142206745848048-17920770121901076951966-0-0-1047-1999-crop-17926619061821214350997.png",
-    "lead": "Bản tin thể thao cập nhật nóng nhất từ Tuoi Tre. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
-    "content": ""
-  },
-  {
-    "id": 9,
-    "title": "FPT Play phát trực tiếp và trọn vẹn U.17 World Cup: U.17 Việt Nam đấu ai, có phải đá đêm?",
-    "link": "https://thanhnien.vn/fpt-play-phat-truc-tiep-va-tron-ven-u17-world-cup-u17-viet-nam-dau-ai-co-phai-da-dem-185261104123127268.htm",
-    "date": "Wed, 04 Nov 26 12:39:00 +0700",
-    "source": "Thanh Nien",
-    "image": "https://images2.thanhnien.vn/zoom/1200_630/528068263637045248/2026/11/4/lich-thi-dau-cua-u17-viet-nam-o-u17-world-cup-1793770051531174101903-17-0-1022-1920-crop-1793770106957728193142.jpg",
-    "lead": "Bản tin thể thao cập nhật nóng nhất từ Thanh Nien. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
-    "content": ""
-  },
-  {
-    "id": 10,
-    "title": "Khán giả Việt Nam xem U17 World Cup 2026 ở đâu?",
-    "link": "https://vnexpress.net/khan-gia-viet-nam-xem-u17-world-cup-2026-o-dau-5140581.html",
-    "date": "Wed, 04 Nov 2026 11:00:20 +0700",
-    "source": "VnExpress",
-    "image": "https://i1-thethao.vnecdn.net/2026/11/04/z7798655189815fc1430843ecf8f5e-5880-2076-1793763574.jpg?w=1200&h=675&q=100&dpr=1&fit=crop&s=1eibj3ostz7e5_crCiT6jA",
-    "lead": "Bản tin thể thao cập nhật nóng nhất từ VnExpress. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
-    "content": ""
-  },
-  {
-    "id": 11,
-    "title": "Mac Allister tiết lộ chuyện gia hạn hợp đồng đầy cay đắng với Liv - Bongda24h",
-    "link": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQTjIzNHd0UEdLbDZxVW9SNUVCaUx2N285SmhHeFluclBUODQyczhJbm10TDhDQ0pqYk0yUVg0czA3MXlxYzlXS3ZCamdXX3dTTk05b0RlbGxUY1pmbXByMk9fdEZ5MVk0N3pkajdhX0didk40c2JLR2F4WXYwcm9mQzNXRGZVTUVQSjEwUEJMa1dpU3FNb21ham1LenV2bWRsbHlhdzNHTklJYlFXLXVMZXZNeEFZWHBz0gG-AUFVX3lxTE81V2JxNDZTUjBQSGRRM2dZTGdmY3dUSkprZkZBYVlnU00tazZnWWoxWlRNcW9PSlB3UG9WSjljNTROS0c5VG1iaVpERHAxUm94MWc0VUxCdHlLNnN0dmY3MEFiX1FZRmgyWU9QVDhYc2M0WXFkUm5hSWlUNEVHQkZNLWdIT0tRQjFOZmhWdHBldGs1SW5wUGlsZ3pLS1pyZmg3dWhDalNNNUJuVnhickxXbTdxRkNWWlRYNnpuTkE?oc=5",
-    "date": "Wed, 04 Nov 2026 02:06:16 GMT",
-    "source": "Google News VN",
-    "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw",
-    "lead": "Bản tin thể thao cập nhật nóng nhất từ Google News VN. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
-    "content": ""
-  },
-  {
-    "id": 12,
-    "title": "Lamine Yamal xô đổ kỷ lục của Mbappe tại Champions League",
-    "link": "https://laodong.vn/bong-da-quoc-te/lamine-yamal-xo-do-ky-luc-cua-mbappe-tai-champions-league-1794392.ldo",
-    "date": "Wednesday, 04 November 2026 08:02:20 +07:00",
-    "source": "Lao Dong",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/5/57/2019-07-17_SG_Dynamo_Dresden_vs._Paris_Saint-Germain_by_Sandro_Halank%E2%80%93129_%28cropped%29.jpg",
-    "lead": "Bản tin thể thao cập nhật nóng nhất từ Lao Dong. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
-    "content": ""
-  },
-  {
-    "id": 13,
-    "title": "Ca sĩ Hàn Quốc gây tranh cãi vì được đẩy lưng khi chạy marathon",
-    "link": "https://vnexpress.net/ca-si-han-quoc-gay-tranh-cai-vi-duoc-day-lung-khi-chay-marathon-5140291.html",
-    "date": "Wed, 04 Nov 2026 05:53:55 +0700",
-    "source": "VnExpress",
-    "image": "https://i1-thethao.vnecdn.net/2026/11/03/vdv-1793694896-9406-1793694912.png?w=1200&h=675&q=100&dpr=1&fit=crop&s=Jmm-zA2wB82T6fV9Mo20Mw",
-    "lead": "Bản tin thể thao cập nhật nóng nhất từ VnExpress. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
-    "content": ""
-  },
-  {
-    "id": 14,
     "title": "HLV Kim Sang-sik tiết lộ thú vị trên báo Hàn Quốc: 'Ở Việt Nam, tôi muốn trả tiền taxi cũng... khó'",
     "link": "https://thanhnien.vn/hlv-kim-sang-sik-tiet-lo-thu-vi-tren-bao-han-quoc-o-viet-nam-toi-muon-tra-tien-taxi-cung-kho-185261103114428043.htm",
     "date": "Tue, 03 Nov 26 12:07:00 +0700",
@@ -140,47 +60,27 @@
     "content": ""
   },
   {
-    "id": 15,
-    "title": "Yamal đang giữ những kỷ lục nào ở Champions League?",
-    "link": "https://vnexpress.net/yamal-dang-giu-nhung-ky-luc-nao-o-champions-league-5140648.html",
-    "date": "Wed, 04 Nov 2026 15:00:00 +0700",
-    "source": "VnExpress",
-    "image": "https://i1-thethao.vnecdn.net/2026/11/04/ap26307788852393-1793769742-1561-1793770066.jpg?w=1200&h=675&q=100&dpr=1&fit=crop&s=VtSa2zb8LkPMx6J4teACiw",
-    "lead": "Bản tin thể thao cập nhật nóng nhất từ VnExpress. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
-    "content": ""
-  },
-  {
-    "id": 16,
-    "title": "Transfer news LIVE: Arsenal triple raid; Man Utd want Bellingham; Chelsea, Liverpool latest - London Evening Standard",
-    "link": "https://news.google.com/rss/articles/CBMivwFBVV95cUxQQ3NtTy1PclRpTjFLdG5zT01haHNtSGJNSDBKSi1KR1JJUVEwUnVMTHYzejg2V0ZWWHJTS1VlUEg0Tm1QTXNrU1VjSW9mdktaUjNvSFM3UUhRQVBPdUtFdzlfVjN4enlwN3lOOEpSQW1OTzVuNUlDZ1d5V0JzcVFBUGN5Mm5KV1pvVDE3Nm9BbGRCNWdtYk5UTzFpRkdueEJkSDk4WHNYSjdzZklmWW1HeUFocDhETXg2U29VWm5CNA?oc=5",
-    "date": "Wed, 04 Nov 2026 07:13:09 GMT",
-    "source": "Google News EN",
-    "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw",
-    "lead": "Bản tin thể thao cập nhật nóng nhất từ Google News EN. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
-    "content": ""
-  },
-  {
-    "id": 17,
-    "title": "Trung Quốc tung 'đòn trừng phạt' thứ 3 với Mbappe, Champions League lo lắng",
-    "link": "https://tuoitre.vn/trung-quoc-tung-don-trung-phat-thu-3-voi-mbappe-champions-league-lo-lang-100261104115645772.htm",
-    "date": "11/4/2026 12:08:00 PM",
+    "id": 7,
+    "title": "Mới thi đấu ở Việt Nam, sao bóng chuyền nữ Thái Lan đã vội sang Mỹ đánh tiếp",
+    "link": "https://tuoitre.vn/moi-thi-dau-o-viet-nam-sao-bong-chuyen-nu-thai-lan-da-voi-sang-my-danh-tiep-100261104161932832.htm",
+    "date": "11/4/2026 4:51:00 PM",
     "source": "Tuoi Tre",
-    "image": "https://cdn2.tuoitre.vn/zoom/1200_630/471584752817336320/2026/11/4/mbappe-221225-read-only-17663572691191416227910-28-378-1135-2491-crop-17937676059951846371172.jpg",
+    "image": "https://cdn2.tuoitre.vn/zoom/1200_630/471584752817336320/2026/11/4/sasipaporn-bong-chuyen-nu-thai-lan-2-179378382025749498170-187-0-1616-2730-crop-179378383262082366568.jpg",
     "lead": "Bản tin thể thao cập nhật nóng nhất từ Tuoi Tre. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
     "content": ""
   },
   {
-    "id": 18,
-    "title": "V-League đứng ở đâu trên bản đồ bóng đá khu vực: Vì sao vẫn chưa bứt phá?",
-    "link": "https://thanhnien.vn/v-league-dung-o-dau-tren-ban-do-bong-da-khu-vuc-vi-sao-van-chua-but-pha-185261103191730549.htm",
-    "date": "Wed, 04 Nov 26 07:00:00 +0700",
-    "source": "Thanh Nien",
-    "image": "https://images2.thanhnien.vn/zoom/1200_630/528068263637045248/2026/11/3/clb-thanh-hoa-1793708241291328508954-107-0-643-1024-crop-1793715287042275404882.jpg",
-    "lead": "Bản tin thể thao cập nhật nóng nhất từ Thanh Nien. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "id": 8,
+    "title": "3 ngôi sao Việt kiều đối đầu U23 Thái Lan",
+    "link": "https://tuoitre.vn/3-ngoi-sao-viet-kieu-doi-dau-u23-thai-lan-100261104151142339.htm",
+    "date": "11/4/2026 3:40:00 PM",
+    "source": "Tuoi Tre",
+    "image": "https://cdn2.tuoitre.vn/zoom/1200_630/471584752817336320/2026/11/4/tempimageeozqsd-1793780016471475129162-0-0-715-1366-crop-17937802247031795760121.jpg",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ Tuoi Tre. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
     "content": ""
   },
   {
-    "id": 19,
+    "id": 9,
     "title": "CỰC NÓNG: AFC hoãn Asian Cup 2027 đến tháng 1.2028 vì xung đột Trung Đông, bóng đá Việt Nam thế nào?",
     "link": "https://thanhnien.vn/cuc-nong-afc-hoan-asian-cup-2027-den-thang-12-vi-xung-dot-o-trung-dong-bong-da-viet-nam-the-nao-185261015103438744.htm",
     "date": "Tue, 03 Nov 26 13:03:00 +0700",
@@ -190,50 +90,150 @@
     "content": ""
   },
   {
-    "id": 20,
-    "title": "Williams Minh Hoàng lần đầu lên U23 Việt Nam",
-    "link": "https://vnexpress.net/williams-minh-hoang-lan-dau-len-u23-viet-nam-5140729.html",
-    "date": "Wed, 04 Nov 2026 15:05:06 +0700",
-    "source": "VnExpress",
-    "image": "https://i1-thethao.vnecdn.net/2026/11/04/don-jpg-1793779465-2567-1793779470.jpg?w=1200&h=675&q=100&dpr=1&fit=crop&s=EKsuC7VkeD8kydZ963RKOA",
-    "lead": "Bản tin thể thao cập nhật nóng nhất từ VnExpress. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
-    "content": ""
-  },
-  {
-    "id": 21,
-    "title": "Lịch thi đấu U.23 Việt Nam đấu U.23 Thái Lan giờ đẹp, vé rẻ nhất 200.000 đồng: Mua ở đâu?",
-    "link": "https://thanhnien.vn/lich-thi-dau-u23-viet-nam-dau-u23-thai-lan-gio-dep-ve-re-nhat-200000-dong-mua-o-dau-185261104145131261.htm",
-    "date": "Wed, 04 Nov 26 14:55:00 +0700",
+    "id": 10,
+    "title": "Đội tuyển Việt Nam sẽ chơi táo bạo và thăng hoa với dòng máu trẻ",
+    "link": "https://thanhnien.vn/doi-tuyen-viet-nam-se-choi-tao-bao-va-thang-hoa-voi-dong-mau-tre-185261104112035808.htm",
+    "date": "Thu, 05 Nov 26 00:00:00 +0700",
     "source": "Thanh Nien",
-    "image": "https://images2.thanhnien.vn/zoom/1200_630/528068263637045248/2026/11/4/minh-hoang-1-17915204300591948438069-25-20-1271-2399-crop-17937787236051318238462.jpg",
+    "image": "https://images2.thanhnien.vn/zoom/1200_630/528068263637045248/2026/11/4/vietnam-philippines-5-17904351809352065335284-71-0-1400-2539-crop-17937674762791781591958.jpg",
     "lead": "Bản tin thể thao cập nhật nóng nhất từ Thanh Nien. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
     "content": ""
   },
   {
-    "id": 22,
-    "title": "U23 Việt Nam triệu tập 26 cầu thủ dự giải giao hữu quốc tế ở Gia Lai",
-    "link": "https://laodong.vn/the-thao/u23-viet-nam-trieu-tap-26-cau-thu-du-giai-giao-huu-quoc-te-o-gia-lai-1794645.ldo",
-    "date": "Wednesday, 04 November 2026 14:54:41 +07:00",
+    "id": 11,
+    "title": "Chờ diện mạo mới của hàng thủ U.23 Việt Nam, xem trọn vẹn Gia Lai Cup trên FPT Play và VTV6",
+    "link": "https://thanhnien.vn/cho-dien-mao-moi-cua-hang-thu-u23-viet-nam-xem-tron-ven-gia-lai-cup-tren-fpt-play-va-vtv6-185261028132659571.htm",
+    "date": "Thu, 05 Nov 26 00:00:00 +0700",
+    "source": "Thanh Nien",
+    "image": "https://images2.thanhnien.vn/zoom/1200_630/528068263637045248/2026/10/28/tnw-quangkiet2dnktn28-10-26-17931686325221567159494-20-0-416-633-crop-1793168777102269057750.png",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ Thanh Nien. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "content": ""
+  },
+  {
+    "id": 12,
+    "title": "Asian Cup 2027 lùi gần 1 năm: Tuyển Việt Nam lợi hay hại?",
+    "link": "https://tuoitre.vn/asian-cup-2027-lui-gan-1-nam-tuyen-viet-nam-loi-hay-hai-100261104103735313.htm",
+    "date": "11/4/2026 2:32:00 PM",
+    "source": "Tuoi Tre",
+    "image": "https://cdn2.tuoitre.vn/zoom/1200_630/471584752817336320/2026/11/4/xuan-son-va-dinh-bac-17870649774281541492203-0-0-1340-2560-crop-179377358608668406901.jpg",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ Tuoi Tre. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "content": ""
+  },
+  {
+    "id": 13,
+    "title": "FPT Play phát trực tiếp và trọn vẹn U.17 World Cup: U.17 Việt Nam đấu ai, có phải đá đêm?",
+    "link": "https://thanhnien.vn/fpt-play-phat-truc-tiep-va-tron-ven-u17-world-cup-u17-viet-nam-dau-ai-co-phai-da-dem-185261104123127268.htm",
+    "date": "Wed, 04 Nov 26 12:39:00 +0700",
+    "source": "Thanh Nien",
+    "image": "https://images2.thanhnien.vn/zoom/1200_630/528068263637045248/2026/11/4/lich-thi-dau-cua-u17-viet-nam-o-u17-world-cup-1793770051531174101903-17-0-1022-1920-crop-1793770106957728193142.jpg",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ Thanh Nien. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "content": ""
+  },
+  {
+    "id": 14,
+    "title": "Ca sĩ Hàn Quốc gây tranh cãi vì được đẩy lưng khi chạy marathon",
+    "link": "https://vnexpress.net/ca-si-han-quoc-gay-tranh-cai-vi-duoc-day-lung-khi-chay-marathon-5140291.html",
+    "date": "Wed, 04 Nov 2026 05:53:55 +0700",
+    "source": "VnExpress",
+    "image": "https://vcdn1-thethao.vnecdn.net/2026/11/03/vdv-1793694896-9406-1793694912.png?w=1200&h=675&q=100&dpr=1&fit=crop&s=Jmm-zA2wB82T6fV9Mo20Mw",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ VnExpress. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "content": ""
+  },
+  {
+    "id": 15,
+    "title": "U23 Thái Lan mang ngôi sao Asiad sang đấu U23 Việt Nam",
+    "link": "https://tuoitre.vn/u23-thai-lan-mang-ngoi-sao-asiad-sang-dau-u23-viet-nam-100261104110633392.htm",
+    "date": "11/4/2026 11:17:00 AM",
+    "source": "Tuoi Tre",
+    "image": "https://cdn2.tuoitre.vn/zoom/1200_630/471584752817336320/2026/11/4/paripan-wongsa-u23-thai-lan-an-mung-17937635831701538206105-143-287-978-1882-crop-17937637156911807178802-57-193-638-1302-crop-17937659752191626872189.jpg",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ Tuoi Tre. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "content": ""
+  },
+  {
+    "id": 16,
+    "title": "V-League đứng ở đâu trên bản đồ bóng đá khu vực: Vì sao vẫn chưa bứt phá?",
+    "link": "https://thanhnien.vn/v-league-dung-o-dau-tren-ban-do-bong-da-khu-vuc-vi-sao-van-chua-but-pha-185261103191730549.htm",
+    "date": "Wed, 04 Nov 26 07:00:00 +0700",
+    "source": "Thanh Nien",
+    "image": "https://images2.thanhnien.vn/zoom/1200_630/528068263637045248/2026/11/3/clb-thanh-hoa-1793708241291328508954-107-0-643-1024-crop-1793715287042275404882.jpg",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ Thanh Nien. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "content": ""
+  },
+  {
+    "id": 17,
+    "title": "Lịch thi đấu U.17 Việt Nam mới nhất, phát trực tiếp trọn vẹn World Cup U.17 trên TV360",
+    "link": "https://thanhnien.vn/lich-thi-dau-u17-viet-nam-moi-nhat-phat-truc-tiep-tron-ven-world-cup-u17-tren-tv360-185261022172154409.htm",
+    "date": "Wed, 04 Nov 26 00:00:00 +0700",
+    "source": "Thanh Nien",
+    "image": "https://images2.thanhnien.vn/zoom/1200_630/528068263637045248/2026/10/22/u17-17926641854872106784250-0-0-671-1280-crop-1792664274772549113911.jpg",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ Thanh Nien. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "content": ""
+  },
+  {
+    "id": 18,
+    "title": "Việt Nam chính thức có bản quyền phát sóng FIFA U17 World Cup 2026",
+    "link": "https://tuoitre.vn/viet-nam-chinh-thuc-co-ban-quyen-phat-song-fifa-u17-world-cup-2026-10026102216400975.htm",
+    "date": "11/3/2026 5:17:00 PM",
+    "source": "Tuoi Tre",
+    "image": "https://cdn2.tuoitre.vn/zoom/1200_630/471584752817336320/2026/10/22/u17-viet-nam-1-1778720142206745848048-17920770121901076951966-0-0-1047-1999-crop-17926619061821214350997.png",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ Tuoi Tre. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "content": ""
+  },
+  {
+    "id": 19,
+    "title": "How Jaissle's Newcastle are the worst team in the Premier League - FootballTransfers.com",
+    "link": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxQTVlUNXZlUUJKejh4LWJFT3pER3hpWUg3emRBQXhXaFhIVTc5S05RTUd1TGJXNm1mTmlnYlU0VUhrN0lhbV9WQy11UTc4TXU2a0ViaHFPQTVWbWJ2SjFlVUozNGs5Q1ZSbkVKTHAyZkROOEE3NVdUOWhrQV9od0tmUl9lTjlTU2o1N3Y2WWgxb2UyNnNKQjRTSi1JNzE1NUZqN3I1RTNnTW9ZN1BOeHVPejVQLXNabGNwbWJOaVR6cWUyUUVra3lFZ3k3WWlCZ181RFE?oc=5",
+    "date": "Wed, 04 Nov 2026 14:02:00 GMT",
+    "source": "Google News EN",
+    "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ Google News EN. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "content": ""
+  },
+  {
+    "id": 20,
+    "title": "Fan Việt Nam gây trầm trồ ở Giải vô địch thế giới Liên Minh Huyền Thoại",
+    "link": "https://tuoitre.vn/fan-viet-nam-gay-tram-tro-o-giai-vo-dich-the-gioi-lien-minh-huyen-thoai-100261103202334817.htm",
+    "date": "11/4/2026 8:30:00 PM",
+    "source": "Tuoi Tre",
+    "image": "https://cdn2.tuoitre.vn/zoom/1200_630/471584752817336320/2026/11/3/z72631410545319e235ddfd1d10b19b66b012d197a29a1-1764121910304608748328-0-0-628-1200-crop-1793711781618895131866.jpg",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ Tuoi Tre. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "content": ""
+  },
+  {
+    "id": 21,
+    "title": "Bóng chuyền Việt Nam ngày 4.11: Biên Phòng MB mất thành tích toàn thắng",
+    "link": "https://laodong.vn/bong-chuyen/bong-chuyen-viet-nam-ngay-411-bien-phong-mb-mat-thanh-tich-toan-thang-1794889.ldo",
+    "date": "Wednesday, 04 November 2026 19:17:33 +07:00",
     "source": "Lao Dong",
     "image": "https://upload.wikimedia.org/wikipedia/commons/4/41/Vietnam_national_football_team_at_2019_AFC_Asian_Cup.jpg",
     "lead": "Bản tin thể thao cập nhật nóng nhất từ Lao Dong. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
     "content": ""
   },
   {
-    "id": 23,
-    "title": "U.23 Việt Nam gọi Williams Minh Hoàng, Khoa Ngô đấu U.23 Thái Lan: Ai thay thầy Kim?",
-    "link": "https://thanhnien.vn/u23-viet-nam-goi-williams-minh-hoang-khoa-ngo-dau-u23-thai-lan-ai-thay-thay-kim-185261104142636709.htm",
-    "date": "Wed, 04 Nov 26 14:33:00 +0700",
+    "id": 22,
+    "title": "Hàng thủ toàn ‘tòa tháp’ của đội tuyển Việt Nam: Ai cao lớn nhất?",
+    "link": "https://thanhnien.vn/hang-thu-toan-toa-thap-cua-doi-tuyen-viet-nam-ai-cao-lon-nhat-185261104172516364.htm",
+    "date": "Wed, 04 Nov 26 18:56:00 +0700",
     "source": "Thanh Nien",
-    "image": "https://images2.thanhnien.vn/zoom/1200_630/528068263637045248/2026/11/4/2aoborafetgewwy2tmqjlfsosujclk84epldghro-17937771467331016593979-0-0-565-1080-crop-17937772395941301799389.jpg",
+    "image": "https://images2.thanhnien.vn/zoom/1200_630/528068263637045248/2026/11/4/17895636783134565676173657170456g6314023621468146139c7f54616f6e51a71afc0815a6c11c1d2-17937870365811803071242-161-166-1042-1849-crop-1793787126527241100754.jpg",
     "lead": "Bản tin thể thao cập nhật nóng nhất từ Thanh Nien. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
     "content": ""
   },
   {
+    "id": 23,
+    "title": "Khán giả Việt Nam xem U17 World Cup 2026 ở đâu?",
+    "link": "https://vnexpress.net/khan-gia-viet-nam-xem-u17-world-cup-2026-o-dau-5140581.html",
+    "date": "Wed, 04 Nov 2026 11:00:20 +0700",
+    "source": "VnExpress",
+    "image": "https://vcdn1-thethao.vnecdn.net/2026/11/04/z7798655189815fc1430843ecf8f5e-5880-2076-1793763574.jpg?w=1200&h=675&q=100&dpr=1&fit=crop&s=1eibj3ostz7e5_crCiT6jA",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ VnExpress. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "content": ""
+  },
+  {
     "id": 24,
-    "title": "Điền kinh Việt Nam cử 42 tuyển thủ tranh huy chương Giải vô địch trẻ Đông Nam Á 2026",
-    "link": "https://laodong.vn/the-thao/dien-kinh-viet-nam-cu-42-tuyen-thu-tranh-huy-chuong-giai-vo-dich-tre-dong-nam-a-2026-1794610.ldo",
-    "date": "Wednesday, 04 November 2026 14:18:11 +07:00",
+    "title": "Cờ vua Việt Nam thăng hạng, giành vé dự World Cup 2027",
+    "link": "https://laodong.vn/the-thao/co-vua-viet-nam-thang-hang-gianh-ve-du-world-cup-2027-1794189.ldo",
+    "date": "Wednesday, 04 November 2026 10:30:00 +07:00",
     "source": "Lao Dong",
     "image": "https://upload.wikimedia.org/wikipedia/commons/4/41/Vietnam_national_football_team_at_2019_AFC_Asian_Cup.jpg",
     "lead": "Bản tin thể thao cập nhật nóng nhất từ Lao Dong. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
@@ -241,12 +241,12 @@
   },
   {
     "id": 25,
-    "title": "Cô gái gốc Việt Nam - Campuchia tạo nên chiến tích hoàn hảo ở Pháp",
-    "link": "https://tuoitre.vn/co-gai-goc-viet-nam-campuchia-tao-nen-chien-tich-hoan-hao-o-phap-100261102214855676.htm",
-    "date": "11/4/2026 2:10:00 PM",
-    "source": "Tuoi Tre",
-    "image": "https://cdn2.tuoitre.vn/zoom/1200_630/471584752817336320/2026/11/4/harmony-tan-2-17936303792462022130263-24-91-605-1200-crop-1793777377005142450640.jpg",
-    "lead": "Bản tin thể thao cập nhật nóng nhất từ Tuoi Tre. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "title": "Asian Cup hoãn, Việt Nam nhắm mục tiêu lớn vòng loại World Cup 2030: Không được rơi khỏi tốp 100 FIFA",
+    "link": "https://thanhnien.vn/asian-cup-hoan-viet-nam-nham-muc-tieu-lon-vong-loai-world-cup-2030-khong-duoc-roi-khoi-top-100-fifa-18526110408443509.htm",
+    "date": "Wed, 04 Nov 26 09:04:00 +0700",
+    "source": "Thanh Nien",
+    "image": "https://images2.thanhnien.vn/zoom/1200_630/528068263637045248/2026/11/4/dtvn-1793756097609126567006-171-611-975-2147-crop-1793756619490283905111.jpg",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ Thanh Nien. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
     "content": ""
   }
 ]
