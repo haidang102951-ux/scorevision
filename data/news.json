@@ -1,6 +1,36 @@
 [
   {
     "id": 1,
+    "title": "Lý do bất ngờ khiến De Bruyne có thể rời Napoli",
+    "link": "https://laodong.vn/bong-da-quoc-te/ly-do-bat-ngo-khien-de-bruyne-co-the-roi-napoli-1798709.ldo",
+    "date": "Wednesday, 11 November 2026 21:41:48 +07:00",
+    "source": "Lao Dong",
+    "image": "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=900&q=80",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ Lao Dong. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "content": ""
+  },
+  {
+    "id": 2,
+    "title": "Lịch thi đấu trận ra quân World Cup của U.17 Việt Nam mới nhất: Sẽ gây sốc cho Bỉ, đá giờ nào?",
+    "link": "https://thanhnien.vn/lich-thi-dau-tran-ra-quan-world-cup-cua-u17-viet-nam-moi-nhat-se-gay-soc-cho-bi-da-gio-nao-185261107132254389.htm",
+    "date": "Thu, 12 Nov 26 00:00:00 +0700",
+    "source": "Thanh Nien",
+    "image": "https://images2.thanhnien.vn/zoom/1200_630/528068263637045248/2026/11/7/u17-7-1794031996629835836465-15-0-1355-2560-crop-17940321065271255301310.png",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ Thanh Nien. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "content": ""
+  },
+  {
+    "id": 3,
+    "title": "Đội tuyển Việt Nam bất ngờ chia tay Olaha Mạnh Đức, Lê Giang Patrik: CLB CA TP.HCM nhận tin vui",
+    "link": "https://thanhnien.vn/doi-tuyen-viet-nam-bat-ngo-chia-tay-olaha-manh-duc-le-giang-patrik-clb-ca-tphcm-nhan-tin-vui-185261111224003353.htm",
+    "date": "Wed, 11 Nov 26 22:48:00 +0700",
+    "source": "Thanh Nien",
+    "image": "https://images2.thanhnien.vn/zoom/1200_630/528068263637045248/2026/11/11/1k75f4jdj752pqi-1794411742559310897553-0-0-1250-2000-crop-17944117489831223219952.jpeg",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ Thanh Nien. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "content": ""
+  },
+  {
+    "id": 4,
     "title": "Truyền thông Thái Lan nêu lý do đội U23 thua đậm Việt Nam",
     "link": "https://tuoitre.vn/truyen-thong-thai-lan-neu-ly-do-doi-u23-thua-dam-viet-nam-100261111095135509.htm",
     "date": "11/11/2026 10:02:00 AM",
@@ -10,47 +40,27 @@
     "content": ""
   },
   {
-    "id": 2,
-    "title": "U.17 Việt Nam chạy nước rút cho vòng chung kết World Cup U.17, lịch thi đấu mới nhất",
-    "link": "https://thanhnien.vn/u17-viet-nam-chay-nuoc-rut-cho-vong-chung-ket-world-cup-u17-lich-thi-dau-moi-nhat-18526111022265826.htm",
-    "date": "Wed, 11 Nov 26 00:37:00 +0700",
-    "source": "Thanh Nien",
-    "image": "https://images2.thanhnien.vn/zoom/1200_630/528068263637045248/2026/11/10/20b-179432392594730328696-20-0-660-1024-crop-17943242607691496032841.jpg",
-    "lead": "Bản tin thể thao cập nhật nóng nhất từ Thanh Nien. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
-    "content": ""
-  },
-  {
-    "id": 3,
-    "title": "Cú sốc dàn sao bóng rổ bị khởi tố vì dàn xếp tỷ số tại VBA: Ai là tuyển thủ quốc gia?",
-    "link": "https://thanhnien.vn/cu-soc-dan-sao-bong-ro-bi-khoi-to-vi-dan-xep-ty-so-tai-vba-ai-la-tuyen-thu-quoc-gia-185261111151551017.htm",
-    "date": "Wed, 11 Nov 26 15:50:00 +0700",
-    "source": "Thanh Nien",
-    "image": "https://images2.thanhnien.vn/zoom/1200_630/528068263637045248/2026/11/11/img8535-17943950132891832849466-31-0-376-658-crop-17943951568261791615167.jpeg",
-    "lead": "Bản tin thể thao cập nhật nóng nhất từ Thanh Nien. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
-    "content": ""
-  },
-  {
-    "id": 4,
-    "title": "Lý do thực sự khiến Man United chưa sa thải Michael Carrick",
-    "link": "https://laodong.vn/bong-da-quoc-te/ly-do-thuc-su-khien-man-united-chua-sa-thai-michael-carrick-1798405.ldo",
-    "date": "Wednesday, 11 November 2026 11:04:47 +07:00",
+    "id": 5,
+    "title": "HLV Kim Sang-sik chia sẻ triết lý không phụ thuộc ngôi sao ở tuyển Việt Nam",
+    "link": "https://laodong.vn/the-thao/hlv-kim-sang-sik-chia-se-triet-ly-khong-phu-thuoc-ngoi-sao-o-tuyen-viet-nam-1798854.ldo",
+    "date": "Wednesday, 11 November 2026 22:15:01 +07:00",
     "source": "Lao Dong",
-    "image": "https://upload.wikimedia.org/wikipedia/en/7/7a/Manchester_United_FC_crest.svg",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/4/41/Vietnam_national_football_team_at_2019_AFC_Asian_Cup.jpg",
     "lead": "Bản tin thể thao cập nhật nóng nhất từ Lao Dong. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
     "content": ""
   },
   {
-    "id": 5,
-    "title": "Chuyên gia tiết lộ mục tiêu chuyển nhượng ưu tiên của Chelsea trong tháng Giêng - bongda.com.vn",
-    "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxOWTI2VHJqQ2d5RVdsdE1Xd3kxWWFDMVVCV0I1Z29zTGtNblZTWXdzbDlUZDgxQjZWaUdheFljaHVKd1otUTNfNWw1UXhlZi12dS1BNjBOXzNiQ0hWLXZhOFlmd1FIYjZ0YjhZenRoSHZmQXdPdUdzMENpRXZEblB2RDFxLXU2eG9HQmhPdl9wbGFCOWhJeC1uazVHMjBIY2RBbktNWDlzdmtrV0RRWkxpSFRLU0I?oc=5",
-    "date": "Tue, 10 Nov 2026 14:57:08 GMT",
-    "source": "Google News VN",
-    "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw",
-    "lead": "Bản tin thể thao cập nhật nóng nhất từ Google News VN. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "id": 6,
+    "title": "HLV Đài Loan nói điều rất bất ngờ 'đội tuyển Việt Nam đẳng cấp vượt trội, thắng 2-0 còn là ít’",
+    "link": "https://thanhnien.vn/hlv-dai-loan-noi-dieu-rat-bat-ngo-doi-tuyen-viet-nam-dang-cap-vuot-troi-thang-2-0-con-la-it-185261111211204134.htm",
+    "date": "Wed, 11 Nov 26 22:03:00 +0700",
+    "source": "Thanh Nien",
+    "image": "https://images2.thanhnien.vn/zoom/1200_630/528068263637045248/2026/11/11/vietnam-dailoan-7-1794405974622282731277-49-646-1051-2560-crop-17944063522421059369095.jpg",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ Thanh Nien. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
     "content": ""
   },
   {
-    "id": 6,
+    "id": 7,
     "title": "HLV Kim Sang Sik nói lý do không cho Đình Bắc nghỉ ở tuyển Việt Nam",
     "link": "https://tuoitre.vn/hlv-kim-sang-sik-noi-ly-do-khong-cho-dinh-bac-nghi-o-tuyen-viet-nam-10026111016081963.htm",
     "date": "11/10/2026 4:27:00 PM",
@@ -60,137 +70,27 @@
     "content": ""
   },
   {
-    "id": 7,
-    "title": "Vì sao U.23 Việt Nam luôn giành ưu thế trước U.23 Thái Lan, chiến thắng ở Pleiku có thuyết phục?",
-    "link": "https://thanhnien.vn/vi-sao-u23-viet-nam-luon-gianh-uu-the-truoc-u23-thai-lan-chien-thang-o-pleiku-co-thuyet-phuc-18526111110030101.htm",
-    "date": "Wed, 11 Nov 26 10:18:00 +0700",
-    "source": "Thanh Nien",
-    "image": "https://images2.thanhnien.vn/zoom/1200_630/528068263637045248/2026/11/11/17943180560917064300679768637806g582859033018463345363f0f59c217fd4838adcd2a60388304-1794365295183681203238-131-0-1731-2560-crop-17943658911581265665243.jpg",
-    "lead": "Ủa 23 Việt Nam vừa chứng minh lại một lần sức mạnh mà họ đang dần chinh phục trên sân bóng quốc tế khi lấy thắng over U23 Thái Lan…",
-    "content": "Ủa 23 Việt Nam vừa chứng minh lại một lần sức mạnh mà họ đang dần chinh phục trên sân bóng quốc tế khi lấy thắng over U23 Thái Lan trong một trận đấu diễn ra tại sân vận động Pleiku. Khởi đầu của trận đấu được các vận động viên Việt Nam nhanh chóng tạo ra áp lực cao, buộc đối phương phải chơi trong trạng thái phòng ngự. Tấn công đầu tiên của đội Việt Nam xuất hiện ở phút 12, khi tiền đạo trẻ Nguyễn Công Phượng nhận bóng ở vùng giữa và đưa vào kiến thức hoàn hảo cho striker Nguyễn Hải Long, người đã hoàn thành cú sút đầu vào lưới, mở tỉ số 1-0. \n\nSau bàn thắng đầu tiên, U23 Việt Nam không dừng lại, tiếp tục duy trì nhịp độ tấn công và tạo ra nhiều cơ hội đáng chú ý. Ở phút 34, tiền vệ Trần Văn Nguyên đã đưa bóng vào vòng vào vòng cấm, đồng thời một well‑timed cross khiến striker Lê Minh Hoàng có cơ hội ghi bàn thứ hai, nhưng thủ môn Thái Lan đã phản ứng"
-  },
-  {
     "id": 8,
-    "title": "Bóng đá Việt Nam chú trọng y học thể thao: Đào tạo chuyên sâu về chấn thương, dinh dưỡng và cấp cứu",
-    "link": "https://thanhnien.vn/bong-da-viet-nam-chu-trong-y-hoc-the-thao-dao-tao-chuyen-sau-ve-chan-thuong-dinh-duong-va-cap-cuu-185261111193510172.htm",
-    "date": "Wed, 11 Nov 26 20:04:00 +0700",
+    "title": "Xếp hạng Casper Cup 2026 mới nhất: Đội tuyển Việt Nam dẫn đầu, đấu Kyrgyzstan ngày nào?",
+    "link": "https://thanhnien.vn/xep-hang-casper-cup-2026-moi-nhat-doi-tuyen-viet-nam-dan-dau-dau-kyrgyzstan-ngay-nao-185261111210301056.htm",
+    "date": "Wed, 11 Nov 26 21:10:00 +0700",
     "source": "Thanh Nien",
-    "image": "https://images2.thanhnien.vn/zoom/1200_630/528068263637045248/2026/11/11/tong-thu-ky-vff-nguyen-van-phu-phat-bieu-tai-le-khai-mac-17944003815251709436711-0-0-524-1000-crop-17944004020841636109059.jpg",
+    "image": "https://images2.thanhnien.vn/zoom/1200_630/528068263637045248/2026/11/11/pha-solo-ghi-ban-tuyet-dep-cua-dinh-bac-vao-luoi-dai-loan-1794406990345661480773-0-0-362-692-crop-1794408305333281236943.gif.png",
     "lead": "Bản tin thể thao cập nhật nóng nhất từ Thanh Nien. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
     "content": ""
   },
   {
     "id": 9,
-    "title": "Olaha Mạnh Đức ghi bàn trong trận ra quân của tuyển Việt Nam tại Casper Cup 2026",
-    "link": "https://laodong.vn/the-thao/olaha-manh-duc-ghi-ban-trong-tran-ra-quan-cua-tuyen-viet-nam-tai-casper-cup-2026-1798821.ldo",
-    "date": "Wednesday, 11 November 2026 19:48:55 +07:00",
+    "title": "Lý do thực sự khiến Man United chưa sa thải Michael Carrick",
+    "link": "https://laodong.vn/bong-da-quoc-te/ly-do-thuc-su-khien-man-united-chua-sa-thai-michael-carrick-1798405.ldo",
+    "date": "Wednesday, 11 November 2026 11:04:47 +07:00",
     "source": "Lao Dong",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/4/41/Vietnam_national_football_team_at_2019_AFC_Asian_Cup.jpg",
+    "image": "https://upload.wikimedia.org/wikipedia/en/7/7a/Manchester_United_FC_crest.svg",
     "lead": "Bản tin thể thao cập nhật nóng nhất từ Lao Dong. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
     "content": ""
   },
   {
     "id": 10,
-    "title": "Man United decide first Mauricio Pochettino signing as three Premier League players lined up - Manchester Evening News",
-    "link": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxOQjlQSGZjZDlGaUdTX0xOb0V2cm5lRHpZX0VPMG54UnJBQ1pfQ3QyU1dNUnZGaEpiQll6ZkhBaW02ak9ibGYwZnlVNmUxSWk1U0Uyel9xT294NXMtZEIwUzViWjlISkc0NGFfV0p5SGlsbXg2M3RIcUxaeVpyTVAxQUIwNXhmNWU3dGkzRzI1OG1nNVVQTXJpWUw3alhWSk5XWXEzV1hEdTY0VjdaNXdxb2Jjd1BMa29T0gG-AUFVX3lxTFBDaUt6MVRhZURNRUFMcDMzYk5HaXEzNGVyaXpSTnd5N2hQU1RiYnRpR0pSaHNMWnY5dEJCZEFQWVhxNWY2dFh2LVFna203ek1xN09YaHRpcWsxbkpoX1ZJVHJ1ZWU2UVNCYmotNkRvSWE1ZkpVQjU5VWh5UFVsSWJjVmxVcGRhT0pPMmZERTRZQUNCMzVZMXBNenY4NTktNHgtMkxoajBQZDVNMUJSQnJGWVpNV2k3MjNEVUpkcFE?oc=5",
-    "date": "Wed, 11 Nov 2026 12:32:00 GMT",
-    "source": "Google News EN",
-    "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw",
-    "lead": "Bản tin thể thao cập nhật nóng nhất từ Google News EN. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
-    "content": ""
-  },
-  {
-    "id": 11,
-    "title": "Bóng chuyền Việt Nam ngày 11.11: Huấn luyện viên Bích Tuyền sang Thái Lan tập huấn",
-    "link": "https://laodong.vn/bong-chuyen/bong-chuyen-viet-nam-ngay-1111-huan-luyen-vien-bich-tuyen-sang-thai-lan-tap-huan-1798815.ldo",
-    "date": "Wednesday, 11 November 2026 19:31:54 +07:00",
-    "source": "Lao Dong",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/4/41/Vietnam_national_football_team_at_2019_AFC_Asian_Cup.jpg",
-    "lead": "Bản tin thể thao cập nhật nóng nhất từ Lao Dong. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
-    "content": ""
-  },
-  {
-    "id": 12,
-    "title": "VFF đình chỉ các thành viên CLB Long An liên quan việc dàn xếp tỉ số",
-    "link": "https://vtv.vn/vff-dinh-chi-cac-thanh-vien-clb-long-an-lien-quan-viec-dan-xep-ti-so-100261111140153385.htm",
-    "date": "Wed, 11 Nov 2026 19:13:00 +07",
-    "source": "VTV TheThao",
-    "image": "https://cdn-images.vtv.vn/zoom/205_129/66349b6076cb4dee98746cf1/2026/11/10/1794313675695-3443364424668109247-g6125915288185563509-a118ad21f3b77bc5f829bc707b6090d3-67105068499659791339219-13395674537395363032363.jpg",
-    "lead": "VFF quyết định đình chỉ một số thành viên của CLB Long An vì các vụ việc liên quan tới việc dàn xếp tỉ số, việc mà đã gây ra tranh…",
-    "content": "VFF quyết định đình chỉ một số thành viên của CLB Long An vì các vụ việc liên quan tới việc dàn xếp tỉ số, việc mà đã gây ra tranh cãi và ảnh hưởng tới hoạt động giải đấu. Các biện pháp này được công bố trên các kênh truyền hình trực tuyến, giúp người hâm mộ nắm bắt thông tin nhanh chóng và rõ ràng. \n\nTrong thông báo chính thức, VFF nêu rõ rằng việc dàn xếp tỉ số không đáp ứng các tiêu chuẩn that được quy định, dẫn đến việc một số cá nhân của CLB Long An bị đình chỉ tạm thời. Điều này nhằm bảo vệ tính minh bạch và công bằng trong môi trường thi đấu, đồng thời ngăn ngừa các hành vi vi phạm quy định của federation. Các thành viên"
-  },
-  {
-    "id": 13,
-    "title": "Cổ động viên mong Đình Bắc ghi bàn cho tuyển Việt Nam",
-    "link": "https://laodong.vn/video-the-thao/co-dong-vien-mong-dinh-bac-ghi-ban-cho-tuyen-viet-nam-1798797.ldo",
-    "date": "Wednesday, 11 November 2026 19:12:42 +07:00",
-    "source": "Lao Dong",
-    "image": "https://media-cdn-v2.laodong.vn/storage/newsportal/2026/11/11/1798797/IMG_0539.jpeg?w=800&amp;h=420&amp;crop=auto&amp;scale=both",
-    "lead": "Cổ động viên Mong Đình Bắc đã trở thành điểm nhấn mới của tuyển Việt Nam trong trận đấu gần đây, khi Successfully ghi bàn quyết đị…",
-    "content": "Cổ động viên Mong Đình Bắc đã trở thành điểm nhấn mới của tuyển Việt Nam trong trận đấu gần đây, khi Successfully ghi bàn quyết định và giúp đội có được lợi thế trong trận. Sự xuất hiện của anh trên sân khấu quốc tế đã gợi lên niềm tin freshened"
-  },
-  {
-    "id": 14,
-    "title": "Trực tiếp bóng đá tuyển Việt Nam 2-0 Đài Loan (Trung Quốc): Đình Bắc ghi bàn",
-    "link": "https://laodong.vn/bong-da/truc-tiep-bong-da-tuyen-viet-nam-2-0-dai-loan-trung-quoc-dinh-bac-ghi-ban-1798761.ldo",
-    "date": "Wednesday, 11 November 2026 18:25:57 +07:00",
-    "source": "Lao Dong",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/4/41/Vietnam_national_football_team_at_2019_AFC_Asian_Cup.jpg",
-    "lead": "Bản tin thể thao cập nhật nóng nhất từ Lao Dong. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
-    "content": ""
-  },
-  {
-    "id": 15,
-    "title": "Đội hình tuyển Việt Nam đấu Đài Bắc Trung Hoa: Đình Bắc đá cặp cùng Olaha Mạnh Đức trên hàng công",
-    "link": "https://tuoitre.vn/doi-hinh-tuyen-viet-nam-dau-dai-bac-trung-hoa-dinh-bac-da-cap-cung-olaha-manh-duc-tren-hang-cong-100261111163027223.htm",
-    "date": "11/11/2026 6:16:00 PM",
-    "source": "Tuoi Tre",
-    "image": "https://cdn2.tuoitre.vn/zoom/1200_630/471584752817336320/2026/11/11/olaha-manh-duc-va-luong-chi-khai-1794390945310929895306-154-0-597-846-crop-1794390970857614207945.jpeg",
-    "lead": "Bản tin thể thao cập nhật nóng nhất từ Tuoi Tre. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
-    "content": ""
-  },
-  {
-    "id": 16,
-    "title": "Việt Nam 2-0 Đài Loan (H2): Đình Bắc ghi siêu phẩm",
-    "link": "https://vnexpress.net/viet-nam-vs-dai-loan-5143537.html",
-    "date": "Wed, 11 Nov 2026 18:01:08 +0700",
-    "source": "VnExpress",
-    "image": "https://s1cdn.vnecdn.net/vnexpress/restruct/i/v9854/graphics/nguonuutien.jpg",
-    "lead": "Việt Nam đã tung ra một bản thắng 2‑0 over Đài Loan trong trận đấu’H2’ (phần hai) của trận chung kết tại sân nhà. Đội bóng người V…",
-    "content": "Việt Nam đã tung ra một bản thắng 2‑0 over Đài Loan trong trận đấu’H2’ (phần hai) của trận chung kết tại sân nhà. Đội bóng người Việt Nam đã khép lại trận đấu với một pha tiến công sắc bén, trong khi Đình Bắc đã tỏa sáng bằng một bàn “siêu phẩm” đã khiến khán giả phải đứng lên vỗ tay.\n\nKhởi đầu của trận đấu diễn ra trong không khí căng thẳng, hai đội đều muốn khẳng định quyền lực trên sân. Đài Loan cố gắng duy trì thế bằng cách tổ chức phòng ngự chặt chẽ, nhưng mà khả năng tổ chức tấn công của Việt Nam lại dần dần trở nên sáng tỏ. Vào phút 58, người chơi tiền đạo của Việt Nam đã nhận bóng ở vùng giữa, nhanh chóng chuyển sang công ataque và đưa bóng vào lưới đối phương, tạo ra lợi thế 1‑0. Bàn thắng này không chỉ chứng tỏ tính hiệu quả của đội nhưng còn nâng cao tinh thần fighting cho các đồng đội.\n\nSau khi ghi bàn, Đình Bắc tiếp tục duy trì áp lực, và ở phút 73, anh đã nhận một pha chuyền dài từ trung vệ, nhanh chóng kiểm soát và từ góc rộng tiến vào vòng cấm, sau đó cú đấm mạnh mẽ khiến thủ môn Đài Loan không kịp phản ứng. Bàn thắng này được vô hiệu hoá và mở ra khoảng cách 2‑0, chinh phục phần lớn của sân khấu. Đội Việt Nam đã giữ vững kết quả này cho đến cùng, cho thấy sự kiên trì và kỷ luật trong việc bảo vệ thế lợi.\n\nVới kết quả này, Việt Nam không chỉ thu được 3 điểm thiết thực mà còn nâng cao niềm tin trước những trận đấu quan trọng sắp tới. Đội trưởng và các cầu thủ đã thể hiện tinh thần đoàn kết, sẵn sàng迎接 những thử thách mới trong lịch sử"
-  },
-  {
-    "id": 17,
-    "title": "Casper Cup 2026, đội tuyển Việt Nam 2 - 0 Đài Loan: Olaha Mạnh Đức, Đình Bắc tỏa sáng",
-    "link": "https://thanhnien.vn/truc-tiep-doi-tuyen-viet-nam-dai-loan-chan-sut-nhap-tich-olaha-manh-duc-toa-sang-185261111152608511.htm",
-    "date": "Wed, 11 Nov 26 18:00:00 +0700",
-    "source": "Thanh Nien",
-    "image": "https://images2.thanhnien.vn/zoom/1200_630/528068263637045248/2026/11/11/17944023585506170349356290017365g44231299527825253349eeb688984ba3f273af97a2b1d5305f6-179440250476856800684-58-0-1398-2560-crop-17944056706641089869733.jpg",
-    "lead": "Bản tin thể thao cập nhật nóng nhất từ Thanh Nien. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
-    "content": ""
-  },
-  {
-    "id": 18,
-    "title": "Việt Nam - Đài Bắc Trung Hoa (Hết hiệp 1) 1-0: Mạnh Đức mở tỉ số",
-    "link": "https://tuoitre.vn/truc-tuyen-doi-tuyen-viet-nam-dau-dai-bac-trung-hoa-19h-100261111095949402.htm",
-    "date": "11/11/2026 6:00:00 PM",
-    "source": "Tuoi Tre",
-    "image": "https://cdn2.tuoitre.vn/zoom/1200_630/471584752817336320/2026/11/11/dinh-bac-edit-17944082096541433856212-189-0-1440-2389-crop-1794408286647985413765.jpg",
-    "lead": "Bản tin thể thao cập nhật nóng nhất từ Tuoi Tre. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
-    "content": ""
-  },
-  {
-    "id": 19,
-    "title": "Đội tuyển Việt Nam cực mới đấu Đài Loan: Olaha Mạnh Đức đá chính cùng Đình Bắc, Ngọc Sơn",
-    "link": "https://thanhnien.vn/doi-tuyen-viet-nam-cuc-moi-dau-dai-loan-olaha-manh-duc-da-chinh-cung-dinh-bac-ngoc-son-185261111163400049.htm",
-    "date": "Wed, 11 Nov 26 17:50:00 +0700",
-    "source": "Thanh Nien",
-    "image": "https://images2.thanhnien.vn/zoom/1200_630/528068263637045248/2026/11/11/1k72hgijq752pqi-1794394406080235696021-0-0-1250-2000-crop-17943944125271242905740.jpeg",
-    "lead": "Bản tin thể thao cập nhật nóng nhất từ Thanh Nien. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
-    "content": ""
-  },
-  {
-    "id": 20,
     "title": "Mâu thuẫn với Hojlund, De Bruyne đòi rời Napoli để gia nhập Everton - Tạp chí Bóng đá",
     "link": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPa01tSFQzYk5IeHQteE1NXy01T0ozUXVNMlVhYW4zR0k2MnNnWUJsb1pET05LWDVLcjVfenRTS25zZFZURUh3TWJPZ1JNbHVPUVlEbTBYMFp6TVRncGlDSjg2bVcwN1plU096VzlIV1l5X0J1NDhwcUJ2Qi1ja3VOZjhBcS1WNnJFd2xtWHluYi1LcTF3OXlSTUxWNHV3ZUVTN2pjS2k1VjhMZU9fM1pyWW91VDBtbEZrem9fTW1hNA?oc=5",
     "date": "Wed, 11 Nov 2026 00:42:36 GMT",
@@ -200,29 +100,19 @@
     "content": ""
   },
   {
-    "id": 21,
-    "title": "Everton transfer rumours: Kevin de Bruyne, Dion Beljo - BBC",
-    "link": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxPVHdGOWNvTkRSZVVmV0gtVVFkaXR4eW1JZXBkdXdEeWxwSkNjZlFIVkVjS2oxbTBibHF2YU9nQnMzemg0Mm1aZXQxZU1SMkJHZEtYWms5UmdrOXBJZGxpdXpNNGpCZzJ4UXoyZGtxSUs4RURzYXFNNGZxV0E1MUFQNEFqY1IzY3duYzctU2FHNjVDLU9DRVY2ZVF5cTNXWndTa3hvSHlsOUEyRFBWMGtIT3gxSDZTWklXSm5tbkdrN2NQZ1hsa0pibWYza3Z0VnExZXlGQWdqQkprRDRmYXd2cTRCOTlKejdJcUYtQkppNTFwdw?oc=5",
-    "date": "Wed, 11 Nov 2026 08:09:37 GMT",
-    "source": "Google News EN",
-    "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw",
-    "lead": "Bản tin thể thao cập nhật nóng nhất từ Google News EN. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "id": 11,
+    "title": "Vì sao U.23 Việt Nam luôn giành ưu thế trước U.23 Thái Lan, chiến thắng ở Pleiku có thuyết phục?",
+    "link": "https://thanhnien.vn/vi-sao-u23-viet-nam-luon-gianh-uu-the-truoc-u23-thai-lan-chien-thang-o-pleiku-co-thuyet-phuc-18526111110030101.htm",
+    "date": "Wed, 11 Nov 26 10:18:00 +0700",
+    "source": "Thanh Nien",
+    "image": "https://images2.thanhnien.vn/zoom/1200_630/528068263637045248/2026/11/11/17943180560917064300679768637806g582859033018463345363f0f59c217fd4838adcd2a60388304-1794365295183681203238-131-0-1731-2560-crop-17943658911581265665243.jpg",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ Thanh Nien. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
     "content": ""
   },
   {
-    "id": 22,
-    "title": "Lịch thi đấu đội tuyển Việt Nam tại Casper Cup 2026 cập nhật mới nhất",
-    "link": "https://laodong.vn/infographic/lich-thi-dau-doi-tuyen-viet-nam-tai-casper-cup-2026-cap-nhat-moi-nhat-1798325.ldo",
-    "date": "Wednesday, 11 November 2026 08:22:01 +07:00",
-    "source": "Lao Dong",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/4/41/Vietnam_national_football_team_at_2019_AFC_Asian_Cup.jpg",
-    "lead": "Bản tin thể thao cập nhật nóng nhất từ Lao Dong. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
-    "content": ""
-  },
-  {
-    "id": 23,
-    "title": "Transfer Rumors: Endrick’s Premier League Offer; Ronaldo Thwarts Barcelona Plan - Forza Football",
-    "link": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxPc1lCckRHQTNpNWh2TEVDSXZNWmgtSnlXNHJxNHNXNmEtNlBuaVJmbzFrRWh2SXhnWW51SEpWbnFtZ3hjNGFybFRId3pDMDlkRDdTakRkSEY3WVk5SDJrOUhiUTdGcnBiaDd0TEVyaEpsbW40REZBYWxYXy02VkVMVjkwaDN1dFFXNlBobTJLNktrMFdXSTNpYllWSlozaFowZEZkUFNVQlk2aGlZRXFFb0dfcVQzWGlC?oc=5",
+    "id": 12,
+    "title": "Transfer Rumors: Endrick’s Premier League Offer; Ronaldo Thwarts Barcelona Plan - Sports Illustrated",
+    "link": "https://news.google.com/rss/articles/CBMiowFBVV95cUxOdHZMWmFXemxsdVRhUURGSVNPNEZFZTFxcEVxbm10RmZjaHJVeTNjTi1ad3dXUUZZc2RhbndyUHdGY1pjSDJDN09UTk56NU4xTGdnd1RPZl9uYU9DQm9XMkV6YkpUUGFzanVySHF4THZJeTJiZ2FINXIwdF8tM0VyQ1ZZNVVKZE4yRUVQWEg3SmVTc2Q5d1l4amMxR3lHcUZJd2FZ?oc=5",
     "date": "Wed, 11 Nov 2026 00:05:00 GMT",
     "source": "Google News EN",
     "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw",
@@ -230,23 +120,133 @@
     "content": ""
   },
   {
-    "id": 24,
-    "title": "Xếp hạng Gia Lai Cup mới nhất: U.23 Việt Nam xuất sắc đứng đầu, Qatar tốp 2 còn Thái Lan thế nào?",
-    "link": "https://thanhnien.vn/xep-hang-gia-lai-cup-moi-nhat-u23-viet-nam-xuat-sac-dung-dau-qatar-top-2-con-thai-lan-the-nao-18526111021231781.htm",
-    "date": "Tue, 10 Nov 26 21:26:00 +0700",
+    "id": 13,
+    "title": "U.17 Việt Nam chạy nước rút cho vòng chung kết World Cup U.17, lịch thi đấu mới nhất",
+    "link": "https://thanhnien.vn/u17-viet-nam-chay-nuoc-rut-cho-vong-chung-ket-world-cup-u17-lich-thi-dau-moi-nhat-18526111022265826.htm",
+    "date": "Wed, 11 Nov 26 00:37:00 +0700",
     "source": "Thanh Nien",
-    "image": "https://images2.thanhnien.vn/zoom/1200_630/528068263637045248/2026/11/10/tnw-17943155615617103495586065056191g6156964149056605761a8bc145c6cd935f95de78ac2763d55b-1794320444768518668931-61-0-1401-2560-crop-1794320580747966855220.jpg",
+    "image": "https://images2.thanhnien.vn/zoom/1200_630/528068263637045248/2026/11/10/20b-179432392594730328696-20-0-660-1024-crop-17943242607691496032841.jpg",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ Thanh Nien. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "content": ""
+  },
+  {
+    "id": 14,
+    "title": "Barcelona set to rival Manchester United for Rayan Ait-Nouri - Euro Transfer News - TNT Sports",
+    "link": "https://news.google.com/rss/articles/CBMi9AFBVV95cUxOamc5OG5KTkJ0Zjg5LUZoaUxQckJ0Q1REVW9oVC1fZXFjel9wa1UybExNbVNsUVdFRThTS29TRHpleXoyQkpVV2ZfUy11Mk14bFBaWmRad2xrZ09Ia2JReF90bkxlanE3VkxVSWlYMkJtTlZwV1JBZnREdVVFN3FvdDVyMGpQczAwSjd4MWZXYzAxUDVjb1dfbGtHNjZ3ZW93cFFNcWxibUJ0RUQ5akszMmpyR3AxbFZCS05pYmZOUUxxdloteV9mdHFiUWN2cXZpQWtzZ20zemo4eGM0ZV9kN3NQcm1DTzdhanBsSEswNHJIeXVW?oc=5",
+    "date": "Wed, 11 Nov 2026 17:46:00 GMT",
+    "source": "Google News EN",
+    "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ Google News EN. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "content": ""
+  },
+  {
+    "id": 15,
+    "title": "Chuyên án trinh sát 096B, bê bối dàn xếp tỷ số rúng động thể thao Việt Nam",
+    "link": "https://thanhnien.vn/chuyen-an-trinh-sat-096b-be-boi-dan-xep-ty-so-rung-dong-the-thao-viet-nam-185261111184004395.htm",
+    "date": "Thu, 12 Nov 26 00:34:00 +0700",
+    "source": "Thanh Nien",
+    "image": "https://images2.thanhnien.vn/zoom/1200_630/528068263637045248/2026/11/11/anh-man-hinh-2026-11-11-luc-113830-17943719403892000570589-0-0-1578-2524-crop-17943971658991939294834.png",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ Thanh Nien. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "content": ""
+  },
+  {
+    "id": 16,
+    "title": "Dự đoán U.23 Việt Nam vs U.23 Singapore: Williams Minh Hoàng ghi bàn, chủ nhà thắng 2-0",
+    "link": "https://thanhnien.vn/du-doan-u23-viet-nam-vs-u23-singapore-williams-minh-hoang-ghi-ban-chu-nha-thang-2-0-185261112001625246.htm",
+    "date": "Thu, 12 Nov 26 00:33:00 +0700",
+    "source": "Thanh Nien",
+    "image": "https://images2.thanhnien.vn/zoom/1200_630/528068263637045248/2026/11/11/tnw-1794319728506712337175699778214g7205040164022493113ee8cce650b2c4c10fdba4acd84daed20-179441711525750407835-45-0-1385-2560-crop-1794417353477137956066.jpg",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ Thanh Nien. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "content": ""
+  },
+  {
+    "id": 17,
+    "title": "Phiên bản mới đáng mong đợi của đội tuyển Việt Nam",
+    "link": "https://thanhnien.vn/phien-ban-moi-dang-mong-doi-cua-doi-tuyen-viet-nam-185261111225244443.htm",
+    "date": "Thu, 12 Nov 26 00:00:00 +0700",
+    "source": "Thanh Nien",
+    "image": "https://images2.thanhnien.vn/zoom/1200_630/528068263637045248/2026/11/11/photo-1794411950381-1794411951303645868977-84-0-1334-2000-crop-17944119652591415886211.jpeg",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ Thanh Nien. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "content": ""
+  },
+  {
+    "id": 18,
+    "title": "U.23 Việt Nam - U.23 Singapore (19 giờ, trực tiếp trên FPT Play, VTV): Chiến thắng thứ 2 trong tầm tay",
+    "link": "https://thanhnien.vn/u23-viet-nam-u23-singapore-19-gio-truc-tiep-tren-fpt-play-vtv-chien-thang-thu-2-trong-tam-tay-185261111224450998.htm",
+    "date": "Thu, 12 Nov 26 00:00:00 +0700",
+    "source": "Thanh Nien",
+    "image": "https://images2.thanhnien.vn/zoom/1200_630/528068263637045248/2026/11/11/img8551-17944138593681015154507-0-0-1005-1920-crop-1794413879522600715080.jpeg",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ Thanh Nien. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "content": ""
+  },
+  {
+    "id": 19,
+    "title": "Olaha Mạnh Đức, Lê Giang Patrik rời tuyển Việt Nam",
+    "link": "https://tuoitre.vn/olaha-manh-duc-le-giang-patrik-roi-tuyen-viet-nam-100261111222450162.htm",
+    "date": "11/11/2026 11:09:00 PM",
+    "source": "Tuoi Tre",
+    "image": "https://cdn2.tuoitre.vn/zoom/1200_630/471584752817336320/2026/11/11/thu-mon-le-giang-patrik-tran-gap-dai-bac-trung-hoa-17944100182401410030641-294-0-1366-2048-crop-1794410658969683604395.jpg",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ Tuoi Tre. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "content": ""
+  },
+  {
+    "id": 20,
+    "title": "Liên đoàn Bóng rổ Việt Nam tạm đình chỉ các cầu thủ bị khởi tố, VBA siết chặt hơn kỷ luật nội bộ",
+    "link": "https://thanhnien.vn/lien-doan-bong-ro-viet-nam-tam-dinh-chi-cac-cau-thu-bi-khoi-to-vba-siet-chat-hon-ky-luat-noi-bo-185261111224749051.htm",
+    "date": "Wed, 11 Nov 26 23:03:00 +0700",
+    "source": "Thanh Nien",
+    "image": "https://images2.thanhnien.vn/zoom/1200_630/528068263637045248/2026/11/11/5292673161230178002476990168587170271378000n-1794411816940133052364-33-0-490-731-crop-17944118801631472838490.jpg",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ Thanh Nien. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "content": ""
+  },
+  {
+    "id": 21,
+    "title": "U19 Việt Nam chịu phạt đền khó hiểu khi thua Trung Quốc",
+    "link": "https://vnexpress.net/u19-viet-nam-chiu-phat-den-kho-hieu-khi-thua-trung-quoc-5143585.html",
+    "date": "Wed, 11 Nov 2026 23:01:41 +0700",
+    "source": "VnExpress",
+    "image": "https://vcdn1-thethao.vnecdn.net/2026/11/11/u19-1794410861-1478-1794411158.gif?w=1200&h=675&q=100&dpr=1&fit=crop&s=NtTHbfoq0y4TomOMJToDCw&t=image",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ VnExpress. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "content": ""
+  },
+  {
+    "id": 22,
+    "title": "HLV Đài Loan: 'Tỷ số 2-0 chưa phản ánh hết sự áp đảo của Việt Nam'",
+    "link": "https://vnexpress.net/hlv-dai-loan-ty-so-2-0-chua-phan-anh-het-su-ap-dao-cua-viet-nam-5143583.html",
+    "date": "Wed, 11 Nov 2026 22:53:17 +0700",
+    "source": "VnExpress",
+    "image": "https://vcdn1-thethao.vnecdn.net/2026/11/11/1794401673068-g651265587011251-7747-2032-1794410583.jpg?w=1200&h=675&q=100&dpr=1&fit=crop&s=fGnAF6zsfP5Pb6-_pmp42Q",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ VnExpress. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "content": ""
+  },
+  {
+    "id": 23,
+    "title": "Lãnh đạo VBA lên tiếng về vụ án các cầu thủ bóng rổ bị bắt vì dàn xếp tỷ số: ‘Rất bất ngờ’",
+    "link": "https://thanhnien.vn/lanh-dao-vba-len-tieng-ve-vu-an-cac-cau-thu-bong-ro-bi-bat-vi-dan-xep-ty-so-rat-bat-ngo-185261111123405978.htm",
+    "date": "Wed, 11 Nov 26 20:37:00 +0700",
+    "source": "Thanh Nien",
+    "image": "https://images2.thanhnien.vn/zoom/1200_630/528068263637045248/2026/11/11/86221705317924940220598982580745585033355361n-1794379552802732950557-311-0-1561-2000-crop-1794379766332533058315.jpg",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ Thanh Nien. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "content": ""
+  },
+  {
+    "id": 24,
+    "title": "Cú sốc dàn sao bóng rổ bị khởi tố vì dàn xếp tỷ số tại VBA: Ai là tuyển thủ quốc gia?",
+    "link": "https://thanhnien.vn/cu-soc-dan-sao-bong-ro-bi-khoi-to-vi-dan-xep-ty-so-tai-vba-ai-la-tuyen-thu-quoc-gia-185261111151551017.htm",
+    "date": "Wed, 11 Nov 26 15:50:00 +0700",
+    "source": "Thanh Nien",
+    "image": "https://images2.thanhnien.vn/zoom/1200_630/528068263637045248/2026/11/11/img8535-17943950132891832849466-31-0-376-658-crop-17943951568261791615167.jpeg",
     "lead": "Bản tin thể thao cập nhật nóng nhất từ Thanh Nien. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
     "content": ""
   },
   {
     "id": 25,
-    "title": "The brothers and their dad driving England's World Cup bid",
-    "link": "https://www.bbc.co.uk/sport/rugby-league/articles/ckq6er93rd34o?at_medium=RSS&at_campaign=rss",
-    "date": "Wed, 11 Nov 2026 12:36:28 GMT",
-    "source": "BBC Sport",
-    "image": "https://ichef.bbci.co.uk/images/ic/480x270/p0pl19jc.jpg",
-    "lead": "Vào cuối tuần vừa qua, đồng đội England wheelchair rugby league chuẩn bị để tham dự trận chung kết World Cup tại Thủ đô Ấn Độ, Wol…",
-    "content": "Vào cuối tuần vừa qua, đồng đội England wheelchair rugby league chuẩn bị để tham dự trận chung kết World Cup tại Thủ đô Ấn Độ, Wollongong. Đội trưởng Tom Coyd, người đã lên tay làm người dẫn dắt đội tuyển vào năm 2020, vừa công bố kế hoạch chiến thuật trước trận đấu quyết định với Pháp vào ngày 8 giờ sáng GMT. Tom không chỉ là người phụ huynh của gia đình, mà còn là người quản lý trực tiếp cho anh em trai, Joe, một cầu thủ đã được gọi lần đầu vào tuyển quốc gia khi còn chỉ 15 tuổi vào năm 2013. \n\nTom đã khai bối rằng việc dẫn dắt cùng người thân là “một thách thức khó khăn nhất” mà anh từng gặp, nhưng cũng là “cảm giác hài lòng sâu sắc nhất”. Ông nhắc tới những khoảnh khắc căng thẳng do mối quan hệ gia đình, nhưng cũng nhấn mạnh rằng họ đã chứng minh được khả năng hợp tác và thành công bốn năm trước khi giành chức vô địch World Cup. \n\nTrong số các thành viên chính, Joe Coyd hiện là một trong những người đóng góp sáng tạo nhất, mang lại tốc độ và kỹ năng đặc thù cho đội. Khi England bước vào trận chung kết, họ sẽ đối đầu Pháp – đội có lịch sử thi đấu gần nhau và luôn là đối phương đáng sợ. Với tâm thế quyết tâm và kinh nghiệm tích lũy từ năm 2020, England hy vọng sẽ lập lại thành tích vô địch và mang lại niềm tự hào cho người hâm mộ.\n\nChúc công đội Anh sẽ thành công trong trận đấu quyết định, tiếp tục viết tiếp câu chuyện truyền thống của gia đình Coyd trong thể thao ghe thuyền ngồi xe lôi."
+    "title": "Chuyên gia tiết lộ mục tiêu chuyển nhượng ưu tiên của Chelsea trong tháng Giêng - bongda.com.vn",
+    "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxOWTI2VHJqQ2d5RVdsdE1Xd3kxWWFDMVVCV0I1Z29zTGtNblZTWXdzbDlUZDgxQjZWaUdheFljaHVKd1otUTNfNWw1UXhlZi12dS1BNjBOXzNiQ0hWLXZhOFlmd1FIYjZ0YjhZenRoSHZmQXdPdUdzMENpRXZEblB2RDFxLXU2eG9HQmhPdl9wbGFCOWhJeC1uazVHMjBIY2RBbktNWDlzdmtrV0RRWkxpSFRLU0I?oc=5",
+    "date": "Tue, 10 Nov 2026 14:57:08 GMT",
+    "source": "Google News VN",
+    "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ Google News VN. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "content": ""
   }
 ]
