@@ -11,6 +11,16 @@
   },
   {
     "id": 2,
+    "title": "World Cup U.17 có Việt Nam tham dự biến động lớn: U.17 Mỹ chính thức rút lui, lý do rất bất ngờ",
+    "link": "https://thanhnien.vn/world-cup-u17-co-viet-nam-tham-du-bien-dong-lon-u17-my-chinh-thuc-rut-lui-185261112073347305.htm",
+    "date": "Thu, 12 Nov 26 07:34:00 +0700",
+    "source": "Thanh Nien",
+    "image": "https://images2.thanhnien.vn/zoom/1200_630/528068263637045248/2026/11/12/u17-vietnam-1794443327700596079799-206-382-849-1611-crop-1794443559782823615613.jpeg",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ Thanh Nien. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "content": ""
+  },
+  {
+    "id": 3,
     "title": "Lịch thi đấu trận ra quân World Cup của U.17 Việt Nam mới nhất: Sẽ gây sốc cho Bỉ, đá giờ nào?",
     "link": "https://thanhnien.vn/lich-thi-dau-tran-ra-quan-world-cup-cua-u17-viet-nam-moi-nhat-se-gay-soc-cho-bi-da-gio-nao-185261107132254389.htm",
     "date": "Thu, 12 Nov 26 00:00:00 +0700",
@@ -20,17 +30,17 @@
     "content": ""
   },
   {
-    "id": 3,
-    "title": "Đội tuyển Việt Nam bất ngờ chia tay Olaha Mạnh Đức, Lê Giang Patrik: CLB CA TP.HCM nhận tin vui",
-    "link": "https://thanhnien.vn/doi-tuyen-viet-nam-bat-ngo-chia-tay-olaha-manh-duc-le-giang-patrik-clb-ca-tphcm-nhan-tin-vui-185261111224003353.htm",
-    "date": "Wed, 11 Nov 26 22:48:00 +0700",
+    "id": 4,
+    "title": "Messi giúp bóng đá Mỹ tăng kỷ lục người xem, Ronaldo bất ngờ làm phim truyền hình",
+    "link": "https://thanhnien.vn/messi-giup-bong-da-my-tang-ky-luc-nguoi-xem-ronaldo-bat-ngo-lam-phim-truyen-hinh-185261112082839668.htm",
+    "date": "Thu, 12 Nov 26 08:35:00 +0700",
     "source": "Thanh Nien",
-    "image": "https://images2.thanhnien.vn/zoom/1200_630/528068263637045248/2026/11/11/1k75f4jdj752pqi-1794411742559310897553-0-0-1250-2000-crop-17944117489831223219952.jpeg",
+    "image": "https://images2.thanhnien.vn/zoom/1200_630/528068263637045248/2026/11/12/messi-17936746492411478823989-0-606-804-2142-crop-17944468692431893526722.jpg",
     "lead": "Bản tin thể thao cập nhật nóng nhất từ Thanh Nien. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
     "content": ""
   },
   {
-    "id": 4,
+    "id": 5,
     "title": "Truyền thông Thái Lan nêu lý do đội U23 thua đậm Việt Nam",
     "link": "https://tuoitre.vn/truyen-thong-thai-lan-neu-ly-do-doi-u23-thua-dam-viet-nam-100261111095135509.htm",
     "date": "11/11/2026 10:02:00 AM",
@@ -40,7 +50,27 @@
     "content": ""
   },
   {
-    "id": 5,
+    "id": 6,
+    "title": "Báo Indonesia thất vọng vì ngôi sao gốc Hà Lan chọn khoác áo Việt Nam",
+    "link": "https://tuoitre.vn/bao-indonesia-that-vong-vi-ngoi-sao-goc-ha-lan-chon-khoac-ao-viet-nam-100261111183737443.htm",
+    "date": "11/12/2026 6:32:00 AM",
+    "source": "Tuoi Tre",
+    "image": "https://cdn2.tuoitre.vn/zoom/1200_630/471584752817336320/2026/11/12/tomas-mai-vereen-1794396610390616683515-0-98-390-843-crop-1794441639106184348097.png",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ Tuoi Tre. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "content": ""
+  },
+  {
+    "id": 7,
+    "title": "Đội tuyển Việt Nam bất ngờ chia tay Olaha Mạnh Đức, Lê Giang Patrik: CLB CA TP.HCM nhận tin vui",
+    "link": "https://thanhnien.vn/doi-tuyen-viet-nam-bat-ngo-chia-tay-olaha-manh-duc-le-giang-patrik-clb-ca-tphcm-nhan-tin-vui-185261111224003353.htm",
+    "date": "Wed, 11 Nov 26 22:48:00 +0700",
+    "source": "Thanh Nien",
+    "image": "https://images2.thanhnien.vn/zoom/1200_630/528068263637045248/2026/11/11/1k75f4jdj752pqi-1794411742559310897553-0-0-1250-2000-crop-17944117489831223219952.jpeg",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ Thanh Nien. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "content": ""
+  },
+  {
+    "id": 8,
     "title": "HLV Kim Sang-sik chia sẻ triết lý không phụ thuộc ngôi sao ở tuyển Việt Nam",
     "link": "https://laodong.vn/the-thao/hlv-kim-sang-sik-chia-se-triet-ly-khong-phu-thuoc-ngoi-sao-o-tuyen-viet-nam-1798854.ldo",
     "date": "Wednesday, 11 November 2026 22:15:01 +07:00",
@@ -50,7 +80,7 @@
     "content": ""
   },
   {
-    "id": 6,
+    "id": 9,
     "title": "HLV Đài Loan nói điều rất bất ngờ 'đội tuyển Việt Nam đẳng cấp vượt trội, thắng 2-0 còn là ít’",
     "link": "https://thanhnien.vn/hlv-dai-loan-noi-dieu-rat-bat-ngo-doi-tuyen-viet-nam-dang-cap-vuot-troi-thang-2-0-con-la-it-185261111211204134.htm",
     "date": "Wed, 11 Nov 26 22:03:00 +0700",
@@ -60,17 +90,17 @@
     "content": ""
   },
   {
-    "id": 7,
-    "title": "HLV Kim Sang Sik nói lý do không cho Đình Bắc nghỉ ở tuyển Việt Nam",
-    "link": "https://tuoitre.vn/hlv-kim-sang-sik-noi-ly-do-khong-cho-dinh-bac-nghi-o-tuyen-viet-nam-10026111016081963.htm",
-    "date": "11/10/2026 4:27:00 PM",
+    "id": 10,
+    "title": "Bất ngờ ứng viên Nam Phi thách thức ghế chủ tịch FIFA của Gianni Infantino",
+    "link": "https://tuoitre.vn/bat-ngo-ung-vien-nam-phi-thach-thuc-ghe-chu-tich-fifa-cua-gianni-infantino-100261112060539463.htm",
+    "date": "11/12/2026 6:29:00 AM",
     "source": "Tuoi Tre",
-    "image": "https://cdn2.tuoitre.vn/zoom/1200_630/471584752817336320/2026/11/10/kim-17943015645051483214400-0-0-1340-2560-crop-1794301630214864012626-0-226-929-2000-crop-17943033664771905906533.jpg",
+    "image": "https://cdn2.tuoitre.vn/zoom/1200_630/471584752817336320/2026/11/11/2026-06-10t185701z1948792511up1em6a1gn00jrtrmadp3soccer-worldcup-infantino-17822335531061104488346-1783858435711826803914-0-0-1340-2560-crop-179443826589925290908.jpg",
     "lead": "Bản tin thể thao cập nhật nóng nhất từ Tuoi Tre. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
     "content": ""
   },
   {
-    "id": 8,
+    "id": 11,
     "title": "Xếp hạng Casper Cup 2026 mới nhất: Đội tuyển Việt Nam dẫn đầu, đấu Kyrgyzstan ngày nào?",
     "link": "https://thanhnien.vn/xep-hang-casper-cup-2026-moi-nhat-doi-tuyen-viet-nam-dan-dau-dau-kyrgyzstan-ngay-nao-185261111210301056.htm",
     "date": "Wed, 11 Nov 26 21:10:00 +0700",
@@ -80,27 +110,127 @@
     "content": ""
   },
   {
-    "id": 9,
-    "title": "Lý do thực sự khiến Man United chưa sa thải Michael Carrick",
-    "link": "https://laodong.vn/bong-da-quoc-te/ly-do-thuc-su-khien-man-united-chua-sa-thai-michael-carrick-1798405.ldo",
-    "date": "Wednesday, 11 November 2026 11:04:47 +07:00",
+    "id": 12,
+    "title": "Truyền thông Indonesia thất vọng khi cầu thủ gốc Hà Lan chọn U19 Việt Nam",
+    "link": "https://laodong.vn/the-thao/truyen-thong-indonesia-that-vong-khi-cau-thu-goc-ha-lan-chon-u19-viet-nam-1798913.ldo",
+    "date": "Thursday, 12 November 2026 08:29:18 +07:00",
     "source": "Lao Dong",
-    "image": "https://upload.wikimedia.org/wikipedia/en/7/7a/Manchester_United_FC_crest.svg",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/4/41/Vietnam_national_football_team_at_2019_AFC_Asian_Cup.jpg",
     "lead": "Bản tin thể thao cập nhật nóng nhất từ Lao Dong. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
     "content": ""
   },
   {
-    "id": 10,
-    "title": "Mâu thuẫn với Hojlund, De Bruyne đòi rời Napoli để gia nhập Everton - Tạp chí Bóng đá",
-    "link": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPa01tSFQzYk5IeHQteE1NXy01T0ozUXVNMlVhYW4zR0k2MnNnWUJsb1pET05LWDVLcjVfenRTS25zZFZURUh3TWJPZ1JNbHVPUVlEbTBYMFp6TVRncGlDSjg2bVcwN1plU096VzlIV1l5X0J1NDhwcUJ2Qi1ja3VOZjhBcS1WNnJFd2xtWHluYi1LcTF3OXlSTUxWNHV3ZUVTN2pjS2k1VjhMZU9fM1pyWW91VDBtbEZrem9fTW1hNA?oc=5",
-    "date": "Wed, 11 Nov 2026 00:42:36 GMT",
+    "id": 13,
+    "title": "Nhận định bóng đá U23 Việt Nam vs U23 Singapore tại giải giao hữu quốc tế Gia Lai",
+    "link": "https://laodong.vn/the-thao/nhan-dinh-bong-da-u23-viet-nam-vs-u23-singapore-tai-giai-giao-huu-quoc-te-gia-lai-1798906.ldo",
+    "date": "Thursday, 12 November 2026 08:04:25 +07:00",
+    "source": "Lao Dong",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/4/41/Vietnam_national_football_team_at_2019_AFC_Asian_Cup.jpg",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ Lao Dong. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "content": ""
+  },
+  {
+    "id": 14,
+    "title": "Lịch thi đấu và trực tiếp Giải U23 Gia Lai VTV Cup 2026 ngày 12/11 trên VTV: U23 Việt Nam gặp Singapore",
+    "link": "https://vtv.vn/lich-thi-dau-va-truc-tiep-giai-u23-gia-lai-vtv-cup-2026-ngay-12-11-tren-vtv-u23-viet-nam-gap-singapore-100261112064912756.htm",
+    "date": "Thu, 12 Nov 2026 08:02:00 +07",
+    "source": "VTV TheThao",
+    "image": "https://cdn-images.vtv.vn/fb_thumb_bn/66349b6076cb4dee98746cf1/2026/11/11/899596476-1680298240427550-9064619602544881194-n-91699286375340335797155-99988899105050041182148.jpg",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ VTV TheThao. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "content": ""
+  },
+  {
+    "id": 15,
+    "title": "4 cầu thủ đội Công an TPHCM rời tuyển Việt Nam sau trận gặp Đài Loan (Trung Quốc)",
+    "link": "https://laodong.vn/the-thao/4-cau-thu-doi-cong-an-tphcm-roi-tuyen-viet-nam-sau-tran-gap-dai-loan-trung-quoc-1798869.ldo",
+    "date": "Thursday, 12 November 2026 07:17:26 +07:00",
+    "source": "Lao Dong",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/4/41/Vietnam_national_football_team_at_2019_AFC_Asian_Cup.jpg",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ Lao Dong. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "content": ""
+  },
+  {
+    "id": 16,
+    "title": "Lịch thi đấu bóng đá U23 Việt Nam vs U23 Singapore hôm nay (12.11)",
+    "link": "https://laodong.vn/lich-thi-dau/lich-thi-dau-bong-da-u23-viet-nam-vs-u23-singapore-hom-nay-1211-1798865.ldo",
+    "date": "Thursday, 12 November 2026 07:08:50 +07:00",
+    "source": "Lao Dong",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/4/41/Vietnam_national_football_team_at_2019_AFC_Asian_Cup.jpg",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ Lao Dong. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "content": ""
+  },
+  {
+    "id": 17,
+    "title": "Các nữ kỳ thủ Việt Nam đánh đâu thắng đó ở Giải vô địch cờ tướng thế giới",
+    "link": "https://tuoitre.vn/cac-nu-ky-thu-viet-nam-danh-dau-thang-do-o-giai-vo-dich-co-tuong-the-gioi-100261111205234814.htm",
+    "date": "11/12/2026 6:34:00 AM",
+    "source": "Tuoi Tre",
+    "image": "https://cdn2.tuoitre.vn/zoom/1200_630/471584752817336320/2026/11/11/hoang-yen-edit-co-tuong-1-17862719571251372838492-17862737160992017960052-32-0-1104-2048-crop-1794404775705478792460.jpg",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ Tuoi Tre. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "content": ""
+  },
+  {
+    "id": 18,
+    "title": "U23 Việt Nam sẽ thắng đậm U23 Singapore?",
+    "link": "https://tuoitre.vn/u23-viet-nam-se-thang-dam-u23-singapore-100261111185704572.htm",
+    "date": "11/12/2026 6:30:00 AM",
+    "source": "Tuoi Tre",
+    "image": "https://cdn2.tuoitre.vn/zoom/1200_630/471584752817336320/2026/11/11/khoi7480-17944068873902001066042-126-0-1466-2560-crop-17944071877461885884248.jpg",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ Tuoi Tre. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "content": ""
+  },
+  {
+    "id": 19,
+    "title": "Khởi đầu như mơ của Olaha Mạnh Đức ở đội tuyển Việt Nam",
+    "link": "https://vnexpress.net/khoi-dau-nhu-mo-cua-olaha-manh-duc-o-doi-tuyen-viet-nam-5143590.html",
+    "date": "Thu, 12 Nov 2026 06:18:07 +0700",
+    "source": "VnExpress",
+    "image": "https://vcdn1-thethao.vnecdn.net/2026/11/12/4_1794412699-1794415515.jpg?w=1200&h=675&q=100&dpr=1&fit=crop&s=Mk4O6MudEy929l-V0HEdaw",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ VnExpress. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "content": ""
+  },
+  {
+    "id": 20,
+    "title": "Lịch trực tiếp Giải U23 - Gia Lai VTV Cup 2026: Việt Nam gặp Singapore",
+    "link": "https://tuoitre.vn/lich-truc-tiep-giai-u23-gia-lai-vtv-cup-2026-viet-nam-gap-singapore-100261111155122895.htm",
+    "date": "11/12/2026 6:00:00 AM",
+    "source": "Tuoi Tre",
+    "image": "https://cdn2.tuoitre.vn/zoom/1200_630/471584752817336320/2026/11/11/17943135968335536399183250272835g4455588635961410371f42e93c06b84ca573c10725a165b414d-17943138445581686091803-170-61-745-1159-crop-1794386937819232852470.jpg",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ Tuoi Tre. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "content": ""
+  },
+  {
+    "id": 21,
+    "title": "Saudi Pro League xáo trộn lớn, Ronaldo biết đến khi nào mới ra sân trở lại?",
+    "link": "https://tuoitre.vn/saudi-pro-league-xao-tron-lon-ronaldo-biet-den-khi-nao-moi-ra-san-tro-lai-100261112072807064.htm",
+    "date": "11/12/2026 7:46:00 AM",
+    "source": "Tuoi Tre",
+    "image": "https://cdn2.tuoitre.vn/zoom/1200_630/471584752817336320/2026/11/12/cristiano-ronaldo-al-nassrs-captain-1200x740-1-178951531845247076802911zon-1790840889979523898314-11-0-393-730-crop-17944429961151281361340.jpg",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ Tuoi Tre. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "content": ""
+  },
+  {
+    "id": 22,
+    "title": "Gerrard: 'Yamal hay hơn Messi và Ronaldo ở tuổi 19'",
+    "link": "https://vnexpress.net/gerrard-yamal-hay-hon-messi-va-ronaldo-o-tuoi-19-5143298.html",
+    "date": "Thu, 12 Nov 2026 06:21:57 +0700",
+    "source": "VnExpress",
+    "image": "https://vcdn1-thethao.vnecdn.net/2026/11/11/yamal5jpg1-1794380867-7007-1794380972.jpg?w=1200&h=675&q=100&dpr=1&fit=crop&s=RZXk6RUvp-O7yXgrh1txgQ",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ VnExpress. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "content": ""
+  },
+  {
+    "id": 23,
+    "title": "XÁC NHẬN: MU chốt HLV đẳng cấp thế giới thay Michael Carrick - Thể Thao 247",
+    "link": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPcmxMZUVoS3FqcXBFZER1WHpTOThqdU5RYWhnMTFNelVvQ25pMmlYV1A3OFd3blEzVjBEVy1zRDctdGpTU0tTVHNQelpRODlnWnE2YmQ5MDNmbng4eEpJZjJxZFp1clI3NjRQbG5VOV9BZGVUM3RDMWFWYzZ1Njl4WllCN0o1cmNVc0J6c1RYS3NBLUlMZERkbm0tOU5YblhKbUd0MQ?oc=5",
+    "date": "Wed, 11 Nov 2026 21:31:51 GMT",
     "source": "Google News VN",
     "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw",
     "lead": "Bản tin thể thao cập nhật nóng nhất từ Google News VN. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
     "content": ""
   },
   {
-    "id": 11,
+    "id": 24,
     "title": "Vì sao U.23 Việt Nam luôn giành ưu thế trước U.23 Thái Lan, chiến thắng ở Pleiku có thuyết phục?",
     "link": "https://thanhnien.vn/vi-sao-u23-viet-nam-luon-gianh-uu-the-truoc-u23-thai-lan-chien-thang-o-pleiku-co-thuyet-phuc-18526111110030101.htm",
     "date": "Wed, 11 Nov 26 10:18:00 +0700",
@@ -110,143 +240,13 @@
     "content": ""
   },
   {
-    "id": 12,
-    "title": "Transfer Rumors: Endrick’s Premier League Offer; Ronaldo Thwarts Barcelona Plan - Sports Illustrated",
-    "link": "https://news.google.com/rss/articles/CBMiowFBVV95cUxOdHZMWmFXemxsdVRhUURGSVNPNEZFZTFxcEVxbm10RmZjaHJVeTNjTi1ad3dXUUZZc2RhbndyUHdGY1pjSDJDN09UTk56NU4xTGdnd1RPZl9uYU9DQm9XMkV6YkpUUGFzanVySHF4THZJeTJiZ2FINXIwdF8tM0VyQ1ZZNVVKZE4yRUVQWEg3SmVTc2Q5d1l4amMxR3lHcUZJd2FZ?oc=5",
-    "date": "Wed, 11 Nov 2026 00:05:00 GMT",
-    "source": "Google News EN",
-    "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw",
-    "lead": "Bản tin thể thao cập nhật nóng nhất từ Google News EN. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
-    "content": ""
-  },
-  {
-    "id": 13,
+    "id": 25,
     "title": "U.17 Việt Nam chạy nước rút cho vòng chung kết World Cup U.17, lịch thi đấu mới nhất",
     "link": "https://thanhnien.vn/u17-viet-nam-chay-nuoc-rut-cho-vong-chung-ket-world-cup-u17-lich-thi-dau-moi-nhat-18526111022265826.htm",
     "date": "Wed, 11 Nov 26 00:37:00 +0700",
     "source": "Thanh Nien",
     "image": "https://images2.thanhnien.vn/zoom/1200_630/528068263637045248/2026/11/10/20b-179432392594730328696-20-0-660-1024-crop-17943242607691496032841.jpg",
     "lead": "Bản tin thể thao cập nhật nóng nhất từ Thanh Nien. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
-    "content": ""
-  },
-  {
-    "id": 14,
-    "title": "Barcelona set to rival Manchester United for Rayan Ait-Nouri - Euro Transfer News - TNT Sports",
-    "link": "https://news.google.com/rss/articles/CBMi9AFBVV95cUxOamc5OG5KTkJ0Zjg5LUZoaUxQckJ0Q1REVW9oVC1fZXFjel9wa1UybExNbVNsUVdFRThTS29TRHpleXoyQkpVV2ZfUy11Mk14bFBaWmRad2xrZ09Ia2JReF90bkxlanE3VkxVSWlYMkJtTlZwV1JBZnREdVVFN3FvdDVyMGpQczAwSjd4MWZXYzAxUDVjb1dfbGtHNjZ3ZW93cFFNcWxibUJ0RUQ5akszMmpyR3AxbFZCS05pYmZOUUxxdloteV9mdHFiUWN2cXZpQWtzZ20zemo4eGM0ZV9kN3NQcm1DTzdhanBsSEswNHJIeXVW?oc=5",
-    "date": "Wed, 11 Nov 2026 17:46:00 GMT",
-    "source": "Google News EN",
-    "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw",
-    "lead": "Bản tin thể thao cập nhật nóng nhất từ Google News EN. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
-    "content": ""
-  },
-  {
-    "id": 15,
-    "title": "Chuyên án trinh sát 096B, bê bối dàn xếp tỷ số rúng động thể thao Việt Nam",
-    "link": "https://thanhnien.vn/chuyen-an-trinh-sat-096b-be-boi-dan-xep-ty-so-rung-dong-the-thao-viet-nam-185261111184004395.htm",
-    "date": "Thu, 12 Nov 26 00:34:00 +0700",
-    "source": "Thanh Nien",
-    "image": "https://images2.thanhnien.vn/zoom/1200_630/528068263637045248/2026/11/11/anh-man-hinh-2026-11-11-luc-113830-17943719403892000570589-0-0-1578-2524-crop-17943971658991939294834.png",
-    "lead": "Bản tin thể thao cập nhật nóng nhất từ Thanh Nien. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
-    "content": ""
-  },
-  {
-    "id": 16,
-    "title": "Dự đoán U.23 Việt Nam vs U.23 Singapore: Williams Minh Hoàng ghi bàn, chủ nhà thắng 2-0",
-    "link": "https://thanhnien.vn/du-doan-u23-viet-nam-vs-u23-singapore-williams-minh-hoang-ghi-ban-chu-nha-thang-2-0-185261112001625246.htm",
-    "date": "Thu, 12 Nov 26 00:33:00 +0700",
-    "source": "Thanh Nien",
-    "image": "https://images2.thanhnien.vn/zoom/1200_630/528068263637045248/2026/11/11/tnw-1794319728506712337175699778214g7205040164022493113ee8cce650b2c4c10fdba4acd84daed20-179441711525750407835-45-0-1385-2560-crop-1794417353477137956066.jpg",
-    "lead": "Bản tin thể thao cập nhật nóng nhất từ Thanh Nien. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
-    "content": ""
-  },
-  {
-    "id": 17,
-    "title": "Phiên bản mới đáng mong đợi của đội tuyển Việt Nam",
-    "link": "https://thanhnien.vn/phien-ban-moi-dang-mong-doi-cua-doi-tuyen-viet-nam-185261111225244443.htm",
-    "date": "Thu, 12 Nov 26 00:00:00 +0700",
-    "source": "Thanh Nien",
-    "image": "https://images2.thanhnien.vn/zoom/1200_630/528068263637045248/2026/11/11/photo-1794411950381-1794411951303645868977-84-0-1334-2000-crop-17944119652591415886211.jpeg",
-    "lead": "Bản tin thể thao cập nhật nóng nhất từ Thanh Nien. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
-    "content": ""
-  },
-  {
-    "id": 18,
-    "title": "U.23 Việt Nam - U.23 Singapore (19 giờ, trực tiếp trên FPT Play, VTV): Chiến thắng thứ 2 trong tầm tay",
-    "link": "https://thanhnien.vn/u23-viet-nam-u23-singapore-19-gio-truc-tiep-tren-fpt-play-vtv-chien-thang-thu-2-trong-tam-tay-185261111224450998.htm",
-    "date": "Thu, 12 Nov 26 00:00:00 +0700",
-    "source": "Thanh Nien",
-    "image": "https://images2.thanhnien.vn/zoom/1200_630/528068263637045248/2026/11/11/img8551-17944138593681015154507-0-0-1005-1920-crop-1794413879522600715080.jpeg",
-    "lead": "Bản tin thể thao cập nhật nóng nhất từ Thanh Nien. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
-    "content": ""
-  },
-  {
-    "id": 19,
-    "title": "Olaha Mạnh Đức, Lê Giang Patrik rời tuyển Việt Nam",
-    "link": "https://tuoitre.vn/olaha-manh-duc-le-giang-patrik-roi-tuyen-viet-nam-100261111222450162.htm",
-    "date": "11/11/2026 11:09:00 PM",
-    "source": "Tuoi Tre",
-    "image": "https://cdn2.tuoitre.vn/zoom/1200_630/471584752817336320/2026/11/11/thu-mon-le-giang-patrik-tran-gap-dai-bac-trung-hoa-17944100182401410030641-294-0-1366-2048-crop-1794410658969683604395.jpg",
-    "lead": "Bản tin thể thao cập nhật nóng nhất từ Tuoi Tre. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
-    "content": ""
-  },
-  {
-    "id": 20,
-    "title": "Liên đoàn Bóng rổ Việt Nam tạm đình chỉ các cầu thủ bị khởi tố, VBA siết chặt hơn kỷ luật nội bộ",
-    "link": "https://thanhnien.vn/lien-doan-bong-ro-viet-nam-tam-dinh-chi-cac-cau-thu-bi-khoi-to-vba-siet-chat-hon-ky-luat-noi-bo-185261111224749051.htm",
-    "date": "Wed, 11 Nov 26 23:03:00 +0700",
-    "source": "Thanh Nien",
-    "image": "https://images2.thanhnien.vn/zoom/1200_630/528068263637045248/2026/11/11/5292673161230178002476990168587170271378000n-1794411816940133052364-33-0-490-731-crop-17944118801631472838490.jpg",
-    "lead": "Bản tin thể thao cập nhật nóng nhất từ Thanh Nien. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
-    "content": ""
-  },
-  {
-    "id": 21,
-    "title": "U19 Việt Nam chịu phạt đền khó hiểu khi thua Trung Quốc",
-    "link": "https://vnexpress.net/u19-viet-nam-chiu-phat-den-kho-hieu-khi-thua-trung-quoc-5143585.html",
-    "date": "Wed, 11 Nov 2026 23:01:41 +0700",
-    "source": "VnExpress",
-    "image": "https://vcdn1-thethao.vnecdn.net/2026/11/11/u19-1794410861-1478-1794411158.gif?w=1200&h=675&q=100&dpr=1&fit=crop&s=NtTHbfoq0y4TomOMJToDCw&t=image",
-    "lead": "Bản tin thể thao cập nhật nóng nhất từ VnExpress. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
-    "content": ""
-  },
-  {
-    "id": 22,
-    "title": "HLV Đài Loan: 'Tỷ số 2-0 chưa phản ánh hết sự áp đảo của Việt Nam'",
-    "link": "https://vnexpress.net/hlv-dai-loan-ty-so-2-0-chua-phan-anh-het-su-ap-dao-cua-viet-nam-5143583.html",
-    "date": "Wed, 11 Nov 2026 22:53:17 +0700",
-    "source": "VnExpress",
-    "image": "https://vcdn1-thethao.vnecdn.net/2026/11/11/1794401673068-g651265587011251-7747-2032-1794410583.jpg?w=1200&h=675&q=100&dpr=1&fit=crop&s=fGnAF6zsfP5Pb6-_pmp42Q",
-    "lead": "Bản tin thể thao cập nhật nóng nhất từ VnExpress. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
-    "content": ""
-  },
-  {
-    "id": 23,
-    "title": "Lãnh đạo VBA lên tiếng về vụ án các cầu thủ bóng rổ bị bắt vì dàn xếp tỷ số: ‘Rất bất ngờ’",
-    "link": "https://thanhnien.vn/lanh-dao-vba-len-tieng-ve-vu-an-cac-cau-thu-bong-ro-bi-bat-vi-dan-xep-ty-so-rat-bat-ngo-185261111123405978.htm",
-    "date": "Wed, 11 Nov 26 20:37:00 +0700",
-    "source": "Thanh Nien",
-    "image": "https://images2.thanhnien.vn/zoom/1200_630/528068263637045248/2026/11/11/86221705317924940220598982580745585033355361n-1794379552802732950557-311-0-1561-2000-crop-1794379766332533058315.jpg",
-    "lead": "Bản tin thể thao cập nhật nóng nhất từ Thanh Nien. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
-    "content": ""
-  },
-  {
-    "id": 24,
-    "title": "Cú sốc dàn sao bóng rổ bị khởi tố vì dàn xếp tỷ số tại VBA: Ai là tuyển thủ quốc gia?",
-    "link": "https://thanhnien.vn/cu-soc-dan-sao-bong-ro-bi-khoi-to-vi-dan-xep-ty-so-tai-vba-ai-la-tuyen-thu-quoc-gia-185261111151551017.htm",
-    "date": "Wed, 11 Nov 26 15:50:00 +0700",
-    "source": "Thanh Nien",
-    "image": "https://images2.thanhnien.vn/zoom/1200_630/528068263637045248/2026/11/11/img8535-17943950132891832849466-31-0-376-658-crop-17943951568261791615167.jpeg",
-    "lead": "Bản tin thể thao cập nhật nóng nhất từ Thanh Nien. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
-    "content": ""
-  },
-  {
-    "id": 25,
-    "title": "Chuyên gia tiết lộ mục tiêu chuyển nhượng ưu tiên của Chelsea trong tháng Giêng - bongda.com.vn",
-    "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxOWTI2VHJqQ2d5RVdsdE1Xd3kxWWFDMVVCV0I1Z29zTGtNblZTWXdzbDlUZDgxQjZWaUdheFljaHVKd1otUTNfNWw1UXhlZi12dS1BNjBOXzNiQ0hWLXZhOFlmd1FIYjZ0YjhZenRoSHZmQXdPdUdzMENpRXZEblB2RDFxLXU2eG9HQmhPdl9wbGFCOWhJeC1uazVHMjBIY2RBbktNWDlzdmtrV0RRWkxpSFRLU0I?oc=5",
-    "date": "Tue, 10 Nov 2026 14:57:08 GMT",
-    "source": "Google News VN",
-    "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw",
-    "lead": "Bản tin thể thao cập nhật nóng nhất từ Google News VN. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
     "content": ""
   }
 ]
