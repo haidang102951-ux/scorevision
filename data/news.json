@@ -1,6 +1,16 @@
 [
   {
     "id": 1,
+    "title": "Bảng xếp hạng FIFA mới nhất, đội tuyển Việt Nam bất ngờ lên tốp 98 trước trận gặp Kyrgyzstan",
+    "link": "https://thanhnien.vn/bang-xep-hang-fifa-moi-nhat-doi-tuyen-viet-nam-bat-ngo-len-top-98-truoc-tran-gap-kyrgyzstan-185261117075816753.htm",
+    "date": "Tue, 17 Nov 26 08:09:00 +0700",
+    "source": "Thanh Nien",
+    "image": "https://images2.thanhnien.vn/zoom/1200_630/528068263637045248/2026/11/17/dtvn-1-17948765254121211512155-49-445-853-1981-crop-1794877042063784559611.jpg",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ Thanh Nien. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "content": ""
+  },
+  {
+    "id": 2,
     "title": "Lịch thi đấu U.17 Việt Nam tại World Cup mới nhất: Xác định kênh phát chính thức",
     "link": "https://thanhnien.vn/lich-thi-dau-u17-viet-nam-tai-world-cup-moi-nhat-xac-dinh-kenh-phat-chinh-thuc-185261116235448867.htm",
     "date": "Tue, 17 Nov 26 00:25:00 +0700",
@@ -10,7 +20,7 @@
     "content": ""
   },
   {
-    "id": 2,
+    "id": 3,
     "title": "U17 Việt Nam tập buổi đầu tiên tại sân tập chính thức của U17 World Cup 2026",
     "link": "https://laodong.vn/the-thao/u17-viet-nam-tap-buoi-dau-tien-tai-san-tap-chinh-thuc-cua-u17-world-cup-2026-1801557.ldo",
     "date": "Monday, 16 November 2026 20:37:02 +07:00",
@@ -20,7 +30,17 @@
     "content": ""
   },
   {
-    "id": 3,
+    "id": 4,
+    "title": "Thách thức với Việt Nam ở World Cup: Thủ môn 15 tuổi cao… 1m93",
+    "link": "https://tuoitre.vn/thach-thuc-voi-viet-nam-o-world-cup-thu-mon-15-tuoi-cao-1m93-100261116205137361.htm",
+    "date": "11/17/2026 7:46:00 AM",
+    "source": "Tuoi Tre",
+    "image": "https://cdn2.tuoitre.vn/zoom/1200_630/471584752817336320/2026/11/17/u17-new-zealand-1-edit-17948770759841187771488-0-0-1597-2555-crop-1794877129204215680639.jpg",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ Tuoi Tre. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "content": ""
+  },
+  {
+    "id": 5,
     "title": "U.17 Việt Nam sẽ gây sốc cho U.17 Bỉ, lịch thi đấu mới nhất",
     "link": "https://thanhnien.vn/u17-viet-nam-se-gay-soc-cho-u17-bi-18526111613371713.htm",
     "date": "Mon, 16 Nov 26 13:47:00 +0700",
@@ -30,27 +50,27 @@
     "content": ""
   },
   {
-    "id": 4,
-    "title": "Lịch thi đấu đội tuyển Việt Nam mới nhất hôm nay: Khoan phá ‘bức tường’ Kyrgyzstan",
-    "link": "https://thanhnien.vn/lich-thi-dau-doi-tuyen-viet-nam-moi-nhat-hom-nay-khoan-pha-buc-tuong-kyrgyzstan-185261116221201591.htm",
-    "date": "Tue, 17 Nov 26 00:20:00 +0700",
-    "source": "Thanh Nien",
-    "image": "https://images2.thanhnien.vn/zoom/1200_630/528068263637045248/2026/11/16/thieu-vang-olaha-manh-duc-trong-trach-ghi-ban-duoc-dat-len-vai-dinh-bac-1794841673445493888187-0-0-1600-2560-crop-1794841872275483674830.jpg",
-    "lead": "Bản tin thể thao cập nhật nóng nhất từ Thanh Nien. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "id": 6,
+    "title": "HLV Đặng Văn Thành bất ngờ chia tay, Hải Phòng FC tái hợp với nhà cầm quân người Anh",
+    "link": "https://laodong.vn/bong-da/hlv-dang-van-thanh-bat-ngo-chia-tay-hai-phong-fc-tai-hop-voi-nha-cam-quan-nguoi-anh-1801612.ldo",
+    "date": "Tuesday, 17 November 2026 07:07:03 +07:00",
+    "source": "Lao Dong",
+    "image": "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=900&q=80",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ Lao Dong. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
     "content": ""
   },
   {
-    "id": 5,
-    "title": "Arsenal gặp rào cản bất ngờ thương vụ 80 triệu Euro - Thể Thao 247",
-    "link": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNYVo0dE5vaW1zdnUwejN1RjZtdFlXZ3BhVWd2YnNRVzlBSVo0bXhTNGh6UWlEd1dKTi04Q2oyeTVJS0hGM0xVSERZdmthZ0p4dEZRYlpieVBzS1dicGFJZEVLWF9RTllEWGhWdFBqZGxoVUtCQW82QXBqWUh1N1VRMUlkbzFQRWlsT3h6ZjY0VVdXY3RRVW93OQ?oc=5",
-    "date": "Mon, 16 Nov 2026 07:30:00 GMT",
+    "id": 7,
+    "title": "Lộ mục tiêu chuyển nhượng đầu tiên của HLV Pochettino ở MU - Báo Thế giới và Việt Nam",
+    "link": "https://news.google.com/rss/articles/CBMilgFBVV95cUxNVGdTQlcweFN1QjNjNmlBSExoZW5JTUYwdmI0RktPTmRXallGVEpnMzEwb3NUMU9CT2gxbVNtRjRYejh0cWQ5dVM3NmxzcUVQOWg3VGdGcnZzRW1sLW90LUotSUZaVVRBbzM5aGFmLXVrUnVUbnp5eXBNT1hKTE5hdFo2azg5OFFVdVNtUjNNZ2VmdW8xT2c?oc=5",
+    "date": "Mon, 16 Nov 2026 23:32:12 GMT",
     "source": "Google News VN",
-    "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300",
-    "lead": "Arsenal đã gặp phải rào cản bất ngờ trong việc thực hiện một khoản giao dịch trị giá 80 triệu Euro, khiến kế hoạch củng cố squad c…",
-    "content": "Arsenal đã gặp phải rào cản bất ngờ trong việc thực hiện một khoản giao dịch trị giá 80 triệu Euro, khiến kế hoạch củng cố squad của đội trưởng Mikel Arteta bịDelayed. Ban đầu, club London đã định tớ mục tiêu là một cầu thủ hàng đầu của Ligue 1, nhưng trong quá trình thương lượng, họ phải đối mặt với một số rào cản pháp lý và tài chính không ngờ tới.\n\nĐầu tiên, Arsenal phải giải quyết vấn đề về mức lương và các khoản thưởng performance mà đối tác muốn đính kèm. Mặc dù giá trị chuyển giao đã được thỏa thuận, nhưng các điều khoản về bonus đã khiến tổng chi phí lên tới 85 triệu Euro, vượt quá ngân sách dự kiến của club. Đồng thời, quy định của Liên đoàn Bóng đá Anh (Premier League) yêu cầu clubs phải duy trì tỷ lệ chi phí nhân công không vượt quá 70% doanh thu, và Arsenal đang ở mức gần đến giới hạn này.\n\nThêm vào đó, việc duy trì cân bằng tài chính trong thời gian kháng chiến về dịch bệnh đã khiến club phải cắt giảm một số khoản chi phí không thiết yếu, bao gồm cả việc hỗ trợ các nhà tuyển dụng trẻ. Điều này làm giảm khả năng thoát khỏi việc trả hết số tiền 80 triệu Euro trong vòng 12 tháng, dẫn đến việc các bên thương lượng phải renegotiate lại điều khoản hoặc tìm kiếm nguồn tài trợ ngoài.\n\nCuối cùng, dù có các thỏa thuận tiềm năng, Arsenal vẫn chưa thể kêu gọi được sự đồng thuận của đồng đội và đồng hương để hoàn tất giao dịch. Nhờ đó, việc này trở thành một ví dụ cho thấy rằng trong thời đại hiện đại, việc thanh lý tài chính và tuân thủ quy định của các club không chỉ là yếu tố quyết định thành công trong đấu tranh giành các ngôi đài mà còn là rào cản quan trọng trong hoạt động chuyển giao."
+    "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ Google News VN. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "content": ""
   },
   {
-    "id": 6,
+    "id": 8,
     "title": "HLV trưởng đội tuyển bắn súng Việt Nam bất ngờ tái xuất ở tuổi 52, đối đầu chính học trò",
     "link": "https://tuoitre.vn/hlv-truong-doi-tuyen-ban-sung-viet-nam-bat-ngo-tai-xuat-o-tuoi-52-doi-dau-chinh-hoc-tro-100261116123859632.htm",
     "date": "11/16/2026 2:08:00 PM",
@@ -60,7 +80,77 @@
     "content": ""
   },
   {
-    "id": 7,
+    "id": 9,
+    "title": "Lịch thi đấu đội tuyển Việt Nam mới nhất hôm nay: Khoan phá ‘bức tường’ Kyrgyzstan",
+    "link": "https://thanhnien.vn/lich-thi-dau-doi-tuyen-viet-nam-moi-nhat-hom-nay-khoan-pha-buc-tuong-kyrgyzstan-185261116221201591.htm",
+    "date": "Tue, 17 Nov 26 00:20:00 +0700",
+    "source": "Thanh Nien",
+    "image": "https://images2.thanhnien.vn/zoom/1200_630/528068263637045248/2026/11/16/thieu-vang-olaha-manh-duc-trong-trach-ghi-ban-duoc-dat-len-vai-dinh-bac-1794841673445493888187-0-0-1600-2560-crop-1794841872275483674830.jpg",
+    "lead": "Bóng đá Việt Nam hôm nay tiếp tục kế hoạch đấu đấu quan trọng với đối thủ Kyrgyzstan, một trận duy nhất trong lịch thi đấu mới nhấ…",
+    "content": "Bóng đá Việt Nam hôm nay tiếp tục kế hoạch đấu đấu quan trọng với đối thủ Kyrgyzstan, một trận duy nhất trong lịch thi đấu mới nhất của đội tuyển. Sự kiện này không chỉ là cơ hội để các vận động viên kiểm tra tinh thần nhưng còn là cơ hội để “bùng nổ” những ảo ảnh đã bị gập gọn trong các trận đấu trước đây. \n\nTrong số những gì đã được chuẩn bị, Đội trưởng Hoàng Anh Tuấn đã nhấn mạnh việc cần “đánh vỡ tường” của Kyrgyzstan, một đội"
+  },
+  {
+    "id": 10,
+    "title": "Nhận định bóng đá Việt Nam vs Kyrgyzstan tại Casper Cup 2026",
+    "link": "https://laodong.vn/the-thao/nhan-dinh-bong-da-viet-nam-vs-kyrgyzstan-tai-casper-cup-2026-1801635.ldo",
+    "date": "Tuesday, 17 November 2026 08:00:48 +07:00",
+    "source": "Lao Dong",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/4/41/Vietnam_national_football_team_at_2019_AFC_Asian_Cup.jpg",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ Lao Dong. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "content": ""
+  },
+  {
+    "id": 11,
+    "title": "Lịch thi đấu bóng đá tuyển Việt Nam vs Kyrgyzstan hôm nay 17.11",
+    "link": "https://laodong.vn/lich-thi-dau/lich-thi-dau-bong-da-tuyen-viet-nam-vs-kyrgyzstan-hom-nay-1711-1801610.ldo",
+    "date": "Tuesday, 17 November 2026 07:08:49 +07:00",
+    "source": "Lao Dong",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/4/41/Vietnam_national_football_team_at_2019_AFC_Asian_Cup.jpg",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ Lao Dong. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "content": ""
+  },
+  {
+    "id": 12,
+    "title": "Tuyển Việt Nam cũng muốn vô địch trên sân nhà như đội U23",
+    "link": "https://tuoitre.vn/tuyen-viet-nam-cung-muon-vo-dich-tren-san-nha-nhu-doi-u23-100261116143216915.htm",
+    "date": "11/17/2026 7:00:00 AM",
+    "source": "Tuoi Tre",
+    "image": "https://cdn2.tuoitre.vn/zoom/1200_630/471584752817336320/2026/11/16/olaha-an-mung-ban-thang-17948154734241767249198-4-0-1052-2002-crop-1794815506216339405878.jpg",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ Tuoi Tre. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "content": ""
+  },
+  {
+    "id": 13,
+    "title": "Á quân châu Âu U17 Bỉ: Thử thách cực đại cho U17 Việt Nam",
+    "link": "https://tuoitre.vn/a-quan-chau-au-u17-bi-thu-thach-cuc-dai-cho-u17-viet-nam-100261116160751341.htm",
+    "date": "11/17/2026 6:30:00 AM",
+    "source": "Tuoi Tre",
+    "image": "https://cdn2.tuoitre.vn/zoom/1200_630/471584752817336320/2026/11/16/u17-bi-u17-world-cup-2026-1-1794819718326623390221-33-0-550-988-crop-17948199923172010167356.jpeg",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ Tuoi Tre. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "content": ""
+  },
+  {
+    "id": 14,
+    "title": "Lịch trực tiếp giao hữu quốc tế: Việt Nam chạm trán Kyrgyzstan",
+    "link": "https://tuoitre.vn/lich-truc-tiep-giao-huu-quoc-te-viet-nam-cham-tran-kyrgyzstan-100261116180711818.htm",
+    "date": "11/17/2026 6:00:00 AM",
+    "source": "Tuoi Tre",
+    "image": "https://cdn2.tuoitre.vn/zoom/1200_630/471584752817336320/2026/11/16/17904295505612364197245081044057g6963619256942618677edc601c39b287f783d527125c5265824-17904296982491954801220-175-0-1515-2560-crop-17948267103941629970096.jpg",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ Tuoi Tre. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "content": ""
+  },
+  {
+    "id": 15,
+    "title": "Báo chí Indonesia chạnh lòng khi so sánh đội nhà với Việt Nam",
+    "link": "https://tuoitre.vn/bao-chi-indonesia-chanh-long-khi-so-sanh-doi-nha-voi-viet-nam-100261116203836862.htm",
+    "date": "11/17/2026 5:53:00 AM",
+    "source": "Tuoi Tre",
+    "image": "https://cdn2.tuoitre.vn/zoom/1200_630/471584752817336320/2026/11/16/17857676076245536399183250272835g4455588635961410371e1a24313a2a1ef5fdd228137458fb723-17857680345182088176235-97-136-666-1223-crop-17948360969841897654674.jpg",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ Tuoi Tre. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "content": ""
+  },
+  {
+    "id": 16,
     "title": "U17 Việt Nam tập buổi đầu tiên ở sân chơi World Cup",
     "link": "https://tuoitre.vn/u17-viet-nam-tap-buoi-dau-tien-o-san-choi-world-cup-100261116210437548.htm",
     "date": "11/16/2026 9:13:00 PM",
@@ -70,57 +160,37 @@
     "content": ""
   },
   {
-    "id": 8,
-    "title": "U.17 Việt Nam tập buổi đầu tiên trên sân cỏ xanh mướt mắt ở Qatar: World Cup đã rất gần",
-    "link": "https://thanhnien.vn/u17-viet-nam-tap-buoi-dau-tien-tren-san-co-xanh-muot-mat-o-qatar-world-cup-da-rat-gan-185261116201533113.htm",
-    "date": "Mon, 16 Nov 26 20:32:00 +0700",
-    "source": "Thanh Nien",
-    "image": "https://images2.thanhnien.vn/zoom/1200_630/528068263637045248/2026/11/16/vffm-2-10-1794834173154-1794834174074657594369-232-85-608-803-crop-1794834628328869256442.jpg",
-    "lead": "Bản tin thể thao cập nhật nóng nhất từ Thanh Nien. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "id": 17,
+    "title": "Declan Rice tiết lộ thái độ đặc biệt của tuyển Anh khi gặp Tây Ban Nha",
+    "link": "https://laodong.vn/bong-da-quoc-te/declan-rice-tiet-lo-thai-do-dac-biet-cua-tuyen-anh-khi-gap-tay-ban-nha-1801141.ldo",
+    "date": "Monday, 16 November 2026 11:53:00 +07:00",
+    "source": "Lao Dong",
+    "image": "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=900&q=80",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ Lao Dong. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
     "content": ""
   },
   {
-    "id": 9,
-    "title": "Vinicius Junior admits transfer interest left him ‘overwhelmed’ amid summer Arsenal links - LiveScore",
-    "link": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxOeENRb1dlMWVwSjZiMS10ZlhoN2x1WG5XSVlDVUdJRXB2eFdZZl9wcUg3WF8tbllKZlhQN2F1by1PSWs1RWEtRHlBSU9sRG1JT0ZCZm1oc3pnTmxQRnVUSGZhM1dZOF9XZWpsYlUtVmN1YkVMaU9RZTZaMEl3UHJIaXZFR0tUMVpITER4LXVZVVRBNUZsLUpIbExuckNzdEI4VUhIRXQwdVpEOWhfZkxnYXExWnBabU05UjZfeGctVjhrdm9QanpHWkl1QXdidi1ROGlUYVJTN3UzSHFTbzRNeElHYU5qcHQ2R3c?oc=5",
-    "date": "Mon, 16 Nov 2026 15:07:20 GMT",
-    "source": "Google News EN",
-    "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300",
-    "lead": "Vinicius Junior trong những ngày qua đã trở thành话题 hot trong circle bóng đá châu Âu nhờ những rumor liên quan tới potential chuyể…",
-    "content": "Vinicius Junior trong những ngày qua đã trở thành话题 hot trong circle bóng đá châu Âu nhờ những rumor liên quan tới potential chuyển nhượng sang Arsenal vào mùa hè này. Cậu bé tài năng 23 tuổi, được Real Madrid đánh giá là một trong những forward trẻ nổi bật, vừa khẳng định rằng sự ồn ào của các câu chuyện chuyển nhượng đã khiến ông cảm thấy overwhelmed (bị lấn át) trong thời gian qua.\n\nTrong một buổi trao đổi gần đây, Vinicius cho biết rằng những thông báo và hypothesis từ các club lớn, đặc biệt là Arsenal, đã tạo ra áp lực tinh thần đáng kể. Cậu nói rằng, dù rất mong muốn đóng góp cho đội mình, nhưng việc phải liên tục đáp ứng câu hỏi và speculation từ báo chí khiến ông cảm thấy bị tràn ngập và cần thời gian để thu dọn nội dung. Ông cũng nhấn mạnh rằng ông vẫn đang tập trung vào việc hoàn thiện bản thân tại Santiago Bernabéu, không muốn làm phiền quá nhiều với những rumor không có căn cứ.\n\nArsenal, dưới sự Điều hành của Mikel Arteta, đã chứng kiến Vinicius làm một trong những mục tiêu chính cho mùa hè. club London đã mở rộng ngân sách và chuẩn bị các khoản giao dịch lớn để hấp dẫn Real Madrid. Tuy nhiên, Vinicius cho rằng ông vẫn đang xem xét cẩn thận trước khi quyết định, vì muốn đảm bảo rằng quyết định chuyển nhượng sẽ phù hợp với mục tiêu private và professional của mình.\n\nKết luận, dù có những rumor sôi nổi và áp lực từ các bên, Vinicius Junior vẫn giữ vững trong vai trò người dùng đồng đội Real Madrid. Anh sẽ tiếp tục rèn luyện, giúp đội đạt được những mục tiêu chung và có thể xem xét các cơ hội chuyển nhượng sau khi hoàn thành một mùa giải ổn định."
-  },
-  {
-    "id": 10,
-    "title": "Vinicius Jr makes contract admission as Arsenal chase blockbuster deal - FootballTransfers.com",
-    "link": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxNRXFVWlVyWWNtSFJFTWFycGkzRE1FeVlxbmVsV0lZT3RDNW9HazlFdzQzSERPeWUtbGNINlhWam5aZVNMbTE4MnRuUHR0M2pJenJCWW9MWTlUeXhqMFdQV3lRZF9BRUVKNWd2c21CZktGNGZ0YXBJV042cDVhQ3k0VEltRElHbnZnTmkwdF9SNFV1NGcwQUMtdEZDTDhJdXN0V3RqaUV1YjhkZVRtckFoY2FpbkswWTZJQlFzOEI5eVBEQmdRbEphM01nUjA2RVZGb2lSZjJmbjgzMjEwT2dhaDh0dTR1Zw?oc=5",
-    "date": "Mon, 16 Nov 2026 14:53:00 GMT",
-    "source": "Google News EN",
-    "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw",
-    "lead": "Bản tin thể thao cập nhật nóng nhất từ Google News EN. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "id": 18,
+    "title": "Mẹ của Ronaldo: 'Tôi vui khi Bồ Đào Nha thất bại'",
+    "link": "https://tuoitre.vn/me-cua-ronaldo-toi-vui-khi-bo-dao-nha-that-bai-100261117053658823.htm",
+    "date": "11/17/2026 5:52:00 AM",
+    "source": "Tuoi Tre",
+    "image": "https://cdn2.tuoitre.vn/zoom/1200_630/471584752817336320/2026/11/16/images-179486848348248674240-15-0-370-678-crop-1794868547405178052512.jpeg",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ Tuoi Tre. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
     "content": ""
   },
   {
-    "id": 11,
-    "title": "Vinicius Jr lifts the lid on the emotional impact of failed Arsenal transfer - Football London",
-    "link": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNT3lsREdIanVfYkFUNnVURmJBSlFReGduajUwN3hqdEJ2RmN0WDVWSC1INkltU0cyVFpjS3dNb2kwVU9nLWNqcnREc25kQ2FhMUh5TW5ycUpmYVRPV1ZON0lObzE1TDRDZ0VHdmZXc05BLWc5UzhuemVfdmotalNCZXRZQU93VWtRWndOUzlFblRub1Q5LWM0NQ?oc=5",
-    "date": "Mon, 16 Nov 2026 14:43:48 GMT",
-    "source": "Google News EN",
-    "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300",
-    "lead": "Vinicius Jr vừa mở lời về cảm giác khó chịu sau khiftal một lần chuyển nhượng tới Arsenal không thực hiện, theo thông tin từ Footb…",
-    "content": "Vinicius Jr vừa mở lời về cảm giác khó chịu sau khiftal một lần chuyển nhượng tới Arsenal không thực hiện, theo thông tin từ Football London. Cầu thủ Brazil 23 tuổi, đang thi đấu cho Real Madrid, đã từng được Arsenal xem là mục tiêu chính cho mùa giải tiếp theo, nhưng negotiations không thể hoàn thành và finally đã bị hủy. \n\nTrong một cuộc phỏng vấn gần đây, Vinicius cho biết rằng việc không được chuyển đến London đã tạo ra một bối cảnh xao động trong tâm lý của mình. “Mình đã cảm nhận được sự mong đợi lớn lao, và khi những ước vọng không được đáp ứng, cảm giác mất mát và thất vọng lan tỏa,” ông nói. Ông cũng nhấn mạnh rằng, dù có những lo lắng, anh vẫn trung thành với Real Madrid và tập trung vào mục tiêu cá nhân và đội hình. \n\nAnh tiết lộ rằng, trong suốt thời gian chờ đợi, anh đã tham gia các buổi tập chuyên sâu và các trận đấu thân thiện để duy trì hình dạng. “Mình luôn muốn chứng minh rằng mình có giá trị"
-  },
-  {
-    "id": 12,
+    "id": 19,
     "title": "NÓNG: Real quyết mua bộ đôi Ngoại hạng Anh, 1 tiền vệ giá 100 triệu euro - Thể Thao 247",
     "link": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQWTFUeW1kQ3VkR01meTlZb2xsQTZXUk5nMFd2VnJSUmpuaVN1N1Y1Z2pWRTQwU0NKRWZ3SWE3UXcxVm9zb0xJV3ptSVJyYXBRbGlKTmVkY2VuLUhBWjVNNjhsLUR6RGExQl84WmNDcWh6aWE3S29aRnFfVHFfOE80ZWZwZTBNakJsUndBQVRCRVFWdlYzYWRCRGtiUEdFaXF2TWlicHhYVjhPNUpycGp4MFpxQQ?oc=5",
     "date": "Mon, 16 Nov 2026 14:09:00 GMT",
     "source": "Google News VN",
-    "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300",
-    "lead": "Real Madrid đã quyết định mở ra một khoản giao dịch lớn nhất trong mùa chuyển nhượng, khi club này xác nhận sẽ mua một cặp cầu thủ…",
-    "content": "Real Madrid đã quyết định mở ra một khoản giao dịch lớn nhất trong mùa chuyển nhượng, khi club này xác nhận sẽ mua một cặp cầu thủ xuất sắc từ các đội bóng Anh. Theo những thông tin được công bố, Real Madrid sẽ chi 100 triệu euro để mua một tiền vệ danh giá, người đang tỏa sáng ở một trong những đội bóngPremier League. \n\nMặc dù chưa xác định chính xác là cầu thủ nào, nhưng nguồn tin cho rằng Real Madrid đang theo dõi kỹ lưỡng hai ngôi sao đang playing ở Anh, một trong số đó là một tiền vệ trung vệ mạnh mẽ, người đã chứng minh tài năng và khả năng bảo vệ cọc của đội mình. Việc mua lại một cầu thủ thế mạnh này sẽ giúp Real Madrid củng cố lợi thế phòng ngự, đồng thời tạo ra lựa chọn đa dạng hơn trong việc xây dựng phong độ tấn công. \n\nChi phí 100 triệu euro không chỉ là số tiền lớn nhất trong lịch sử chuyển nhượng của club này mà còn phản ánh quyết tâm của chủ tịch Florentino Pérez muốn trở thành đội vô địch trong nước và châu Âu. Các chuyên gia bóng đá cho rằng, nếu Real Madrid thực hiện được giao dịch này, họ sẽ có một bộ phòng ngự mạnh mẽ, đồng thời mở ra cơ hội phát triển cho các cầu thủ trẻ trong đội hình. \n\nThể Thao 247, nguồn tin đáng tin cậy, đã đưa tin rằng việc thương lượng đã tiến gần vào stadium Santiago Bernabéu, và các thỏa thuận về thời gian và hình thức thanh toán đang được sắp triển khai. Nếu mọi thứ thuận lợi, Real Madrid sẽ chính thức công bố việc ký hợp đồng trong vòng vài tuần tới, mở ra một chương mới trong sự phát triển của đội bóng “Los Blancos”. \n\nVới quyết tâm và nguồn lực tài chính mạnh mẽ, Real Madrid đang trên con đường chinh phục thêm những thành tựu, tiếp tục viết tiếp câu chuyện vui tươi cho người hâm mộ bóng đá trên thế giới."
+    "image": "https://upload.wikimedia.org/wikipedia/en/7/7a/Manchester_United_FC_crest.svg",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ Google News VN. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "content": ""
   },
   {
-    "id": 13,
+    "id": 20,
     "title": "Tin nóng bóng đá 16.11: Tuyển Việt Nam thay đổi nhiều vị trí trận gặp Kyrgyzstan",
     "link": "https://laodong.vn/video-the-thao/tin-nong-bong-da-1611-tuyen-viet-nam-thay-doi-nhieu-vi-tri-tran-gap-kyrgyzstan-1801426.ldo",
     "date": "Monday, 16 November 2026 18:30:00 +07:00",
@@ -130,17 +200,27 @@
     "content": ""
   },
   {
-    "id": 14,
-    "title": "Việt Nam tập buổi cuối cùng cho trận cuối cùng của năm 2026: Phải 9 tháng nữa, mới hội quân trở lại",
-    "link": "https://thanhnien.vn/viet-nam-tap-buoi-cuoi-cung-cho-tran-cuoi-cung-cua-nam-2026-phai-9-thang-nua-moi-hoi-quan-tro-lai-185261116213131904.htm",
-    "date": "Tue, 17 Nov 26 00:00:00 +0700",
+    "id": 21,
+    "title": "Đội tuyển Việt Nam ra mắt hàng tiền đạo cao 1,82 m: Có nhân tố 'lạ'",
+    "link": "https://thanhnien.vn/doi-tuyen-viet-nam-ra-mat-hang-tien-dao-cao-182-m-co-nhan-to-la-185261117011220423.htm",
+    "date": "Tue, 17 Nov 26 05:03:00 +0700",
     "source": "Thanh Nien",
-    "image": "https://images2.thanhnien.vn/zoom/1200_630/528068263637045248/2026/11/16/day-la-buoi-tap-cuoi-cung-cua-doi-tuyen-viet-nam-trong-nam-2026-1794839195120612715975-0-0-362-692-crop-179483923136947728461.gif.png",
+    "image": "https://images2.thanhnien.vn/zoom/1200_630/528068263637045248/2026/11/16/17944062398584565676173657170456g631402362146814613923881f857accf80c00cc1de4296fdfc0-1794852009559697329628-63-162-825-1617-crop-17948521991771217124533.jpg",
     "lead": "Bản tin thể thao cập nhật nóng nhất từ Thanh Nien. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
     "content": ""
   },
   {
-    "id": 15,
+    "id": 22,
+    "title": "U.17 Việt Nam tập buổi đầu tiên trên sân cỏ xanh mướt mắt ở Qatar: World Cup đã rất gần",
+    "link": "https://thanhnien.vn/u17-viet-nam-tap-buoi-dau-tien-tren-san-co-xanh-muot-mat-o-qatar-world-cup-da-rat-gan-185261116201533113.htm",
+    "date": "Mon, 16 Nov 26 20:32:00 +0700",
+    "source": "Thanh Nien",
+    "image": "https://images2.thanhnien.vn/zoom/1200_630/528068263637045248/2026/11/16/vffm-2-10-1794834173154-1794834174074657594369-232-85-608-803-crop-1794834628328869256442.jpg",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ Thanh Nien. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "content": ""
+  },
+  {
+    "id": 23,
     "title": "Nóng: Sau Mbappe, đến phiên Yamal khiến người Trung Quốc nổi giận",
     "link": "https://tuoitre.vn/nong-sau-mbappe-den-phien-yamal-khien-nguoi-trung-quoc-noi-gian-100261116143212724.htm",
     "date": "11/16/2026 2:53:00 PM",
@@ -150,103 +230,23 @@
     "content": ""
   },
   {
-    "id": 16,
-    "title": "Declan Rice tiết lộ thái độ đặc biệt của tuyển Anh khi gặp Tây Ban Nha",
-    "link": "https://laodong.vn/bong-da-quoc-te/declan-rice-tiet-lo-thai-do-dac-biet-cua-tuyen-anh-khi-gap-tay-ban-nha-1801141.ldo",
-    "date": "Monday, 16 November 2026 11:53:00 +07:00",
-    "source": "Lao Dong",
-    "image": "https://media-cdn-v2.laodong.vn/storage/newsportal/2026/11/16/1801141/Declan-Rice-Anh.jpg?w=800&amp;h=420&amp;crop=auto&amp;scale=both",
-    "lead": "Declan Rice, trung vệ sao hàng đầu của bóng đá Anh, gần đây đã hé lộ một thái độ đặc biệt của tuyển quốc gia khi gặp Tây Ban Nha. …",
-    "content": "Declan Rice, trung vệ sao hàng đầu của bóng đá Anh, gần đây đã hé lộ một thái độ đặc biệt của tuyển quốc gia khi gặp Tây Ban Nha. Trong một cuộc trao đổi hậu trận, anh nhấn mạnh rằng đội đã điều chỉnh tâm lý, tập trung và sẵn sàng chấp nhận mọi thử thách khi bước vào sân vận động đối phương. \n\nAnh cho biết, trong những ngày Vorbere before trận đấu, các cầu thủ đã dành thời gian xây dựngความ cohesion, trao đổi kinh nghiệm và khẳng định mục tiêu chung. Khi bước vào sân, họ không chỉ chơi để giành điểm số mà còn muốn chứng minh tính cường mẽ và lòng bàn chân kiên cường. “Ch"
-  },
-  {
-    "id": 17,
-    "title": "Vinicius Jr makes Arsenal transfer admission after signing new deal - London Evening Standard",
-    "link": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxPZmhpTnVCRDdXcEdOVlMzb1d0YVVXYlB1a0phTG9DNHJneEZtYUlMZW01aGpqM0FGR3AxTmp0NDNVczNRWU5YV1NJeHV2bUh5TVdGZEl4RzRSbmt3VHhUenpFRm1CSjdDcHA0SmluVzhGWGp1NE15TFZDV2xGUHNyWGptN2E2RC1pV295ZGNWSGU0QTc0eFllX3htNW1BbGNSMkpCNjRyR0gwQQ?oc=5",
-    "date": "Mon, 16 Nov 2026 13:58:54 GMT",
-    "source": "Google News EN",
-    "image": "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=900&q=80",
-    "lead": "Bản tin thể thao cập nhật nóng nhất từ Google News EN. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
-    "content": ""
-  },
-  {
-    "id": 18,
-    "title": "Vinicius says transfer interest affected Real form",
-    "link": "https://www.bbc.co.uk/sport/football/articles/cmqx584jwwpvo?at_medium=RSS&at_campaign=rss",
-    "date": "Mon, 16 Nov 2026 12:01:16 GMT",
-    "source": "BBC Sport",
-    "image": "https://ichef.bbci.co.uk/images/ic/480x270/p0kxnftk.jpg",
-    "lead": "Vinicius Jr. vừa công bố rằng những câu chuyện về khả năng chuyển nhượng trong mùa hè đã làm cho ông cảm thấy “đầy áp lực” và ảnh …",
-    "content": "Vinicius Jr. vừa công bố rằng những câu chuyện về khả năng chuyển nhượng trong mùa hè đã làm cho ông cảm thấy “đầy áp lực” và ảnh hưởng đến hình dạng chơi của mình ở Real Madrid. Các rumor liên quan tới một vụ chuyển đến Arsenal đã lan tỏa mạnh mẽ khi contract của anh đang tới hạn, nhưng sau khi ký hợp đồng mới dài sáu năm vào tháng August, anh vẫn duy trì thông điệp rằng sự hypothesis này đã làm mất đi tinh thần và sự tập trung của mình trên sân.\n\nAnh bước vào mùa giải mới với chỉ một bàn thắng và ba phai độ trong 12 trận đấu dưới thời gian của Jose Mourinho. Số liệu này cho thấy mức độ giảm trong đóng góp của Vinicius so với những mùa trước. Ông cũng thừa nhận rằng sau những kỳ thi đấu cho đội tuyển Brazil, mình không có đủ thời gian và nỗ lực để tập training thường xuyên, điều này đã làm giảm tốc độ thích nghi với phong cách chơi mới của Real.\n\nMặc dù có những góc nhìn từ các clubPremier League, Vinicius vẫn chọn tiếp tục ở Madrid và mong muốn khôi phục lại phong cách tấn công sáng tạo, đồng thời góp phần vào thành tích chung của đội. Ông hy vọng rằng với sự hỗ trợ của đồng đội và các huấn luyện viên, mình sẽ sớm tìm lại cảm giác tự tin và góp phần nâng cao vị trí trong bảng bảng.\n\nVới quyết tâm và kinh nghiệm đã tích lũy, Vinicius Jr. mong muốn những especulations sẽ dần tan biến, để anh có thể tập trung vào mục tiêu riêng của mình: giúp Real Madrid trở lại vị trí dự thắng và tiếp tục"
-  },
-  {
-    "id": 19,
-    "title": "Vinicius Jr: Real Madrid forward says transfer interest has affected form - BBC",
-    "link": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5icFQ2NE5HS01SZXBNZEI1dzk0SVYwcVBiSE1scEdRNk1mekhfWm5ZWjlPdEJLTFdJQk5qaURCc2FLaVg4Yl9nQ1dGY1Z4TjU0cXhZNVE0dnV2SUhraHdnSXZxdU9ENnZh?oc=5",
-    "date": "Mon, 16 Nov 2026 12:01:16 GMT",
-    "source": "Google News EN",
-    "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw",
-    "lead": "Bản tin thể thao cập nhật nóng nhất từ Google News EN. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
-    "content": ""
-  },
-  {
-    "id": 20,
-    "title": "La Liga khẳng định Yamal bị giả mạo bài đăng kỳ thị người Trung Quốc",
-    "link": "https://tuoitre.vn/la-liga-khang-dinh-yamal-bi-gia-mao-bai-dang-ky-thi-nguoi-trung-quoc-100261116213200067.htm",
-    "date": "11/16/2026 9:42:00 PM",
-    "source": "Tuoi Tre",
-    "image": "https://cdn2.tuoitre.vn/zoom/1200_630/471584752817336320/2026/11/16/yamal-17944902354232100778033-0-153-861-1797-crop-17948405485862034683805.jpg",
-    "lead": "Bản tin thể thao cập nhật nóng nhất từ Tuoi Tre. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
-    "content": ""
-  },
-  {
-    "id": 21,
-    "title": "Tuyển thủ Việt Nam giành 3 huy chương vàng tại Giải muay trẻ thế giới 2026",
-    "link": "https://laodong.vn/the-thao/tuyen-thu-viet-nam-gianh-3-huy-chuong-vang-tai-giai-muay-tre-the-gioi-2026-1801549.ldo",
-    "date": "Monday, 16 November 2026 21:04:41 +07:00",
-    "source": "Lao Dong",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/4/41/Vietnam_national_football_team_at_2019_AFC_Asian_Cup.jpg",
-    "lead": "Bản tin thể thao cập nhật nóng nhất từ Lao Dong. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
-    "content": ""
-  },
-  {
-    "id": 22,
-    "title": "Bóng chuyền Việt Nam ngày 16.11: Trần Đức Hạnh kịp có ngôi vô địch khi đã giải nghệ",
-    "link": "https://laodong.vn/bong-chuyen/bong-chuyen-viet-nam-ngay-1611-tran-duc-hanh-kip-co-ngoi-vo-dich-khi-da-giai-nghe-1801430.ldo",
-    "date": "Monday, 16 November 2026 20:00:00 +07:00",
-    "source": "Lao Dong",
-    "image": "https://media-cdn-v2.laodong.vn/storage/newsportal/2026/11/16/1801430/Tran-Duc-Hanh-Bong-C.jpg?w=800&amp;h=420&amp;crop=auto&amp;scale=both",
-    "lead": "Ngày 16 tháng 11, làng bóng chuyền Việt Nam đã chứng kiến một tin ngưỡng: Trần Đức Hạnh, một inisght của thể thao địa phương, đã k…",
-    "content": "Ngày 16 tháng 11, làng bóng chuyền Việt Nam đã chứng kiến một tin ngưỡng: Trần Đức Hạnh, một inisght của thể thao địa phương, đã kịp vô địch ngay cả sau khi đã rút khỏi sân chơi. Đội ngũ handball mà anh ấy đang dẫn dắt, dù đã không còn là cầu thủ chính, vẫn duy trì được phong độ và tinh thần kiên cường, giúp họ chinh phục được chức vô địch trong một trận chung kết căng thẳng đầy kịch tính.\n\nTrần Đức Hạnh, có hơn mười năm kinh nghiệm trong việc biểu diễn áo cho các câu lạc bộ và đội tuyển quốc gia, đã từ lâu đã chuyển đổi sang vai trò huấn luyện và quản lý. Nhờ tinh thần “không ngừng học” và khả năng truyền cảm hứng, anh ấy đã xây dựng một đội hình cân bằng, vừa có kỹ năng cá nhân xuất sắc, vừa được phối hợp chặt chẽ. Thông"
-  },
-  {
-    "id": 23,
-    "title": "Vắng Lê Giang  Patrik, thầy Kim chọn ai cho vị trí 'phức tạp' bậc nhất đội tuyển Việt Nam?",
-    "link": "https://thanhnien.vn/vangle-giang-patrik-thay-kim-chon-ai-cho-vi-tri-phuc-tap-bac-nhat-doi-tuyen-viet-nam-185261116123203701.htm",
-    "date": "Mon, 16 Nov 26 18:59:00 +0700",
-    "source": "Thanh Nien",
-    "image": "https://images2.thanhnien.vn/zoom/1200_630/528068263637045248/2026/11/16/le-giang-patrik-tiep-tuc-co-tran-dau-xuat-sac-1790477164401759428102-201-0-1681-2827-crop-1794806978748804131734.jpg",
-    "lead": "Bình luận mới được duyệt, nhưng câu chuyện về việc thay đổi vị trí “phức tạp” trong Đội tuyển bóng đá Việt Nam vẫn đang làm mar gi…",
-    "content": "Bình luận mới được duyệt, nhưng câu chuyện về việc thay đổi vị trí “phức tạp” trong Đội tuyển bóng đá Việt Nam vẫn đang làm mar gin các fan. Khi Patrik, người đã từng là trợ lý của Kim, vắng mặt trong các buổi tập, coach Kim phải đưa ra quyết định nhanh chóng để bổ sung cho một vị trí đòi hỏi kỹ năng đa dạng và khả năng phản ứng nhanh. \n\nTrong số những nhân vật được thảo luận, có một số cầu thủ trẻ năng động, đã chứng kiến cơ hội trong các trận đấu gần đây và thể hiện được sự linh hoạt trong các vị trí khác nhau. Họ đều đã được đào tạo dưới sự hướng dẫn của các chuyên gia, có khả năng đọc trận đấu và thực hiện các pha phối hợp phức tạp. Sự lựa chọn của Kim không chỉ dựa trên năng lực cá nhân mà còn trên khả năng tích hợp vào hệ thống giao tiếp và chiến thuật mà đội đang áp dụng. \n\nViệc này cũng phản ánh xu hướng phát triển của bóng đá Việt Nam, nơi các nhà training không ngừng tìm kiếm tài năng mới, linh hoạt và sẵn sàng học hỏi. Khi Patrik không có mặt, Kim đã nhanh chóng đưa ra lựa chọn, thể hiện quyết đoán và trách nhiệm. Hy vọng rằng cầu thủ được bổ sung sẽ góp phần làm"
-  },
-  {
     "id": 24,
-    "title": "Kaká bất ngờ xuất hiện trong kế hoạch đưa Endrick rời Real Madrid - Thể Thao 247",
-    "link": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPdzlxZ043QUdVLTRhc3NrcXhyNm8yamhCczJOSVp4MnItQnlRZjJXelMwWjRuQVpKcWc2SUtTN2c0WXhZeHNtVEtSQjgyX3laOEpmTW9qZTRzWXAzUUNpQ2ZIbVd4dk9mMTFuVVBKZFd4WEtHMmdyR2dWWXdBdTBiTVVMQ1RoM0hYamFySEdVbVdUUFY4ZlN4b0NFRDE4bDdGZDdfLUtJUDBEcUE?oc=5",
-    "date": "Mon, 16 Nov 2026 09:43:00 GMT",
-    "source": "Google News VN",
-    "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw",
-    "lead": "Bản tin thể thao cập nhật nóng nhất từ Google News VN. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "title": "Bồ Đào Nha nguy cơ mất hàng trăm triệu khán giả vì Ronaldo",
+    "link": "https://vnexpress.net/bo-dao-nha-nguy-co-mat-hang-tram-trieu-khan-gia-vi-ronaldo-5145391.html",
+    "date": "Tue, 17 Nov 2026 05:03:51 +0700",
+    "source": "VnExpress",
+    "image": "https://vcdn1-thethao.vnecdn.net/2026/11/16/ronaldo-1794831890-7165-1794832502.jpg?w=1200&h=675&q=100&dpr=1&fit=crop&s=e7NstUEbk4n0qOwYxrPFUQ",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ VnExpress. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
     "content": ""
   },
   {
     "id": 25,
-    "title": "Vận động viên điền kinh Lê Tú Chinh bất ngờ dự Đại hội thể thao toàn quốc 2026",
-    "link": "https://laodong.vn/the-thao/van-dong-vien-dien-kinh-le-tu-chinh-bat-ngo-du-dai-hoi-the-thao-toan-quoc-2026-1801293.ldo",
-    "date": "Monday, 16 November 2026 15:30:59 +07:00",
-    "source": "Lao Dong",
-    "image": "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=900&q=80",
-    "lead": "Bản tin thể thao cập nhật nóng nhất từ Lao Dong. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
+    "title": "Portugal boss responds to criticism from Ronaldo's mum",
+    "link": "https://www.bbc.co.uk/sport/football/articles/ck87984g3x1po?at_medium=RSS&at_campaign=rss",
+    "date": "Mon, 16 Nov 2026 21:08:06 GMT",
+    "source": "BBC Sport",
+    "image": "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/6ca3/live/b14c4cf0-e1f9-11f1-ac6e-e9777cdcbb4f.jpg",
+    "lead": "Bản tin thể thao cập nhật nóng nhất từ BBC Sport. Bấm để xem phân tích chi tiết hoặc đọc bài viết gốc.",
     "content": ""
   }
 ]
