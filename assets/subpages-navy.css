@@ -355,6 +355,112 @@ body.sv-subpage .modal-box p {
     color: #334155 !important;
 }
 
+/* ===== HIGH-CONTRAST FIXES FOR DU-DOAN, LICH-DAU, KET-QUA, THONG-KE ===== */
+body.sv-subpage .quick-stats .stat,
+body.sv-subpage .fixture-stats .stat {
+    background: #ffffff !important;
+    border: 1px solid #dbe2ea !important;
+    box-shadow: 0 2px 10px rgba(11, 25, 44, 0.05) !important;
+}
+body.sv-subpage .quick-stats .stat-label,
+body.sv-subpage .fixture-stats .stat-label {
+    color: #64748b !important;
+}
+body.sv-subpage .quick-stats .stat-value,
+body.sv-subpage .fixture-stats .stat-value {
+    color: #0b192c !important;
+}
+body.sv-subpage .quick-stats .stat.gold .stat-value {
+    color: #059669 !important;
+}
+
+/* Filter pills (du-doan.html, lich-dau.html, ket-qua.html) */
+body.sv-subpage .nut-giai,
+body.sv-subpage .filter-tab {
+    background: #ffffff !important;
+    color: #334155 !important;
+    border: 1px solid #cbd5e1 !important;
+    font-weight: 700 !important;
+}
+body.sv-subpage .nut-giai:hover,
+body.sv-subpage .filter-tab:hover {
+    background: #f1f5f9 !important;
+    color: #0b192c !important;
+    border-color: #0b192c !important;
+}
+body.sv-subpage .nut-giai.dang-chon,
+body.sv-subpage .filter-tab.active {
+    background: #0b192c !important;
+    color: #ffffff !important;
+    border-color: #0b192c !important;
+    box-shadow: 0 4px 12px rgba(11, 25, 44, 0.2) !important;
+}
+
+/* Match / Prediction / Detail text — Deep Navy & Slate (zero blinding yellow) */
+body.sv-subpage .tran-ten,
+body.sv-subpage .bai-tieude,
+body.sv-subpage .ketqua-team,
+body.sv-subpage .lich-ten,
+body.sv-subpage .team-name {
+    color: #0b192c !important;
+    font-weight: 800 !important;
+}
+body.sv-subpage .bai-kicker,
+body.sv-subpage .tran-giai,
+body.sv-subpage .ketqua-league,
+body.sv-subpage .lich-status-top {
+    color: #be123c !important;
+    background: #fff1f2 !important;
+    border-color: #fecdd3 !important;
+    padding: 3px 9px;
+    border-radius: 6px;
+    display: inline-block;
+}
+body.sv-subpage .tran-ngay,
+body.sv-subpage .lich-ngay,
+body.sv-subpage .ketqua-date,
+body.sv-subpage .loading {
+    color: #475569 !important;
+}
+body.sv-subpage .tran-btn,
+body.sv-subpage .xem-chi-tiet,
+body.sv-subpage .nut-xem {
+    background: #eff6ff !important;
+    color: #1d4ed8 !important;
+    border: 1px solid #bfdbfe !important;
+    font-weight: 700 !important;
+}
+body.sv-subpage .tran-btn:hover,
+body.sv-subpage .xem-chi-tiet:hover,
+body.sv-subpage .nut-xem:hover {
+    background: #1d4ed8 !important;
+    color: #ffffff !important;
+}
+body.sv-subpage .section-box,
+body.sv-subpage .section-box.gold,
+body.sv-subpage .bai-chi-tiet,
+body.sv-subpage .lich-card {
+    background: #ffffff !important;
+    border: 1px solid #dbe2ea !important;
+    color: #334155 !important;
+}
+body.sv-subpage .section-box.gold {
+    border-left: 4px solid #e11d48 !important;
+}
+body.sv-subpage .section-box .section-title,
+body.sv-subpage .section-box.gold .section-title {
+    color: #0b192c !important;
+}
+body.sv-subpage .nut-quay-lai {
+    background: #0b192c !important;
+    color: #ffffff !important;
+    border-color: #0b192c !important;
+}
+body.sv-subpage .lich-vs {
+    background: #0b192c !important;
+    color: #ffffff !important;
+}
+
 /* ===== UNIFIED NAVY FOOTER ===== */
 body.sv-subpage .chan-trang,
 body.sv-subpage footer {
