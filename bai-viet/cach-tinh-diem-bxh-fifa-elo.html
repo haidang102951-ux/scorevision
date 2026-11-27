@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta name="google-adsense-account" content="ca-pub-5011502652158923">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5011502652158923" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bảng xếp hạng FIFA được tính điểm như thế nào theo công thức SUM (Elo)? | Score Vision</title>
+    <meta name="description" content="Giải thích dễ hiểu công thức tính điểm BXH FIFA (SUM/Elo), bảng hệ số tầm quan trọng trận đấu từ giao hữu đến World Cup và quy tắc vòng loại trực tiếp.">
+    <link rel="icon" type="image/png" href="../favicon.png">
+    <meta name="theme-color" content="#0b192c">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="../assets/theme.css?v=20261127">
+    <style>
+        .article-wrap { max-width: 860px; margin: 0 auto; }
+        .breadcrumb { font-size: 13px; color: #64748b; margin-bottom: 16px; }
+        .breadcrumb a { color: #be123c; text-decoration: none; font-weight: 600; }
+        .article-body { background: #ffffff; border: 1px solid #dbe2ea; border-radius: 18px; padding: 34px 32px; box-shadow: 0 4px 16px rgba(11,25,44,0.06); }
+        .article-body h2 { font-size: 21px; font-weight: 800; color: #0b192c; margin: 28px 0 12px; padding-left: 12px; border-left: 4px solid #e11d48; line-height: 1.35; }
+        .article-body p { font-size: 15.5px; color: #334155; line-height: 1.85; margin-bottom: 14px; }
+        .article-body ul { margin: 10px 0 16px 22px; color: #334155; font-size: 15.5px; line-height: 1.8; }
+        .article-body li { margin-bottom: 8px; }
+        .formula { background: #0b192c; color: #ffffff; border-radius: 12px; padding: 16px 20px; font-family: monospace; font-size: 16px; text-align: center; margin: 18px 0; letter-spacing: 0.4px; }
+        .data-table { width: 100%; border-collapse: collapse; margin: 18px 0 22px; font-size: 14px; border-radius: 10px; overflow: hidden; border: 1px solid #dbe2ea; }
+        .data-table th { background: #0b192c; color: #ffffff; text-align: left; padding: 11px 14px; font-weight: 700; }
+        .data-table td { padding: 10px 14px; border-top: 1px solid #e2e8f0; color: #334155; }
+        .data-table tr:nth-child(even) td { background: #f8fafc; }
+        .callout { background: #f8fafc; border: 1px solid #dbe2ea; border-left: 4px solid #0b192c; border-radius: 10px; padding: 16px 18px; margin: 18px 0; font-size: 14.5px; color: #334155; }
+        .related-box { margin-top: 28px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+        .related-link { display: block; background: #ffffff; border: 1px solid #dbe2ea; border-radius: 12px; padding: 16px; text-decoration: none; transition: 0.2s; }
+        .related-link:hover { border-color: #e11d48; transform: translateY(-2px); }
+        .related-link span { font-size: 11px; font-weight: 800; color: #be123c; text-transform: uppercase; }
+        .related-link strong { display: block; color: #0b192c; font-size: 14.5px; margin-top: 4px; line-height: 1.4; }
+        @media (max-width: 720px) { .article-body { padding: 22px 18px; } .related-box { grid-template-columns: 1fr; } }
+    </style>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Bảng xếp hạng FIFA được tính điểm như thế nào theo công thức SUM (Elo)?",
+      "author": {"@type": "Organization", "name": "Score Vision"},
+      "publisher": {"@type": "Organization", "name": "Score Vision", "url": "https://scorevision.io.vn"},
+      "datePublished": "2026-11-27",
+      "inLanguage": "vi"
+    }
+    </script>
+</head>
+<body class="sv-theme-navy">
+<header class="sv-header">
+    <div class="sv-container">
+        <a href="../index.html" class="sv-brand">
+            <div class="sv-logo"><img src="../logo.png" alt="Score Vision" onerror="this.src='../favicon.png'"></div>
+            <div>
+                <div class="sv-brand-title">Score Vision</div>
+                <div class="sv-brand-sub">CHUYÊN SÂU · DỮ LIỆU · PHÂN TÍCH BÓNG ĐÁ</div>
+            </div>
+        </a>
+    </div>
+</header>
+
+<div class="sv-container sv-nav-wrap">
+    <nav class="sv-nav" aria-label="Điều hướng chính">
+        <a href="../index.html">Trang chủ</a>
+        <a href="../lich-dau.html">Lịch đấu</a>
+        <a href="../du-doan.html">Phân Tích &amp; Dự Đoán</a>
+        <a href="../bai-viet.html" class="active">Kiến Thức &amp; Chiến Thuật</a>
+        <a href="../bang-xep-hang.html">Bảng xếp hạng</a>
+        <a href="../thong-ke.html">Thống kê</a>
+        <a href="../tin-nong.html">Tin Nóng</a>
+        <a href="../bang-xep-hang-fifa.html">BXH FIFA</a>
+    </nav>
+</div>
+
+<main class="sv-container article-wrap">
+    <div class="breadcrumb"><a href="../index.html">Trang chủ</a> / <a href="../bai-viet.html">Kiến thức &amp; Chiến thuật</a> / Công thức tính điểm BXH FIFA</div>
+
+    <section class="sv-hero">
+        <span class="sv-eyebrow">HỆ THỐNG XẾP HẠNG · ĐỌC 5 PHÚT</span>
+        <h1>Bảng xếp hạng FIFA được tính điểm như thế nào theo <span>công thức SUM (Elo)</span>?</h1>
+        <p>Thứ hạng FIFA ảnh hưởng trực tiếp tới việc phân nhóm hạt giống bốc thăm World Cup và Asian Cup. Dưới đây là cơ chế cộng – trừ điểm chính xác nhất đang áp dụng.</p>
+    </section>
+
+    <article class="article-body">
+        <p>Từ tháng 8/2018 đến nay, Liên đoàn Bóng đá Thế giới (FIFA) áp dụng hệ thống tính điểm mang tên <strong>SUM</strong> — một phiên bản điều chỉnh từ thuật toán xếp hạng <strong>Elo</strong> nổi tiếng trong cờ vua. Thay vì lấy điểm trung bình 4 năm như trước, mỗi trận đấu quốc tế giờ đây sẽ cộng hoặc trừ điểm trực tiếp vào quỹ điểm tích lũy của đội tuyển.</p>
+
+        <h2>1. Công thức tính điểm chuẩn của FIFA</h2>
+        <div class="formula">P = P_trước + I × (W − W_e)</div>
+        <ul>
+            <li><strong>P_trước:</strong> Số điểm của đội tuyển trước khi bước vào trận đấu.</li>
+            <li><strong>I:</strong> Hệ số tầm quan trọng của trận đấu (từ 5 đến 60 tùy giải đấu).</li>
+            <li><strong>W:</strong> Kết quả thực tế của trận đấu (Thắng = 1; Hòa = 0.5; Thua = 0). Với loạt sút luân lưu 11m, đội thắng nhận W = 0.75, đội thua nhận W = 0.5.</li>
+            <li><strong>W_e:</strong> Kết quả kỳ vọng dựa trên chênh lệch điểm giữa hai đội trước trận: <code>W_e = 1 / (10^(-dr/600) + 1)</code>, trong đó <code>dr</code> là hiệu điểm giữa đội nhà và đối thủ.</li>
+        </ul>
+
+        <h2>2. Bảng hệ số tầm quan trọng trận đấu (Hệ số I)</h2>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Loại trận đấu / Giải đấu</th>
+                    <th>Hệ số I</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Giao hữu ngoài lịch FIFA Days</td>
+                    <td>5</td>
+                </tr>
+                <tr>
+                    <td>Giao hữu trong lịch FIFA Days (ASEAN Cup thường tính ở mức này hoặc 5)</td>
+                    <td>10</td>
+                </tr>
+                <tr>
+                    <td>Vòng bảng Nations League</td>
+                    <td>15</td>
+                </tr>
+                <tr>
+                    <td>Vòng loại World Cup &amp; Vòng loại các giải châu lục (Asian Cup, EURO)</td>
+                    <td>25</td>
+                </tr>
+                <tr>
+                    <td>Vòng chung kết châu lục (đến trước Tứ kết)</td>
+                    <td>35</td>
+                </tr>
+                <tr>
+                    <td>Tứ kết trở đi tại VCK châu lục</td>
+                    <td>40</td>
+                </tr>
+                <tr>
+                    <td>Vòng bảng &amp; Vòng 1/8 World Cup</td>
+                    <td>50</td>
+                </tr>
+                <tr>
+                    <td>Tứ kết, Bán kết, Chung kết World Cup</td>
+                    <td>60</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>3. Ba quy tắc đặc biệt người hâm mộ hay nhầm lẫn</h2>
+        <ul>
+            <li><strong>Không tính hiệu số bàn thắng:</strong> Thắng 1-0 hay thắng 5-0 đều có giá trị <code>W = 1</code> như nhau trên bảng xếp hạng FIFA.</li>
+            <li><strong>Quy tắc bảo vệ ở vòng Knock-out:</strong> Tại các trận đấu loại trực tiếp ở vòng chung kết giải châu lục hoặc World Cup, nếu một đội có kết quả kém hơn kỳ vọng (<code>W − W_e &lt; 0</code>), FIFA sẽ <strong>không trừ điểm</strong> của đội đó. Quy tắc này khuyến khích các đội yếu chơi cống hiến khi lọt vào vòng sâu.</li>
+            <li><strong>Đánh bại đội xếp trên mang lại điểm số cực lớn:</strong> Nếu đội tuyển Việt Nam thắng một đối thủ có thứ hạng cao hơn 30–40 bậc ở vòng loại World Cup (I = 25), số điểm cộng có thể lên tới +15 đến +18 điểm chỉ sau 1 trận.</li>
+        </ul>
+
+        <div class="callout">
+            <strong>Theo dõi thứ hạng mới nhất:</strong> Bạn có thể tra cứu thứ hạng cập nhật của đội tuyển Việt Nam và các cường quốc bóng đá thế giới ngay tại trang <a href="../bang-xep-hang-fifa.html">BXH FIFA</a> trên Score Vision.
+        </div>
+    </article>
+
+    <div class="related-box">
+        <a href="phong-do-san-nha-san-khach.html" class="related-link">
+            <span>Bài viết liên quan</span>
+            <strong>Cách đánh giá phong độ sân nhà – sân khách trước giờ bóng lăn →</strong>
+        </a>
+        <a href="chi-so-xg-la-gi.html" class="related-link">
+            <span>Bài viết liên quan</span>
+            <strong>Chỉ số xG (Expected Goals) là gì và cách đọc chính xác →</strong>
+        </a>
+    </div>
+
+    <footer class="sv-footer">
+        <p><strong>Score Vision</strong> — Nền tảng phân tích &amp; dữ liệu bóng đá chuyên sâu</p>
+        <div class="sv-footer-links">
+            <a href="../index.html">Trang chủ</a>
+            <a href="../bai-viet.html">Kiến thức &amp; Chiến thuật</a>
+            <a href="../gioi-thieu.html">Giới thiệu</a>
+            <a href="../lien-he.html">Liên hệ</a>
+            <a href="../chinh-sach-bao-mat.html">Chính sách bảo mật</a>
+            <a href="../dieu-khoan.html">Điều khoản sử dụng</a>
+        </div>
+        <p>© 2026 Score Vision (scorevision.io.vn). Toàn bộ bản quyền được bảo lưu.</p>
+    </footer>
+</main>
+<script src="../assets/motion.js?v=20261127" defer></script>
+</body>
+</html>

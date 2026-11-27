@@ -10,6 +10,9 @@
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#facc15">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="assets/theme.css?v=20261127">
 
     <!-- API Sports Widgets -->
     <script type="module" src="https://widgets.api-sports.io/3.1.0/widgets.js"></script>
@@ -1075,9 +1078,277 @@
             .container { width: calc(100% - 20px); }
             .card-phantich { width: 310px; }
         }
+        /* ==========================================================================
+           STYLE 3 OVERRIDE: CLASSIC NAVY (#0b192c) & CRISP WHITE (#f1f5f9 / #ffffff)
+           ========================================================================== */
+        body.sv-theme-navy {
+            --bg-base: #f1f5f9;
+            --bg-card: #ffffff;
+            --bg-card-hover: #ffffff;
+            --bg-surface: #ffffff;
+            --border-card: #dbe2ea;
+            --border-glow: #e11d48;
+            --border-cyan: #1e3a5f;
+            --gold-primary: #e11d48;
+            --gold-light: #be123c;
+            --gold-deep: #9f1239;
+            --cyan-accent: #1d4ed8;
+            --emerald-live: #059669;
+            --rose-live: #e11d48;
+            --text-main: #0b192c;
+            --text-muted: #475569;
+            --text-dim: #64748b;
+            --shadow-subtle: 0 4px 16px rgba(11, 25, 44, 0.06);
+            --shadow-hover: 0 14px 30px -10px rgba(11, 25, 44, 0.16);
+            color: #0b192c;
+            background: #f1f5f9 !important;
+        }
+        body.sv-theme-navy .logo-box {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #e11d48, #fb7185);
+            box-shadow: 0 4px 14px rgba(225, 29, 72, 0.35);
+        }
+        body.sv-theme-navy .brand-name {
+            font-size: 24px;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+            line-height: 1.15;
+            background: none;
+            -webkit-text-fill-color: #ffffff;
+            color: #ffffff;
+        }
+        body.sv-theme-navy .brand-sub {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.3px;
+            color: #94a3b8;
+        }
+
+        body.sv-theme-navy .menu {
+            background: rgba(255, 255, 255, 0.96);
+            border: 1px solid #dbe2ea;
+            box-shadow: 0 8px 24px rgba(11, 25, 44, 0.08);
+        }
+        body.sv-theme-navy .menu-btn { color: #334155; font-weight: 700; }
+        body.sv-theme-navy .menu-btn:hover { color: #0b192c; background: #f1f5f9; }
+        body.sv-theme-navy .menu-btn.active {
+            color: #ffffff;
+            background: #0b192c;
+            box-shadow: 0 4px 12px rgba(11, 25, 44, 0.22);
+        }
+        body.sv-theme-navy .menu-btn.livescore {
+            background: #fff1f2;
+            border-color: #fecdd3;
+            color: #be123c;
+        }
+
+        body.sv-theme-navy .section-head { border-bottom-color: #dbe2ea; }
+        body.sv-theme-navy .section-head::after { background: #e11d48; box-shadow: none; }
+        body.sv-theme-navy .section-title { color: #0b192c; }
+        body.sv-theme-navy .xem-tat-ca {
+            color: #be123c;
+            background: #fff1f2;
+            border-color: #fecdd3;
+        }
+        body.sv-theme-navy .xem-tat-ca:hover {
+            background: #e11d48;
+            color: #ffffff;
+            box-shadow: 0 4px 14px rgba(225, 29, 72, 0.28);
+        }
+
+        body.sv-theme-navy .intro-copy {
+            background: #ffffff;
+            border-color: #dbe2ea;
+        }
+        body.sv-theme-navy .intro-copy::before {
+            background: linear-gradient(90deg, #0b192c, #e11d48);
+        }
+        body.sv-theme-navy .eyebrow {
+            color: #ffffff;
+            background: #e11d48;
+            border-color: transparent;
+        }
+        body.sv-theme-navy .intro-copy h1 { color: #0b192c; }
+        body.sv-theme-navy .intro-copy h1 span { color: #be123c; }
+        body.sv-theme-navy .intro-copy p { color: #475569; }
+        body.sv-theme-navy .intro-widget {
+            background: #0b192c;
+            border-color: #1e3a5f;
+        }
+
+        body.sv-theme-navy .hero {
+            background: linear-gradient(135deg, #0b192c 0%, #13294b 100%);
+            border-color: #1e3a5f;
+            color: #ffffff;
+        }
+        body.sv-theme-navy .hero-kicker {
+            color: #ffffff;
+            background: rgba(225, 29, 72, 0.9);
+            border-color: transparent;
+        }
+        body.sv-theme-navy .hero h2 { color: #ffffff; }
+        body.sv-theme-navy .hero p { color: #cbd5e1; }
+        body.sv-theme-navy .hero-btn {
+            background: #e11d48;
+            color: #ffffff;
+            box-shadow: 0 6px 18px rgba(225, 29, 72, 0.32);
+        }
+        body.sv-theme-navy .hero-btn:hover { background: #be123c; color: #ffffff; }
+
+        body.sv-theme-navy .widget-box {
+            background: #0b192c;
+            border-color: #1e3a5f;
+        }
+        body.sv-theme-navy .widget-head {
+            background: #081322;
+            border-bottom-color: rgba(255, 255, 255, 0.1);
+        }
+        body.sv-theme-navy .widget-badge { background: #e11d48; }
+
+        /* Prediction Cards */
+        body.sv-theme-navy .card-phantich {
+            background: #ffffff;
+            border: 1px solid #dbe2ea;
+        }
+        body.sv-theme-navy .pt-matchup-stage {
+            background: linear-gradient(135deg, #0b192c 0%, #163052 100%);
+        }
+        body.sv-theme-navy .pt-league-tag {
+            background: rgba(225, 29, 72, 0.92);
+            color: #ffffff;
+        }
+        body.sv-theme-navy .pt-team-name { color: #ffffff; }
+        body.sv-theme-navy .pt-teaser-hook { color: #334155; }
+        body.sv-theme-navy .pt-lock-banner {
+            background: #f8fafc;
+            border-color: #e2e8f0;
+        }
+        body.sv-theme-navy .pt-lock-text { color: #0b192c; }
+        body.sv-theme-navy .pt-lock-btn {
+            background: #e11d48;
+            color: #ffffff;
+        }
+
+        /* Results Cards */
+        body.sv-theme-navy .card-ketqua {
+            background: #ffffff;
+            border: 1px solid #dbe2ea;
+        }
+        body.sv-theme-navy .card-ketqua::before { background: #e11d48; }
+        body.sv-theme-navy .ketqua-league { color: #be123c; }
+        body.sv-theme-navy .ketqua-team { color: #0b192c; }
+        body.sv-theme-navy .ketqua-score-box {
+            background: #0b192c;
+            border-color: #0b192c;
+        }
+        body.sv-theme-navy .ketqua-score-num { color: #ffffff; }
+        body.sv-theme-navy .ketqua-footer {
+            border-top-color: #e2e8f0;
+            color: #64748b;
+        }
+
+        /* News Cards */
+        body.sv-theme-navy .card-news-hero {
+            border: 1px solid #dbe2ea;
+            box-shadow: 0 6px 20px rgba(11, 25, 44, 0.1);
+        }
+        body.sv-theme-navy .card-news-sub {
+            background: #ffffff;
+            border: 1px solid #dbe2ea;
+        }
+        body.sv-theme-navy .card-news-sub:hover { border-color: #0b192c; }
+        body.sv-theme-navy .news-sub-body h4 { color: #0b192c; }
+        body.sv-theme-navy .news-date { color: #be123c; }
+
+        /* Stats Section */
+        body.sv-theme-navy .goc-thong-ke {
+            background: #ffffff;
+            border: 1px solid #dbe2ea;
+        }
+        body.sv-theme-navy .goc-thong-ke-head { border-bottom-color: #e2e8f0; }
+        body.sv-theme-navy .goc-thong-ke-label { color: #0b192c; }
+        body.sv-theme-navy .tk-feature {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+        }
+        body.sv-theme-navy .tk-pitch-time {
+            background: #e11d48;
+            color: #ffffff;
+        }
+        body.sv-theme-navy .tk-stat-badge { color: #be123c; }
+        body.sv-theme-navy .tk-stat-match { color: #0b192c; }
+        body.sv-theme-navy .tk-stat-teaser { color: #475569; }
+        body.sv-theme-navy .tk-cta-btn {
+            background: #0b192c;
+            color: #ffffff;
+        }
+        body.sv-theme-navy .tk-item {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+        }
+        body.sv-theme-navy .tk-item:hover { border-color: #e11d48; background: #ffffff; }
+        body.sv-theme-navy .tk-item-top { color: #be123c; }
+        body.sv-theme-navy .tk-item-match { color: #0b192c; }
+        body.sv-theme-navy .tk-item-stat { color: #1d4ed8; }
+
+        /* Schedule Cards */
+        body.sv-theme-navy .card-lich {
+            background: #ffffff;
+            border: 1px solid #dbe2ea;
+        }
+        body.sv-theme-navy .lich-badge-time {
+            background: #0b192c;
+            color: #ffffff;
+        }
+        body.sv-theme-navy .lich-match-title { color: #0b192c; }
+        body.sv-theme-navy .lich-league-sub { color: #64748b; }
+        body.sv-theme-navy .lich-action { color: #be123c; }
+
+        /* Telegram Banner, Disclaimer & Footer */
+        body.sv-theme-navy .box-thongtin {
+            background: linear-gradient(135deg, #0b192c 0%, #163052 100%);
+            border-color: #1e3a5f;
+            color: #ffffff;
+        }
+        body.sv-theme-navy .box-thongtin h3 { color: #ffffff; }
+        body.sv-theme-navy .box-thongtin p { color: #cbd5e1; }
+        body.sv-theme-navy .nut-tel {
+            background: #e11d48;
+            color: #ffffff;
+            box-shadow: 0 6px 20px rgba(225, 29, 72, 0.35);
+        }
+        body.sv-theme-navy .nut-tel:hover { background: #be123c; color: #ffffff; }
+
+        body.sv-theme-navy .disclaimer {
+            background: #ffffff;
+            border: 1px solid #dbe2ea;
+            border-left: 4px solid #e11d48;
+        }
+        body.sv-theme-navy .disclaimer h4 { color: #0b192c; }
+        body.sv-theme-navy .disclaimer p { color: #475569; }
+
+        body.sv-theme-navy .footer {
+            background: #0b192c;
+            border-radius: 18px 18px 0 0;
+            padding: 32px 24px 36px;
+            color: #94a3b8;
+        }
+        body.sv-theme-navy .footer strong { color: #ffffff; }
+        body.sv-theme-navy .footer p { color: #94a3b8; }
+        body.sv-theme-navy .footer-nav a { color: #cbd5e1; font-weight: 600; }
+        body.sv-theme-navy .footer-nav a:hover { color: #fda4af; }
+
+        body.sv-theme-navy .len-dau {
+            background: #0b192c;
+            border-color: #e11d48;
+            color: #ffffff;
+        }
+        body.sv-theme-navy .len-dau:hover { background: #e11d48; color: #ffffff; }
     </style>
 </head>
-<body id="top">
+<body id="top" class="sv-theme-navy">
 
 <header class="site-header">
     <div class="container">
@@ -1100,6 +1371,7 @@
         <a href="index.html" class="menu-btn active">Trang chủ</a>
         <a href="lich-dau.html" class="menu-btn">Lịch đấu</a>
         <a href="du-doan.html" class="menu-btn">Phân Tích & Dự Đoán</a>
+        <a href="bai-viet.html" class="menu-btn">Kiến Thức & Chiến Thuật</a>
         <a href="bang-xep-hang.html" class="menu-btn">Bảng xếp hạng</a>
         <a href="thong-ke.html" class="menu-btn">Thống kê</a>
         <a href="tin-nong.html" class="menu-btn">Tin Nóng</a>
@@ -1191,6 +1463,40 @@
         </div>
     </section>
 
+    <!-- SECTION: KIẾN THỨC & CHIẾN THUẬT CHUYÊN SÂU (STATIC SEO EDITORIAL) -->
+    <section class="section">
+        <div class="section-head">
+            <h2 class="section-title">Kiến thức &amp; chiến thuật chuyên sâu</h2>
+            <a href="bai-viet.html" class="xem-tat-ca">Xem thư viện bài viết →</a>
+        </div>
+        <div class="sv-grid-2">
+            <a href="bai-viet/chi-so-xg-la-gi.html" class="sv-card" style="margin-bottom:0; text-decoration:none; display:block;">
+                <span style="display:inline-block; font-size:11px; font-weight:800; color:#be123c; background:#fff1f2; padding:3px 9px; border-radius:6px; margin-bottom:10px;">DỮ LIỆU HIỆN ĐẠI</span>
+                <h3 style="font-size:17px; font-weight:800; color:#0b192c; margin-bottom:8px; line-height:1.35;">Chỉ số xG (Expected Goals) là gì và cách đọc chính xác</h3>
+                <p style="font-size:14px; color:#475569; margin-bottom:12px;">Giải mã bản chất toán học của bàn thắng kỳ vọng, phân biệt xG/xGA và cách nhận diện đội bóng đang chơi vượt hoặc dưới thực lực.</p>
+                <span style="font-size:13px; font-weight:800; color:#be123c;">Đọc bài phân tích →</span>
+            </a>
+            <a href="bai-viet/pressing-tam-cao-vs-khoi-thap.html" class="sv-card" style="margin-bottom:0; text-decoration:none; display:block;">
+                <span style="display:inline-block; font-size:11px; font-weight:800; color:#1d4ed8; background:#eff6ff; padding:3px 9px; border-radius:6px; margin-bottom:10px;">CHIẾN THUẬT</span>
+                <h3 style="font-size:17px; font-weight:800; color:#0b192c; margin-bottom:8px; line-height:1.35;">Pressing tầm cao (Gegenpressing) vs Phòng ngự khối thấp</h3>
+                <p style="font-size:14px; color:#475569; margin-bottom:12px;">So sánh trực diện hai trường phái chiến thuật đối lập, chỉ số PPDA và 3 chi tiết quan trọng để đọc vị thế trận trong 20 phút đầu.</p>
+                <span style="font-size:13px; font-weight:800; color:#be123c;">Đọc bài phân tích →</span>
+            </a>
+            <a href="bai-viet/so-do-4-3-3-vs-3-4-2-1.html" class="sv-card" style="margin-bottom:0; text-decoration:none; display:block;">
+                <span style="display:inline-block; font-size:11px; font-weight:800; color:#1d4ed8; background:#eff6ff; padding:3px 9px; border-radius:6px; margin-bottom:10px;">SƠ ĐỒ ĐỘI HÌNH</span>
+                <h3 style="font-size:17px; font-weight:800; color:#0b192c; margin-bottom:8px; line-height:1.35;">So sánh sơ đồ 4-3-3 và 3-4-2-1: Điểm mạnh &amp; cách khắc chế</h3>
+                <p style="font-size:14px; color:#475569; margin-bottom:12px;">Phân tích cấu trúc hình hộp tuyến giữa, vai trò của wing-back và cách tạo ưu thế quân số ở vùng nách trung lộ (half-space).</p>
+                <span style="font-size:13px; font-weight:800; color:#be123c;">Đọc bài phân tích →</span>
+            </a>
+            <a href="bai-viet/cach-tinh-diem-bxh-fifa-elo.html" class="sv-card" style="margin-bottom:0; text-decoration:none; display:block;">
+                <span style="display:inline-block; font-size:11px; font-weight:800; color:#047857; background:#ecfdf5; padding:3px 9px; border-radius:6px; margin-bottom:10px;">HỆ THỐNG XẾP HẠNG</span>
+                <h3 style="font-size:17px; font-weight:800; color:#0b192c; margin-bottom:8px; line-height:1.35;">Bảng xếp hạng FIFA được tính điểm như thế nào theo công thức Elo?</h3>
+                <p style="font-size:14px; color:#475569; margin-bottom:12px;">Giải thích chi tiết bảng hệ số tầm quan trọng trận đấu từ giao hữu đến World Cup và quy tắc không trừ điểm ở vòng knock-out.</p>
+                <span style="font-size:13px; font-weight:800; color:#be123c;">Đọc bài phân tích →</span>
+            </a>
+        </div>
+    </section>
+
     <!-- SECTION: LỊCH THI ĐẤU SẮP TỚI -->
     <section class="section">
         <div class="section-head">
@@ -1227,6 +1533,11 @@
             <a href="multimedia.html">MultiMedia</a>
             <a href="bang-xep-hang-fifa.html">BXH FIFA</a>
             <a href="du-doan.html">Phân tích & dự đoán</a>
+            <a href="bai-viet.html">Kiến thức & chiến thuật</a>
+            <a href="gioi-thieu.html">Giới thiệu</a>
+            <a href="lien-he.html">Liên hệ</a>
+            <a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a>
+            <a href="dieu-khoan.html">Điều khoản sử dụng</a>
             <a href="gop-y.html">Góp ý</a>
         </div>
         <p>© 2026 Score Vision. Toàn bộ bản quyền được bảo lưu.</p>
@@ -1961,5 +2272,6 @@
 })();
 </script>
 
+<script src="assets/motion.js?v=20261127" defer></script>
 </body>
 </html>
