@@ -437,12 +437,80 @@ body.sv-subpage .nut-xem:hover {
     color: #ffffff !important;
 }
 body.sv-subpage .section-box,
+body.sv-subpage .section-box.blue,
 body.sv-subpage .section-box.gold,
+body.sv-subpage .bai-chitiet,
 body.sv-subpage .bai-chi-tiet,
-body.sv-subpage .lich-card {
+body.sv-subpage .lich-card,
+body.sv-subpage .lich-item,
+body.sv-subpage .card-ketqua,
+body.sv-subpage .detail-section,
+body.sv-subpage .team-event-box,
+body.sv-subpage .featured-card,
+body.sv-subpage .state-box,
+body.sv-subpage .stat-chip,
+body.sv-subpage .khoi-chinh,
+body.sv-subpage .khung-giai-lon,
+body.sv-subpage .media-main,
+body.sv-subpage .ket-qua-tim,
+body.sv-subpage .summary-chip,
+body.sv-subpage .ghi-chu {
     background: #ffffff !important;
     border: 1px solid #dbe2ea !important;
-    color: #334155 !important;
+    color: #0b192c !important;
+    box-shadow: 0 4px 16px rgba(11, 25, 44, 0.06) !important;
+}
+body.sv-subpage .lich-item {
+    border-left: 4px solid #e11d48 !important;
+}
+body.sv-subpage .lich-item:hover {
+    border-color: #0b192c !important;
+    border-left-color: #e11d48 !important;
+}
+body.sv-subpage .lich-giai,
+body.sv-subpage .lich-giai-ten,
+body.sv-subpage .lich-date,
+body.sv-subpage .lich-san,
+body.sv-subpage .lich-ngay,
+body.sv-subpage .bai-giai,
+body.sv-subpage .tran-thongtin {
+    color: #475569 !important;
+}
+body.sv-subpage .lich-time,
+body.sv-subpage .tran-tyso,
+body.sv-subpage .content-title,
+body.sv-subpage .featured-title,
+body.sv-subpage .state-title,
+body.sv-subpage .main-title,
+body.sv-subpage .tieu-de,
+body.sv-subpage .doi-ten,
+body.sv-subpage .tong-diem,
+body.sv-subpage .sv-live-team-name,
+body.sv-subpage .sv-live-league,
+body.sv-subpage .team-event-title,
+body.sv-subpage .event-main {
+    color: #0b192c !important;
+}
+body.sv-subpage .lich-trang-thai {
+    background: #ecfdf5 !important;
+    color: #047857 !important;
+    border: 1px solid #a7f3d0 !important;
+}
+body.sv-subpage .team-logo-fallback {
+    background: #f1f5f9 !important;
+    border: 1px solid #cbd5e1 !important;
+    color: #0b192c !important;
+    font-weight: 800 !important;
+}
+body.sv-subpage .bai-head {
+    border-bottom-color: #e2e8f0 !important;
+}
+body.sv-subpage .section-box {
+    background: #f8fafc !important;
+    box-shadow: none !important;
+}
+body.sv-subpage .section-box.blue {
+    border-left: 4px solid #1d4ed8 !important;
 }
 body.sv-subpage .section-box.gold {
     border-left: 4px solid #e11d48 !important;
@@ -451,14 +519,49 @@ body.sv-subpage .section-box .section-title,
 body.sv-subpage .section-box.gold .section-title {
     color: #0b192c !important;
 }
+body.sv-subpage .section-content,
+body.sv-subpage .featured-lead,
+body.sv-subpage .card-full-content,
+body.sv-subpage .match-summary-info,
+body.sv-subpage .lineup-grid,
+body.sv-subpage .v1,
+body.sv-subpage .v2 {
+    color: #1e293b !important;
+}
+body.sv-subpage .tran-xem {
+    background: #eff6ff !important;
+    color: #1d4ed8 !important;
+    border: 1px solid #bfdbfe !important;
+}
+body.sv-subpage .nut-donglai,
 body.sv-subpage .nut-quay-lai {
     background: #0b192c !important;
     color: #ffffff !important;
     border-color: #0b192c !important;
 }
+body.sv-subpage .nut-donglai:hover,
+body.sv-subpage .nut-quay-lai:hover {
+    background: #e11d48 !important;
+    border-color: #e11d48 !important;
+    color: #ffffff !important;
+}
+body.sv-subpage .btn-action-outline,
+body.sv-subpage .nut-hien-them {
+    background: #ffffff !important;
+    color: #0b192c !important;
+    border: 1px solid #cbd5e1 !important;
+}
+body.sv-subpage .ketqua-score,
 body.sv-subpage .lich-vs {
     background: #0b192c !important;
     color: #ffffff !important;
+}
+body.sv-subpage .ketqua-score-num {
+    color: #ffffff !important;
+}
+body.sv-subpage .sv-live-score,
+body.sv-subpage .sap {
+    color: #be123c !important;
 }
 
 /* ===== UNIFIED NAVY FOOTER ===== */

@@ -387,7 +387,7 @@
 const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRjGewmdAmJVjyi-0vSc22hhFPacMgGc-WmVE8PEM3jHfA7IvED3XbBp68Bwp16n1Dc2FFP9ETKTaSH/pub?gid=655851279&single=true&output=csv";
 
 const LOGO_DATA_URL = "https://cdn.jsdelivr.net/gh/hixcoder/football-teams-flags@main/football_teams.json";
-const LOGO_CACHE_KEY = "scorevision_team_logos_v10";
+const LOGO_CACHE_KEY = "scorevision_team_logos_v11";
 const LOGO_DB_CACHE_KEY = "scorevision_logo_db_v10";
 
 /* Repo SVG dự phòng. Đây là file tĩnh, KHÔNG phải API bóng đá. */
@@ -525,11 +525,16 @@ const TEAM_ALIASES={
     "everton":"everton",
 
     /* Spain */
-    "atletico":"atletico madrid","atletico madrid":"atletico madrid","athletic bilbao":"athletic club","athletic club":"athletic club",
-    "barca":"barcelona","barcelona":"barcelona","real madrid":"real madrid","sevilla":"sevilla","betis":"real betis","real betis":"real betis",
-    "villarreal":"villarreal","sociedad":"real sociedad","real sociedad":"real sociedad","rayo":"rayo vallecano","rayo vallecano":"rayo vallecano",
-    "espanyol":"espanyol","deportivo":"deportivo la coruna","deportivo la coruna":"deportivo la coruna","alaves":"alaves","alaves":"alaves",
-    "valencia":"valencia","elche":"elche","getafe":"getafe","mallorca":"mallorca","osasuna":"osasuna","celta vigo":"celta vigo",
+    "atletico":"atletico madrid","atletico madrid":"atletico madrid","club atletico de madrid":"atletico madrid","athletic bilbao":"athletic club","athletic club":"athletic club",
+    "barca":"barcelona","barcelona":"barcelona","fc barcelona":"barcelona","real madrid":"real madrid","real madrid cf":"real madrid","sevilla":"sevilla","sevilla fc":"sevilla",
+    "betis":"real betis","real betis":"real betis","real betis balompie":"real betis",
+    "villarreal":"villarreal","villarreal cf":"villarreal","sociedad":"real sociedad","real sociedad":"real sociedad","real sociedad de futbol":"real sociedad",
+    "rayo":"rayo vallecano","rayo vallecano":"rayo vallecano","rayo vallecano de madrid":"rayo vallecano",
+    "levante":"levante","levante ud":"levante","racing santander":"racing santander","real racing club de santander":"racing santander","racing de santander":"racing santander",
+    "espanyol":"espanyol","rcd espanyol de barcelona":"espanyol","deportivo":"deportivo la coruna","deportivo la coruna":"deportivo la coruna","alaves":"alaves","deportivo alaves":"alaves",
+    "valencia":"valencia","valencia cf":"valencia","elche":"elche","elche cf":"elche","getafe":"getafe","getafe cf":"getafe","mallorca":"mallorca","rcd mallorca":"mallorca",
+    "osasuna":"osasuna","ca osasuna":"osasuna","celta vigo":"celta vigo","rc celta de vigo":"celta vigo","celta de vigo":"celta vigo",
+    "girona":"girona","girona fc":"girona","las palmas":"las palmas","ud las palmas":"las palmas","leganes":"leganes","cd leganes":"leganes","valladolid":"real valladolid","real valladolid":"real valladolid",
 
     /* Italy */
     "inter":"inter milan","internazionale":"inter milan","inter milan":"inter milan","milan":"milan","ac milan":"milan",
@@ -548,11 +553,13 @@ const TEAM_ALIASES={
     "wolfsburg":"wolfsburg","hoffenheim":"hoffenheim","augsburg":"augsburg","heidenheim":"heidenheim","bochum":"bochum",
 
     /* France */
-    "psg":"paris saint germain","paris sg":"paris saint germain","paris saint germain":"paris saint germain","lyon":"lyon","marseille":"marseille",
-    "monaco":"monaco","lille":"lille","nice":"nice","lens":"lens","rennes":"rennes","nantes":"nantes","strasbourg":"strasbourg",
+    "psg":"paris saint germain","paris sg":"paris saint germain","paris saint germain":"paris saint germain","lyon":"lyon","olympique lyonnais":"lyon","marseille":"marseille","olympique de marseille":"marseille",
+    "monaco":"monaco","as monaco":"monaco","lille":"lille","losc lille":"lille","nice":"nice","ogc nice":"nice","lens":"lens","rc lens":"lens","rennes":"rennes","stade rennais":"rennes",
+    "nantes":"nantes","fc nantes":"nantes","strasbourg":"strasbourg","rc strasbourg alsace":"strasbourg","auxerre":"auxerre","aj auxerre":"auxerre",
 
     /* Portugal / Netherlands / Turkey */
-    "sporting":"sporting cp","sporting cp":"sporting cp","sporting lisbon":"sporting cp","benfica":"benfica","porto":"porto","braga":"braga",
+    "sporting":"sporting cp","sporting cp":"sporting cp","sporting lisbon":"sporting cp","sporting clube de portugal":"sporting cp",
+    "benfica":"benfica","sport lisboa e benfica":"benfica","porto":"porto","fc porto":"porto","braga":"braga","sporting clube de braga":"braga",
     "ajax":"ajax","psv":"psv","psv eindhoven":"psv","feyenoord":"feyenoord","az":"az alkmaar","twente":"twente",
     "galatasaray":"galatasaray","fenerbahce":"fenerbahce","besiktas":"besiktas","trabzonspor":"trabzonspor",
 
