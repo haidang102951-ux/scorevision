@@ -1,4 +1,4 @@
-const CACHE_NAME = 'scorevision-v4';
+const CACHE_NAME = 'scorevision-v5';
 const STATIC_ASSETS = [
     './',
     './favicon.png',
@@ -31,8 +31,7 @@ self.addEventListener('fetch', e => {
     // Bỏ qua không cache quảng cáo và analytics
     if (url.hostname.includes('googlesyndication') || 
         url.hostname.includes('google-analytics') || 
-        url.hostname.includes('googletagmanager') ||
-        url.hostname.includes('n6wxm.com')) {
+        url.hostname.includes('googletagmanager')) {
         return;
     }
 
