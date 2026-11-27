@@ -106,38 +106,50 @@ body.sv-subpage .header-social a {
     color: #ffffff !important;
 }
 
-/* ===== UNIFIED CRISP WHITE STICKY NAV ===== */
+/* ===== UNIFIED FLAT EDITORIAL NEWSPAPER NAV (MATCHES HOMEPAGE) ===== */
 body.sv-subpage .menu {
-    background: rgba(255, 255, 255, 0.96) !important;
-    border: 1px solid #dbe2ea !important;
-    box-shadow: 0 8px 24px rgba(11, 25, 44, 0.08) !important;
+    background: #ffffff !important;
+    border: 1px solid #e5e7eb !important;
+    border-bottom: 2px solid #0b192c !important;
+    border-radius: 6px !important;
+    padding: 0 8px !important;
+    gap: 2px !important;
+    box-shadow: 0 2px 10px rgba(17, 24, 39, 0.05) !important;
 }
 body.sv-subpage .menu-btn {
     background: transparent !important;
-    color: #334155 !important;
-    border-color: transparent !important;
+    color: #1f2937 !important;
+    border: none !important;
+    border-bottom: 3px solid transparent !important;
+    border-radius: 0 !important;
+    padding: 12px 13px !important;
+    font-size: 12.5px !important;
     font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.2px !important;
+    box-shadow: none !important;
 }
 body.sv-subpage .menu-btn:hover {
-    background: #f1f5f9 !important;
-    color: #0b192c !important;
-    border-color: #dbe2ea !important;
+    background: #f9fafb !important;
+    color: #d61f26 !important;
+    transform: none !important;
 }
 body.sv-subpage .menu-btn.active {
-    background: #0b192c !important;
-    color: #ffffff !important;
-    border-color: #0b192c !important;
-    box-shadow: 0 4px 12px rgba(11, 25, 44, 0.22) !important;
+    background: transparent !important;
+    color: #d61f26 !important;
+    border-bottom-color: #d61f26 !important;
+    box-shadow: none !important;
 }
 body.sv-subpage .menu-btn.livescore {
-    background: #fff1f2 !important;
-    color: #be123c !important;
-    border-color: #fecdd3 !important;
+    background: transparent !important;
+    color: #d61f26 !important;
+    border: none !important;
+    border-bottom: 3px solid transparent !important;
 }
 body.sv-subpage .menu-btn.livescore.active {
-    background: #e11d48 !important;
-    color: #ffffff !important;
-    border-color: #e11d48 !important;
+    background: transparent !important;
+    color: #d61f26 !important;
+    border-bottom-color: #d61f26 !important;
 }
 
 /* ===== UNIFIED NAVY PAGE HERO ===== */

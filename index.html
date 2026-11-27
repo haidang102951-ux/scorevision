@@ -5,17 +5,14 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5011502652158923" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Score Vision ⚽ Lịch Đấu, Kết Quả, BXH & Phân Tích Bóng Đá</title>
-    <meta name="description" content="Score Vision cập nhật lịch thi đấu, kết quả bóng đá, bảng xếp hạng, thống kê, LiveScore và phân tích dự đoán bóng đá mỗi ngày chuẩn xác, chuyên sâu.">
+    <title>Score Vision — Tin Tức, Lịch Thi Đấu, Kết Quả &amp; Phân Tích Bóng Đá</title>
+    <meta name="description" content="Score Vision — Trang thông tin bóng đá chuyên sâu: tin nóng chuyển nhượng, lịch thi đấu, kết quả, bảng xếp hạng, LiveScore và phân tích chiến thuật cập nhật mỗi ngày.">
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#facc15">
+    <meta name="theme-color" content="#0b192c">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="assets/theme.css?v=20261127">
-
-    <!-- API Sports Widgets -->
-    <script type="module" src="https://widgets.api-sports.io/3.1.0/widgets.js"></script>
+    <link rel="stylesheet" href="assets/theme.css?v=20261128">
 
     <!-- Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-RTY3P63JJL"></script>
@@ -28,2249 +25,1003 @@
 
     <style>
         /* ==========================================================================
-           SCORE VISION ULTRA-LUXURY DESIGN SYSTEM (OBSIDIAN ARENA & ELECTRIC GOLD)
+           SCORE VISION — EDITORIAL SPORTS NEWSPAPER LAYOUT (BONGDA.COM.VN GRADE)
            ========================================================================== */
-        *, *::before, *::after {
-            margin: 0; padding: 0; box-sizing: border-box;
-        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        :root {
-            --bg-base: #030712;
-            --bg-card: rgba(15, 23, 42, 0.75);
-            --bg-card-hover: rgba(30, 41, 59, 0.88);
-            --bg-surface: #0b1329;
-            --border-card: rgba(255, 255, 255, 0.08);
-            --border-glow: rgba(250, 204, 21, 0.45);
-            --border-cyan: rgba(56, 189, 248, 0.4);
-            
-            --gold-primary: #facc15;
-            --gold-light: #fef08a;
-            --gold-deep: #ca8a04;
-            --cyan-accent: #38bdf8;
-            --emerald-live: #10b981;
-            --rose-live: #f43f5e;
-            
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --text-dim: #64748b;
-            
-            --radius-sm: 8px;
-            --radius-md: 14px;
-            --radius-lg: 20px;
-            --radius-full: 9999px;
-            
-            --shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.35);
-            --shadow-hover: 0 20px 40px -15px rgba(0, 0, 0, 0.7), 0 0 25px rgba(250, 204, 21, 0.12);
-            --max-w: 1200px;
-            --transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        html { scroll-behavior: smooth; }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            color: var(--text-main);
-            background-color: var(--bg-base);
-            background-image: 
-                radial-gradient(1000px 500px at 15% -5%, rgba(37, 99, 235, 0.14), transparent 60%),
-                radial-gradient(800px 450px at 85% 10%, rgba(250, 204, 21, 0.07), transparent 60%),
-                linear-gradient(180deg, #020617 0%, #070e1e 50%, #020617 100%);
-            min-height: 100vh;
-            line-height: 1.6;
+        body.sv-editorial {
+            font-family: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f4f5f7 !important;
+            color: #111827 !important;
+            line-height: 1.55;
             -webkit-font-smoothing: antialiased;
         }
+        a { color: inherit; text-decoration: none; }
+        img { display: block; max-width: 100%; }
 
-        a { text-decoration: none; color: inherit; }
-
-        .container {
-            width: min(var(--max-w), calc(100% - 32px));
+        .ed-container {
+            width: min(1220px, calc(100% - 28px));
             margin-inline: auto;
         }
 
-        /* ===== HEADER & BRAND HERO ===== */
-        .site-header {
+        /* ===== TOP UTILITY BAR + COMPACT BRAND HEADER ===== */
+        .ed-header {
             position: relative;
-            padding: 30px 0 22px;
-            border-bottom: 1px solid var(--border-card);
-            background: linear-gradient(180deg, rgba(3, 7, 18, 0.95) 0%, rgba(11, 19, 41, 0.75) 100%);
-            backdrop-filter: blur(20px);
+            overflow: hidden;
+            background: #0b192c;
+            color: #ffffff;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
-        .site-header::after {
+        .ed-header::before {
             content: "";
             position: absolute;
-            left: 0; right: 0; bottom: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(250, 204, 21, 0.6), rgba(56, 189, 248, 0.4), transparent);
+            inset: 0;
+            background: url('assets/header-stadium.jpg') center 62% / cover no-repeat;
+            opacity: 0.34;
+            animation: svStadiumPan 26s ease-in-out infinite alternate;
+            pointer-events: none;
         }
-
-        .brand-row {
+        .ed-header::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, rgba(11, 25, 44, 0.96) 0%, rgba(11, 25, 44, 0.86) 45%, rgba(11, 25, 44, 0.55) 100%);
+            pointer-events: none;
+        }
+        .ed-header-inner {
+            position: relative;
+            z-index: 2;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 20px;
-        }
-        .brand {
-            display: flex;
-            align-items: center;
             gap: 16px;
+            padding: 16px 0;
         }
-        .logo-box {
-            width: 56px;
-            height: 56px;
+        .ed-brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .ed-logo {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 2px solid #d61f26;
             flex-shrink: 0;
-            border-radius: var(--radius-md);
-            padding: 2px;
-            background: linear-gradient(135deg, var(--gold-light), var(--gold-deep), #3b82f6);
-            box-shadow: 0 0 24px rgba(250, 204, 21, 0.25);
+            background: #0b192c;
+        }
+        .ed-logo img { width: 100%; height: 100%; object-fit: cover; }
+        .ed-brand-name {
+            font-size: 23px;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+            color: #ffffff;
+            line-height: 1.1;
+        }
+        .ed-brand-tag {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.9px;
+            color: #cbd5e1;
+            text-transform: uppercase;
+            margin-top: 2px;
+        }
+        .ed-header-right {
             display: flex;
             align-items: center;
-            justify-content: center;
-            overflow: hidden;
+            gap: 14px;
+            font-size: 12.5px;
+            color: #cbd5e1;
         }
-        .logo-box img {
+        .ed-date { font-weight: 600; }
+        .ed-live-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: #d61f26;
+            color: #ffffff;
+            font-size: 11.5px;
+            font-weight: 800;
+            letter-spacing: 0.4px;
+            padding: 6px 12px;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+        .ed-live-pill:hover { background: #b91c1c; }
+        .ed-live-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #ffffff;
+            animation: svLivePulse 1.4s infinite;
+        }
+
+        /* ===== FULL-WIDTH FLAT NEWSPAPER NAVIGATION ===== */
+        .ed-nav-bar {
+            position: sticky;
+            top: 0;
+            z-index: 90;
+            background: #ffffff;
+            border-bottom: 2px solid #0b192c;
+            box-shadow: 0 2px 10px rgba(17, 24, 39, 0.06);
+        }
+        .ed-nav {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+        .ed-nav::-webkit-scrollbar { display: none; }
+        .ed-nav a {
+            position: relative;
+            white-space: nowrap;
+            font-size: 13px;
+            font-weight: 700;
+            color: #1f2937;
+            padding: 13px 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.2px;
+            transition: color 0.18s ease, background 0.18s ease;
+        }
+        .ed-nav a:hover {
+            color: #d61f26;
+            background: #f9fafb;
+        }
+        .ed-nav a.active {
+            color: #d61f26;
+        }
+        .ed-nav a.active::after {
+            content: "";
+            position: absolute;
+            left: 12px;
+            right: 12px;
+            bottom: 0;
+            height: 3px;
+            background: #d61f26;
+        }
+
+        /* ===== MAIN 2-COLUMN EDITORIAL GRID ===== */
+        .ed-main {
+            padding: 22px 0 48px;
+        }
+        .ed-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 340px;
+            gap: 26px;
+            align-items: start;
+        }
+
+        /* ===== SECTION HEADER (NEWSPAPER STYLE) ===== */
+        .ed-sec {
+            margin-bottom: 28px;
+        }
+        .ed-sec-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            border-bottom: 2px solid #111827;
+            padding-bottom: 8px;
+            margin-bottom: 16px;
+        }
+        .ed-sec-title {
+            font-size: 17px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.2px;
+            color: #111827;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .ed-sec-title::before {
+            content: "";
+            width: 4px;
+            height: 18px;
+            background: #d61f26;
+            display: inline-block;
+        }
+        .ed-sec-more {
+            font-size: 12.5px;
+            font-weight: 700;
+            color: #d61f26;
+        }
+        .ed-sec-more:hover { text-decoration: underline; }
+
+        /* ===== TOP NEWS HERO + 3-COLUMN SUB GRID ===== */
+        .ed-paper-box {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 18px;
+        }
+        .ed-lead-story {
+            display: grid;
+            grid-template-columns: 1.25fr 1fr;
+            gap: 18px;
+            padding-bottom: 18px;
+            margin-bottom: 18px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .ed-lead-img {
+            position: relative;
+            aspect-ratio: 16 / 10;
+            border-radius: 6px;
+            overflow: hidden;
+            background: #e5e7eb;
+        }
+        .ed-lead-img img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: calc(var(--radius-md) - 2px);
+            transition: transform 0.35s ease;
         }
-
-        .brand-name {
-            font-size: 32px;
-            font-weight: 900;
-            letter-spacing: -0.5px;
-            background: linear-gradient(90deg, #ffffff 0%, var(--gold-light) 45%, var(--gold-primary) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            line-height: 1.15;
-        }
-        .brand-sub {
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 2.2px;
-            color: var(--cyan-accent);
-            text-transform: uppercase;
-            margin-top: 3px;
-        }
-
-        /* ===== NAVIGATION (FLOATING GLASS PILL) ===== */
-        .menu-wrap {
-            margin: 16px auto 28px;
-            position: sticky;
-            top: 12px;
-            z-index: 100;
-        }
-        .menu {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 12px;
-            background: rgba(11, 19, 41, 0.9);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: var(--radius-full);
-            backdrop-filter: blur(20px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
-            overflow-x: auto;
-            scrollbar-width: none;
-            -webkit-overflow-scrolling: touch;
-        }
-        .menu::-webkit-scrollbar { display: none; }
-
-        .menu-btn {
-            white-space: nowrap;
-            font-size: 13.5px;
-            font-weight: 600;
-            padding: 8px 16px;
-            border-radius: var(--radius-full);
-            color: var(--text-muted);
-            transition: var(--transition);
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-        }
-        .menu-btn:hover {
-            color: #ffffff;
-            background: rgba(255, 255, 255, 0.08);
-            transform: translateY(-1px);
-        }
-        .menu-btn.active {
-            color: #000000;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold-primary) 100%);
-            box-shadow: 0 4px 15px rgba(250, 204, 21, 0.35);
-        }
-        .menu-btn.livescore {
-            border: 1px solid rgba(244, 63, 94, 0.35);
-            color: #fda4af;
-        }
-        .menu-btn.livescore::before {
-            content: "";
-            width: 7px;
-            height: 7px;
-            background: var(--rose-live);
-            border-radius: 50%;
-            display: inline-block;
-            animation: livePulse 1.4s infinite;
-        }
-
-        /* ===== SECTION HEADINGS ===== */
-        .section { margin-bottom: 44px; }
-        .section-head {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 20px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-            position: relative;
-        }
-        .section-head::after {
-            content: "";
-            position: absolute;
-            bottom: -1px; left: 0;
-            width: 60px; height: 2px;
-            background: var(--gold-primary);
-            box-shadow: 0 0 10px var(--gold-primary);
-        }
-        .section-title {
-            font-size: 21px;
-            font-weight: 800;
-            letter-spacing: -0.3px;
-            color: #ffffff;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .xem-tat-ca {
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--gold-primary);
-            padding: 5px 12px;
-            border-radius: var(--radius-full);
-            background: rgba(250, 204, 21, 0.08);
-            border: 1px solid rgba(250, 204, 21, 0.2);
-            transition: var(--transition);
-        }
-        .xem-tat-ca:hover {
-            background: var(--gold-primary);
-            color: #000;
-            box-shadow: 0 4px 12px rgba(250, 204, 21, 0.3);
-            transform: translateX(2px);
-        }
-
-        /* ===== HERO INTRO & LIVE WIDGETS ===== */
-        .intro {
-            display: grid;
-            grid-template-columns: 1.15fr 0.85fr;
-            gap: 24px;
-            margin-bottom: 36px;
-        }
-        .intro-copy {
-            background: var(--bg-card);
-            border: 1px solid var(--border-card);
-            border-radius: var(--radius-lg);
-            padding: 28px 32px;
-            backdrop-filter: blur(16px);
-            box-shadow: var(--shadow-subtle);
-            position: relative;
-            overflow: hidden;
-        }
-        .intro-copy::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; right: 0; height: 3px;
-            background: linear-gradient(90deg, var(--gold-primary), var(--cyan-accent));
-        }
-        .eyebrow {
+        .ed-lead-story:hover .ed-lead-img img { transform: scale(1.04); }
+        .ed-cat-label {
             display: inline-block;
             font-size: 11px;
             font-weight: 800;
-            letter-spacing: 1.8px;
-            color: var(--gold-primary);
-            background: rgba(250, 204, 21, 0.1);
-            padding: 4px 10px;
-            border-radius: var(--radius-full);
-            margin-bottom: 14px;
-            border: 1px solid rgba(250, 204, 21, 0.25);
-        }
-        .intro-copy h1 {
-            font-size: 26px;
-            font-weight: 850;
-            line-height: 1.3;
-            margin-bottom: 14px;
-            color: #ffffff;
-        }
-        .intro-copy h1 span { color: var(--gold-light); }
-        .intro-copy p { font-size: 14.5px; color: var(--text-muted); line-height: 1.7; }
-
-        .intro-widget {
-            border-radius: var(--radius-lg);
-            overflow: hidden;
-            border: 1px solid var(--border-card);
-            background: var(--bg-card);
-            box-shadow: var(--shadow-subtle);
-            min-height: 220px;
-        }
-        .intro-widget iframe {
-            width: 100%;
-            height: 100%;
-            min-height: 220px;
-            border: none;
-            display: block;
-        }
-
-        .hero-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 24px;
-            margin-bottom: 40px;
-        }
-        .hero {
-            background: linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(30, 41, 59, 0.7) 100%);
-            border: 1px solid var(--border-card);
-            border-radius: var(--radius-lg);
-            padding: 30px;
-            backdrop-filter: blur(16px);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            box-shadow: var(--shadow-subtle);
-        }
-        .hero-kicker {
-            font-size: 11px;
-            font-weight: 800;
-            letter-spacing: 2px;
-            color: var(--cyan-accent);
             text-transform: uppercase;
-            margin-bottom: 10px;
+            letter-spacing: 0.4px;
+            color: #d61f26;
+            margin-bottom: 6px;
         }
-        .hero h2 {
+        .ed-lead-title {
             font-size: 22px;
             font-weight: 800;
-            line-height: 1.4;
-            color: #fff;
-            margin-bottom: 12px;
-        }
-        .hero p {
-            font-size: 14px;
-            color: var(--text-muted);
-            margin-bottom: 22px;
-            line-height: 1.65;
-        }
-        .hero-btn {
-            align-self: flex-start;
-            font-size: 14px;
-            font-weight: 700;
-            color: #000;
-            background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold-primary) 100%);
-            padding: 10px 22px;
-            border-radius: var(--radius-full);
-            box-shadow: 0 4px 20px rgba(250, 204, 21, 0.3);
-            transition: var(--transition);
-        }
-        .hero-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(250, 204, 21, 0.45);
-        }
-
-        .widget-box {
-            background: var(--bg-card);
-            border: 1px solid var(--border-card);
-            border-radius: var(--radius-lg);
-            overflow: hidden;
-            box-shadow: var(--shadow-subtle);
-            backdrop-filter: blur(16px);
-        }
-        .widget-head {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 14px 18px;
-            border-bottom: 1px solid var(--border-card);
-            background: rgba(3, 7, 18, 0.6);
-        }
-        .widget-title { font-size: 13px; font-weight: 800; color: #fff; }
-        .widget-badge {
-            font-size: 10px;
-            font-weight: 800;
-            letter-spacing: 1px;
-            color: #fff;
-            background: var(--rose-live);
-            padding: 3px 8px;
-            border-radius: var(--radius-full);
-            animation: livePulse 1.5s infinite;
-        }
-        .widget-scroll { max-height: 340px; overflow-y: auto; padding: 8px; }
-
-        /* ===== THẺ PHÂN TÍCH & DỰ ĐOÁN (DYNAMIC MATCHUP & CURIOSITY HOOK) ===== */
-        .phan-tich-marquee {
-            overflow: hidden;
-            position: relative;
-            padding: 8px 0 16px;
-            mask-image: linear-gradient(90deg, transparent 0%, black 2%, black 98%, transparent 100%);
-            -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 2%, black 98%, transparent 100%);
-        }
-        .phan-tich-track {
-            display: flex;
-            gap: 22px;
-            width: max-content;
-            animation: marqueeScroll 45s linear infinite;
-        }
-        .phan-tich-marquee:hover .phan-tich-track { animation-play-state: paused; }
-        @keyframes marqueeScroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        .card-phantich {
-            width: 370px;
-            flex-shrink: 0;
-            background: var(--bg-card);
-            border: 1px solid var(--border-card);
-            border-radius: var(--radius-lg);
-            overflow: hidden;
-            transition: var(--transition);
-            display: flex;
-            flex-direction: column;
-            box-shadow: var(--shadow-subtle);
-            backdrop-filter: blur(14px);
-            position: relative;
-        }
-        .card-phantich:hover {
-            transform: translateY(-5px);
-            border-color: var(--border-glow);
-            box-shadow: var(--shadow-hover);
-        }
-
-        /* MATCHUP STAGE HEADER (LOGO 2 ĐỘI THẬT) */
-        .pt-matchup-stage {
-            background: radial-gradient(circle at 50% 10%, rgba(37, 99, 235, 0.28), transparent 70%),
-                        linear-gradient(180deg, #070d1e 0%, #030712 100%);
-            padding: 16px 14px 14px;
-            border-bottom: 1px solid var(--border-card);
-            position: relative;
-            overflow: hidden;
-        }
-        .pt-league-tag {
-            display: inline-block;
-            font-size: 10.5px;
-            font-weight: 800;
-            color: #000;
-            background: linear-gradient(135deg, var(--gold-light), var(--gold-primary));
-            padding: 2px 9px;
-            border-radius: var(--radius-full);
+            line-height: 1.32;
+            color: #111827;
             margin-bottom: 10px;
-            letter-spacing: 0.3px;
+            transition: color 0.18s;
         }
-        .pt-teams-row {
+        .ed-lead-story:hover .ed-lead-title { color: #d61f26; }
+        .ed-lead-desc {
+            font-size: 14px;
+            color: #4b5563;
+            line-height: 1.65;
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+        .ed-meta {
+            font-size: 12px;
+            color: #6b7280;
+            font-weight: 600;
+        }
+
+        .ed-sub-grid {
             display: grid;
-            grid-template-columns: 1fr auto 1fr;
-            align-items: center;
-            gap: 8px;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
         }
-        .pt-team-col {
+        .ed-sub-card {
             display: flex;
             flex-direction: column;
-            align-items: center;
-            text-align: center;
-            gap: 6px;
         }
-        .pt-team-crest {
-            width: 44px;
-            height: 44px;
-            object-fit: contain;
-            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.6));
+        .ed-sub-img {
+            aspect-ratio: 16 / 10;
+            border-radius: 6px;
+            overflow: hidden;
+            background: #e5e7eb;
+            margin-bottom: 9px;
+        }
+        .ed-sub-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             transition: transform 0.3s ease;
         }
-        .card-phantich:hover .pt-team-crest {
-            transform: scale(1.1);
-        }
-        .pt-team-name {
-            font-size: 13.5px;
-            font-weight: 800;
-            color: #ffffff;
-            line-height: 1.25;
-            max-width: 120px;
-            white-space: nowrap;
+        .ed-sub-card:hover .ed-sub-img img { transform: scale(1.05); }
+        .ed-sub-title {
+            font-size: 14.5px;
+            font-weight: 700;
+            line-height: 1.4;
+            color: #111827;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
             overflow: hidden;
-            text-overflow: ellipsis;
+            margin-bottom: 5px;
+            transition: color 0.18s;
         }
-        .pt-vs-col {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 4px;
-        }
-        .pt-vs-badge {
-            font-size: 13px;
-            font-weight: 900;
-            color: var(--gold-primary);
-            background: rgba(250, 204, 21, 0.12);
-            border: 1px solid rgba(250, 204, 21, 0.3);
-            padding: 3px 8px;
-            border-radius: var(--radius-full);
-            letter-spacing: 1px;
-        }
-        .pt-match-clock {
-            font-size: 10.5px;
-            font-weight: 600;
-            color: var(--cyan-accent);
-            white-space: nowrap;
-        }
+        .ed-sub-card:hover .ed-sub-title { color: #d61f26; }
 
-        .card-body-phantich {
-            padding: 14px 16px 16px;
+        /* ===== HORIZONTAL NEWS FEED LIST ===== */
+        .ed-news-list {
             display: flex;
             flex-direction: column;
-            gap: 10px;
-            flex-grow: 1;
         }
-        .pt-teaser-hook {
-            font-size: 13px;
-            color: var(--text-muted);
-            line-height: 1.5;
+        .ed-news-row {
+            display: grid;
+            grid-template-columns: 185px minmax(0, 1fr);
+            gap: 16px;
+            padding: 14px 0;
+            border-bottom: 1px solid #e5e7eb;
+            align-items: start;
+        }
+        .ed-news-row:first-child { padding-top: 0; }
+        .ed-news-row:last-child { border-bottom: none; padding-bottom: 0; }
+        .ed-news-row-img {
+            aspect-ratio: 16 / 10;
+            border-radius: 6px;
+            overflow: hidden;
+            background: #e5e7eb;
+        }
+        .ed-news-row-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }
+        .ed-news-row:hover .ed-news-row-img img { transform: scale(1.05); }
+        .ed-news-row h3 {
+            font-size: 16px;
+            font-weight: 800;
+            line-height: 1.38;
+            color: #111827;
+            margin-bottom: 6px;
+            transition: color 0.18s;
+        }
+        .ed-news-row:hover h3 { color: #d61f26; }
+        .ed-news-row p {
+            font-size: 13.5px;
+            color: #4b5563;
+            line-height: 1.6;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
+            margin-bottom: 6px;
         }
 
-        /* CURIOSITY LOCK BOX (KHÓA DỰ ĐOÁN GÂY TÒ MÒ) */
-        .pt-lock-banner {
-            background: linear-gradient(135deg, rgba(2, 6, 23, 0.9) 0%, rgba(15, 23, 42, 0.95) 100%);
-            border: 1px dashed rgba(250, 204, 21, 0.4);
-            border-radius: var(--radius-sm);
-            padding: 10px 12px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 8px;
-            transition: var(--transition);
-        }
-        .card-phantich:hover .pt-lock-banner {
-            border-style: solid;
-            border-color: var(--gold-primary);
-            background: rgba(250, 204, 21, 0.08);
-        }
-        .pt-lock-info {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .pt-lock-icon { font-size: 14px; }
-        .pt-lock-text {
-            font-size: 12px;
-            font-weight: 750;
-            color: var(--gold-light);
-        }
-        .pt-lock-btn {
-            font-size: 11px;
-            font-weight: 800;
-            color: #000;
-            background: var(--gold-primary);
-            padding: 4px 8px;
-            border-radius: var(--radius-full);
-            white-space: nowrap;
-            box-shadow: 0 2px 8px rgba(250, 204, 21, 0.35);
-        }
-
-        /* ===== THẺ KẾT QUẢ BÓNG ĐÁ ===== */
-        .ketqua-columns {
+        /* ===== EDITORIAL ARTICLES (2-COL CLEAN GRID) ===== */
+        .ed-art-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 18px;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
         }
-        .ketqua-column {
+        .ed-art-item {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 16px 18px;
             display: flex;
             flex-direction: column;
+            justify-content: space-between;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .ed-art-item:hover {
+            border-color: #0b192c;
+            box-shadow: 0 6px 18px rgba(11, 25, 44, 0.08);
+        }
+        .ed-art-item h3 {
+            font-size: 15.5px;
+            font-weight: 800;
+            line-height: 1.4;
+            color: #111827;
+            margin-bottom: 7px;
+        }
+        .ed-art-item:hover h3 { color: #d61f26; }
+        .ed-art-item p {
+            font-size: 13.5px;
+            color: #4b5563;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+        .ed-art-foot {
+            font-size: 12px;
+            font-weight: 700;
+            color: #d61f26;
+        }
+
+        /* ===== MATCH ANALYSIS / STATS CARDS (CLEAN NEWSPAPER) ===== */
+        .ed-analysis-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 14px;
         }
-        .card-ketqua {
-            background: var(--bg-card);
-            border: 1px solid var(--border-card);
-            border-radius: var(--radius-md);
-            padding: 14px 18px;
+        .ed-analysis-card {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-left: 3px solid #0b192c;
+            border-radius: 6px;
+            padding: 14px 16px;
+            transition: border-color 0.2s, transform 0.2s;
+        }
+        .ed-analysis-card:hover {
+            border-left-color: #d61f26;
+            transform: translateY(-2px);
+        }
+        .ed-analysis-meta {
             display: flex;
-            flex-direction: column;
-            gap: 10px;
-            transition: var(--transition);
-            box-shadow: var(--shadow-subtle);
-            backdrop-filter: blur(12px);
-            position: relative;
-            overflow: hidden;
-        }
-        .card-ketqua::before {
-            content: "";
-            position: absolute;
-            left: 0; top: 0; bottom: 0; width: 3px;
-            background: var(--gold-primary);
-            opacity: 0.6;
-        }
-        .card-ketqua:hover {
-            transform: translateY(-3px);
-            border-color: var(--border-glow);
-            box-shadow: var(--shadow-hover);
-        }
-        .card-ketqua:hover::before { opacity: 1; }
-
-        .ketqua-header {
-            display: flex;
-            align-items: center;
             justify-content: space-between;
-            font-size: 12px;
-        }
-        .ketqua-league {
-            font-weight: 800;
-            color: var(--gold-light);
-            text-transform: uppercase;
-        }
-        .ketqua-date { font-weight: 600; color: var(--text-dim); }
-        .ketqua-match {
-            display: grid;
-            grid-template-columns: 1fr auto 1fr;
-            align-items: center;
-            gap: 12px;
-            padding: 4px 0;
-        }
-        .ketqua-team {
-            font-size: 14.5px;
-            font-weight: 750;
-            color: #ffffff;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        .ketqua-team-home { text-align: right; }
-        .ketqua-team-away { text-align: left; }
-        .ketqua-score-box {
-            background: rgba(2, 6, 23, 0.85);
-            border: 1px solid rgba(250, 204, 21, 0.35);
-            padding: 4px 14px;
-            border-radius: var(--radius-sm);
-        }
-        .ketqua-score-num {
-            font-size: 18px;
-            font-weight: 900;
-            letter-spacing: 2px;
-            color: var(--gold-primary);
-        }
-        .ketqua-footer {
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
             font-size: 11px;
             font-weight: 700;
-            color: var(--emerald-live);
+            color: #6b7280;
+            text-transform: uppercase;
+            margin-bottom: 6px;
         }
-
-        /* ===== THẺ TIN TỨC ===== */
-        .news-layout {
-            display: grid;
-            grid-template-columns: 1.1fr 0.9fr;
-            gap: 20px;
+        .ed-analysis-match {
+            font-size: 15px;
+            font-weight: 800;
+            color: #111827;
+            margin-bottom: 6px;
         }
-        .card-news-hero {
-            position: relative;
-            border-radius: var(--radius-md);
-            overflow: hidden;
-            border: 1px solid var(--border-card);
-            background: var(--bg-card);
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            box-shadow: var(--shadow-subtle);
-            transition: var(--transition);
-            min-height: 380px;
-        }
-        .card-news-hero img {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        .card-news-hero:hover img { transform: scale(1.05); }
-        .card-news-hero::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(180deg, rgba(3, 7, 18, 0.1) 0%, rgba(3, 7, 18, 0.6) 50%, rgba(3, 7, 18, 0.96) 100%);
-        }
-        .news-hero-content {
-            position: relative;
-            z-index: 2;
-            padding: 24px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        .badge-hot {
-            align-self: flex-start;
-            font-size: 11px;
-            font-weight: 850;
-            letter-spacing: 0.8px;
-            color: #000;
-            background: linear-gradient(135deg, #f97316, var(--gold-primary));
-            padding: 4px 10px;
-            border-radius: var(--radius-full);
-        }
-        .news-hero-content h3 {
-            font-size: 20px;
-            font-weight: 850;
-            color: #ffffff;
-            line-height: 1.35;
-        }
-        .news-hero-content p {
-            font-size: 13.5px;
-            color: #cbd5e1;
+        .ed-analysis-teaser {
+            font-size: 13px;
+            color: #4b5563;
             line-height: 1.55;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
-        .news-sub-list {
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-        }
-        .card-news-sub {
-            display: grid;
-            grid-template-columns: 120px 1fr;
-            gap: 14px;
-            background: var(--bg-card);
-            border: 1px solid var(--border-card);
-            border-radius: var(--radius-md);
-            overflow: hidden;
-            padding: 10px;
-            box-shadow: var(--shadow-subtle);
-            transition: var(--transition);
-        }
-        .card-news-sub:hover {
-            transform: translateY(-3px);
-            border-color: var(--border-glow);
-            box-shadow: var(--shadow-hover);
-        }
-        .news-sub-thumb {
-            width: 100%;
-            aspect-ratio: 16/10;
-            border-radius: var(--radius-sm);
-            overflow: hidden;
-            background: #0b1329;
-        }
-        .news-sub-thumb img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.4s ease;
-        }
-        .card-news-sub:hover .news-sub-thumb img { transform: scale(1.08); }
-        .news-sub-body {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            gap: 6px;
-        }
-        .news-date { font-size: 11px; font-weight: 700; color: var(--cyan-accent); }
-        .news-sub-body h4 {
-            font-size: 14px;
-            font-weight: 750;
-            color: #fff;
-            line-height: 1.35;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
 
-        /* ===== GÓC THỐNG KÊ (TACTICAL PITCH ARENA) ===== */
-        .goc-thong-ke {
-            background: var(--bg-card);
-            border: 1px solid var(--border-card);
-            border-radius: var(--radius-lg);
-            padding: 24px;
-            backdrop-filter: blur(16px);
-            box-shadow: var(--shadow-subtle);
+        /* ===== RIGHT SIDEBAR (MATCH CENTER — COMPACT & DATA-DENSE) ===== */
+        .ed-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            position: sticky;
+            top: 62px;
         }
-        .goc-thong-ke-head {
+        .sb-box {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .sb-head {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 20px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid rgba(255,255,255,0.06);
-        }
-        .goc-thong-ke-label {
-            font-size: 13px;
-            font-weight: 900;
-            letter-spacing: 1.5px;
-            color: var(--gold-primary);
-        }
-        .goc-thong-ke-meta { font-size: 11px; font-weight: 700; color: var(--text-dim); }
-        .goc-thong-ke-grid {
-            display: grid;
-            grid-template-columns: 1.15fr 0.85fr;
-            gap: 22px;
-        }
-        .tk-feature {
-            background: linear-gradient(180deg, rgba(3, 7, 18, 0.8) 0%, rgba(15, 23, 42, 0.7) 100%);
-            border: 1px solid var(--border-card);
-            border-radius: var(--radius-md);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            transition: var(--transition);
-        }
-        .tk-feature:hover {
-            border-color: var(--border-glow);
-            box-shadow: var(--shadow-hover);
-        }
-        .tk-pitch-stage {
-            height: 160px;
-            background: 
-                radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.25), transparent 70%),
-                linear-gradient(180deg, #052619 0%, #02120c 100%);
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            border-bottom: 1px solid rgba(16, 185, 129, 0.25);
-        }
-        .tk-pitch-stage::before {
-            content: "";
-            position: absolute;
-            inset: 12px;
-            border: 1.5px solid rgba(52, 211, 153, 0.35);
-            border-radius: 4px;
-        }
-        .tk-pitch-stage::after {
-            content: "";
-            position: absolute;
-            left: 50%; top: 12px; bottom: 12px;
-            width: 1px;
-            background: rgba(52, 211, 153, 0.35);
-        }
-        .tk-pitch-time {
-            font-size: 11px;
-            font-weight: 800;
-            color: #000;
-            background: var(--gold-primary);
-            padding: 3px 12px;
-            border-radius: var(--radius-full);
-            z-index: 2;
-            margin-bottom: 8px;
-        }
-        .tk-pitch-teams {
-            font-size: 18px;
-            font-weight: 900;
+            background: #0b192c;
             color: #ffffff;
-            z-index: 2;
-            display: flex;
-            align-items: center;
-            gap: 12px;
+            padding: 11px 14px;
+            border-bottom: 2px solid #d61f26;
         }
-        .tk-pitch-teams .vs {
-            font-size: 12px;
-            font-weight: 900;
-            color: var(--rose-live);
-            background: rgba(0,0,0,0.6);
-            padding: 2px 8px;
-            border-radius: var(--radius-full);
-            border: 1px solid rgba(244, 63, 94, 0.4);
-        }
-        .tk-feature-body {
-            padding: 16px 18px;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-        .tk-stat-badge {
-            font-size: 12px;
+        .sb-head h3 {
+            font-size: 13.5px;
             font-weight: 800;
-            color: var(--gold-primary);
             text-transform: uppercase;
+            letter-spacing: 0.3px;
+            color: #ffffff;
         }
-        .tk-stat-match { font-size: 16px; font-weight: 800; color: #fff; }
-        .tk-stat-teaser {
-            font-size: 13px;
-            color: var(--text-muted);
-            line-height: 1.5;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
+        .sb-head a {
+            font-size: 11.5px;
+            font-weight: 700;
+            color: #fda4af;
         }
-        .tk-cta-btn {
-            margin-top: 8px;
-            align-self: flex-start;
-            font-size: 12px;
-            font-weight: 750;
-            color: #000;
-            background: linear-gradient(135deg, var(--gold-light), var(--gold-primary));
-            padding: 6px 14px;
-            border-radius: var(--radius-full);
-            transition: var(--transition);
-        }
-        .tk-feature:hover .tk-cta-btn {
-            transform: translateX(3px);
-            box-shadow: 0 4px 15px rgba(250, 204, 21, 0.4);
-        }
+        .sb-head a:hover { color: #ffffff; }
+        .sb-body { padding: 6px 14px 10px; }
 
-        .tk-list { display: flex; flex-direction: column; gap: 10px; }
-        .tk-item {
-            background: rgba(3, 7, 18, 0.6);
-            border: 1px solid var(--border-card);
-            border-radius: var(--radius-md);
-            padding: 12px 16px;
-            transition: var(--transition);
+        .sb-match-row {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+            align-items: center;
+            gap: 8px;
+            padding: 9px 0;
+            border-bottom: 1px solid #f1f5f9;
+            font-size: 12.5px;
         }
-        .tk-item:hover {
-            transform: translateX(4px);
-            border-color: var(--border-glow);
+        .sb-match-row:last-child { border-bottom: none; }
+        .sb-team-home { text-align: right; font-weight: 700; color: #111827; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .sb-team-away { text-align: left; font-weight: 700; color: #111827; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .sb-score {
+            background: #0b192c;
+            color: #ffffff;
+            font-weight: 800;
+            font-size: 12px;
+            padding: 3px 8px;
+            border-radius: 4px;
+            white-space: nowrap;
+            font-variant-numeric: tabular-nums;
         }
-        .tk-item-top {
+        .sb-league-mini {
+            grid-column: 1 / -1;
             display: flex;
             justify-content: space-between;
+            font-size: 10.5px;
+            color: #6b7280;
+            font-weight: 600;
+            margin-bottom: -2px;
+        }
+
+        .sb-fix-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            padding: 9px 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .sb-fix-row:last-child { border-bottom: none; }
+        .sb-fix-teams { font-size: 13px; font-weight: 700; color: #111827; line-height: 1.35; }
+        .sb-fix-league { font-size: 11px; color: #6b7280; margin-top: 2px; }
+        .sb-fix-time {
             font-size: 11px;
             font-weight: 800;
-            color: var(--gold-primary);
-            margin-bottom: 4px;
-        }
-        .tk-item-match { font-size: 14px; font-weight: 750; color: #fff; margin-bottom: 4px; }
-        .tk-item-stat { font-size: 12.5px; font-weight: 600; color: var(--cyan-accent); }
-
-        /* ===== THẺ LỊCH THI ĐẤU ===== */
-        .lich-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 18px;
-        }
-        .card-lich {
-            background: var(--bg-card);
-            border: 1px solid var(--border-card);
-            border-radius: var(--radius-md);
-            padding: 16px 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 16px;
-            transition: var(--transition);
-            box-shadow: var(--shadow-subtle);
-            backdrop-filter: blur(12px);
-        }
-        .card-lich:hover {
-            transform: translateY(-3px);
-            border-color: var(--border-glow);
-            box-shadow: var(--shadow-hover);
-        }
-        .lich-left { display: flex; flex-direction: column; gap: 6px; }
-        .lich-badge-time {
-            align-self: flex-start;
-            font-size: 11.5px;
-            font-weight: 800;
-            color: #000;
-            background: linear-gradient(135deg, var(--gold-light), var(--gold-primary));
-            padding: 3px 10px;
-            border-radius: var(--radius-full);
-        }
-        .lich-match-title { font-size: 15.5px; font-weight: 800; color: #fff; }
-        .lich-league-sub { font-size: 12px; font-weight: 600; color: var(--text-dim); }
-        .lich-action {
-            font-size: 12px;
-            font-weight: 750;
-            color: var(--gold-primary);
+            color: #d61f26;
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            padding: 3px 7px;
+            border-radius: 4px;
             white-space: nowrap;
+            font-variant-numeric: tabular-nums;
         }
 
-        /* ===== BANNER CỘNG ĐỒNG TELEGRAM VIP ===== */
-        .box-thongtin {
-            background: linear-gradient(135deg, rgba(30, 58, 138, 0.4) 0%, rgba(15, 23, 42, 0.8) 100%);
-            border: 1px solid rgba(56, 189, 248, 0.35);
-            border-radius: var(--radius-lg);
-            padding: 32px;
-            text-align: center;
-            margin-bottom: 36px;
-            backdrop-filter: blur(16px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            position: relative;
-            overflow: hidden;
+        .sb-promo {
+            background: linear-gradient(135deg, #0b192c 0%, #152c4e 100%);
+            color: #ffffff;
+            padding: 18px 16px;
+            border-radius: 8px;
+            text-align: left;
         }
-        .box-thongtin h3 { font-size: 22px; font-weight: 900; color: #fff; margin-bottom: 8px; }
-        .box-thongtin p { font-size: 14px; color: var(--text-muted); margin-bottom: 22px; }
-        .nut-tel {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 14.5px;
+        .sb-promo h4 { font-size: 15px; font-weight: 800; margin-bottom: 6px; color: #ffffff; }
+        .sb-promo p { font-size: 12.5px; color: #cbd5e1; line-height: 1.55; margin-bottom: 12px; }
+        .sb-promo a {
+            display: inline-block;
+            background: #d61f26;
+            color: #ffffff;
+            font-size: 12.5px;
             font-weight: 800;
-            color: #000;
-            background: linear-gradient(135deg, #38bdf8 0%, #0284c7 50%, var(--gold-primary) 100%);
-            padding: 12px 28px;
-            border-radius: var(--radius-full);
-            box-shadow: 0 4px 25px rgba(56, 189, 248, 0.35);
-            transition: var(--transition);
+            padding: 8px 14px;
+            border-radius: 5px;
         }
-        .nut-tel:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(56, 189, 248, 0.5);
-            color: #fff;
-        }
+        .sb-promo a:hover { background: #b91c1c; }
 
-        /* ===== FOOTER & DISCLAIMER ===== */
-        .disclaimer {
-            background: rgba(3, 7, 18, 0.6);
-            border: 1px solid rgba(250, 204, 21, 0.2);
-            border-radius: var(--radius-md);
-            padding: 18px 22px;
-            margin-bottom: 40px;
+        /* ===== NEWSPAPER FOOTER ===== */
+        .ed-footer {
+            background: #0b192c;
+            color: #cbd5e1;
+            border-top: 3px solid #d61f26;
+            padding: 34px 0 28px;
+            font-size: 13px;
         }
-        .disclaimer h4 { font-size: 12px; font-weight: 850; color: var(--gold-primary); margin-bottom: 6px; }
-        .disclaimer p { font-size: 12px; color: var(--text-dim); line-height: 1.6; }
-
-        .footer {
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 36px 0 48px;
-            text-align: center;
+        .ed-footer-grid {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr 1fr;
+            gap: 28px;
+            padding-bottom: 22px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 18px;
         }
-        .footer p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 14px; }
-        .footer-nav {
+        .ed-footer h4 {
+            font-size: 13px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+        .ed-footer p { color: #94a3b8; line-height: 1.65; font-size: 13px; }
+        .ed-footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+        .ed-footer-links a { color: #cbd5e1; font-size: 13px; }
+        .ed-footer-links a:hover { color: #fda4af; text-decoration: underline; }
+        .ed-footer-bottom {
             display: flex;
             flex-wrap: wrap;
-            justify-content: center;
-            gap: 16px;
-            margin-bottom: 16px;
-        }
-        .footer-nav a { font-size: 13px; color: var(--text-dim); transition: var(--transition); }
-        .footer-nav a:hover { color: var(--gold-primary); }
-
-        .len-dau {
-            position: fixed;
-            right: 20px; bottom: 24px;
-            width: 44px; height: 44px;
-            background: rgba(15, 23, 42, 0.85);
-            border: 1px solid var(--border-glow);
-            color: var(--gold-primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-            font-weight: 900;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-            opacity: 0;
-            pointer-events: none;
-            transition: var(--transition);
-            z-index: 99;
-        }
-        .len-dau.hien { opacity: 1; pointer-events: auto; }
-        .len-dau:hover { background: var(--gold-primary); color: #000; transform: translateY(-3px); }
-
-        @media (max-width: 900px) {
-            .intro, .hero-grid, .news-layout, .goc-thong-ke-grid, .ketqua-columns, .lich-grid { grid-template-columns: 1fr; }
-            .brand-name { font-size: 26px; }
-            .card-news-hero { min-height: 280px; }
-        }
-        @media (max-width: 600px) {
-            .brand-row { flex-direction: column; align-items: flex-start; }
-            .container { width: calc(100% - 20px); }
-            .card-phantich { width: 310px; }
-        }
-        /* ==========================================================================
-           STYLE 3 OVERRIDE: CLASSIC NAVY (#0b192c) & CRISP WHITE (#f1f5f9 / #ffffff)
-           ========================================================================== */
-        body.sv-theme-navy {
-            --bg-base: #f1f5f9;
-            --bg-card: #ffffff;
-            --bg-card-hover: #ffffff;
-            --bg-surface: #ffffff;
-            --border-card: #dbe2ea;
-            --border-glow: #e11d48;
-            --border-cyan: #1e3a5f;
-            --gold-primary: #e11d48;
-            --gold-light: #be123c;
-            --gold-deep: #9f1239;
-            --cyan-accent: #1d4ed8;
-            --emerald-live: #059669;
-            --rose-live: #e11d48;
-            --text-main: #0b192c;
-            --text-muted: #475569;
-            --text-dim: #64748b;
-            --shadow-subtle: 0 4px 16px rgba(11, 25, 44, 0.06);
-            --shadow-hover: 0 14px 30px -10px rgba(11, 25, 44, 0.16);
-            color: #0b192c;
-            background: #f1f5f9 !important;
-        }
-        body.sv-theme-navy .logo-box {
-            width: 48px;
-            height: 48px;
-            border-radius: 12px;
-            background: linear-gradient(135deg, #e11d48, #fb7185);
-            box-shadow: 0 4px 14px rgba(225, 29, 72, 0.35);
-        }
-        body.sv-theme-navy .brand-name {
-            font-size: 24px;
-            font-weight: 900;
-            letter-spacing: -0.5px;
-            line-height: 1.15;
-            background: none;
-            -webkit-text-fill-color: #ffffff;
-            color: #ffffff;
-        }
-        body.sv-theme-navy .brand-sub {
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 1.3px;
+            justify-content: space-between;
+            gap: 10px;
+            font-size: 12px;
             color: #94a3b8;
         }
 
-        body.sv-theme-navy .menu {
-            background: rgba(255, 255, 255, 0.96);
-            border: 1px solid #dbe2ea;
-            box-shadow: 0 8px 24px rgba(11, 25, 44, 0.08);
-        }
-        body.sv-theme-navy .menu-btn { color: #334155; font-weight: 700; }
-        body.sv-theme-navy .menu-btn:hover { color: #0b192c; background: #f1f5f9; }
-        body.sv-theme-navy .menu-btn.active {
-            color: #ffffff;
-            background: #0b192c;
-            box-shadow: 0 4px 12px rgba(11, 25, 44, 0.22);
-        }
-        body.sv-theme-navy .menu-btn.livescore {
-            background: #fff1f2;
-            border-color: #fecdd3;
-            color: #be123c;
-        }
+        .ed-loading { padding: 20px 0; text-align: center; font-size: 13px; color: #6b7280; }
 
-        body.sv-theme-navy .section-head { border-bottom-color: #dbe2ea; }
-        body.sv-theme-navy .section-head::after { background: #e11d48; box-shadow: none; }
-        body.sv-theme-navy .section-title { color: #0b192c; }
-        body.sv-theme-navy .xem-tat-ca {
-            color: #be123c;
-            background: #fff1f2;
-            border-color: #fecdd3;
+        @media (max-width: 980px) {
+            .ed-layout { grid-template-columns: 1fr; }
+            .ed-sidebar { position: static; }
         }
-        body.sv-theme-navy .xem-tat-ca:hover {
-            background: #e11d48;
-            color: #ffffff;
-            box-shadow: 0 4px 14px rgba(225, 29, 72, 0.28);
+        @media (max-width: 720px) {
+            .ed-lead-story { grid-template-columns: 1fr; }
+            .ed-sub-grid { grid-template-columns: 1fr; }
+            .ed-art-grid, .ed-analysis-grid { grid-template-columns: 1fr; }
+            .ed-news-row { grid-template-columns: 120px minmax(0, 1fr); gap: 12px; }
+            .ed-footer-grid { grid-template-columns: 1fr; gap: 20px; }
+            .ed-date { display: none; }
         }
-
-        body.sv-theme-navy .intro-copy {
-            background: #ffffff;
-            border-color: #dbe2ea;
-        }
-        body.sv-theme-navy .intro-copy::before {
-            background: linear-gradient(90deg, #0b192c, #e11d48);
-        }
-        body.sv-theme-navy .eyebrow {
-            color: #ffffff;
-            background: #e11d48;
-            border-color: transparent;
-        }
-        body.sv-theme-navy .intro-copy h1 { color: #0b192c; }
-        body.sv-theme-navy .intro-copy h1 span { color: #be123c; }
-        body.sv-theme-navy .intro-copy p { color: #475569; }
-        body.sv-theme-navy .intro-widget {
-            background: #0b192c;
-            border-color: #1e3a5f;
-        }
-
-        body.sv-theme-navy .hero {
-            background: linear-gradient(135deg, #0b192c 0%, #13294b 100%);
-            border-color: #1e3a5f;
-            color: #ffffff;
-        }
-        body.sv-theme-navy .hero-kicker {
-            color: #ffffff;
-            background: rgba(225, 29, 72, 0.9);
-            border-color: transparent;
-        }
-        body.sv-theme-navy .hero h2 { color: #ffffff; }
-        body.sv-theme-navy .hero p { color: #cbd5e1; }
-        body.sv-theme-navy .hero-btn {
-            background: #e11d48;
-            color: #ffffff;
-            box-shadow: 0 6px 18px rgba(225, 29, 72, 0.32);
-        }
-        body.sv-theme-navy .hero-btn:hover { background: #be123c; color: #ffffff; }
-
-        body.sv-theme-navy .widget-box {
-            background: #0b192c;
-            border-color: #1e3a5f;
-        }
-        body.sv-theme-navy .widget-head {
-            background: #081322;
-            border-bottom-color: rgba(255, 255, 255, 0.1);
-        }
-        body.sv-theme-navy .widget-badge { background: #e11d48; }
-
-        /* Prediction Cards */
-        body.sv-theme-navy .card-phantich {
-            background: #ffffff;
-            border: 1px solid #dbe2ea;
-        }
-        body.sv-theme-navy .pt-matchup-stage {
-            background: linear-gradient(135deg, #0b192c 0%, #163052 100%);
-        }
-        body.sv-theme-navy .pt-league-tag {
-            background: rgba(225, 29, 72, 0.92);
-            color: #ffffff;
-        }
-        body.sv-theme-navy .pt-team-name { color: #ffffff; }
-        body.sv-theme-navy .pt-teaser-hook { color: #334155; }
-        body.sv-theme-navy .pt-lock-banner {
-            background: #f8fafc;
-            border-color: #e2e8f0;
-        }
-        body.sv-theme-navy .pt-lock-text { color: #0b192c; }
-        body.sv-theme-navy .pt-lock-btn {
-            background: #e11d48;
-            color: #ffffff;
-        }
-
-        /* Results Cards */
-        body.sv-theme-navy .card-ketqua {
-            background: #ffffff;
-            border: 1px solid #dbe2ea;
-        }
-        body.sv-theme-navy .card-ketqua::before { background: #e11d48; }
-        body.sv-theme-navy .ketqua-league { color: #be123c; }
-        body.sv-theme-navy .ketqua-team { color: #0b192c; }
-        body.sv-theme-navy .ketqua-score-box {
-            background: #0b192c;
-            border-color: #0b192c;
-        }
-        body.sv-theme-navy .ketqua-score-num { color: #ffffff; }
-        body.sv-theme-navy .ketqua-footer {
-            border-top-color: #e2e8f0;
-            color: #64748b;
-        }
-
-        /* News Cards */
-        body.sv-theme-navy .card-news-hero {
-            border: 1px solid #dbe2ea;
-            box-shadow: 0 6px 20px rgba(11, 25, 44, 0.1);
-        }
-        body.sv-theme-navy .card-news-sub {
-            background: #ffffff;
-            border: 1px solid #dbe2ea;
-        }
-        body.sv-theme-navy .card-news-sub:hover { border-color: #0b192c; }
-        body.sv-theme-navy .news-sub-body h4 { color: #0b192c; }
-        body.sv-theme-navy .news-date { color: #be123c; }
-
-        /* Stats Section */
-        body.sv-theme-navy .goc-thong-ke {
-            background: #ffffff;
-            border: 1px solid #dbe2ea;
-        }
-        body.sv-theme-navy .goc-thong-ke-head { border-bottom-color: #e2e8f0; }
-        body.sv-theme-navy .goc-thong-ke-label { color: #0b192c; }
-        body.sv-theme-navy .tk-feature {
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-        }
-        body.sv-theme-navy .tk-pitch-time {
-            background: #e11d48;
-            color: #ffffff;
-        }
-        body.sv-theme-navy .tk-stat-badge { color: #be123c; }
-        body.sv-theme-navy .tk-stat-match { color: #0b192c; }
-        body.sv-theme-navy .tk-stat-teaser { color: #475569; }
-        body.sv-theme-navy .tk-cta-btn {
-            background: #0b192c;
-            color: #ffffff;
-        }
-        body.sv-theme-navy .tk-item {
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-        }
-        body.sv-theme-navy .tk-item:hover { border-color: #e11d48; background: #ffffff; }
-        body.sv-theme-navy .tk-item-top { color: #be123c; }
-        body.sv-theme-navy .tk-item-match { color: #0b192c; }
-        body.sv-theme-navy .tk-item-stat { color: #1d4ed8; }
-
-        /* Schedule Cards */
-        body.sv-theme-navy .card-lich {
-            background: #ffffff;
-            border: 1px solid #dbe2ea;
-        }
-        body.sv-theme-navy .lich-badge-time {
-            background: #0b192c;
-            color: #ffffff;
-        }
-        body.sv-theme-navy .lich-match-title { color: #0b192c; }
-        body.sv-theme-navy .lich-league-sub { color: #64748b; }
-        body.sv-theme-navy .lich-action { color: #be123c; }
-
-        /* Telegram Banner, Disclaimer & Footer */
-        body.sv-theme-navy .box-thongtin {
-            background: linear-gradient(135deg, #0b192c 0%, #163052 100%);
-            border-color: #1e3a5f;
-            color: #ffffff;
-        }
-        body.sv-theme-navy .box-thongtin h3 { color: #ffffff; }
-        body.sv-theme-navy .box-thongtin p { color: #cbd5e1; }
-        body.sv-theme-navy .nut-tel {
-            background: #e11d48;
-            color: #ffffff;
-            box-shadow: 0 6px 20px rgba(225, 29, 72, 0.35);
-        }
-        body.sv-theme-navy .nut-tel:hover { background: #be123c; color: #ffffff; }
-
-        body.sv-theme-navy .disclaimer {
-            background: #ffffff;
-            border: 1px solid #dbe2ea;
-            border-left: 4px solid #e11d48;
-        }
-        body.sv-theme-navy .disclaimer h4 { color: #0b192c; }
-        body.sv-theme-navy .disclaimer p { color: #475569; }
-
-        body.sv-theme-navy .footer {
-            background: #0b192c;
-            border-radius: 18px 18px 0 0;
-            padding: 32px 24px 36px;
-            color: #94a3b8;
-        }
-        body.sv-theme-navy .footer strong { color: #ffffff; }
-        body.sv-theme-navy .footer p { color: #94a3b8; }
-        body.sv-theme-navy .footer-nav a { color: #cbd5e1; font-weight: 600; }
-        body.sv-theme-navy .footer-nav a:hover { color: #fda4af; }
-
-        body.sv-theme-navy .len-dau {
-            background: #0b192c;
-            border-color: #e11d48;
-            color: #ffffff;
-        }
-        body.sv-theme-navy .len-dau:hover { background: #e11d48; color: #ffffff; }
     </style>
 </head>
-<body id="top" class="sv-theme-navy">
+<body id="top" class="sv-editorial">
 
-<header class="site-header">
-    <div class="container">
-        <div class="brand-row">
-            <div class="brand">
-                <div class="logo-box">
-                    <img src="logo.png" alt="Score Vision" onerror="this.src='favicon.png'">
-                </div>
-                <div>
-                    <div class="brand-name">Score Vision</div>
-                    <div class="brand-sub">CHUYÊN SÂU · DỮ LIỆU · PHÂN TÍCH BÓNG ĐÁ</div>
-                </div>
+<header class="ed-header">
+    <div class="ed-container ed-header-inner">
+        <a href="index.html" class="ed-brand">
+            <div class="ed-logo"><img src="logo.png" alt="Score Vision" onerror="this.src='favicon.png'"></div>
+            <div>
+                <div class="ed-brand-name">Score Vision</div>
+                <div class="ed-brand-tag">TIN TỨC · DỮ LIỆU · PHÂN TÍCH BÓNG ĐÁ</div>
             </div>
+        </a>
+        <div class="ed-header-right">
+            <span class="ed-date" id="edTodayDate"></span>
+            <a href="livescore.html" class="ed-live-pill">
+                <span class="ed-live-dot"></span>
+                <span>LIVESCORE</span>
+            </a>
         </div>
     </div>
 </header>
 
-<div class="container menu-wrap">
-    <nav class="menu" aria-label="Điều hướng chính">
-        <a href="index.html" class="menu-btn active">Trang chủ</a>
-        <a href="lich-dau.html" class="menu-btn">Lịch đấu</a>
-        <a href="du-doan.html" class="menu-btn">Phân Tích & Dự Đoán</a>
-        <a href="bai-viet.html" class="menu-btn">Kiến Thức & Chiến Thuật</a>
-        <a href="bang-xep-hang.html" class="menu-btn">Bảng xếp hạng</a>
-        <a href="thong-ke.html" class="menu-btn">Thống kê</a>
-        <a href="tin-nong.html" class="menu-btn">Tin Nóng</a>
-        <a href="ket-qua.html" class="menu-btn">Kết Quả</a>
-        <a href="livescore.html" class="menu-btn livescore">LiveScore</a>
-        <a href="multimedia.html" class="menu-btn">MultiMedia</a>
-        <a href="bang-xep-hang-fifa.html" class="menu-btn">BXH FIFA</a>
-        <a href="gop-y.html" class="menu-btn">Góp Ý</a>
-    </nav>
-</div>
-
-<main class="container">
-    <section class="intro" aria-labelledby="intro-title">
-        <div class="intro-copy">
-            <span class="eyebrow">SCORE VISION · INTELLIGENCE HUB</span>
-            <h1 id="intro-title">Score Vision – <span>Lịch Đấu, Kết Quả & Phân Tích Chuyên Sâu</span></h1>
-            <p>Nền tảng số liệu bóng đá chuyên nghiệp: cập nhật <strong>lịch thi đấu, kết quả trận đấu, bảng xếp hạng, thống kê phong độ và LiveScore</strong> theo thời gian thực cùng mô hình dự đoán phân tích chiến thuật độc quyền.</p>
-        </div>
-
-        <div class="intro-widget" aria-label="Lịch thi đấu bóng đá">
-            <iframe
-                src="https://footballdata.io/widget/fixtures?league=15&theme=dark&accent=222326&type=upcoming"
-                loading="lazy"
-                title="Football fixtures widget">
-            </iframe>
-        </div>
-    </section>
-
-    <section class="hero-grid" aria-label="Điểm nổi bật">
-        <div class="hero">
-            <span class="hero-kicker">DATA & AI PREDICTIONS</span>
-            <h2>Dữ liệu số hóa chính xác, cập nhật liên tục trước mỗi giờ bóng lăn.</h2>
-            <p>Phong độ đối đầu, biến động lực lượng và góc nhìn chuyên môn đa chiều giúp bạn có nhận định khách quan, toàn diện nhất trước giờ xung trận.</p>
-            <a href="du-doan.html" class="hero-btn">Xem phân tích mới nhất →</a>
-        </div>
-        <div class="widget-box">
-            <div class="widget-head">
-                <span class="widget-title">TRẬN ĐẤU ĐANG CẬP NHẬT</span>
-                <span class="widget-badge">LIVE MATCHES</span>
-            </div>
-            <api-sports-widget data-type="config" data-key="db3cb172848d850444676b821c1e9fd0" data-sport="football" data-lang="en" data-theme="dark" data-show-errors="true"></api-sports-widget>
-            <div class="widget-scroll">
-                <api-sports-widget data-type="games"></api-sports-widget>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION: KẾT QUẢ BÓNG ĐÁ -->
-    <section class="section">
-        <div class="section-head">
-            <h2 class="section-title">Kết quả bóng đá mới nhất</h2>
-            <a href="ket-qua.html" class="xem-tat-ca">Xem tất cả →</a>
-        </div>
-        <div id="ketqua-list">
-            <div class="loading" style="padding: 24px; text-align: center; color: var(--text-dim);">Đang tải kết quả trận đấu...</div>
-        </div>
-    </section>
-
-    <!-- SECTION: PHÂN TÍCH & DỰ ĐOÁN (CURIOSITY HOOK & REAL TEAM CRESTS) -->
-    <section class="section">
-        <div class="section-head">
-            <h2 class="section-title">Phân tích & nhận định chuyên sâu</h2>
-            <a href="du-doan.html" class="xem-tat-ca">Xem tất cả →</a>
-        </div>
-        <div id="phan-tich-list">
-            <div class="loading" style="padding: 24px; text-align: center; color: var(--text-dim);">Đang tải bài phân tích...</div>
-        </div>
-    </section>
-
-    <!-- SECTION: TIN TỨC BÓNG ĐÁ -->
-    <section class="section">
-        <div class="section-head">
-            <h2 class="section-title">Tin bóng đá nóng nhất</h2>
-            <a href="tin-nong.html" class="xem-tat-ca">Xem tất cả →</a>
-        </div>
-        <div id="tin-list">
-            <div class="loading" style="padding: 24px; text-align: center; color: var(--text-dim);">Đang tải tin tức...</div>
-        </div>
-    </section>
-
-    <!-- SECTION: GÓC THỐNG KÊ (3D TACTICAL PITCH) -->
-    <section class="section">
-        <div class="section-head">
-            <h2 class="section-title">Góc dữ liệu & thống kê</h2>
-            <a href="thong-ke.html" class="xem-tat-ca">Xem tất cả →</a>
-        </div>
-        <div id="thongke-home">
-            <div class="loading" style="padding: 24px; text-align: center; color: var(--text-dim);">Đang tải dữ liệu thống kê...</div>
-        </div>
-    </section>
-
-    <!-- SECTION: KIẾN THỨC & CHIẾN THUẬT CHUYÊN SÂU (STATIC SEO EDITORIAL) -->
-    <section class="section">
-        <div class="section-head">
-            <h2 class="section-title">Kiến thức &amp; chiến thuật chuyên sâu</h2>
-            <a href="bai-viet.html" class="xem-tat-ca">Xem thư viện bài viết →</a>
-        </div>
-        <div class="sv-grid-2">
-            <a href="bai-viet/chi-so-xg-la-gi.html" class="sv-card" style="margin-bottom:0; text-decoration:none; display:block;">
-                <span style="display:inline-block; font-size:11px; font-weight:800; color:#be123c; background:#fff1f2; padding:3px 9px; border-radius:6px; margin-bottom:10px;">DỮ LIỆU HIỆN ĐẠI</span>
-                <h3 style="font-size:17px; font-weight:800; color:#0b192c; margin-bottom:8px; line-height:1.35;">Chỉ số xG (Expected Goals) là gì và cách đọc chính xác</h3>
-                <p style="font-size:14px; color:#475569; margin-bottom:12px;">Giải mã bản chất toán học của bàn thắng kỳ vọng, phân biệt xG/xGA và cách nhận diện đội bóng đang chơi vượt hoặc dưới thực lực.</p>
-                <span style="font-size:13px; font-weight:800; color:#be123c;">Đọc bài phân tích →</span>
-            </a>
-            <a href="bai-viet/pressing-tam-cao-vs-khoi-thap.html" class="sv-card" style="margin-bottom:0; text-decoration:none; display:block;">
-                <span style="display:inline-block; font-size:11px; font-weight:800; color:#1d4ed8; background:#eff6ff; padding:3px 9px; border-radius:6px; margin-bottom:10px;">CHIẾN THUẬT</span>
-                <h3 style="font-size:17px; font-weight:800; color:#0b192c; margin-bottom:8px; line-height:1.35;">Pressing tầm cao (Gegenpressing) vs Phòng ngự khối thấp</h3>
-                <p style="font-size:14px; color:#475569; margin-bottom:12px;">So sánh trực diện hai trường phái chiến thuật đối lập, chỉ số PPDA và 3 chi tiết quan trọng để đọc vị thế trận trong 20 phút đầu.</p>
-                <span style="font-size:13px; font-weight:800; color:#be123c;">Đọc bài phân tích →</span>
-            </a>
-            <a href="bai-viet/so-do-4-3-3-vs-3-4-2-1.html" class="sv-card" style="margin-bottom:0; text-decoration:none; display:block;">
-                <span style="display:inline-block; font-size:11px; font-weight:800; color:#1d4ed8; background:#eff6ff; padding:3px 9px; border-radius:6px; margin-bottom:10px;">SƠ ĐỒ ĐỘI HÌNH</span>
-                <h3 style="font-size:17px; font-weight:800; color:#0b192c; margin-bottom:8px; line-height:1.35;">So sánh sơ đồ 4-3-3 và 3-4-2-1: Điểm mạnh &amp; cách khắc chế</h3>
-                <p style="font-size:14px; color:#475569; margin-bottom:12px;">Phân tích cấu trúc hình hộp tuyến giữa, vai trò của wing-back và cách tạo ưu thế quân số ở vùng nách trung lộ (half-space).</p>
-                <span style="font-size:13px; font-weight:800; color:#be123c;">Đọc bài phân tích →</span>
-            </a>
-            <a href="bai-viet/cach-tinh-diem-bxh-fifa-elo.html" class="sv-card" style="margin-bottom:0; text-decoration:none; display:block;">
-                <span style="display:inline-block; font-size:11px; font-weight:800; color:#047857; background:#ecfdf5; padding:3px 9px; border-radius:6px; margin-bottom:10px;">HỆ THỐNG XẾP HẠNG</span>
-                <h3 style="font-size:17px; font-weight:800; color:#0b192c; margin-bottom:8px; line-height:1.35;">Bảng xếp hạng FIFA được tính điểm như thế nào theo công thức Elo?</h3>
-                <p style="font-size:14px; color:#475569; margin-bottom:12px;">Giải thích chi tiết bảng hệ số tầm quan trọng trận đấu từ giao hữu đến World Cup và quy tắc không trừ điểm ở vòng knock-out.</p>
-                <span style="font-size:13px; font-weight:800; color:#be123c;">Đọc bài phân tích →</span>
-            </a>
-        </div>
-    </section>
-
-    <!-- SECTION: LỊCH THI ĐẤU SẮP TỚI -->
-    <section class="section">
-        <div class="section-head">
-            <h2 class="section-title">Lịch thi đấu tâm điểm</h2>
-            <a href="lich-dau.html" class="xem-tat-ca">Xem tất cả →</a>
-        </div>
-        <div id="lich-list">
-            <div class="loading" style="padding: 24px; text-align: center; color: var(--text-dim);">Đang tải lịch thi đấu...</div>
-        </div>
-    </section>
-
-    <noscript class="noscript">Score Vision cần JavaScript để hiển thị dữ liệu cập nhật từ Google Sheets và LiveScore.</noscript>
-
-    <!-- TELEGRAM VIP COMMUNITY BANNER -->
-    <section class="box-thongtin">
-        <h3>THAM GIA CỘNG ĐỒNG SCORE VISION VIP</h3>
-        <p>Nhận thông báo lịch thi đấu, phân tích phong độ và dữ liệu bóng đá độc quyền trước giờ bóng lăn.</p>
-        <a href="https://t.me/+LBCsBd-LjPI3ZDRl" target="_blank" rel="noopener noreferrer" class="nut-tel">THAM GIA NHÓM TELEGRAM CHÍNH THỨC →</a>
-    </section>
-
-    <!-- DISCLAIMER -->
-    <section class="disclaimer">
-        <h4>THÔNG BÁO MIỄN TRỪ TRÁCH NHIỆM</h4>
-        <p>Toàn bộ nội dung và phân tích trên Score Vision chỉ phục vụ mục đích thông tin và trao đổi thể thao khách quan. Các dự đoán đưa ra mang tính chất tham khảo, không đảm bảo kết quả chính xác 100%.</p>
-    </section>
-
-    <footer class="footer">
-        <p><strong>Score Vision</strong> — Nền tảng phân tích & dữ liệu bóng đá hàng đầu</p>
-        <div class="footer-nav">
-            <a href="lich-dau.html">Lịch thi đấu</a>
+<div class="ed-nav-bar">
+    <div class="ed-container">
+        <nav class="ed-nav" aria-label="Điều hướng chính">
+            <a href="index.html" class="active">Trang chủ</a>
+            <a href="tin-nong.html">Tin nóng</a>
+            <a href="lich-dau.html">Lịch đấu</a>
+            <a href="ket-qua.html">Kết quả</a>
+            <a href="du-doan.html">Nhận định</a>
+            <a href="bai-viet.html">Chiến thuật</a>
             <a href="bang-xep-hang.html">Bảng xếp hạng</a>
             <a href="thong-ke.html">Thống kê</a>
             <a href="livescore.html">LiveScore</a>
-            <a href="multimedia.html">MultiMedia</a>
             <a href="bang-xep-hang-fifa.html">BXH FIFA</a>
-            <a href="du-doan.html">Phân tích & dự đoán</a>
-            <a href="bai-viet.html">Kiến thức & chiến thuật</a>
-            <a href="gioi-thieu.html">Giới thiệu</a>
-            <a href="lien-he.html">Liên hệ</a>
-            <a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a>
-            <a href="dieu-khoan.html">Điều khoản sử dụng</a>
-            <a href="gop-y.html">Góp ý</a>
+            <a href="multimedia.html">Video</a>
+        </nav>
+    </div>
+</div>
+
+<main class="ed-container ed-main">
+    <div class="ed-layout">
+        <!-- LEFT MAIN EDITORIAL COLUMN -->
+        <div class="ed-primary">
+            <!-- 1. TIN TIÊU ĐIỂM & TIN NÓNG BÓNG ĐÁ -->
+            <section class="ed-sec" aria-label="Tin tiêu điểm">
+                <div class="ed-sec-head">
+                    <h1 class="ed-sec-title">Tin bóng đá tiêu điểm</h1>
+                    <a href="tin-nong.html" class="ed-sec-more">Xem tất cả tin nóng →</a>
+                </div>
+                <div class="ed-paper-box" id="ed-top-news">
+                    <div class="ed-loading">Đang tải bản tin bóng đá mới nhất...</div>
+                </div>
+            </section>
+
+            <!-- 2. KIẾN THỨC & CHIẾN THUẬT CHUYÊN SÂU (STATIC SEO CONTENT) -->
+            <section class="ed-sec" aria-label="Kiến thức và chiến thuật">
+                <div class="ed-sec-head">
+                    <h2 class="ed-sec-title">Phân tích &amp; Chiến thuật chuyên sâu</h2>
+                    <a href="bai-viet.html" class="ed-sec-more">Thư viện bài viết →</a>
+                </div>
+                <div class="ed-art-grid">
+                    <a href="bai-viet/2026-11-27-balde-den-mu-loi-giai-cho-bai-toan-hau-ve-trai-cua-quy-do.html" class="ed-art-item">
+                        <div>
+                            <span class="ed-cat-label">Phân tích chuyển nhượng</span>
+                            <h3>Alejandro Balde và lời giải cho bài toán hành lang trái của Man United</h3>
+                            <p>Đánh giá năng lực leo biên, khả năng thoát pressing và mức độ tương thích chiến thuật của hậu vệ cánh người Tây Ban Nha tại Old Trafford.</p>
+                        </div>
+                        <span class="ed-art-foot">Đọc bài phân tích →</span>
+                    </a>
+                    <a href="bai-viet/2026-11-27-u-17-viet-nam-chia-tay-world-cup-bai-hoc-tu-that-bai-truoc-mali.html" class="ed-art-item">
+                        <div>
+                            <span class="ed-cat-label">Bóng đá Việt Nam</span>
+                            <h3>U17 Việt Nam tại World Cup: Bài học chiến thuật và thể lực từ cuộc đối đầu Mali</h3>
+                            <p>Nhìn lại dấu ấn chiến thuật, sự chênh lệch tranh chấp tay đôi và những tín hiệu tích cực cho lứa cầu thủ trẻ Việt Nam.</p>
+                        </div>
+                        <span class="ed-art-foot">Đọc bài phân tích →</span>
+                    </a>
+                    <a href="bai-viet/chi-so-xg-la-gi.html" class="ed-art-item">
+                        <div>
+                            <span class="ed-cat-label">Dữ liệu hiện đại</span>
+                            <h3>Chỉ số xG (Expected Goals) là gì và cách đọc chính xác trong bóng đá</h3>
+                            <p>Giải mã bản chất toán học của bàn thắng kỳ vọng, phân biệt xG/xGA và cách nhận diện đội bóng đang chơi vượt hoặc dưới thực lực.</p>
+                        </div>
+                        <span class="ed-art-foot">Đọc bài phân tích →</span>
+                    </a>
+                    <a href="bai-viet/pressing-tam-cao-vs-khoi-thap.html" class="ed-art-item">
+                        <div>
+                            <span class="ed-cat-label">Chiến thuật</span>
+                            <h3>Pressing tầm cao (Gegenpressing) vs Phòng ngự khối thấp (Low Block)</h3>
+                            <p>So sánh trực diện hai trường phái chiến thuật đối lập, chỉ số PPDA và 3 chi tiết quan trọng để đọc vị thế trận trong 20 phút đầu.</p>
+                        </div>
+                        <span class="ed-art-foot">Đọc bài phân tích →</span>
+                    </a>
+                </div>
+            </section>
+
+            <!-- 3. DÒNG CHẢY TIN MỚI -->
+            <section class="ed-sec" aria-label="Dòng tin mới">
+                <div class="ed-sec-head">
+                    <h2 class="ed-sec-title">Mới cập nhật</h2>
+                    <a href="tin-nong.html" class="ed-sec-more">Đọc thêm →</a>
+                </div>
+                <div class="ed-paper-box">
+                    <div class="ed-news-list" id="ed-more-news">
+                        <div class="ed-loading">Đang tải tin mới...</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. GÓC THỐNG KÊ & PHONG ĐỘ -->
+            <section class="ed-sec" aria-label="Góc thống kê">
+                <div class="ed-sec-head">
+                    <h2 class="ed-sec-title">Góc thống kê &amp; Phong độ</h2>
+                    <a href="thong-ke.html" class="ed-sec-more">Xem chi tiết →</a>
+                </div>
+                <div class="ed-analysis-grid" id="ed-stats-grid">
+                    <div class="ed-loading">Đang tải dữ liệu thống kê...</div>
+                </div>
+            </section>
         </div>
-        <p>© 2026 Score Vision. Toàn bộ bản quyền được bảo lưu.</p>
-    </footer>
+
+        <!-- RIGHT SIDEBAR (MATCH CENTER) -->
+        <aside class="ed-sidebar" aria-label="Trung tâm trận đấu">
+            <!-- KẾT QUẢ MỚI NHẤT -->
+            <div class="sb-box">
+                <div class="sb-head">
+                    <h3>Kết quả mới nhất</h3>
+                    <a href="ket-qua.html">Tất cả →</a>
+                </div>
+                <div class="sb-body" id="sb-results">
+                    <div class="ed-loading">Đang tải kết quả...</div>
+                </div>
+            </div>
+
+            <!-- LỊCH THI ĐẤU SẮP TỚI -->
+            <div class="sb-box">
+                <div class="sb-head">
+                    <h3>Lịch thi đấu tâm điểm</h3>
+                    <a href="lich-dau.html">Tất cả →</a>
+                </div>
+                <div class="sb-body" id="sb-fixtures">
+                    <div class="ed-loading">Đang tải lịch đấu...</div>
+                </div>
+            </div>
+
+            <!-- NHẬN ĐỊNH TRẬN ĐẤU -->
+            <div class="sb-box">
+                <div class="sb-head">
+                    <h3>Thư viện chiến thuật</h3>
+                    <a href="bai-viet.html">Xem hết →</a>
+                </div>
+                <div class="sb-body">
+                    <div class="sb-fix-row">
+                        <a href="bai-viet/so-do-4-3-3-vs-3-4-2-1.html" class="sb-fix-teams">So sánh sơ đồ 4-3-3 và 3-4-2-1: Điểm mạnh &amp; cách khắc chế</a>
+                    </div>
+                    <div class="sb-fix-row">
+                        <a href="bai-viet/phong-do-san-nha-san-khach.html" class="sb-fix-teams">Cách đánh giá phong độ sân nhà – sân khách và mật độ lịch thi đấu</a>
+                    </div>
+                    <div class="sb-fix-row">
+                        <a href="bai-viet/cach-tinh-diem-bxh-fifa-elo.html" class="sb-fix-teams">Bảng xếp hạng FIFA được tính điểm như thế nào theo công thức Elo?</a>
+                    </div>
+                    <div class="sb-fix-row">
+                        <a href="bai-viet/vai-tro-tien-ve-phong-ngu-so-6.html" class="sb-fix-teams">Vai trò của tiền vệ phòng ngự (Số 6) trong bóng đá hiện đại</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CỘNG ĐỒNG TELEGRAM -->
+            <div class="sb-promo">
+                <h4>Kênh Telegram Score Vision</h4>
+                <p>Nhận lịch thi đấu tâm điểm, thống kê phong độ và bài phân tích chiến thuật mới nhất mỗi ngày — hoàn toàn miễn phí.</p>
+                <a href="https://t.me/+LBCsBd-LjPI3ZDRl" target="_blank" rel="noopener noreferrer">Tham gia kênh Telegram →</a>
+            </div>
+        </aside>
+    </div>
 </main>
+
+<footer class="ed-footer">
+    <div class="ed-container">
+        <div class="ed-footer-grid">
+            <div>
+                <h4>Score Vision</h4>
+                <p>Trang thông tin thể thao chuyên cập nhật tin tức bóng đá, lịch thi đấu, kết quả, bảng xếp hạng, thống kê phong độ và bài viết phân tích chiến thuật khách quan.</p>
+                <p style="margin-top:8px; font-size:12px;">Nội dung chỉ phục vụ mục đích thông tin và trao đổi thể thao thuần túy, không tổ chức hay khuyến khích cá cược.</p>
+            </div>
+            <div>
+                <h4>Chuyên mục</h4>
+                <div class="ed-footer-links">
+                    <a href="tin-nong.html">Tin nóng bóng đá</a>
+                    <a href="lich-dau.html">Lịch thi đấu</a>
+                    <a href="ket-qua.html">Kết quả bóng đá</a>
+                    <a href="bang-xep-hang.html">Bảng xếp hạng</a>
+                    <a href="bai-viet.html">Kiến thức &amp; Chiến thuật</a>
+                    <a href="livescore.html">LiveScore trực tuyến</a>
+                </div>
+            </div>
+            <div>
+                <h4>Thông tin &amp; Pháp lý</h4>
+                <div class="ed-footer-links">
+                    <a href="gioi-thieu.html">Giới thiệu về Score Vision</a>
+                    <a href="lien-he.html">Liên hệ tòa soạn</a>
+                    <a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a>
+                    <a href="dieu-khoan.html">Điều khoản sử dụng</a>
+                    <a href="gop-y.html">Gửi góp ý độc giả</a>
+                </div>
+            </div>
+        </div>
+        <div class="ed-footer-bottom">
+            <span>© 2026 Score Vision (scorevision.io.vn). Toàn bộ bản quyền được bảo lưu.</span>
+            <span>Email: scorevision@gmail.com</span>
+        </div>
+    </div>
+</footer>
 
 <script type="application/ld+json">
 {
-  "@context":"https://schema.org",
-  "@type":"WebSite",
-  "name":"Score Vision",
-  "url":"https://scorevision.io.vn/",
-  "description":"Lịch thi đấu, kết quả, bảng xếp hạng, thống kê, LiveScore và phân tích bóng đá.",
-  "inLanguage":"vi-VN"
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Score Vision",
+  "url": "https://scorevision.io.vn/",
+  "description": "Tin tức, lịch thi đấu, kết quả, bảng xếp hạng, thống kê và phân tích bóng đá chuyên sâu.",
+  "inLanguage": "vi-VN"
 }
 </script>
 
-<a href="#top" class="len-dau" id="btnLenDau" aria-label="Lên đầu trang">↑</a>
-
-<!-- ==========================================================================
-     CORE DATA INTEGRATION (GOOGLE SHEETS & API ENGINE)
-     ========================================================================== -->
 <script>
-    const btnLenDau = document.getElementById("btnLenDau");
-    window.addEventListener("scroll", ()=>{
-        if(window.scrollY > 400) btnLenDau.classList.add("hien");
-        else btnLenDau.classList.remove("hien");
-    });
-    btnLenDau.addEventListener("click", e=>{
-        e.preventDefault();
-        window.scrollTo({top:0,behavior:"smooth"});
-    });
-
-    const GID_PHAN_TICH = "1723464768";
-    const GID_TIN_NONG = "840175350";
-    const GID_LICH_DAU = "655851279";
-    const GID_KET_QUA = "1819801064";
-    const GID_THONG_KE = "575449196";
-    const BASE_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRjGewmdAmJVjyi-0vSc22hhFPacMgGc-WmVE8PEM3jHfA7IvED3XbBp68Bwp16n1Dc2FFP9ETKTaSH/pub?output=csv&gid=";
-
-    // ==========================================
-    // KHO HUY HIỆU / LOGO CÂU LẠC BỘ & ĐỘI TUYỂN CHUẨN XÁC
-    // ==========================================
-    const TEAM_LOGOS = {
-        // Ngoại Hạng Anh
-        "man utd": "https://crests.football-data.org/66.png",
-        "manchester united": "https://crests.football-data.org/66.png",
-        "man city": "https://crests.football-data.org/65.png",
-        "manchester city": "https://crests.football-data.org/65.png",
-        "arsenal": "https://crests.football-data.org/57.png",
-        "chelsea": "https://crests.football-data.org/61.png",
-        "liverpool": "https://crests.football-data.org/64.png",
-        "tottenham": "https://crests.football-data.org/73.png",
-        "spurs": "https://crests.football-data.org/73.png",
-        "aston villa": "https://crests.football-data.org/58.png",
-        "fulham": "https://crests.football-data.org/63.png",
-        "newcastle": "https://crests.football-data.org/67.png",
-        "west ham": "https://crests.football-data.org/563.png",
-        "brighton": "https://crests.football-data.org/397.png",
-        "everton": "https://crests.football-data.org/62.png",
-
-        // La Liga
-        "real madrid": "https://crests.football-data.org/86.png",
-        "barcelona": "https://crests.football-data.org/81.png",
-        "barca": "https://crests.football-data.org/81.png",
-        "atletico": "https://crests.football-data.org/78.png",
-        "sevilla": "https://crests.football-data.org/559.png",
-        "getafe": "https://crests.football-data.org/82.png",
-        "valencia": "https://crests.football-data.org/95.png",
-        "villarreal": "https://crests.football-data.org/94.png",
-        "sociedad": "https://crests.football-data.org/92.png",
-        "athletic": "https://crests.football-data.org/77.png",
-        "levante": "https://crests.football-data.org/88.png",
-
-        // Serie A
-        "inter": "https://crests.football-data.org/108.png",
-        "inter milan": "https://crests.football-data.org/108.png",
-        "milan": "https://crests.football-data.org/98.png",
-        "ac milan": "https://crests.football-data.org/98.png",
-        "juventus": "https://crests.football-data.org/109.png",
-        "napoli": "https://crests.football-data.org/113.png",
-        "roma": "https://crests.football-data.org/100.png",
-        "lazio": "https://crests.football-data.org/110.png",
-        "atalanta": "https://crests.football-data.org/102.png",
-        "bologna": "https://crests.football-data.org/103.png",
-        "como": "https://crests.football-data.org/898.png",
-        "venezia": "https://crests.football-data.org/454.png",
-        "frosinone": "https://crests.football-data.org/470.png",
-        "torino": "https://crests.football-data.org/586.png",
-
-        // Bundesliga & Ligue 1
-        "bayern": "https://crests.football-data.org/5.png",
-        "dortmund": "https://crests.football-data.org/4.png",
-        "leverkusen": "https://crests.football-data.org/3.png",
-        "psg": "https://crests.football-data.org/524.png",
-        "monaco": "https://crests.football-data.org/548.png",
-        "strasbourg": "https://crests.football-data.org/576.png",
-        "auxerre": "https://crests.football-data.org/519.png",
-
-        // Đội tuyển & Quốc Gia
-        "việt nam": "https://flagcdn.com/w80/vn.png",
-        "vietnam": "https://flagcdn.com/w80/vn.png",
-        "hàn quốc": "https://flagcdn.com/w80/kr.png",
-        "korea": "https://flagcdn.com/w80/kr.png",
-        "nhật bản": "https://flagcdn.com/w80/jp.png",
-        "japan": "https://flagcdn.com/w80/jp.png",
-        "qatar": "https://flagcdn.com/w80/qa.png",
-        "kuwait": "https://flagcdn.com/w80/kw.png",
-        "uzbekistan": "https://flagcdn.com/w80/uz.png",
-        "philippines": "https://flagcdn.com/w80/ph.png",
-        "thái lan": "https://flagcdn.com/w80/th.png",
-        "malaysia": "https://flagcdn.com/w80/my.png",
-        "indonesia": "https://flagcdn.com/w80/id.png",
-        "singapore": "https://flagcdn.com/w80/sg.png",
-        "bangladesh": "https://flagcdn.com/w80/bd.png",
-        "bồ đào nha": "https://flagcdn.com/w80/pt.png",
-        "portugal": "https://flagcdn.com/w80/pt.png",
-        "anh": "https://flagcdn.com/w80/gb-eng.png",
-        "pháp": "https://flagcdn.com/w80/fr.png",
-        "đức": "https://flagcdn.com/w80/de.png",
-        "tây ban nha": "https://flagcdn.com/w80/es.png"
-    };
-
-    const LOGO_MAC_DINH = "https://crests.football-data.org/86.png";
-
-    function layLogoDoi(tenDoi) {
-        if (!tenDoi) return LOGO_MAC_DINH;
-        const lower = tenDoi.toLowerCase().trim();
-        for (let key in TEAM_LOGOS) {
-            if (lower.includes(key)) return TEAM_LOGOS[key];
-        }
-        return "https://crests.football-data.org/66.png"; // Fallback badge
+(function () {
+    // 1. Live Vietnamese Date in Header
+    const dateEl = document.getElementById("edTodayDate");
+    if (dateEl) {
+        const now = new Date();
+        const days = ["Chủ Nhật", "Thứ Hai", "Thứ Ba", "Thứ Tư", "Thứ Năm", "Thứ Sáu", "Thứ Bảy"];
+        const d = String(now.getDate()).padStart(2, "0");
+        const m = String(now.getMonth() + 1).padStart(2, "0");
+        dateEl.textContent = `${days[now.getDay()]}, ${d}/${m}/${now.getFullYear()}`;
     }
 
-    // Kho ảnh thời sự theo đúng ngữ cảnh sự việc (100% Verified 200 OK)
-    const TOPIC_IMAGES = {
-        "ronaldo": "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=800&q=80",
-        "mourinho": "https://images.unsplash.com/photo-1518091043644-c1d4457512c6?w=800&q=80",
-        "asian cup": "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=800&q=80",
-        "việt nam": "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=800&q=80",
-        "v-league": "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=800&q=80",
-        "premier league": "https://images.unsplash.com/photo-1560272564-c83b66b1ad12?w=800&q=80",
-        "la liga": "https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=800&q=80",
-        "c1": "https://images.unsplash.com/photo-1577223625816-7546f13df25d?w=800&q=80"
-    };
+    const FALLBACK_IMG = "assets/header-stadium.jpg";
+    const SHEET_BASE = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRjGewmdAmJVjyi-0vSc22hhFPacMgGc-WmVE8PEM3jHfA7IvED3XbBp68Bwp16n1Dc2FFP9ETKTaSH/pub?single=true&output=csv&gid=";
 
-    const BANNERS_POOL = [
-        "https://images.unsplash.com/photo-1560272564-c83b66b1ad12?w=800&q=80",
-        "https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=800&q=80",
-        "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&q=80",
-        "https://images.unsplash.com/photo-1489944440615-453fc2b6a9a9?w=800&q=80",
-        "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=800&q=80",
-        "https://images.unsplash.com/photo-1511886929837-354d827aae26?w=800&q=80"
-    ];
-
-    function layAnhTheoSuViec(title, index = 0) {
-        if (!title) return BANNERS_POOL[index % BANNERS_POOL.length];
-        const lower = title.toLowerCase();
-        for (let key in TOPIC_IMAGES) {
-            if (lower.includes(key)) return TOPIC_IMAGES[key];
-        }
-        return BANNERS_POOL[index % BANNERS_POOL.length];
-    }
-
-    // Bộ lọc làm sạch dữ liệu và giải mã thực thể HTML triệt để
-    function cleanText(text) {
-        if (!text) return "";
-        let s = String(text);
-        if (s.includes("&")) {
-            const txt = document.createElement("textarea");
-            txt.innerHTML = s;
-            s = txt.value;
-            if (s.includes("&")) {
-                txt.innerHTML = s;
-                s = txt.value;
-            }
-        }
-        return s
-            .replace(/[\u4e00-\u9fff]/g, "") // Diệt sạch tiếng Trung
-            .replace(/\bvs\s+vs\b/gi, "vs")   // Sửa lỗi lặp vs vs
-            .replace(/<[^>]*>/g, " ")        // Bỏ html
-            .replace(/\s+/g, " ")
-            .trim();
+    function esc(s) {
+        return String(s || "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
     }
 
     function parseCSV(text) {
-        const rows = []; let row = [], cell = "", inQuote = false;
+        const rows = [];
+        let row = [], cell = "", inQuotes = false;
         for (let i = 0; i < text.length; i++) {
-            let ch = text[i], next = text[i+1] || "";
-            if (ch === '"') {
-                if (inQuote && next === '"') { cell += '"'; i++; }
-                else inQuote = !inQuote;
-            } else if (ch === ',' && !inQuote) {
-                row.push(cell.trim()); cell = "";
-            } else if ((ch === "\n" || ch === "\r") && !inQuote) {
-                if (cell || row.length > 0) { row.push(cell.trim()); rows.push(row); row = []; cell = ""; }
-            } else cell += ch;
+            const ch = text[i], next = text[i + 1];
+            if (inQuotes) {
+                if (ch === '"' && next === '"') { cell += '"'; i++; }
+                else if (ch === '"') inQuotes = false;
+                else cell += ch;
+            } else {
+                if (ch === '"') inQuotes = true;
+                else if (ch === ",") { row.push(cell); cell = ""; }
+                else if (ch === "\n") { row.push(cell); rows.push(row); row = []; cell = ""; }
+                else if (ch !== "\r") cell += ch;
+            }
         }
-        if (cell || row.length > 0) { row.push(cell.trim()); rows.push(row); }
+        if (cell.length || row.length) { row.push(cell); rows.push(row); }
         return rows;
     }
 
-    // ==========================================
-    // 1. TẢI VÀ RENDER PHÂN TÍCH & DỰ ĐOÁN (CURIOSITY HOOK + LOGO ĐỘI THẬT + DEEP LINKING)
-    // ==========================================
-    fetch(BASE_URL + GID_PHAN_TICH)
-    .then(r => { if(!r.ok) throw new Error("Lỗi kết nối"); return r.text(); })
-    .then(csv => {
-        const rows = parseCSV(csv);
-        const box = document.getElementById("phan-tich-list");
-        if (rows.length < 2) { box.innerHTML = `<div style="text-align:center;padding:24px;color:var(--text-dim);">Chưa có dữ liệu phân tích</div>`; return; }
+    function safeImg(url) {
+        if (!url || !url.startsWith("http") || url.includes("lh3.googleusercontent.com")) return FALLBACK_IMG;
+        return url;
+    }
 
-        const h = rows[0].map(x => x.trim().toLowerCase());
-        const idx = {
-            loai: h.indexOf("loai_du_lieu"),
-            thuTu: h.indexOf("thu_tu"),
-            giai: h.indexOf("ten_giai"),
-            tran: h.indexOf("ten_tran"),
-            ngay: h.indexOf("ngay_gio"),
-            pt: h.indexOf("phan_tich"),
-            doan: h.indexOf("du_doan")
-        };
-        if (idx.loai === -1 || idx.giai === -1 || idx.tran === -1) {
-            box.innerHTML = `<div style="text-align:center;padding:24px;color:var(--text-dim);">Dữ liệu đang được đồng bộ hóa...</div>`; return;
-        }
+    // 2. Load Football News from data/news.json
+    fetch("data/news.json?v=" + Date.now())
+        .then(r => r.ok ? r.json() : Promise.reject())
+        .then(data => {
+            const items = (data.items || data || []).filter(x => x && x.title);
+            const topEl = document.getElementById("ed-top-news");
+            const moreEl = document.getElementById("ed-more-news");
+            if (!items.length) {
+                topEl.innerHTML = '<div class="ed-loading">Đang cập nhật tin bóng đá mới nhất.</div>';
+                moreEl.innerHTML = "";
+                return;
+            }
+            const lead = items[0];
+            const subs = items.slice(1, 4);
+            const rest = items.slice(4, 10);
 
-        let data = [];
-        for (let i = 1; i < rows.length; i++) {
-            const r = rows[i];
-            if ((r[idx.loai] || "").trim() !== "Trận đấu") continue;
-            const tenGiai = cleanText(r[idx.giai] || "");
-            const tenTran = cleanText(r[idx.tran] || "");
-            const phanTichTho = cleanText(r[idx.pt] || "");
-            
-            // Tách tên Đội Nhà & Đội Khách
-            const phanDoi = tenTran.split(/\s+vs\s+|\s+gặp\s+/i);
-            const doiNha = phanDoi[0] ? phanDoi[0].trim() : tenTran;
-            const doiKhach = phanDoi[1] ? phanDoi[1].trim() : "Đối thủ";
-
-            // Tạo Hook gây tò mò ngắn gọn (tối đa 75 ký tự, không lộ hết bài)
-            let teaser = phanTichTho.split(".")[0] || "Nhận định chiến thuật & phong độ chi tiết";
-            if (teaser.length > 75) teaser = teaser.substring(0, 75) + "…";
-
-            data.push({
-                st: Number(r[idx.thuTu]) || 0,
-                giai: tenGiai,
-                tran: tenTran,
-                doiNha: doiNha,
-                doiKhach: doiKhach,
-                logoNha: layLogoDoi(doiNha),
-                logoKhach: layLogoDoi(doiKhach),
-                ngay: cleanText(r[idx.ngay] || ""),
-                teaser: teaser
-            });
-        }
-        data.sort((a, b) => b.st - a.st);
-        if (!data.length) { box.innerHTML = `<div style="text-align:center;padding:24px;color:var(--text-dim);">Không có bài phân tích nào.</div>`; return; }
-
-        const items = data.slice(0, 6);
-        const renderCard = x => `
-            <a href="du-doan.html?giai=${encodeURIComponent(x.giai)}&st=${x.st}&tran=${encodeURIComponent(x.tran)}" class="card-phantich">
-                <div class="pt-matchup-stage">
-                    <span class="pt-league-tag">${x.giai || "Bóng Đá"}</span>
-                    <div class="pt-teams-row">
-                        <div class="pt-team-col">
-                            <img src="${x.logoNha}" alt="${x.doiNha}" class="pt-team-crest" loading="lazy">
-                            <span class="pt-team-name">${x.doiNha}</span>
-                        </div>
-                        <div class="pt-vs-col">
-                            <span class="pt-vs-badge">VS</span>
-                            <span class="pt-match-clock">⏰ ${x.ngay}</span>
-                        </div>
-                        <div class="pt-team-col">
-                            <img src="${x.logoKhach}" alt="${x.doiKhach}" class="pt-team-crest" loading="lazy">
-                            <span class="pt-team-name">${x.doiKhach}</span>
-                        </div>
+            topEl.innerHTML = `
+                <a href="tin-nong.html" class="ed-lead-story">
+                    <div class="ed-lead-img">
+                        <img src="${esc(safeImg(lead.image))}" alt="${esc(lead.title)}" referrerpolicy="no-referrer" onerror="this.src='${FALLBACK_IMG}'">
                     </div>
-                </div>
-                <div class="card-body-phantich">
-                    <div class="pt-teaser-hook">💡 ${x.teaser}</div>
-                    <div class="pt-lock-banner">
-                        <div class="pt-lock-info">
-                            <span class="pt-lock-icon">🔒</span>
-                            <span class="pt-lock-text">Kịch bản Tỉ số & Dự đoán phạt góc</span>
-                        </div>
-                        <span class="pt-lock-btn">Xem chi tiết →</span>
-                    </div>
-                </div>
-            </a>`;
-
-        const cards = items.map(renderCard).join("");
-        box.innerHTML = `
-            <div class="phan-tich-marquee" aria-label="Băng chuyền bài phân tích">
-                <div class="phan-tich-track">
-                    ${cards}
-                    ${cards}
-                </div>
-            </div>
-            <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--text-dim);margin-top:8px;">
-                <span>← Trượt ngang để xem tiếp</span>
-                <span>Di chuột để tạm dừng</span>
-            </div>`;
-    })
-    .catch(e => { document.getElementById("phan-tich-list").innerHTML = `<div style="text-align:center;padding:20px;color:var(--text-dim);">Đang cập nhật...</div>`; });
-
-    // ==========================================
-    // 2. TẢI VÀ RENDER KẾT QUẢ BÓNG ĐÁ
-    // ==========================================
-    fetch(BASE_URL + GID_KET_QUA)
-    .then(r => { if(!r.ok) throw new Error("Lỗi kết nối"); return r.text(); })
-    .then(csv => {
-        const rows = parseCSV(csv);
-        const box = document.getElementById("ketqua-list");
-        if (rows.length < 2) { box.innerHTML = `<div style="text-align:center;padding:24px;color:var(--text-dim);">Chưa có kết quả mới</div>`; return; }
-
-        const h = rows[0].map(x => x.trim().toLowerCase());
-        const i_loai = h.indexOf("loai_muc"), i_st = h.indexOf("thu_tu"), i_tran = h.indexOf("tran_dau"), i_tyso = h.indexOf("ty_so"), i_giai = h.indexOf("giai_dau"), i_ngay = h.indexOf("ngay_gio");
-        if ([i_loai, i_st, i_tran, i_tyso].includes(-1)) { box.innerHTML = `<div style="text-align:center;padding:24px;color:var(--text-dim);">Đang cập nhật...</div>`; return; }
-
-        const data = [];
-        for (let i = 1; i < rows.length; i++) {
-            const r = rows[i];
-            if ((r[i_loai] || "").trim() !== "ket_qua") continue;
-            const tran = cleanText(r[i_tran] || "");
-            if (tran.includes("Không có trận")) continue;
-            const phan = tran.split(/\s+vs\s+/i);
-            if (phan.length < 2) continue;
-            data.push({
-                st: Number(r[i_st]) || 0,
-                nha: phan[0].trim(),
-                khach: phan[1].trim(),
-                tyso: cleanText(r[i_tyso] || "-"),
-                ngay: cleanText(r[i_ngay] || ""),
-                giai: cleanText(r[i_giai] || "Bóng Đá")
-            });
-        }
-        data.sort((a, b) => b.st - a.st);
-        if (!data.length) { box.innerHTML = `<div style="text-align:center;padding:24px;color:var(--text-dim);">Chưa có kết quả trận đấu mới nhất.</div>`; return; }
-
-        const latest = data.slice(0, 6);
-        const renderScoreCard = x => `
-            <a href="ket-qua.html" class="card-ketqua">
-                <div class="ketqua-header">
-                    <span class="ketqua-league">🏆 ${x.giai}</span>
-                    <span class="ketqua-date">${x.ngay}</span>
-                </div>
-                <div class="ketqua-match">
-                    <span class="ketqua-team ketqua-team-home">${x.nha}</span>
-                    <div class="ketqua-score-box">
-                        <span class="ketqua-score-num">${x.tyso}</span>
-                    </div>
-                    <span class="ketqua-team ketqua-team-away">${x.khach}</span>
-                </div>
-                <div class="ketqua-footer">
-                    <span>✓ Đã kết thúc</span>
-                </div>
-            </a>`;
-
-        const left = latest.slice(0, 3).map(renderScoreCard).join("");
-        const right = latest.slice(3, 6).map(renderScoreCard).join("");
-        box.innerHTML = `
-            <div class="ketqua-columns">
-                <div class="ketqua-column">${left}</div>
-                <div class="ketqua-column">${right}</div>
-            </div>`;
-    })
-    .catch(e => { document.getElementById("ketqua-list").innerHTML = `<div style="text-align:center;padding:20px;color:var(--text-dim);">Đang cập nhật...</div>`; });
-
-    // ==========================================
-    // 3. TẢI VÀ RENDER TIN TỨC BÓNG ĐÁ (ẢNH BÁO CHÍ CHÍNH THỐNG)
-    // ==========================================
-    function renderTinCards(data) {
-        const box = document.getElementById("tin-list");
-        if (!data || !data.length) { 
-            box.innerHTML = `<div style="text-align:center;padding:24px;color:var(--text-dim);">Chưa có bài tin nào.</div>`; 
-            return; 
-        }
-
-        const baiNoiBat = data[0];
-        const listTinMoi = data.slice(1, 5);
-
-        const subCards = listTinMoi.map(x => `
-            <a href="tin-nong.html" class="card-news-sub">
-                <div class="news-sub-thumb">
-                    <img src="${x.anh}" alt="${x.tieude}" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&q=80';">
-                </div>
-                <div class="news-sub-body">
-                    <span class="news-date">📅 ${x.ngay}</span>
-                    <h4>${x.tieude}</h4>
-                </div>
-            </a>
-        `).join("");
-
-        box.innerHTML = `
-            <div class="news-layout">
-                <a href="tin-nong.html" class="card-news-hero">
-                    <img src="${baiNoiBat.anh}" alt="${baiNoiBat.tieude}" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&q=80';">
-                    <div class="news-hero-content">
-                        <span class="badge-hot">🔥 TIN TÂM ĐIỂM · ${baiNoiBat.ngay}</span>
-                        <h3>${baiNoiBat.tieude}</h3>
-                        <p>${baiNoiBat.tomtat}</p>
+                    <div>
+                        <span class="ed-cat-label">Tiêu điểm · ${esc(lead.source || "Bóng đá")}</span>
+                        <h2 class="ed-lead-title">${esc(lead.title)}</h2>
+                        <p class="ed-lead-desc">${esc(lead.content || "Bấm để xem nội dung chi tiết và cập nhật mới nhất về diễn biến bóng đá trong nước và quốc tế tại Score Vision.")}</p>
+                        <div class="ed-meta">${esc(lead.date || "Mới cập nhật")}</div>
                     </div>
                 </a>
-                <div class="news-sub-list">
-                    ${subCards}
-                </div>
-            </div>`;
-    }
-
-    // Ưu tiên nạp data/news.json (chứa 100% ảnh thật từ báo chí gốc)
-    fetch("data/news.json?v=" + Date.now())
-    .then(r => {
-        if (!r.ok) throw new Error("Fallback sang Sheet");
-        return r.json();
-    })
-    .then(jsonData => {
-        if (!jsonData || !jsonData.length) throw new Error("Empty json");
-        const data = jsonData.map(x => {
-            let tomtat = x.lead || x.content || "";
-            if (tomtat.length > 95) tomtat = tomtat.substring(0, 95) + "…";
-            return {
-                tieude: x.title,
-                ngay: (x.date || "Mới nhất").split(" ")[0],
-                anh: x.image,
-                tomtat: tomtat || "Xem thông tin chi tiết bài viết nóng nhất..."
-            };
-        });
-        renderTinCards(data);
-    })
-    .catch(() => {
-        // Fallback sang Google Sheet CSV nếu JSON chưa sẵn sàng
-        fetch(BASE_URL + GID_TIN_NONG)
-        .then(r => { if(!r.ok) throw new Error("Lỗi kết nối"); return r.text(); })
-        .then(csv => {
-            const rows = parseCSV(csv);
-            if (rows.length < 2) { 
-                document.getElementById("tin-list").innerHTML = `<div style="text-align:center;padding:24px;color:var(--text-dim);">Chưa có tin tức mới</div>`; 
-                return; 
-            }
-
-            const data = [];
-            for (let i = 1; i < rows.length; i++) {
-                const r = rows[i];
-                if (!r || r.length < 13) continue;
-                const tieude = cleanText(r[0] || "");
-                const ngaydang = cleanText(r[2] || "");
-                const anh_bia = (r[10] || "").trim();
-                const noidung = cleanText(r[12] || "");
-                if (!tieude) continue;
-
-                const anhChuan = (anh_bia && anh_bia.startsWith("http")) ? anh_bia : layAnhTheoSuViec(tieude, i);
-
-                let tomtat = noidung;
-                if (tomtat.length > 95) tomtat = tomtat.substring(0, 95) + "…";
-
-                data.push({
-                    tieude,
-                    ngay: ngaydang.split(" ")[0] || "Mới nhất",
-                    anh: anhChuan,
-                    tomtat: tomtat || "Xem thông tin chi tiết bài viết nóng nhất..."
-                });
-            }
-            renderTinCards(data);
-        })
-        .catch(e => { 
-            document.getElementById("tin-list").innerHTML = `<div style="text-align:center;padding:20px;color:var(--text-dim);">Đang cập nhật...</div>`; 
-        });
-    });
-
-    // ==========================================
-    // 4. TẢI VÀ RENDER GÓC THỐNG KÊ (3D TACTICAL PITCH + DEEP LINKING)
-    // ==========================================
-    fetch(BASE_URL + GID_THONG_KE)
-    .then(r => { if(!r.ok) throw new Error("Lỗi kết nối"); return r.text(); })
-    .then(csv => {
-        const rows = parseCSV(csv);
-        const box = document.getElementById("thongke-home");
-        if (rows.length < 2) { box.innerHTML = `<div style="text-align:center;padding:24px;color:var(--text-dim);">Chưa có dữ liệu thống kê</div>`; return; }
-
-        const h = rows[0].map(x => (x || "").trim().toLowerCase());
-        const idx = {
-            loai: h.indexOf("loại") > -1 ? h.indexOf("loại") : h.indexOf("loai"),
-            st: h.indexOf("thứ tự") > -1 ? h.indexOf("thứ tự") : h.indexOf("thu tu"),
-            chi: h.indexOf("chỉ tiêu") > -1 ? h.indexOf("chỉ tiêu") : h.indexOf("chi tieu"),
-            donvi: h.indexOf("đơn vị") > -1 ? h.indexOf("đơn vị") : h.indexOf("don vi"),
-            solieu: h.indexOf("số liệu") > -1 ? h.indexOf("số liệu") : h.indexOf("so lieu"),
-            ghichu: h.indexOf("ghi chú") > -1 ? h.indexOf("ghi chú") : h.indexOf("ghi chu")
-        };
-        if ([idx.loai, idx.st, idx.chi, idx.donvi, idx.solieu, idx.ghichu].includes(-1)) {
-            box.innerHTML = `<div style="text-align:center;padding:24px;color:var(--text-dim);">Đang đồng bộ dữ liệu thống kê...</div>`; return;
-        }
-
-        const data = [];
-        for (let i = 1; i < rows.length; i++) {
-            const r = rows[i] || [];
-            const loai = cleanText(r[idx.loai] || "");
-            const chi = cleanText(r[idx.chi] || "");
-            const donvi = cleanText(r[idx.donvi] || "");
-            const solieu = cleanText(r[idx.solieu] || "");
-            const ghichu = cleanText(r[idx.ghichu] || "");
-            if (!loai && !chi && !donvi && !solieu) continue;
-
-            // Cắt ngắn nhận định gây tò mò
-            let shortNote = ghichu.split(".")[0] || "Đang phân tích dữ liệu phong độ hai đội...";
-            if (shortNote.length > 85) shortNote = shortNote.substring(0, 85) + "…";
-
-            data.push({
-                loai,
-                st: Number(r[idx.st]) || 0,
-                chi,
-                donvi,
-                solieu,
-                shortNote
-            });
-        }
-        data.sort((a, b) => {
-            const aSap = /sắp\s*đấu/i.test(a.loai), bSap = /sắp\s*đấu/i.test(b.loai);
-            if (aSap !== bSap) return aSap ? -1 : 1;
-            return a.st - b.st;
-        });
-        if (!data.length) { box.innerHTML = `<div style="text-align:center;padding:24px;color:var(--text-dim);">Chưa có thống kê mới.</div>`; return; }
-
-        const featured = data[0];
-        const rest = data.slice(1, 5);
-
-        const matchText = (featured.donvi || "").trim();
-        const parts = matchText.split(/\s+gặp\s+|\s+vs\s+|\s+v\s+/i);
-        const home = (parts[0] || matchText).trim();
-        const away = (parts[1] || "").trim();
-        const timeMatch = String(featured.chi || "").match(/(\d{1,2}:\d{2})[^0-9]*(\d{1,2}\/\d{1,2})/);
-        const pitchTime = timeMatch ? `${timeMatch[1]} · ${timeMatch[2]}` : "SẮP DIỄN RA";
-
-        let restHtml = rest.map(x => `
-            <a href="thong-ke.html?st=${x.st}" class="tk-item">
-                <div class="tk-item-top">
-                    <span>🏆 ${x.chi}</span>
-                    <span>#${x.st}</span>
-                </div>
-                <div class="tk-item-match">${x.donvi}</div>
-                <div class="tk-item-stat">⚡ Bấm mở khóa chỉ số chi tiết →</div>
-            </a>
-        `).join("");
-
-        box.innerHTML = `
-            <div class="goc-thong-ke">
-                <div class="goc-thong-ke-head">
-                    <div class="goc-thong-ke-label">CHỈ SỐ & PHONG ĐỘ ĐỐI ĐẦU</div>
-                    <div class="goc-thong-ke-meta">LIVE TACTICAL ANALYSIS</div>
-                </div>
-                <div class="goc-thong-ke-grid">
-                    <a href="thong-ke.html?st=${featured.st}" class="tk-feature">
-                        <div class="tk-pitch-stage">
-                            <div class="tk-pitch-time">${pitchTime}</div>
-                            <div class="tk-pitch-teams">
-                                <span>${home}</span>
-                                <span class="vs">VS</span>
-                                <span>${away}</span>
+                <div class="ed-sub-grid">
+                    ${subs.map(item => `
+                        <a href="tin-nong.html" class="ed-sub-card">
+                            <div class="ed-sub-img">
+                                <img src="${esc(safeImg(item.image))}" alt="${esc(item.title)}" loading="lazy" referrerpolicy="no-referrer" onerror="this.src='${FALLBACK_IMG}'">
                             </div>
-                        </div>
-                        <div class="tk-feature-body">
-                            <div class="tk-stat-badge">📊 ${featured.loai} · #${featured.st}</div>
-                            <div class="tk-stat-match">${featured.donvi || featured.chi}</div>
-                            <div class="tk-stat-teaser">💡 ${featured.shortNote}</div>
-                            <div class="tk-cta-btn">Xem báo cáo phong độ chi tiết →</div>
-                        </div>
-                    </a>
-                    <div class="tk-list">
-                        ${restHtml}
+                            <h3 class="ed-sub-title">${esc(item.title)}</h3>
+                            <div class="ed-meta">${esc(item.source || "Score Vision")}</div>
+                        </a>
+                    `).join("")}
+                </div>
+            `;
+
+            moreEl.innerHTML = rest.map(item => `
+                <a href="tin-nong.html" class="ed-news-row">
+                    <div class="ed-news-row-img">
+                        <img src="${esc(safeImg(item.image))}" alt="${esc(item.title)}" loading="lazy" referrerpolicy="no-referrer" onerror="this.src='${FALLBACK_IMG}'">
                     </div>
-                </div>
-            </div>`;
-    })
-    .catch(e => { document.getElementById("thongke-home").innerHTML = `<div style="text-align:center;padding:20px;color:var(--text-dim);">Đang cập nhật...</div>`; });
+                    <div>
+                        <span class="ed-cat-label">${esc(item.source || "Bóng đá")}</span>
+                        <h3>${esc(item.title)}</h3>
+                        <p>${esc(item.content || "Xem chi tiết diễn biến và phân tích chuyên môn tại chuyên mục Tin nóng Score Vision.")}</p>
+                        <div class="ed-meta">${esc(item.date || "")}</div>
+                    </div>
+                </a>
+            `).join("");
+        })
+        .catch(() => {
+            document.getElementById("ed-top-news").innerHTML = '<div class="ed-loading">Không thể tải tin tức lúc này. <a href="tin-nong.html" style="color:#d61f26;font-weight:700">Mở trang Tin nóng →</a></div>';
+        });
 
-    // ==========================================
-    // 5. TẢI VÀ RENDER LỊCH THI ĐẤU
-    // ==========================================
-    fetch(BASE_URL + GID_LICH_DAU)
-    .then(r => { if(!r.ok) throw new Error("Lỗi kết nối"); return r.text(); })
-    .then(csv => {
-        const rows = parseCSV(csv);
-        const box = document.getElementById("lich-list");
-        if (rows.length < 2) { box.innerHTML = `<div style="text-align:center;padding:24px;color:var(--text-dim);">Chưa có lịch đấu mới</div>`; return; }
+    // 3. Load Sidebar Results (gid=1819801064)
+    fetch(SHEET_BASE + "1819801064")
+        .then(r => r.text())
+        .then(txt => {
+            const rows = parseCSV(txt).slice(1).filter(r => r[2] && r[3]);
+            const el = document.getElementById("sb-results");
+            if (!rows.length) { el.innerHTML = '<div class="ed-loading">Chưa có kết quả mới.</div>'; return; }
+            el.innerHTML = rows.slice(0, 7).map(r => {
+                const parts = r[2].split(/\s+vs\s+/i);
+                const home = parts[0] || r[2];
+                const away = parts[1] || "";
+                return `
+                    <a href="ket-qua.html" class="sb-match-row">
+                        <div class="sb-league-mini"><span>${esc(r[4] || "")}</span><span>${esc(r[5] || "")}</span></div>
+                        <span class="sb-team-home">${esc(home)}</span>
+                        <span class="sb-score">${esc(r[3])}</span>
+                        <span class="sb-team-away">${esc(away)}</span>
+                    </a>
+                `;
+            }).join("");
+        })
+        .catch(() => { document.getElementById("sb-results").innerHTML = '<div class="ed-loading">Xem tại trang <a href="ket-qua.html">Kết quả</a>.</div>'; });
 
-        const h = rows[0].map(x => x.trim().toLowerCase());
-        const i_loai = h.indexOf("loai_muc"), i_st = h.indexOf("thu_tu"), i_nha = h.indexOf("doi_nha"), i_khach = h.indexOf("doi_khach"), i_ngay = h.indexOf("ngay_gio"), i_giai = h.indexOf("giai_dau");
-        if ([i_loai, i_st, i_nha, i_khach, i_ngay].includes(-1)) { box.innerHTML = `<div style="text-align:center;padding:24px;color:var(--text-dim);">Đang cập nhật...</div>`; return; }
+    // 4. Load Sidebar Upcoming Fixtures (gid=655851279)
+    fetch(SHEET_BASE + "655851279")
+        .then(r => r.text())
+        .then(txt => {
+            const rows = parseCSV(txt).slice(1).filter(r => r[2] && r[3]);
+            const el = document.getElementById("sb-fixtures");
+            if (!rows.length) { el.innerHTML = '<div class="ed-loading">Chưa có lịch thi đấu mới.</div>'; return; }
+            el.innerHTML = rows.slice(-6).reverse().map(r => `
+                <a href="lich-dau.html" class="sb-fix-row">
+                    <div>
+                        <div class="sb-fix-teams">${esc(r[2])} vs ${esc(r[3])}</div>
+                        <div class="sb-fix-league">${esc(r[5] || "")}</div>
+                    </div>
+                    <span class="sb-fix-time">${esc(r[4] || "Sắp đấu")}</span>
+                </a>
+            `).join("");
+        })
+        .catch(() => { document.getElementById("sb-fixtures").innerHTML = '<div class="ed-loading">Xem tại trang <a href="lich-dau.html">Lịch đấu</a>.</div>'; });
 
-        const data = [];
-        for (let i = 1; i < rows.length; i++) {
-            const r = rows[i];
-            if ((r[i_loai] || "").trim() !== "lich_dau") continue;
-            const nha = cleanText(r[i_nha] || "");
-            const khach = cleanText(r[i_khach] || "");
-            if (!nha || !khach) continue;
-            data.push({
-                st: Number(r[i_st]) || 0,
-                tieude: nha + " vs " + khach,
-                ngay: cleanText(r[i_ngay] || ""),
-                giai: cleanText(r[i_giai] || "Bóng Đá Quốc Tế")
-            });
-        }
-        data.sort((a, b) => b.st - a.st);
-        if (!data.length) { box.innerHTML = `<div style="text-align:center;padding:24px;color:var(--text-dim);">Chưa có lịch thi đấu sắp tới.</div>`; return; }
+    // 5. Load Stats & Form Section (gid=575449196)
+    fetch(SHEET_BASE + "575449196")
+        .then(r => r.text())
+        .then(txt => {
+            const rows = parseCSV(txt).slice(1).filter(r => r[3] && r[5]);
+            const el = document.getElementById("ed-stats-grid");
+            if (!rows.length) { el.innerHTML = '<div class="ed-loading">Đang cập nhật thống kê.</div>'; return; }
+            el.innerHTML = rows.slice(0, 4).map(r => `
+                <a href="thong-ke.html" class="ed-analysis-card">
+                    <div class="ed-analysis-meta">
+                        <span>${esc((r[2] || "").replace(/[^\w\sÀ-ỹ|:/-]/g, "").trim())}</span>
+                        <span>${esc((r[0] || "").replace(/[^\w\sÀ-ỹ]/g, "").trim())}</span>
+                    </div>
+                    <div class="ed-analysis-match">${esc(r[3])}</div>
+                    <p class="ed-analysis-teaser">${esc(r[5])}</p>
+                </a>
+            `).join("");
+        })
+        .catch(() => { document.getElementById("ed-stats-grid").innerHTML = '<div class="ed-loading">Xem tại trang <a href="thong-ke.html">Thống kê</a>.</div>'; });
 
-        const cards = data.slice(0, 4).map(x => `
-            <a href="lich-dau.html" class="card-lich">
-                <div class="lich-left">
-                    <span class="lich-badge-time">⏰ ${x.ngay}</span>
-                    <div class="lich-match-title">${x.tieude}</div>
-                    <div class="lich-league-sub">🏆 ${x.giai}</div>
-                </div>
-                <div class="lich-action">
-                    <span>Soi Kèo →</span>
-                </div>
-            </a>
-        `).join("");
-
-        box.innerHTML = `<div class="lich-grid">${cards}</div>`;
-    })
-    .catch(e => { document.getElementById("lich-list").innerHTML = `<div style="text-align:center;padding:20px;color:var(--text-dim);">Đang cập nhật...</div>`; });
-</script>
-
-<!-- API-SPORTS: TỰ ĐỘNG ĐỔI KEY KHI KEY HIỆN TẠI LỖI/HẾT QUOTA -->
-<script>
-</script>
-<script>
-(function(){
-    const DANH_SACH_KEY = [
-        "db3cb172848d850444676b821c1e9fd0",
-        "DAN_KEY_2",
-        "DAN_KEY_3"
-    ].filter(k => k && !k.startsWith("DAN_KEY_"));
-
-    let keyHienTai = 0;
-    let dangDoiKey = false;
-    let lanDoiCuoi = 0;
-
-    function layWidget(type){
-        return document.querySelector('api-sports-widget[data-type="' + type + '"]');
+    // Register Service Worker
+    if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(() => {}));
     }
-
-    function vanBanWidget(node){
-        if(!node) return "";
-        let text = node.textContent || "";
-        try{
-            if(node.shadowRoot){
-                text += " " + node.shadowRoot.textContent;
-                node.shadowRoot.querySelectorAll("*").forEach(el => {
-                    if(el.shadowRoot) text += " " + vanBanWidget(el);
-                });
-            }
-        }catch(e){}
-        return text.toLowerCase();
-    }
-
-    function coPhaiLoiKey(text){
-        return /not authorized|api key|api-key|invalid.*key|key.*invalid|quota|rate limit|too many requests|user blocked|requests limit|limit exceeded/.test(text);
-    }
-
-    function khoiDongLaiWidget(){
-        const config = layWidget("config");
-        const games = layWidget("games");
-        if(!config || !games) return;
-
-        config.innerHTML = "";
-        games.innerHTML = "";
-
-        if(typeof config.connectedCallback === "function"){
-            try{ config.connectedCallback(); }catch(e){}
-        }
-        if(typeof games.connectedCallback === "function"){
-            try{ games.connectedCallback(); }catch(e){}
-        }
-
-        window.document.dispatchEvent(new Event("DOMContentLoaded", {
-            bubbles:true,
-            cancelable:true
-        }));
-    }
-
-    function doiKey(){
-        if(dangDoiKey) return;
-        const now = Date.now();
-        if(now - lanDoiCuoi < 10000) return;
-        if(DANH_SACH_KEY.length <= 1) return;
-
-        dangDoiKey = true;
-        lanDoiCuoi = now;
-        keyHienTai = (keyHienTai + 1) % DANH_SACH_KEY.length;
-        const keyMoi = DANH_SACH_KEY[keyHienTai];
-
-        const config = layWidget("config");
-        if(config){
-            config.setAttribute("data-key", keyMoi);
-        }
-
-        setTimeout(() => {
-            khoiDongLaiWidget();
-            setTimeout(() => { dangDoiKey = false; }, 3000);
-        }, 300);
-    }
-
-    function kiemTraWidget(){
-        const games = layWidget("games");
-        if(!games) return;
-        const text = vanBanWidget(games);
-        if(coPhaiLoiKey(text)){
-            doiKey();
-        }
-    }
-
-    const observer = new MutationObserver(() => {
-        kiemTraWidget();
-    });
-
-    window.addEventListener("DOMContentLoaded", () => {
-        const games = layWidget("games");
-        if(games){
-            observer.observe(games, {
-                childList: true,
-                subtree: true,
-                characterData: true
-            });
-            setTimeout(kiemTraWidget, 2500);
-            setTimeout(kiemTraWidget, 6000);
-        }
-    });
-
-    setInterval(kiemTraWidget, 15000);
 })();
 </script>
-
-<script src="assets/motion.js?v=20261127" defer></script>
+<script src="assets/motion.js?v=20261128" defer></script>
 </body>
 </html>

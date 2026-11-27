@@ -163,44 +163,49 @@ body.sv-theme-navy .dau-trang-wrapper > * {
     margin-top: 3px;
 }
 
-/* Unified Sticky Nav — Crisp White Bar */
+/* Unified Sticky Nav — Flat Editorial Newspaper Bar */
 .sv-nav-wrap {
     position: sticky;
-    top: 8px;
+    top: 0;
     z-index: 60;
-    margin: 16px auto 24px;
+    margin: 0 auto 22px;
 }
 .sv-nav {
     display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    padding: 8px;
-    border-radius: var(--sv-radius-md);
-    background: rgba(255, 255, 255, 0.94);
-    border: 1px solid var(--sv-border);
-    backdrop-filter: blur(12px);
-    box-shadow: 0 8px 24px rgba(11, 25, 44, 0.08);
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    gap: 2px;
+    padding: 0 8px;
+    border-radius: 0 0 8px 8px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-top: none;
+    border-bottom: 2px solid var(--sv-navy);
+    box-shadow: 0 2px 10px rgba(17, 24, 39, 0.05);
 }
+.sv-nav::-webkit-scrollbar { display: none; }
 .sv-nav a {
     text-decoration: none;
-    color: var(--sv-text-secondary);
-    font-size: 13px;
+    color: #1f2937;
+    font-size: 12.5px;
     font-weight: 700;
-    padding: 8px 13px;
-    border-radius: var(--sv-radius-sm);
-    border: 1px solid transparent;
-    transition: all 0.22s var(--sv-ease);
+    text-transform: uppercase;
+    letter-spacing: 0.2px;
+    padding: 12px 13px;
+    border-bottom: 3px solid transparent;
+    transition: color 0.18s ease, background 0.18s ease;
     white-space: nowrap;
 }
 .sv-nav a:hover {
-    color: var(--sv-navy);
-    background: #f1f5f9;
-    border-color: var(--sv-border);
+    color: #d61f26;
+    background: #f9fafb;
 }
 .sv-nav a.active {
-    color: #ffffff;
-    background: var(--sv-navy);
-    box-shadow: 0 4px 12px rgba(11, 25, 44, 0.22);
+    color: #d61f26;
+    background: transparent;
+    border-bottom-color: #d61f26;
+    box-shadow: none;
 }
 
 /* Unified Page Hero — Navy Banner */
